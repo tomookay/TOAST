@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="HMIData" Id="{ff709847-a0f4-40ed-b932-b67e11c424ed}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	gMotionRows: typeMotionScreen;
+	gMotionRowButtons: typeMotionScreenBtn;
+	
+	
+	gStationSelected: ARRAY[1..gNumberOfStations] OF BOOL;
+	gActiveStationNumber:UINT; 
+	
+	gActivePageNumber:UINT; //current page number
+	gMaxPageNumber:UINT;  //max pages exist for station, e.g. 5
+	
+	gActiveScreen:UINT; //combo of station + page, expressed as integer 0-999999+, reference to the text list
+	gRowElementOffset: ARRAY[1..gNumberRowsPerPage] OF UINT;
+	
+	
+	
+	
+	
+	gMachinePromptNumber: UINT;
+	
+	gHideDisplayElements:ARRAY[0..gNumberOfStations] OF BOOL;
+	
+	gHideDisplayElementAlarmView: StationEnables;
+	gHideDisplayElementWarningView: StationEnables;
+	gHideDisplayElementPromptView: StationEnables;
+	
+	gNumActivePromptTextList:ARRAY[0..gNumberOfStations] OF UINT;
+	gNumActiveWarningTextList:ARRAY[0..gNumberOfStations] OF UINT;
+	gNumActiveAlarmTextList:ARRAY[0..gNumberOfStations] OF UINT;
+	
+	gScreenNumber: UINT;
+
+	
+	
+	//buttons
+	btnSelectStation1: BOOL;
+	btnSelectStation2: BOOL;
+	btnSelectStation3: BOOL;
+	btnSelectStation4: BOOL;
+	btnSelectStation5: BOOL;
+	btnSelectStation6: BOOL;
+	
+	btnReset: BOOL;
+
+	
+	//manual screen
+	btnAbsMode:BOOL; //TRUE if abs mode, False if sys mode
+	btnNextPage: BOOL;
+	btnPrevPage: BOOL;
+
+END_VAR
+
+
+VAR_GLOBAL CONSTANT
+	gNumberOfStations: UINT := 6;
+	gNumberRowsPerPage:UINT := 6;
+	gNumberElementsPerRow:UINT := 20;
+	
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

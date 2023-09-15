@@ -42,6 +42,16 @@
     <Compile Include="POUs\MAIN.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Screens\Data\HMIData.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="Screens\Data\RowImages.TcIPO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Screens\Data\typeStationEnables.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Screens\Screens\MotionRow.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
@@ -63,6 +73,10 @@
     <Folder Include="POUs" />
   </ItemGroup>
   <ItemGroup>
+    <PlaceholderReference Include="CmpBitmapPool">
+      <DefaultResolution>CmpBitmapPool, * (System)</DefaultResolution>
+      <Namespace>CmpBitmapPool</Namespace>
+    </PlaceholderReference>
     <PlaceholderReference Include="System_VisuElemMeter">
       <DefaultResolution>VisuElemMeter, 3.5.13.0 (System)</DefaultResolution>
       <Namespace>VisuElemMeter</Namespace>
