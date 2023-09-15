@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="typeMotionSide" Id="{80cb6d72-5b27-4fe2-bda0-dfb325271228}">
+    <Declaration><![CDATA[TYPE typeMotionSide :
+STRUCT
+	RequestCoil: BOOL;		//TRUE if the coil to advance the motion has been switched on
+	Depth: BOOL;  			//TRUE if the motion is complete
+	Prompt: BOOL;           //TRUE if the motion is OK to move (or to the next step)
+	InterlockOK: BOOL;		//TRUE if the interlock is satisified for the motion
+	NumberOrder:UINT;		//number of the motion to take
+
+	TimeTaken: TIME;		//Time Taken for the motion to complete
+	
+	valCoil: INT := 1;
+	valDepth: INT := 2;
+	
+	bHideCoil: BOOL;		//TRUE to hide the coil
+	bHideDepth: BOOL;		//TRUE to hide the depth
+	bHideInterlock: BOOL;	//TRUE to hide the interlock
+	bHidePrompt: BOOL;		//TRUE to hide the prompt
+	bHideTime: BOOL;		//TRUE to hide the time
+	bHideButton: BOOL;		//TRUE to hide the button
+
+
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

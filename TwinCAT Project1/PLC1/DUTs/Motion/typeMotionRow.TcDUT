@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="typeMotionRow" Id="{5a19e46e-166d-474e-a7a4-e6f9aac3b2f7}">
+    <Declaration><![CDATA[TYPE typeMotionRow :
+STRUCT
+	
+	Advance:typeMotionSide; //advance data
+	Returned:typeMotionSide; //return data
+	
+	strPosn:STRING; //formatted position, in string form
+
+	IndexLocation:UINT :=10; //index value
+	
+	bHidePosn: BOOL; //TRUE to hide the posn
+	bHideName: BOOL; //TRUE to hide the name
+	
+
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
