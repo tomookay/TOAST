@@ -3,6 +3,12 @@
   <DUT Name="typeDriveInterface" Id="{c1484954-57b3-4dc6-91c2-851796ca622a}">
     <Declaration><![CDATA[TYPE typeDriveInterface :
 STRUCT
+	enableAxis: BOOL; //TRUE to enable the axis
+	isDriveBusy: BOOL; //TRUE if the drive is doing something
+	generalResetReq: BOOL; //TRUE to reset command to the drives
+
+
+
 END_STRUCT
 END_TYPE
 ]]></Declaration>
