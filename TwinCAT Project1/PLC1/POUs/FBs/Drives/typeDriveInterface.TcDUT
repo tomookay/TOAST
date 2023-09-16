@@ -3,9 +3,27 @@
   <DUT Name="typeDriveInterface" Id="{c1484954-57b3-4dc6-91c2-851796ca622a}">
     <Declaration><![CDATA[TYPE typeDriveInterface :
 STRUCT
+	//logic to run
 	enableAxis: BOOL; //TRUE to enable the axis
 	isDriveBusy: BOOL; //TRUE if the drive is doing something
 	generalResetReq: BOOL; //TRUE to reset command to the drives
+	isAbsMove: BOOL; //TRUE if abs move
+	isRelMove: BOOL; //TRUE if rel move
+	MoveReq: BOOL; //TRUE to move the drive
+	isManualMode: BOOL; //TRUE to run a lower speeds
+
+	
+	
+	//speeds and feeds
+	TargetPosn: LREAL;
+	TargetVelo: LREAL;
+	TargetAcc:LREAL;
+	TargetDec:LREAL;
+	TargetJerk:LREAL;
+	
+
+
+
 
 
 
