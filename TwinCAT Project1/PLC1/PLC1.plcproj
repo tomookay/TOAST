@@ -33,6 +33,9 @@
     <Compile Include="DUTs\Screen\typeMotionScreenBtn.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\Station\typeStationMode.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="GlobalTextList.TcGTLO">
       <SubType>Code</SubType>
     </Compile>
@@ -53,6 +56,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\FBs\Drives\typeDriveInterface.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\FBs\Motions\FB_Motion1way.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\FBs\Motions\FB_Motion2way.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
@@ -79,10 +88,12 @@
   <ItemGroup>
     <Folder Include="DUTs" />
     <Folder Include="DUTs\Motion" />
+    <Folder Include="DUTs\Station" />
     <Folder Include="DUTs\Screen" />
     <Folder Include="GVLs" />
     <Folder Include="POUs\FBs" />
     <Folder Include="POUs\FBs\Drives" />
+    <Folder Include="POUs\FBs\Motions" />
     <Folder Include="Screens" />
     <Folder Include="Screens\Data" />
     <Folder Include="Screens\Screens" />

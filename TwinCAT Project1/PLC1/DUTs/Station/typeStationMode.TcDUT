@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="typeStationMode" Id="{4cdca883-5c17-4ed9-b7ea-6fce91fd8785}">
+    <Declaration><![CDATA[TYPE typeStationMode :
+STRUCT
+	Manual:					BOOL; //TRUE if the station is in manual mode
+	AutoCycle:				BOOL; //TRUE if the station is in auto mode
+	AutoCycling:			BOOL; //TRUE if the station is auto cycling
+	SemiAuto:				BOOL; //TRUE if the station is in semi auto (magic prompting)
+	DryRun:					BOOL; //TRUE if the station is in dry run mode (no parts)
+	ModeValue:				INT;
+	Bypass:					BOOL; //TRUE if the station is in bypass mode (no process to be performed)
+
+	btnStartAutoCycle: 		BOOL; //button to start auto cycle
+	btnStopAutoCycle: 		BOOL; //button to stop auto cycle	
+ 
+	btnReset: 				BOOL; //button to reset station
+	
+	btnSelectAutoMode: 		BOOL; //button to select auto mode
+	btnSelectManualMode: 	BOOL; //button to select manual mode
+	btnSelectSemiAutoMode: 	BOOL; //button to select semi auto mode
+	btnSelectDryCycleMode: 	BOOL; //button to select dry cycle mode
+	btnSelectWetCycleMode: 	BOOL; //button to select wet cycle mode (endless cycles with inserts, no part transfer to next station)
+	
+	NumOfRows:				UINT; //number of motions present in station in rows CEIL by number of rows permitted in the screen
+	NumberOfPages:			UINT; //number of pages in the station that can fit for the number of motion rows
+		
+	StationNumber:			UINT; //the station number, typ. 1-6
+	
+	
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
