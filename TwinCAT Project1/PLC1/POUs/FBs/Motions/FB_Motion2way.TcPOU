@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <POU Name="FB_Motion2way" Id="{32af2d47-65f8-4fdb-b0e5-9879cc4160a4}" SpecialFunc="None">
-    <Declaration><![CDATA[FUNCTION_BLOCK FB_Motion
+  <POU Name="FB_Motion2way" Id="{67c13904-6fb4-438d-a287-3bdbf007bb70}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Motion2way
 VAR_INPUT
 	
 	//advances
@@ -26,7 +26,7 @@ VAR_INPUT
 	iLatchCoilOn: BOOL; //TRUE to latch the coil on after a motion
 
 	
-	iMode: dutStationMode; //what mode is station in?
+	iMode: typeStationMode; //what mode is station in?
 
 
 	
@@ -594,7 +594,7 @@ END_VAR
         </XmlArchive>
       </NWL>
     </Implementation>
-    <Action Name="actAdvance" Id="{8566b999-3fd0-4889-a241-93ccedc5f2dc}">
+    <Action Name="actAdvance" Id="{24e21505-d2b3-4004-8ac5-a7f8d2c0aa31}">
       <Implementation>
         <NWL>
           <XmlArchive>
@@ -2099,7 +2099,7 @@ END_VAR
         </NWL>
       </Implementation>
     </Action>
-    <Action Name="actReturn" Id="{753c40b0-b286-431d-bf80-d62db10f5ef4}">
+    <Action Name="actReturn" Id="{fb3fca72-cf67-4645-8604-ff2fefc5f3e0}">
       <Implementation>
         <NWL>
           <XmlArchive>

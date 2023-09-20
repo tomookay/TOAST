@@ -6,13 +6,17 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[
-//test call
-driveTestCall();]]></ST>
+      <ST><![CDATA[//call base machine
+
+//call station 1
+pouStation1();
+]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
-      <LineId Id="6" Count="1" />
       <LineId Id="2" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="13" Count="1" />
     </LineIds>
   </POU>
 </TcPlcObject>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="GlobalMessages" Id="{0ab881e6-f244-4b39-9d1f-44ab679d9a69}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	
+	//define messages for machine base
+	msgMc	:typeStationMessage;
+	
+	//define message for each station
+	gMsgS1	:typeStationMessage;
+	gMsgS2	:typeStationMessage;
+	gMsgS3	:typeStationMessage;
+	gMsgS4	:typeStationMessage;
+	gMsgS5	:typeStationMessage;
+	gMsgS6	:typeStationMessage;
+	
+	//global memory for retaining status of station
+	gMsgMcStat	:typeStationStatus;
+	gMsgS1Stat	:typeStationStatus;
+	gMsgS2Stat	:typeStationStatus;
+	gMsgS3Stat	:typeStationStatus;
+	gMsgS4Stat	:typeStationStatus;
+	gMsgS5Stat	:typeStationStatus;
+	gMsgS6Stat	:typeStationStatus;
+	
+	AllocMsgPerRow:UINT := 10;
+	
+	
+
+					
+	
+	
+	
+	
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

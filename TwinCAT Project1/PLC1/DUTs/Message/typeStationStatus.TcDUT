@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="typeStationStatus" Id="{17650bc8-54c1-4124-81aa-0a99422fd21a}">
+    <Declaration><![CDATA[TYPE typeStationStatus :
+STRUCT
+	
+	IsWarning: BOOL; //TRUE if a warning is present
+	IsAlarm: BOOL; //TRUE if an alarm is present
+	IsPrompt: BOOL; //TRUE if a prompt is present
+	
+	numWarning: INT; //current warning number
+	numAlarm: INT; //current alarm number
+	numPrompt: INT; //current prompt number
+
+
+
+
+
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

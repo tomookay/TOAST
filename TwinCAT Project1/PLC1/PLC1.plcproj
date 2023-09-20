@@ -18,6 +18,15 @@
     <LibraryReferences>{f4ce1f13-11e5-4da0-8157-25fe79ee0d48}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DUTs\Message\typeMessage.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Message\typeStationMessage.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\Message\typeStationStatus.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Motion\typeMotionRow.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -39,6 +48,42 @@
     <Compile Include="GlobalTextList.TcGTLO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="HMI1\Logic\prgHMIcontrol.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Machine\Base\Mc_Global.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="Machine\GlobalMessages.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="Machine\Station 1\Messages\Alarms\pouS1Alarms.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Machine\Station 1\Messages\pouMsgS1.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Machine\Station 1\Messages\Prompts\pouS1Prompts.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Machine\Station 1\Messages\Warnings\pouS1Warnings.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Machine\Station 1\Motions\pouStation1Motions.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Machine\Station 1\Motions\S1_01_Motion_1.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Machine\Station 1\pouStation1.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Machine\Station 1\S1_Global.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
     </Compile>
@@ -58,6 +103,15 @@
     <Compile Include="POUs\FBs\Drives\typeDriveInterface.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="POUs\FBs\FBs\FB_CheckMessageBounds.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\FBs\FBs\FB_HMI_Control.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\FBs\FBs\F_CEIL.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="POUs\FBs\Motions\FB_Motion1way.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -67,29 +121,29 @@
     <Compile Include="POUs\MAIN.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Screens\Data\HMIData.TcGVL">
+    <Compile Include="HMI1\Data\HMIData.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
-    <Compile Include="Screens\Data\RowImages.TcIPO">
+    <Compile Include="HMI1\Data\RowImages.TcIPO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Screens\Data\typeStationEnables.TcDUT">
+    <Compile Include="HMI1\Data\typeStationEnables.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Screens\Screens\MotionRow.TcVIS">
-      <SubType>Code</SubType>
-      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
-    </Compile>
-    <Compile Include="Screens\Screens\SS_91_Template.TcVIS">
+    <Compile Include="HMI1\Screens\MotionRow.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
-    <Compile Include="Screens\Screens\SS_90_Template_NoButtons.TcVIS">
+    <Compile Include="HMI1\Screens\SS_91_Template.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
-    <Compile Include="Screens\Screens\SS_99_Motions.TcVIS">
+    <Compile Include="HMI1\Screens\SS_90_Template_NoButtons.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="HMI1\Screens\SS_99_Motions.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
@@ -100,16 +154,27 @@
   <ItemGroup>
     <Folder Include="DUTs" />
     <Folder Include="DUTs\Motion" />
+    <Folder Include="DUTs\Message" />
     <Folder Include="DUTs\Station" />
     <Folder Include="DUTs\Screen" />
     <Folder Include="GVLs" />
+    <Folder Include="HMI1\Logic" />
+    <Folder Include="Machine" />
+    <Folder Include="Machine\Base" />
+    <Folder Include="Machine\Station 1" />
+    <Folder Include="Machine\Station 1\Messages" />
+    <Folder Include="Machine\Station 1\Messages\Alarms" />
+    <Folder Include="Machine\Station 1\Messages\Prompts" />
+    <Folder Include="Machine\Station 1\Messages\Warnings" />
+    <Folder Include="Machine\Station 1\Motions" />
     <Folder Include="POUs\FBs" />
     <Folder Include="POUs\FBs\Drives" />
     <Folder Include="POUs\FBs\Motions" />
-    <Folder Include="Screens" />
-    <Folder Include="Screens\Data" />
-    <Folder Include="Screens\Screens" />
-    <Folder Include="Screens\Templates" />
+    <Folder Include="HMI1" />
+    <Folder Include="HMI1\Data" />
+    <Folder Include="HMI1\Screens" />
+    <Folder Include="HMI1\Templates" />
+    <Folder Include="POUs\FBs\FBs" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>
@@ -160,8 +225,12 @@
       <SystemLibrary>true</SystemLibrary>
       <ResolverGuid>2717eb6a-dd07-4c66-8d8d-cacebd7b18ae</ResolverGuid>
     </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_Math">
+      <DefaultResolution>Tc2_Math, * (Beckhoff Automation GmbH)</DefaultResolution>
+    </PlaceholderReference>
     <PlaceholderReference Include="Tc2_MC2">
       <DefaultResolution>Tc2_MC2, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_MC2</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="Tc2_Standard">
       <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
