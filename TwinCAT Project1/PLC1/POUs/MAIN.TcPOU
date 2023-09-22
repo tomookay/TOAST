@@ -8,15 +8,57 @@ END_VAR
     <Implementation>
       <ST><![CDATA[//call base machine
 
+
+//call HMI
+//calls logic to drive the HMI
+pouHMI();
+
 //call station 1
+//calls motions only associated with station 1
 pouStation1();
+
+//call station 2
+//pouStation1();
+
+//call station 3
+//pouStation1();
+
+//call station 4
+//pouStation1();
+
+//call station 5
+//pouStation1();
+
+//call station 6
+//pouStation1();
+
+//there are only ever 6 maximum stations
+
+
+
+
 ]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
       <LineId Id="2" Count="0" />
+      <LineId Id="40" Count="1" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="42" Count="0" />
       <LineId Id="12" Count="0" />
       <LineId Id="11" Count="0" />
-      <LineId Id="13" Count="1" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="21" Count="2" />
+      <LineId Id="25" Count="10" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="14" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

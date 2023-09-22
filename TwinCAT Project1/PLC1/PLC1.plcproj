@@ -48,41 +48,31 @@
     <Compile Include="GlobalTextList.TcGTLO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="HMI1\Logic\pouHMI.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="HMI1\Logic\prgHMIcontrol.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Machine\Base\Mc_Global.TcGVL">
+    <Compile Include="HMI1\Screens\SS_01_ModeScreen.TcVIS">
       <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
-    <Compile Include="Machine\GlobalMessages.TcGVL">
+    <Compile Include="HMI1\Screens\SS_10_MenuScreen.TcVIS">
       <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
-    <Compile Include="Machine\Station 1\Messages\Alarms\pouS1Alarms.TcPOU">
+    <Compile Include="HMI1\Templates\MotionRow.TcVIS">
       <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
-    <Compile Include="Machine\Station 1\Messages\pouMsgS1.TcPOU">
+    <Compile Include="HMI1\Templates\SS_90_Template_NoButtons.TcVIS">
       <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
-    <Compile Include="Machine\Station 1\Messages\Prompts\pouS1Prompts.TcPOU">
+    <Compile Include="HMI1\Templates\SS_91_Template.TcVIS">
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Machine\Station 1\Messages\Warnings\pouS1Warnings.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Machine\Station 1\Motions\pouStation1Motions.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Machine\Station 1\Motions\S1_01_Motion_1.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Machine\Station 1\pouStation1.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Machine\Station 1\S1_Global.TcGVL">
-      <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
@@ -112,10 +102,67 @@
     <Compile Include="POUs\FBs\FBs\F_CEIL.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\FBs\Motions\FB_Motion1way.TcPOU">
+    <Compile Include="POUs\FBs\FBs\Motions\FB_Motion1way.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="POUs\FBs\Motions\FB_Motion2way.TcPOU">
+    <Compile Include="POUs\FBs\FBs\Motions\FB_Motion2way.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Machine\Base\Mc_Global.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="POUs\Machine\Base\Station Status\MotionRowText.TcTLO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Machine\Base\Station Status\StationNames.TcTLO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Machine\GlobalMessages.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="POUs\Machine\Station 1\Messages\Alarms\pouS1Alarms.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Machine\Station 1\Messages\pouMsgS1.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Machine\Station 1\Messages\Prompts\pouS1Prompts.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Machine\Station 1\Messages\Warnings\pouS1Warnings.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Machine\Station 1\Motions\pouStation1Motions.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Machine\Station 1\Motions\S1_01_Motion_1.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Machine\Station 1\pouStation1.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Machine\Station 1\S1_Global.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="POUs\Machine\Station 1\Station Data\Messages\Machine\Mc_Alarms.TcTLO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Machine\Station 1\Station Data\Messages\Machine\Mc_Prompts.TcTLO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Machine\Station 1\Station Data\Messages\Machine\Mc_Warnings.TcTLO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Machine\Station 1\Station Data\Messages\Station 1\S1_Alarms.TcTLO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Machine\Station 1\Station Data\Messages\Station 1\S1_Prompts.TcTLO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Machine\Station 1\Station Data\Messages\Station 1\S1_Warnings.TcTLO">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\MAIN.TcPOU">
@@ -130,18 +177,6 @@
     </Compile>
     <Compile Include="HMI1\Data\typeStationEnables.TcDUT">
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="HMI1\Screens\MotionRow.TcVIS">
-      <SubType>Code</SubType>
-      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
-    </Compile>
-    <Compile Include="HMI1\Screens\SS_91_Template.TcVIS">
-      <SubType>Code</SubType>
-      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
-    </Compile>
-    <Compile Include="HMI1\Screens\SS_90_Template_NoButtons.TcVIS">
-      <SubType>Code</SubType>
-      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
     <Compile Include="HMI1\Screens\SS_99_Motions.TcVIS">
       <SubType>Code</SubType>
@@ -159,22 +194,27 @@
     <Folder Include="DUTs\Screen" />
     <Folder Include="GVLs" />
     <Folder Include="HMI1\Logic" />
-    <Folder Include="Machine" />
-    <Folder Include="Machine\Base" />
-    <Folder Include="Machine\Station 1" />
-    <Folder Include="Machine\Station 1\Messages" />
-    <Folder Include="Machine\Station 1\Messages\Alarms" />
-    <Folder Include="Machine\Station 1\Messages\Prompts" />
-    <Folder Include="Machine\Station 1\Messages\Warnings" />
-    <Folder Include="Machine\Station 1\Motions" />
     <Folder Include="POUs\FBs" />
     <Folder Include="POUs\FBs\Drives" />
-    <Folder Include="POUs\FBs\Motions" />
+    <Folder Include="POUs\FBs\FBs\Motions" />
     <Folder Include="HMI1" />
     <Folder Include="HMI1\Data" />
     <Folder Include="HMI1\Screens" />
     <Folder Include="HMI1\Templates" />
     <Folder Include="POUs\FBs\FBs" />
+    <Folder Include="POUs\Machine" />
+    <Folder Include="POUs\Machine\Base" />
+    <Folder Include="POUs\Machine\Base\Station Status" />
+    <Folder Include="POUs\Machine\Station 1" />
+    <Folder Include="POUs\Machine\Station 1\Messages" />
+    <Folder Include="POUs\Machine\Station 1\Messages\Alarms" />
+    <Folder Include="POUs\Machine\Station 1\Messages\Prompts" />
+    <Folder Include="POUs\Machine\Station 1\Messages\Warnings" />
+    <Folder Include="POUs\Machine\Station 1\Motions" />
+    <Folder Include="POUs\Machine\Station 1\Station Data" />
+    <Folder Include="POUs\Machine\Station 1\Station Data\Messages" />
+    <Folder Include="POUs\Machine\Station 1\Station Data\Messages\Machine" />
+    <Folder Include="POUs\Machine\Station 1\Station Data\Messages\Station 1" />
     <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="pouHMI" Id="{54e7270f-e089-40a6-a429-6d01839a041f}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM pouHMI
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//all logic to control HMI
+prgHMIcontrol();
+]]></ST>
+    </Implementation>
+    <LineIds Name="pouHMI">
+      <LineId Id="5" Count="2" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
