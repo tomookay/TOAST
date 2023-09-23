@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="typeBtnPress" Id="{0ced6de4-4e1f-4045-820f-12b0a0a6343b}">
+    <Declaration><![CDATA[TYPE typeBtnPress :
+STRUCT
+	
+//button Pressed BOOLs for mode screen
+
+////	|------------------------------------|
+////	|									 |
+////	|a	00 01 02 03 04 05 06 07 08 09	x|
+////	|b	10 11 12 13 14 15 16 17 18 19	y|
+//// 	|   20 21 22 23 24 25 26 27 28 29	 |
+//// 	|   30 31 32 33 34 35 36 37 38 39	 |
+////	|									 |
+////	|									 |
+////	|------------------------------------|
+
+//button Pressed BOOL in X-Y format
+//a,b,x,y are not included
+	btn00Pressed: BOOL;
+	btn01Pressed: BOOL;
+	btn02Pressed: BOOL;
+	btn03Pressed: BOOL;
+	btn04Pressed: BOOL;
+	btn05Pressed: BOOL;
+	btn06Pressed: BOOL;
+	btn07Pressed: BOOL;
+	btn08Pressed: BOOL;
+	btn09Pressed: BOOL;
+
+	btn10Pressed: BOOL;
+	btn11Pressed: BOOL;
+	btn12Pressed: BOOL;
+	btn13Pressed: BOOL;
+	btn14Pressed: BOOL;
+	btn15Pressed: BOOL;
+	btn16Pressed: BOOL;
+	btn17Pressed: BOOL;
+	btn18Pressed: BOOL;
+	btn19Pressed: BOOL;
+	
+	btn20Pressed: BOOL;
+	btn21Pressed: BOOL;
+	btn22Pressed: BOOL;
+	btn23Pressed: BOOL;
+	btn24Pressed: BOOL;
+	btn25Pressed: BOOL;
+	btn26Pressed: BOOL;
+	btn27Pressed: BOOL;
+	btn28Pressed: BOOL;
+	btn29Pressed: BOOL;
+	
+	btn30Pressed: BOOL;
+	btn31Pressed: BOOL;
+	btn32Pressed: BOOL;
+	btn33Pressed: BOOL;
+	btn34Pressed: BOOL;
+	btn35Pressed: BOOL;
+	btn36Pressed: BOOL;
+	btn37Pressed: BOOL;
+	btn38Pressed: BOOL;
+	btn39Pressed: BOOL;
+
+
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
