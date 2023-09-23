@@ -62,6 +62,21 @@ STRUCT
 	btn38Pressed: BOOL;
 	btn39Pressed: BOOL;
 
+	//special case buttons	
+	btnPowerOnPressed: BOOL; //TRUE to power the machine on
+	btnPowerOffPressed: BOOL; //TRUE to power the machine off
+
+	btnAutoCycleStartPressed: BOOL; //TRUE to start auto cycle
+	btnAutoCycleStopPressed: BOOL; //TRUE to stop auto cycle immediately
+
+	btnFooterAutoCycleStart: BOOL;
+	btnFooterAutoCycleStopEOC: BOOL;
+	btnFooterReturnHome: BOOL;
+	btnFooterAutoMode: BOOL;
+	btnFooterManualMode: BOOL;
+
+
+
 
 END_STRUCT
 END_TYPE
