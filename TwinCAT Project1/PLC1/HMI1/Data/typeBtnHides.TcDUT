@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="typeBtnHides" Id="{531b7c56-62a5-4c94-946c-7163f0856e34}">
+    <Declaration><![CDATA[TYPE typeBtnHides :
+STRUCT
+	
+//button hide BOOLs for mode screen
+
+////	|------------------------------------|
+////	|									 |
+////	|a	00 01 02 03 04 05 06 07 08 09	x|
+////	|b	10 11 12 13 14 15 16 17 18 19	y|
+//// 	|   20 21 22 23 24 25 26 27 28 29	 |
+//// 	|   30 31 32 33 34 35 36 37 38 39	 |
+////	|									 |
+////	|									 |
+////	|------------------------------------|
+
+//button hide BOOL in X-Y format
+//a,b,x,y are not included
+//a,b are power on / off, these never get hidden
+//x,y are auto cycle start, these normally dont get hidden
+	btn00Hide: BOOL;
+	btn01Hide: BOOL;
+	btn02Hide: BOOL;
+	btn03Hide: BOOL;
+	btn04Hide: BOOL;
+	btn05Hide: BOOL;
+	btn06Hide: BOOL;
+	btn07Hide: BOOL;
+	btn08Hide: BOOL;
+	btn09Hide: BOOL;
+
+	btn10Hide: BOOL;
+	btn11Hide: BOOL;
+	btn12Hide: BOOL;
+	btn13Hide: BOOL;
+	btn14Hide: BOOL;
+	btn15Hide: BOOL;
+	btn16Hide: BOOL;
+	btn17Hide: BOOL;
+	btn18Hide: BOOL;
+	btn19Hide: BOOL;
+	
+	btn20Hide: BOOL;
+	btn21Hide: BOOL;
+	btn22Hide: BOOL;
+	btn23Hide: BOOL;
+	btn24Hide: BOOL;
+	btn25Hide: BOOL;
+	btn26Hide: BOOL;
+	btn27Hide: BOOL;
+	btn28Hide: BOOL;
+	btn29Hide: BOOL;
+	
+	btn30Hide: BOOL;
+	btn31Hide: BOOL;
+	btn32Hide: BOOL;
+	btn33Hide: BOOL;
+	btn34Hide: BOOL;
+	btn35Hide: BOOL;
+	btn36Hide: BOOL;
+	btn37Hide: BOOL;
+	btn38Hide: BOOL;
+	btn39Hide: BOOL;
+
+
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
