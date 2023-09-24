@@ -679,7 +679,95 @@ END_VAR
                         <v n="LValue">false</v>
                         <v n="Boolean">false</v>
                         <v n="IsInstance">true</v>
-                        <v n="Id">89L</v>
+                        <v n="Id">111L</v>
+                      </o>
+                      <o n="OutputItems" t="OutputItemList">
+                        <l2 n="OutputItems">
+                          <n />
+                        </l2>
+                      </o>
+                      <o n="Flags" t="Flags">
+                        <v n="Flags">0</v>
+                        <v n="Fixed">true</v>
+                        <v n="Extensible">false</v>
+                      </o>
+                      <n n="InputFlags" />
+                      <l2 n="InputItems" cet="BoxTreeOperand">
+                        <o>
+                          <o n="Operand" t="Operand">
+                            <v n="Operand">"TRUE"</v>
+                            <v n="Type">"BOOL"</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">"Constant_Address_Serialization_Value"</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">false</v>
+                            <v n="Boolean">false</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">114L</v>
+                          </o>
+                          <v n="Id">113L</v>
+                        </o>
+                      </l2>
+                      <o n="InputParam" t="ParamList">
+                        <l2 n="Names" cet="String">
+                          <v>EN</v>
+                        </l2>
+                        <l2 n="Types" cet="String">
+                          <v>BOOL</v>
+                        </l2>
+                      </o>
+                      <o n="OutputParam" t="ParamList">
+                        <l2 n="Names" cet="String">
+                          <v>ENO</v>
+                        </l2>
+                        <l2 n="Types" cet="String">
+                          <v>BOOL</v>
+                        </l2>
+                      </o>
+                      <v n="CallType" t="Operator">Action</v>
+                      <v n="EN">true</v>
+                      <v n="ENO">true</v>
+                      <n n="STSnippet" />
+                      <v n="ContainsExtensibleInputs">false</v>
+                      <v n="ProvidesSTSnippet">false</v>
+                      <v n="Id">112L</v>
+                    </o>
+                  </l2>
+                  <l2 n="Connectors" />
+                  <v n="Id">110L</v>
+                </o>
+                <o>
+                  <v n="ILActive">false</v>
+                  <v n="FBDValid">false</v>
+                  <v n="ILValid">false</v>
+                  <l2 n="ILLines" />
+                  <v n="Comment">"call mode screen button hides"</v>
+                  <v n="Title">""</v>
+                  <v n="Label">""</v>
+                  <v n="OutCommented">false</v>
+                  <l2 n="NetworkItems" cet="BoxTreeBox">
+                    <o>
+                      <v n="BoxType">"actModeClearBtnFdbk"</v>
+                      <o n="Instance" t="Operand">
+                        <n n="Operand" />
+                        <v n="Type">""</v>
+                        <v n="Comment">""</v>
+                        <v n="SymbolComment">""</v>
+                        <v n="Address">""</v>
+                        <o n="Flags" t="Flags">
+                          <v n="Flags">0</v>
+                          <v n="Fixed">false</v>
+                          <v n="Extensible">false</v>
+                        </o>
+                        <v n="LValue">false</v>
+                        <v n="Boolean">false</v>
+                        <v n="IsInstance">true</v>
+                        <v n="Id">117L</v>
                       </o>
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems">
@@ -735,7 +823,7 @@ END_VAR
                       <n n="STSnippet" />
                       <v n="ContainsExtensibleInputs">false</v>
                       <v n="ProvidesSTSnippet">false</v>
-                      <v n="Id">90L</v>
+                      <v n="Id">118L</v>
                     </o>
                   </l2>
                   <l2 n="Connectors" />
@@ -4091,7 +4179,7 @@ END_VAR
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
                               <v n="Operand">"adr(S1_Global.MotionRow) + tSizeOfMotionRow"</v>
-                              <v n="Type">"PVOID"</v>
+                              <v n="Type">"POINTER TO ARRAY [1..99] OF typeMotionRow"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
                               <v n="Address">"Constant_Address_Serialization_Value"</v>
@@ -4213,7 +4301,7 @@ END_VAR
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
                               <v n="Operand">"adr(S1_Global.MotionRowBtn) + tSizeOfMotionRowButtons"</v>
-                              <v n="Type">"PVOID"</v>
+                              <v n="Type">"POINTER TO ARRAY [1..99] OF typeMotionRowButtons"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
                               <v n="Address">"Constant_Address_Serialization_Value"</v>
@@ -7916,7 +8004,7 @@ END_VAR
         </NWL>
       </Implementation>
     </Action>
-    <Action Name="actModeScreenBtnEnables" Id="{292c158a-5031-4703-bb01-bf615dd3670f}">
+    <Action Name="actModeClearBtnFdbk" Id="{c386034d-7e6b-4c56-8e85-234ea0db1177}">
       <Implementation>
         <ST><![CDATA[//hide/show buttons on mode screen
 
@@ -7967,6 +8055,47 @@ HMIData.btnHides.btn36Hide := FALSE;
 HMIData.btnHides.btn37Hide := FALSE;
 HMIData.btnHides.btn38Hide := FALSE;
 HMIData.btnHides.btn39Hide := FALSE;]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="actModeScreenBtnEnables" Id="{292c158a-5031-4703-bb01-bf615dd3670f}">
+      <Implementation>
+        <ST><![CDATA[//hide/show buttons on mode screen
+
+//row 0
+HMIData.btnFdbk.btn00Fdbk := FALSE;
+HMIData.btnFdbk.btn01Fdbk := FALSE;
+HMIData.btnFdbk.btn02Fdbk := FALSE;
+HMIData.btnFdbk.btn03Fdbk := FALSE;
+HMIData.btnFdbk.btn04Fdbk := FALSE;
+HMIData.btnFdbk.btn05Fdbk := FALSE;
+HMIData.btnFdbk.btn06Fdbk := FALSE;
+HMIData.btnFdbk.btn07Fdbk := FALSE;
+HMIData.btnFdbk.btn08Fdbk := FALSE;
+HMIData.btnFdbk.btn09Fdbk := FALSE;
+
+//row 1
+HMIData.btnFdbk.btn10Fdbk := FALSE;
+HMIData.btnFdbk.btn12Fdbk := FALSE;
+HMIData.btnFdbk.btn12Fdbk := FALSE;
+HMIData.btnFdbk.btn13Fdbk := FALSE;
+HMIData.btnFdbk.btn14Fdbk := FALSE;
+HMIData.btnFdbk.btn15Fdbk := FALSE;
+HMIData.btnFdbk.btn16Fdbk := FALSE;
+HMIData.btnFdbk.btn17Fdbk := FALSE;
+HMIData.btnFdbk.btn18Fdbk := FALSE;
+HMIData.btnFdbk.btn19Fdbk := FALSE;
+
+//row 2
+HMIData.btnFdbk.btn20Fdbk := FALSE;
+HMIData.btnFdbk.btn22Fdbk := FALSE;
+HMIData.btnFdbk.btn22Fdbk := FALSE;
+HMIData.btnFdbk.btn23Fdbk := FALSE;
+HMIData.btnFdbk.btn24Fdbk := FALSE;
+HMIData.btnFdbk.btn25Fdbk := FALSE;
+HMIData.btnFdbk.btn26Fdbk := FALSE;
+HMIData.btnFdbk.btn27Fdbk := FALSE;
+HMIData.btnFdbk.btn28Fdbk := FALSE;
+HMIData.btnFdbk.btn29Fdbk := FALSE;]]></ST>
       </Implementation>
     </Action>
     <Action Name="actPageControl" Id="{71d47801-174a-4ff3-a827-20d1c6eee845}">
@@ -10613,7 +10742,7 @@ HMIData.btnHides.btn39Hide := FALSE;]]></ST>
         </NWL>
       </Implementation>
     </Action>
-    <LineIds Name="prgHMIcontrol.actModeScreenBtnEnables">
+    <LineIds Name="prgHMIcontrol.actModeClearBtnFdbk">
       <LineId Id="1" Count="0" />
       <LineId Id="12" Count="1" />
       <LineId Id="2" Count="9" />
@@ -10622,6 +10751,13 @@ HMIData.btnHides.btn39Hide := FALSE;]]></ST>
       <LineId Id="27" Count="10" />
       <LineId Id="26" Count="0" />
       <LineId Id="39" Count="10" />
+      <LineId Id="38" Count="0" />
+    </LineIds>
+    <LineIds Name="prgHMIcontrol.actModeScreenBtnEnables">
+      <LineId Id="1" Count="0" />
+      <LineId Id="12" Count="1" />
+      <LineId Id="2" Count="9" />
+      <LineId Id="50" Count="22" />
       <LineId Id="38" Count="0" />
     </LineIds>
   </POU>

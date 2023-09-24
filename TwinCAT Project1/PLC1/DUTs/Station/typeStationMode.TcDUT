@@ -7,9 +7,13 @@ STRUCT
 	AutoCycle:				BOOL; //TRUE if the station is in auto mode
 	AutoCycling:			BOOL; //TRUE if the station is auto cycling
 	SemiAuto:				BOOL; //TRUE if the station is in semi auto (magic prompting)
-	DryRun:					BOOL; //TRUE if the station is in dry run mode (no parts)
+	DryCycle:				BOOL; //TRUE if the station is in dry run mode (no parts)
 	ModeValue:				INT;
 	Bypass:					BOOL; //TRUE if the station is in bypass mode (no process to be performed)
+	ContCycle:				BOOL;
+	SingleCycle:			BOOL;
+	StopEOC:				BOOL;
+
 
 	btnStartAutoCycle: 		BOOL; //button to start auto cycle
 	btnStopAutoCycle: 		BOOL; //button to stop auto cycle	
