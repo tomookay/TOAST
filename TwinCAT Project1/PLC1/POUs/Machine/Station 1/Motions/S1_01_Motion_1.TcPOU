@@ -92,7 +92,7 @@ END_VAR
                         <v n="Type">"FB_HMI_Control"</v>
                         <v n="Comment">""</v>
                         <v n="SymbolComment">""</v>
-                        <v n="Address">"Constant_Address_Serialization_Value"</v>
+                        <v n="Address">""</v>
                         <o n="Flags" t="Flags">
                           <v n="Flags">0</v>
                           <v n="Fixed">false</v>
@@ -101,7 +101,7 @@ END_VAR
                         <v n="LValue">false</v>
                         <v n="Boolean">false</v>
                         <v n="IsInstance">true</v>
-                        <v n="Id">323L</v>
+                        <v n="Id">410L</v>
                       </o>
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems" cet="Operand">
@@ -437,6 +437,44 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
+                            <v n="Operand">"1"</v>
+                            <v n="Type">"INT"</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">""</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">false</v>
+                            <v n="Boolean">false</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">413L</v>
+                          </o>
+                          <v n="Id">412L</v>
+                        </o>
+                        <o t="BoxTreeOperand">
+                          <o n="Operand" t="Operand">
+                            <v n="Operand">"12"</v>
+                            <v n="Type">"INT"</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">""</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">false</v>
+                            <v n="Boolean">false</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">415L</v>
+                          </o>
+                          <v n="Id">414L</v>
+                        </o>
+                        <o t="BoxTreeOperand">
+                          <o n="Operand" t="Operand">
                             <v n="Operand">"S1_Global.Data.NumOfRows"</v>
                             <v n="Type">"UINT"</v>
                             <v n="Comment">""</v>
@@ -509,6 +547,8 @@ END_VAR
                           <v>iAdvancePrompt</v>
                           <v>iReturnPrompt</v>
                           <v>iConfig</v>
+                          <v>iAdvanceNumber</v>
+                          <v>iReturnNumber</v>
                           <v>NumRows</v>
                           <v>MotionRowLocation</v>
                           <v>MotionRowBtnLocation</v>
@@ -528,9 +568,11 @@ END_VAR
                           <v>BOOL</v>
                           <v>BOOL</v>
                           <v>WORD</v>
+                          <v>UINT</v>
+                          <v>UINT</v>
                           <v>UINT[REF]</v>
-                          <v>dutMotionRow[REF]</v>
-                          <v>dutMotionRowButtons[REF]</v>
+                          <v>typeMotionRow[REF]</v>
+                          <v>typeMotionRowButtons[REF]</v>
                         </l2>
                       </o>
                       <o n="OutputParam" t="ParamList">
@@ -555,7 +597,7 @@ END_VAR
                       <n n="STSnippet" />
                       <v n="ContainsExtensibleInputs">false</v>
                       <v n="ProvidesSTSnippet">false</v>
-                      <v n="Id">324L</v>
+                      <v n="Id">411L</v>
                     </o>
                   </l2>
                   <l2 n="Connectors" />
