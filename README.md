@@ -1,9 +1,11 @@
 A reimagining of Transline in Beckhoff TwinCAT 3
 
 Motions call with advance, return, prompt, coil and depth feedback
+Example show for gantry loaded drill press with RFID, clamps, cutting coolant pump, etc
 
-![motions](https://github.com/tommmooooooo/transline2003/assets/144595622/33199989-e123-4553-94ea-0deba1379e2b)
+![motions](https://github.com/tommmooooooo/transline2003/assets/144595622/aa4c522e-720a-4b22-b7df-3ea8ff4f2b43)
+
 
 global mode screen 
 
-![mode](https://github.com/tommmooooooo/transline2003/assets/144595622/4a132797-a552-40bb-81ef-95defc7b9223)
+![mode](https://github.com/tommmooooooo/transline2003/assets/144595622/17277cec-b0ae-4a36-a200-2d934bca79a6)
