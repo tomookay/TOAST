@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="typeBtnFdbk" Id="{dd42db32-ad12-4f37-834e-022b21c209cb}">
+    <Declaration><![CDATA[TYPE typeBtnFdbk :
+STRUCT
+	
+//button Fdbk BOOLs for mode screen
+
+////	|------------------------------------|
+////	|									 |
+////	|a	00 01 02 03 04 05 06 07 08 09	x|
+////	|b	10 11 12 13 14 15 16 17 18 19	y|
+//// 	|   20 21 22 23 24 25 26 27 28 29	 |
+//// 	|   30 31 32 33 34 35 36 37 38 39	 |
+////	|									 |
+////	|									 |
+////	|------------------------------------|
+
+//button Fdbk BOOL in X-Y format
+//a,b,x,y are not included
+//a,b are power on / off, these never get hidden
+//x,y are auto cycle start, these normally dont get hidden
+	btn00Fdbk: BOOL;
+	btn01Fdbk: BOOL;
+	btn02Fdbk: BOOL;
+	btn03Fdbk: BOOL;
+	btn04Fdbk: BOOL;
+	btn05Fdbk: BOOL;
+	btn06Fdbk: BOOL;
+	btn07Fdbk: BOOL;
+	btn08Fdbk: BOOL;
+	btn09Fdbk: BOOL;
+
+	btn10Fdbk: BOOL;
+	btn11Fdbk: BOOL;
+	btn12Fdbk: BOOL;
+	btn13Fdbk: BOOL;
+	btn14Fdbk: BOOL;
+	btn15Fdbk: BOOL;
+	btn16Fdbk: BOOL;
+	btn17Fdbk: BOOL;
+	btn18Fdbk: BOOL;
+	btn19Fdbk: BOOL;
+	
+	btn20Fdbk: BOOL;
+	btn21Fdbk: BOOL;
+	btn22Fdbk: BOOL;
+	btn23Fdbk: BOOL;
+	btn24Fdbk: BOOL;
+	btn25Fdbk: BOOL;
+	btn26Fdbk: BOOL;
+	btn27Fdbk: BOOL;
+	btn28Fdbk: BOOL;
+	btn29Fdbk: BOOL;
+	
+	btn30Fdbk: BOOL;
+	btn31Fdbk: BOOL;
+	btn32Fdbk: BOOL;
+	btn33Fdbk: BOOL;
+	btn34Fdbk: BOOL;
+	btn35Fdbk: BOOL;
+	btn36Fdbk: BOOL;
+	btn37Fdbk: BOOL;
+	btn38Fdbk: BOOL;
+	btn39Fdbk: BOOL;
+
+
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
