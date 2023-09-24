@@ -641,6 +641,67 @@ END_VAR
                     <v n="FBDValid">false</v>
                     <v n="ILValid">false</v>
                     <l2 n="ILLines" />
+                    <v n="Comment">"Is this station selected?"</v>
+                    <v n="Title">""</v>
+                    <v n="Label">""</v>
+                    <v n="OutCommented">false</v>
+                    <l2 n="NetworkItems" cet="BoxTreeAssign">
+                      <o>
+                        <o n="OutputItems" t="OutputItemList">
+                          <l2 n="OutputItems" cet="Operand">
+                            <o>
+                              <v n="Operand">"S1_Global.Data.IsStationSelectedHMI"</v>
+                              <v n="Type">"BOOL"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">""</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">0</v>
+                                <v n="Fixed">false</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">true</v>
+                              <v n="Boolean">true</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">62L</v>
+                            </o>
+                          </l2>
+                        </o>
+                        <o n="Flags" t="Flags">
+                          <v n="Flags">0</v>
+                          <v n="Fixed">false</v>
+                          <v n="Extensible">false</v>
+                        </o>
+                        <o n="RValue" t="BoxTreeOperand">
+                          <o n="Operand" t="Operand">
+                            <v n="Operand">"HMIData.gStationSelected[1]"</v>
+                            <v n="Type">"BOOL"</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">""</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">false</v>
+                            <v n="Boolean">true</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">61L</v>
+                          </o>
+                          <v n="Id">60L</v>
+                        </o>
+                        <v n="Id">63L</v>
+                      </o>
+                    </l2>
+                    <l2 n="Connectors" />
+                    <v n="Id">59L</v>
+                  </o>
+                  <o>
+                    <v n="ILActive">false</v>
+                    <v n="FBDValid">false</v>
+                    <v n="ILValid">false</v>
+                    <l2 n="ILLines" />
                     <v n="Comment">""</v>
                     <v n="Title">""</v>
                     <v n="Label">""</v>
@@ -662,13 +723,13 @@ END_VAR
                           <v n="LValue">false</v>
                           <v n="Boolean">false</v>
                           <v n="IsInstance">true</v>
-                          <v n="Id">43L</v>
+                          <v n="Id">92L</v>
                         </o>
                         <o n="OutputItems" t="OutputItemList">
                           <l2 n="OutputItems" cet="Operand">
                             <n />
                             <o>
-                              <v n="Operand">""</v>
+                              <v n="Operand">"S1_Global.Data.Manual"</v>
                               <v n="Type">"BOOL"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
@@ -681,10 +742,10 @@ END_VAR
                               <v n="LValue">true</v>
                               <v n="Boolean">false</v>
                               <v n="IsInstance">false</v>
-                              <v n="Id">36L</v>
+                              <v n="Id">67L</v>
                             </o>
                             <o>
-                              <v n="Operand">""</v>
+                              <v n="Operand">"S1_Global.Data.AutoCycle"</v>
                               <v n="Type">"BOOL"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
@@ -697,10 +758,10 @@ END_VAR
                               <v n="LValue">true</v>
                               <v n="Boolean">false</v>
                               <v n="IsInstance">false</v>
-                              <v n="Id">45L</v>
+                              <v n="Id">68L</v>
                             </o>
                             <o>
-                              <v n="Operand">""</v>
+                              <v n="Operand">"S1_Global.Data.AutoCycling"</v>
                               <v n="Type">"BOOL"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
@@ -713,10 +774,10 @@ END_VAR
                               <v n="LValue">true</v>
                               <v n="Boolean">false</v>
                               <v n="IsInstance">false</v>
-                              <v n="Id">46L</v>
+                              <v n="Id">69L</v>
                             </o>
                             <o>
-                              <v n="Operand">""</v>
+                              <v n="Operand">"S1_Global.Data.SemiAuto"</v>
                               <v n="Type">"BOOL"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
@@ -729,7 +790,7 @@ END_VAR
                               <v n="LValue">true</v>
                               <v n="Boolean">false</v>
                               <v n="IsInstance">false</v>
-                              <v n="Id">47L</v>
+                              <v n="Id">70L</v>
                             </o>
                           </l2>
                         </o>
@@ -747,7 +808,7 @@ END_VAR
                               <v n="Fixed">false</v>
                               <v n="Extensible">false</v>
                             </o>
-                            <v n="Id">58L</v>
+                            <v n="Id">71L</v>
                           </o>
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
@@ -764,9 +825,9 @@ END_VAR
                               <v n="LValue">false</v>
                               <v n="Boolean">false</v>
                               <v n="IsInstance">false</v>
-                              <v n="Id">40L</v>
+                              <v n="Id">73L</v>
                             </o>
-                            <v n="Id">39L</v>
+                            <v n="Id">72L</v>
                           </o>
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
@@ -783,9 +844,9 @@ END_VAR
                               <v n="LValue">false</v>
                               <v n="Boolean">false</v>
                               <v n="IsInstance">false</v>
-                              <v n="Id">42L</v>
+                              <v n="Id">75L</v>
                             </o>
-                            <v n="Id">41L</v>
+                            <v n="Id">74L</v>
                           </o>
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
@@ -802,9 +863,9 @@ END_VAR
                               <v n="LValue">false</v>
                               <v n="Boolean">true</v>
                               <v n="IsInstance">false</v>
-                              <v n="Id">49L</v>
+                              <v n="Id">77L</v>
                             </o>
-                            <v n="Id">48L</v>
+                            <v n="Id">76L</v>
                           </o>
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
@@ -821,9 +882,9 @@ END_VAR
                               <v n="LValue">false</v>
                               <v n="Boolean">true</v>
                               <v n="IsInstance">false</v>
-                              <v n="Id">51L</v>
+                              <v n="Id">79L</v>
                             </o>
-                            <v n="Id">50L</v>
+                            <v n="Id">78L</v>
                           </o>
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
@@ -840,9 +901,9 @@ END_VAR
                               <v n="LValue">false</v>
                               <v n="Boolean">true</v>
                               <v n="IsInstance">false</v>
-                              <v n="Id">53L</v>
+                              <v n="Id">81L</v>
                             </o>
-                            <v n="Id">52L</v>
+                            <v n="Id">80L</v>
                           </o>
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
@@ -859,9 +920,9 @@ END_VAR
                               <v n="LValue">false</v>
                               <v n="Boolean">true</v>
                               <v n="IsInstance">false</v>
-                              <v n="Id">55L</v>
+                              <v n="Id">83L</v>
                             </o>
-                            <v n="Id">54L</v>
+                            <v n="Id">82L</v>
                           </o>
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
@@ -878,9 +939,28 @@ END_VAR
                               <v n="LValue">false</v>
                               <v n="Boolean">true</v>
                               <v n="IsInstance">false</v>
-                              <v n="Id">57L</v>
+                              <v n="Id">85L</v>
                             </o>
-                            <v n="Id">56L</v>
+                            <v n="Id">84L</v>
+                          </o>
+                          <o t="BoxTreeOperand">
+                            <o n="Operand" t="Operand">
+                              <v n="Operand">"S1_Global.Data.IsStationSelectedHMI"</v>
+                              <v n="Type">"BOOL"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">""</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">0</v>
+                                <v n="Fixed">false</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">false</v>
+                              <v n="Boolean">true</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">89L</v>
+                            </o>
+                            <v n="Id">88L</v>
                           </o>
                         </l2>
                         <o n="InputParam" t="ParamList">
@@ -893,8 +973,10 @@ END_VAR
                             <v>iAutoMode</v>
                             <v>iStartAutoCycle</v>
                             <v>iSemiAutoMode</v>
+                            <v>iIsStationSelected</v>
                           </l2>
                           <l2 n="Types" cet="String">
+                            <v>BOOL</v>
                             <v>BOOL</v>
                             <v>BOOL</v>
                             <v>BOOL</v>
@@ -927,11 +1009,11 @@ END_VAR
                         <n n="STSnippet" />
                         <v n="ContainsExtensibleInputs">false</v>
                         <v n="ProvidesSTSnippet">false</v>
-                        <v n="Id">44L</v>
+                        <v n="Id">93L</v>
                       </o>
                     </l2>
                     <l2 n="Connectors" />
-                    <v n="Id">27L</v>
+                    <v n="Id">64L</v>
                   </o>
                 </l2>
                 <v n="BranchCounter">0</v>
@@ -940,6 +1022,7 @@ END_VAR
             </Data>
             <TypeList>
               <Type n="Boolean">System.Boolean</Type>
+              <Type n="BoxTreeAssign">{9873c309-1f09-4ebf-9078-42d8057ef11b}</Type>
               <Type n="BoxTreeBox">{acfc6f68-8e3a-4af5-bf81-3dd512095a46}</Type>
               <Type n="BoxTreeOperand">{9de7f100-1b87-424c-a62e-45b0cfc85ed2}</Type>
               <Type n="BoxTreeTerminator">{5f9848d3-568d-4cc5-9e31-8e28e9607ff1}</Type>
