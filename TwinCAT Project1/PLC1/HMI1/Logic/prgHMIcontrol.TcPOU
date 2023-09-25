@@ -9363,6 +9363,19 @@ HMIData.btnFdbk.btn29Fdbk := FALSE;]]></ST>
         </NWL>
       </Implementation>
     </Action>
+    <Action Name="actStationEnables" Id="{401c3089-158a-4e3f-ba0a-795f1a2a44bf}">
+      <Implementation>
+        <ST><![CDATA[//disable all stations and let station calls enable on a per-scan basis
+hmidata.gStationEnabled[1]:= FALSE;
+hmidata.gStationEnabled[2]:= FALSE;
+hmidata.gStationEnabled[3]:= FALSE;
+hmidata.gStationEnabled[4]:= FALSE;
+hmidata.gStationEnabled[5]:= FALSE;
+hmidata.gStationEnabled[6]:= FALSE;
+
+]]></ST>
+      </Implementation>
+    </Action>
     <Action Name="actStationSelected" Id="{64219bfb-6700-4e8d-b501-f4bd999a438b}">
       <Implementation>
         <NWL>
@@ -10759,6 +10772,13 @@ HMIData.btnFdbk.btn29Fdbk := FALSE;]]></ST>
       <LineId Id="2" Count="9" />
       <LineId Id="50" Count="22" />
       <LineId Id="38" Count="0" />
+    </LineIds>
+    <LineIds Name="prgHMIcontrol.actStationEnables">
+      <LineId Id="1" Count="1" />
+      <LineId Id="4" Count="3" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="3" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
