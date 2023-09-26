@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="RowConfig" Id="{3e6e559b-4590-4150-873c-b8f4f3db79f5}">
+    <Declaration><![CDATA[
+{attribute 'strict'} 
+TYPE RowConfig :
+		(
+		FullRow 		:= 2#0000000000000000, //typical motion with value feedback
+		FullRowNoVal	:= 2#0001000000000000, //typical motion with no value feedback
+		OnlyRight		:= 2#0000000000111111, //used for motions that only have 1 action
+		OnlyLeft		:= 2#0000111110000000, //used for motions that only have 1 action
+		HideAll			:= 2#1111111111111111  //used when motion does not exist to tidy up screen
+		) WORD
+		;
+			
+END_TYPE
+
+
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
