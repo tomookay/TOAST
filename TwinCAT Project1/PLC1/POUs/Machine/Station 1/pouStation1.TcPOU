@@ -3889,7 +3889,7 @@ enable station calls, if this pou is copied and called"</v>
                           <v n="LValue">false</v>
                           <v n="Boolean">false</v>
                           <v n="IsInstance">true</v>
-                          <v n="Id">120L</v>
+                          <v n="Id">170L</v>
                         </o>
                         <o n="OutputItems" t="OutputItemList">
                           <l2 n="OutputItems" cet="Operand">
@@ -3957,6 +3957,54 @@ enable station calls, if this pou is copied and called"</v>
                               <v n="Boolean">false</v>
                               <v n="IsInstance">false</v>
                               <v n="Id">70L</v>
+                            </o>
+                            <o>
+                              <v n="Operand">"S1_Global.Data.ContCycle"</v>
+                              <v n="Type">"BOOL"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">""</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">0</v>
+                                <v n="Fixed">false</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">true</v>
+                              <v n="Boolean">false</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">168L</v>
+                            </o>
+                            <o>
+                              <v n="Operand">"S1_Global.Data.SingleCycle"</v>
+                              <v n="Type">"BOOL"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">""</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">0</v>
+                                <v n="Fixed">false</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">true</v>
+                              <v n="Boolean">false</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">169L</v>
+                            </o>
+                            <o>
+                              <v n="Operand">"S1_Global.Data.DryCycle"</v>
+                              <v n="Type">"BOOL"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">""</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">0</v>
+                                <v n="Fixed">false</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">true</v>
+                              <v n="Boolean">false</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">172L</v>
                             </o>
                             <o>
                               <v n="Operand">"S1_Global.Data.StationState"</v>
@@ -4184,6 +4232,25 @@ enable station calls, if this pou is copied and called"</v>
                           </o>
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
+                              <v n="Operand">"HMIData.btnMode.btn11Pressed"</v>
+                              <v n="Type">"BOOL"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">""</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">0</v>
+                                <v n="Fixed">false</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">false</v>
+                              <v n="Boolean">true</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">174L</v>
+                            </o>
+                            <v n="Id">173L</v>
+                          </o>
+                          <o t="BoxTreeOperand">
+                            <o n="Operand" t="Operand">
                               <v n="Operand">"S1_Global.Data.IsStationSelectedHMI"</v>
                               <v n="Type">"BOOL"</v>
                               <v n="Comment">""</v>
@@ -4234,10 +4301,12 @@ enable station calls, if this pou is copied and called"</v>
                             <v>iSingleCycle</v>
                             <v>iHome</v>
                             <v>iFault</v>
+                            <v>iDryCycleMode</v>
                             <v>iIsStationSelected</v>
                             <v>stationState</v>
                           </l2>
                           <l2 n="Types" cet="String">
+                            <v>BOOL</v>
                             <v>BOOL</v>
                             <v>BOOL</v>
                             <v>BOOL</v>
@@ -4260,9 +4329,15 @@ enable station calls, if this pou is copied and called"</v>
                             <v>qAutoMode</v>
                             <v>qAutoCycling</v>
                             <v>qSemiAuto</v>
+                            <v>qContCycle</v>
+                            <v>qSingleCycle</v>
+                            <v>qDryCycle</v>
                             <v>qModeState</v>
                           </l2>
                           <l2 n="Types" cet="String">
+                            <v>BOOL</v>
+                            <v>BOOL</v>
+                            <v>BOOL</v>
                             <v>BOOL</v>
                             <v>BOOL</v>
                             <v>BOOL</v>
@@ -4277,7 +4352,7 @@ enable station calls, if this pou is copied and called"</v>
                         <n n="STSnippet" />
                         <v n="ContainsExtensibleInputs">false</v>
                         <v n="ProvidesSTSnippet">false</v>
-                        <v n="Id">121L</v>
+                        <v n="Id">171L</v>
                       </o>
                     </l2>
                     <l2 n="Connectors" />

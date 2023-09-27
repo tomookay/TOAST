@@ -3,14 +3,14 @@
   <DUT Name="typeStationMode" Id="{4cdca883-5c17-4ed9-b7ea-6fce91fd8785}">
     <Declaration><![CDATA[TYPE typeStationMode :
 STRUCT
-	Manual:					BOOL; //TRUE if the station is in manual mode
+	Manual:					BOOL :=TRUE; //TRUE if the station is in manual mode
 	AutoCycle:				BOOL; //TRUE if the station is in auto mode
 	AutoCycling:			BOOL; //TRUE if the station is auto cycling
 	SemiAuto:				BOOL; //TRUE if the station is in semi auto (magic prompting)
 	DryCycle:				BOOL; //TRUE if the station is in dry run mode (no parts)
 	ModeValue:				INT;
 	Bypass:					BOOL; //TRUE if the station is in bypass mode (no process to be performed)
-	ContCycle:				BOOL;
+	ContCycle:				BOOL :=TRUE;
 	SingleCycle:			BOOL;
 	StopEOC:				BOOL;
 
