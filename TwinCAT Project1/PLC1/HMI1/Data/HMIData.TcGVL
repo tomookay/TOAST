@@ -7,6 +7,10 @@ VAR_GLOBAL
 	gMotionRows: typeMotionScreen;
 	gMotionRowButtons: typeMotionScreenBtn;
 	
+	//Unit rows and buttons to feedback into program
+	gUnitRows: typeMotionScreen;
+	gUnitButtons: typeMotionScreenBtn;
+	
 	//station selected as BOOL
 	gStationSelected: ARRAY[1..gNumberOfStations] OF BOOL;
 	//station selected as integer
@@ -46,8 +50,6 @@ VAR_GLOBAL
 	btnSelectAll: BOOL;	//button to select all stations
 	btnAllStationsSelected: BOOL;
 
-
-	
 	//reset button for global use
 	btnReset: BOOL;
 

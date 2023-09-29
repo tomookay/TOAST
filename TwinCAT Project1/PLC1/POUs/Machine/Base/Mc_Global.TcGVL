@@ -10,7 +10,11 @@ VAR_GLOBAL
 	PowerOnFdbk:			BOOL; //power feedback
 	MotionPowerOnFdbk:		BOOL; //power feedback
 
- 
+ 	Data: typeStationMode;
+	
+	//all Unit rows in the station, to be used as the "Mc" station
+	UnitRow: ARRAY[1..99] OF typeMotionRow;
+	UnitRowBtn: ARRAY[1..99] OF typeMotionRowButtons;
 
 END_VAR]]></Declaration>
   </GVL>

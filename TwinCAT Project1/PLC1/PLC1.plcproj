@@ -80,6 +80,10 @@
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
+    <Compile Include="HMI1\Screens\Mc_01_Units.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+    </Compile>
     <Compile Include="HMI1\Templates\MotionRow.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
@@ -133,6 +137,12 @@
     <Compile Include="POUs\Machine\Base\Mc_Global.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="POUs\Machine\Base\Units\pouStationUnits.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Machine\Base\Units\Mc_01_Units_01.TcPOU">
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Machine\Base\pouMachine.TcPOU">
       <SubType>Code</SubType>
@@ -241,6 +251,7 @@
     <Folder Include="POUs\FBs\FBs" />
     <Folder Include="POUs\Machine" />
     <Folder Include="POUs\Machine\Base" />
+    <Folder Include="POUs\Machine\Base\Units" />
     <Folder Include="POUs\Machine\Base\Station Status" />
     <Folder Include="POUs\Machine\Station 1" />
     <Folder Include="POUs\Machine\Station 1\Messages" />
