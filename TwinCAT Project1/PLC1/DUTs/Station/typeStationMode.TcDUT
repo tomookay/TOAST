@@ -8,11 +8,11 @@ STRUCT
 	AutoCycling:			BOOL; //TRUE if the station is auto cycling
 	SemiAuto:				BOOL; //TRUE if the station is in semi auto (magic prompting)
 	DryCycle:				BOOL; //TRUE if the station is in dry run mode (no parts)
-	ModeValue:				INT;
+	ModeValue:				INT;  //integer value of the mode for display
 	Bypass:					BOOL; //TRUE if the station is in bypass mode (no process to be performed)
 	ContCycle:				BOOL :=TRUE;
-	SingleCycle:			BOOL;
-	StopEOC:				BOOL;
+	SingleCycle:			BOOL; //TRUE if the station is in single cycle mode
+	StopEOC:				BOOL; //TRUE if the machine is stopping at end of cycle
 
 
 	btnStartAutoCycle: 		BOOL; //button to start auto cycle
@@ -31,16 +31,13 @@ STRUCT
 		
 	StationNumber:			UINT; //the station number, typ. 1-6
 	
-	PowerOn:				BOOL;
-	MotionPowerOn:			BOOL;
+	PowerOn:				BOOL; //TRUE if the machine is Powered On
+	MotionPowerOn:			BOOL; //TRUE if the machine is powered on with motion, e.g. servo enable, pneumatic air on, hydraulics on,
 
 	IsStationSelectedHMI:	BOOL; //Is the station selected on the HMI
 	
 	StationState:			INT; //state value as integer
 
-
-	
-	
 END_STRUCT
 END_TYPE
 ]]></Declaration>
