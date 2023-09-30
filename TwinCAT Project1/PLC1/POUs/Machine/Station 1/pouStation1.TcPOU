@@ -3793,6 +3793,28 @@ enable station calls, if this pou is copied and called"</v>
         </NWL>
       </Implementation>
     </Action>
+    <Action Name="actHome" Id="{38f1ab27-9e47-4a19-9a7c-14bf7a049522}">
+      <Implementation>
+        <ST><![CDATA[//Set home status for station
+
+IF 
+//are all motions returned
+S1_01_Motion_1.Motion.qReturnDepth AND
+S1_01_Motion_2.Motion.qReturnDepth AND
+S1_01_Motion_3.Motion.qReturnDepth AND
+S1_01_Motion_4.Motion.qReturnDepth AND
+S1_01_Motion_5.Motion.qReturnDepth AND
+S1_01_Motion_6.Motion.qReturnDepth
+
+	THEN
+		//set IsHome value for station
+		S1_Global.Data.IsHome := TRUE;
+	ELSE
+		S1_Global.Data.IsHome := FALSE;
+END_IF
+]]></ST>
+      </Implementation>
+    </Action>
     <Action Name="actMode" Id="{9732a77c-e29b-4611-92cd-047d0b53dcd5}">
       <Implementation>
         <NWL>
@@ -4553,5 +4575,20 @@ enable station calls, if this pou is copied and called"</v>
         </NWL>
       </Implementation>
     </Action>
+    <LineIds Name="pouStation1.actHome">
+      <LineId Id="1" Count="0" />
+      <LineId Id="3" Count="0" />
+      <LineId Id="2" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="17" Count="4" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="13" Count="1" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>
