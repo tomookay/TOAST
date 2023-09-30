@@ -16,14 +16,19 @@ VAR_GLOBAL
 	//station selected as integer
 	gActiveStationNumber:UINT; 
 	
+	gActiveStationNumberUnit:UINT; 
+	
 	//stations enabled
 	gStationEnabled: ARRAY[1..gNumberOfStations] OF BOOL;
 	
 	gActivePageNumber:UINT; //current page number
 	gMaxPageNumber:UINT;  //max pages exist for station, e.g. 5
+	gActiveUnitPageNumber:UINT; //current page number for units
+	gMaxPageNumberUnit:UINT;  //max pages exist for station, e.g. 5
 	
 	gActiveScreen:UINT; //combo of station + page, expressed as integer 0-999999+, reference to the text list
 	gRowElementOffset: ARRAY[1..gNumberRowsPerPage] OF UINT;
+	gUnitRowElementOffset: ARRAY[1..gNumberRowsPerPage] OF UINT; //seperate calculation for units
 		
 	//machine prompt number to display (summation)
 	gMachinePromptNumber: UINT;
