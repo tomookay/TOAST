@@ -13,6 +13,14 @@ myPlcInfoTask5 : PlcTaskSystemInfo;
 myPlcInfoTask6 : PlcTaskSystemInfo;
 
 
+ScanTimeReq:REAL; //the programmed task scan time, e.g. 1, 10, 15, 30ms, etc
+ScanTimeAct:REAL; //the last scan time, effective current scan time.
+
+ScanTimeRecord:REAL; //the record scan time
+ScanTimeRecordScan:LREAL; //the scan number of the record scan time
+
+
+
 
 END_VAR]]></Declaration>
   </GVL>
