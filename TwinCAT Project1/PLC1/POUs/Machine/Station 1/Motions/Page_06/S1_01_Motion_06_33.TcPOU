@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <POU Name="S1_01_Motion_1" Id="{05044893-33f7-4ab1-b30c-c9ab953ab0e8}" SpecialFunc="None">
-    <Declaration><![CDATA[PROGRAM S1_01_Motion_1
+  <POU Name="S1_01_Motion_06_33" Id="{6634caaa-73a7-4785-ae4f-5e3f2bcd9af4}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM S1_01_Motion_06_33
 VAR
 	HMI_Motion: FB_HMI_Control;
 	Motion: FB_Motion2way;
@@ -35,7 +35,7 @@ END_VAR
                   <l2 n="ILLines" />
                   <v n="Comment">"&lt;MotionRow&gt;
 &lt;StationNumber&gt;1&lt;/StationNumber&gt;
-&lt;RowNumber&gt;1&lt;/RowNumber&gt;
+&lt;RowNumber&gt;33&lt;/RowNumber&gt;
   &lt;Advance&gt;
     &lt;AdvanceCoilTextSym&gt;Advance&lt;/AdvanceCoilTextSym&gt;
     &lt;AdvanceDepthTextSym&gt;Advanced&lt;/AdvanceDepthTextSym&gt;
@@ -209,7 +209,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"1"</v>
+                            <v n="Operand">"33"</v>
                             <v n="Type">"INT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -418,7 +418,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"RowConfig.FullRow"</v>
+                            <v n="Operand">"RowConfig.FullRowNoVal"</v>
                             <v n="Type">"ROWCONFIG"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -437,7 +437,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"1"</v>
+                            <v n="Operand">"3"</v>
                             <v n="Type">"INT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -456,7 +456,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"12"</v>
+                            <v n="Operand">"10"</v>
                             <v n="Type">"INT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -475,8 +475,8 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"' mm'"</v>
-                            <v n="Type">"STRING(INT#3)"</v>
+                            <v n="Operand">"''"</v>
+                            <v n="Type">"STRING(INT#0)"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
                             <v n="Address">""</v>
@@ -494,8 +494,8 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"'123.456'"</v>
-                            <v n="Type">"STRING(INT#7)"</v>
+                            <v n="Operand">"''"</v>
+                            <v n="Type">"STRING(INT#0)"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
                             <v n="Address">""</v>
@@ -696,7 +696,7 @@ END_VAR
                       </o>
                       <o n="RValue" t="BoxTreeOperand">
                         <o n="Operand" t="Operand">
-                          <v n="Operand">"S1_IO.Row01.iAdvanceDepth"</v>
+                          <v n="Operand">"S1_IO.Row03.iAdvanceDepth"</v>
                           <v n="Type">"BOOL"</v>
                           <v n="Comment">""</v>
                           <v n="SymbolComment">""</v>
@@ -757,7 +757,7 @@ END_VAR
                       </o>
                       <o n="RValue" t="BoxTreeOperand">
                         <o n="Operand" t="Operand">
-                          <v n="Operand">"S1_IO.Row01.iReturnedDepth"</v>
+                          <v n="Operand">"S1_IO.Row03.iReturnedDepth"</v>
                           <v n="Type">"BOOL"</v>
                           <v n="Comment">""</v>
                           <v n="SymbolComment">""</v>
@@ -1817,7 +1817,7 @@ Is the motion the next in the process?"</v>
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems" cet="Operand">
                           <o>
-                            <v n="Operand">"S1_IO.Row01.qAdvanceCoil"</v>
+                            <v n="Operand">"S1_IO.Row03.qAdvanceCoil"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -1878,7 +1878,7 @@ Is the motion the next in the process?"</v>
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems" cet="Operand">
                           <o>
-                            <v n="Operand">"S1_IO.Row01.qReturnedCoil"</v>
+                            <v n="Operand">"S1_IO.Row03.qReturnedCoil"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
