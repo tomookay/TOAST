@@ -7,8 +7,15 @@ TYPE RowConfig :
 		(
 		FullRow 		:= 2#0000000000000000, //typical motion with value feedback
 		FullRowNoVal	:= 2#0001000000000000, //typical motion with no value feedback
+//
 		OnlyRight		:= 2#0000000000111111, //used for motions that only have 1 action
-		OnlyLeft		:= 2#0000111110000000, //used for motions that only have 1 action
+		OnlyRightNoVal	:= 2#0001000000111111, //used for motions that only have 1 action, no value feedback
+		OnlyRightNoAct	:= 2#0001011001111111, //used for motions that only have 1 action, no value feedback
+//
+		OnlyLeft		:= 2#0000011111000000, //used for motions that only have 1 action
+		OnlyLeftNoVal	:= 2#0001011111000000, //used for motions that only have 1 action, no value feedback
+		OnlyLeftNoAct	:= 2#0001011111011001, //used for motions that only have 1 action, no action button or prompts
+//
 		HideAll			:= 2#1111111111111111  //used when motion does not exist to tidy up screen
 		) WORD
 		;
