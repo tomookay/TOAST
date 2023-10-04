@@ -16,6 +16,9 @@ TYPE RowConfig :
 		OnlyLeftNoVal	:= 2#0001011111000000, //used for motions that only have 1 action, no value feedback
 		OnlyLeftNoAct	:= 2#0001011111011001, //used for motions that only have 1 action, no action button or prompts
 //
+		OnlyTitleNoVal	:= 2#0001011111111111, //used for motions that don't exist and the row is only used for header title
+		OnlyTitle		:= 2#0000011111111111, //used for motions that don't exist and the row is only used for header title
+//
 		HideAll			:= 2#1111111111111111  //used when motion does not exist to tidy up screen
 		) WORD
 		;
