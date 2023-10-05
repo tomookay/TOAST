@@ -72,6 +72,9 @@
     <Compile Include="HMI1\Data\typeBtnPress.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="HMI1\Data\AxisRowText.TcTLO">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="HMI1\Logic\pouHMI.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -104,7 +107,15 @@
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
+    <Compile Include="HMI1\Screens\SS_13_Axis.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+    </Compile>
     <Compile Include="HMI1\Templates\MotionRow.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="HMI1\Templates\AxisRow.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
@@ -156,6 +167,27 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\FBs\FBs\Motions\FB_Motion2way.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Machine\Base\Axis\Ax_01_AxisMoveJog_05.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Machine\Base\Axis\Ax_01_AxisMoveAbsRel_06.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Machine\Base\Axis\Ax_01_AxisSpeedSelect_03.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Machine\Base\Axis\Ax_01_AxisNameSelect_01.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Machine\Base\Axis\Ax_01_AxisMoveTypeSelect_02.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Machine\Base\Axis\Ax_01_AxisIncrementSelect_04.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Machine\Base\Axis\pouAxis.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Machine\Base\Mc_Global.TcGVL">
@@ -386,6 +418,7 @@
     <Folder Include="POUs\FBs\FBs" />
     <Folder Include="POUs\Machine" />
     <Folder Include="POUs\Machine\Base" />
+    <Folder Include="POUs\Machine\Base\Axis" />
     <Folder Include="POUs\Machine\Base\Units" />
     <Folder Include="POUs\Machine\Base\Station Status" />
     <Folder Include="POUs\Machine\Station 1" />
