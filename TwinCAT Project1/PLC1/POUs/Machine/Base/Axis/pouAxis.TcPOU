@@ -585,16 +585,18 @@ END_VAR
     <Action Name="actClearScreen" Id="{a9ff748a-de6a-4eb1-8d41-a39e8e6638f7}">
       <Implementation>
         <ST><![CDATA[//clear HMI row for manual insertion
-HMIData.gAxisRows.gMotionRow1.IndexLocation := 0;
-HMIData.gAxisRows.gMotionRow2.IndexLocation := 20;
-HMIData.gAxisRows.gMotionRow3.IndexLocation := 40;
-HMIData.gAxisRows.gMotionRow4.IndexLocation := 60;
-HMIData.gAxisRows.gMotionRow5.IndexLocation := 80;
-HMIData.gAxisRows.gMotionRow6.IndexLocation := 100;
+axis.gAxisRows.gMotionRow1.IndexLocation := 0;
+axis.gAxisRows.gMotionRow2.IndexLocation := 20;
+axis.gAxisRows.gMotionRow3.IndexLocation := 40;
+axis.gAxisRows.gMotionRow4.IndexLocation := 60;
+axis.gAxisRows.gMotionRow5.IndexLocation := 80;
+axis.gAxisRows.gMotionRow6.IndexLocation := 100;
 
 //clear axis row layout
-HMIData.gAxisNumRows := 0;
-]]></ST>
+axis.gAxisNumRows := 0;
+
+//debug
+axis.isAxisStandStill := TRUE;]]></ST>
       </Implementation>
     </Action>
     <LineIds Name="pouAxis.actClearScreen">
@@ -602,7 +604,9 @@ HMIData.gAxisNumRows := 0;
       <LineId Id="1" Count="5" />
       <LineId Id="9" Count="0" />
       <LineId Id="7" Count="0" />
-      <LineId Id="10" Count="1" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="12" Count="1" />
+      <LineId Id="11" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <POU Name="Ax_01_AxisMoveJog_05" Id="{b5a92010-f959-45ce-936b-836ee93e0d9e}" SpecialFunc="None">
-    <Declaration><![CDATA[PROGRAM Ax_01_AxisMoveJog_05
+  <POU Name="Ax_01_AxisNameSelect_01" Id="{c8eb1b93-fabe-43ae-a57e-328df8273501}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Ax_01_AxisNameSelect_01
 VAR
 	HMI_Motion: FB_HMI_Control;
 
@@ -212,7 +212,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"5"</v>
+                            <v n="Operand">"1"</v>
                             <v n="Type">"INT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -269,7 +269,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">""</v>
+                            <v n="Operand">"HMI_Motion.qAdvanceReq"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -288,7 +288,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">""</v>
+                            <v n="Operand">"HMI_Motion.qReturnReq"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -345,7 +345,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">""</v>
+                            <v n="Operand">"Axis.isAxisStandStill"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -364,7 +364,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">""</v>
+                            <v n="Operand">"Axis.isAxisStandStill"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -383,7 +383,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">""</v>
+                            <v n="Operand">"Axis.isAxisStandStill"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -402,7 +402,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">""</v>
+                            <v n="Operand">"Axis.isAxisStandStill"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -478,7 +478,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"''"</v>
+                            <v n="Operand">""</v>
                             <v n="Type">"STRING(INT#0)"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -497,7 +497,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"''"</v>
+                            <v n="Operand">""</v>
                             <v n="Type">"STRING(INT#0)"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -516,7 +516,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"HMIData.gAxisNumRows"</v>
+                            <v n="Operand">"axis.gAxisNumRows"</v>
                             <v n="Type">"UINT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -535,7 +535,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"HMIData.gAxisRows.gMotionRow5"</v>
+                            <v n="Operand">"axis.gAxisRows.gMotionRow1"</v>
                             <v n="Type">"typeMotionRow"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -554,7 +554,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"HMIData.gAxisButtons.gMotionRow5btn"</v>
+                            <v n="Operand">"axis.gAxisButtons.gMotionRow1btn"</v>
                             <v n="Type">"typeMotionRowButtons"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -674,13 +674,13 @@ END_VAR
                         <v n="LValue">false</v>
                         <v n="Boolean">false</v>
                         <v n="IsInstance">true</v>
-                        <v n="Id">678L</v>
+                        <v n="Id">560L</v>
                       </o>
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems" cet="Operand">
                           <n />
                           <o>
-                            <v n="Operand">"HMIData.gAxisRows.gMotionRow5.IndexLocation"</v>
+                            <v n="Operand">"axis.gAxisRows.gMotionRow1.IndexLocation"</v>
                             <v n="Type">"UINT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -693,7 +693,7 @@ END_VAR
                             <v n="LValue">true</v>
                             <v n="Boolean">false</v>
                             <v n="IsInstance">false</v>
-                            <v n="Id">680L</v>
+                            <v n="Id">562L</v>
                           </o>
                         </l2>
                       </o>
@@ -711,11 +711,11 @@ END_VAR
                             <v n="Fixed">false</v>
                             <v n="Extensible">false</v>
                           </o>
-                          <v n="Id">681L</v>
+                          <v n="Id">563L</v>
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"HMIData.gAxisRows.gMotionRow5.IndexLocation"</v>
+                            <v n="Operand">"axis.gAxisRows.gMotionRow1.IndexLocation"</v>
                             <v n="Type">"UINT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -728,9 +728,9 @@ END_VAR
                             <v n="LValue">false</v>
                             <v n="Boolean">false</v>
                             <v n="IsInstance">false</v>
-                            <v n="Id">683L</v>
+                            <v n="Id">565L</v>
                           </o>
-                          <v n="Id">682L</v>
+                          <v n="Id">564L</v>
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
@@ -747,9 +747,9 @@ END_VAR
                             <v n="LValue">false</v>
                             <v n="Boolean">false</v>
                             <v n="IsInstance">false</v>
-                            <v n="Id">685L</v>
+                            <v n="Id">567L</v>
                           </o>
-                          <v n="Id">684L</v>
+                          <v n="Id">566L</v>
                         </o>
                       </l2>
                       <o n="InputParam" t="ParamList">
@@ -776,11 +776,11 @@ END_VAR
                       <n n="STSnippet" />
                       <v n="ContainsExtensibleInputs">false</v>
                       <v n="ProvidesSTSnippet">false</v>
-                      <v n="Id">679L</v>
+                      <v n="Id">561L</v>
                     </o>
                   </l2>
                   <l2 n="Connectors" />
-                  <v n="Id">677L</v>
+                  <v n="Id">559L</v>
                 </o>
               </l2>
               <v n="BranchCounter">0</v>
