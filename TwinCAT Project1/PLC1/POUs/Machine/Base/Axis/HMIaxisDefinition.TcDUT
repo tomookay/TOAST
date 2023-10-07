@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="HMIaxisDefinition" Id="{69299a56-c298-485c-9aae-dbee18562d12}">
+    <Declaration><![CDATA[TYPE HMIaxisDefinition :
+STRUCT
+	//define axis type for display on HMI. Does not affect axis_ref
+	AxisName: STRING:='Linear Slide';
+	AxisDef: STRING :='X';
+	AxisNumber: int;
+	isLinearDrive: BOOL; //TRUE if the drive exists as a linear position in mm
+	isSpindleDrive: BOOL; //TRUE if the drive is a spindle
+
+
+
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

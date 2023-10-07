@@ -15,10 +15,13 @@ VAR_GLOBAL
 	isAxisStandStill: BOOL;
 	
 
-
-
-
-
+	//axis present in system
+	axisPresent: ARRAY[1..99] OF HMIaxisDefinition;
+	axisSelected: HMIaxisDefinition; //current axis selected
+	axisSelectNum: UINT; //value of axis selected
+	gNumAxisInSystem: UINT;
+	
+	
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>
