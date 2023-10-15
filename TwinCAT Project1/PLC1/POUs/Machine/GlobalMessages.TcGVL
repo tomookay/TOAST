@@ -24,8 +24,16 @@ VAR_GLOBAL
 	gMsgS5Stat	:typeStationStatus;
 	gMsgS6Stat	:typeStationStatus;
 	
-	AllocMsgPerRow:UINT := 10;
+
 	
+	
+END_VAR
+
+
+VAR_GLOBAL CONSTANT
+	
+		AllocMsgPerRow:UINT := 10; //number of messages assigned per row
+		gNumMessagesPerType:INT := 1000; //number of messages in each type of message
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

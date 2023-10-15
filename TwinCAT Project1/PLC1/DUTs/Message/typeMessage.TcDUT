@@ -4,8 +4,8 @@
     <Declaration><![CDATA[TYPE typeMessage :
 STRUCT
 	//defines a list of messages to display for each type of message
-	message: ARRAY [0..1000] OF BOOL;
-	text:ARRAY[0..1000] OF STRING(255);
+	message: ARRAY [0..GlobalMessages.gNumMessagesPerType] OF BOOL;
+	text:ARRAY[0..GlobalMessages.gNumMessagesPerType] OF STRING(255);
 END_STRUCT
 END_TYPE
 
