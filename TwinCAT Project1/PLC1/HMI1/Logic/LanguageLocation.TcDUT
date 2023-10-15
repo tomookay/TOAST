@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="LanguageLocation" Id="{03b55324-15d4-4125-9141-0fc77c9eae74}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE LanguageLocation :
+(
+	DefaultLanguage := 1, //Beckhoff's default langage for TextLists
+	FirstLanguage := 3,  //e.g. German
+	SecondLanguage := 4, //e.g. French
+	ThirdLanguage := 5,
+	FourthLanguage := 6
+	//etc
+	
+	
+);
+END_TYPE
+
+//	line	LangNum
+
+//             				<v n="TextID">"0"</v>
+//     1     	0		    <v n="TextDefault">"message 0"</v>
+//     2         			<l n="LanguageTexts" t="ArrayList" cet="String">
+//     3        1			<v>german 0</v>
+//     4        2 			<v>french 0</v>]]></Declaration>
+  </DUT>
+</TcPlcObject>
