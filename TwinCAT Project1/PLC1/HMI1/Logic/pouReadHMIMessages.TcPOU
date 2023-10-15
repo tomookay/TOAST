@@ -4,53 +4,23 @@
     <Declaration><![CDATA[PROGRAM pouReadHMIMessages
 VAR
 
-
-
 	openfileee: FB_FileOpen;
 	openfileee2: FB_FileOpen;
-	
-	
 	openTheFile: BOOL;
-	
 	gettaTheFile: FB_FileGets;
 	gettaTheFile2: FB_FileGets;
-	
-	
 	readatheFile: BOOL;
 	textListNameLocation: INT;
-	textnamelocname: STRING(255);
-	idline: INT;
-	textnamelefted: STRING(255);
-		textidNameLocation: INT;
-	textIDlocname: STRING(255);
-	textidline: INT;
-	textIDnameLefted: STRING(255);
-	isTextIDLine: BOOL;
-	textidline2: INT;
-	textidline3: STRING(255);
-	textidline4: INT;
-	textidline5: STRING(255);
-	textlen: INT;
-	rightsize: INT;
-	tFileOpen: BOOL;
-	readingpulse: BOOL;
-	intIndexValuie: INT;
-	textiddefaultLocation: INT;
-	textiddefaultline: STRING(255);
-	isTextIDdefaultLine: BOOL;
-	FB_FindText_0: FB_FindTextIndexNum;
-	fgdfg: FB_FindTextLangText;
-	CTU_0: CTU;
+	findText: FB_FindTextIndexNum;
+	findLangText: FB_FindTextLangText;
 	examplestring: STRING(255);
-	tRestFunc: BOOL;
 	tResetFunc: BOOL;
 	fileNumber: UINT;
 	fileisEOF: BOOL;
 	closeatheFile: FB_FileClose;
-	ctd_0: CTd;
 	IsCorrectLineForText: INT;
 	isCorrectLine: BOOL;
-	linePOsn: INT;
+
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -66,7 +36,7 @@ END_VAR
                   <v n="FBDValid">false</v>
                   <v n="ILValid">false</v>
                   <l2 n="ILLines" />
-                  <v n="Comment">""</v>
+                  <v n="Comment">"open file into hfile handle"</v>
                   <v n="Title">""</v>
                   <v n="Label">""</v>
                   <v n="OutCommented">false</v>
@@ -342,7 +312,7 @@ END_VAR
                   <v n="FBDValid">false</v>
                   <v n="ILValid">false</v>
                   <l2 n="ILLines" />
-                  <v n="Comment">""</v>
+                  <v n="Comment">"close file on complete on above scan"</v>
                   <v n="Title">""</v>
                   <v n="Label">""</v>
                   <v n="OutCommented">false</v>
@@ -416,7 +386,7 @@ END_VAR
                               </o>
                               <o t="BoxTreeOperand">
                                 <o n="Operand" t="Operand">
-                                  <v n="Operand">"FB_FindText_0.qIndexNum"</v>
+                                  <v n="Operand">"findText.qIndexNum"</v>
                                   <v n="Type">"INT"</v>
                                   <v n="Comment">""</v>
                                   <v n="SymbolComment">""</v>
@@ -512,7 +482,7 @@ END_VAR
                   <v n="FBDValid">false</v>
                   <v n="ILValid">false</v>
                   <l2 n="ILLines" />
-                  <v n="Comment">""</v>
+                  <v n="Comment">"close file based on file handle and complete logic"</v>
                   <v n="Title">""</v>
                   <v n="Label">""</v>
                   <v n="OutCommented">false</v>
@@ -728,7 +698,7 @@ END_VAR
                   <v n="FBDValid">false</v>
                   <v n="ILValid">false</v>
                   <l2 n="ILLines" />
-                  <v n="Comment">""</v>
+                  <v n="Comment">"reset function"</v>
                   <v n="Title">""</v>
                   <v n="Label">""</v>
                   <v n="OutCommented">false</v>
@@ -881,7 +851,7 @@ END_VAR
                   <v n="FBDValid">false</v>
                   <v n="ILValid">false</v>
                   <l2 n="ILLines" />
-                  <v n="Comment">""</v>
+                  <v n="Comment">"read each line of file"</v>
                   <v n="Title">""</v>
                   <v n="Label">""</v>
                   <v n="OutCommented">false</v>
@@ -1376,7 +1346,9 @@ END_VAR
                   <v n="FBDValid">false</v>
                   <v n="ILValid">false</v>
                   <l2 n="ILLines" />
-                  <v n="Comment">"clear instance memory"</v>
+                  <v n="Comment">"clear instance memory
+not sure if it works, but I would like to think that clearing out the data is the right thing to reset the STAT and output bits
+"</v>
                   <v n="Title">""</v>
                   <v n="Label">""</v>
                   <v n="OutCommented">false</v>
@@ -1840,7 +1812,7 @@ END_VAR
                   <v n="FBDValid">false</v>
                   <v n="ILValid">false</v>
                   <l2 n="ILLines" />
-                  <v n="Comment">""</v>
+                  <v n="Comment">"find the integer of the textlist from the XML"</v>
                   <v n="Title">""</v>
                   <v n="Label">""</v>
                   <v n="OutCommented">false</v>
@@ -1848,7 +1820,7 @@ END_VAR
                     <o>
                       <v n="BoxType">"FB_FindTextIndexNum"</v>
                       <o n="Instance" t="Operand">
-                        <v n="Operand">"FB_FindText_0"</v>
+                        <v n="Operand">"findText"</v>
                         <v n="Type">"FB_FindTextIndexNum"</v>
                         <v n="Comment">""</v>
                         <v n="SymbolComment">""</v>
@@ -1975,7 +1947,7 @@ END_VAR
                   <v n="FBDValid">false</v>
                   <v n="ILValid">false</v>
                   <l2 n="ILLines" />
-                  <v n="Comment">""</v>
+                  <v n="Comment">"increment XML counter for next usage of text, default text or translated text that apears below"</v>
                   <v n="Title">""</v>
                   <v n="Label">""</v>
                   <v n="OutCommented">false</v>
@@ -2119,7 +2091,7 @@ END_VAR
                   <v n="FBDValid">false</v>
                   <v n="ILValid">false</v>
                   <l2 n="ILLines" />
-                  <v n="Comment">""</v>
+                  <v n="Comment">"reset XML counter"</v>
                   <v n="Title">""</v>
                   <v n="Label">""</v>
                   <v n="OutCommented">false</v>
@@ -2200,7 +2172,7 @@ END_VAR
                           <l2 n="InputItems" cet="BoxTreeOperand">
                             <o>
                               <o n="Operand" t="Operand">
-                                <v n="Operand">"FB_FindText_0.qLineIsValid"</v>
+                                <v n="Operand">"findText.qLineIsValid"</v>
                                 <v n="Type">"BOOL"</v>
                                 <v n="Comment">""</v>
                                 <v n="SymbolComment">""</v>
@@ -2452,7 +2424,8 @@ END_VAR
                   <v n="FBDValid">false</v>
                   <v n="ILValid">false</v>
                   <l2 n="ILLines" />
-                  <v n="Comment">""</v>
+                  <v n="Comment">"-find language text in default language
+-find in each call each further translated text in &lt;v&gt;German&lt;/v&gt; strings in the XML"</v>
                   <v n="Title">""</v>
                   <v n="Label">""</v>
                   <v n="OutCommented">false</v>
@@ -2460,7 +2433,7 @@ END_VAR
                     <o>
                       <v n="BoxType">"FB_FindTextLangText"</v>
                       <o n="Instance" t="Operand">
-                        <v n="Operand">"fgdfg"</v>
+                        <v n="Operand">"findLangText"</v>
                         <v n="Type">"FB_FindTextLangText"</v>
                         <v n="Comment">""</v>
                         <v n="SymbolComment">""</v>
@@ -2723,7 +2696,7 @@ END_VAR
                             </o>
                             <o>
                               <o n="Operand" t="Operand">
-                                <v n="Operand">"fgdfg.IsValidString"</v>
+                                <v n="Operand">"findLangText.IsValidString"</v>
                                 <v n="Type">"BOOL"</v>
                                 <v n="Comment">""</v>
                                 <v n="SymbolComment">""</v>
@@ -2759,7 +2732,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"fgdfg.textidline3"</v>
+                            <v n="Operand">"findLangText.textidline3"</v>
                             <v n="Type">"STRING(255)"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -2912,7 +2885,7 @@ END_VAR
                             </o>
                             <o>
                               <o n="Operand" t="Operand">
-                                <v n="Operand">"fgdfg.IsValidExtendedString"</v>
+                                <v n="Operand">"findLangText.IsValidExtendedString"</v>
                                 <v n="Type">"BOOL"</v>
                                 <v n="Comment">""</v>
                                 <v n="SymbolComment">""</v>
@@ -2948,7 +2921,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"fgdfg.qExtendedTextline"</v>
+                            <v n="Operand">"findLangText.qExtendedTextline"</v>
                             <v n="Type">"STRING(255)"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -3028,7 +3001,7 @@ END_VAR
                         <l2 n="OutputItems" cet="Operand">
                           <n />
                           <o>
-                            <v n="Operand">"GlobalMessages.gMsgMc.Alarm.text[FB_FindText_0.qIndexNum]"</v>
+                            <v n="Operand">"GlobalMessages.gMsgMc.Alarm.text[findText.qIndexNum]"</v>
                             <v n="Type">"STRING(255)"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -3129,7 +3102,7 @@ END_VAR
                               <l2 n="InputItems" cet="BoxTreeOperand">
                                 <o>
                                   <o n="Operand" t="Operand">
-                                    <v n="Operand">"fgdfg.IsValidExtendedString"</v>
+                                    <v n="Operand">"findLangText.IsValidExtendedString"</v>
                                     <v n="Type">"BOOL"</v>
                                     <v n="Comment">""</v>
                                     <v n="SymbolComment">""</v>
@@ -3148,7 +3121,7 @@ END_VAR
                                 </o>
                                 <o>
                                   <o n="Operand" t="Operand">
-                                    <v n="Operand">"fgdfg.IsValidString"</v>
+                                    <v n="Operand">"findLangText.IsValidString"</v>
                                     <v n="Type">"BOOL"</v>
                                     <v n="Comment">""</v>
                                     <v n="SymbolComment">""</v>
@@ -3248,128 +3221,6 @@ END_VAR
                   </l2>
                   <l2 n="Connectors" />
                   <v n="Id">844L</v>
-                </o>
-                <o>
-                  <v n="ILActive">false</v>
-                  <v n="FBDValid">false</v>
-                  <v n="ILValid">false</v>
-                  <l2 n="ILLines" />
-                  <v n="Comment">""</v>
-                  <v n="Title">""</v>
-                  <v n="Label">""</v>
-                  <v n="OutCommented">true</v>
-                  <l2 n="NetworkItems" cet="BoxTreeAssign">
-                    <o>
-                      <o n="OutputItems" t="OutputItemList">
-                        <l2 n="OutputItems" cet="Operand">
-                          <o>
-                            <v n="Operand">"???"</v>
-                            <v n="Type">"BOOL"</v>
-                            <v n="Comment">""</v>
-                            <v n="SymbolComment">""</v>
-                            <v n="Address">""</v>
-                            <o n="Flags" t="Flags">
-                              <v n="Flags">0</v>
-                              <v n="Fixed">false</v>
-                              <v n="Extensible">false</v>
-                            </o>
-                            <v n="LValue">true</v>
-                            <v n="Boolean">true</v>
-                            <v n="IsInstance">false</v>
-                            <v n="Id">296L</v>
-                          </o>
-                        </l2>
-                      </o>
-                      <o n="Flags" t="Flags">
-                        <v n="Flags">0</v>
-                        <v n="Fixed">false</v>
-                        <v n="Extensible">false</v>
-                      </o>
-                      <o n="RValue" t="BoxTreeOperand">
-                        <o n="Operand" t="Operand">
-                          <v n="Operand">"???"</v>
-                          <v n="Type">"BOOL"</v>
-                          <v n="Comment">""</v>
-                          <v n="SymbolComment">""</v>
-                          <v n="Address">""</v>
-                          <o n="Flags" t="Flags">
-                            <v n="Flags">0</v>
-                            <v n="Fixed">false</v>
-                            <v n="Extensible">false</v>
-                          </o>
-                          <v n="LValue">false</v>
-                          <v n="Boolean">true</v>
-                          <v n="IsInstance">false</v>
-                          <v n="Id">295L</v>
-                        </o>
-                        <v n="Id">294L</v>
-                      </o>
-                      <v n="Id">297L</v>
-                    </o>
-                  </l2>
-                  <l2 n="Connectors" />
-                  <v n="Id">293L</v>
-                </o>
-                <o>
-                  <v n="ILActive">false</v>
-                  <v n="FBDValid">false</v>
-                  <v n="ILValid">false</v>
-                  <l2 n="ILLines" />
-                  <v n="Comment">""</v>
-                  <v n="Title">""</v>
-                  <v n="Label">""</v>
-                  <v n="OutCommented">true</v>
-                  <l2 n="NetworkItems" cet="BoxTreeAssign">
-                    <o>
-                      <o n="OutputItems" t="OutputItemList">
-                        <l2 n="OutputItems" cet="Operand">
-                          <o>
-                            <v n="Operand">"???"</v>
-                            <v n="Type">"BOOL"</v>
-                            <v n="Comment">""</v>
-                            <v n="SymbolComment">""</v>
-                            <v n="Address">""</v>
-                            <o n="Flags" t="Flags">
-                              <v n="Flags">0</v>
-                              <v n="Fixed">false</v>
-                              <v n="Extensible">false</v>
-                            </o>
-                            <v n="LValue">true</v>
-                            <v n="Boolean">true</v>
-                            <v n="IsInstance">false</v>
-                            <v n="Id">752L</v>
-                          </o>
-                        </l2>
-                      </o>
-                      <o n="Flags" t="Flags">
-                        <v n="Flags">0</v>
-                        <v n="Fixed">false</v>
-                        <v n="Extensible">false</v>
-                      </o>
-                      <o n="RValue" t="BoxTreeOperand">
-                        <o n="Operand" t="Operand">
-                          <v n="Operand">"???"</v>
-                          <v n="Type">"BOOL"</v>
-                          <v n="Comment">""</v>
-                          <v n="SymbolComment">""</v>
-                          <v n="Address">""</v>
-                          <o n="Flags" t="Flags">
-                            <v n="Flags">0</v>
-                            <v n="Fixed">false</v>
-                            <v n="Extensible">false</v>
-                          </o>
-                          <v n="LValue">false</v>
-                          <v n="Boolean">true</v>
-                          <v n="IsInstance">false</v>
-                          <v n="Id">751L</v>
-                        </o>
-                        <v n="Id">750L</v>
-                      </o>
-                      <v n="Id">753L</v>
-                    </o>
-                  </l2>
-                  <l2 n="Connectors" />
-                  <v n="Id">749L</v>
                 </o>
               </l2>
               <v n="BranchCounter">0</v>
