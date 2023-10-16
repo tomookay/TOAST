@@ -32,7 +32,7 @@ END_VAR
                         <v n="Type">"FB_CheckMessageBounds"</v>
                         <v n="Comment">""</v>
                         <v n="SymbolComment">""</v>
-                        <v n="Address">"Constant_Address_Serialization_Value"</v>
+                        <v n="Address">""</v>
                         <o n="Flags" t="Flags">
                           <v n="Flags">0</v>
                           <v n="Fixed">false</v>
@@ -41,7 +41,7 @@ END_VAR
                         <v n="LValue">false</v>
                         <v n="Boolean">false</v>
                         <v n="IsInstance">true</v>
-                        <v n="Id">10L</v>
+                        <v n="Id">19L</v>
                       </o>
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems" cet="Operand">
@@ -51,7 +51,7 @@ END_VAR
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
-                            <v n="Address">"Constant_Address_Serialization_Value"</v>
+                            <v n="Address">""</v>
                             <o n="Flags" t="Flags">
                               <v n="Flags">0</v>
                               <v n="Fixed">false</v>
@@ -60,14 +60,14 @@ END_VAR
                             <v n="LValue">true</v>
                             <v n="Boolean">false</v>
                             <v n="IsInstance">false</v>
-                            <v n="Id">12L</v>
+                            <v n="Id">21L</v>
                           </o>
                           <o>
                             <v n="Operand">"GlobalMessages.gMsgS1Stat.numWarning"</v>
                             <v n="Type">"INT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
-                            <v n="Address">"Constant_Address_Serialization_Value"</v>
+                            <v n="Address">""</v>
                             <o n="Flags" t="Flags">
                               <v n="Flags">0</v>
                               <v n="Fixed">false</v>
@@ -76,13 +76,29 @@ END_VAR
                             <v n="LValue">true</v>
                             <v n="Boolean">false</v>
                             <v n="IsInstance">false</v>
-                            <v n="Id">13L</v>
+                            <v n="Id">22L</v>
+                          </o>
+                          <o>
+                            <v n="Operand">""</v>
+                            <v n="Type">"STRING(255)"</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">""</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">true</v>
+                            <v n="Boolean">false</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">23L</v>
                           </o>
                         </l2>
                       </o>
                       <o n="Flags" t="Flags">
                         <v n="Flags">0</v>
-                        <v n="Fixed">false</v>
+                        <v n="Fixed">true</v>
                         <v n="Extensible">false</v>
                       </o>
                       <n n="InputFlags" />
@@ -119,23 +135,25 @@ END_VAR
                       <o n="InputParam" t="ParamList">
                         <l2 n="Names" cet="String">
                           <v>EN</v>
-                          <v>ArrayToCheck</v>
+                          <v>iqArrayToCheck</v>
                         </l2>
                         <l2 n="Types" cet="String">
                           <v>BOOL</v>
-                          <v>dutMessage</v>
+                          <v>typeMessage[REF]</v>
                         </l2>
                       </o>
                       <o n="OutputParam" t="ParamList">
                         <l2 n="Names" cet="String">
                           <v>ENO</v>
-                          <v>AnyMsgActive</v>
-                          <v>MsgNumberActive</v>
+                          <v>qAnyMsgActive</v>
+                          <v>qMsgNumberActive</v>
+                          <v>qSingleMessage</v>
                         </l2>
                         <l2 n="Types" cet="String">
                           <v>BOOL</v>
                           <v>BOOL</v>
                           <v>INT</v>
+                          <v>STRING(255)</v>
                         </l2>
                       </o>
                       <v n="CallType" t="Operator">FunctionBlock</v>
@@ -144,7 +162,7 @@ END_VAR
                       <n n="STSnippet" />
                       <v n="ContainsExtensibleInputs">false</v>
                       <v n="ProvidesSTSnippet">false</v>
-                      <v n="Id">11L</v>
+                      <v n="Id">20L</v>
                     </o>
                   </l2>
                   <l2 n="Connectors" />
