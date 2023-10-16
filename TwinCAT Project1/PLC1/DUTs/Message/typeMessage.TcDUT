@@ -4,8 +4,11 @@
     <Declaration><![CDATA[TYPE typeMessage :
 STRUCT
 	//defines a list of messages to display for each type of message
-	message: ARRAY [0..GlobalMessages.gNumMessagesPerType] OF BOOL;
-	text:ARRAY[0..GlobalMessages.gNumMessagesPerType] OF STRING(255);
+	
+	message: ARRAY [0..GlobalMessages.gNumMessagesPerType] OF BOOL; //TRUE if the message is active to be written to the message box	
+	text:ARRAY[0..GlobalMessages.gNumMessagesPerType] OF STRING(255); //the text of each message to be written
+	messageActive: ARRAY [0..GlobalMessages.gNumMessagesPerType] OF BOOL; //TRUE if the message has been written to the message box
+	messageTimeActive: ARRAY [0..GlobalMessages.gNumMessagesPerType] OF UDINT; //scan time occurrence of each message to compare
 END_STRUCT
 END_TYPE
 
