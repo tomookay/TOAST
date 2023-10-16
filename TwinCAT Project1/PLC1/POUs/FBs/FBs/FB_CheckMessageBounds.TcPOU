@@ -2,7 +2,7 @@
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_CheckMessageBounds" Id="{cfd3e64b-34a3-43a4-b491-e0f565bbe474}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_CheckMessageBounds
-VAR_INPUT
+VAR_IN_OUT
 	ArrayToCheck:typeMessage; //type of message bounds
 	
 
@@ -23,14 +23,38 @@ END_VAR
 	IF ArrayToCheck.message[i] = TRUE THEN
 		
 		
-	//mark active message as active
-	AnyMsgActive		:= TRUE;
-	MsgNumberActive 	:= i;
-
-	END_IF;
-
+		//mark active message as active
+		AnyMsgActive		:= TRUE;
+		MsgNumberActive 	:= i;
+		
+		//move time of message into message type
+		IF ArrayToCheck.messageActive[i] = FALSE THEN
+			ArrayToCheck.messageTimeActive[i] := System.myPlcInfoTask1.CycleCount;
+		END_IF
 	
+		//write message text to array
+		//logic here
+		//logic here
+		ArrayToCheck.messageActive[i] := TRUE;
+	
+	END_IF;
+	
+	//if the calling logic is FALSE, but the latched memory is TRUE, then remove the latch
+	IF ArrayToCheck.message[i] = FALSE AND  ArrayToCheck.messageActive[i] = TRUE THEN
+	
+		//clear down logic for singular message	
+		ArrayToCheck.messageActive[i] := FALSE; //message bool
+		ArrayToCheck.messageTimeActive[i] := 0; //message time for compare
+		
+	
+	END_IF
+	
+	//clearing logic
+	
+
 END_FOR;
+
+
 ]]></ST>
     </Implementation>
     <LineIds Name="FB_CheckMessageBounds">
@@ -42,10 +66,27 @@ END_FOR;
       <LineId Id="42" Count="0" />
       <LineId Id="30" Count="0" />
       <LineId Id="35" Count="0" />
+      <LineId Id="62" Count="1" />
+      <LineId Id="66" Count="3" />
       <LineId Id="40" Count="0" />
-      <LineId Id="36" Count="0" />
-      <LineId Id="38" Count="0" />
+      <LineId Id="73" Count="0" />
+      <LineId Id="95" Count="0" />
+      <LineId Id="74" Count="0" />
+      <LineId Id="76" Count="1" />
+      <LineId Id="85" Count="0" />
+      <LineId Id="87" Count="0" />
+      <LineId Id="86" Count="0" />
+      <LineId Id="88" Count="0" />
+      <LineId Id="92" Count="0" />
+      <LineId Id="91" Count="0" />
+      <LineId Id="93" Count="1" />
+      <LineId Id="90" Count="0" />
+      <LineId Id="89" Count="0" />
+      <LineId Id="83" Count="1" />
+      <LineId Id="78" Count="0" />
       <LineId Id="17" Count="1" />
+      <LineId Id="82" Count="0" />
+      <LineId Id="81" Count="0" />
       <LineId Id="22" Count="0" />
     </LineIds>
   </POU>
