@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <POU Name="pouS1Alarms" Id="{4e168d6b-ccd5-440b-8127-bea095611032}" SpecialFunc="None">
-    <Declaration><![CDATA[PROGRAM pouS1Alarms
+  <POU Name="pouMcAlarms" Id="{3f0fd1a1-2fbb-4f59-9ec9-208cf01105f8}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM pouMcAlarms
 VAR
 	idbMsgAlarm: FB_CheckMessageBounds;
 
@@ -51,7 +51,7 @@ GlobalMessages.gMsgS1Stat.IsAlarm
                         <l2 n="OutputItems" cet="Operand">
                           <n />
                           <o>
-                            <v n="Operand">"GlobalMessages.gMsgS1Stat.IsAlarm"</v>
+                            <v n="Operand">"GlobalMessages.gMsgMcStat.IsAlarm"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -67,7 +67,7 @@ GlobalMessages.gMsgS1Stat.IsAlarm
                             <v n="Id">282L</v>
                           </o>
                           <o>
-                            <v n="Operand">"GlobalMessages.gMsgS1Stat.numAlarm"</v>
+                            <v n="Operand">"GlobalMessages.gMsgMcStat.numAlarm"</v>
                             <v n="Type">"INT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -83,7 +83,7 @@ GlobalMessages.gMsgS1Stat.IsAlarm
                             <v n="Id">283L</v>
                           </o>
                           <o>
-                            <v n="Operand">"GlobalMessages.gMsgS1.Alarm.topMessage"</v>
+                            <v n="Operand">"GlobalMessages.gMsgMc.Alarm.topMessage"</v>
                             <v n="Type">"STRING(255)"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -118,7 +118,7 @@ GlobalMessages.gMsgS1Stat.IsAlarm
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"GlobalMessages.gMsgS1.Alarm"</v>
+                            <v n="Operand">"GlobalMessages.gMsgMc.Alarm"</v>
                             <v n="Type">"typeMessage"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>

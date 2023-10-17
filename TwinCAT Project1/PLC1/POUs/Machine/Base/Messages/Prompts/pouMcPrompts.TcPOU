@@ -1,10 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <POU Name="pouS1Alarms" Id="{4e168d6b-ccd5-440b-8127-bea095611032}" SpecialFunc="None">
-    <Declaration><![CDATA[PROGRAM pouS1Alarms
+  <POU Name="pouMcPrompts" Id="{d586c653-4092-490f-b1fa-a2659fd64310}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM pouMcPrompts
 VAR
-	idbMsgAlarm: FB_CheckMessageBounds;
+	
 
+
+idbMsgPrompt: FB_CheckMessageBounds;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -20,19 +22,16 @@ END_VAR
                   <v n="FBDValid">false</v>
                   <v n="ILValid">false</v>
                   <l2 n="ILLines" />
-                  <v n="Comment">"Check if array contains message
-
-GlobalMessages.gMsgS1Stat.IsAlarm
-
+                  <v n="Comment">"Check if array contains message"</v>
+                  <v n="Title">"Check Machine Prompts
 "</v>
-                  <v n="Title">"Check Machine Alarms"</v>
                   <v n="Label">""</v>
                   <v n="OutCommented">false</v>
                   <l2 n="NetworkItems" cet="BoxTreeBox">
                     <o>
                       <v n="BoxType">"FB_CheckMessageBounds"</v>
                       <o n="Instance" t="Operand">
-                        <v n="Operand">"idbMsgAlarm"</v>
+                        <v n="Operand">"idbMsgPrompt"</v>
                         <v n="Type">"FB_CheckMessageBounds"</v>
                         <v n="Comment">""</v>
                         <v n="SymbolComment">""</v>
@@ -45,13 +44,13 @@ GlobalMessages.gMsgS1Stat.IsAlarm
                         <v n="LValue">false</v>
                         <v n="Boolean">false</v>
                         <v n="IsInstance">true</v>
-                        <v n="Id">280L</v>
+                        <v n="Id">21L</v>
                       </o>
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems" cet="Operand">
                           <n />
                           <o>
-                            <v n="Operand">"GlobalMessages.gMsgS1Stat.IsAlarm"</v>
+                            <v n="Operand">"GlobalMessages.gMsgMcStat.IsPrompt"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -64,10 +63,10 @@ GlobalMessages.gMsgS1Stat.IsAlarm
                             <v n="LValue">true</v>
                             <v n="Boolean">false</v>
                             <v n="IsInstance">false</v>
-                            <v n="Id">282L</v>
+                            <v n="Id">23L</v>
                           </o>
                           <o>
-                            <v n="Operand">"GlobalMessages.gMsgS1Stat.numAlarm"</v>
+                            <v n="Operand">"GlobalMessages.gMsgMcStat.numPrompt"</v>
                             <v n="Type">"INT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -80,10 +79,10 @@ GlobalMessages.gMsgS1Stat.IsAlarm
                             <v n="LValue">true</v>
                             <v n="Boolean">false</v>
                             <v n="IsInstance">false</v>
-                            <v n="Id">283L</v>
+                            <v n="Id">24L</v>
                           </o>
                           <o>
-                            <v n="Operand">"GlobalMessages.gMsgS1.Alarm.topMessage"</v>
+                            <v n="Operand">"GlobalMessages.gMsgMc.Prompts.topMessage"</v>
                             <v n="Type">"STRING(255)"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -96,7 +95,7 @@ GlobalMessages.gMsgS1Stat.IsAlarm
                             <v n="LValue">true</v>
                             <v n="Boolean">false</v>
                             <v n="IsInstance">false</v>
-                            <v n="Id">284L</v>
+                            <v n="Id">25L</v>
                           </o>
                         </l2>
                       </o>
@@ -114,11 +113,11 @@ GlobalMessages.gMsgS1Stat.IsAlarm
                             <v n="Fixed">false</v>
                             <v n="Extensible">false</v>
                           </o>
-                          <v n="Id">272L</v>
+                          <v n="Id">14L</v>
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"GlobalMessages.gMsgS1.Alarm"</v>
+                            <v n="Operand">"GlobalMessages.gMsgMc.Prompts"</v>
                             <v n="Type">"typeMessage"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -131,9 +130,9 @@ GlobalMessages.gMsgS1Stat.IsAlarm
                             <v n="LValue">false</v>
                             <v n="Boolean">false</v>
                             <v n="IsInstance">false</v>
-                            <v n="Id">274L</v>
+                            <v n="Id">16L</v>
                           </o>
-                          <v n="Id">273L</v>
+                          <v n="Id">15L</v>
                         </o>
                       </l2>
                       <o n="InputParam" t="ParamList">
@@ -166,11 +165,11 @@ GlobalMessages.gMsgS1Stat.IsAlarm
                       <n n="STSnippet" />
                       <v n="ContainsExtensibleInputs">false</v>
                       <v n="ProvidesSTSnippet">false</v>
-                      <v n="Id">281L</v>
+                      <v n="Id">22L</v>
                     </o>
                   </l2>
                   <l2 n="Connectors" />
-                  <v n="Id">267L</v>
+                  <v n="Id">9L</v>
                 </o>
                 <o>
                   <v n="ILActive">false</v>
@@ -183,7 +182,7 @@ GlobalMessages.gMsgS1Stat.IsAlarm
                   <v n="OutCommented">false</v>
                   <l2 n="NetworkItems" />
                   <l2 n="Connectors" />
-                  <v n="Id">261L</v>
+                  <v n="Id">5L</v>
                 </o>
               </l2>
               <v n="BranchCounter">0</v>
