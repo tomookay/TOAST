@@ -9,6 +9,8 @@ STRUCT
 	text:ARRAY[0..GlobalMessages.gNumMessagesPerType] OF STRING(255); //the text of each message to be written
 	messageActive: ARRAY [0..GlobalMessages.gNumMessagesPerType] OF BOOL; //TRUE if the message has been written to the message box
 	messageTimeActive: ARRAY [0..GlobalMessages.gNumMessagesPerType] OF UDINT; //scan time occurrence of each message to compare
+	
+	topMessage:String(255); //top message to display
 END_STRUCT
 END_TYPE
 
