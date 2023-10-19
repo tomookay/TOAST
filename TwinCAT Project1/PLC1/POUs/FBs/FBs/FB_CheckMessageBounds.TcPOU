@@ -12,15 +12,16 @@ VAR_OUTPUT
 	qMsgNumberActive: INT;
 	
 	qSingleMessage: STRING(255);
+	
+	qAllMessages: STRING;
+	
 
 END_VAR
 VAR
 	i: INT;//for the loop
 	lowestValue: UDINT :=4294967295; //set as init for highest possible value and work down from there
 	lowestMessage: INT;
-
-
-
+	allstrings: STRING;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -28,6 +29,7 @@ END_VAR
 	//reset before scan
 	qAnyMsgActive		:= FALSE;
 	qMsgNumberActive 	:= 0;
+	qAllMessages		:= '';   //clear down at start of scan? may change
 		
 FOR i := 0 TO GlobalMessages.gNumMessagesPerType DO
 	
@@ -37,6 +39,12 @@ FOR i := 0 TO GlobalMessages.gNumMessagesPerType DO
 		//mark active message as active
 		qAnyMsgActive		:= TRUE;
 		qMsgNumberActive 	:= i;
+		
+		//combine message texts into long string with CR LFs
+		allstrings := concat(iqArrayToCheck.text[i], '$0D');
+		
+		qAllMessages := CONCAT(qAllMessages, allstrings);
+		
 	
 	END_IF
 		
@@ -92,11 +100,17 @@ END_FOR;
     </Implementation>
     <LineIds Name="FB_CheckMessageBounds">
       <LineId Id="313" Count="3" />
+      <LineId Id="342" Count="0" />
       <LineId Id="311" Count="0" />
       <LineId Id="214" Count="1" />
       <LineId Id="310" Count="0" />
       <LineId Id="217" Count="2" />
       <LineId Id="221" Count="1" />
+      <LineId Id="343" Count="0" />
+      <LineId Id="345" Count="0" />
+      <LineId Id="344" Count="0" />
+      <LineId Id="349" Count="0" />
+      <LineId Id="347" Count="1" />
       <LineId Id="292" Count="0" />
       <LineId Id="291" Count="0" />
       <LineId Id="223" Count="3" />
