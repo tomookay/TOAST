@@ -45,7 +45,7 @@ GlobalMessages.gMsgS1Stat.IsAlarm
                         <v n="LValue">false</v>
                         <v n="Boolean">false</v>
                         <v n="IsInstance">true</v>
-                        <v n="Id">290L</v>
+                        <v n="Id">298L</v>
                       </o>
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems" cet="Operand">
@@ -151,15 +151,36 @@ GlobalMessages.gMsgS1Stat.IsAlarm
                           </o>
                           <v n="Id">273L</v>
                         </o>
+                        <o t="BoxTreeOperand">
+                          <o n="Operand" t="Operand">
+                            <v n="Operand">"10000"</v>
+                            <v n="Type">"INT"</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">""</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">false</v>
+                            <v n="Boolean">false</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">301L</v>
+                          </o>
+                          <v n="Id">300L</v>
+                        </o>
                       </l2>
                       <o n="InputParam" t="ParamList">
                         <l2 n="Names" cet="String">
                           <v>EN</v>
                           <v>iqArrayToCheck</v>
+                          <v>iMessageGroup</v>
                         </l2>
                         <l2 n="Types" cet="String">
                           <v>BOOL</v>
                           <v>typeMessage[REF]</v>
+                          <v>INT</v>
                         </l2>
                       </o>
                       <o n="OutputParam" t="ParamList">
@@ -184,7 +205,7 @@ GlobalMessages.gMsgS1Stat.IsAlarm
                       <n n="STSnippet" />
                       <v n="ContainsExtensibleInputs">false</v>
                       <v n="ProvidesSTSnippet">false</v>
-                      <v n="Id">291L</v>
+                      <v n="Id">299L</v>
                     </o>
                   </l2>
                   <l2 n="Connectors" />

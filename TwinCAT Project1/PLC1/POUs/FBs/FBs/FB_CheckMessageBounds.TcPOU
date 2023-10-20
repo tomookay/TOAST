@@ -22,6 +22,15 @@ VAR
 	lowestValue: UDINT :=4294967295; //set as init for highest possible value and work down from there
 	lowestMessage: INT;
 	allstrings: STRING;
+	rollinglowestValue: UDINT :=0; //set as init for lowest possible value and work up
+	newlineInsert: string;
+
+	messageHeader: STRING(255);
+END_VAR
+
+VAR_INPUT
+	iMessageGroup: INT;
+
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -29,7 +38,6 @@ END_VAR
 	//reset before scan
 	qAnyMsgActive		:= FALSE;
 	qMsgNumberActive 	:= 0;
-	qAllMessages		:= '';   //clear down at start of scan? may change
 		
 FOR i := 0 TO GlobalMessages.gNumMessagesPerType DO
 	
@@ -40,46 +48,45 @@ FOR i := 0 TO GlobalMessages.gNumMessagesPerType DO
 		qAnyMsgActive		:= TRUE;
 		qMsgNumberActive 	:= i;
 		
-		//combine message texts into long string with CR LFs
-		allstrings := concat(iqArrayToCheck.text[i], '$0D');
 		
-		qAllMessages := CONCAT(qAllMessages, allstrings);
-		
-	
 	END_IF
 		
 	//move time of message into message type
-	IF iqArrayToCheck.message[i] = TRUE AND iqArrayToCheck.messageActive[i] = FALSE THEN
+	IF 			iqArrayToCheck.message[i] = TRUE 
+		AND 	iqArrayToCheck.messageActive[i] = FALSE
+		AND  iqArrayToCheck.messageTimeActive[i] = 0   
+		THEN
 			iqArrayToCheck.messageTimeActive[i] := System.myPlcInfoTask1.CycleCount;
 		//write message text to array
-		//logic here
-		//logic here
-		iqArrayToCheck.messageActive[i] := TRUE;
-		
+
 	END_IF
 	
 		
 	
 	//if the calling logic is FALSE, but the latched memory is TRUE, then remove the latch
-	IF iqArrayToCheck.message[i] = FALSE AND  iqArrayToCheck.messageActive[i] = TRUE THEN
+//	IF iqArrayToCheck.message[i] = FALSE AND  iqArrayToCheck.messageActive[i] = TRUE THEN
 	
 		//clear down logic for singular message	
-		iqArrayToCheck.messageActive[i] := FALSE; //message bool
-		iqArrayToCheck.messageTimeActive[i] := 0; //message time for compare
+	//	iqArrayToCheck.messageActive[i] := FALSE; //message bool
+//		iqArrayToCheck.messageTimeActive[i] := 0; //message time for compare
 		
 	
-	END_IF
+//	END_IF
 	
 	//find lowest message number, the lowest number is the first message that has appeared and thus, the only one worthwhile
 	IF qAnyMsgActive THEN //if there is any message active in the array, then find the lowest number
 		
 		IF iqArrayToCheck.messageTimeActive[i] > 1 THEN 			//consider the message
-			
 			IF  iqArrayToCheck.messageTimeActive[i] < lowestValue   THEN
 				//record the index of the lowest message to write later
 				lowestValue := 	iqArrayToCheck.messageTimeActive[i];//lowest TIME value
 				lowestMessage := i;									//lowest value message		
-				qSingleMessage := iqArrayToCheck.text[i];			//return the message text of the single lowest alarm	
+				qSingleMessage := iqArrayToCheck.text[i];			//return the message text of the single lowest alarm
+				
+				IF rollinglowestValue = 0 THEN //starting point
+					rollinglowestValue := lowestValue;				//assign lowest message for multi line use
+				END_IF
+			
 			END_IF	
 		END_IF
 	ELSE
@@ -91,30 +98,74 @@ FOR i := 0 TO GlobalMessages.gNumMessagesPerType DO
 		//clear down single data
 		qAnyMsgActive		:= FALSE;								//clear down with implicit
 		qMsgNumberActive 	:= 0;									//clear down with implicit
+		rollinglowestValue 	:= 0;
 	END_IF
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//loop around the array and find the lowest number >1 and write that message first, then all other messages in incrementing order
+	//once the message is written to the list, set the .MessageActive bit to TRUE
+	IF rollinglowestValue > 1 THEN //rolling value is valid
+		
+		//the current message is active, but not yet written
+		IF iqArrayToCheck.message[i] = TRUE  THEN
+			
+							//combine message texts into long string with CR LFs
+							newlineInsert := concat(iqArrayToCheck.text[i], '$0D'); //make new line
+							
+							//add message number
+							//messageHeader := concat(INT_TO_STRING(iMessageGroup),newlineInsert);
+								
+ 
+							allstrings := concat(newlineInsert,allstrings); //and put it at the top of the pack
+							
+							//message was written, so turn on message active bit iqArrayToCheck.messageActive[i]
+							iqArrayToCheck.messageActive[i] := TRUE;
+						//END_IF
+	
+			
+							
+		END_IF	
+
+	
+	END_IF
+	
+	//reset message usage on dual arrays
+	IF iqArrayToCheck.message[i] = FALSE AND  iqArrayToCheck.messageActive[i] = TRUE THEN
+	iqArrayToCheck.messageActive[i] := FALSE;
+	iqArrayToCheck.messageTimeActive[i] := 0;
+	END_IF
+	
+	//message exists, so write strings to output
+	IF rollinglowestValue > 1 THEN 
+				qAllMessages := allstrings;
+			ELSE
+				newlineInsert := '';
+				allstrings := '';
+				qAllMessages:= '';
+	END_IF
+	
 
 END_FOR;
+
+
 
 
 ]]></ST>
     </Implementation>
     <LineIds Name="FB_CheckMessageBounds">
       <LineId Id="313" Count="3" />
-      <LineId Id="342" Count="0" />
       <LineId Id="311" Count="0" />
       <LineId Id="214" Count="1" />
       <LineId Id="310" Count="0" />
       <LineId Id="217" Count="2" />
       <LineId Id="221" Count="1" />
       <LineId Id="343" Count="0" />
-      <LineId Id="345" Count="0" />
-      <LineId Id="344" Count="0" />
-      <LineId Id="349" Count="0" />
-      <LineId Id="347" Count="1" />
-      <LineId Id="292" Count="0" />
+      <LineId Id="348" Count="0" />
       <LineId Id="291" Count="0" />
-      <LineId Id="223" Count="3" />
-      <LineId Id="296" Count="3" />
+      <LineId Id="223" Count="2" />
+      <LineId Id="452" Count="0" />
+      <LineId Id="454" Count="1" />
+      <LineId Id="226" Count="0" />
+      <LineId Id="296" Count="0" />
       <LineId Id="295" Count="0" />
       <LineId Id="227" Count="0" />
       <LineId Id="283" Count="0" />
@@ -124,10 +175,11 @@ END_FOR;
       <LineId Id="258" Count="0" />
       <LineId Id="267" Count="0" />
       <LineId Id="317" Count="0" />
-      <LineId Id="266" Count="0" />
       <LineId Id="268" Count="0" />
       <LineId Id="270" Count="0" />
       <LineId Id="277" Count="1" />
+      <LineId Id="457" Count="3" />
+      <LineId Id="403" Count="0" />
       <LineId Id="269" Count="0" />
       <LineId Id="265" Count="0" />
       <LineId Id="260" Count="0" />
@@ -137,8 +189,40 @@ END_FOR;
       <LineId Id="300" Count="1" />
       <LineId Id="275" Count="0" />
       <LineId Id="302" Count="0" />
+      <LineId Id="473" Count="0" />
       <LineId Id="259" Count="0" />
-      <LineId Id="248" Count="3" />
+      <LineId Id="382" Count="0" />
+      <LineId Id="387" Count="0" />
+      <LineId Id="384" Count="0" />
+      <LineId Id="416" Count="0" />
+      <LineId Id="429" Count="0" />
+      <LineId Id="444" Count="0" />
+      <LineId Id="430" Count="0" />
+      <LineId Id="437" Count="0" />
+      <LineId Id="427" Count="0" />
+      <LineId Id="425" Count="0" />
+      <LineId Id="501" Count="2" />
+      <LineId Id="506" Count="0" />
+      <LineId Id="504" Count="0" />
+      <LineId Id="472" Count="0" />
+      <LineId Id="426" Count="0" />
+      <LineId Id="420" Count="0" />
+      <LineId Id="443" Count="0" />
+      <LineId Id="422" Count="1" />
+      <LineId Id="419" Count="0" />
+      <LineId Id="411" Count="0" />
+      <LineId Id="409" Count="0" />
+      <LineId Id="400" Count="1" />
+      <LineId Id="399" Count="0" />
+      <LineId Id="445" Count="3" />
+      <LineId Id="456" Count="0" />
+      <LineId Id="449" Count="1" />
+      <LineId Id="487" Count="6" />
+      <LineId Id="464" Count="0" />
+      <LineId Id="396" Count="0" />
+      <LineId Id="248" Count="2" />
+      <LineId Id="478" Count="1" />
+      <LineId Id="251" Count="0" />
       <LineId Id="22" Count="0" />
     </LineIds>
   </POU>
