@@ -28,6 +28,9 @@ VAR
 	messageHeader: STRING(255);
 	memcomparecheck: DINT;
 	memchanged: BOOL;
+	messagenum: DINT;
+	strheader:STRING(255);
+	
 END_VAR
 
 VAR_INPUT
@@ -57,6 +60,7 @@ FOR i := 0 TO GlobalMessages.gNumMessagesPerType DO
 		qMsgNumberActive 	:= i;
 		
 		
+		
 	END_IF
 		
 	//move time of message into message type
@@ -68,18 +72,6 @@ FOR i := 0 TO GlobalMessages.gNumMessagesPerType DO
 		//write message text to array
 
 	END_IF
-	
-		
-	
-	//if the calling logic is FALSE, but the latched memory is TRUE, then remove the latch
-//	IF iqArrayToCheck.message[i] = FALSE AND  iqArrayToCheck.messageActive[i] = TRUE THEN
-	
-		//clear down logic for singular message	
-	//	iqArrayToCheck.messageActive[i] := FALSE; //message bool
-//		iqArrayToCheck.messageTimeActive[i] := 0; //message time for compare
-		
-	
-//	END_IF
 	
 	//find lowest message number, the lowest number is the first message that has appeared and thus, the only one worthwhile
 	IF qAnyMsgActive THEN //if there is any message active in the array, then find the lowest number
@@ -119,10 +111,15 @@ FOR i := 0 TO GlobalMessages.gNumMessagesPerType DO
 							//combine message texts into long string with CR LFs
 							newlineInsert := concat(iqArrayToCheck.text[i], '$0D'); //make new line
 							
+							//calc message number
+							messagenum := iMessageGroup + i; //creates 10000 + 1, 10001 mesage number
+							
+							//string header
+							strheader := concat(DINT_TO_STRING(messagenum), ' '); //'10001 ' with space
+							
 							//add message number
-							//messageHeader := concat(INT_TO_STRING(iMessageGroup),newlineInsert);
-								
- 
+							newlineInsert := concat(strheader,newlineInsert);
+								 
 							allstrings := concat(newlineInsert,allstrings); //and put it at the top of the pack
 							
 							//message was written, so turn on message active bit iqArrayToCheck.messageActive[i]
@@ -508,6 +505,7 @@ END_FOR;
       <LineId Id="310" Count="0" />
       <LineId Id="217" Count="2" />
       <LineId Id="221" Count="1" />
+      <LineId Id="579" Count="0" />
       <LineId Id="343" Count="0" />
       <LineId Id="348" Count="0" />
       <LineId Id="291" Count="0" />
@@ -518,9 +516,7 @@ END_FOR;
       <LineId Id="296" Count="0" />
       <LineId Id="295" Count="0" />
       <LineId Id="227" Count="0" />
-      <LineId Id="283" Count="0" />
-      <LineId Id="286" Count="0" />
-      <LineId Id="235" Count="11" />
+      <LineId Id="245" Count="1" />
       <LineId Id="255" Count="0" />
       <LineId Id="258" Count="0" />
       <LineId Id="267" Count="0" />
@@ -551,9 +547,12 @@ END_FOR;
       <LineId Id="437" Count="0" />
       <LineId Id="427" Count="0" />
       <LineId Id="425" Count="0" />
-      <LineId Id="501" Count="2" />
+      <LineId Id="580" Count="3" />
+      <LineId Id="587" Count="1" />
+      <LineId Id="501" Count="0" />
+      <LineId Id="584" Count="0" />
+      <LineId Id="503" Count="0" />
       <LineId Id="506" Count="0" />
-      <LineId Id="504" Count="0" />
       <LineId Id="472" Count="0" />
       <LineId Id="426" Count="0" />
       <LineId Id="420" Count="0" />
