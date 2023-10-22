@@ -45,7 +45,7 @@ GlobalMessages.gMsgS1Stat.IsAlarm
                         <v n="LValue">false</v>
                         <v n="Boolean">false</v>
                         <v n="IsInstance">true</v>
-                        <v n="Id">280L</v>
+                        <v n="Id">290L</v>
                       </o>
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems" cet="Operand">
@@ -98,6 +98,38 @@ GlobalMessages.gMsgS1Stat.IsAlarm
                             <v n="IsInstance">false</v>
                             <v n="Id">284L</v>
                           </o>
+                          <o>
+                            <v n="Operand">""</v>
+                            <v n="Type">"STRING"</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">""</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">true</v>
+                            <v n="Boolean">false</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">292L</v>
+                          </o>
+                          <o>
+                            <v n="Operand">""</v>
+                            <v n="Type">"typeMessageRowsArry"</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">""</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">true</v>
+                            <v n="Boolean">false</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">293L</v>
+                          </o>
                         </l2>
                       </o>
                       <o n="Flags" t="Flags">
@@ -135,15 +167,36 @@ GlobalMessages.gMsgS1Stat.IsAlarm
                           </o>
                           <v n="Id">273L</v>
                         </o>
+                        <o t="BoxTreeOperand">
+                          <o n="Operand" t="Operand">
+                            <v n="Operand">""</v>
+                            <v n="Type">"INT"</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">""</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">false</v>
+                            <v n="Boolean">false</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">295L</v>
+                          </o>
+                          <v n="Id">294L</v>
+                        </o>
                       </l2>
                       <o n="InputParam" t="ParamList">
                         <l2 n="Names" cet="String">
                           <v>EN</v>
                           <v>iqArrayToCheck</v>
+                          <v>iMessageGroup</v>
                         </l2>
                         <l2 n="Types" cet="String">
                           <v>BOOL</v>
                           <v>typeMessage[REF]</v>
+                          <v>INT</v>
                         </l2>
                       </o>
                       <o n="OutputParam" t="ParamList">
@@ -152,12 +205,16 @@ GlobalMessages.gMsgS1Stat.IsAlarm
                           <v>qAnyMsgActive</v>
                           <v>qMsgNumberActive</v>
                           <v>qSingleMessage</v>
+                          <v>qAllMessages</v>
+                          <v>qMsgRows</v>
                         </l2>
                         <l2 n="Types" cet="String">
                           <v>BOOL</v>
                           <v>BOOL</v>
                           <v>INT</v>
                           <v>STRING(255)</v>
+                          <v>STRING</v>
+                          <v>typeMessageRowsArry</v>
                         </l2>
                       </o>
                       <v n="CallType" t="Operator">FunctionBlock</v>
@@ -166,7 +223,7 @@ GlobalMessages.gMsgS1Stat.IsAlarm
                       <n n="STSnippet" />
                       <v n="ContainsExtensibleInputs">false</v>
                       <v n="ProvidesSTSnippet">false</v>
-                      <v n="Id">281L</v>
+                      <v n="Id">291L</v>
                     </o>
                   </l2>
                   <l2 n="Connectors" />
