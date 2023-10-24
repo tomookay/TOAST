@@ -5,11 +5,18 @@
 STRUCT
 	
 	stationstate: INT;
-	homestate: BOOL;
+	homestate: INT; //home state for text list
+	homestateColour: BOOL; //colour state of indicator
+
 	anotherstate: BOOL;
 	faultstate: BOOL;
 	stationname: BOOL;
 	flasher: BOOL;
+
+	stationNameSelect: UINT; //station name selection
+	cycleTypeFeedback: INT;
+	
+
 
 
 
