@@ -12,6 +12,7 @@ VAR
 	tSizeOfMotionRowButtons: UINT;
 
 
+	tNoMessagesOnMC: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -4784,7 +4785,7 @@ END_VAR
                               <v n="LValue">true</v>
                               <v n="Boolean">true</v>
                               <v n="IsInstance">false</v>
-                              <v n="Id">33L</v>
+                              <v n="Id">315L</v>
                             </o>
                             <o>
                               <v n="Operand">"HMIData.gHideDisplayElementAlarmView.S2Enabled"</v>
@@ -4800,7 +4801,7 @@ END_VAR
                               <v n="LValue">true</v>
                               <v n="Boolean">true</v>
                               <v n="IsInstance">false</v>
-                              <v n="Id">34L</v>
+                              <v n="Id">316L</v>
                             </o>
                             <o>
                               <v n="Operand">"HMIData.gHideDisplayElementAlarmView.S3Enabled"</v>
@@ -4816,7 +4817,7 @@ END_VAR
                               <v n="LValue">true</v>
                               <v n="Boolean">true</v>
                               <v n="IsInstance">false</v>
-                              <v n="Id">35L</v>
+                              <v n="Id">317L</v>
                             </o>
                             <o>
                               <v n="Operand">"HMIData.gHideDisplayElementAlarmView.S4Enabled"</v>
@@ -4832,7 +4833,7 @@ END_VAR
                               <v n="LValue">true</v>
                               <v n="Boolean">true</v>
                               <v n="IsInstance">false</v>
-                              <v n="Id">36L</v>
+                              <v n="Id">318L</v>
                             </o>
                             <o>
                               <v n="Operand">"HMIData.gHideDisplayElementAlarmView.S5Enabled"</v>
@@ -4848,7 +4849,7 @@ END_VAR
                               <v n="LValue">true</v>
                               <v n="Boolean">true</v>
                               <v n="IsInstance">false</v>
-                              <v n="Id">37L</v>
+                              <v n="Id">319L</v>
                             </o>
                           </l2>
                         </o>
@@ -4872,15 +4873,15 @@ END_VAR
                             <v n="LValue">false</v>
                             <v n="Boolean">true</v>
                             <v n="IsInstance">false</v>
-                            <v n="Id">32L</v>
+                            <v n="Id">314L</v>
                           </o>
-                          <v n="Id">31L</v>
+                          <v n="Id">313L</v>
                         </o>
-                        <v n="Id">39L</v>
+                        <v n="Id">320L</v>
                       </o>
                     </l2>
                     <l2 n="Connectors" />
-                    <v n="Id">30L</v>
+                    <v n="Id">312L</v>
                   </o>
                   <o>
                     <v n="ILActive">false</v>
@@ -5063,6 +5064,163 @@ END_VAR
                     </l2>
                     <l2 n="Connectors" />
                     <v n="Id">278L</v>
+                  </o>
+                  <o>
+                    <v n="ILActive">false</v>
+                    <v n="FBDValid">false</v>
+                    <v n="ILValid">false</v>
+                    <l2 n="ILLines" />
+                    <v n="Comment">"hide all alarm views"</v>
+                    <v n="Title">""</v>
+                    <v n="Label">""</v>
+                    <v n="OutCommented">false</v>
+                    <l2 n="NetworkItems" cet="BoxTreeAssign">
+                      <o>
+                        <o n="OutputItems" t="OutputItemList">
+                          <l2 n="OutputItems" cet="Operand">
+                            <o>
+                              <v n="Operand">"HMIData.gHideDisplayElementPromptView.S1Enabled"</v>
+                              <v n="Type">"BOOL"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">"Constant_Address_Serialization_Value"</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">2</v>
+                                <v n="Fixed">true</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">true</v>
+                              <v n="Boolean">true</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">384L</v>
+                            </o>
+                            <o>
+                              <v n="Operand">"HMIData.gHideDisplayElementPromptView.S2Enabled"</v>
+                              <v n="Type">"BOOL"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">"Constant_Address_Serialization_Value"</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">2</v>
+                                <v n="Fixed">true</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">true</v>
+                              <v n="Boolean">true</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">385L</v>
+                            </o>
+                            <o>
+                              <v n="Operand">"HMIData.gHideDisplayElementPromptView.S3Enabled"</v>
+                              <v n="Type">"BOOL"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">"Constant_Address_Serialization_Value"</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">2</v>
+                                <v n="Fixed">true</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">true</v>
+                              <v n="Boolean">true</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">386L</v>
+                            </o>
+                            <o>
+                              <v n="Operand">"HMIData.gHideDisplayElementPromptView.S4Enabled"</v>
+                              <v n="Type">"BOOL"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">"Constant_Address_Serialization_Value"</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">2</v>
+                                <v n="Fixed">true</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">true</v>
+                              <v n="Boolean">true</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">387L</v>
+                            </o>
+                            <o>
+                              <v n="Operand">"HMIData.gHideDisplayElementPromptView.S5Enabled"</v>
+                              <v n="Type">"BOOL"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">"Constant_Address_Serialization_Value"</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">2</v>
+                                <v n="Fixed">true</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">true</v>
+                              <v n="Boolean">true</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">388L</v>
+                            </o>
+                            <o>
+                              <v n="Operand">"HMIData.gHideDisplayElementPromptView.S6Enabled"</v>
+                              <v n="Type">"BOOL"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">"Constant_Address_Serialization_Value"</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">2</v>
+                                <v n="Fixed">true</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">true</v>
+                              <v n="Boolean">true</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">389L</v>
+                            </o>
+                            <o>
+                              <v n="Operand">"HMIData.gHideDisplayElementPromptView.McEnabled"</v>
+                              <v n="Type">"BOOL"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">"Constant_Address_Serialization_Value"</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">3</v>
+                                <v n="Fixed">true</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">true</v>
+                              <v n="Boolean">true</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">390L</v>
+                            </o>
+                          </l2>
+                        </o>
+                        <o n="Flags" t="Flags">
+                          <v n="Flags">0</v>
+                          <v n="Fixed">false</v>
+                          <v n="Extensible">false</v>
+                        </o>
+                        <o n="RValue" t="BoxTreeOperand">
+                          <o n="Operand" t="Operand">
+                            <v n="Operand">"GlobalMessages.gMsgMcStat.IsPrompt"</v>
+                            <v n="Type">"BOOL"</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">"Constant_Address_Serialization_Value"</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">true</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">false</v>
+                            <v n="Boolean">true</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">383L</v>
+                          </o>
+                          <v n="Id">382L</v>
+                        </o>
+                        <v n="Id">391L</v>
+                      </o>
+                    </l2>
+                    <l2 n="Connectors" />
+                    <v n="Id">381L</v>
                   </o>
                   <o>
                     <v n="ILActive">false</v>
