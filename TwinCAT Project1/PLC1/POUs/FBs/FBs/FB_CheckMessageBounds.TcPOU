@@ -44,11 +44,15 @@ END_VAR
     <Implementation>
       <ST><![CDATA[	//mark active message as inactive
 	//reset before scan
-	qAnyMsgActive		:= FALSE;
-	qMsgNumberActive 	:= 0;
+
 	actArraysMatch();
 	
 IF memchanged THEN //if the memory array have changed, then process the message
+		
+			//reset assumption that message is active
+			qAnyMsgActive		:= FALSE;
+			qMsgNumberActive 	:= 0;
+
 	FOR i := 0 TO GlobalMessages.gNumMessagesPerType DO
 		
 		//loop entire array
@@ -483,15 +487,20 @@ END_IF
       </Implementation>
     </Action>
     <LineIds Name="FB_CheckMessageBounds">
-      <LineId Id="313" Count="3" />
+      <LineId Id="313" Count="1" />
+      <LineId Id="316" Count="0" />
       <LineId Id="539" Count="1" />
       <LineId Id="542" Count="0" />
       <LineId Id="544" Count="0" />
+      <LineId Id="636" Count="0" />
+      <LineId Id="635" Count="0" />
+      <LineId Id="633" Count="1" />
+      <LineId Id="632" Count="0" />
       <LineId Id="215" Count="0" />
       <LineId Id="310" Count="0" />
       <LineId Id="217" Count="1" />
       <LineId Id="221" Count="1" />
-      <LineId Id="579" Count="0" />
+      <LineId Id="628" Count="0" />
       <LineId Id="223" Count="2" />
       <LineId Id="452" Count="0" />
       <LineId Id="454" Count="1" />
