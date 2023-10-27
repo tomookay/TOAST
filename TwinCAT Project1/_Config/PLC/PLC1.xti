@@ -983,15 +983,11 @@ External Setpoint Generation:
 		</DataType>
 	</DataTypes>
 	<Project GUID="{1A267E57-8424-4A7E-91A6-205EF3BB5B1A}" Name="PLC1" PrjFilePath="..\..\PLC1\PLC1.plcproj" TmcFilePath="..\..\PLC1\PLC1.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x001f" CopyTmcToTarget="true" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc" TmcHash="{649F5827-9526-B83A-1942-F5A355D19B4B}">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc" TmcHash="{3E4D2F09-17F7-92D1-D6C0-C8FEE184B8A2}">
 			<Name>PLC1 Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">
 				<Name>PlcTask Inputs</Name>
-				<Var>
-					<Name>driveGlobals.ncAxis1.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-				</Var>
 				<Var>
 					<Name>S1_IO.Row01.iAdvanceDepth</Name>
 					<Comment><![CDATA[structure for a conventional motion (air cylinder, etc)]]></Comment>
@@ -1000,6 +996,10 @@ External Setpoint Generation:
 				<Var>
 					<Name>S1_IO.Row01.iReturnedDepth</Name>
 					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>driveGlobals.ncAxis1.NcToPlc</Name>
+					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
 					<Name>S1_IO.Row02.iAdvanceDepth</Name>
@@ -1707,16 +1707,16 @@ External Setpoint Generation:
 			<Vars VarGrpType="2" AreaNo="1">
 				<Name>PlcTask Outputs</Name>
 				<Var>
-					<Name>driveGlobals.ncAxis1.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-				</Var>
-				<Var>
 					<Name>S1_IO.Row01.qAdvanceCoil</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
 					<Name>S1_IO.Row01.qReturnedCoil</Name>
 					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>driveGlobals.ncAxis1.PlcToNc</Name>
+					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
 					<Name>S1_IO.Row02.qAdvanceCoil</Name>
