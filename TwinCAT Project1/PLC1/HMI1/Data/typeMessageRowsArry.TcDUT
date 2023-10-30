@@ -3,7 +3,8 @@
   <DUT Name="typeMessageRowsArry" Id="{a71a553f-ac0a-4b87-8a43-dbf602736447}">
     <Declaration><![CDATA[TYPE typeMessageRowsArry :
 STRUCT
-	gAlarmViewMsg : ARRAY[1..100] OF typeMessageRow;
+	
+	AlarmViewMsg : ARRAY[1..HMIData.gNumberOfMessagesScreen] OF typeMessageRow;
 
 	
 END_STRUCT
