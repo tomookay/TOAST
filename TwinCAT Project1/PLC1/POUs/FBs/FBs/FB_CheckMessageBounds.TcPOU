@@ -15,8 +15,8 @@ VAR_OUTPUT
 	
 	qAllMessages: STRING;
 	
-	qMsgRows: typeMessageRowsArry;
-
+	//special declare, follows typeMessageRowsArry
+	qMsgRows:ARRAY[1..HMIData.gNumberOfMessagesScreen] OF typeMessageRow;
 	
 
 END_VAR
@@ -173,12 +173,12 @@ IF memchanged THEN
 			IF iqArrayToCheck.messageActive[i] = TRUE THEN
 				
 				//assign text to other alarm view 	
-				qMsgRows.AlarmViewMsg[msgindex].msgText := iqArrayToCheck.text[i];
+				qMsgRows[msgindex].msgText := iqArrayToCheck.text[i];
 				//increment message index and try again
 				msgindex := msgIndex + 1;
 			
 				//exit loop 
-				IF msgIndex > 99 THEN
+				IF msgIndex > GlobalMessages.gNumMessagesPerType - 1 THEN
 					EXIT;
 				END_IF
 				
