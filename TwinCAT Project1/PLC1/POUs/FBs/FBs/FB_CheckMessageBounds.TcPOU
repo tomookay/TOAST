@@ -41,6 +41,11 @@ END_VAR
 
 VAR_INPUT
 	iMessageGroup: INT;
+	isAlarm: BOOL; //for colour assigment
+	isWarning: BOOL; //for colour assigment
+
+
+
 
 END_VAR
 ]]></Declaration>
@@ -174,6 +179,23 @@ IF memchanged THEN
 				
 				//assign text to other alarm view 	
 				qMsgRows[msgindex].msgText := iqArrayToCheck.text[i];
+				
+				//assign colour
+				IF isAlarm THEN
+					qMsgRows[msgIndex].isAlarm := TRUE;
+					ELSE
+					qMsgRows[msgIndex].isAlarm := FALSE;	
+				
+				END_IF
+				
+					//assign colour
+				IF isWarning THEN
+					qMsgRows[msgIndex].isWarning := TRUE;
+					ELSE
+					qMsgRows[msgIndex].isWarning := FALSE;
+				
+				END_IF
+				
 				//increment message index and try again
 				msgindex := msgIndex + 1;
 			
@@ -819,6 +841,16 @@ END_IF
       <LineId Id="863" Count="0" />
       <LineId Id="867" Count="0" />
       <LineId Id="866" Count="0" />
+      <LineId Id="918" Count="1" />
+      <LineId Id="921" Count="0" />
+      <LineId Id="925" Count="0" />
+      <LineId Id="935" Count="2" />
+      <LineId Id="926" Count="0" />
+      <LineId Id="928" Count="0" />
+      <LineId Id="930" Count="2" />
+      <LineId Id="938" Count="2" />
+      <LineId Id="929" Count="0" />
+      <LineId Id="920" Count="0" />
       <LineId Id="865" Count="0" />
       <LineId Id="868" Count="0" />
       <LineId Id="864" Count="0" />
