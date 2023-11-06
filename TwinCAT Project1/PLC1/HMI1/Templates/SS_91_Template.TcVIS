@@ -210,7 +210,22 @@
                 <a n="ConfiguredComplexInputs" et="ComplexInput" />
                 <l n="Elements" t="ArrayList" cet="GenericVisualElem">
                   <o>
-                    <a n="ConfiguredComplexInputs" et="ComplexInput" />
+                    <a n="ConfiguredComplexInputs" cet="ComplexInput">
+                      <o>
+                        <n n="DescriptionTree" />
+                        <o n="VisualElemMemberList" t="VisualElemMemberList">
+                          <l n="VisualElemMemberList" t="VisualElemMemberCollection" cet="VisualElemMember">
+                            <o>
+                              <v n="Id">1186196937L</v>
+                              <v n="Value">"HMIData.btnReset"</v>
+                            </o>
+                          </l>
+                        </o>
+                        <v n="SignatureName">"Visu_TapInput"</v>
+                        <v n="Name">"Tap"</v>
+                        <v n="Description">"Configure the tapping of a Boolean variable"</v>
+                      </o>
+                    </a>
                     <l n="Elements" t="ArrayList" />
                     <n n="VisualElementDescription" />
                     <o n="VisualElemMemberList" t="VisualElemMemberList">
@@ -3973,7 +3988,7 @@ Menu"</v>
                 <v n="VisualElementIdentifier">"groupAlarms"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="ChangeVisuInputAction[]">
                   <v>OnMouseClick</v>
                   <a cet="ChangeVisuInputAction">
                     <o>
@@ -4158,11 +4173,11 @@ Menu"</v>
                         </o>
                         <o>
                           <v n="Id">2114174855L</v>
-                          <v n="Value">"'Mc_Prompts'"</v>
+                          <v n="Value">""</v>
                         </o>
                         <o>
                           <v n="Id">3774423699L</v>
-                          <v n="Value">"HMIData.gNumActivePromptTextList[0]"</v>
+                          <v n="Value">""</v>
                         </o>
                         <o>
                           <v n="Id">2880254039L</v>
@@ -9317,7 +9332,6 @@ HOME"</v>
         <Type n="Guid">System.Guid</Type>
         <Type n="Hashtable">System.Collections.Hashtable</Type>
         <Type n="HotkeyConfiguration">{6b108d46-58af-4e41-a3f4-174d8f160cc4}</Type>
-        <Type n="IInputAction[]">_3S.CoDeSys.VisualElem.IInputAction[], VisualElem, Version=3.5.13.0, Culture=neutral, PublicKeyToken=null</Type>
         <Type n="Int16">System.Int16</Type>
         <Type n="Int32">System.Int32</Type>
         <Type n="Int64">System.Int64</Type>
