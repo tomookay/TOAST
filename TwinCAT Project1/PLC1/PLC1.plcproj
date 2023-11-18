@@ -202,31 +202,10 @@
     <Compile Include="HMI1\Data\ModeStatesHeader.TcTLO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="HMI1\Data\typeHMIheader.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="HMI1\Data\typeMessageRow.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="HMI1\Data\typeMessageRowsArry.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="HMI1\Data\UnitRowText.TcTLO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="HMI1\Data\RowConfig.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="HMI1\Data\MotionRowText.TcTLO">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="HMI1\Data\typeBtnHides.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="HMI1\Data\typeBtnFdbk.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="HMI1\Data\typeBtnPress.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="HMI1\Data\AxisRowText.TcTLO">
@@ -240,9 +219,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="HMI1\Logic\FB_ReadTextList.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="HMI1\Logic\LanguageLocation.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="HMI1\Logic\pouHMI.TcPOU">
@@ -312,6 +288,33 @@
     <Compile Include="HMI1\Templates\MessageRow.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="HMI1\types\LanguageLocation.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HMI1\types\RowConfig.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HMI1\types\typeBtnFdbk.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HMI1\types\typeBtnHides.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HMI1\types\typeBtnPress.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HMI1\types\typeHMIheader.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HMI1\types\typeMessageRow.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HMI1\types\typeMessageRowsArry.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HMI1\types\typeStationEnables.TcDUT">
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>
@@ -570,9 +573,6 @@
     <Compile Include="HMI1\Data\MotionRowImages.TcIPO">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="HMI1\Data\typeStationEnables.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="HMI1\Screens\SS_99_Motions.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
@@ -650,11 +650,11 @@
     <Folder Include="DUTs" />
     <Folder Include="DUTs\Motion" />
     <Folder Include="DUTs\Message" />
-    <Folder Include="DUTs\System" />
     <Folder Include="DUTs\Station" />
     <Folder Include="DUTs\Screen" />
     <Folder Include="GVLs" />
     <Folder Include="HMI1\Logic" />
+    <Folder Include="HMI1\types" />
     <Folder Include="POUs\FBs" />
     <Folder Include="POUs\FBs\Drives" />
     <Folder Include="POUs\FBs\FBs\Motions" />
