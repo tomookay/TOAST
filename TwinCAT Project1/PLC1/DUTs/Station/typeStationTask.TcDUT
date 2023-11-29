@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="typeStationTask" Id="{0a2fc6be-9015-4c46-8ccd-5294bdfffe51}">
+    <Declaration><![CDATA[TYPE typeStationTask :
+STRUCT
+
+
+	//platern data
+	PlaternID: UINT;			//identity of the platern
+	PlaternIDValid: BOOL;		//indicator
+
+	PlaternNumOps: UINT;		//number of operations the platerns has seen
+	PlaternNumOpsValid: BOOL;   //indicator
+
+	
+	//reading of data
+	DataReadOK: BOOL;			//TRUE if the part data has been read OK
+	DataReadNOK: BOOL;			//TRUE if the part data was not read OK
+
+	//part data
+	SerialNumber: STRING[32];	//serial number of part
+	SerialNumberValid: BOOL;	//indicator
+	PartDescription: STRING[32]; //part is?
+	PartDescriptionValid:BOOL;		//indicator
+	//PartXXXXNumber: STRING[4]; 
+	
+
+	//status data
+	OKtoBuild: BOOL;			//TRUE if the part is OK to build
+	NOKtoBuild: BOOL;			//TRUE if the part is NOK to build
+	QuarantinePart: BOOL;		//TRUE if the part is quarantined
+	ScrapPart:BOOL;				//TRUE if the part is scrap status
+	PartPresent: BOOL;			//TRUE if the part is present in the station (memory or sensor feedback)
+
+	
+	//process data
+	NumberOfRejectAttempts: USINT; 	//number of times the part failed the process
+	NumberOfRejectAttemptsValid: BOOL; //indicator
+	NumberOfRejectAttemptsFailed: BOOL; //indicator
+	LastOperationNumber:UINT;		//last operation number of the previous machine tool
+	LastOperationNumberValid: BOOL; //indicator
+
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

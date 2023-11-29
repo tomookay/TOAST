@@ -12,10 +12,23 @@ VAR_GLOBAL
 
  	Data: typeStationMode;
 	
+	//part data
+	part: typeStationTask; //part data for each station
+	
+	
 	//all Unit rows in the station, to be used as the "Mc" station
 	UnitRow: ARRAY[1..99] OF typeMotionRow;
 	UnitRowBtn: ARRAY[1..99] OF typeMotionRowButtons;
+	
 
+	
+
+END_VAR
+
+
+VAR_GLOBAL CONSTANT
+	LastOperation: UINT := 100; // last operation that part expected to have visited
+	LinePermittedRejects: USINT := 3; //number of reject expected before rejecting part
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>
