@@ -215,6 +215,9 @@
       <SubType>Code</SubType>
       <External>false</External>
     </Compile>
+    <Compile Include="HMI1\Data\LanguageRowText.TcTLO">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="HMI1\Logic\FB_FindTextIndexNum.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -236,8 +239,15 @@
     <Compile Include="HMI1\Logic\prgHMIUnits.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="HMI1\Logic\prgHMILanguage.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="HMI1\Logic\prgReadTextList.TcPOU">
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HMI1\Screens\Mc_02_Language.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
     <Compile Include="HMI1\Screens\SS_01_ModeScreen.TcVIS">
       <SubType>Code</SubType>
@@ -276,6 +286,10 @@
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
     <Compile Include="HMI1\Templates\AxisRow.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="HMI1\Templates\LanguageRow.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
@@ -432,6 +446,27 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Machine\Base\Station Status\StationNames.TcTLO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Machine\Base\Language\Mc_02_Language_01.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Machine\Base\Language\Mc_02_Language_02.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Machine\Base\Language\Mc_02_Language_03.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Machine\Base\Language\Mc_02_Language_04.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Machine\Base\Language\Mc_02_Language_05.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Machine\Base\Language\Mc_02_Language_06.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\Machine\Base\Language\pouStationLangauge.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Machine\GlobalMessages.TcGVL">
@@ -945,6 +980,7 @@
     <Folder Include="POUs\Machine\Base\Messages\Prompts" />
     <Folder Include="POUs\Machine\Base\Units" />
     <Folder Include="POUs\Machine\Base\Station Status" />
+    <Folder Include="POUs\Machine\Base\Language" />
     <Folder Include="POUs\Machine\Station 1" />
     <Folder Include="POUs\Machine\Station 1\Messages" />
     <Folder Include="POUs\Machine\Station 1\Messages\Alarms" />

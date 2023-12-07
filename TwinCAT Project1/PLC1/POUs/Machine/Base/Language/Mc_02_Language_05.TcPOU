@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <POU Name="Mc_01_Units_03" Id="{2a6a27ff-3285-4b42-82a1-8c44fd172a1f}" SpecialFunc="None">
-    <Declaration><![CDATA[PROGRAM Mc_01_Units_03
+  <POU Name="Mc_02_Language_05" Id="{8eebc95d-0c18-4910-8f1b-b7d32f17ee55}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM Mc_02_Language_05
 VAR
 	HMI_Motion: FB_HMI_Control;
 	Motion: FB_Motion2way;
@@ -209,7 +209,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"3"</v>
+                            <v n="Operand">"5"</v>
                             <v n="Type">"INT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -513,7 +513,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"Mc_Global.Data.NumOfUnitRows"</v>
+                            <v n="Operand">"Mc_Global.Data.NumOfLangRows"</v>
                             <v n="Type">"UINT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -532,7 +532,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"Mc_Global.UnitRow[HMI_Motion.iRowNumber]"</v>
+                            <v n="Operand">"Mc_Global.LangRow[HMI_Motion.iRowNumber]"</v>
                             <v n="Type">"typeMotionRow"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -551,7 +551,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"Mc_Global.UnitRowBtn[HMI_Motion.iRowNumber]"</v>
+                            <v n="Operand">"Mc_Global.LangRowBtn[HMI_Motion.iRowNumber]"</v>
                             <v n="Type">"typeMotionRowButtons"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>

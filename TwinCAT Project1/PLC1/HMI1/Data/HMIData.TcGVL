@@ -77,12 +77,22 @@ VAR_GLOBAL
 	gMaxPageNumberUnit:UINT;  //max pages exist for station, e.g. 5
 	gActiveStationNumberUnit:UINT; 
 	gUnitRowElementOffset: ARRAY[1..gNumberRowsPerPage] OF UINT; //seperate calculation for units
+
 	
 	gAlarmViewMsg: typeMessageRowsArry; //connect data to the HMI
 	
 	//header data
 	hmiHeader:typeHMIheader;
 	
+	//language screen
+	gMotionRowsLang: typeMotionScreen;
+	gMotionRowButtonsLang: typeMotionScreenBtn;
+	gLangRowElementOffset: ARRAY[1..gNumberRowsPerPage] OF UINT; //seperate calculation for languages
+	gLangRows: typeMotionScreen;
+	gLangButtons: typeMotionScreenBtn;
+	gActiveLangPageNumber:UINT; //current page number for units
+	gMaxPageNumberLang:UINT;  //max pages exist for station, e.g. 5
+	//gActiveStationNumberLang:UINT; 
 
 	
 END_VAR
