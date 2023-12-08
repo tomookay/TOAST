@@ -3,6 +3,7 @@
   <DUT Name="typeMotionRowButtons" Id="{db3ef11b-76de-4b85-bdb6-808ad723147b}">
     <Declaration><![CDATA[TYPE typeMotionRowButtons :
 STRUCT
+	//beckhoff visu can't deal with in_out as a passed typed with both inputs and outputs, so the feedback (buttons) are passed in a seperate memory area
 	btnAdvance: BOOL; //Press to advance motion
 	btnReturn: BOOL; //press to return motion
 END_STRUCT
