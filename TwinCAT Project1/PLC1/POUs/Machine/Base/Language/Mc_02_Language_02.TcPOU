@@ -123,7 +123,7 @@ END_VAR
                             <v n="Id">13L</v>
                           </o>
                           <o>
-                            <v n="Operand">""</v>
+                            <v n="Operand">"Mc_Global.gReadTextList"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -139,7 +139,7 @@ END_VAR
                             <v n="Id">56L</v>
                           </o>
                           <o>
-                            <v n="Operand">""</v>
+                            <v n="Operand">"Mc_Global.qResetReadTextList"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -228,8 +228,8 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"Motion.qAdvancedDepth"</v>
-                            <v n="Type">"BOOL"</v>
+                            <v n="Operand">"prgReadTextList.readMC_Alarms.outindex &gt; 998"</v>
+                            <v n="Type">"INT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
                             <v n="Address">"Constant_Address_Serialization_Value"</v>
@@ -266,8 +266,8 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"Motion.qAdvanceCoil"</v>
-                            <v n="Type">"BOOL"</v>
+                            <v n="Operand">"prgReadTextList.readMC_Alarms.outindex &gt; 1"</v>
+                            <v n="Type">"INT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
                             <v n="Address">"Constant_Address_Serialization_Value"</v>
@@ -418,7 +418,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"RowConfig.OnlyLeft"</v>
+                            <v n="Operand">"RowConfig.FullRow"</v>
                             <v n="Type">"ROWCONFIG"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -494,8 +494,8 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"''"</v>
-                            <v n="Type">"STRING(INT#0)"</v>
+                            <v n="Operand">"int_to_string(prgReadTextList.readMC_Alarms.outindex)"</v>
+                            <v n="Type">"STRING"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
                             <v n="Address">""</v>
