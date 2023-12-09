@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="S6_Global" Id="{0c991f4d-64f1-4dda-9163-b40c275a421c}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	Data: typeStationMode;
+	hmiHeader:typeHMIheader;
+	
+	
+	//all motion rows in the station, to be inserted into the main HMI motion screen
+	MotionRow: ARRAY[1..99] OF typeMotionRow;
+	MotionRowBtn: ARRAY[1..99] OF typeMotionRowButtons;
+	
+
+	part: typeStationTask;
+END_VAR
+
+]]></Declaration>
+  </GVL>
+</TcPlcObject>
