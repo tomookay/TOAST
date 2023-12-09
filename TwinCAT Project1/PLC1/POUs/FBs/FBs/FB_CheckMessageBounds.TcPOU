@@ -3,13 +3,13 @@
   <POU Name="FB_CheckMessageBounds" Id="{cfd3e64b-34a3-43a4-b491-e0f565bbe474}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_CheckMessageBounds
 VAR_IN_OUT
+	
 	iqArrayToCheck:typeMessage; //type of message bounds
 	
-
 END_VAR
 VAR_OUTPUT
 	qAnyMsgActive: BOOL;
-	qMsgNumberActive: INT;
+	qMsgNumberActive: UINT;
 	
 	qSingleMessage: STRING(255);
 	
@@ -31,7 +31,7 @@ VAR
 	messageHeader: STRING(255);
 	memcomparecheck: DINT;
 	memchanged: BOOL;
-	messagenum: DINT;
+	messagenum: UINT;
 	strheader:STRING(255);
 	
 	n: UINT;
@@ -41,7 +41,7 @@ VAR
 END_VAR
 
 VAR_INPUT
-	iMessageGroup: INT;
+	iMessageGroup: UINT;
 	isAlarm: BOOL; //for colour assigment
 	isWarning: BOOL; //for colour assigment
 
@@ -55,16 +55,12 @@ END_VAR
 	//reset before scan
 	actArraysMatch();
 	
-
-	
-	
-	
-	
 IF memchanged THEN //if the memory array have changed, then process the message
 		
 			//reset assumption that message is active
 			qAnyMsgActive		:= FALSE;
-			qMsgNumberActive 	:= -1;
+			//qMsgNumberActive 	:= -1;
+			qMsgNumberActive 	:= 0;	
 			
 			//clear down output alarm listing
 			actCleanDownMsg();
@@ -80,7 +76,7 @@ IF memchanged THEN //if the memory array have changed, then process the message
 		IF iqArrayToCheck.message[i] = TRUE THEN
 			//mark active message as active
 			qAnyMsgActive		:= TRUE;
-			qMsgNumberActive 	:= i;
+			qMsgNumberActive 	:= INT_TO_UINT(i);
 		END_IF
 			
 		//move time of message into message type
@@ -115,7 +111,8 @@ IF memchanged THEN //if the memory array have changed, then process the message
 			
 			//clear down single data
 			qAnyMsgActive		:= FALSE;								//clear down with implicit
-			qMsgNumberActive 	:= -1;									//clear down with implicit
+			//qMsgNumberActive 	:= -1;									//clear down with implicit
+			qMsgNumberActive 	:= 0;									//clear down with implicit
 			rollinglowestValue 	:= 0;
 		END_IF
 		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -130,7 +127,7 @@ IF memchanged THEN //if the memory array have changed, then process the message
 								newlineInsert := concat(iqArrayToCheck.text[i], '$0D'); //make new line
 								
 								//calc message number
-								messagenum := iMessageGroup + i; //creates 10000 + 1, 10001 mesage number
+								messagenum := iMessageGroup + INT_TO_UINT(i); //creates 10000 + 1, 10001 mesage number
 								
 								//string header
 								strheader := concat(DINT_TO_STRING(messagenum), ' '); //'10001 ' with space
@@ -847,17 +844,15 @@ END_IF
     </Action>
     <LineIds Name="FB_CheckMessageBounds">
       <LineId Id="313" Count="1" />
-      <LineId Id="539" Count="0" />
-      <LineId Id="726" Count="0" />
-      <LineId Id="728" Count="1" />
-      <LineId Id="724" Count="1" />
-      <LineId Id="540" Count="0" />
+      <LineId Id="539" Count="1" />
       <LineId Id="542" Count="0" />
       <LineId Id="544" Count="0" />
       <LineId Id="636" Count="0" />
       <LineId Id="635" Count="0" />
       <LineId Id="633" Count="0" />
-      <LineId Id="730" Count="2" />
+      <LineId Id="730" Count="0" />
+      <LineId Id="1044" Count="0" />
+      <LineId Id="731" Count="1" />
       <LineId Id="989" Count="3" />
       <LineId Id="677" Count="0" />
       <LineId Id="634" Count="0" />
@@ -891,6 +886,7 @@ END_IF
       <LineId Id="300" Count="1" />
       <LineId Id="275" Count="0" />
       <LineId Id="302" Count="0" />
+      <LineId Id="1042" Count="0" />
       <LineId Id="473" Count="0" />
       <LineId Id="259" Count="0" />
       <LineId Id="382" Count="0" />
