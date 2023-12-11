@@ -6406,7 +6406,7 @@ END_VAR
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
                               <v n="Operand">"adr(S6_Global.MotionRow) + tSizeOfMotionRow"</v>
-                              <v n="Type">"PVOID"</v>
+                              <v n="Type">"POINTER TO ARRAY [1..99] OF typeMotionRow"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
                               <v n="Address">"Constant_Address_Serialization_Value"</v>
@@ -6528,7 +6528,7 @@ END_VAR
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
                               <v n="Operand">"adr(S6_Global.MotionRowBtn) + tSizeOfMotionRowButtons"</v>
-                              <v n="Type">"PVOID"</v>
+                              <v n="Type">"POINTER TO ARRAY [1..99] OF typeMotionRowButtons"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
                               <v n="Address">"Constant_Address_Serialization_Value"</v>
@@ -11943,7 +11943,7 @@ HMIData.btnFdbk.btnIsHomeFdbk := FALSE;]]></ST>
                     <v n="Comment">""</v>
                     <v n="Title">""</v>
                     <v n="Label">""</v>
-                    <v n="OutCommented">true</v>
+                    <v n="OutCommented">false</v>
                     <l2 n="NetworkItems" cet="BoxTreeBox">
                       <o>
                         <v n="BoxType">"MOVE"</v>
@@ -12068,7 +12068,7 @@ HMIData.btnFdbk.btnIsHomeFdbk := FALSE;]]></ST>
                     <v n="Comment">""</v>
                     <v n="Title">""</v>
                     <v n="Label">""</v>
-                    <v n="OutCommented">true</v>
+                    <v n="OutCommented">false</v>
                     <l2 n="NetworkItems" cet="BoxTreeBox">
                       <o>
                         <v n="BoxType">"MOVE"</v>
@@ -12138,7 +12138,7 @@ HMIData.btnFdbk.btnIsHomeFdbk := FALSE;]]></ST>
                           <o>
                             <o n="Operand" t="Operand">
                               <v n="Operand">"S6_Global.Data.NumberOfPages"</v>
-                              <v n="Type">"INT"</v>
+                              <v n="Type">"UINT"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
                               <v n="Address">"Constant_Address_Serialization_Value"</v>
