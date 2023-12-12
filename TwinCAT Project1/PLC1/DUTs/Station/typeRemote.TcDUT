@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="typeRemote" Id="{7a963b5f-3c5f-444d-99fb-f856f514e4d4}">
+    <Declaration><![CDATA[TYPE typeRemote :
+STRUCT
+	ManualReq:				BOOL; //TRUE if the remote station is requesting manual mode
+	AutoModeReq:			BOOL; //TRUE if the remote station is requesting auto mode
+	SemiAutoReq:			BOOL; //TRUE if the remote station is requesting auto cycle mode
+	DryCycleReq:			BOOL; //TRUE if the remote station is requesting dry cycle
+	BypassReq:				BOOL; //TRUE if the remote station is requesting bypass mode
+	ContCycleReq:			BOOL; //TRUE if the remote station is requesting continous cycle
+	SingleCycleReq:			BOOL; //TRUE if the remote station is requesting single cycle mode
+	StopEOC_Req:			BOOL; //TRUE if the remote station is requesting SEOC 
+	
+	StartAutoCycleReq: 		BOOL; //TRUE if the remote station is requesting auto cycle start
+	StopAutoCycleReq: 		BOOL; //TRUE if the remote station is requesting auto cycle stop
+ 
+	ResetReq: 				BOOL; //TRUE if the remote station is requesting reset req
+	
+	PowerOffReq:	  		BOOL; //TRUE if the remote station is requesting power off
+	PowerOnReq:				BOOL; //TRUE if the remote station is requesting power on
+	MotionPowerOnReq:		BOOL; //TRUE if the remote station is requesting motion power on
+
+	HomeReq:				BOOL; //TRUE if the remote station is requesting HOME
+
+	IsRemoteFromSource:		BOOL; //TRUE if remote is selected on the remote source
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

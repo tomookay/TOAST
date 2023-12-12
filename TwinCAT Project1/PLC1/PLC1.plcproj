@@ -178,6 +178,9 @@
     <Compile Include="DUTs\Screen\typeMotionScreenBtn.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DUTs\Station\typeRemote.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Station\typeStationMode.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -476,6 +479,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Machine\GlobalMessages.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="POUs\Machine\Remote.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
@@ -1595,7 +1602,7 @@
                   <d n="SubKeys" t="Hashtable" />
                   <d n="Values" t="Hashtable" ckt="String" cvt="Boolean">
                     <v>bActive</v>
-                    <v>True</v>
+                    <v>False</v>
                   </d>
                 </o>
                 <v>6</v>

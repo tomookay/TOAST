@@ -1503,7 +1503,7 @@ enable station calls, if this pou is copied and called"</v>
                             </o>
                             <o t="BoxTreeOperand">
                               <o n="Operand" t="Operand">
-                                <v n="Operand">"FALSE"</v>
+                                <v n="Operand">"S4_Global.Data.IsRemote"</v>
                                 <v n="Type">"BOOL"</v>
                                 <v n="Comment">""</v>
                                 <v n="SymbolComment">""</v>
@@ -6276,7 +6276,7 @@ UINT_TO_REAL(S4_Global.S4_NumOfRows)"</v>
                           <v n="LValue">false</v>
                           <v n="Boolean">false</v>
                           <v n="IsInstance">true</v>
-                          <v n="Id">177L</v>
+                          <v n="Id">240L</v>
                         </o>
                         <o n="OutputItems" t="OutputItemList">
                           <l2 n="OutputItems" cet="Operand">
@@ -6408,6 +6408,22 @@ UINT_TO_REAL(S4_Global.S4_NumOfRows)"</v>
                               <v n="Boolean">false</v>
                               <v n="IsInstance">false</v>
                               <v n="Id">179L</v>
+                            </o>
+                            <o>
+                              <v n="Operand">"S4_Global.Data.IsRemote"</v>
+                              <v n="Type">"BOOL"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">""</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">0</v>
+                                <v n="Fixed">false</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">true</v>
+                              <v n="Boolean">false</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">229L</v>
                             </o>
                             <o>
                               <v n="Operand">"S4_Global.Data.StationState"</v>
@@ -7095,6 +7111,44 @@ UINT_TO_REAL(S4_Global.S4_NumOfRows)"</v>
                           </o>
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
+                              <v n="Operand">"HMIData.btnMode.btn05Pressed"</v>
+                              <v n="Type">"BOOL"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">""</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">0</v>
+                                <v n="Fixed">false</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">false</v>
+                              <v n="Boolean">true</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">239L</v>
+                            </o>
+                            <v n="Id">238L</v>
+                          </o>
+                          <o t="BoxTreeOperand">
+                            <o n="Operand" t="Operand">
+                              <v n="Operand">"remote.ToStation"</v>
+                              <v n="Type">"typeRemote"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">""</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">0</v>
+                                <v n="Fixed">false</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">false</v>
+                              <v n="Boolean">false</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">233L</v>
+                            </o>
+                            <v n="Id">232L</v>
+                          </o>
+                          <o t="BoxTreeOperand">
+                            <o n="Operand" t="Operand">
                               <v n="Operand">"S4_Global.Data"</v>
                               <v n="Type">"typeStationMode"</v>
                               <v n="Comment">""</v>
@@ -7130,6 +7184,8 @@ UINT_TO_REAL(S4_Global.S4_NumOfRows)"</v>
                             <v>iFault</v>
                             <v>iDryCycleMode</v>
                             <v>iIsStationSelected</v>
+                            <v>iLocalRemoteEnable</v>
+                            <v>iRemoteData</v>
                             <v>stationState</v>
                           </l2>
                           <l2 n="Types" cet="String">
@@ -7148,6 +7204,8 @@ UINT_TO_REAL(S4_Global.S4_NumOfRows)"</v>
                             <v>BOOL</v>
                             <v>BOOL</v>
                             <v>BOOL</v>
+                            <v>BOOL</v>
+                            <v>typeRemote</v>
                             <v>typeStationMode[REF]</v>
                           </l2>
                         </o>
@@ -7162,9 +7220,11 @@ UINT_TO_REAL(S4_Global.S4_NumOfRows)"</v>
                             <v>qSingleCycle</v>
                             <v>qDryCycle</v>
                             <v>qCycleStopping</v>
+                            <v>qRemoteEnabled</v>
                             <v>qModeState</v>
                           </l2>
                           <l2 n="Types" cet="String">
+                            <v>BOOL</v>
                             <v>BOOL</v>
                             <v>BOOL</v>
                             <v>BOOL</v>
@@ -7183,7 +7243,7 @@ UINT_TO_REAL(S4_Global.S4_NumOfRows)"</v>
                         <n n="STSnippet" />
                         <v n="ContainsExtensibleInputs">false</v>
                         <v n="ProvidesSTSnippet">false</v>
-                        <v n="Id">178L</v>
+                        <v n="Id">241L</v>
                       </o>
                     </l2>
                     <l2 n="Connectors" />

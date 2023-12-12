@@ -28,8 +28,8 @@ STRUCT
 	btnSelectWetCycleMode: 	BOOL; //button to select wet cycle mode (endless cycles with inserts, no part transfer to next station)
 	
 	NumOfRows:				UINT; //number of motions present in station in rows CEIL by number of rows permitted in the screen
-	NumOfUnitRows:				UINT; //number of motions present in station in rows CEIL by number of rows permitted in the screen
-	NumOfLangRows:				UINT; //number of motions present in station in rows CEIL by number of rows permitted in the screen
+	NumOfUnitRows:			UINT; //number of motions present in station in rows CEIL by number of rows permitted in the screen
+	NumOfLangRows:			UINT; //number of motions present in station in rows CEIL by number of rows permitted in the screen
 	NumberOfPages:			UINT; //number of pages in the station that can fit for the number of motion rows
 		
 	StationNumber:			UINT; //the station number, typ. 1-6
@@ -43,7 +43,7 @@ STRUCT
 	
 	IsHome:					BOOL; //TRUE if the station is HOME
 	IsHoming: 				BOOL; //TRUE if the station is in the process of returning to home
-
+	IsRemote:				BOOL; //TRUE if the station is in remote mode
 
 
 END_STRUCT
