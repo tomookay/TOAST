@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FC_Setup" Id="{054a5b72-0712-4674-ad7e-bb0ca048a77e}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION FC_Setup : bool
+VAR_INPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//setup machine
+System.gSetup.stationEnable[1] := TRUE;
+System.gSetup.stationEnable[2] := FALSE;
+System.gSetup.stationEnable[3] := FALSE;
+System.gSetup.stationEnable[4] := FALSE;
+System.gSetup.stationEnable[5] := FALSE;
+System.gSetup.stationEnable[6] := FALSE;
+
+System.gSetup.stationFunctions[1].allowAutoCycle := FALSE;
+System.gSetup.stationFunctions[1].allowManualMode := FALSE;
+System.gSetup.stationFunctions[1].allowSemiAuto := FALSE;
+System.gSetup.stationFunctions[1].allowDryCycle := FALSE;
+System.gSetup.stationFunctions[1].allowBypass := FALSE;
+System.gSetup.stationFunctions[1].allowContinuousCycle := FALSE;
+System.gSetup.stationFunctions[1].allowSingleCycle := FALSE;
+System.gSetup.stationFunctions[1].allowSEOC := FALSE;
+System.gSetup.stationFunctions[1].allowPowerOn := FALSE;
+System.gSetup.stationFunctions[1].allowPowerOff := FALSE;
+System.gSetup.stationFunctions[1].allowServicesPowerOn := FALSE;
+System.gSetup.stationFunctions[1].allowRemoteControl := FALSE;
+System.gSetup.stationFunctions[1].allowServicesPowerOn := FALSE;
+System.gSetup.stationFunctions[1].allowSilenceHorn := FALSE;
+System.gSetup.stationFunctions[1].allowGate1Req := FALSE;
+System.gSetup.stationFunctions[1].allowGate2Req := FALSE;
+System.gSetup.stationFunctions[1].allowLockAccessGates := FALSE;
+System.gSetup.stationFunctions[1].allowEnablePendent := FALSE;
+
+
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="FC_Setup">
+      <LineId Id="7" Count="5" />
+      <LineId Id="14" Count="1" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="16" Count="7" />
+      <LineId Id="36" Count="1" />
+      <LineId Id="49" Count="5" />
+      <LineId Id="40" Count="2" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="24" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

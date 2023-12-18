@@ -476,7 +476,7 @@ END_VAR
                   <v n="OutCommented">false</v>
                   <l2 n="NetworkItems" cet="BoxTreeBox">
                     <o>
-                      <v n="BoxType">"actModeClearBtnFdbk"</v>
+                      <v n="BoxType">"prgShowButtons"</v>
                       <o n="Instance" t="Operand">
                         <n n="Operand" />
                         <v n="Type">""</v>
@@ -491,7 +491,7 @@ END_VAR
                         <v n="LValue">false</v>
                         <v n="Boolean">false</v>
                         <v n="IsInstance">true</v>
-                        <v n="Id">184L</v>
+                        <v n="Id">240L</v>
                       </o>
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems">
@@ -541,13 +541,13 @@ END_VAR
                           <v>BOOL</v>
                         </l2>
                       </o>
-                      <v n="CallType" t="Operator">Action</v>
+                      <v n="CallType" t="Operator">Program</v>
                       <v n="EN">true</v>
                       <v n="ENO">true</v>
                       <n n="STSnippet" />
                       <v n="ContainsExtensibleInputs">false</v>
                       <v n="ProvidesSTSnippet">false</v>
-                      <v n="Id">185L</v>
+                      <v n="Id">241L</v>
                     </o>
                   </l2>
                   <l2 n="Connectors" />
@@ -10595,59 +10595,6 @@ END_VAR
         </NWL>
       </Implementation>
     </Action>
-    <Action Name="actModeClearBtnFdbk" Id="{c386034d-7e6b-4c56-8e85-234ea0db1177}">
-      <Implementation>
-        <ST><![CDATA[//hide/show buttons on mode screen
-
-//row 0
-HMIData.btnHides.btn00Hide := FALSE;
-HMIData.btnHides.btn01Hide := FALSE;
-HMIData.btnHides.btn02Hide := FALSE;
-HMIData.btnHides.btn03Hide := FALSE;
-HMIData.btnHides.btn04Hide := FALSE;
-HMIData.btnHides.btn05Hide := FALSE;
-HMIData.btnHides.btn06Hide := FALSE;
-HMIData.btnHides.btn07Hide := FALSE;
-HMIData.btnHides.btn08Hide := FALSE;
-HMIData.btnHides.btn09Hide := FALSE;
-
-//row 1
-HMIData.btnHides.btn10Hide := FALSE;
-HMIData.btnHides.btn11Hide := FALSE;
-HMIData.btnHides.btn12Hide := FALSE;
-HMIData.btnHides.btn13Hide := FALSE;
-HMIData.btnHides.btn14Hide := FALSE;
-HMIData.btnHides.btn15Hide := FALSE;
-HMIData.btnHides.btn16Hide := FALSE;
-HMIData.btnHides.btn17Hide := FALSE;
-HMIData.btnHides.btn18Hide := FALSE;
-HMIData.btnHides.btn19Hide := FALSE;
-
-//row 2
-HMIData.btnHides.btn20Hide := FALSE;
-HMIData.btnHides.btn21Hide := FALSE;
-HMIData.btnHides.btn22Hide := FALSE;
-HMIData.btnHides.btn23Hide := FALSE;
-HMIData.btnHides.btn24Hide := FALSE;
-HMIData.btnHides.btn25Hide := FALSE;
-HMIData.btnHides.btn26Hide := FALSE;
-HMIData.btnHides.btn27Hide := FALSE;
-HMIData.btnHides.btn28Hide := FALSE;
-HMIData.btnHides.btn29Hide := FALSE;
-
-//row 3
-HMIData.btnHides.btn30Hide := FALSE;
-HMIData.btnHides.btn31Hide := FALSE;
-HMIData.btnHides.btn32Hide := FALSE;
-HMIData.btnHides.btn33Hide := FALSE;
-HMIData.btnHides.btn34Hide := FALSE;
-HMIData.btnHides.btn35Hide := FALSE;
-HMIData.btnHides.btn36Hide := FALSE;
-HMIData.btnHides.btn37Hide := FALSE;
-HMIData.btnHides.btn38Hide := FALSE;
-HMIData.btnHides.btn39Hide := FALSE;]]></ST>
-      </Implementation>
-    </Action>
     <Action Name="actModeScreenBtnEnables" Id="{292c158a-5031-4703-bb01-bf615dd3670f}">
       <Implementation>
         <ST><![CDATA[//hide/show buttons on mode screen
@@ -13257,17 +13204,6 @@ HMIData.btnFdbk.btnIsHomeFdbk := FALSE;]]></ST>
         </NWL>
       </Implementation>
     </Action>
-    <LineIds Name="prgHMIcontrol.actModeClearBtnFdbk">
-      <LineId Id="1" Count="0" />
-      <LineId Id="12" Count="1" />
-      <LineId Id="2" Count="9" />
-      <LineId Id="15" Count="10" />
-      <LineId Id="14" Count="0" />
-      <LineId Id="27" Count="10" />
-      <LineId Id="26" Count="0" />
-      <LineId Id="39" Count="10" />
-      <LineId Id="38" Count="0" />
-    </LineIds>
     <LineIds Name="prgHMIcontrol.actModeScreenBtnEnables">
       <LineId Id="1" Count="0" />
       <LineId Id="12" Count="1" />

@@ -296,6 +296,84 @@ wip"</v>
                   <l2 n="Connectors" />
                   <v n="Id">25L</v>
                 </o>
+                <o>
+                  <v n="ILActive">false</v>
+                  <v n="FBDValid">false</v>
+                  <v n="ILValid">false</v>
+                  <l2 n="ILLines" />
+                  <v n="Comment">""</v>
+                  <v n="Title">""</v>
+                  <v n="Label">""</v>
+                  <v n="OutCommented">false</v>
+                  <l2 n="NetworkItems" cet="BoxTreeBox">
+                    <o>
+                      <v n="BoxType">"actStationEnables"</v>
+                      <o n="Instance" t="Operand">
+                        <n n="Operand" />
+                        <v n="Type">""</v>
+                        <v n="Comment">""</v>
+                        <v n="SymbolComment">""</v>
+                        <v n="Address">""</v>
+                        <o n="Flags" t="Flags">
+                          <v n="Flags">0</v>
+                          <v n="Fixed">false</v>
+                          <v n="Extensible">false</v>
+                        </o>
+                        <v n="LValue">false</v>
+                        <v n="Boolean">false</v>
+                        <v n="IsInstance">true</v>
+                        <v n="Id">58L</v>
+                      </o>
+                      <o n="OutputItems" t="OutputItemList">
+                        <l2 n="OutputItems">
+                          <n />
+                        </l2>
+                      </o>
+                      <o n="Flags" t="Flags">
+                        <v n="Flags">0</v>
+                        <v n="Fixed">true</v>
+                        <v n="Extensible">false</v>
+                      </o>
+                      <n n="InputFlags" />
+                      <l2 n="InputItems" cet="BoxTreeTerminator">
+                        <o>
+                          <n n="Input" />
+                          <o n="Flags" t="Flags">
+                            <v n="Flags">0</v>
+                            <v n="Fixed">false</v>
+                            <v n="Extensible">false</v>
+                          </o>
+                          <v n="Id">60L</v>
+                        </o>
+                      </l2>
+                      <o n="InputParam" t="ParamList">
+                        <l2 n="Names" cet="String">
+                          <v>EN</v>
+                        </l2>
+                        <l2 n="Types" cet="String">
+                          <v>BOOL</v>
+                        </l2>
+                      </o>
+                      <o n="OutputParam" t="ParamList">
+                        <l2 n="Names" cet="String">
+                          <v>ENO</v>
+                        </l2>
+                        <l2 n="Types" cet="String">
+                          <v>BOOL</v>
+                        </l2>
+                      </o>
+                      <v n="CallType" t="Operator">Action</v>
+                      <v n="EN">true</v>
+                      <v n="ENO">true</v>
+                      <n n="STSnippet" />
+                      <v n="ContainsExtensibleInputs">false</v>
+                      <v n="ProvidesSTSnippet">false</v>
+                      <v n="Id">59L</v>
+                    </o>
+                  </l2>
+                  <l2 n="Connectors" />
+                  <v n="Id">42L</v>
+                </o>
               </l2>
               <v n="BranchCounter">0</v>
               <v n="ValidIds">true</v>
@@ -305,6 +383,7 @@ wip"</v>
             <Type n="Boolean">System.Boolean</Type>
             <Type n="BoxTreeBox">{acfc6f68-8e3a-4af5-bf81-3dd512095a46}</Type>
             <Type n="BoxTreeOperand">{9de7f100-1b87-424c-a62e-45b0cfc85ed2}</Type>
+            <Type n="BoxTreeTerminator">{5f9848d3-568d-4cc5-9e31-8e28e9607ff1}</Type>
             <Type n="Flags">{668066f2-6069-46b3-8962-8db8d13d7db2}</Type>
             <Type n="Int32">System.Int32</Type>
             <Type n="Int64">System.Int64</Type>
@@ -2588,12 +2667,12 @@ wip"</v>
     <Action Name="actStationEnables" Id="{401c3089-158a-4e3f-ba0a-795f1a2a44bf}">
       <Implementation>
         <ST><![CDATA[//disable all stations and let station calls enable on a per-scan basis
-hmidata.gStationEnabled[1]:= FALSE;
-hmidata.gStationEnabled[2]:= FALSE;
-hmidata.gStationEnabled[3]:= FALSE;
-hmidata.gStationEnabled[4]:= FALSE;
-hmidata.gStationEnabled[5]:= FALSE;
-hmidata.gStationEnabled[6]:= FALSE;
+hmidata.gStationEnabled[1]:= System.gSetup.stationEnable[1];
+hmidata.gStationEnabled[2]:= System.gSetup.stationEnable[2];
+hmidata.gStationEnabled[3]:= System.gSetup.stationEnable[3];
+hmidata.gStationEnabled[4]:= System.gSetup.stationEnable[4];
+hmidata.gStationEnabled[5]:= System.gSetup.stationEnable[5];
+hmidata.gStationEnabled[6]:= System.gSetup.stationEnable[6];
 
 ]]></ST>
       </Implementation>
