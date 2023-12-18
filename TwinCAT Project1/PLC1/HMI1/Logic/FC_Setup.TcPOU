@@ -9,45 +9,146 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[//setup machine
-System.gSetup.stationEnable[1] := TRUE;
-System.gSetup.stationEnable[2] := FALSE;
-System.gSetup.stationEnable[3] := FALSE;
-System.gSetup.stationEnable[4] := FALSE;
-System.gSetup.stationEnable[5] := FALSE;
-System.gSetup.stationEnable[6] := FALSE;
+System.gSetup.stationEnable[1] := TRUE; //TRUE if station is present
+System.gSetup.stationEnable[2] := TRUE; //FALSE if the station does not exist on this machine
+System.gSetup.stationEnable[3] := TRUE;
+System.gSetup.stationEnable[4] := TRUE;
+System.gSetup.stationEnable[5] := TRUE;
+System.gSetup.stationEnable[6] := TRUE;
 
-System.gSetup.stationFunctions[1].allowAutoCycle := FALSE;
-System.gSetup.stationFunctions[1].allowManualMode := FALSE;
-System.gSetup.stationFunctions[1].allowSemiAuto := FALSE;
-System.gSetup.stationFunctions[1].allowDryCycle := FALSE;
-System.gSetup.stationFunctions[1].allowBypass := FALSE;
-System.gSetup.stationFunctions[1].allowContinuousCycle := FALSE;
-System.gSetup.stationFunctions[1].allowSingleCycle := FALSE;
-System.gSetup.stationFunctions[1].allowSEOC := FALSE;
-System.gSetup.stationFunctions[1].allowPowerOn := FALSE;
-System.gSetup.stationFunctions[1].allowPowerOff := FALSE;
-System.gSetup.stationFunctions[1].allowServicesPowerOn := FALSE;
-System.gSetup.stationFunctions[1].allowRemoteControl := FALSE;
-System.gSetup.stationFunctions[1].allowServicesPowerOn := FALSE;
-System.gSetup.stationFunctions[1].allowSilenceHorn := FALSE;
-System.gSetup.stationFunctions[1].allowGate1Req := FALSE;
-System.gSetup.stationFunctions[1].allowGate2Req := FALSE;
-System.gSetup.stationFunctions[1].allowLockAccessGates := FALSE;
-System.gSetup.stationFunctions[1].allowEnablePendent := FALSE;
+//station features
+System.gSetup.stationFunctions[1].allowAutoCycle := TRUE;	//TRUE to allow auto cycle
+System.gSetup.stationFunctions[1].allowManualMode := TRUE;	//Generally speaking....
+System.gSetup.stationFunctions[1].allowSemiAuto := TRUE; 	//..all functions are enabled...
+System.gSetup.stationFunctions[1].allowDryCycle := TRUE;	//..unless there is a good reason...
+System.gSetup.stationFunctions[1].allowBypass := TRUE;		//..to disable them.
+System.gSetup.stationFunctions[1].allowContinuousCycle := TRUE;
+System.gSetup.stationFunctions[1].allowSingleCycle := TRUE;
+System.gSetup.stationFunctions[1].allowSEOC := TRUE;
+System.gSetup.stationFunctions[1].allowPowerOn := TRUE;
+System.gSetup.stationFunctions[1].allowPowerOff := TRUE;
+System.gSetup.stationFunctions[1].allowServicesPowerOn := TRUE;
+System.gSetup.stationFunctions[1].allowRemoteControl := TRUE;
+System.gSetup.stationFunctions[1].allowServicesPowerOn := TRUE;
+System.gSetup.stationFunctions[1].allowSilenceHorn := TRUE;
+System.gSetup.stationFunctions[1].allowGate1Req := TRUE;
+System.gSetup.stationFunctions[1].allowGate2Req := TRUE;
+System.gSetup.stationFunctions[1].allowLockAccessGates := TRUE;
+System.gSetup.stationFunctions[1].allowEnablePendent := TRUE;
 
 
+System.gSetup.stationFunctions[2].allowAutoCycle := TRUE;
+System.gSetup.stationFunctions[2].allowManualMode := TRUE;
+System.gSetup.stationFunctions[2].allowSemiAuto := TRUE;
+System.gSetup.stationFunctions[2].allowDryCycle := TRUE;
+System.gSetup.stationFunctions[2].allowBypass := TRUE;
+System.gSetup.stationFunctions[2].allowContinuousCycle := TRUE;
+System.gSetup.stationFunctions[2].allowSingleCycle := TRUE;
+System.gSetup.stationFunctions[2].allowSEOC := TRUE;
+System.gSetup.stationFunctions[2].allowPowerOn := TRUE;
+System.gSetup.stationFunctions[2].allowPowerOff := TRUE;
+System.gSetup.stationFunctions[2].allowServicesPowerOn := TRUE;
+System.gSetup.stationFunctions[2].allowRemoteControl := TRUE;
+System.gSetup.stationFunctions[2].allowServicesPowerOn := TRUE;
+System.gSetup.stationFunctions[2].allowSilenceHorn := TRUE;
+System.gSetup.stationFunctions[2].allowGate1Req := TRUE;
+System.gSetup.stationFunctions[2].allowGate2Req := TRUE;
+System.gSetup.stationFunctions[2].allowLockAccessGates := TRUE;
+System.gSetup.stationFunctions[2].allowEnablePendent := TRUE;
 
+System.gSetup.stationFunctions[3].allowAutoCycle := TRUE;
+System.gSetup.stationFunctions[3].allowManualMode := TRUE;
+System.gSetup.stationFunctions[3].allowSemiAuto := TRUE;
+System.gSetup.stationFunctions[3].allowDryCycle := TRUE;
+System.gSetup.stationFunctions[3].allowBypass := TRUE;
+System.gSetup.stationFunctions[3].allowContinuousCycle := TRUE;
+System.gSetup.stationFunctions[3].allowSingleCycle := TRUE;
+System.gSetup.stationFunctions[3].allowSEOC := TRUE;
+System.gSetup.stationFunctions[3].allowPowerOn := TRUE;
+System.gSetup.stationFunctions[3].allowPowerOff := TRUE;
+System.gSetup.stationFunctions[3].allowServicesPowerOn := TRUE;
+System.gSetup.stationFunctions[3].allowRemoteControl := TRUE;
+System.gSetup.stationFunctions[3].allowServicesPowerOn := TRUE;
+System.gSetup.stationFunctions[3].allowSilenceHorn := TRUE;
+System.gSetup.stationFunctions[3].allowGate1Req := TRUE;
+System.gSetup.stationFunctions[3].allowGate2Req := TRUE;
+System.gSetup.stationFunctions[3].allowLockAccessGates := TRUE;
+System.gSetup.stationFunctions[3].allowEnablePendent := TRUE;
+
+System.gSetup.stationFunctions[4].allowAutoCycle := TRUE;
+System.gSetup.stationFunctions[4].allowManualMode := TRUE;
+System.gSetup.stationFunctions[4].allowSemiAuto := TRUE;
+System.gSetup.stationFunctions[4].allowDryCycle := TRUE;
+System.gSetup.stationFunctions[4].allowBypass := TRUE;
+System.gSetup.stationFunctions[4].allowContinuousCycle := TRUE;
+System.gSetup.stationFunctions[4].allowSingleCycle := TRUE;
+System.gSetup.stationFunctions[4].allowSEOC := TRUE;
+System.gSetup.stationFunctions[4].allowPowerOn := TRUE;
+System.gSetup.stationFunctions[4].allowPowerOff := TRUE;
+System.gSetup.stationFunctions[4].allowServicesPowerOn := TRUE;
+System.gSetup.stationFunctions[4].allowRemoteControl := TRUE;
+System.gSetup.stationFunctions[4].allowServicesPowerOn := TRUE;
+System.gSetup.stationFunctions[4].allowSilenceHorn := TRUE;
+System.gSetup.stationFunctions[4].allowGate1Req := TRUE;
+System.gSetup.stationFunctions[4].allowGate2Req := TRUE;
+System.gSetup.stationFunctions[4].allowLockAccessGates := TRUE;
+System.gSetup.stationFunctions[4].allowEnablePendent := TRUE;
+
+System.gSetup.stationFunctions[5].allowAutoCycle := TRUE;
+System.gSetup.stationFunctions[5].allowManualMode := TRUE;
+System.gSetup.stationFunctions[5].allowSemiAuto := TRUE;
+System.gSetup.stationFunctions[5].allowDryCycle := TRUE;
+System.gSetup.stationFunctions[5].allowBypass := TRUE;
+System.gSetup.stationFunctions[5].allowContinuousCycle := TRUE;
+System.gSetup.stationFunctions[5].allowSingleCycle := TRUE;
+System.gSetup.stationFunctions[5].allowSEOC := TRUE;
+System.gSetup.stationFunctions[5].allowPowerOn := TRUE;
+System.gSetup.stationFunctions[5].allowPowerOff := TRUE;
+System.gSetup.stationFunctions[5].allowServicesPowerOn := TRUE;
+System.gSetup.stationFunctions[5].allowRemoteControl := TRUE;
+System.gSetup.stationFunctions[5].allowServicesPowerOn := TRUE;
+System.gSetup.stationFunctions[5].allowSilenceHorn := TRUE;
+System.gSetup.stationFunctions[5].allowGate1Req := TRUE;
+System.gSetup.stationFunctions[5].allowGate2Req := TRUE;
+System.gSetup.stationFunctions[5].allowLockAccessGates := TRUE;
+System.gSetup.stationFunctions[5].allowEnablePendent := TRUE;
+
+System.gSetup.stationFunctions[6].allowAutoCycle := TRUE;
+System.gSetup.stationFunctions[6].allowManualMode := TRUE;
+System.gSetup.stationFunctions[6].allowSemiAuto := TRUE;
+System.gSetup.stationFunctions[6].allowDryCycle := TRUE;
+System.gSetup.stationFunctions[6].allowBypass := TRUE;
+System.gSetup.stationFunctions[6].allowContinuousCycle := TRUE;
+System.gSetup.stationFunctions[6].allowSingleCycle := TRUE;
+System.gSetup.stationFunctions[6].allowSEOC := TRUE;
+System.gSetup.stationFunctions[6].allowPowerOn := TRUE;
+System.gSetup.stationFunctions[6].allowPowerOff := TRUE;
+System.gSetup.stationFunctions[6].allowServicesPowerOn := TRUE;
+System.gSetup.stationFunctions[6].allowRemoteControl := TRUE;
+System.gSetup.stationFunctions[6].allowServicesPowerOn := TRUE;
+System.gSetup.stationFunctions[6].allowSilenceHorn := TRUE;
+System.gSetup.stationFunctions[6].allowGate1Req := TRUE;
+System.gSetup.stationFunctions[6].allowGate2Req := TRUE;
+System.gSetup.stationFunctions[6].allowLockAccessGates := TRUE;
+System.gSetup.stationFunctions[6].allowEnablePendent := TRUE;
 ]]></ST>
     </Implementation>
     <LineIds Name="FC_Setup">
       <LineId Id="7" Count="5" />
-      <LineId Id="14" Count="1" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="148" Count="0" />
+      <LineId Id="15" Count="0" />
       <LineId Id="13" Count="0" />
       <LineId Id="16" Count="7" />
       <LineId Id="36" Count="1" />
       <LineId Id="49" Count="5" />
-      <LineId Id="40" Count="2" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="55" Count="18" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="74" Count="17" />
+      <LineId Id="42" Count="0" />
       <LineId Id="35" Count="0" />
+      <LineId Id="92" Count="55" />
       <LineId Id="24" Count="0" />
     </LineIds>
   </POU>
