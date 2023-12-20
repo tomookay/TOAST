@@ -256,6 +256,21 @@
     <Compile Include="HMI1\Logic\prgShowButtons.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="HMI1\Screens\Diagnostic\Profibus\diagDPSlave.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="HMI1\Screens\Diagnostic\Profibus\DI_01_Profibus.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="HMI1\Screens\Diagnostic\Profibus\profibusDiag.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="HMI1\Screens\Diagnostic\Profibus\typeDPSlaveIndicator.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="HMI1\Screens\Dialogs\dialogStation.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
@@ -1380,7 +1395,9 @@
     <Folder Include="DUTs\Screen" />
     <Folder Include="GVLs" />
     <Folder Include="HMI1\Logic" />
+    <Folder Include="HMI1\Screens\Diagnostic\Profibus" />
     <Folder Include="HMI1\Screens\Dialogs" />
+    <Folder Include="HMI1\Screens\Diagnostic" />
     <Folder Include="HMI1\types" />
     <Folder Include="POUs\FBs" />
     <Folder Include="POUs\FBs\Drives" />

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="typeDPSlaveIndicator" Id="{00cd480c-2dfc-4f66-85aa-6c859c5b3ce5}">
+    <Declaration><![CDATA[TYPE typeDPSlaveIndicator :
+STRUCT
+	currentState:DINT; //inside colour
+	historicalState:DINT; //outside colour
+	SlaveNumber:UINT; //slave number 1-127
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

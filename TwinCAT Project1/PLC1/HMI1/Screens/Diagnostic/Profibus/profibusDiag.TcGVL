@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="profibusDiag" Id="{934ceea2-b1dd-4333-8f9b-25a929c1d377}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	//master status
+	//master status:type?
+
+	//consider multi-master system from S7-300/400 systems
+	
+	//all slaves
+	slaveDiag: ARRAY[1..maxNumDPSlaves] OF typeDPSlaveIndicator;
+	
+	
+
+	
+END_VAR
+
+
+VAR_GLOBAL CONSTANT
+	maxNumDPSlaves: UINT := 127;
+END_VAR
+
+
+//refer to C79000-G8976-C124-03 04/2009]]></Declaration>
+  </GVL>
+</TcPlcObject>
