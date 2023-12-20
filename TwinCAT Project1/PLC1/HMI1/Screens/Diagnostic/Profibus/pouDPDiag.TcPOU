@@ -1,0 +1,393 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="pouDPDiag" Id="{060421ca-a6ea-4bfb-924e-d88a8c129e51}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM pouDPDiag
+VAR
+	i: UINT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <NWL>
+        <XmlArchive>
+          <Data>
+            <o xml:space="preserve" t="NWLImplementationObject">
+              <v n="NetworkListComment">""</v>
+              <v n="DefaultViewMode">"Ld"</v>
+              <l2 n="NetworkList" cet="Network">
+                <o>
+                  <v n="ILActive">false</v>
+                  <v n="FBDValid">false</v>
+                  <v n="ILValid">false</v>
+                  <l2 n="ILLines" />
+                  <v n="Comment">"clear down and setup on first scan"</v>
+                  <v n="Title">""</v>
+                  <v n="Label">""</v>
+                  <v n="OutCommented">false</v>
+                  <l2 n="NetworkItems" cet="BoxTreeBox">
+                    <o>
+                      <v n="BoxType">"actClearDiag"</v>
+                      <o n="Instance" t="Operand">
+                        <n n="Operand" />
+                        <v n="Type">""</v>
+                        <v n="Comment">""</v>
+                        <v n="SymbolComment">""</v>
+                        <v n="Address">""</v>
+                        <o n="Flags" t="Flags">
+                          <v n="Flags">0</v>
+                          <v n="Fixed">false</v>
+                          <v n="Extensible">false</v>
+                        </o>
+                        <v n="LValue">false</v>
+                        <v n="Boolean">false</v>
+                        <v n="IsInstance">true</v>
+                        <v n="Id">11L</v>
+                      </o>
+                      <o n="OutputItems" t="OutputItemList">
+                        <l2 n="OutputItems" cet="Operand">
+                          <n />
+                          <o>
+                            <v n="Operand">"???"</v>
+                            <v n="Type">""</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">""</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">true</v>
+                            <v n="Boolean">false</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">13L</v>
+                          </o>
+                        </l2>
+                      </o>
+                      <o n="Flags" t="Flags">
+                        <v n="Flags">0</v>
+                        <v n="Fixed">false</v>
+                        <v n="Extensible">false</v>
+                      </o>
+                      <n n="InputFlags" />
+                      <l2 n="InputItems" cet="BoxTreeOperand">
+                        <o>
+                          <o n="Operand" t="Operand">
+                            <v n="Operand">"System.myPlcInfoTask1.FirstCycle"</v>
+                            <v n="Type">"BOOL"</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">""</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">false</v>
+                            <v n="Boolean">true</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">7L</v>
+                          </o>
+                          <v n="Id">6L</v>
+                        </o>
+                      </l2>
+                      <o n="InputParam" t="ParamList">
+                        <l2 n="Names" cet="String">
+                          <v>EN</v>
+                        </l2>
+                        <l2 n="Types" cet="String">
+                          <v>BOOL</v>
+                        </l2>
+                      </o>
+                      <o n="OutputParam" t="ParamList">
+                        <l2 n="Names" cet="String">
+                          <v>ENO</v>
+                        </l2>
+                        <l2 n="Types" cet="String">
+                          <v>BOOL</v>
+                        </l2>
+                      </o>
+                      <v n="CallType" t="Operator">Action</v>
+                      <v n="EN">true</v>
+                      <v n="ENO">true</v>
+                      <n n="STSnippet" />
+                      <v n="ContainsExtensibleInputs">false</v>
+                      <v n="ProvidesSTSnippet">false</v>
+                      <v n="Id">12L</v>
+                    </o>
+                  </l2>
+                  <l2 n="Connectors" />
+                  <v n="Id">5L</v>
+                </o>
+                <o>
+                  <v n="ILActive">false</v>
+                  <v n="FBDValid">false</v>
+                  <v n="ILValid">false</v>
+                  <l2 n="ILLines" />
+                  <v n="Comment">"run diag"</v>
+                  <v n="Title">""</v>
+                  <v n="Label">""</v>
+                  <v n="OutCommented">false</v>
+                  <l2 n="NetworkItems" cet="BoxTreeBox">
+                    <o>
+                      <v n="BoxType">"actDPSlaveDiag"</v>
+                      <o n="Instance" t="Operand">
+                        <n n="Operand" />
+                        <v n="Type">""</v>
+                        <v n="Comment">""</v>
+                        <v n="SymbolComment">""</v>
+                        <v n="Address">""</v>
+                        <o n="Flags" t="Flags">
+                          <v n="Flags">0</v>
+                          <v n="Fixed">false</v>
+                          <v n="Extensible">false</v>
+                        </o>
+                        <v n="LValue">false</v>
+                        <v n="Boolean">false</v>
+                        <v n="IsInstance">true</v>
+                        <v n="Id">19L</v>
+                      </o>
+                      <o n="OutputItems" t="OutputItemList">
+                        <l2 n="OutputItems" cet="Operand">
+                          <n />
+                          <o>
+                            <v n="Operand">"???"</v>
+                            <v n="Type">""</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">""</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">true</v>
+                            <v n="Boolean">false</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">21L</v>
+                          </o>
+                        </l2>
+                      </o>
+                      <o n="Flags" t="Flags">
+                        <v n="Flags">0</v>
+                        <v n="Fixed">false</v>
+                        <v n="Extensible">false</v>
+                      </o>
+                      <n n="InputFlags" />
+                      <l2 n="InputItems" cet="BoxTreeTerminator">
+                        <o>
+                          <n n="Input" />
+                          <o n="Flags" t="Flags">
+                            <v n="Flags">0</v>
+                            <v n="Fixed">false</v>
+                            <v n="Extensible">false</v>
+                          </o>
+                          <v n="Id">22L</v>
+                        </o>
+                      </l2>
+                      <o n="InputParam" t="ParamList">
+                        <l2 n="Names" cet="String">
+                          <v>EN</v>
+                        </l2>
+                        <l2 n="Types" cet="String">
+                          <v>BOOL</v>
+                        </l2>
+                      </o>
+                      <o n="OutputParam" t="ParamList">
+                        <l2 n="Names" cet="String">
+                          <v>ENO</v>
+                        </l2>
+                        <l2 n="Types" cet="String">
+                          <v>BOOL</v>
+                        </l2>
+                      </o>
+                      <v n="CallType" t="Operator">Action</v>
+                      <v n="EN">true</v>
+                      <v n="ENO">true</v>
+                      <n n="STSnippet" />
+                      <v n="ContainsExtensibleInputs">false</v>
+                      <v n="ProvidesSTSnippet">false</v>
+                      <v n="Id">20L</v>
+                    </o>
+                  </l2>
+                  <l2 n="Connectors" />
+                  <v n="Id">14L</v>
+                </o>
+              </l2>
+              <v n="BranchCounter">0</v>
+              <v n="ValidIds">true</v>
+            </o>
+          </Data>
+          <TypeList>
+            <Type n="Boolean">System.Boolean</Type>
+            <Type n="BoxTreeBox">{acfc6f68-8e3a-4af5-bf81-3dd512095a46}</Type>
+            <Type n="BoxTreeOperand">{9de7f100-1b87-424c-a62e-45b0cfc85ed2}</Type>
+            <Type n="BoxTreeTerminator">{5f9848d3-568d-4cc5-9e31-8e28e9607ff1}</Type>
+            <Type n="Flags">{668066f2-6069-46b3-8962-8db8d13d7db2}</Type>
+            <Type n="Int32">System.Int32</Type>
+            <Type n="Int64">System.Int64</Type>
+            <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
+            <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
+            <Type n="Operand">{c9b2f165-48a2-4a45-8326-3952d8a3d708}</Type>
+            <Type n="Operator">{bffb3c53-f105-4e85-aba2-e30df579d75f}</Type>
+            <Type n="OutputItemList">{f40d3e09-c02c-4522-a88c-dac23558cfc4}</Type>
+            <Type n="ParamList">{71496971-9e0c-4677-a832-b9583b571130}</Type>
+            <Type n="String">System.String</Type>
+          </TypeList>
+        </XmlArchive>
+      </NWL>
+    </Implementation>
+    <Action Name="actClearDiag" Id="{a604ee79-29e9-4188-ad60-31af404e8db1}">
+      <Implementation>
+        <ST><![CDATA[FOR i := 1 TO profibusDiag.maxNumDPSlaves DO
+	
+	//clear memory
+	profibusDiag.slaveDiag[i].currentState := 0;
+	profibusDiag.slaveDiag[i].historicalState := 0;
+	
+	//assign slave number
+	profibusDiag.slaveDiag[i].SlaveNumber := i;
+	
+	
+END_FOR]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="actDPSlaveDiag" Id="{c5c6f67f-2bb7-4887-a33c-c090b28b9205}">
+      <Implementation>
+        <ST><![CDATA[FOR i := 1 TO profibusDiag.maxNumDPSlaves DO
+	
+	//record outer box
+	//record previous state, latching 
+	IF profibusDiag.RawDPStateDiag[i] = 0 AND 
+	   profibusDiag.slaveDiag[i].currentState <> HMIColour.colourGreyBackground AND 
+	   profibusDiag.slaveDiag[i].historicalState = HMIColour.colourGreyBackground THEN
+		//at this time, record the current state in the historical state
+		profibusDiag.slaveDiag[i].historicalState := profibusDiag.slaveDiag[i].currentState;
+	END_IF
+	
+	//clear inner box when fault is resolved
+	IF profibusDiag.RawDPStateDiag[i] = 0 AND 
+	   HMIData.btnReset THEN
+	   profibusDiag.slaveDiag[i].historicalState := HMIColour.colourGreyBackground;
+	END_IF
+	
+	//from the profibus DPState word, colour the box
+	CASE profibusDiag.RawDPStateDiag[i] OF 
+    0	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourGreyBackground;
+			
+    1	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
+	2	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
+	3	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
+ 	4	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
+  	5	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
+  	6	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
+  	7	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
+ 	8	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
+ 	9	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
+ 	10	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
+  	11	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
+  	12	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
+ 	13	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
+ 	14	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
+ 	15	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
+	16	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
+	17	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
+	18	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
+	
+	31	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
+	
+	128	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
+	129	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
+	130	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
+	131	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
+	132	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
+					
+	
+ELSE 
+		//invalid state
+         profibusDiag.slaveDiag[i].currentState := HMIColour.colourPink;
+END_CASE;
+	
+	
+	
+END_FOR
+
+
+
+//taken from help file
+//USINT
+//0 = No error
+//1 = Station deactivated
+//2 = Station not exists
+//3 = Master lock
+//4 = Invalid slave response
+//5 = Parameter fault
+//6 = Not supported
+//7 = Config fault
+//8 = Station not ready
+//9 = Static diagnosis
+//10 = Diagnosis overflow
+//11 = Physical fault
+//12 = Data-Exchange left
+//13 = Severe bus fault
+//14 = Telegram fault
+//15 = Station has no ressources
+//16 = Service not activated
+//17 = Unexpected telegram
+//18 = Station ready
+//31 = only for EtherCAT gateways: WC-State of cyclic EtherCAT frame is 1
+//128 = slave, waiting for data transfer (or DP-Master in CLEAR-Mode)
+//129	= slave, waiting for configuration
+//130	= slave, waiting for parameter
+//131	= slave, waiting for baudrate
+//132	= slave, waiting for station no. from PLC
+]]></ST>
+      </Implementation>
+    </Action>
+    <LineIds Name="pouDPDiag.actClearDiag">
+      <LineId Id="1" Count="1" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="11" Count="1" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="3" Count="0" />
+    </LineIds>
+    <LineIds Name="pouDPDiag.actDPSlaveDiag">
+      <LineId Id="2" Count="1" />
+      <LineId Id="111" Count="0" />
+      <LineId Id="99" Count="1" />
+      <LineId Id="104" Count="1" />
+      <LineId Id="101" Count="0" />
+      <LineId Id="103" Count="0" />
+      <LineId Id="102" Count="0" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="112" Count="0" />
+      <LineId Id="106" Count="1" />
+      <LineId Id="110" Count="0" />
+      <LineId Id="109" Count="0" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="115" Count="0" />
+      <LineId Id="61" Count="1" />
+      <LineId Id="73" Count="0" />
+      <LineId Id="65" Count="0" />
+      <LineId Id="74" Count="11" />
+      <LineId Id="66" Count="1" />
+      <LineId Id="86" Count="3" />
+      <LineId Id="92" Count="2" />
+      <LineId Id="91" Count="0" />
+      <LineId Id="95" Count="3" />
+      <LineId Id="69" Count="1" />
+      <LineId Id="90" Count="0" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="57" Count="3" />
+      <LineId Id="1" Count="0" />
+      <LineId Id="13" Count="1" />
+      <LineId Id="116" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="15" Count="25" />
+      <LineId Id="12" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

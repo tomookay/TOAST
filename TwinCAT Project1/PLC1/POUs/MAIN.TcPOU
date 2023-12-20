@@ -24,6 +24,8 @@ actInit();
 //call clock memory
 actClockMemory();
 
+//call all diagnostics
+actDiag();
 
 //call base machine
 
@@ -440,6 +442,13 @@ pouStation6();
             </TypeList>
           </XmlArchive>
         </NWL>
+      </Implementation>
+    </Action>
+    <Action Name="actDiag" Id="{64b32e1c-14ce-4e5e-ba1b-93c63e0d0e72}">
+      <Implementation>
+        <ST><![CDATA[//call diag blocks
+pouDPDiag();
+]]></ST>
       </Implementation>
     </Action>
     <Action Name="actInit" Id="{647dce60-d775-41b1-a8f3-8b905b314130}">
@@ -2517,7 +2526,10 @@ pouStation6();
       <LineId Id="62" Count="0" />
       <LineId Id="72" Count="0" />
       <LineId Id="71" Count="0" />
-      <LineId Id="73" Count="1" />
+      <LineId Id="73" Count="0" />
+      <LineId Id="87" Count="0" />
+      <LineId Id="74" Count="0" />
+      <LineId Id="88" Count="0" />
       <LineId Id="57" Count="0" />
       <LineId Id="2" Count="0" />
       <LineId Id="41" Count="0" />
@@ -2538,6 +2550,9 @@ pouStation6();
       <LineId Id="37" Count="0" />
       <LineId Id="36" Count="0" />
       <LineId Id="14" Count="0" />
+    </LineIds>
+    <LineIds Name="MAIN.actDiag">
+      <LineId Id="1" Count="2" />
     </LineIds>
   </POU>
 </TcPlcObject>
