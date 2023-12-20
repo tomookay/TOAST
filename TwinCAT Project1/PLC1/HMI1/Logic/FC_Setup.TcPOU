@@ -8,7 +8,12 @@ VAR
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//setup machine
+      <ST><![CDATA[//READ ME FIRST////////////////////////////
+///////////////////////////////////////////
+//For a given machine, enable the stationEnables below for the presence of a station
+//If a stationEnable is FALSE, then the related allowX below are not used
+
+//setup machine
 System.gSetup.stationEnable[1] := TRUE; //TRUE if station is present
 System.gSetup.stationEnable[2] := TRUE; //FALSE if the station does not exist on this machine
 System.gSetup.stationEnable[3] := TRUE;
@@ -134,6 +139,9 @@ System.gSetup.stationFunctions[6].allowEnablePendent := TRUE;
 ]]></ST>
     </Implementation>
     <LineIds Name="FC_Setup">
+      <LineId Id="154" Count="0" />
+      <LineId Id="156" Count="2" />
+      <LineId Id="155" Count="0" />
       <LineId Id="7" Count="5" />
       <LineId Id="14" Count="0" />
       <LineId Id="148" Count="0" />
