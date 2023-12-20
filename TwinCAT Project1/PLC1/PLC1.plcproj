@@ -260,6 +260,16 @@
     <Compile Include="HMI1\Logic\prgShowButtons.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="HMI1\Screens\Diagnostic\EtherCAT\etherCATdiag.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="HMI1\Screens\Diagnostic\EtherCAT\pouEtherCATdiag.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HMI1\Screens\Diagnostic\EtherCAT\typeEtherCATIndicator.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="HMI1\Screens\Diagnostic\Profibus\diagDPSlave.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
@@ -274,6 +284,9 @@
     <Compile Include="HMI1\Screens\Diagnostic\Profibus\profibusDiag.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="HMI1\Screens\Diagnostic\Profibus\profibusImages.TcIPO">
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="HMI1\Screens\Diagnostic\Profibus\typeDPSlaveIndicator.TcDUT">
       <SubType>Code</SubType>
@@ -1402,6 +1415,7 @@
     <Folder Include="DUTs\Screen" />
     <Folder Include="GVLs" />
     <Folder Include="HMI1\Logic" />
+    <Folder Include="HMI1\Screens\Diagnostic\EtherCAT" />
     <Folder Include="HMI1\Screens\Diagnostic\Profibus" />
     <Folder Include="HMI1\Screens\Dialogs" />
     <Folder Include="HMI1\Screens\Diagnostic" />

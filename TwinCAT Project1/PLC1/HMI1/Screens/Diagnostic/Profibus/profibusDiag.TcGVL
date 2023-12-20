@@ -9,7 +9,7 @@ VAR_GLOBAL
 	//consider multi-master system from S7-300/400 systems
 	
 	//all slaves
-	slaveDiag: ARRAY[1..maxNumDPSlaves] OF typeDPSlaveIndicator;
+	DPslaveDiag: ARRAY[1..maxNumDPSlaves] OF typeDPSlaveIndicator;
 
 	//assign to mapped IO for DPstate
 	RawDPStateDiag: ARRAY[1..maxNumDPSlaves] OF USINT;

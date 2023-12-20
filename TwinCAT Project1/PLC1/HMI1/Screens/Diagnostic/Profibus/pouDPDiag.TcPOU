@@ -241,11 +241,11 @@ END_VAR
         <ST><![CDATA[FOR i := 1 TO profibusDiag.maxNumDPSlaves DO
 	
 	//clear memory
-	profibusDiag.slaveDiag[i].currentState := 0;
-	profibusDiag.slaveDiag[i].historicalState := 0;
+	profibusDiag.DPslaveDiag[i].currentState := 0;
+	profibusDiag.DPslaveDiag[i].historicalState := 0;
 	
 	//assign slave number
-	profibusDiag.slaveDiag[i].SlaveNumber := i;
+	profibusDiag.DPslaveDiag[i].SlaveNumber := i;
 	
 	
 END_FOR]]></ST>
@@ -258,53 +258,53 @@ END_FOR]]></ST>
 	//record outer box
 	//record previous state, latching 
 	IF profibusDiag.RawDPStateDiag[i] = 0 AND 
-	   profibusDiag.slaveDiag[i].currentState <> HMIColour.colourGreyBackground AND 
-	   profibusDiag.slaveDiag[i].historicalState = HMIColour.colourGreyBackground THEN
+	   profibusDiag.DPslaveDiag[i].currentState <> HMIColour.colourGreyBackground AND 
+	   profibusDiag.DPslaveDiag[i].historicalState = HMIColour.colourGreyBackground THEN
 		//at this time, record the current state in the historical state
-		profibusDiag.slaveDiag[i].historicalState := profibusDiag.slaveDiag[i].currentState;
+		profibusDiag.DPslaveDiag[i].historicalState := profibusDiag.DPslaveDiag[i].currentState;
 	END_IF
 	
 	//clear inner box when fault is resolved
 	IF profibusDiag.RawDPStateDiag[i] = 0 AND 
 	   HMIData.btnReset THEN
-	   profibusDiag.slaveDiag[i].historicalState := HMIColour.colourGreyBackground;
+	   profibusDiag.DPslaveDiag[i].historicalState := HMIColour.colourGreyBackground;
 	END_IF
 	
 	//from the profibus DPState word, colour the box
 	CASE profibusDiag.RawDPStateDiag[i] OF 
-    0	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourGreyBackground;
+    0	: 	profibusDiag.DPslaveDiag[i].currentState := HMIColour.colourGreyBackground;
 			
-    1	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
-	2	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
-	3	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
- 	4	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
-  	5	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
-  	6	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
-  	7	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
- 	8	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
- 	9	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
- 	10	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
-  	11	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
-  	12	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
- 	13	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
- 	14	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
- 	15	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
-	16	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
-	17	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
-	18	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
+    1	: 	profibusDiag.DPslaveDiag[i].currentState := HMIColour.colourRed;
+	2	: 	profibusDiag.DPslaveDiag[i].currentState := HMIColour.colourRed;
+	3	: 	profibusDiag.DPslaveDiag[i].currentState := HMIColour.colourRed;
+ 	4	: 	profibusDiag.DPslaveDiag[i].currentState := HMIColour.colourRed;
+  	5	: 	profibusDiag.DPslaveDiag[i].currentState := HMIColour.colourRed;
+  	6	: 	profibusDiag.DPslaveDiag[i].currentState := HMIColour.colourRed;
+  	7	: 	profibusDiag.DPslaveDiag[i].currentState := HMIColour.colourRed;
+ 	8	: 	profibusDiag.DPslaveDiag[i].currentState := HMIColour.colourRed;
+ 	9	: 	profibusDiag.DPslaveDiag[i].currentState := HMIColour.colourRed;
+ 	10	: 	profibusDiag.DPslaveDiag[i].currentState := HMIColour.colourRed;
+  	11	: 	profibusDiag.DPslaveDiag[i].currentState := HMIColour.colourRed;
+  	12	: 	profibusDiag.DPslaveDiag[i].currentState := HMIColour.colourRed;
+ 	13	: 	profibusDiag.DPslaveDiag[i].currentState := HMIColour.colourRed;
+ 	14	: 	profibusDiag.DPslaveDiag[i].currentState := HMIColour.colourRed;
+ 	15	: 	profibusDiag.DPslaveDiag[i].currentState := HMIColour.colourRed;
+	16	: 	profibusDiag.DPslaveDiag[i].currentState := HMIColour.colourRed;
+	17	: 	profibusDiag.DPslaveDiag[i].currentState := HMIColour.colourRed;
+	18	: 	profibusDiag.DPslaveDiag[i].currentState := HMIColour.colourRed;
 	
-	31	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
+	31	: 	profibusDiag.DPslaveDiag[i].currentState := HMIColour.colourRed;
 	
-	128	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
-	129	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
-	130	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
-	131	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
-	132	: 	profibusDiag.slaveDiag[i].currentState := HMIColour.colourRed;
+	128	: 	profibusDiag.DPslaveDiag[i].currentState := HMIColour.colourRed;
+	129	: 	profibusDiag.DPslaveDiag[i].currentState := HMIColour.colourRed;
+	130	: 	profibusDiag.DPslaveDiag[i].currentState := HMIColour.colourRed;
+	131	: 	profibusDiag.DPslaveDiag[i].currentState := HMIColour.colourRed;
+	132	: 	profibusDiag.DPslaveDiag[i].currentState := HMIColour.colourRed;
 					
 	
 ELSE 
 		//invalid state
-         profibusDiag.slaveDiag[i].currentState := HMIColour.colourPink;
+         profibusDiag.DPslaveDiag[i].currentState := HMIColour.colourPink;
 END_CASE;
 	
 	
@@ -344,14 +344,7 @@ END_FOR
       </Implementation>
     </Action>
     <LineIds Name="pouDPDiag.actClearDiag">
-      <LineId Id="1" Count="1" />
-      <LineId Id="10" Count="0" />
-      <LineId Id="9" Count="0" />
-      <LineId Id="5" Count="0" />
-      <LineId Id="7" Count="0" />
-      <LineId Id="11" Count="1" />
-      <LineId Id="8" Count="0" />
-      <LineId Id="6" Count="0" />
+      <LineId Id="13" Count="9" />
       <LineId Id="3" Count="0" />
     </LineIds>
     <LineIds Name="pouDPDiag.actDPSlaveDiag">
