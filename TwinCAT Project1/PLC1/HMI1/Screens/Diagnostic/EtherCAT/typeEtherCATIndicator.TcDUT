@@ -3,8 +3,8 @@
   <DUT Name="typeEtherCATIndicator" Id="{fa6db9c8-cffe-4a9c-8a4b-c327562b8cec}">
     <Declaration><![CDATA[TYPE typeEtherCATIndicator :
 STRUCT
-	currentState:DWORD; //inside colour
-	historicalState:DWORD; //outside colour
+	currentState:typeEtherCATState; //inside colour
+	historicalState:typeEtherCATState; //outside colour
 	SlaveNumber:UINT; //slave number 1-65535
 END_STRUCT
 END_TYPE
