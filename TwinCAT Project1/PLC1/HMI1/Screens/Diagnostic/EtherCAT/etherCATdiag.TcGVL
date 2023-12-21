@@ -14,29 +14,8 @@ END_VAR
 
 
 
-//UINT
-//0x___1 = Slave in 'INIT' state
-//0x___2 = Slave in 'PREOP' state
-//0x___3 = Slave in 'BOOT' state
-//0x___4 = Slave in 'SAFEOP' state
-//0x___8 = Slave in 'OP' state
-//0x001_ = Slave signals error
-//0x002_ = Invalid vendorId, productCode... read
-//0x004_ = Initialization error occurred
-//0x008_ = Slave disabled
-//0x010_ = Slave not present
-//0x020_ = Slave signals link error
-//0x040_ = Slave signals missing link
-//0x080_ = Slave signals unexpected link
-//0x100_ = Communication port A
-//0x200_ = Communication port B
-//0x400_ = Communication port C
-//0x800_ = Communication port D
-
-
-
 VAR_GLOBAL CONSTANT
-	maxNumEtherCATSlaves: UINT := 65535;
+	maxNumEtherCATSlaves: UINT := 65535; //redim? on scan of programmed ethercat slaves (FB)
 END_VAR
 ]]></Declaration>
   </GVL>

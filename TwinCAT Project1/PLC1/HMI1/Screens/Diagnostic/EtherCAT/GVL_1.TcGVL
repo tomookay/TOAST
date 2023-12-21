@@ -1,19 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <DUT Name="typeEtherCATState" Id="{664d9b35-bbb5-48a5-8c1a-cacd73768969}">
-    <Declaration><![CDATA[TYPE typeEtherCATState :
-STRUCT
-	//suffix code
-	//0x___1 = Slave in 'INIT' state
-	//0x___2 = Slave in 'PREOP' state
-	//0x___3 = Slave in 'BOOT' state
-	//0x___4 = Slave in 'SAFEOP' state
-	//0x___8 = Slave in 'OP' state
-	state:EtherCATstate;
+  <GVL Name="GVL_1" Id="{6eb3d7a9-991c-490d-9584-1ee7ba891262}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+END_VAR
 
-	
-	
-	//prefix code
+
+TYPE EtherCATSuffix :
 	//0x001_ = Slave signals error
 	//0x002_ = Invalid vendorId, productCode... read
 	//0x004_ = Initialization error occurred
@@ -26,14 +19,23 @@ STRUCT
 	//0x200_ = Communication port B
 	//0x400_ = Communication port C
 	//0x800_ = Communication port D
-	suffix:EtherCATSuffix;
+(
+	NoState := 0,
+    SSError := 1,
+    InvalidVendor := 2,
+    InitError := 3,
+    SlaveDisabled := 4,
+    SlaveNotPresent := 8,
+	SlaveSignalsLinkError := 20,
+	SlaveSignalsMissingLink := 40,
+	SlaveSignalsUnExpectLink := 80,
+	CommsPortA := 100,
+	CommsPortB := 200,
+	CommsPortC := 300,
+	CommsPortD := 400
+) UINT;
+END_TYPE	
 	
-	isFault:BOOL; //TRUE if either state is not 8 and code exists
-	colour:DWORD; //colour state
-	
-
-END_STRUCT
-END_TYPE
-]]></Declaration>
-  </DUT>
+	]]></Declaration>
+  </GVL>
 </TcPlcObject>

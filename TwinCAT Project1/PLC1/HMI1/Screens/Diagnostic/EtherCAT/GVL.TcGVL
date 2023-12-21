@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="GVL" Id="{fd6d7297-062a-469e-acd2-3518bf8cc46f}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	
+END_VAR
+
+TYPE EtherCATstate :
+	//0x___1 = Slave in 'INIT' state
+	//0x___2 = Slave in 'PREOP' state
+	//0x___3 = Slave in 'BOOT' state
+	//0x___4 = Slave in 'SAFEOP' state
+	//0x___8 = Slave in 'OP' state
+(
+    INIT := 1,
+    PREOP := 2,
+    BOOT := 3,
+    SAFEOP := 4,
+    OP := 8
+) UINT;
+END_TYPE
+
+
+
+	
+
+]]></Declaration>
+  </GVL>
+</TcPlcObject>
