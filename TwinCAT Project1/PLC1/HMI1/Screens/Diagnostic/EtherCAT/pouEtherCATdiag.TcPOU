@@ -8,6 +8,8 @@ VAR
 	tmask: WORD;
 	state: UINT;
 	i: UINT;
+	decode:fb_decodeEtherCAT;
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -121,8 +123,14 @@ END_VAR
     </Implementation>
     <Action Name="actEtherCATSlaveDiag" Id="{ad26e273-933b-4a92-8e3a-4cf2719bddff}">
       <Implementation>
-        <ST><![CDATA[FOR i := 1 TO etherCATdiag.maxNumEtherCATSlaves DO
+        <ST><![CDATA[FOR i := 1 TO  etherCATdiag.maxNumEtherCATSlaves DO //
 	
+//move temp data from scan to temp declarations
+decode(iVal:=etherCATdiag.RawEtherCATStateDiag[i]);
+etherCATdiag.EtherCATslaveDiag[i].currentState.state := decode.state;
+etherCATdiag.EtherCATslaveDiag[i].currentState.suffix := decode.suffix;
+
+
 	//check values for fault
 	//current state
 	IF etherCATdiag.EtherCATslaveDiag[i].currentState.state <> EtherCATstate.OP  OR //EtherCATstate.OP 
@@ -190,6 +198,11 @@ END_FOR
     <LineIds Name="pouEtherCATdiag.actEtherCATSlaveDiag">
       <LineId Id="90" Count="0" />
       <LineId Id="3" Count="0" />
+      <LineId Id="158" Count="0" />
+      <LineId Id="162" Count="0" />
+      <LineId Id="164" Count="1" />
+      <LineId Id="161" Count="0" />
+      <LineId Id="157" Count="0" />
       <LineId Id="93" Count="0" />
       <LineId Id="102" Count="0" />
       <LineId Id="95" Count="1" />
