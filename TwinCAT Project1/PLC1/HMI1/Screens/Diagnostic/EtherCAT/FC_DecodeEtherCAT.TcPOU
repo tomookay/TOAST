@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FC_DecodeEtherCAT" Id="{1c68aa0c-3be1-4d27-886b-6921ccf1a3da}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FC_DecodeEtherCAT
+VAR_INPUT
+	iVal: WORD; //status word from ethercat diag
+END_VAR
+VAR_OUTPUT
+	state:EtherCATstate;
+	suffix:EtherCATSuffix;
+END_VAR
+VAR
+	tSuffix: UINT;
+	tState: UINT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[///EtherCAT state decoding
+
+//0x___1 = Slave in 'INIT' state
+//0x___2 = Slave in 'PREOP' state
+//0x___3 = Slave in 'BOOT' state
+//0x___4 = Slave in 'SAFEOP' state
+//0x___8 = Slave in 'OP' state
+
+tState := iVal AND 16#000F;
+
+	//from the control word, colour the box
+	CASE tState OF 
+ 		16#0001 : state := EtherCATstate.INIT;		// Slave in 'INIT' state
+		16#0002 : state := EtherCATstate.PREOP;		// Slave in 'PREOP' state
+		16#0003 : state := EtherCATstate.BOOT;		//	Slave in 'BOOT' state
+		16#0004 : state := EtherCATstate.SAFEOP;	// Slave in 'SAFEOP' state
+		16#0008 : state := EtherCATstate.OP;		//	Slave in 'OP' state	: 	profibusDiag.DPslaveDiag[i].currentState := HMIColour.colourRed;
+			
+	ELSE 
+			//invalid state
+			state:= 99;
+	END_CASE;
+		
+	//move state into correct area
+	//etherCATdiag.ethercatdiagtest.currentState.state := state;
+ 
+	//0x001_ = Slave signals error
+	//0x002_ = Invalid vendorId, productCode... read
+	//0x004_ = Initialization error occurred
+	//0x008_ = Slave disabled
+	//0x010_ = Slave not present
+	//0x020_ = Slave signals link error
+	//0x040_ = Slave signals missing link
+	//0x080_ = Slave signals unexpected link
+	//0x100_ = Communication port A
+	//0x200_ = Communication port B
+	//0x400_ = Communication port C
+	//0x800_ = Communication port D
+
+
+tSuffix := iVal AND 16#FFF0;
+	//from the control word, colour the box
+	CASE suffix OF 
+		16#001 : suffix := EtherCATSuffix.SSError;					//Slave signals error
+		16#002 : suffix := EtherCATSuffix.InvalidVendor;				//Invalid vendorId, productCode... read
+		16#008 : suffix := EtherCATSuffix.SlaveDisabled;				//Slave disabled
+		16#010 : suffix := EtherCATSuffix.SlaveNotPresent;			//Slave NOT present
+		16#020 : suffix := EtherCATSuffix.SlaveSignalsLinkError;		//Slave signals link error
+		16#040 : suffix := EtherCATSuffix.SlaveSignalsMissingLink;	//Slave signals missing link
+		16#080 : suffix := EtherCATSuffix.SlaveSignalsUnExpectLink;	//Slave signals unexpected link
+		16#100 : suffix := EtherCATSuffix.CommsPortA;				//Communication port A
+		16#200 : suffix := EtherCATSuffix.CommsPortB;				//Communication port B
+		16#400 : suffix := EtherCATSuffix.CommsPortC;				//Communication port C
+		16#800 : suffix := EtherCATSuffix.CommsPortD;				//Communication port D	
+	ELSE 
+			//invalid state
+			state:= 99;
+	END_CASE;
+
+
+	//move state into correct area
+	//etherCATdiag.ethercatdiagtest.currentState.suffix := state;
+ 
+
+
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="FC_DecodeEtherCAT">
+      <LineId Id="178" Count="65" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

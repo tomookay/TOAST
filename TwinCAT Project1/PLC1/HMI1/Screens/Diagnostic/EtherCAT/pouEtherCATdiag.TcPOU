@@ -23,84 +23,6 @@ END_VAR
                   <v n="FBDValid">false</v>
                   <v n="ILValid">false</v>
                   <l2 n="ILLines" />
-                  <v n="Comment">"decode raw data from EtherCAT state array"</v>
-                  <v n="Title">""</v>
-                  <v n="Label">""</v>
-                  <v n="OutCommented">false</v>
-                  <l2 n="NetworkItems" cet="BoxTreeBox">
-                    <o>
-                      <v n="BoxType">"actDecode"</v>
-                      <o n="Instance" t="Operand">
-                        <n n="Operand" />
-                        <v n="Type">""</v>
-                        <v n="Comment">""</v>
-                        <v n="SymbolComment">""</v>
-                        <v n="Address">""</v>
-                        <o n="Flags" t="Flags">
-                          <v n="Flags">0</v>
-                          <v n="Fixed">false</v>
-                          <v n="Extensible">false</v>
-                        </o>
-                        <v n="LValue">false</v>
-                        <v n="Boolean">false</v>
-                        <v n="IsInstance">true</v>
-                        <v n="Id">35L</v>
-                      </o>
-                      <o n="OutputItems" t="OutputItemList">
-                        <l2 n="OutputItems">
-                          <n />
-                        </l2>
-                      </o>
-                      <o n="Flags" t="Flags">
-                        <v n="Flags">0</v>
-                        <v n="Fixed">true</v>
-                        <v n="Extensible">false</v>
-                      </o>
-                      <n n="InputFlags" />
-                      <l2 n="InputItems" cet="BoxTreeTerminator">
-                        <o>
-                          <n n="Input" />
-                          <o n="Flags" t="Flags">
-                            <v n="Flags">0</v>
-                            <v n="Fixed">false</v>
-                            <v n="Extensible">false</v>
-                          </o>
-                          <v n="Id">37L</v>
-                        </o>
-                      </l2>
-                      <o n="InputParam" t="ParamList">
-                        <l2 n="Names" cet="String">
-                          <v>EN</v>
-                        </l2>
-                        <l2 n="Types" cet="String">
-                          <v>BOOL</v>
-                        </l2>
-                      </o>
-                      <o n="OutputParam" t="ParamList">
-                        <l2 n="Names" cet="String">
-                          <v>ENO</v>
-                        </l2>
-                        <l2 n="Types" cet="String">
-                          <v>BOOL</v>
-                        </l2>
-                      </o>
-                      <v n="CallType" t="Operator">Action</v>
-                      <v n="EN">true</v>
-                      <v n="ENO">true</v>
-                      <n n="STSnippet" />
-                      <v n="ContainsExtensibleInputs">false</v>
-                      <v n="ProvidesSTSnippet">false</v>
-                      <v n="Id">36L</v>
-                    </o>
-                  </l2>
-                  <l2 n="Connectors" />
-                  <v n="Id">34L</v>
-                </o>
-                <o>
-                  <v n="ILActive">false</v>
-                  <v n="FBDValid">false</v>
-                  <v n="ILValid">false</v>
-                  <l2 n="ILLines" />
                   <v n="Comment">""</v>
                   <v n="Title">""</v>
                   <v n="Label">""</v>
@@ -197,85 +119,14 @@ END_VAR
         </XmlArchive>
       </NWL>
     </Implementation>
-    <Action Name="actDecode" Id="{f7267f8b-08d5-4b9b-952d-81dcefa7c961}">
-      <Implementation>
-        <ST><![CDATA[///EtherCAT state decoding
-
-//0x___1 = Slave in 'INIT' state
-//0x___2 = Slave in 'PREOP' state
-//0x___3 = Slave in 'BOOT' state
-//0x___4 = Slave in 'SAFEOP' state
-//0x___8 = Slave in 'OP' state
-
-tVal := iVal AND 16#000F;
-
-	//from the control word, colour the box
-	CASE tVal OF 
- 		16#0001 : state := 1;// Slave in 'INIT' state
-		16#0002 : state := 2;// Slave in 'PREOP' state
-		16#0003 : state := 3;//	Slave in 'BOOT' state
-		16#0004 : state := 4;// Slave in 'SAFEOP' state
-		16#0008 : state := 5;//	Slave in 'OP' state	: 	profibusDiag.DPslaveDiag[i].currentState := HMIColour.colourRed;
-			
-	ELSE 
-			//invalid state
-			state:= 99;
-	END_CASE;
-		
-	//move state into correct area
-	etherCATdiag.ethercatdiagtest.currentState.state := state;
- 
-	//0x001_ = Slave signals error
-	//0x002_ = Invalid vendorId, productCode... read
-	//0x004_ = Initialization error occurred
-	//0x008_ = Slave disabled
-	//0x010_ = Slave not present
-	//0x020_ = Slave signals link error
-	//0x040_ = Slave signals missing link
-	//0x080_ = Slave signals unexpected link
-	//0x100_ = Communication port A
-	//0x200_ = Communication port B
-	//0x400_ = Communication port C
-	//0x800_ = Communication port D
-
-
-tVal := iVal AND 16#FFF0;
-	//from the control word, colour the box
-	CASE tVal OF 
-		16#001 : state := 1;		//Slave signals error
-		16#002 : state := 2;		//Invalid vendorId, productCode... read
-		16#008 : state := 3;		//Slave disabled
-		16#010 : state := 4;		//Slave NOT present
-		16#020 : state := 5;		//Slave signals link error
-		16#040 : state := 6;		//Slave signals missing link
-		16#080 : state := 7;		//Slave signals unexpected link
-		16#100 : state := 8;		//Communication port A
-		16#200 : state := 9;		//Communication port B
-		16#400 : state := 10;		//Communication port C
-		16#800 : state := 11;		//Communication port D	
-	ELSE 
-			//invalid state
-			state:= 99;
-	END_CASE;
-
-
-	//move state into correct area
-	etherCATdiag.ethercatdiagtest.currentState.suffix := state;
- 
-
-
-
-]]></ST>
-      </Implementation>
-    </Action>
     <Action Name="actEtherCATSlaveDiag" Id="{ad26e273-933b-4a92-8e3a-4cf2719bddff}">
       <Implementation>
         <ST><![CDATA[FOR i := 1 TO etherCATdiag.maxNumEtherCATSlaves DO
 	
 	//check values for fault
 	//current state
-	IF etherCATdiag.EtherCATslaveDiag[i].currentState.state <> EtherCATstate.OP OR
-		etherCATdiag.EtherCATslaveDiag[i].currentState.suffix <> EtherCATSuffix.NoState THEN
+	IF etherCATdiag.EtherCATslaveDiag[i].currentState.state <> EtherCATstate.OP  OR //EtherCATstate.OP 
+		etherCATdiag.EtherCATslaveDiag[i].currentState.suffix <> EtherCATSuffix.NoState THEN //EtherCATSuffix.NoState
 		etherCATdiag.EtherCATslaveDiag[i].currentState.isFault := TRUE;
 		ELSE
 		etherCATdiag.EtherCATslaveDiag[i].currentState.isFault := FALSE;	
@@ -299,7 +150,7 @@ tVal := iVal AND 16#FFF0;
 	
 	
 			//check if any suffix fault exits
-			IF etherCATdiag.EtherCATslaveDiag[i].currentState.suffix THEN
+			IF etherCATdiag.EtherCATslaveDiag[i].currentState.suffix > 1 THEN
 				
 				//check suffix
 				CASE etherCATdiag.EtherCATslaveDiag[i].currentState.suffix OF 
@@ -336,29 +187,6 @@ END_FOR
 ]]></ST>
       </Implementation>
     </Action>
-    <LineIds Name="pouEtherCATdiag.actDecode">
-      <LineId Id="1" Count="0" />
-      <LineId Id="3" Count="4" />
-      <LineId Id="2" Count="0" />
-      <LineId Id="9" Count="0" />
-      <LineId Id="8" Count="0" />
-      <LineId Id="70" Count="12" />
-      <LineId Id="69" Count="0" />
-      <LineId Id="109" Count="1" />
-      <LineId Id="11" Count="12" />
-      <LineId Id="111" Count="1" />
-      <LineId Id="84" Count="0" />
-      <LineId Id="87" Count="1" />
-      <LineId Id="98" Count="1" />
-      <LineId Id="101" Count="7" />
-      <LineId Id="94" Count="3" />
-      <LineId Id="85" Count="1" />
-      <LineId Id="83" Count="0" />
-      <LineId Id="113" Count="1" />
-      <LineId Id="10" Count="0" />
-      <LineId Id="26" Count="2" />
-      <LineId Id="25" Count="0" />
-    </LineIds>
     <LineIds Name="pouEtherCATdiag.actEtherCATSlaveDiag">
       <LineId Id="90" Count="0" />
       <LineId Id="3" Count="0" />
