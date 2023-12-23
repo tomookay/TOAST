@@ -7,7 +7,10 @@ STRUCT
 	historicalState:typeEtherCATState; //outside colour
 	SlaveNumber:UINT; //slave number 1-65535
 	isPresent: BOOL; //TRUE if node is present in config
-
+	
+	//extra diagnostics
+	ConfigData:ST_EcSlaveConfigData;
+	crcCount:ST_EcCrcError;
 END_STRUCT
 END_TYPE
 ]]></Declaration>
