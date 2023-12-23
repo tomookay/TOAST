@@ -9,13 +9,17 @@ VAR_GLOBAL
 
 	//assign to mapped IO for DPstate
 	RawEtherCATStateDiag: ARRAY[1..maxNumEtherCATSlaves] OF WORD;
+	
+	//viewable on the screen
+	diagScreen: ARRAY[1..128] OF typeEtherCATIndicator;
+
 
 END_VAR
 
 
 
 VAR_GLOBAL CONSTANT
-	maxNumEtherCATSlaves: UINT := 10; //redim? on scan of programmed ethercat slaves (FB) 65535
+	maxNumEtherCATSlaves: UINT := 2; //redim? on scan of programmed ethercat slaves (FB) 65535
 END_VAR
 ]]></Declaration>
   </GVL>
