@@ -58,17 +58,17 @@ tState := iVal AND 16#000F;
 tSuffix := iVal AND 16#FFF0;
 	//from the control word, colour the box
 	CASE tsuffix OF 
-		16#0010 : suffix := EtherCATSuffix.SSError;					//Slave signals error
-		16#0020 : suffix := EtherCATSuffix.InvalidVendor;				//Invalid vendorId, productCode... read
-		16#0080 : suffix := EtherCATSuffix.SlaveDisabled;				//Slave disabled
-		16#0100 : suffix := EtherCATSuffix.SlaveNotPresent;			//Slave NOT present
-		16#0200 : suffix := EtherCATSuffix.SlaveSignalsLinkError;		//Slave signals link error
-		16#0400 : suffix := EtherCATSuffix.SlaveSignalsMissingLink;	//Slave signals missing link
-		16#0800 : suffix := EtherCATSuffix.SlaveSignalsUnExpectLink;	//Slave signals unexpected link
-		16#1000 : suffix := EtherCATSuffix.CommsPortA;				//Communication port A
-		16#2000 : suffix := EtherCATSuffix.CommsPortB;				//Communication port B
-		16#4000 : suffix := EtherCATSuffix.CommsPortC;				//Communication port C
-		16#8000 : suffix := EtherCATSuffix.CommsPortD;				//Communication port D	
+		16#0010 : suffix := EtherCATSuffix.SlaveSignalsError;				//Slave signals error
+		16#0020 : suffix := EtherCATSuffix.InvalidVendor;					//Invalid vendorId, productCode... read
+		16#0080 : suffix := EtherCATSuffix.SlaveDisabled;					//Slave disabled
+		16#0100 : suffix := EtherCATSuffix.SlaveNotPresent;					//Slave NOT present
+		16#0200 : suffix := EtherCATSuffix.SlaveSignalsLinkError;			//Slave signals link error
+		16#0400 : suffix := EtherCATSuffix.SlaveSignalsMissingLink;			//Slave signals missing link
+		16#0800 : suffix := EtherCATSuffix.SlaveSignalsUnExpectLink;		//Slave signals unexpected link
+		16#1000 : suffix := EtherCATSuffix.CommsPortA;						//Communication port A
+		16#2000 : suffix := EtherCATSuffix.CommsPortB;						//Communication port B
+		16#4000 : suffix := EtherCATSuffix.CommsPortC;						//Communication port C
+		16#8000 : suffix := EtherCATSuffix.CommsPortD;						//Communication port D	
 	ELSE 
 			//invalid state
 	//		state:= 99;

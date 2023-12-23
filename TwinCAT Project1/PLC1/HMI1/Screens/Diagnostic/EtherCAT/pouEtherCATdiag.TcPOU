@@ -162,7 +162,7 @@ etherCATdiag.EtherCATslaveDiag[i].currentState.suffix := decode.suffix;
 				
 				//check suffix
 				CASE etherCATdiag.EtherCATslaveDiag[i].currentState.suffix OF 
-				EtherCATSuffix.SSError						: 	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
+				EtherCATSuffix.SlaveSignalsError					: 	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
 				EtherCATSuffix.InvalidVendor				: 	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
 				EtherCATSuffix.InitError 					: 	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
 				EtherCATSuffix.SlaveDisabled				:	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
