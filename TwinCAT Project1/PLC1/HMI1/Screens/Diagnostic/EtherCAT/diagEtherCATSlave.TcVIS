@@ -534,22 +534,19 @@
                 <n n="VisualElementFrameInformation" />
                 <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
                   <v>OnMouseClick</v>
-                  <a cet="InputOpenDialogAction">
-                    <o>
+                  <a et="IInputAction">
+                    <o t="InputOpenDialogAction">
                       <n n="Dialog" />
                       <v n="Dialog33">"diagEtherCATSlaveDetail"</v>
-                      <d n="Parameters" t="Hashtable" ckt="String" cvt="String">
-                        <v>dataValues</v>
-                        <v>dataValues</v>
-                      </d>
-                      <d n="Selected" t="Hashtable" ckt="Int32">
-                        <v>0</v>
-                        <n />
-                      </d>
+                      <d n="Parameters" t="Hashtable" />
+                      <d n="Selected" t="Hashtable" />
                       <v n="OpenModal">false</v>
                       <v n="OpenCentered">true</v>
                       <v n="PositionX">""</v>
                       <v n="PositionY">""</v>
+                    </o>
+                    <o t="STSnippetInputAction">
+                      <v n="STSnippet">"etherCATdiag.detailDiag.SlaveNumber := datavalues.SlaveNumber;"</v>
                     </o>
                   </a>
                 </d>
@@ -772,6 +769,7 @@
         <Type n="Guid">System.Guid</Type>
         <Type n="Hashtable">System.Collections.Hashtable</Type>
         <Type n="HotkeyConfiguration">{6b108d46-58af-4e41-a3f4-174d8f160cc4}</Type>
+        <Type n="IInputAction">{69265815-ba9d-4bec-bfcb-427fb9172844}</Type>
         <Type n="IInputAction[]">_3S.CoDeSys.VisualElem.IInputAction[], VisualElem, Version=3.5.13.0, Culture=neutral, PublicKeyToken=null</Type>
         <Type n="InputOpenDialogAction">{c01cd804-0a56-4714-ba1b-1040cfc48b6b}</Type>
         <Type n="Int16">System.Int16</Type>
@@ -780,6 +778,7 @@
         <Type n="NamedStyleColor">{fa491db2-51ff-4bc1-9cd0-ce8c94ff6216}</Type>
         <Type n="NamedStyleFont">{9e842eb2-1463-4af2-b605-4fbb17044f94}</Type>
         <Type n="String">System.String</Type>
+        <Type n="STSnippetInputAction">{6302d3fe-6ea5-4c42-819a-a9734a133b3d}</Type>
         <Type n="TextDocument">{f3878285-8e4f-490b-bb1b-9acbb7eb04db}</Type>
         <Type n="TextLine">{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}</Type>
         <Type n="UInt16">System.UInt16</Type>
