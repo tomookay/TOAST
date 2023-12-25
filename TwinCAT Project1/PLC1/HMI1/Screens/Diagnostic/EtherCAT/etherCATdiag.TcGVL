@@ -15,13 +15,15 @@ VAR_GLOBAL
 	
 	//memory for detail diag location
 	detailDiag:typeEtherCATIndicator;
+	
+	arryEcConfSlaveInfo:ARRAY[1..maxNumEtherCATSlaves] OF ST_EcSlaveConfigData;
 
 END_VAR
 
 
 
 VAR_GLOBAL CONSTANT
-	maxNumEtherCATSlaves: UINT := 2; //redim? on scan of programmed ethercat slaves (FB) 65535
+	maxNumEtherCATSlaves: UINT := 100;// EC_MAX_SLAVES; //redim? on scan of programmed ethercat slaves (FB) 65535
 END_VAR
 ]]></Declaration>
   </GVL>
