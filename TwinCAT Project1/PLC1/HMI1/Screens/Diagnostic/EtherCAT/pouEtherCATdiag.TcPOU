@@ -13,7 +13,6 @@ VAR
 	retvall: UDINT;
 	idbGetConfSlaves: FB_EcGetConfSlaves;
 	test: BOOL;
-	idbGetLocalAMS: FB_GetLocalAmsNetId;
 	testams: BOOL;
 	a: UINT;
 	tDiagScreenSize: UINT;
@@ -146,15 +145,25 @@ END_VAR
                         <v n="Extensible">false</v>
                       </o>
                       <n n="InputFlags" />
-                      <l2 n="InputItems" cet="BoxTreeTerminator">
+                      <l2 n="InputItems" cet="BoxTreeOperand">
                         <o>
-                          <n n="Input" />
-                          <o n="Flags" t="Flags">
-                            <v n="Flags">0</v>
-                            <v n="Fixed">false</v>
-                            <v n="Extensible">false</v>
+                          <o n="Operand" t="Operand">
+                            <v n="Operand">"System.OneSecond"</v>
+                            <v n="Type">"BOOL"</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">""</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">16</v>
+                              <v n="Fixed">true</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">false</v>
+                            <v n="Boolean">true</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">215L</v>
                           </o>
-                          <v n="Id">25L</v>
+                          <v n="Id">214L</v>
                         </o>
                       </l2>
                       <o n="InputParam" t="ParamList">
@@ -363,15 +372,25 @@ END_VAR
                         <v n="Extensible">false</v>
                       </o>
                       <n n="InputFlags" />
-                      <l2 n="InputItems" cet="BoxTreeTerminator">
+                      <l2 n="InputItems" cet="BoxTreeOperand">
                         <o>
-                          <n n="Input" />
-                          <o n="Flags" t="Flags">
-                            <v n="Flags">0</v>
-                            <v n="Fixed">false</v>
-                            <v n="Extensible">false</v>
+                          <o n="Operand" t="Operand">
+                            <v n="Operand">"System.OneSecond"</v>
+                            <v n="Type">"BOOL"</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">""</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">16</v>
+                              <v n="Fixed">true</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">false</v>
+                            <v n="Boolean">true</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">217L</v>
                           </o>
-                          <v n="Id">120L</v>
+                          <v n="Id">216L</v>
                         </o>
                       </l2>
                       <o n="InputParam" t="ParamList">
@@ -507,8 +526,10 @@ END_VAR
     </Implementation>
     <Action Name="actEtherCATSlaveDiag" Id="{ad26e273-933b-4a92-8e3a-4cf2719bddff}">
       <Implementation>
-        <ST><![CDATA[FOR i := 1 TO  etherCATdiag.maxNumEtherCATSlaves DO //
+        <ST><![CDATA[
 
+
+FOR i := 1 TO  etherCATdiag.maxNumEtherCATSlaves DO //
 
 ////////////////////////////////////////////////////////////////
 //test write value
@@ -603,210 +624,13 @@ END_FOR
                     <v n="FBDValid">false</v>
                     <v n="ILValid">false</v>
                     <l2 n="ILLines" />
-                    <v n="Comment">"get the local AMS ID"</v>
+                    <v n="Comment">"use System.OneSecond to slow down reading"</v>
                     <v n="Title">""</v>
                     <v n="Label">""</v>
                     <v n="OutCommented">false</v>
-                    <l2 n="NetworkItems" cet="BoxTreeBox">
-                      <o>
-                        <v n="BoxType">"FB_GetLocalAmsNetId"</v>
-                        <o n="Instance" t="Operand">
-                          <v n="Operand">"idbGetLocalAMS"</v>
-                          <v n="Type">"FB_GetLocalAmsNetId"</v>
-                          <v n="Comment">""</v>
-                          <v n="SymbolComment">""</v>
-                          <v n="Address">""</v>
-                          <o n="Flags" t="Flags">
-                            <v n="Flags">0</v>
-                            <v n="Fixed">false</v>
-                            <v n="Extensible">false</v>
-                          </o>
-                          <v n="LValue">false</v>
-                          <v n="Boolean">false</v>
-                          <v n="IsInstance">true</v>
-                          <v n="Id">73L</v>
-                        </o>
-                        <o n="OutputItems" t="OutputItemList">
-                          <l2 n="OutputItems" cet="Operand">
-                            <n />
-                            <o>
-                              <v n="Operand">""</v>
-                              <v n="Type">"BOOL"</v>
-                              <v n="Comment">""</v>
-                              <v n="SymbolComment">""</v>
-                              <v n="Address">""</v>
-                              <o n="Flags" t="Flags">
-                                <v n="Flags">0</v>
-                                <v n="Fixed">false</v>
-                                <v n="Extensible">false</v>
-                              </o>
-                              <v n="LValue">true</v>
-                              <v n="Boolean">false</v>
-                              <v n="IsInstance">false</v>
-                              <v n="Id">64L</v>
-                            </o>
-                            <o>
-                              <v n="Operand">""</v>
-                              <v n="Type">"BOOL"</v>
-                              <v n="Comment">""</v>
-                              <v n="SymbolComment">""</v>
-                              <v n="Address">""</v>
-                              <o n="Flags" t="Flags">
-                                <v n="Flags">0</v>
-                                <v n="Fixed">false</v>
-                                <v n="Extensible">false</v>
-                              </o>
-                              <v n="LValue">true</v>
-                              <v n="Boolean">false</v>
-                              <v n="IsInstance">false</v>
-                              <v n="Id">75L</v>
-                            </o>
-                            <o>
-                              <v n="Operand">""</v>
-                              <v n="Type">"UDINT"</v>
-                              <v n="Comment">""</v>
-                              <v n="SymbolComment">""</v>
-                              <v n="Address">""</v>
-                              <o n="Flags" t="Flags">
-                                <v n="Flags">0</v>
-                                <v n="Fixed">false</v>
-                                <v n="Extensible">false</v>
-                              </o>
-                              <v n="LValue">true</v>
-                              <v n="Boolean">false</v>
-                              <v n="IsInstance">false</v>
-                              <v n="Id">76L</v>
-                            </o>
-                            <o>
-                              <v n="Operand">""</v>
-                              <v n="Type">"T_AmsNetId"</v>
-                              <v n="Comment">""</v>
-                              <v n="SymbolComment">""</v>
-                              <v n="Address">""</v>
-                              <o n="Flags" t="Flags">
-                                <v n="Flags">0</v>
-                                <v n="Fixed">false</v>
-                                <v n="Extensible">false</v>
-                              </o>
-                              <v n="LValue">true</v>
-                              <v n="Boolean">false</v>
-                              <v n="IsInstance">false</v>
-                              <v n="Id">77L</v>
-                            </o>
-                            <o>
-                              <v n="Operand">""</v>
-                              <v n="Type">"T_AmsNetIdArr"</v>
-                              <v n="Comment">""</v>
-                              <v n="SymbolComment">""</v>
-                              <v n="Address">""</v>
-                              <o n="Flags" t="Flags">
-                                <v n="Flags">0</v>
-                                <v n="Fixed">false</v>
-                                <v n="Extensible">false</v>
-                              </o>
-                              <v n="LValue">true</v>
-                              <v n="Boolean">false</v>
-                              <v n="IsInstance">false</v>
-                              <v n="Id">78L</v>
-                            </o>
-                          </l2>
-                        </o>
-                        <o n="Flags" t="Flags">
-                          <v n="Flags">0</v>
-                          <v n="Fixed">true</v>
-                          <v n="Extensible">false</v>
-                        </o>
-                        <n n="InputFlags" />
-                        <l2 n="InputItems">
-                          <o t="BoxTreeTerminator">
-                            <n n="Input" />
-                            <o n="Flags" t="Flags">
-                              <v n="Flags">0</v>
-                              <v n="Fixed">false</v>
-                              <v n="Extensible">false</v>
-                            </o>
-                            <v n="Id">79L</v>
-                          </o>
-                          <o t="BoxTreeOperand">
-                            <o n="Operand" t="Operand">
-                              <v n="Operand">"testams"</v>
-                              <v n="Type">"BOOL"</v>
-                              <v n="Comment">""</v>
-                              <v n="SymbolComment">""</v>
-                              <v n="Address">""</v>
-                              <o n="Flags" t="Flags">
-                                <v n="Flags">0</v>
-                                <v n="Fixed">false</v>
-                                <v n="Extensible">false</v>
-                              </o>
-                              <v n="LValue">false</v>
-                              <v n="Boolean">false</v>
-                              <v n="IsInstance">false</v>
-                              <v n="Id">68L</v>
-                            </o>
-                            <v n="Id">67L</v>
-                          </o>
-                          <o t="BoxTreeOperand">
-                            <o n="Operand" t="Operand">
-                              <v n="Operand">""</v>
-                              <v n="Type">"TIME"</v>
-                              <v n="Comment">""</v>
-                              <v n="SymbolComment">""</v>
-                              <v n="Address">""</v>
-                              <o n="Flags" t="Flags">
-                                <v n="Flags">0</v>
-                                <v n="Fixed">false</v>
-                                <v n="Extensible">false</v>
-                              </o>
-                              <v n="LValue">false</v>
-                              <v n="Boolean">false</v>
-                              <v n="IsInstance">false</v>
-                              <v n="Id">70L</v>
-                            </o>
-                            <v n="Id">69L</v>
-                          </o>
-                        </l2>
-                        <o n="InputParam" t="ParamList">
-                          <l2 n="Names" cet="String">
-                            <v>EN</v>
-                            <v>bExecute</v>
-                            <v>tTimeOut</v>
-                          </l2>
-                          <l2 n="Types" cet="String">
-                            <v>BOOL</v>
-                            <v>BOOL</v>
-                            <v>TIME</v>
-                          </l2>
-                        </o>
-                        <o n="OutputParam" t="ParamList">
-                          <l2 n="Names" cet="String">
-                            <v>ENO</v>
-                            <v>bBusy</v>
-                            <v>bError</v>
-                            <v>nErrId</v>
-                            <v>AddrString</v>
-                            <v>AddrBytes</v>
-                          </l2>
-                          <l2 n="Types" cet="String">
-                            <v>BOOL</v>
-                            <v>BOOL</v>
-                            <v>BOOL</v>
-                            <v>UDINT</v>
-                            <v>T_AmsNetId</v>
-                            <v>T_AmsNetIdArr</v>
-                          </l2>
-                        </o>
-                        <v n="CallType" t="Operator">FunctionBlock</v>
-                        <v n="EN">true</v>
-                        <v n="ENO">true</v>
-                        <n n="STSnippet" />
-                        <v n="ContainsExtensibleInputs">false</v>
-                        <v n="ProvidesSTSnippet">false</v>
-                        <v n="Id">74L</v>
-                      </o>
-                    </l2>
+                    <l2 n="NetworkItems" />
                     <l2 n="Connectors" />
-                    <v n="Id">31L</v>
+                    <v n="Id">80L</v>
                   </o>
                   <o>
                     <v n="ILActive">false</v>
@@ -834,7 +658,7 @@ END_FOR
                           <v n="LValue">false</v>
                           <v n="Boolean">false</v>
                           <v n="IsInstance">true</v>
-                          <v n="Id">39L</v>
+                          <v n="Id">82L</v>
                         </o>
                         <o n="OutputItems" t="OutputItemList">
                           <l2 n="OutputItems" cet="Operand">
@@ -853,7 +677,7 @@ END_FOR
                               <v n="LValue">true</v>
                               <v n="Boolean">false</v>
                               <v n="IsInstance">false</v>
-                              <v n="Id">41L</v>
+                              <v n="Id">84L</v>
                             </o>
                             <o>
                               <v n="Operand">""</v>
@@ -869,7 +693,7 @@ END_FOR
                               <v n="LValue">true</v>
                               <v n="Boolean">false</v>
                               <v n="IsInstance">false</v>
-                              <v n="Id">42L</v>
+                              <v n="Id">85L</v>
                             </o>
                             <o>
                               <v n="Operand">""</v>
@@ -885,7 +709,7 @@ END_FOR
                               <v n="LValue">true</v>
                               <v n="Boolean">false</v>
                               <v n="IsInstance">false</v>
-                              <v n="Id">43L</v>
+                              <v n="Id">86L</v>
                             </o>
                             <o>
                               <v n="Operand">""</v>
@@ -901,7 +725,7 @@ END_FOR
                               <v n="LValue">true</v>
                               <v n="Boolean">false</v>
                               <v n="IsInstance">false</v>
-                              <v n="Id">44L</v>
+                              <v n="Id">87L</v>
                             </o>
                           </l2>
                         </o>
@@ -919,11 +743,11 @@ END_FOR
                               <v n="Fixed">false</v>
                               <v n="Extensible">false</v>
                             </o>
-                            <v n="Id">45L</v>
+                            <v n="Id">88L</v>
                           </o>
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
-                              <v n="Operand">"idbGetLocalAMS.AddrString"</v>
+                              <v n="Operand">"System.localAMS"</v>
                               <v n="Type">"T_AmsNetId"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
@@ -936,9 +760,9 @@ END_FOR
                               <v n="LValue">false</v>
                               <v n="Boolean">false</v>
                               <v n="IsInstance">false</v>
-                              <v n="Id">47L</v>
+                              <v n="Id">90L</v>
                             </o>
-                            <v n="Id">46L</v>
+                            <v n="Id">89L</v>
                           </o>
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
@@ -955,9 +779,9 @@ END_FOR
                               <v n="LValue">false</v>
                               <v n="Boolean">false</v>
                               <v n="IsInstance">false</v>
-                              <v n="Id">49L</v>
+                              <v n="Id">92L</v>
                             </o>
-                            <v n="Id">48L</v>
+                            <v n="Id">91L</v>
                           </o>
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
@@ -974,9 +798,9 @@ END_FOR
                               <v n="LValue">false</v>
                               <v n="Boolean">false</v>
                               <v n="IsInstance">false</v>
-                              <v n="Id">51L</v>
+                              <v n="Id">94L</v>
                             </o>
-                            <v n="Id">50L</v>
+                            <v n="Id">93L</v>
                           </o>
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
@@ -993,9 +817,9 @@ END_FOR
                               <v n="LValue">false</v>
                               <v n="Boolean">true</v>
                               <v n="IsInstance">false</v>
-                              <v n="Id">53L</v>
+                              <v n="Id">96L</v>
                             </o>
-                            <v n="Id">52L</v>
+                            <v n="Id">95L</v>
                           </o>
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
@@ -1012,9 +836,9 @@ END_FOR
                               <v n="LValue">false</v>
                               <v n="Boolean">false</v>
                               <v n="IsInstance">false</v>
-                              <v n="Id">55L</v>
+                              <v n="Id">98L</v>
                             </o>
-                            <v n="Id">54L</v>
+                            <v n="Id">97L</v>
                           </o>
                         </l2>
                         <o n="InputParam" t="ParamList">
@@ -1057,24 +881,11 @@ END_FOR
                         <n n="STSnippet" />
                         <v n="ContainsExtensibleInputs">false</v>
                         <v n="ProvidesSTSnippet">false</v>
-                        <v n="Id">40L</v>
+                        <v n="Id">83L</v>
                       </o>
                     </l2>
                     <l2 n="Connectors" />
-                    <v n="Id">36L</v>
-                  </o>
-                  <o>
-                    <v n="ILActive">false</v>
-                    <v n="FBDValid">false</v>
-                    <v n="ILValid">false</v>
-                    <l2 n="ILLines" />
-                    <v n="Comment">""</v>
-                    <v n="Title">""</v>
-                    <v n="Label">""</v>
-                    <v n="OutCommented">false</v>
-                    <l2 n="NetworkItems" />
-                    <l2 n="Connectors" />
-                    <v n="Id">80L</v>
+                    <v n="Id">81L</v>
                   </o>
                 </l2>
                 <v n="BranchCounter">0</v>
@@ -1299,17 +1110,27 @@ END_FOR
                           <v n="Extensible">false</v>
                         </o>
                         <n n="InputFlags" />
-                        <l2 n="InputItems">
-                          <o t="BoxTreeTerminator">
-                            <n n="Input" />
-                            <o n="Flags" t="Flags">
-                              <v n="Flags">0</v>
-                              <v n="Fixed">false</v>
-                              <v n="Extensible">false</v>
+                        <l2 n="InputItems" cet="BoxTreeOperand">
+                          <o>
+                            <o n="Operand" t="Operand">
+                              <v n="Operand">"System.OneSecond"</v>
+                              <v n="Type">"BOOL"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">""</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">16</v>
+                                <v n="Fixed">true</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">false</v>
+                              <v n="Boolean">true</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">49L</v>
                             </o>
-                            <v n="Id">31L</v>
+                            <v n="Id">48L</v>
                           </o>
-                          <o t="BoxTreeOperand">
+                          <o>
                             <o n="Operand" t="Operand">
                               <v n="Operand">"adr(etherCATdiag.detailDiag)"</v>
                               <v n="Type">"POINTER TO typeEtherCATIndicator"</v>
@@ -1328,7 +1149,7 @@ END_FOR
                             </o>
                             <v n="Id">32L</v>
                           </o>
-                          <o t="BoxTreeOperand">
+                          <o>
                             <o n="Operand" t="Operand">
                               <v n="Operand">"adr(etherCATdiag.diagScreen[etherCATdiag.detailDiagNum])"</v>
                               <v n="Type">"POINTER TO typeEtherCATIndicator"</v>
@@ -1347,7 +1168,7 @@ END_FOR
                             </o>
                             <v n="Id">34L</v>
                           </o>
-                          <o t="BoxTreeOperand">
+                          <o>
                             <o n="Operand" t="Operand">
                               <v n="Operand">"sizeof(etherCATdiag.detailDiag)"</v>
                               <v n="Type">"UINT"</v>
@@ -2261,7 +2082,7 @@ END_FOR]]></ST>
                                   <v n="Fixed">false</v>
                                   <v n="Extensible">false</v>
                                 </o>
-                                <v n="Id">133L</v>
+                                <v n="Id">167L</v>
                               </o>
                               <o t="BoxTreeOperand">
                                 <o n="Operand" t="Operand">
@@ -2678,17 +2499,27 @@ END_FOR]]></ST>
                           <v n="Extensible">false</v>
                         </o>
                         <n n="InputFlags" />
-                        <l2 n="InputItems">
-                          <o t="BoxTreeTerminator">
-                            <n n="Input" />
-                            <o n="Flags" t="Flags">
-                              <v n="Flags">0</v>
-                              <v n="Fixed">false</v>
-                              <v n="Extensible">false</v>
+                        <l2 n="InputItems" cet="BoxTreeOperand">
+                          <o>
+                            <o n="Operand" t="Operand">
+                              <v n="Operand">"System.OneSecond"</v>
+                              <v n="Type">"BOOL"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">""</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">16</v>
+                                <v n="Fixed">true</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">false</v>
+                              <v n="Boolean">true</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">173L</v>
                             </o>
-                            <v n="Id">85L</v>
+                            <v n="Id">172L</v>
                           </o>
-                          <o t="BoxTreeOperand">
+                          <o>
                             <o n="Operand" t="Operand">
                               <v n="Operand">"adr(etherCATdiag.diagScreen)"</v>
                               <v n="Type">"POINTER TO ARRAY [1..128] OF typeEtherCATIndicator"</v>
@@ -2707,7 +2538,7 @@ END_FOR]]></ST>
                             </o>
                             <v n="Id">75L</v>
                           </o>
-                          <o t="BoxTreeOperand">
+                          <o>
                             <o n="Operand" t="Operand">
                               <v n="Operand">"adr(etherCATdiag.EtherCATslaveDiag) + tDiagScreenPointer"</v>
                               <v n="Type">"POINTER TO ARRAY [1..maxNumEtherCATSlaves] OF typeEtherCATIndicator"</v>
@@ -2726,7 +2557,7 @@ END_FOR]]></ST>
                             </o>
                             <v n="Id">77L</v>
                           </o>
-                          <o t="BoxTreeOperand">
+                          <o>
                             <o n="Operand" t="Operand">
                               <v n="Operand">"sizeof(etherCATdiag.diagScreen)"</v>
                               <v n="Type">"UINT"</v>
@@ -2808,7 +2639,8 @@ END_FOR]]></ST>
       </Implementation>
     </Action>
     <LineIds Name="pouEtherCATdiag.actEtherCATSlaveDiag">
-      <LineId Id="173" Count="2" />
+      <LineId Id="179" Count="2" />
+      <LineId Id="173" Count="1" />
       <LineId Id="168" Count="0" />
       <LineId Id="3" Count="0" />
       <LineId Id="170" Count="0" />
