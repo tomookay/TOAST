@@ -15,12 +15,13 @@ VAR_GLOBAL
 	
 	//memory for detail diag location
 	detailDiag:typeEtherCATIndicator;
+	detailDiagNum: UINT;
 	
 	arryEcConfSlaveInfo:ARRAY[1..maxNumEtherCATSlaves] OF ST_EcSlaveConfigData;
 	
 	btnPrevious: BOOL; //previous screen
 	btnNext: BOOL; //next screen
-	gScreenIndex: INT;
+	gScreenIndex: UINT;
 	
 
 END_VAR
@@ -28,7 +29,8 @@ END_VAR
 
 
 VAR_GLOBAL CONSTANT
-	maxNumEtherCATSlaves: UINT := 65535;// EC_MAX_SLAVES; //redim? on scan of programmed ethercat slaves (FB) 65535
+	numEtherCATViewableSlavesScreen:UINT := 128; //max slaves viewable on screen
+	maxNumEtherCATSlaves: UINT := 500;// EC_MAX_SLAVES; //redim? on scan of programmed ethercat slaves (FB) 65535
 END_VAR
 ]]></Declaration>
   </GVL>
