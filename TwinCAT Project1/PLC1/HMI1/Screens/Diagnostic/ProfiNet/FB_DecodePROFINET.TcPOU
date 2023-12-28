@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_DecodePROFINET" Id="{1b2ee014-8a66-47ee-a0a7-e9e2b9edc80e}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_DecodePROFINET
+VAR_INPUT
+	iVal: WORD; //status word from profinet diag
+END_VAR
+VAR_OUTPUT
+	state:ProfiNetstate;
+	suffix:ProfiNetSuffix;
+END_VAR
+VAR
+	tSuffix: UINT;
+	tState: UINT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[///EtherCAT state decoding
+
+//PnIoBoxState
+//UINT
+//0 = No error
+//1 = Profinet device state machine is in boot mode
+//2 = Device not found
+//3 = The stationname is not unique
+//4 = IP could not be set
+//5 = IP conflict
+//6 = DCP set was not successful
+//7 = Watchdog error
+//8 = Datahold error
+//9 = RTC3: Sync mode could not be initiated
+//10 = Profinet controller has a link error
+//11 = The aliasname is not unique
+//12 = The automatic name assignement isn't possible - wrong device type
+//13 = IOC-AR is established but no application ready
+//14 = IOC-AR is established but module difference
+//15 = At least one InputCR is invalid, provider in stop or problemindicator is set
+//16 = At least one OutputCR is invalid, provider in stop or problemindicator is set
+
+
+tState := iVal AND 16#000F;
+
+	//from the control word, colour the box
+	CASE tState OF 
+		0 : state := PROFINETstate.NoError;
+		1 : state := PROFINETstate.StateInBoot;
+ 		2 : state := PROFINETstate.DeviceNotFound;
+ 		3 : state := PROFINETstate.StationNameNotUnique;
+ 		4 : state := PROFINETstate.IPCouldNotBeSet;
+ 		5 : state := PROFINETstate.IPConfict;
+ 		6 : state := PROFINETstate.DCPSetNotSuccessful;
+ 		7 : state := PROFINETstate.WatchdogError;
+ 		8 : state := PROFINETstate.DataholdError;
+ 		9 : state := PROFINETstate.RTC3SyncModeNotInit;
+ 		10 : state := PROFINETstate.ProfinetContLinkError;
+ 		11 : state := PROFINETstate.AliasnameNotUnique;
+ 		12 : state := PROFINETstate.AutoNameAssignNotPossibleWrongDevice;
+ 		13 : state := PROFINETstate.NoApplicationReady;
+ 		14 : state := PROFINETstate.ModuleDiffrence;
+ 		15 : state := PROFINETstate.InputCRInvalid;
+ 		16 : state := PROFINETstate.OutputCRInvalid;
+ 		31 : state := PROFINETstate.WCStateEtherCATframe_1;
+		
+	ELSE 
+			//invalid state
+		//	state:= 99;
+	END_CASE;
+		
+	//PnIoBoxDiag
+	//UINT
+	//0x0000 = No diagnosis
+	//0x0001 = IOC-AR is not established
+	//0x0002 = IOC-AR is established
+	//0x0004 = IOC-AR is established but no application ready
+	//0x0008 = IOC-AR is established but module difference
+	//0x0010 = At least one AlarmCR got a diagnosis alarm
+	//0x0100 = At least one InputCR is invalid
+	//0x0200 = At least one InputCR Provider is in stop
+	//0x0400 = At least one InputCR Problemindicator is set
+	//0x1000 = At least one OutputCR is invalid
+	//0x2000 = At least one OutputCR Provider is in stop
+	//0x4000 = At least one OutputCR Problemindicator is set
+
+tSuffix := iVal AND 16#FFF0;
+	//from the control word, colour the box
+	CASE tsuffix OF 
+		16#0000 : suffix := PROFINETSuffix.NoDiagnostics;
+		16#0010 : suffix := PROFINETSuffix.IOCAR_NotEstablished;				
+		16#0020 : suffix := PROFINETSuffix.IOCAR_NotEstablished;					
+		16#0080 : suffix := PROFINETSuffix.IOCAR_EstablishedNoApplicationReady;					
+		16#0100 : suffix := PROFINETSuffix.IOCAR_EstablishedModuleDiffrence;				
+		16#0200 : suffix := PROFINETSuffix.AlarmCR_DiagnosticAlarm;			
+		16#0400 : suffix := PROFINETSuffix.InputCR_Invalid;			
+		16#0800 : suffix := PROFINETSuffix.InputCR_ProviderInStop;	
+		16#1000 : suffix := PROFINETSuffix.InputCR_ProblemIndicatorIsSet;				
+		16#2000 : suffix := PROFINETSuffix.OutputCR_Invalid;	
+		16#4000 : suffix := PROFINETSuffix.OutputCR_ProviderInStop;
+		16#8000 : suffix := PROFINETSuffix.OutputCR_ProblemIndicatorIsSet;			
+	ELSE 
+			//invalid state
+	//		state:= 99;
+	END_CASE;
+
+
+
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_DecodePROFINET">
+      <LineId Id="178" Count="1" />
+      <LineId Id="268" Count="18" />
+      <LineId Id="184" Count="5" />
+      <LineId Id="355" Count="1" />
+      <LineId Id="329" Count="1" />
+      <LineId Id="332" Count="0" />
+      <LineId Id="334" Count="5" />
+      <LineId Id="350" Count="3" />
+      <LineId Id="340" Count="0" />
+      <LineId Id="342" Count="1" />
+      <LineId Id="293" Count="0" />
+      <LineId Id="196" Count="4" />
+      <LineId Id="357" Count="13" />
+      <LineId Id="217" Count="3" />
+      <LineId Id="371" Count="0" />
+      <LineId Id="373" Count="0" />
+      <LineId Id="222" Count="14" />
+      <LineId Id="241" Count="2" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="enumProfiNetSuffix" Id="{865ab121-693e-4107-be57-d29f1f5d9b22}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+END_VAR
+
+
+TYPE PROFINETSuffix :
+	
+//PnIoBoxDiag
+//UINT
+//0x0000 = No diagnosis
+//0x0001 = IOC-AR is not established
+//0x0002 = IOC-AR is established
+//0x0004 = IOC-AR is established but no application ready
+//0x0008 = IOC-AR is established but module difference
+//0x0010 = At least one AlarmCR got a diagnosis alarm
+//0x0100 = At least one InputCR is invalid
+//0x0200 = At least one InputCR Provider is in stop
+//0x0400 = At least one InputCR Problemindicator is set
+//0x1000 = At least one OutputCR is invalid
+//0x2000 = At least one OutputCR Provider is in stop
+//0x4000 = At least one OutputCR Problemindicator is set
+
+(
+	NoDiagnostics 							:= 16#0000,
+	IOCAR_NotEstablished 					:= 16#0001,
+	IOCAR_IsEstablished 					:= 16#0002,
+	IOCAR_EstablishedNoApplicationReady 	:= 16#0004,
+	IOCAR_EstablishedModuleDiffrence 		:= 16#0008,
+	AlarmCR_DiagnosticAlarm 				:= 16#0010,
+	InputCR_Invalid 						:= 16#0100,
+	InputCR_ProviderInStop 					:= 16#0200,
+	InputCR_ProblemIndicatorIsSet 			:= 16#0400,
+	OutputCR_Invalid 						:= 16#1000,
+	OutputCR_ProviderInStop 				:= 16#2000,
+	OutputCR_ProblemIndicatorIsSet 			:= 16#4000
+ 
+) UINT;
+END_TYPE	
+	
+	]]></Declaration>
+  </GVL>
+</TcPlcObject>

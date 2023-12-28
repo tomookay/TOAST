@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="typePROFINETState" Id="{525b13b2-13bc-415b-a69c-a780f3cf1771}">
+    <Declaration><![CDATA[TYPE typePROFINETState :
+STRUCT
+	//PnIoBoxState
+	//UINT
+	//0 = No error
+	//1 = Profinet device state machine is in boot mode
+	//2 = Device not found
+	//3 = The stationname is not unique
+	//4 = IP could not be set
+	//5 = IP conflict
+	//6 = DCP set was not successful
+	//7 = Watchdog error
+	//8 = Datahold error
+	//9 = RTC3: Sync mode could not be initiated
+	//10 = Profinet controller has a link error
+	//11 = The aliasname is not unique
+	//12 = The automatic name assignement isn't possible - wrong device type
+	//13 = IOC-AR is established but no application ready
+	//14 = IOC-AR is established but module difference
+	//15 = At least one InputCR is invalid, provider in stop or problemindicator is set
+	//16 = At least one OutputCR is invalid, provider in stop or problemindicator is set
+	//31 = Only for EtherCAT gateways: WC-State of cyclic EtherCAT frame is 1
+
+	state:ProfiNetstate;
+
+	
+	
+	//PnIoBoxDiag
+	//UINT
+	//0x0000 = No diagnosis
+	//0x0001 = IOC-AR is not established
+	//0x0002 = IOC-AR is established
+	//0x0004 = IOC-AR is established but no application ready
+	//0x0008 = IOC-AR is established but module difference
+	//0x0010 = At least one AlarmCR got a diagnosis alarm
+	//0x0100 = At least one InputCR is invalid
+	//0x0200 = At least one InputCR Provider is in stop
+	//0x0400 = At least one InputCR Problemindicator is set
+	//0x1000 = At least one OutputCR is invalid
+	//0x2000 = At least one OutputCR Provider is in stop
+	//0x4000 = At least one OutputCR Problemindicator is set
+
+	suffix:ProfiNetSuffix;
+	
+	isFault:BOOL; //TRUE if either state is not 8 and code exists
+	colour:DWORD; //colour state
+	
+	
+
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

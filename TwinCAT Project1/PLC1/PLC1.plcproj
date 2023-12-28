@@ -299,6 +299,48 @@
     <Compile Include="HMI1\Screens\Diagnostic\EtherCAT\typeEtherCATState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="HMI1\Screens\Diagnostic\ProfiNet\diagProfiNetSlaveDetail.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="HMI1\Screens\Diagnostic\ProfiNet\diagProfiNetSlave.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="HMI1\Screens\Diagnostic\ProfiNet\DI_03_ProfiNet.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="HMI1\Screens\Diagnostic\ProfiNet\enumProfiNetState.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="HMI1\Screens\Diagnostic\ProfiNet\enumProfiNetSuffix.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="HMI1\Screens\Diagnostic\ProfiNet\ProfiNetDiag.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="HMI1\Screens\Diagnostic\ProfiNet\ProfiNETImages.TcIPO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HMI1\Screens\Diagnostic\ProfiNet\FB_DecodePROFINET.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HMI1\Screens\Diagnostic\ProfiNet\pouPROFINETdiag.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HMI1\Screens\Diagnostic\ProfiNet\typePROFINETIndicator.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HMI1\Screens\Diagnostic\ProfiNet\typeProfiNetMaster.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HMI1\Screens\Diagnostic\ProfiNet\typePROFINETState.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="HMI1\Screens\Diagnostic\Profibus\diagDPSlave.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
@@ -1445,6 +1487,7 @@
     <Folder Include="GVLs" />
     <Folder Include="HMI1\Logic" />
     <Folder Include="HMI1\Screens\Diagnostic\EtherCAT" />
+    <Folder Include="HMI1\Screens\Diagnostic\ProfiNet" />
     <Folder Include="HMI1\Screens\Diagnostic\Profibus" />
     <Folder Include="HMI1\Screens\Dialogs" />
     <Folder Include="HMI1\Screens\Diagnostic" />
@@ -1605,6 +1648,7 @@
     </PlaceholderReference>
     <PlaceholderReference Include="Tc2_EtherCAT">
       <DefaultResolution>Tc2_EtherCAT, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_EtherCAT</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="Tc2_Math">
       <DefaultResolution>Tc2_Math, * (Beckhoff Automation GmbH)</DefaultResolution>

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="ProfiNetDiag" Id="{c99cf2fa-9af5-4767-9ea7-f28abfcde0d3}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	
+	//all slaves
+	ProfiNetslaveDiag: ARRAY[1..maxNumProfiNetSlaves] OF typeProfiNetIndicator;
+
+	//assign to mapped IO for DPstate
+	RawProfiNetStateDiag: ARRAY[1..maxNumProfiNetSlaves] OF UINT;
+	
+	//viewable on the screen
+	diagScreen: ARRAY[1..128] OF typeProfiNetIndicator;
+	
+	//memory for detail diag location
+	detailDiag:typeProfiNetIndicator;
+	detailDiagNum: UINT;
+	
+	btnPrevious: BOOL; //previous screen
+	btnNext: BOOL; //next screen
+	gScreenIndex: UINT;
+	
+	Master:typeProfiNetMaster; //profinet master state
+	
+	
+	
+
+END_VAR
+
+
+
+VAR_GLOBAL CONSTANT
+	numProfiNetViewableSlavesScreen:UINT := 128; //max slaves viewable on screen
+	maxNumProfiNetSlaves: UINT := 1000;//  //profinet is technically unlimited, but limited by subnet bounds, redim? on scan of programmed 
+END_VAR
+]]></Declaration>
+  </GVL>
+</TcPlcObject>

@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="enumProfiNetState" Id="{8426aad3-4eab-4511-b5a4-57e8cc5db0a1}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	
+END_VAR
+
+TYPE PROFINETstate :
+	
+//PnIoBoxState
+//UINT
+//0 = No error
+//1 = Profinet device state machine is in boot mode
+//2 = Device not found
+//3 = The stationname is not unique
+//4 = IP could not be set
+//5 = IP conflict
+//6 = DCP set was not successful
+//7 = Watchdog error
+//8 = Datahold error
+//9 = RTC3: Sync mode could not be initiated
+//10 = Profinet controller has a link error
+//11 = The aliasname is not unique
+//12 = The automatic name assignement isn't possible - wrong device type
+//13 = IOC-AR is established but no application ready
+//14 = IOC-AR is established but module difference
+//15 = At least one InputCR is invalid, provider in stop or problemindicator is set
+//16 = At least one OutputCR is invalid, provider in stop or problemindicator is set
+//31 = Only for EtherCAT gateways: WC-State of cyclic EtherCAT frame is 1
+
+(
+    NoError := 0,
+	StateInBoot := 1,
+	DeviceNotFound := 2,
+	StationNameNotUnique := 3,
+	IPCouldNotBeSet := 4,
+	IPConfict := 5,
+	DCPSetNotSuccessful := 6,
+	WatchdogError := 7,
+	DataholdError := 8,
+	RTC3SyncModeNotInit := 9,
+	ProfinetContLinkError := 10,
+	AliasnameNotUnique := 11,
+	AutoNameAssignNotPossibleWrongDevice := 12,
+	NoApplicationReady := 13, //IOC-AR is established
+	ModuleDiffrence := 14, //IOC-AR is established
+	InputCRInvalid := 15,
+	OutputCRInvalid := 16,
+	WCStateEtherCATframe_1 := 31
+	
+
+) UINT;
+END_TYPE
+
+
+
+	
+
+]]></Declaration>
+  </GVL>
+</TcPlcObject>

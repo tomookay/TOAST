@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="typeProfiNetMaster" Id="{2e957c49-0f87-4502-9152-83fca8a49146}">
+    <Declaration><![CDATA[TYPE typeProfiNetMaster :
+STRUCT
+	
+DevState:UINT;
+//0x0001 = No link AT port 1
+//0x0002 = No link at port 2
+//0x0010 = Out of send resources (I/O reset required)
+//0x0080 = I/O reset active
+
+
+
+
+
+PnIoError:UINT;
+//Error:indicates the number of PnIo boxes with a error
+
+
+
+PnIoDiag:UINT;
+//Warning:indicates the number of PnIo boxes with a warning or diagnosis
+
+
+
+
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
