@@ -815,7 +815,7 @@ END_VAR
                           </o>
                           <o>
                             <o n="Operand" t="Operand">
-                              <v n="Operand">"adr(ProfiNetDiag.diagScreen[ProfiNetDiagdetailDiagNum])"</v>
+                              <v n="Operand">"adr(ProfiNetDiag.diagScreen[ProfiNetDiag.detailDiagNum])"</v>
                               <v n="Type">"POINTER TO typeProfiNetIndicator"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
@@ -919,7 +919,7 @@ END_VAR
 
 FOR a := 1 TO ProfiNetDiag.maxNumProfiNetSlaves DO
 	
-	ProfiNetDiag.ProfiNetslaveDiag[a].ConfigData := ProfiNetDiag.arryEcConfSlaveInfo[a];
+	//ProfiNetDiag.ProfiNetslaveDiag[a].ConfigData := ProfiNetDiag.arryEcConfSlaveInfo[a];
 
 END_FOR]]></ST>
       </Implementation>
@@ -929,7 +929,7 @@ END_FOR]]></ST>
         <ST><![CDATA[
 
 
-FOR i := 1 TO  ProfiNetDiag.maxNumEtherCATSlaves DO //
+FOR i := 1 TO  ProfiNetDiag.maxNumProfiNetSlaves DO //
 
 ////////////////////////////////////////////////////////////////
 //test write value
@@ -942,14 +942,14 @@ FOR i := 1 TO  ProfiNetDiag.maxNumEtherCATSlaves DO //
 
 //move temp data from scan to temp declarations
 decode(iVal:=ProfiNetDiag.RawProfiNetStateDiag[i]);
-ProfiNetDiag.EtherCATslaveDiag[i].currentState.state := decode.state;
-ProfiNetDiag.EtherCATslaveDiag[i].currentState.suffix := decode.suffix;
+//ProfiNetDiag.EtherCATslaveDiag[i].currentState.state := decode.state;
+//ProfiNetDiag.EtherCATslaveDiag[i].currentState.suffix := decode.suffix;
 
 
 	//check values for fault
 	//current state
-	IF ProfiNetDiag.ProfiNetslaveDiag[i].currentState.state <> PROFINETstate.NoError  OR //EtherCATstate.OP 
-		ProfiNetDiag.ProfiNetslaveDiag[i].currentState.isFault := TRUE;
+	IF ProfiNetDiag.ProfiNetslaveDiag[i].currentState.state <> PROFINETstate.NoError THEN //EtherCATstate.OP 
+		
 		ELSE
 		ProfiNetDiag.ProfiNetslaveDiag[i].currentState.isFault := FALSE;	
 	END_IF
