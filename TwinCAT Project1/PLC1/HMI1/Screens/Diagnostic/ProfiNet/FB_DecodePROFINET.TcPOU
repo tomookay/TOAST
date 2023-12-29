@@ -3,7 +3,8 @@
   <POU Name="FB_DecodePROFINET" Id="{1b2ee014-8a66-47ee-a0a7-e9e2b9edc80e}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_DecodePROFINET
 VAR_INPUT
-	iVal: WORD; //status word from profinet diag
+	iVal: UINT; //status word from profinet diag
+	iVal2:UINT;
 END_VAR
 VAR_OUTPUT
 	state:ProfiNetstate;
@@ -38,7 +39,7 @@ END_VAR
 //16 = At least one OutputCR is invalid, provider in stop or problemindicator is set
 
 
-tState := iVal AND 16#000F;
+tState := iVal;
 
 	//from the control word, colour the box
 	CASE tState OF 
@@ -81,7 +82,7 @@ tState := iVal AND 16#000F;
 	//0x2000 = At least one OutputCR Provider is in stop
 	//0x4000 = At least one OutputCR Problemindicator is set
 
-tSuffix := iVal AND 16#FFF0;
+tSuffix := iVal2;
 	//from the control word, colour the box
 	CASE tsuffix OF 
 		16#0000 : suffix := PROFINETSuffix.NoDiagnostics;

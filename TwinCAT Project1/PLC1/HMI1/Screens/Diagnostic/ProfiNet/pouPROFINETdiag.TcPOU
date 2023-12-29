@@ -18,6 +18,9 @@ VAR
 	tDiagScreenSize: UINT;
 	tDiagScreenWidth: UINT;
 	tDiagScreenPointer: UINT;
+	testvalprofinet: PROFINETstate;
+	
+	detectFallingFault:F_TRIG;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -918,7 +921,7 @@ END_VAR
         <ST><![CDATA[//move data from FB_EcGetConfSlaves (etherCATdiag.arryEcConfSlaveInfo) to data for HMI
 
 FOR a := 1 TO ProfiNetDiag.maxNumProfiNetSlaves DO
-	
+	//this is for detailed command for profinet, via ADS?
 	//ProfiNetDiag.ProfiNetslaveDiag[a].ConfigData := ProfiNetDiag.arryEcConfSlaveInfo[a];
 
 END_FOR]]></ST>
@@ -934,22 +937,22 @@ FOR i := 1 TO  ProfiNetDiag.maxNumProfiNetSlaves DO //
 ////////////////////////////////////////////////////////////////
 //test write value
 //TODO: REMOVE
-//ProfiNetDiag.RawEtherCATStateDiag[i] := 16#8008; 
-//ProfiNetDiag.EtherCATslaveDiag[i].SlaveNumber := i;
+ProfiNetDiag.RawProfiNetStateDiag[i] := testvalprofinet; 
+ProfiNetDiag.ProfiNetslaveDiag[i].SlaveNumber := i;
 //ProfiNetDiag.EtherCATslaveDiag[i].crcCount.portA := i;
 /////////////////////////////////////////////////////////////////
 
 
 //move temp data from scan to temp declarations
-decode(iVal:=ProfiNetDiag.RawProfiNetStateDiag[i]);
-//ProfiNetDiag.EtherCATslaveDiag[i].currentState.state := decode.state;
-//ProfiNetDiag.EtherCATslaveDiag[i].currentState.suffix := decode.suffix;
+decode(iVal:=ProfiNetDiag.RawProfiNetStateDiag[i],iVal2:=16#0000); //confirm where iVal2 comes from (PN diag)
+ProfiNetDiag.ProfiNetslaveDiag[i].currentState.state := decode.state;
+ProfiNetDiag.ProfiNetslaveDiag[i].currentState.suffix := decode.suffix; //isnt really a suffix, just keeping the name the same
 
 
 	//check values for fault
 	//current state
 	IF ProfiNetDiag.ProfiNetslaveDiag[i].currentState.state <> PROFINETstate.NoError THEN //EtherCATstate.OP 
-		
+		ProfiNetDiag.ProfiNetslaveDiag[i].currentState.isFault := TRUE;
 		ELSE
 		ProfiNetDiag.ProfiNetslaveDiag[i].currentState.isFault := FALSE;	
 	END_IF
@@ -957,22 +960,70 @@ decode(iVal:=ProfiNetDiag.RawProfiNetStateDiag[i]);
 
 	//record outer box
 	//record previous state, latching 
-	IF ProfiNetDiag.ProfiNetslaveDiag[i].currentState.isFault = FALSE AND 
-	   ProfiNetDiag.ProfiNetslaveDiag[i].historicalState.isFault = FALSE THEN
+	detectFallingFault(CLK:=ProfiNetDiag.ProfiNetslaveDiag[i].currentState.isFault);
+		IF detectFallingFault.Q THEN
 		//at this time, record the current state in the historical state
 		ProfiNetDiag.ProfiNetslaveDiag[i].historicalState.state := ProfiNetDiag.ProfiNetslaveDiag[i].currentState.state;
 		ProfiNetDiag.ProfiNetslaveDiag[i].historicalState.suffix := ProfiNetDiag.ProfiNetslaveDiag[i].currentState.suffix;
+		ProfiNetDiag.ProfiNetslaveDiag[i].historicalState.isFault := TRUE;
+		ProfiNetDiag.ProfiNetslaveDiag[i].historicalState.colour := ProfiNetDiag.ProfiNetslaveDiag[i].currentState.colour;
 	END_IF
 	
 	//clear inner box when fault is resolved
 	IF 	ProfiNetDiag.ProfiNetslaveDiag[i].currentState.isFault = FALSE AND
 	   HMIData.btnReset THEN
 	   ProfiNetDiag.ProfiNetslaveDiag[i].historicalState.isFault := FALSE;
+	  	ProfiNetDiag.ProfiNetslaveDiag[i].historicalState.state := PROFINETstate.NoError;
+		ProfiNetDiag.ProfiNetslaveDiag[i].historicalState.suffix := ProfiNetSuffix.NoDiagnostics;
+	ProfiNetDiag.ProfiNetslaveDiag[i].historicalState.colour := HMIColour.colourGreen;
+
 	END_IF
 	
 
-	
-	
+			//check if any suffix fault exits
+			IF ProfiNetDiag.ProfiNetslaveDiag[i].currentState.state > 0 THEN
+						
+				//check suffix
+				CASE ProfiNetDiag.ProfiNetslaveDiag[i].currentState.state OF 
+				PROFINETstate.NoError								: 	ProfiNetDiag.ProfiNetslaveDiag[i].currentState.colour := HMIColour.colourGreen;
+				PROFINETstate.StateInBoot							: 	ProfiNetDiag.ProfiNetslaveDiag[i].currentState.colour := HMIColour.colourRed;
+				PROFINETstate.DeviceNotFound						: 	ProfiNetDiag.ProfiNetslaveDiag[i].currentState.colour := HMIColour.colourRed;
+				PROFINETstate.StationNameNotUnique					: 	ProfiNetDiag.ProfiNetslaveDiag[i].currentState.colour := HMIColour.colourRed;
+				PROFINETstate.IPCouldNotBeSet						: 	ProfiNetDiag.ProfiNetslaveDiag[i].currentState.colour := HMIColour.colourRed;
+				PROFINETstate.IPConfict								: 	ProfiNetDiag.ProfiNetslaveDiag[i].currentState.colour := HMIColour.colourRed;
+				PROFINETstate.DCPSetNotSuccessful					: 	ProfiNetDiag.ProfiNetslaveDiag[i].currentState.colour := HMIColour.colourRed;
+				PROFINETstate.WatchdogError							: 	ProfiNetDiag.ProfiNetslaveDiag[i].currentState.colour := HMIColour.colourRed;
+				PROFINETstate.DataholdError							: 	ProfiNetDiag.ProfiNetslaveDiag[i].currentState.colour := HMIColour.colourRed;
+				PROFINETstate.RTC3SyncModeNotInit					: 	ProfiNetDiag.ProfiNetslaveDiag[i].currentState.colour := HMIColour.colourRed;
+				PROFINETstate.ProfinetContLinkError					: 	ProfiNetDiag.ProfiNetslaveDiag[i].currentState.colour := HMIColour.colourRed;
+				PROFINETstate.AliasnameNotUnique					: 	ProfiNetDiag.ProfiNetslaveDiag[i].currentState.colour := HMIColour.colourRed;
+				PROFINETstate.AutoNameAssignNotPossibleWrongDevice	: 	ProfiNetDiag.ProfiNetslaveDiag[i].currentState.colour := HMIColour.colourRed;
+				PROFINETstate.NoApplicationReady					: 	ProfiNetDiag.ProfiNetslaveDiag[i].currentState.colour := HMIColour.colourRed;
+				PROFINETstate.ModuleDiffrence						: 	ProfiNetDiag.ProfiNetslaveDiag[i].currentState.colour := HMIColour.colourRed;
+				PROFINETstate.InputCRInvalid						: 	ProfiNetDiag.ProfiNetslaveDiag[i].currentState.colour := HMIColour.colourRed;
+				PROFINETstate.OutputCRInvalid						: 	ProfiNetDiag.ProfiNetslaveDiag[i].currentState.colour := HMIColour.colourRed;
+				PROFINETstate.WCStateEtherCATframe_1				: 	ProfiNetDiag.ProfiNetslaveDiag[i].currentState.colour := HMIColour.colourRed;
+				END_CASE;
+				
+			ELSE
+				
+				//otherwise check state to get green
+				CASE ProfiNetDiag.ProfiNetslaveDiag[i].currentState.suffix OF 
+				ProfiNetSuffix.NoDiagnostics							: 	ProfiNetDiag.ProfiNetslaveDiag[i].currentState.colour := HMIColour.colourGreen;
+				ProfiNetSuffix.IOCAR_NotEstablished						: 	ProfiNetDiag.ProfiNetslaveDiag[i].currentState.colour := HMIColour.colourRed;
+				ProfiNetSuffix.IOCAR_IsEstablished						: 	ProfiNetDiag.ProfiNetslaveDiag[i].currentState.colour := HMIColour.colourRed;
+				ProfiNetSuffix.IOCAR_EstablishedNoApplicationReady		: 	ProfiNetDiag.ProfiNetslaveDiag[i].currentState.colour := HMIColour.colourRed;
+				ProfiNetSuffix.IOCAR_EstablishedModuleDiffrence			: 	ProfiNetDiag.ProfiNetslaveDiag[i].currentState.colour := HMIColour.colourRed;
+				ProfiNetSuffix.AlarmCR_DiagnosticAlarm					: 	ProfiNetDiag.ProfiNetslaveDiag[i].currentState.colour := HMIColour.colourRed;
+				ProfiNetSuffix.InputCR_Invalid							: 	ProfiNetDiag.ProfiNetslaveDiag[i].currentState.colour := HMIColour.colourRed;
+				ProfiNetSuffix.InputCR_ProviderInStop					: 	ProfiNetDiag.ProfiNetslaveDiag[i].currentState.colour := HMIColour.colourRed;
+				ProfiNetSuffix.InputCR_ProblemIndicatorIsSet			: 	ProfiNetDiag.ProfiNetslaveDiag[i].currentState.colour := HMIColour.colourRed;
+				ProfiNetSuffix.OutputCR_Invalid							: 	ProfiNetDiag.ProfiNetslaveDiag[i].currentState.colour := HMIColour.colourRed;
+				ProfiNetSuffix.OutputCR_ProviderInStop					: 	ProfiNetDiag.ProfiNetslaveDiag[i].currentState.colour := HMIColour.colourRed;
+				ProfiNetSuffix.OutputCR_ProblemIndicatorIsSet			: 	ProfiNetDiag.ProfiNetslaveDiag[i].currentState.colour := HMIColour.colourRed;
+				END_CASE;
+				
+			END_IF
 	
 	
 END_FOR
@@ -1020,7 +1071,7 @@ END_FOR
                           <l2 n="OutputItems" cet="Operand">
                             <n />
                             <o>
-                              <v n="Operand">"etherCATdiag.gScreenIndex"</v>
+                              <v n="Operand">"ProfiNetDiag.gScreenIndex"</v>
                               <v n="Type">"UINT"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
@@ -1046,7 +1097,7 @@ END_FOR
                         <l2 n="InputItems" cet="BoxTreeOperand">
                           <o>
                             <o n="Operand" t="Operand">
-                              <v n="Operand">"etherCATdiag.btnNext"</v>
+                              <v n="Operand">"ProfiNetDiag.btnNext"</v>
                               <v n="Type">"BOOL"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
@@ -1065,7 +1116,7 @@ END_FOR
                           </o>
                           <o>
                             <o n="Operand" t="Operand">
-                              <v n="Operand">"etherCATdiag.gScreenIndex"</v>
+                              <v n="Operand">"ProfiNetDiag.gScreenIndex"</v>
                               <v n="Type">"UINT"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
@@ -1164,7 +1215,7 @@ END_FOR
                           <l2 n="OutputItems" cet="Operand">
                             <n />
                             <o>
-                              <v n="Operand">"etherCATdiag.gScreenIndex"</v>
+                              <v n="Operand">"ProfiNetDiag.gScreenIndex"</v>
                               <v n="Type">"UINT"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
@@ -1190,7 +1241,7 @@ END_FOR
                         <l2 n="InputItems" cet="BoxTreeOperand">
                           <o>
                             <o n="Operand" t="Operand">
-                              <v n="Operand">"etherCATdiag.btnPrevious"</v>
+                              <v n="Operand">"ProfiNetDiag.btnPrevious"</v>
                               <v n="Type">"BOOL"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
@@ -1209,7 +1260,7 @@ END_FOR
                           </o>
                           <o>
                             <o n="Operand" t="Operand">
-                              <v n="Operand">"etherCATdiag.gScreenIndex"</v>
+                              <v n="Operand">"ProfiNetDiag.gScreenIndex"</v>
                               <v n="Type">"UINT"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
@@ -1308,7 +1359,7 @@ END_FOR
                           <l2 n="OutputItems" cet="Operand">
                             <n />
                             <o>
-                              <v n="Operand">"etherCATdiag.gScreenIndex"</v>
+                              <v n="Operand">"ProfiNetDiag.gScreenIndex"</v>
                               <v n="Type">"UINT"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
@@ -1373,7 +1424,7 @@ END_FOR
                               </o>
                               <o t="BoxTreeOperand">
                                 <o n="Operand" t="Operand">
-                                  <v n="Operand">"etherCATdiag.gScreenIndex"</v>
+                                  <v n="Operand">"ProfiNetDiag.gScreenIndex"</v>
                                   <v n="Type">"UINT"</v>
                                   <v n="Comment">""</v>
                                   <v n="SymbolComment">""</v>
@@ -1516,7 +1567,7 @@ END_FOR
                           <l2 n="OutputItems" cet="Operand">
                             <n />
                             <o>
-                              <v n="Operand">"etherCATdiag.gScreenIndex"</v>
+                              <v n="Operand">"ProfiNetDiag.gScreenIndex"</v>
                               <v n="Type">"UINT"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
@@ -1581,7 +1632,7 @@ END_FOR
                               </o>
                               <o t="BoxTreeOperand">
                                 <o n="Operand" t="Operand">
-                                  <v n="Operand">"etherCATdiag.gScreenIndex"</v>
+                                  <v n="Operand">"ProfiNetDiag.gScreenIndex"</v>
                                   <v n="Type">"UINT"</v>
                                   <v n="Comment">""</v>
                                   <v n="SymbolComment">""</v>
@@ -1805,8 +1856,8 @@ END_FOR
                               </o>
                               <o t="BoxTreeOperand">
                                 <o n="Operand" t="Operand">
-                                  <v n="Operand">"etherCATdiag.detailDiag"</v>
-                                  <v n="Type">"typeEtherCATIndicator"</v>
+                                  <v n="Operand">"ProfiNetDiag.gScreenIndex"</v>
+                                  <v n="Type">"UINT"</v>
                                   <v n="Comment">""</v>
                                   <v n="SymbolComment">""</v>
                                   <v n="Address">""</v>
@@ -1870,7 +1921,7 @@ END_FOR
                           </o>
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
-                              <v n="Operand">"etherCATdiag.numEtherCATViewableSlavesScreen"</v>
+                              <v n="Operand">"ProfiNetDiag.numProfiNetViewableSlavesScreen"</v>
                               <v n="Type">"UINT"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
@@ -2050,7 +2101,7 @@ END_FOR
                               </o>
                               <o t="BoxTreeOperand">
                                 <o n="Operand" t="Operand">
-                                  <v n="Operand">"etherCATdiag.gScreenIndex"</v>
+                                  <v n="Operand">"ProfiNetDiag.gScreenIndex"</v>
                                   <v n="Type">"UINT"</v>
                                   <v n="Comment">""</v>
                                   <v n="SymbolComment">""</v>
@@ -2240,8 +2291,8 @@ END_FOR
                           </o>
                           <o>
                             <o n="Operand" t="Operand">
-                              <v n="Operand">"adr(etherCATdiag.diagScreen)"</v>
-                              <v n="Type">"POINTER TO ARRAY [1..128] OF typeEtherCATIndicator"</v>
+                              <v n="Operand">"adr(ProfiNetDiag.diagScreen)"</v>
+                              <v n="Type">"POINTER TO ARRAY [1..128] OF typeProfiNetIndicator"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
                               <v n="Address">""</v>
@@ -2259,8 +2310,8 @@ END_FOR
                           </o>
                           <o>
                             <o n="Operand" t="Operand">
-                              <v n="Operand">"adr(etherCATdiag.EtherCATslaveDiag) + tDiagScreenPointer"</v>
-                              <v n="Type">"POINTER TO ARRAY [1..maxNumEtherCATSlaves] OF typeEtherCATIndicator"</v>
+                              <v n="Operand">"adr(ProfiNetDiag.ProfiNetslaveDiag) + tDiagScreenPointer"</v>
+                              <v n="Type">"POINTER TO ARRAY [1..maxNumProfiNetSlaves] OF typeProfiNetIndicator"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
                               <v n="Address">""</v>
@@ -2278,7 +2329,7 @@ END_FOR
                           </o>
                           <o>
                             <o n="Operand" t="Operand">
-                              <v n="Operand">"sizeof(etherCATdiag.diagScreen)"</v>
+                              <v n="Operand">"sizeof(ProfiNetDiag.diagScreen)"</v>
                               <v n="Type">"UINT"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
@@ -2384,13 +2435,33 @@ END_FOR
       <LineId Id="98" Count="3" />
       <LineId Id="97" Count="0" />
       <LineId Id="92" Count="0" />
-      <LineId Id="4" Count="3" />
+      <LineId Id="4" Count="1" />
+      <LineId Id="307" Count="1" />
       <LineId Id="9" Count="1" />
       <LineId Id="103" Count="0" />
-      <LineId Id="11" Count="7" />
+      <LineId Id="309" Count="1" />
+      <LineId Id="11" Count="5" />
+      <LineId Id="312" Count="2" />
+      <LineId Id="311" Count="0" />
+      <LineId Id="17" Count="1" />
+      <LineId Id="184" Count="2" />
+      <LineId Id="233" Count="0" />
+      <LineId Id="255" Count="0" />
+      <LineId Id="189" Count="0" />
+      <LineId Id="214" Count="1" />
+      <LineId Id="218" Count="0" />
+      <LineId Id="221" Count="11" />
+      <LineId Id="257" Count="2" />
+      <LineId Id="202" Count="2" />
+      <LineId Id="260" Count="0" />
+      <LineId Id="205" Count="1" />
+      <LineId Id="212" Count="0" />
+      <LineId Id="282" Count="0" />
+      <LineId Id="295" Count="6" />
+      <LineId Id="303" Count="2" />
+      <LineId Id="280" Count="0" />
+      <LineId Id="213" Count="0" />
       <LineId Id="126" Count="0" />
-      <LineId Id="124" Count="0" />
-      <LineId Id="108" Count="0" />
       <LineId Id="56" Count="2" />
       <LineId Id="1" Count="0" />
     </LineIds>
