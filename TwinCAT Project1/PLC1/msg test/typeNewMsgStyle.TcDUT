@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="typeNewMsgStyle" Id="{f10be4db-4e91-4ecc-acd5-9ffaa0318729}">
+    <Declaration><![CDATA[TYPE typeNewMsgStyle :
+STRUCT
+	
+isColoured:BOOL;			//TRUE to apply a colour, e.g. RED or YELLOW, normal messages = false, so grey
+colourToApply:DWORD;		//from consts in global HMIColour
+
+
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
