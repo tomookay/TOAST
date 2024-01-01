@@ -879,9 +879,9 @@
                     <o>
                       <v n="Id">3234392039L</v>
                       <o n="Value" t="DataVariableInformation">
-                        <v n="DataArrayType">"ARRAY [1..1000] OF typeNewMsg"</v>
+                        <v n="DataArrayType">"ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeNewMsg"</v>
                         <v n="ColumnCount">4</v>
-                        <v n="RowCount">1000</v>
+                        <v n="RowCount">100</v>
                         <v n="FirstColumnIndex">0</v>
                         <v n="FirstRowIndex">1</v>
                         <a n="ColumnTypes" cet="TypeClass">
@@ -897,7 +897,12 @@
                           <v>msgTest.msgArry[INDEX].source</v>
                         </a>
                         <v n="BaseType">false</v>
-                        <n n="Bounds" />
+                        <a n="Bounds" cet="ArrayBound">
+                          <o>
+                            <v n="Identifier">"HMIData.gNumberOfMessagesScreen"</v>
+                            <v n="Value">100</v>
+                          </o>
+                        </a>
                         <v n="ArrayType" t="EArrayType">ArrayOfStruct</v>
                       </o>
                     </o>
@@ -911,7 +916,7 @@
                     </o>
                     <o>
                       <v n="Id">1467829077L</v>
-                      <v n="Value">"%s"</v>
+                      <v n="Value">"%d"</v>
                     </o>
                     <o>
                       <v n="Id">208337472L</v>
@@ -1003,19 +1008,19 @@
                     </o>
                     <o>
                       <v n="Id">2318311169L</v>
-                      <v n="Value">1000</v>
+                      <v n="Value">100</v>
                     </o>
                     <o>
                       <v n="Id">1268793537L</v>
-                      <v n="Value">1000</v>
+                      <v n="Value">100</v>
                     </o>
                     <o>
                       <v n="Id">3527550656L</v>
-                      <v n="Value">1000</v>
+                      <v n="Value">100</v>
                     </o>
                     <o>
                       <v n="Id">332200192L</v>
-                      <v n="Value">1000</v>
+                      <v n="Value">100</v>
                     </o>
                     <o>
                       <v n="Id">3146216842L</v>
@@ -1050,7 +1055,15 @@
                       <v n="Value">true</v>
                     </o>
                     <o>
+                      <v n="Id">3803700462L</v>
+                      <v n="Value">true</v>
+                    </o>
+                    <o>
                       <v n="Id">175837068L</v>
+                      <v n="Value">true</v>
+                    </o>
+                    <o>
+                      <v n="Id">95058553L</v>
                       <v n="Value">true</v>
                     </o>
                     <o>
@@ -1063,18 +1076,6 @@
                     </o>
                     <o>
                       <v n="Id">1981426263L</v>
-                      <v n="Value">true</v>
-                    </o>
-                    <o>
-                      <v n="Id">3736079596L</v>
-                      <v n="Value">"2046"</v>
-                    </o>
-                    <o>
-                      <v n="Id">1893244285L</v>
-                      <v n="Value">"1482"</v>
-                    </o>
-                    <o>
-                      <v n="Id">3803700462L</v>
                       <v n="Value">true</v>
                     </o>
                   </l>
@@ -1101,88 +1102,40 @@
                     <o n="VisualElemMemberList" t="VisualElemMemberList">
                       <l n="VisualElemMemberList" t="VisualElemMemberCollection" cet="VisualElemMember">
                         <o>
-                          <v n="Id">494569607L</v>
-                          <v n="Value">4278190080U</v>
+                          <v n="Id">365730219L</v>
+                          <v n="Value">"VISU_ST_RECTANGLE"</v>
                         </o>
                         <o>
-                          <v n="Id">2812299069L</v>
-                          <v n="Value">4294967295U</v>
+                          <v n="Id">2764776250L</v>
+                          <v n="Value">1U</v>
                         </o>
                         <o>
-                          <v n="Id">135947015L</v>
-                          <v n="Value">4278190080U</v>
-                        </o>
-                        <o>
-                          <v n="Id">493260384L</v>
-                          <v n="Value">4294967295U</v>
-                        </o>
-                        <o>
-                          <v n="Id">2340015797L</v>
-                          <v n="Value">"HCENTER"</v>
-                        </o>
-                        <o>
-                          <v n="Id">2565699834L</v>
+                          <v n="Id">339296383L</v>
                           <v n="Value">"VCENTER"</v>
                         </o>
                         <o>
-                          <v n="Id">4134387352L</v>
-                          <v n="Value">"NONE"</v>
+                          <v n="Id">1670709118L</v>
+                          <l n="Value" t="ArrayList" cet="UInt32">
+                            <v>4294901760</v>
+                          </l>
                         </o>
                         <o>
-                          <v n="Id">1603690730L</v>
-                          <v n="Value">"Arial"</v>
+                          <v n="Id">1636817830L</v>
+                          <v n="Value">"%s"</v>
                         </o>
                         <o>
-                          <v n="Id">4253639993L</v>
-                          <v n="Value" t="Int16">12</v>
+                          <v n="Id">1409698558L</v>
+                          <v n="Value">""</v>
                         </o>
                         <o>
-                          <v n="Id">2729990903L</v>
-                          <v n="Value">0U</v>
-                        </o>
-                        <o>
-                          <v n="Id">1213979116L</v>
-                          <v n="Value">0U</v>
-                        </o>
-                        <o>
-                          <v n="Id">3488306084L</v>
-                          <v n="Value">4278190080U</v>
-                        </o>
-                        <o>
-                          <v n="Id">1999528970L</v>
-                          <v n="Value">"&lt;toggle/tap variable&gt;"</v>
+                          <v n="Id">1279284661L</v>
+                          <v n="Value">"msgTest.msgArryStyle[INDEX].isColoured"</v>
                         </o>
                         <o>
                           <v n="Id">3425622852L</v>
                           <l n="Value" t="ArrayList" cet="UInt32">
                             <v>4294967295</v>
                           </l>
-                        </o>
-                        <o>
-                          <v n="Id">885575555L</v>
-                          <l n="Value" t="ArrayList" cet="UInt32">
-                            <v>4278190080</v>
-                          </l>
-                        </o>
-                        <o>
-                          <v n="Id">2729504901L</v>
-                          <v n="Value">0</v>
-                        </o>
-                        <o>
-                          <v n="Id">1239137909L</v>
-                          <v n="Value">0</v>
-                        </o>
-                        <o>
-                          <v n="Id">1054641891L</v>
-                          <v n="Value">0</v>
-                        </o>
-                        <o>
-                          <v n="Id">1546887284L</v>
-                          <v n="Value">150</v>
-                        </o>
-                        <o>
-                          <v n="Id">153371798L</v>
-                          <v n="Value">30</v>
                         </o>
                         <o>
                           <v n="Id">3728858389L</v>
@@ -1201,60 +1154,28 @@
                           </l>
                         </o>
                         <o>
-                          <v n="Id">4171957040L</v>
+                          <v n="Id">885575555L</v>
                           <l n="Value" t="ArrayList" cet="UInt32">
-                            <v>4294954959</v>
+                            <v>4278190080</v>
                           </l>
-                        </o>
-                        <o>
-                          <v n="Id">1670709118L</v>
-                          <l n="Value" t="ArrayList" cet="UInt32">
-                            <v>4294901760</v>
-                          </l>
-                        </o>
-                        <o>
-                          <v n="Id">3254497565L</v>
-                          <v n="Value">75</v>
-                        </o>
-                        <o>
-                          <v n="Id">3070001547L</v>
-                          <v n="Value">15</v>
-                        </o>
-                        <o>
-                          <v n="Id">2764776250L</v>
-                          <v n="Value">1U</v>
                         </o>
                         <o>
                           <v n="Id">3851392753L</v>
                           <v n="Value">"HCENTER"</v>
                         </o>
                         <o>
-                          <v n="Id">339296383L</v>
-                          <v n="Value">"VCENTER"</v>
-                        </o>
-                        <o>
-                          <v n="Id">365730219L</v>
-                          <v n="Value">"VISU_ST_RECTANGLE"</v>
-                        </o>
-                        <o>
-                          <v n="Id">1636817830L</v>
-                          <v n="Value">""</v>
-                        </o>
-                        <o>
-                          <v n="Id">1409698558L</v>
-                          <v n="Value">""</v>
-                        </o>
-                        <o>
-                          <v n="Id">2477733581L</v>
-                          <v n="Value">"msgTest.msgArry[INDEX].timeRaised"</v>
+                          <v n="Id">4171957040L</v>
+                          <l n="Value" t="ArrayList" cet="UInt32">
+                            <v>4294954959</v>
+                          </l>
                         </o>
                         <o>
                           <v n="Id">3641577973L</v>
                           <v n="Value">"msgTest.msgArryStyle[INDEX].colourToApply"</v>
                         </o>
                         <o>
-                          <v n="Id">1279284661L</v>
-                          <v n="Value">"msgTest.msgArryStyle[INDEX].isColoured"</v>
+                          <v n="Id">2477733581L</v>
+                          <v n="Value">"msgTest.msgArry[INDEX].timeRaised"</v>
                         </o>
                       </l>
                     </o>
@@ -1280,88 +1201,40 @@
                     <o n="VisualElemMemberList" t="VisualElemMemberList">
                       <l n="VisualElemMemberList" t="VisualElemMemberCollection" cet="VisualElemMember">
                         <o>
-                          <v n="Id">494569607L</v>
-                          <v n="Value">4278190080U</v>
+                          <v n="Id">2498362508L</v>
+                          <v n="Value">"VISU_ST_RECTANGLE"</v>
                         </o>
                         <o>
-                          <v n="Id">2812299069L</v>
-                          <v n="Value">4294967295U</v>
+                          <v n="Id">99788756L</v>
+                          <v n="Value">1U</v>
                         </o>
                         <o>
-                          <v n="Id">135947015L</v>
-                          <v n="Value">4278190080U</v>
-                        </o>
-                        <o>
-                          <v n="Id">493260384L</v>
-                          <v n="Value">4294967295U</v>
-                        </o>
-                        <o>
-                          <v n="Id">2340015797L</v>
-                          <v n="Value">"HCENTER"</v>
-                        </o>
-                        <o>
-                          <v n="Id">2565699834L</v>
+                          <v n="Id">362605001L</v>
                           <v n="Value">"VCENTER"</v>
                         </o>
                         <o>
-                          <v n="Id">4134387352L</v>
-                          <v n="Value">"NONE"</v>
+                          <v n="Id">2846493933L</v>
+                          <l n="Value" t="ArrayList" cet="UInt32">
+                            <v>4294901760</v>
+                          </l>
                         </o>
                         <o>
-                          <v n="Id">1603690730L</v>
-                          <v n="Value">"Arial"</v>
+                          <v n="Id">1467829077L</v>
+                          <v n="Value">"%d"</v>
                         </o>
                         <o>
-                          <v n="Id">4253639993L</v>
-                          <v n="Value" t="Int16">12</v>
+                          <v n="Id">3245776491L</v>
+                          <v n="Value">""</v>
                         </o>
                         <o>
-                          <v n="Id">2729990903L</v>
-                          <v n="Value">0U</v>
-                        </o>
-                        <o>
-                          <v n="Id">1213979116L</v>
-                          <v n="Value">0U</v>
-                        </o>
-                        <o>
-                          <v n="Id">3488306084L</v>
-                          <v n="Value">4278190080U</v>
-                        </o>
-                        <o>
-                          <v n="Id">1999528970L</v>
-                          <v n="Value">"&lt;toggle/tap variable&gt;"</v>
+                          <v n="Id">3984183643L</v>
+                          <v n="Value">"msgTest.msgArryStyle[INDEX].isColoured"</v>
                         </o>
                         <o>
                           <v n="Id">101722327L</v>
                           <l n="Value" t="ArrayList" cet="UInt32">
                             <v>4294967295</v>
                           </l>
-                        </o>
-                        <o>
-                          <v n="Id">1560556430L</v>
-                          <l n="Value" t="ArrayList" cet="UInt32">
-                            <v>4278190080</v>
-                          </l>
-                        </o>
-                        <o>
-                          <v n="Id">574678938L</v>
-                          <v n="Value">0</v>
-                        </o>
-                        <o>
-                          <v n="Id">1195136676L</v>
-                          <v n="Value">0</v>
-                        </o>
-                        <o>
-                          <v n="Id">809199154L</v>
-                          <v n="Value">0</v>
-                        </o>
-                        <o>
-                          <v n="Id">2477635516L</v>
-                          <v n="Value">150</v>
-                        </o>
-                        <o>
-                          <v n="Id">2622787587L</v>
-                          <v n="Value">30</v>
                         </o>
                         <o>
                           <v n="Id">911625652L</v>
@@ -1380,60 +1253,28 @@
                           </l>
                         </o>
                         <o>
-                          <v n="Id">2090474177L</v>
+                          <v n="Id">1560556430L</v>
                           <l n="Value" t="ArrayList" cet="UInt32">
-                            <v>4294954959</v>
+                            <v>4278190080</v>
                           </l>
-                        </o>
-                        <o>
-                          <v n="Id">2846493933L</v>
-                          <l n="Value" t="ArrayList" cet="UInt32">
-                            <v>4294901760</v>
-                          </l>
-                        </o>
-                        <o>
-                          <v n="Id">2734450745L</v>
-                          <v n="Value">75</v>
-                        </o>
-                        <o>
-                          <v n="Id">3590019247L</v>
-                          <v n="Value">15</v>
-                        </o>
-                        <o>
-                          <v n="Id">99788756L</v>
-                          <v n="Value">1U</v>
                         </o>
                         <o>
                           <v n="Id">4162487590L</v>
                           <v n="Value">"HCENTER"</v>
                         </o>
                         <o>
-                          <v n="Id">362605001L</v>
-                          <v n="Value">"VCENTER"</v>
-                        </o>
-                        <o>
-                          <v n="Id">2498362508L</v>
-                          <v n="Value">"VISU_ST_RECTANGLE"</v>
-                        </o>
-                        <o>
-                          <v n="Id">1467829077L</v>
-                          <v n="Value">""</v>
-                        </o>
-                        <o>
-                          <v n="Id">3245776491L</v>
-                          <v n="Value">""</v>
-                        </o>
-                        <o>
-                          <v n="Id">2477733581L</v>
-                          <v n="Value">"msgTest.msgArry[INDEX].timeResolved"</v>
+                          <v n="Id">2090474177L</v>
+                          <l n="Value" t="ArrayList" cet="UInt32">
+                            <v>4294954959</v>
+                          </l>
                         </o>
                         <o>
                           <v n="Id">1446722656L</v>
                           <v n="Value">"msgTest.msgArryStyle[INDEX].colourToApply"</v>
                         </o>
                         <o>
-                          <v n="Id">3984183643L</v>
-                          <v n="Value">"msgTest.msgArryStyle[INDEX].isColoured"</v>
+                          <v n="Id">2477733581L</v>
+                          <v n="Value">"msgTest.msgArry[INDEX].timeResolved"</v>
                         </o>
                       </l>
                     </o>
@@ -1444,7 +1285,7 @@
                     <n n="VisualElementOfflinePaintCommands" />
                     <n n="VisualElementFrameInformation" />
                     <d n="VisualElementInputActions" t="Hashtable" />
-                    <v n="VisualElementIdentification">{cd5cdef6-5bdb-4890-9415-3af9d89bded1}</v>
+                    <v n="VisualElementIdentification">{181d5d2d-98eb-4cff-82ba-6040be41a6b1}</v>
                     <v n="VisualElementOwningObjectGuid">{f0caa955-e950-4402-b6fa-6d4c00190f55}</v>
                     <a n="LMGuids" et="Guid" />
                     <d n="SubElements" t="Hashtable" />
@@ -1518,7 +1359,7 @@
                         </o>
                         <o>
                           <v n="Id">3735400799L</v>
-                          <v n="Value">"HCENTER"</v>
+                          <v n="Value">"LEFT"</v>
                         </o>
                         <o>
                           <v n="Id">733492883L</v>
@@ -1533,50 +1374,6 @@
                         <o>
                           <v n="Id">2477733581L</v>
                           <v n="Value">"msgTest.msgArry[INDEX].text"</v>
-                        </o>
-                        <o>
-                          <v n="Id">2812299069L</v>
-                          <v n="Value">4294967295U</v>
-                        </o>
-                        <o>
-                          <v n="Id">494569607L</v>
-                          <v n="Value">4278190080U</v>
-                        </o>
-                        <o>
-                          <v n="Id">3719097617L</v>
-                          <v n="Value">0</v>
-                        </o>
-                        <o>
-                          <v n="Id">1649127785L</v>
-                          <v n="Value">10</v>
-                        </o>
-                        <o>
-                          <v n="Id">357335551L</v>
-                          <v n="Value">10</v>
-                        </o>
-                        <o>
-                          <v n="Id">2422045748L</v>
-                          <v n="Value">150</v>
-                        </o>
-                        <o>
-                          <v n="Id">2134141914L</v>
-                          <v n="Value">30</v>
-                        </o>
-                        <o>
-                          <v n="Id">390574330L</v>
-                          <v n="Value">""</v>
-                        </o>
-                        <o>
-                          <v n="Id">571893170L</v>
-                          <v n="Value">""</v>
-                        </o>
-                        <o>
-                          <v n="Id">550940142L</v>
-                          <v n="Value">0</v>
-                        </o>
-                        <o>
-                          <v n="Id">1473355128L</v>
-                          <v n="Value">0</v>
                         </o>
                       </l>
                     </o>
@@ -1676,50 +1473,6 @@
                         <o>
                           <v n="Id">2477733581L</v>
                           <v n="Value">"msgTest.msgArry[INDEX].source"</v>
-                        </o>
-                        <o>
-                          <v n="Id">2812299069L</v>
-                          <v n="Value">4294967295U</v>
-                        </o>
-                        <o>
-                          <v n="Id">494569607L</v>
-                          <v n="Value">4278190080U</v>
-                        </o>
-                        <o>
-                          <v n="Id">3719097617L</v>
-                          <v n="Value">0</v>
-                        </o>
-                        <o>
-                          <v n="Id">1649127785L</v>
-                          <v n="Value">10</v>
-                        </o>
-                        <o>
-                          <v n="Id">357335551L</v>
-                          <v n="Value">10</v>
-                        </o>
-                        <o>
-                          <v n="Id">2422045748L</v>
-                          <v n="Value">150</v>
-                        </o>
-                        <o>
-                          <v n="Id">2134141914L</v>
-                          <v n="Value">30</v>
-                        </o>
-                        <o>
-                          <v n="Id">390574330L</v>
-                          <v n="Value">""</v>
-                        </o>
-                        <o>
-                          <v n="Id">571893170L</v>
-                          <v n="Value">""</v>
-                        </o>
-                        <o>
-                          <v n="Id">550940142L</v>
-                          <v n="Value">0</v>
-                        </o>
-                        <o>
-                          <v n="Id">1473355128L</v>
-                          <v n="Value">0</v>
                         </o>
                       </l>
                     </o>
@@ -1929,6 +1682,7 @@
         </o>
       </Data>
       <TypeList>
+        <Type n="ArrayBound">{ef0fabca-c7d4-4f23-8350-10fa7b208ac1}</Type>
         <Type n="ArrayList">System.Collections.ArrayList</Type>
         <Type n="BackgroundSettings">{1038f12c-dd4b-4f96-87a3-a350fe8f3552}</Type>
         <Type n="BasicTypeNode">{f7e1e748-ea0f-4fcb-b563-94837ee17e8d}</Type>

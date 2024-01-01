@@ -131,27 +131,91 @@ END_VAR
                         <v n="Extensible">false</v>
                       </o>
                       <n n="InputFlags" />
-                      <l2 n="InputItems" cet="BoxTreeOperand">
-                        <o>
-                          <o n="Operand" t="Operand">
-                            <v n="Operand">"GlobalMessages.gMsgS1Stat.IsAlarm"</v>
-                            <v n="Type">"BOOL"</v>
+                      <l2 n="InputItems">
+                        <o t="BoxTreeBox">
+                          <v n="BoxType">"AND"</v>
+                          <o n="Instance" t="Operand">
+                            <n n="Operand" />
+                            <v n="Type">""</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
                             <v n="Address">""</v>
                             <o n="Flags" t="Flags">
-                              <v n="Flags">16</v>
-                              <v n="Fixed">true</v>
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
                               <v n="Extensible">false</v>
                             </o>
                             <v n="LValue">false</v>
-                            <v n="Boolean">true</v>
-                            <v n="IsInstance">false</v>
-                            <v n="Id">57L</v>
+                            <v n="Boolean">false</v>
+                            <v n="IsInstance">true</v>
+                            <v n="Id">63L</v>
                           </o>
-                          <v n="Id">56L</v>
+                          <o n="OutputItems" t="OutputItemList">
+                            <l2 n="OutputItems" />
+                          </o>
+                          <o n="Flags" t="Flags">
+                            <v n="Flags">0</v>
+                            <v n="Fixed">false</v>
+                            <v n="Extensible">false</v>
+                          </o>
+                          <n n="InputFlags" />
+                          <l2 n="InputItems" cet="BoxTreeOperand">
+                            <o>
+                              <o n="Operand" t="Operand">
+                                <v n="Operand">"FALSE"</v>
+                                <v n="Type">"BOOL"</v>
+                                <v n="Comment">""</v>
+                                <v n="SymbolComment">""</v>
+                                <v n="Address">""</v>
+                                <o n="Flags" t="Flags">
+                                  <v n="Flags">0</v>
+                                  <v n="Fixed">true</v>
+                                  <v n="Extensible">false</v>
+                                </o>
+                                <v n="LValue">false</v>
+                                <v n="Boolean">true</v>
+                                <v n="IsInstance">false</v>
+                                <v n="Id">66L</v>
+                              </o>
+                              <v n="Id">65L</v>
+                            </o>
+                            <o>
+                              <o n="Operand" t="Operand">
+                                <v n="Operand">"GlobalMessages.gMsgS1Stat.IsAlarm"</v>
+                                <v n="Type">"BOOL"</v>
+                                <v n="Comment">""</v>
+                                <v n="SymbolComment">""</v>
+                                <v n="Address">""</v>
+                                <o n="Flags" t="Flags">
+                                  <v n="Flags">16</v>
+                                  <v n="Fixed">true</v>
+                                  <v n="Extensible">false</v>
+                                </o>
+                                <v n="LValue">false</v>
+                                <v n="Boolean">true</v>
+                                <v n="IsInstance">false</v>
+                                <v n="Id">57L</v>
+                              </o>
+                              <v n="Id">56L</v>
+                            </o>
+                          </l2>
+                          <o n="InputParam" t="ParamList">
+                            <l2 n="Names" />
+                            <l2 n="Types" />
+                          </o>
+                          <o n="OutputParam" t="ParamList">
+                            <l2 n="Names" />
+                            <l2 n="Types" />
+                          </o>
+                          <v n="CallType" t="Operator">And</v>
+                          <n n="EN" />
+                          <n n="ENO" />
+                          <n n="STSnippet" />
+                          <v n="ContainsExtensibleInputs">false</v>
+                          <v n="ProvidesSTSnippet">false</v>
+                          <v n="Id">64L</v>
                         </o>
-                        <o>
+                        <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
                             <v n="Operand">"adr(msgTest.msgArry)"</v>
                             <v n="Type">"POINTER TO ARRAY [1..1000] OF typeNewMsg"</v>
@@ -170,7 +234,7 @@ END_VAR
                           </o>
                           <v n="Id">45L</v>
                         </o>
-                        <o>
+                        <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
                             <v n="Operand">"16#0"</v>
                             <v n="Type">"INT"</v>
@@ -189,7 +253,7 @@ END_VAR
                           </o>
                           <v n="Id">47L</v>
                         </o>
-                        <o>
+                        <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
                             <v n="Operand">"sizeof(msgTest.msgArry)"</v>
                             <v n="Type">"UINT"</v>
@@ -284,25 +348,89 @@ END_VAR
                         <v n="Extensible">false</v>
                       </o>
                       <n n="InputFlags" />
-                      <l2 n="InputItems" cet="BoxTreeOperand">
+                      <l2 n="InputItems" cet="BoxTreeBox">
                         <o>
-                          <o n="Operand" t="Operand">
-                            <v n="Operand">"GlobalMessages.gMsgS1Stat.IsAlarm"</v>
-                            <v n="Type">"BOOL"</v>
+                          <v n="BoxType">"AND"</v>
+                          <o n="Instance" t="Operand">
+                            <n n="Operand" />
+                            <v n="Type">""</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
                             <v n="Address">""</v>
                             <o n="Flags" t="Flags">
-                              <v n="Flags">16</v>
-                              <v n="Fixed">true</v>
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
                               <v n="Extensible">false</v>
                             </o>
                             <v n="LValue">false</v>
-                            <v n="Boolean">true</v>
-                            <v n="IsInstance">false</v>
-                            <v n="Id">32L</v>
+                            <v n="Boolean">false</v>
+                            <v n="IsInstance">true</v>
+                            <v n="Id">67L</v>
                           </o>
-                          <v n="Id">31L</v>
+                          <o n="OutputItems" t="OutputItemList">
+                            <l2 n="OutputItems" />
+                          </o>
+                          <o n="Flags" t="Flags">
+                            <v n="Flags">0</v>
+                            <v n="Fixed">false</v>
+                            <v n="Extensible">false</v>
+                          </o>
+                          <n n="InputFlags" />
+                          <l2 n="InputItems" cet="BoxTreeOperand">
+                            <o>
+                              <o n="Operand" t="Operand">
+                                <v n="Operand">"FALSE"</v>
+                                <v n="Type">"BOOL"</v>
+                                <v n="Comment">""</v>
+                                <v n="SymbolComment">""</v>
+                                <v n="Address">""</v>
+                                <o n="Flags" t="Flags">
+                                  <v n="Flags">0</v>
+                                  <v n="Fixed">true</v>
+                                  <v n="Extensible">false</v>
+                                </o>
+                                <v n="LValue">false</v>
+                                <v n="Boolean">true</v>
+                                <v n="IsInstance">false</v>
+                                <v n="Id">70L</v>
+                              </o>
+                              <v n="Id">69L</v>
+                            </o>
+                            <o>
+                              <o n="Operand" t="Operand">
+                                <v n="Operand">"GlobalMessages.gMsgS1Stat.IsAlarm"</v>
+                                <v n="Type">"BOOL"</v>
+                                <v n="Comment">""</v>
+                                <v n="SymbolComment">""</v>
+                                <v n="Address">""</v>
+                                <o n="Flags" t="Flags">
+                                  <v n="Flags">16</v>
+                                  <v n="Fixed">true</v>
+                                  <v n="Extensible">false</v>
+                                </o>
+                                <v n="LValue">false</v>
+                                <v n="Boolean">true</v>
+                                <v n="IsInstance">false</v>
+                                <v n="Id">32L</v>
+                              </o>
+                              <v n="Id">31L</v>
+                            </o>
+                          </l2>
+                          <o n="InputParam" t="ParamList">
+                            <l2 n="Names" />
+                            <l2 n="Types" />
+                          </o>
+                          <o n="OutputParam" t="ParamList">
+                            <l2 n="Names" />
+                            <l2 n="Types" />
+                          </o>
+                          <v n="CallType" t="Operator">And</v>
+                          <n n="EN" />
+                          <n n="ENO" />
+                          <n n="STSnippet" />
+                          <v n="ContainsExtensibleInputs">false</v>
+                          <v n="ProvidesSTSnippet">false</v>
+                          <v n="Id">68L</v>
                         </o>
                       </l2>
                       <o n="InputParam" t="ParamList">
@@ -361,6 +489,10 @@ END_VAR
       <Implementation>
         <ST><![CDATA[FOR i:= 1 TO 100 DO
 
+//clear down the message text
+msgTest.msgArry[i].text := '';
+
+
 //GlobalMessages.gListMsgS1.AlarmViewMsg
 
 //move message text
@@ -378,6 +510,13 @@ msgTest.msgArryStyle[i].isColoured := GlobalMessages.gListMsgS1.AlarmViewMsg[i].
 		msgTest.msgArryStyle[i].colourToApply := HMIColour.colourYellow;
 	END_IF
 	
+	IF NOT GlobalMessages.gListMsgS1.AlarmViewMsg[i].isWarning OR
+	   NOT GlobalMessages.gListMsgS1.AlarmViewMsg[i].isAlarm  THEN
+	   msgTest.msgArryStyle[i].colourToApply := HMIColour.colourGreyBackground;
+	  END_IF
+ 
+	   
+	
 msgTest.msgArry[i].timeRaised := '12:30:32AM';
 msgTest.msgArry[i].timeResolved := '13:30:32AM';
 
@@ -391,7 +530,12 @@ END_FOR]]></ST>
     </Action>
     <LineIds Name="pouTestMessages.actOrderMessages">
       <LineId Id="1" Count="0" />
-      <LineId Id="6" Count="1" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="7" Count="0" />
       <LineId Id="11" Count="0" />
       <LineId Id="9" Count="0" />
       <LineId Id="8" Count="0" />
@@ -402,6 +546,9 @@ END_FOR]]></ST>
       <LineId Id="13" Count="0" />
       <LineId Id="17" Count="1" />
       <LineId Id="22" Count="3" />
+      <LineId Id="34" Count="4" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="39" Count="0" />
       <LineId Id="27" Count="1" />
       <LineId Id="31" Count="0" />
       <LineId Id="30" Count="0" />

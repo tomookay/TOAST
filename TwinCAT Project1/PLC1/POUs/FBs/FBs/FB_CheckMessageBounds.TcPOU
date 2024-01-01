@@ -15,8 +15,13 @@ VAR_OUTPUT
 	
 	qAllMessages: STRING;
 	
-	//special declare, follows typeMessageRowsArry
+	//declare, follows typeMessageRowsArry
 	qMsgRows:ARRAY[1..HMIData.gNumberOfMessagesScreen] OF typeMessageRow;
+	
+	//new message rows using table
+	qSpecialMsgRows:ARRAY[1..HMIData.gNumberOfMessagesScreen] OF typeNewMsg;
+	qSpecialMsgRowsStyle:ARRAY[1..HMIData.gNumberOfMessagesScreen] OF typeNewMsgStyle;
+	
 	
 
 END_VAR
@@ -181,10 +186,22 @@ IF memchanged THEN
 				
 				//assign text to other alarm view 	
 				qMsgRows[msgindex].msgText := iqArrayToCheck.text[i];
+				qSpecialMsgRows[msgIndex].text := iqArrayToCheck.text[i];
+				qSpecialMsgRows[msgIndex].timeRaised := UDINT_TO_STRING(iqArrayToCheck.messageTimeActive[i]);
+				
+				
+				//assign special colour
+				qSpecialMsgRowsStyle[msgIndex].colourToApply := HMIColour.colourGreyBackground;
+				qSpecialMsgRowsStyle[msgIndex].isColoured := FALSE;
 				
 				//assign colour
 				IF isAlarm THEN
 					qMsgRows[msgIndex].isAlarm := TRUE;
+					
+					//assign special colour
+					qSpecialMsgRowsStyle[msgIndex].colourToApply := HMIColour.colourRed;
+					qSpecialMsgRowsStyle[msgIndex].isColoured := TRUE;
+					
 					ELSE
 					qMsgRows[msgIndex].isAlarm := FALSE;	
 				
@@ -193,6 +210,12 @@ IF memchanged THEN
 					//assign colour
 				IF isWarning THEN
 					qMsgRows[msgIndex].isWarning := TRUE;
+					
+					//assign special colour
+					qSpecialMsgRowsStyle[msgIndex].colourToApply := HMIColour.colourYellow;
+					qSpecialMsgRowsStyle[msgIndex].isColoured := TRUE;
+					
+					
 					ELSE
 					qMsgRows[msgIndex].isWarning := FALSE;
 				
@@ -684,6 +707,324 @@ END_IF
                           <v n="LValue">false</v>
                           <v n="Boolean">false</v>
                           <v n="IsInstance">true</v>
+                          <v n="Id">23L</v>
+                        </o>
+                        <o n="OutputItems" t="OutputItemList">
+                          <l2 n="OutputItems" cet="Operand">
+                            <n />
+                            <o>
+                              <v n="Operand">"returnclearing"</v>
+                              <v n="Type">"UDINT"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">""</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">0</v>
+                                <v n="Fixed">false</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">true</v>
+                              <v n="Boolean">false</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">25L</v>
+                            </o>
+                          </l2>
+                        </o>
+                        <o n="Flags" t="Flags">
+                          <v n="Flags">0</v>
+                          <v n="Fixed">true</v>
+                          <v n="Extensible">false</v>
+                        </o>
+                        <n n="InputFlags" />
+                        <l2 n="InputItems">
+                          <o t="BoxTreeTerminator">
+                            <n n="Input" />
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="Id">26L</v>
+                          </o>
+                          <o t="BoxTreeOperand">
+                            <o n="Operand" t="Operand">
+                              <v n="Operand">"adr(qMsgRows)"</v>
+                              <v n="Type">"POINTER TO ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeMessageRow"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">""</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">0</v>
+                                <v n="Fixed">false</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">false</v>
+                              <v n="Boolean">false</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">28L</v>
+                            </o>
+                            <v n="Id">27L</v>
+                          </o>
+                          <o t="BoxTreeOperand">
+                            <o n="Operand" t="Operand">
+                              <v n="Operand">"16#0"</v>
+                              <v n="Type">"INT"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">""</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">0</v>
+                                <v n="Fixed">false</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">false</v>
+                              <v n="Boolean">false</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">30L</v>
+                            </o>
+                            <v n="Id">29L</v>
+                          </o>
+                          <o t="BoxTreeOperand">
+                            <o n="Operand" t="Operand">
+                              <v n="Operand">"sizeof(qMsgRows)"</v>
+                              <v n="Type">"UINT"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">""</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">0</v>
+                                <v n="Fixed">false</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">false</v>
+                              <v n="Boolean">false</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">32L</v>
+                            </o>
+                            <v n="Id">31L</v>
+                          </o>
+                        </l2>
+                        <o n="InputParam" t="ParamList">
+                          <l2 n="Names" cet="String">
+                            <v>EN</v>
+                            <v>destAddr</v>
+                            <v>fillByte</v>
+                            <v>n</v>
+                          </l2>
+                          <l2 n="Types" cet="String">
+                            <v>BOOL</v>
+                            <v>PVOID</v>
+                            <v>USINT</v>
+                            <v>UDINT</v>
+                          </l2>
+                        </o>
+                        <o n="OutputParam" t="ParamList">
+                          <l2 n="Names" cet="String">
+                            <v>ENO</v>
+                            <v>   </v>
+                          </l2>
+                          <l2 n="Types" cet="String">
+                            <v>BOOL</v>
+                            <v>UDINT</v>
+                          </l2>
+                        </o>
+                        <v n="CallType" t="Operator">Function</v>
+                        <v n="EN">true</v>
+                        <v n="ENO">true</v>
+                        <n n="STSnippet" />
+                        <v n="ContainsExtensibleInputs">false</v>
+                        <v n="ProvidesSTSnippet">false</v>
+                        <v n="Id">24L</v>
+                      </o>
+                    </l2>
+                    <l2 n="Connectors" />
+                    <v n="Id">22L</v>
+                  </o>
+                  <o>
+                    <v n="ILActive">false</v>
+                    <v n="FBDValid">false</v>
+                    <v n="ILValid">false</v>
+                    <l2 n="ILLines" />
+                    <v n="Comment">""</v>
+                    <v n="Title">""</v>
+                    <v n="Label">""</v>
+                    <v n="OutCommented">false</v>
+                    <l2 n="NetworkItems" cet="BoxTreeBox">
+                      <o>
+                        <v n="BoxType">"memset"</v>
+                        <o n="Instance" t="Operand">
+                          <n n="Operand" />
+                          <v n="Type">""</v>
+                          <v n="Comment">""</v>
+                          <v n="SymbolComment">""</v>
+                          <v n="Address">""</v>
+                          <o n="Flags" t="Flags">
+                            <v n="Flags">0</v>
+                            <v n="Fixed">false</v>
+                            <v n="Extensible">false</v>
+                          </o>
+                          <v n="LValue">false</v>
+                          <v n="Boolean">false</v>
+                          <v n="IsInstance">true</v>
+                          <v n="Id">34L</v>
+                        </o>
+                        <o n="OutputItems" t="OutputItemList">
+                          <l2 n="OutputItems" cet="Operand">
+                            <n />
+                            <o>
+                              <v n="Operand">"returnclearing"</v>
+                              <v n="Type">"UDINT"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">""</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">0</v>
+                                <v n="Fixed">false</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">true</v>
+                              <v n="Boolean">false</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">36L</v>
+                            </o>
+                          </l2>
+                        </o>
+                        <o n="Flags" t="Flags">
+                          <v n="Flags">0</v>
+                          <v n="Fixed">true</v>
+                          <v n="Extensible">false</v>
+                        </o>
+                        <n n="InputFlags" />
+                        <l2 n="InputItems">
+                          <o t="BoxTreeTerminator">
+                            <n n="Input" />
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="Id">37L</v>
+                          </o>
+                          <o t="BoxTreeOperand">
+                            <o n="Operand" t="Operand">
+                              <v n="Operand">"adr(qSpecialMsgRows)"</v>
+                              <v n="Type">"POINTER TO ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeNewMsg"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">""</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">0</v>
+                                <v n="Fixed">false</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">false</v>
+                              <v n="Boolean">false</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">39L</v>
+                            </o>
+                            <v n="Id">38L</v>
+                          </o>
+                          <o t="BoxTreeOperand">
+                            <o n="Operand" t="Operand">
+                              <v n="Operand">"16#0"</v>
+                              <v n="Type">"INT"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">""</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">0</v>
+                                <v n="Fixed">false</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">false</v>
+                              <v n="Boolean">false</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">41L</v>
+                            </o>
+                            <v n="Id">40L</v>
+                          </o>
+                          <o t="BoxTreeOperand">
+                            <o n="Operand" t="Operand">
+                              <v n="Operand">"sizeof(qSpecialMsgRows)"</v>
+                              <v n="Type">"UINT"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">""</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">0</v>
+                                <v n="Fixed">false</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">false</v>
+                              <v n="Boolean">false</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">43L</v>
+                            </o>
+                            <v n="Id">42L</v>
+                          </o>
+                        </l2>
+                        <o n="InputParam" t="ParamList">
+                          <l2 n="Names" cet="String">
+                            <v>EN</v>
+                            <v>destAddr</v>
+                            <v>fillByte</v>
+                            <v>n</v>
+                          </l2>
+                          <l2 n="Types" cet="String">
+                            <v>BOOL</v>
+                            <v>PVOID</v>
+                            <v>USINT</v>
+                            <v>UDINT</v>
+                          </l2>
+                        </o>
+                        <o n="OutputParam" t="ParamList">
+                          <l2 n="Names" cet="String">
+                            <v>ENO</v>
+                            <v>   </v>
+                          </l2>
+                          <l2 n="Types" cet="String">
+                            <v>BOOL</v>
+                            <v>UDINT</v>
+                          </l2>
+                        </o>
+                        <v n="CallType" t="Operator">Function</v>
+                        <v n="EN">true</v>
+                        <v n="ENO">true</v>
+                        <n n="STSnippet" />
+                        <v n="ContainsExtensibleInputs">false</v>
+                        <v n="ProvidesSTSnippet">false</v>
+                        <v n="Id">35L</v>
+                      </o>
+                    </l2>
+                    <l2 n="Connectors" />
+                    <v n="Id">33L</v>
+                  </o>
+                  <o>
+                    <v n="ILActive">false</v>
+                    <v n="FBDValid">false</v>
+                    <v n="ILValid">false</v>
+                    <l2 n="ILLines" />
+                    <v n="Comment">""</v>
+                    <v n="Title">""</v>
+                    <v n="Label">""</v>
+                    <v n="OutCommented">false</v>
+                    <l2 n="NetworkItems" cet="BoxTreeBox">
+                      <o>
+                        <v n="BoxType">"memset"</v>
+                        <o n="Instance" t="Operand">
+                          <n n="Operand" />
+                          <v n="Type">""</v>
+                          <v n="Comment">""</v>
+                          <v n="SymbolComment">""</v>
+                          <v n="Address">""</v>
+                          <o n="Flags" t="Flags">
+                            <v n="Flags">0</v>
+                            <v n="Fixed">false</v>
+                            <v n="Extensible">false</v>
+                          </o>
+                          <v n="LValue">false</v>
+                          <v n="Boolean">false</v>
+                          <v n="IsInstance">true</v>
                           <v n="Id">17L</v>
                         </o>
                         <o n="OutputItems" t="OutputItemList">
@@ -725,8 +1066,8 @@ END_IF
                           </o>
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
-                              <v n="Operand">"adr(qMsgRows)"</v>
-                              <v n="Type">"POINTER TO ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeMessageRow"</v>
+                              <v n="Operand">"adr(qSpecialMsgRowsStyle)"</v>
+                              <v n="Type">"POINTER TO ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeNewMsgStyle"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
                               <v n="Address">""</v>
@@ -763,7 +1104,7 @@ END_IF
                           </o>
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
-                              <v n="Operand">"sizeof(qMsgRows)"</v>
+                              <v n="Operand">"sizeof(qSpecialMsgRowsStyle)"</v>
                               <v n="Type">"UINT"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
@@ -860,122 +1201,24 @@ END_IF
       </XmlArchive>
     </ObjectProperties>
     <LineIds Name="FB_CheckMessageBounds">
-      <LineId Id="313" Count="1" />
-      <LineId Id="539" Count="1" />
-      <LineId Id="542" Count="0" />
-      <LineId Id="544" Count="0" />
-      <LineId Id="636" Count="0" />
-      <LineId Id="635" Count="0" />
-      <LineId Id="633" Count="0" />
-      <LineId Id="730" Count="0" />
-      <LineId Id="1044" Count="0" />
-      <LineId Id="731" Count="1" />
-      <LineId Id="989" Count="3" />
-      <LineId Id="677" Count="0" />
-      <LineId Id="634" Count="0" />
-      <LineId Id="632" Count="0" />
-      <LineId Id="215" Count="0" />
-      <LineId Id="310" Count="0" />
-      <LineId Id="217" Count="1" />
-      <LineId Id="221" Count="1" />
-      <LineId Id="628" Count="0" />
-      <LineId Id="223" Count="2" />
-      <LineId Id="452" Count="0" />
-      <LineId Id="454" Count="1" />
+      <LineId Id="3" Count="129" />
+      <LineId Id="235" Count="0" />
+      <LineId Id="237" Count="1" />
+      <LineId Id="220" Count="2" />
+      <LineId Id="234" Count="0" />
+      <LineId Id="133" Count="3" />
+      <LineId Id="223" Count="1" />
       <LineId Id="226" Count="0" />
-      <LineId Id="296" Count="0" />
-      <LineId Id="295" Count="0" />
-      <LineId Id="245" Count="1" />
-      <LineId Id="255" Count="0" />
-      <LineId Id="258" Count="0" />
-      <LineId Id="317" Count="0" />
-      <LineId Id="268" Count="0" />
-      <LineId Id="270" Count="0" />
-      <LineId Id="277" Count="1" />
-      <LineId Id="457" Count="3" />
-      <LineId Id="403" Count="0" />
-      <LineId Id="269" Count="0" />
-      <LineId Id="265" Count="0" />
-      <LineId Id="260" Count="0" />
-      <LineId Id="276" Count="0" />
-      <LineId Id="261" Count="0" />
-      <LineId Id="273" Count="1" />
-      <LineId Id="300" Count="1" />
-      <LineId Id="275" Count="0" />
-      <LineId Id="302" Count="0" />
-      <LineId Id="1042" Count="0" />
-      <LineId Id="473" Count="0" />
-      <LineId Id="259" Count="0" />
-      <LineId Id="382" Count="0" />
-      <LineId Id="387" Count="0" />
-      <LineId Id="384" Count="0" />
-      <LineId Id="416" Count="0" />
-      <LineId Id="429" Count="0" />
-      <LineId Id="444" Count="0" />
-      <LineId Id="430" Count="0" />
-      <LineId Id="437" Count="0" />
-      <LineId Id="427" Count="0" />
-      <LineId Id="425" Count="0" />
-      <LineId Id="580" Count="3" />
-      <LineId Id="587" Count="1" />
-      <LineId Id="501" Count="0" />
-      <LineId Id="584" Count="0" />
-      <LineId Id="503" Count="0" />
-      <LineId Id="506" Count="0" />
-      <LineId Id="472" Count="0" />
-      <LineId Id="426" Count="0" />
-      <LineId Id="420" Count="0" />
-      <LineId Id="443" Count="0" />
-      <LineId Id="778" Count="0" />
-      <LineId Id="791" Count="0" />
-      <LineId Id="782" Count="0" />
-      <LineId Id="409" Count="0" />
-      <LineId Id="400" Count="0" />
-      <LineId Id="399" Count="0" />
-      <LineId Id="445" Count="3" />
-      <LineId Id="456" Count="0" />
-      <LineId Id="449" Count="1" />
-      <LineId Id="487" Count="6" />
-      <LineId Id="464" Count="0" />
-      <LineId Id="396" Count="0" />
-      <LineId Id="248" Count="1" />
-      <LineId Id="676" Count="0" />
-      <LineId Id="250" Count="0" />
-      <LineId Id="478" Count="0" />
-      <LineId Id="678" Count="0" />
-      <LineId Id="682" Count="0" />
-      <LineId Id="679" Count="0" />
-      <LineId Id="479" Count="0" />
-      <LineId Id="869" Count="1" />
-      <LineId Id="835" Count="0" />
-      <LineId Id="834" Count="0" />
-      <LineId Id="836" Count="0" />
-      <LineId Id="858" Count="2" />
-      <LineId Id="863" Count="0" />
-      <LineId Id="867" Count="0" />
-      <LineId Id="866" Count="0" />
-      <LineId Id="918" Count="1" />
-      <LineId Id="921" Count="0" />
-      <LineId Id="925" Count="0" />
-      <LineId Id="935" Count="2" />
-      <LineId Id="926" Count="0" />
-      <LineId Id="928" Count="0" />
-      <LineId Id="930" Count="2" />
-      <LineId Id="938" Count="2" />
-      <LineId Id="929" Count="0" />
-      <LineId Id="920" Count="0" />
-      <LineId Id="865" Count="0" />
-      <LineId Id="868" Count="0" />
-      <LineId Id="864" Count="0" />
-      <LineId Id="871" Count="2" />
-      <LineId Id="875" Count="0" />
-      <LineId Id="861" Count="1" />
-      <LineId Id="840" Count="1" />
-      <LineId Id="839" Count="0" />
-      <LineId Id="838" Count="0" />
-      <LineId Id="837" Count="0" />
-      <LineId Id="843" Count="2" />
-      <LineId Id="22" Count="0" />
+      <LineId Id="232" Count="0" />
+      <LineId Id="225" Count="0" />
+      <LineId Id="137" Count="7" />
+      <LineId Id="227" Count="1" />
+      <LineId Id="230" Count="0" />
+      <LineId Id="233" Count="0" />
+      <LineId Id="231" Count="0" />
+      <LineId Id="229" Count="0" />
+      <LineId Id="145" Count="21" />
+      <LineId Id="2" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
