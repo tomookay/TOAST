@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_OrderMessages" Id="{6aeaaac6-cfa0-498e-b649-ea0ab7728cb9}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_OrderMessages
+VAR_INPUT
+	iOrderMsgReq:BOOL; // TRUE to perform ordering
+	
+	iStnMessageRowArray:typeMessageRowsArry;
+	
+END_VAR
+VAR_OUTPUT
+	qMsgArray:structEventViewMsg;
+END_VAR
+VAR
+	i: INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[FOR i:= 1 TO 100 DO
+
+//clear down the message text
+qMsgArray.msgArry[i].text := '';
+
+
+//TODO, combine .AlarmViewMsg and .WarningViewMsg HERE!
+
+//move message text
+qMsgArray.msgArry[i].text := iStnMessageRowArray.AlarmViewMsg[i].msgText;
+
+//apply colour
+qMsgArray.msgArryStyle[i].isColoured := iStnMessageRowArray.AlarmViewMsg[i].isAlarm OR iStnMessageRowArray.AlarmViewMsg[i].isWarning;
+
+	//apply alarm colour
+	IF  iStnMessageRowArray.AlarmViewMsg[i].isAlarm  THEN
+		qMsgArray.msgArryStyle[i].colourToApply := HMIColour.colourRed;
+	END_IF
+
+	IF  iStnMessageRowArray.AlarmViewMsg[i].isWarning  THEN
+		qMsgArray.msgArryStyle[i].colourToApply := HMIColour.colourYellow;
+	END_IF
+	
+	IF NOT iStnMessageRowArray.AlarmViewMsg[i].isWarning OR
+	   NOT iStnMessageRowArray.AlarmViewMsg[i].isAlarm  THEN
+	  qMsgArray.msgArryStyle[i].colourToApply := HMIColour.colourGreyBackground;
+	  END_IF
+ 
+	   
+	
+qMsgArray.msgArry[i].timeRaised := '12:30:32AM';
+qMsgArray.msgArry[i].timeResolved := '13:30:32AM';
+
+qMsgArray.msgArry[i].source := 'Station 1';
+
+
+
+	
+END_FOR]]></ST>
+    </Implementation>
+    <LineIds Name="FB_OrderMessages">
+      <LineId Id="10" Count="37" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
