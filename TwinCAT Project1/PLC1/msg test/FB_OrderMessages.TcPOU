@@ -19,7 +19,7 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[
-actConfigAlarm();
+//actConfigAlarm();
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
 //recordLastVal := recordLastVal - 1;
 IF recordLastVal < 1 THEN
@@ -103,6 +103,12 @@ END_IF
 	//warning (second instance)
 	//do alarms first
 	FOR k := 1 TO GlobalMessages.gNumMessagesPerType DO
+		
+		//abort if excede
+		IF k + recordLastVal > GlobalMessages.gNumMessagesPerType THEN
+			EXIT;
+			//dont do any more as array exceeded
+		END_IF
 	
 	//clear down the message text
 	qMsgArray.msgArry[k + recordLastVal].text := '';
@@ -138,7 +144,7 @@ END_IF
 	
 	qMsgArray.msgArry[k + recordLastVal].source := 'Stan 1 W';
 		
-	END_FOR]]></ST>
+	END_FOR;]]></ST>
       </Implementation>
     </Action>
     <LineIds Name="FB_OrderMessages">
@@ -160,7 +166,14 @@ END_IF
       <LineId Id="1" Count="0" />
     </LineIds>
     <LineIds Name="FB_OrderMessages.actConfigWarn">
-      <LineId Id="2" Count="38" />
+      <LineId Id="2" Count="2" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="48" Count="1" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="6" Count="34" />
       <LineId Id="1" Count="0" />
     </LineIds>
   </POU>

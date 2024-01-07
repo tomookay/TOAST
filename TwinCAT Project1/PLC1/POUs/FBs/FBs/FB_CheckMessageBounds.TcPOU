@@ -43,6 +43,10 @@ VAR
 	returnclearing: UDINT;
 	msgIndex: INT;
 	timWaitDelay: TON;
+	
+	rollingOffset:INT; //offset for injecting further messages
+	k: INT;
+		strlengtest: INT;
 END_VAR
 
 VAR_INPUT
@@ -61,7 +65,7 @@ END_VAR
 	actArraysMatch();
 	
 IF memchanged THEN //if the memory array have changed, then process the message
-		
+	
 			//reset assumption that message is active
 			qAnyMsgActive		:= FALSE;
 			//qMsgNumberActive 	:= -1;
@@ -179,11 +183,15 @@ END_IF
 
 msgindex := 1;
 IF memchanged THEN
+	
+	
+
 	FOR i := 0 TO GlobalMessages.gNumMessagesPerType DO
 		
 			//find next TRUE alarm
 			IF iqArrayToCheck.messageActive[i] = TRUE THEN
 				
+			
 				//assign text to other alarm view 	
 				qMsgRows[msgindex].msgText := iqArrayToCheck.text[i];
 				qSpecialMsgRows[msgIndex].text := iqArrayToCheck.text[i];
@@ -235,6 +243,26 @@ IF memchanged THEN
 
 
 END_IF
+
+
+IF memchanged THEN
+		//find the number OF used message
+
+			//find the next free entry (blank text) '' 
+				FOR k := 1 TO HMIData.gNumberOfMessagesScreen DO
+					
+					//check string length
+					strlengtest := len(qSpecialMsgRows[k].text);
+											
+				
+					IF strlengtest > 0 THEN
+						rollingOffset := k;
+					END_IF
+				END_FOR
+
+END_IF
+	
+			
 
 
 
@@ -1201,23 +1229,29 @@ END_IF
       </XmlArchive>
     </ObjectProperties>
     <LineIds Name="FB_CheckMessageBounds">
-      <LineId Id="3" Count="129" />
-      <LineId Id="235" Count="0" />
-      <LineId Id="237" Count="1" />
-      <LineId Id="220" Count="2" />
-      <LineId Id="234" Count="0" />
-      <LineId Id="133" Count="3" />
-      <LineId Id="223" Count="1" />
-      <LineId Id="226" Count="0" />
-      <LineId Id="232" Count="0" />
-      <LineId Id="225" Count="0" />
-      <LineId Id="137" Count="7" />
-      <LineId Id="227" Count="1" />
-      <LineId Id="230" Count="0" />
-      <LineId Id="233" Count="0" />
-      <LineId Id="231" Count="0" />
-      <LineId Id="229" Count="0" />
-      <LineId Id="145" Count="21" />
+      <LineId Id="3" Count="122" />
+      <LineId Id="255" Count="0" />
+      <LineId Id="257" Count="0" />
+      <LineId Id="256" Count="0" />
+      <LineId Id="126" Count="3" />
+      <LineId Id="240" Count="1" />
+      <LineId Id="131" Count="50" />
+      <LineId Id="286" Count="1" />
+      <LineId Id="277" Count="0" />
+      <LineId Id="291" Count="3" />
+      <LineId Id="301" Count="1" />
+      <LineId Id="304" Count="0" />
+      <LineId Id="306" Count="0" />
+      <LineId Id="303" Count="0" />
+      <LineId Id="295" Count="0" />
+      <LineId Id="299" Count="0" />
+      <LineId Id="297" Count="0" />
+      <LineId Id="288" Count="0" />
+      <LineId Id="290" Count="0" />
+      <LineId Id="289" Count="0" />
+      <LineId Id="285" Count="0" />
+      <LineId Id="278" Count="0" />
+      <LineId Id="182" Count="2" />
       <LineId Id="2" Count="0" />
     </LineIds>
   </POU>
