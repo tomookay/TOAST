@@ -202,6 +202,9 @@
     <Compile Include="HMI1\Data\FaultState.TcTLO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="HMI1\Data\flag.TcIPO">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="HMI1\Data\FlasherCorner.TcIPO">
       <SubType>Code</SubType>
     </Compile>
@@ -370,6 +373,10 @@
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
+    <Compile Include="HMI1\Screens\Mc_90_About.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+    </Compile>
     <Compile Include="HMI1\Screens\Mc_02_Language.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
@@ -471,6 +478,21 @@
     </Compile>
     <Compile Include="HMI1\types\typeStationEnables.TcDUT">
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="io test\dutDWord.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="io test\ioView.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="io test\SS_99_DataDisplay.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="io test\visuDataDisplay.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
     <Compile Include="msg test\FB_OrderMessages.TcPOU">
       <SubType>Code</SubType>
@@ -1531,6 +1553,7 @@
     <Folder Include="HMI1\Screens\Diagnostic" />
     <Folder Include="HMI1\types" />
     <Folder Include="msg test" />
+    <Folder Include="io test" />
     <Folder Include="POUs\FBs" />
     <Folder Include="POUs\FBs\Drives" />
     <Folder Include="POUs\FBs\FBs\Motions" />
