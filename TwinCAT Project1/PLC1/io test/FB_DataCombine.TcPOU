@@ -9,6 +9,7 @@ END_VAR
 
 VAR_INPUT
 	iWordData:DWORD;
+	iRealHEXConv:INT;
 END_VAR
 
 
@@ -46,10 +47,31 @@ outputRow.valStr := convString.qString;
 outputRow.hexVal := DWORD_TO_HEXSTR(in:=iWordData, iPrecision:=8,bLoCase:=FALSE);
 
 
+//config for row
+actConfigRow();
+
+
 
 
 ]]></ST>
     </Implementation>
+    <Action Name="actConfigRow" Id="{7051bee0-fced-4425-8876-b37e7651bca6}">
+      <Implementation>
+        <ST><![CDATA[//show / hide the HEX or REAL
+
+IF iRealHEXConv = 0 THEN
+	outputRow.ShowHex := TRUE;
+	outputRow.ShowREAL := FALSE;
+	ELSE
+	outputRow.ShowREAL := TRUE;
+	outputRow.ShowHex := FALSE;
+END_IF
+
+
+
+]]></ST>
+      </Implementation>
+    </Action>
     <Action Name="actConvertBOOL" Id="{328708a5-a2e9-41b9-a5d1-4d33c7be475f}">
       <Implementation>
         <ST><![CDATA[
@@ -160,11 +182,24 @@ outputRow.b38 := iWordData.31;]]></ST>
       <LineId Id="87" Count="0" />
       <LineId Id="79" Count="0" />
       <LineId Id="78" Count="0" />
+      <LineId Id="97" Count="1" />
+      <LineId Id="95" Count="1" />
       <LineId Id="80" Count="0" />
       <LineId Id="71" Count="0" />
       <LineId Id="70" Count="0" />
       <LineId Id="61" Count="0" />
       <LineId Id="60" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_DataCombine.actConfigRow">
+      <LineId Id="10" Count="1" />
+      <LineId Id="1" Count="1" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="4" Count="1" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="8" Count="1" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="3" Count="0" />
     </LineIds>
     <LineIds Name="FB_DataCombine.actConvertBOOL">
       <LineId Id="2" Count="38" />
