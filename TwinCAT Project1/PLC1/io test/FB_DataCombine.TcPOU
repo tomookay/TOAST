@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_DataCombine" Id="{40634ef8-8267-4365-b826-cbfc0c1a3356}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_DataCombine
+VAR
+convString:typeCombineString;
+
+END_VAR
+
+VAR_INPUT
+	iWordData:DWORD;
+END_VAR
+
+
+
+VAR_OUTPUT
+	outputRow: dutDWord;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//theme:hw_McgMbhOk
+
+
+//32bit word
+//16 bit word to add switch
+//8 bit word to add switch
+//etc
+
+
+//BOOL view
+actConvertBOOL_Swap(); //swap for variant 1
+//switch
+actConvertBOOL(); //standard swap
+
+
+//REAL view
+outputRow.floatVal := DWORD_TO_REAL(iWordData); //apply swapping
+
+
+//convert
+convString.arryDINT := iWordData;
+
+//string view
+outputRow.valStr := convString.qString;
+
+
+outputRow.hexVal := DWORD_TO_HEXSTR(in:=iWordData, iPrecision:=8,bLoCase:=FALSE);
+
+
+
+
+]]></ST>
+    </Implementation>
+    <Action Name="actConvertBOOL" Id="{328708a5-a2e9-41b9-a5d1-4d33c7be475f}">
+      <Implementation>
+        <ST><![CDATA[
+//byte 0
+outputRow.b01 := iWordData.0;
+outputRow.b02 := iWordData.1;
+outputRow.b03 := iWordData.2;
+outputRow.b04 := iWordData.3;
+outputRow.b05 := iWordData.4;
+outputRow.b06 := iWordData.5;
+outputRow.b07 := iWordData.6;
+outputRow.b08 := iWordData.7;
+
+//byte 1
+outputRow.b11 := iWordData.8;
+outputRow.b12 := iWordData.9;
+outputRow.b13 := iWordData.10;
+outputRow.b14 := iWordData.11;
+outputRow.b15 := iWordData.12;
+outputRow.b16 := iWordData.13;
+outputRow.b17 := iWordData.14;
+outputRow.b18 := iWordData.15;
+
+//byte 2
+outputRow.b21 := iWordData.16;
+outputRow.b22 := iWordData.17;
+outputRow.b23 := iWordData.18;
+outputRow.b24 := iWordData.19;
+outputRow.b25 := iWordData.20;
+outputRow.b26 := iWordData.21;
+outputRow.b27 := iWordData.22;
+outputRow.b28 := iWordData.23;
+
+//byte 3
+outputRow.b31 := iWordData.24;
+outputRow.b32 := iWordData.25;
+outputRow.b33 := iWordData.26;
+outputRow.b34 := iWordData.27;
+outputRow.b35 := iWordData.28;
+outputRow.b36 := iWordData.29;
+outputRow.b37 := iWordData.30;
+outputRow.b38 := iWordData.31;]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="actConvertBOOL_Swap" Id="{1f5ca550-2bab-44b6-8f5e-0c2ca8175b8f}">
+      <Implementation>
+        <ST><![CDATA[
+//byte 0
+outputRow.b01 := iWordData.0;
+outputRow.b02 := iWordData.1;
+outputRow.b03 := iWordData.2;
+outputRow.b04 := iWordData.3;
+outputRow.b05 := iWordData.4;
+outputRow.b06 := iWordData.5;
+outputRow.b07 := iWordData.6;
+outputRow.b08 := iWordData.7;
+
+//byte 1
+outputRow.b11 := iWordData.8;
+outputRow.b12 := iWordData.9;
+outputRow.b13 := iWordData.10;
+outputRow.b14 := iWordData.11;
+outputRow.b15 := iWordData.12;
+outputRow.b16 := iWordData.13;
+outputRow.b17 := iWordData.14;
+outputRow.b18 := iWordData.15;
+
+//byte 2
+outputRow.b21 := iWordData.16;
+outputRow.b22 := iWordData.17;
+outputRow.b23 := iWordData.18;
+outputRow.b24 := iWordData.19;
+outputRow.b25 := iWordData.20;
+outputRow.b26 := iWordData.21;
+outputRow.b27 := iWordData.22;
+outputRow.b28 := iWordData.23;
+
+//byte 3
+outputRow.b31 := iWordData.24;
+outputRow.b32 := iWordData.25;
+outputRow.b33 := iWordData.26;
+outputRow.b34 := iWordData.27;
+outputRow.b35 := iWordData.28;
+outputRow.b36 := iWordData.29;
+outputRow.b37 := iWordData.30;
+outputRow.b38 := iWordData.31;]]></ST>
+      </Implementation>
+    </Action>
+    <LineIds Name="FB_DataCombine">
+      <LineId Id="14" Count="0" />
+      <LineId Id="77" Count="0" />
+      <LineId Id="76" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="83" Count="2" />
+      <LineId Id="62" Count="1" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="58" Count="0" />
+      <LineId Id="57" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="64" Count="1" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="88" Count="1" />
+      <LineId Id="67" Count="0" />
+      <LineId Id="90" Count="1" />
+      <LineId Id="66" Count="0" />
+      <LineId Id="69" Count="0" />
+      <LineId Id="87" Count="0" />
+      <LineId Id="79" Count="0" />
+      <LineId Id="78" Count="0" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="60" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_DataCombine.actConvertBOOL">
+      <LineId Id="2" Count="38" />
+      <LineId Id="1" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_DataCombine.actConvertBOOL_Swap">
+      <LineId Id="2" Count="38" />
+      <LineId Id="1" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
