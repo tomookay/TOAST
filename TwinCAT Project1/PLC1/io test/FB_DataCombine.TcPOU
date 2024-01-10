@@ -10,6 +10,7 @@ END_VAR
 VAR_INPUT
 	iWordData:DWORD;
 	iRealHEXConv:INT;
+	iWordSize:INT; //memsize
 END_VAR
 
 
@@ -50,6 +51,7 @@ outputRow.hexVal := DWORD_TO_HEXSTR(in:=iWordData, iPrecision:=8,bLoCase:=FALSE)
 //config for row
 actConfigRow();
 
+actHideBytes();
 
 
 
@@ -160,6 +162,37 @@ outputRow.b37 := iWordData.30;
 outputRow.b38 := iWordData.31;]]></ST>
       </Implementation>
     </Action>
+    <Action Name="actHideBytes" Id="{d53b804a-3585-473d-be22-eacb16a407f6}">
+      <Implementation>
+        <ST><![CDATA[
+CASE iWordSize OF
+	0: //8bit
+	outputRow.Hideb0 := FALSE;
+	outputRow.Hideb1 := TRUE;
+	outputRow.Hideb2 := TRUE;
+	outputRow.Hideb3 := TRUE;
+	
+	1: //16bit
+	outputRow.Hideb0 := FALSE;
+	outputRow.Hideb1 := FALSE;
+	outputRow.Hideb2 := TRUE;
+	outputRow.Hideb3 := TRUE;
+	
+	2: //32bit
+	outputRow.Hideb0 := FALSE;
+	outputRow.Hideb1 := FALSE;
+	outputRow.Hideb2 := FALSE;
+	outputRow.Hideb3 := FALSE;
+	
+	3: //not used
+	outputRow.Hideb0 := TRUE;
+	outputRow.Hideb1 := TRUE;
+	outputRow.Hideb2 := TRUE;
+	outputRow.Hideb3 := TRUE;
+	
+END_CASE]]></ST>
+      </Implementation>
+    </Action>
     <LineIds Name="FB_DataCombine">
       <LineId Id="14" Count="0" />
       <LineId Id="77" Count="0" />
@@ -186,6 +219,7 @@ outputRow.b38 := iWordData.31;]]></ST>
       <LineId Id="95" Count="1" />
       <LineId Id="80" Count="0" />
       <LineId Id="71" Count="0" />
+      <LineId Id="115" Count="0" />
       <LineId Id="70" Count="0" />
       <LineId Id="61" Count="0" />
       <LineId Id="60" Count="0" />
@@ -208,6 +242,21 @@ outputRow.b38 := iWordData.31;]]></ST>
     <LineIds Name="FB_DataCombine.actConvertBOOL_Swap">
       <LineId Id="2" Count="38" />
       <LineId Id="1" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_DataCombine.actHideBytes">
+      <LineId Id="6" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="9" Count="1" />
+      <LineId Id="12" Count="4" />
+      <LineId Id="18" Count="2" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="23" Count="3" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="29" Count="3" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="7" Count="1" />
     </LineIds>
   </POU>
 </TcPlcObject>
