@@ -17,9 +17,18 @@ END_VAR
 
 VAR_OUTPUT
 	outputRow: dutDWord;
-END_VAR]]></Declaration>
+END_VAR
+
+VAR_IN_OUT
+	blockCount:DWORD; //number of block calls
+END_VAR
+
+]]></Declaration>
     <Implementation>
       <ST><![CDATA[//theme:hw_McgMbhOk
+
+//count number of block usage
+blockCount := blockCount +1;
 
 
 //32bit word
@@ -47,6 +56,7 @@ outputRow.valStr := convString.qString;
 
 outputRow.hexVal := DWORD_TO_HEXSTR(in:=iWordData, iPrecision:=8,bLoCase:=FALSE);
 
+outputRow.memLoc := blockCount + ioView.memoffset;
 
 //config for row
 actConfigRow();
@@ -197,6 +207,9 @@ END_CASE]]></ST>
       <LineId Id="14" Count="0" />
       <LineId Id="77" Count="0" />
       <LineId Id="76" Count="0" />
+      <LineId Id="139" Count="0" />
+      <LineId Id="141" Count="0" />
+      <LineId Id="140" Count="0" />
       <LineId Id="15" Count="0" />
       <LineId Id="83" Count="2" />
       <LineId Id="62" Count="1" />
@@ -215,6 +228,7 @@ END_CASE]]></ST>
       <LineId Id="87" Count="0" />
       <LineId Id="79" Count="0" />
       <LineId Id="78" Count="0" />
+      <LineId Id="142" Count="0" />
       <LineId Id="97" Count="1" />
       <LineId Id="95" Count="1" />
       <LineId Id="80" Count="0" />

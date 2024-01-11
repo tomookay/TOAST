@@ -5,7 +5,7 @@
 VAR
     pointerToMem:POINTER TO DWORD;  //DWORD
     offset: UDINT; //was UINT
-			
+	puls:R_TRIG; //only do stuff sometimes		
 
 END_VAR
 ]]></Declaration>
@@ -16,22 +16,42 @@ END_VAR
 actAdjustOffset();
 
 
-//move offset to keep global
-offset := ioView.memoffset;
+//only do stuff every second
+puls(clk:=System.OneSecond);
 
-//for M, MEMORY, MD, MW, Mx.y
-pointerToMem := ADR(%MD0);
+IF puls.Q THEN
 
-//add offset, from 0, add offset to desired memory location, e.g. "0 + 1024 = 1024" to view MD1024 and resulting areas
-pointerToMem := pointerToMem + offset;
-
-//limit value
-pointerToMem := MIN(pointerToMem, 4294967295);
-
-//read values from raw pointer + offset
-//MEMCPY(destAddr:=ADR(ioView.ViewingArray), srcAddr:=pointerToMem,n:=16);
-
-]]></ST>
+	//move offset to keep global
+	offset := ioView.memoffset * 4;
+	
+	//for M, MEMORY, MD, MW, Mx.y
+	pointerToMem := ADR(%MD0);
+	
+	//add offset, from 0, add offset to desired memory location, e.g. "0 + 1024 = 1024" to view MD1024 and resulting areas
+	pointerToMem := pointerToMem + offset;
+	
+	//limit value
+	//pointerToMem := MIN(pointerToMem, 4294967295);
+		
+	//read values from raw pointer + offset
+	MEMCPY(destAddr:=ADR(ioView.ViewingArray[0]), srcAddr:=pointerToMem + 0,n:=4);
+	MEMCPY(destAddr:=ADR(ioView.ViewingArray[1]), srcAddr:=pointerToMem + 4,n:=4);
+	MEMCPY(destAddr:=ADR(ioView.ViewingArray[2]), srcAddr:=pointerToMem + 8,n:=4);
+	MEMCPY(destAddr:=ADR(ioView.ViewingArray[3]), srcAddr:=pointerToMem + 12,n:=4);
+	MEMCPY(destAddr:=ADR(ioView.ViewingArray[4]), srcAddr:=pointerToMem + 16,n:=4);
+	MEMCPY(destAddr:=ADR(ioView.ViewingArray[5]), srcAddr:=pointerToMem + 20,n:=4);
+	MEMCPY(destAddr:=ADR(ioView.ViewingArray[6]), srcAddr:=pointerToMem + 24,n:=4);
+	MEMCPY(destAddr:=ADR(ioView.ViewingArray[7]), srcAddr:=pointerToMem + 32,n:=4);
+	MEMCPY(destAddr:=ADR(ioView.ViewingArray[8]), srcAddr:=pointerToMem + 36,n:=4);
+	MEMCPY(destAddr:=ADR(ioView.ViewingArray[9]), srcAddr:=pointerToMem + 40,n:=4);
+	MEMCPY(destAddr:=ADR(ioView.ViewingArray[10]), srcAddr:=pointerToMem + 44,n:=4);
+	MEMCPY(destAddr:=ADR(ioView.ViewingArray[11]), srcAddr:=pointerToMem + 48,n:=4);
+	MEMCPY(destAddr:=ADR(ioView.ViewingArray[12]), srcAddr:=pointerToMem + 52,n:=4);
+	MEMCPY(destAddr:=ADR(ioView.ViewingArray[13]), srcAddr:=pointerToMem + 56,n:=4);
+	MEMCPY(destAddr:=ADR(ioView.ViewingArray[14]), srcAddr:=pointerToMem + 60,n:=4);
+	MEMCPY(destAddr:=ADR(ioView.ViewingArray[15]), srcAddr:=pointerToMem + 64,n:=4);
+	
+END_IF]]></ST>
     </Implementation>
     <Action Name="actAdjustOffset" Id="{768519a0-735e-466b-9cc6-26b77674c384}">
       <Implementation>
@@ -684,13 +704,13 @@ pointerToMem := MIN(pointerToMem, 4294967295);
                     <v n="FBDValid">false</v>
                     <v n="ILValid">false</v>
                     <l2 n="ILLines" />
-                    <v n="Comment">"lower limit check on a UDINT"</v>
+                    <v n="Comment">""</v>
                     <v n="Title">""</v>
                     <v n="Label">""</v>
                     <v n="OutCommented">false</v>
                     <l2 n="NetworkItems" cet="BoxTreeBox">
                       <o>
-                        <v n="BoxType">"MIN"</v>
+                        <v n="BoxType">"MOVE"</v>
                         <o n="Instance" t="Operand">
                           <n n="Operand" />
                           <v n="Type">""</v>
@@ -705,7 +725,7 @@ pointerToMem := MIN(pointerToMem, 4294967295);
                           <v n="LValue">false</v>
                           <v n="Boolean">false</v>
                           <v n="IsInstance">true</v>
-                          <v n="Id">84L</v>
+                          <v n="Id">111L</v>
                         </o>
                         <o n="OutputItems" t="OutputItemList">
                           <l2 n="OutputItems" cet="Operand">
@@ -724,30 +744,123 @@ pointerToMem := MIN(pointerToMem, 4294967295);
                               <v n="LValue">true</v>
                               <v n="Boolean">false</v>
                               <v n="IsInstance">false</v>
-                              <v n="Id">75L</v>
+                              <v n="Id">113L</v>
                             </o>
                           </l2>
                         </o>
                         <o n="Flags" t="Flags">
                           <v n="Flags">0</v>
-                          <v n="Fixed">true</v>
+                          <v n="Fixed">false</v>
                           <v n="Extensible">false</v>
                         </o>
                         <n n="InputFlags" />
                         <l2 n="InputItems">
-                          <o t="BoxTreeTerminator">
-                            <n n="Input" />
+                          <o t="BoxTreeBox">
+                            <v n="BoxType">"LT"</v>
+                            <o n="Instance" t="Operand">
+                              <n n="Operand" />
+                              <v n="Type">""</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">""</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">0</v>
+                                <v n="Fixed">false</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">false</v>
+                              <v n="Boolean">false</v>
+                              <v n="IsInstance">true</v>
+                              <v n="Id">114L</v>
+                            </o>
+                            <o n="OutputItems" t="OutputItemList">
+                              <l2 n="OutputItems">
+                                <n />
+                              </l2>
+                            </o>
                             <o n="Flags" t="Flags">
                               <v n="Flags">0</v>
                               <v n="Fixed">false</v>
                               <v n="Extensible">false</v>
                             </o>
-                            <v n="Id">86L</v>
+                            <n n="InputFlags" />
+                            <l2 n="InputItems">
+                              <o t="BoxTreeTerminator">
+                                <n n="Input" />
+                                <o n="Flags" t="Flags">
+                                  <v n="Flags">0</v>
+                                  <v n="Fixed">false</v>
+                                  <v n="Extensible">false</v>
+                                </o>
+                                <v n="Id">116L</v>
+                              </o>
+                              <o t="BoxTreeOperand">
+                                <o n="Operand" t="Operand">
+                                  <v n="Operand">"ioView.memoffset"</v>
+                                  <v n="Type">"UDINT"</v>
+                                  <v n="Comment">""</v>
+                                  <v n="SymbolComment">""</v>
+                                  <v n="Address">""</v>
+                                  <o n="Flags" t="Flags">
+                                    <v n="Flags">0</v>
+                                    <v n="Fixed">false</v>
+                                    <v n="Extensible">false</v>
+                                  </o>
+                                  <v n="LValue">false</v>
+                                  <v n="Boolean">false</v>
+                                  <v n="IsInstance">false</v>
+                                  <v n="Id">118L</v>
+                                </o>
+                                <v n="Id">117L</v>
+                              </o>
+                              <o t="BoxTreeOperand">
+                                <o n="Operand" t="Operand">
+                                  <v n="Operand">"0"</v>
+                                  <v n="Type">"INT"</v>
+                                  <v n="Comment">""</v>
+                                  <v n="SymbolComment">""</v>
+                                  <v n="Address">""</v>
+                                  <o n="Flags" t="Flags">
+                                    <v n="Flags">0</v>
+                                    <v n="Fixed">false</v>
+                                    <v n="Extensible">false</v>
+                                  </o>
+                                  <v n="LValue">false</v>
+                                  <v n="Boolean">false</v>
+                                  <v n="IsInstance">false</v>
+                                  <v n="Id">120L</v>
+                                </o>
+                                <v n="Id">119L</v>
+                              </o>
+                            </l2>
+                            <o n="InputParam" t="ParamList">
+                              <l2 n="Names" cet="String">
+                                <v>EN</v>
+                              </l2>
+                              <l2 n="Types" cet="String">
+                                <v>BOOL</v>
+                              </l2>
+                            </o>
+                            <o n="OutputParam" t="ParamList">
+                              <l2 n="Names" cet="String">
+                                <v></v>
+                              </l2>
+                              <l2 n="Types" cet="String">
+                                <v>BOOL</v>
+                              </l2>
+                            </o>
+                            <v n="CallType" t="Operator">Lt</v>
+                            <v n="EN">true</v>
+                            <v n="ENO">false</v>
+                            <n n="STSnippet" />
+                            <v n="ContainsExtensibleInputs">false</v>
+                            <v n="ProvidesSTSnippet">false</v>
+                            <v n="Id">115L</v>
                           </o>
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
-                              <v n="Operand">"4294967295"</v>
-                              <v n="Type">"UDINT"</v>
+                              <v n="Operand">"0"</v>
+                              <v n="Type">"INT"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
                               <v n="Address">""</v>
@@ -759,28 +872,9 @@ pointerToMem := MIN(pointerToMem, 4294967295);
                               <v n="LValue">false</v>
                               <v n="Boolean">false</v>
                               <v n="IsInstance">false</v>
-                              <v n="Id">79L</v>
+                              <v n="Id">122L</v>
                             </o>
-                            <v n="Id">78L</v>
-                          </o>
-                          <o t="BoxTreeOperand">
-                            <o n="Operand" t="Operand">
-                              <v n="Operand">"ioView.memoffset"</v>
-                              <v n="Type">"UDINT"</v>
-                              <v n="Comment">""</v>
-                              <v n="SymbolComment">""</v>
-                              <v n="Address">""</v>
-                              <o n="Flags" t="Flags">
-                                <v n="Flags">0</v>
-                                <v n="Fixed">false</v>
-                                <v n="Extensible">false</v>
-                              </o>
-                              <v n="LValue">false</v>
-                              <v n="Boolean">false</v>
-                              <v n="IsInstance">false</v>
-                              <v n="Id">81L</v>
-                            </o>
-                            <v n="Id">80L</v>
+                            <v n="Id">121L</v>
                           </o>
                         </l2>
                         <o n="InputParam" t="ParamList">
@@ -798,20 +892,228 @@ pointerToMem := MIN(pointerToMem, 4294967295);
                           </l2>
                           <l2 n="Types" cet="String">
                             <v>BOOL</v>
-                            <v>INT</v>
+                            <v></v>
                           </l2>
                         </o>
-                        <v n="CallType" t="Operator">Min</v>
+                        <v n="CallType" t="Operator">Move</v>
                         <v n="EN">true</v>
                         <v n="ENO">true</v>
                         <n n="STSnippet" />
                         <v n="ContainsExtensibleInputs">false</v>
                         <v n="ProvidesSTSnippet">false</v>
-                        <v n="Id">85L</v>
+                        <v n="Id">112L</v>
                       </o>
                     </l2>
                     <l2 n="Connectors" />
-                    <v n="Id">66L</v>
+                    <v n="Id">110L</v>
+                  </o>
+                  <o>
+                    <v n="ILActive">false</v>
+                    <v n="FBDValid">false</v>
+                    <v n="ILValid">false</v>
+                    <l2 n="ILLines" />
+                    <v n="Comment">""</v>
+                    <v n="Title">""</v>
+                    <v n="Label">""</v>
+                    <v n="OutCommented">false</v>
+                    <l2 n="NetworkItems" cet="BoxTreeBox">
+                      <o>
+                        <v n="BoxType">"MOVE"</v>
+                        <o n="Instance" t="Operand">
+                          <n n="Operand" />
+                          <v n="Type">""</v>
+                          <v n="Comment">""</v>
+                          <v n="SymbolComment">""</v>
+                          <v n="Address">""</v>
+                          <o n="Flags" t="Flags">
+                            <v n="Flags">0</v>
+                            <v n="Fixed">false</v>
+                            <v n="Extensible">false</v>
+                          </o>
+                          <v n="LValue">false</v>
+                          <v n="Boolean">false</v>
+                          <v n="IsInstance">true</v>
+                          <v n="Id">104L</v>
+                        </o>
+                        <o n="OutputItems" t="OutputItemList">
+                          <l2 n="OutputItems" cet="Operand">
+                            <n />
+                            <o>
+                              <v n="Operand">"ioView.memoffset"</v>
+                              <v n="Type">"UDINT"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">""</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">0</v>
+                                <v n="Fixed">false</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">true</v>
+                              <v n="Boolean">false</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">106L</v>
+                            </o>
+                          </l2>
+                        </o>
+                        <o n="Flags" t="Flags">
+                          <v n="Flags">0</v>
+                          <v n="Fixed">false</v>
+                          <v n="Extensible">false</v>
+                        </o>
+                        <n n="InputFlags" />
+                        <l2 n="InputItems">
+                          <o t="BoxTreeBox">
+                            <v n="BoxType">"GT"</v>
+                            <o n="Instance" t="Operand">
+                              <n n="Operand" />
+                              <v n="Type">""</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">""</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">0</v>
+                                <v n="Fixed">false</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">false</v>
+                              <v n="Boolean">false</v>
+                              <v n="IsInstance">true</v>
+                              <v n="Id">123L</v>
+                            </o>
+                            <o n="OutputItems" t="OutputItemList">
+                              <l2 n="OutputItems">
+                                <n />
+                              </l2>
+                            </o>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">true</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <n n="InputFlags" />
+                            <l2 n="InputItems">
+                              <o t="BoxTreeTerminator">
+                                <n n="Input" />
+                                <o n="Flags" t="Flags">
+                                  <v n="Flags">0</v>
+                                  <v n="Fixed">false</v>
+                                  <v n="Extensible">false</v>
+                                </o>
+                                <v n="Id">109L</v>
+                              </o>
+                              <o t="BoxTreeOperand">
+                                <o n="Operand" t="Operand">
+                                  <v n="Operand">"ioView.memoffset"</v>
+                                  <v n="Type">"UDINT"</v>
+                                  <v n="Comment">""</v>
+                                  <v n="SymbolComment">""</v>
+                                  <v n="Address">""</v>
+                                  <o n="Flags" t="Flags">
+                                    <v n="Flags">0</v>
+                                    <v n="Fixed">false</v>
+                                    <v n="Extensible">false</v>
+                                  </o>
+                                  <v n="LValue">false</v>
+                                  <v n="Boolean">false</v>
+                                  <v n="IsInstance">false</v>
+                                  <v n="Id">101L</v>
+                                </o>
+                                <v n="Id">100L</v>
+                              </o>
+                              <o t="BoxTreeOperand">
+                                <o n="Operand" t="Operand">
+                                  <v n="Operand">"4000000000"</v>
+                                  <v n="Type">"UDINT"</v>
+                                  <v n="Comment">""</v>
+                                  <v n="SymbolComment">""</v>
+                                  <v n="Address">""</v>
+                                  <o n="Flags" t="Flags">
+                                    <v n="Flags">0</v>
+                                    <v n="Fixed">false</v>
+                                    <v n="Extensible">false</v>
+                                  </o>
+                                  <v n="LValue">false</v>
+                                  <v n="Boolean">false</v>
+                                  <v n="IsInstance">false</v>
+                                  <v n="Id">103L</v>
+                                </o>
+                                <v n="Id">102L</v>
+                              </o>
+                            </l2>
+                            <o n="InputParam" t="ParamList">
+                              <l2 n="Names" cet="String">
+                                <v>EN</v>
+                              </l2>
+                              <l2 n="Types" cet="String">
+                                <v>BOOL</v>
+                              </l2>
+                            </o>
+                            <o n="OutputParam" t="ParamList">
+                              <l2 n="Names" cet="String">
+                                <v></v>
+                              </l2>
+                              <l2 n="Types" cet="String">
+                                <v>BOOL</v>
+                              </l2>
+                            </o>
+                            <v n="CallType" t="Operator">Gt</v>
+                            <v n="EN">true</v>
+                            <v n="ENO">false</v>
+                            <n n="STSnippet" />
+                            <v n="ContainsExtensibleInputs">false</v>
+                            <v n="ProvidesSTSnippet">false</v>
+                            <v n="Id">124L</v>
+                          </o>
+                          <o t="BoxTreeOperand">
+                            <o n="Operand" t="Operand">
+                              <v n="Operand">"0"</v>
+                              <v n="Type">"INT"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">""</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">0</v>
+                                <v n="Fixed">false</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">false</v>
+                              <v n="Boolean">false</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">108L</v>
+                            </o>
+                            <v n="Id">107L</v>
+                          </o>
+                        </l2>
+                        <o n="InputParam" t="ParamList">
+                          <l2 n="Names" cet="String">
+                            <v>EN</v>
+                          </l2>
+                          <l2 n="Types" cet="String">
+                            <v>BOOL</v>
+                          </l2>
+                        </o>
+                        <o n="OutputParam" t="ParamList">
+                          <l2 n="Names" cet="String">
+                            <v>ENO</v>
+                            <v></v>
+                          </l2>
+                          <l2 n="Types" cet="String">
+                            <v>BOOL</v>
+                            <v></v>
+                          </l2>
+                        </o>
+                        <v n="CallType" t="Operator">Move</v>
+                        <v n="EN">true</v>
+                        <v n="ENO">true</v>
+                        <n n="STSnippet" />
+                        <v n="ContainsExtensibleInputs">false</v>
+                        <v n="ProvidesSTSnippet">false</v>
+                        <v n="Id">105L</v>
+                      </o>
+                    </l2>
+                    <l2 n="Connectors" />
+                    <v n="Id">89L</v>
                   </o>
                 </l2>
                 <v n="BranchCounter">0</v>
@@ -843,7 +1145,12 @@ pointerToMem := MIN(pointerToMem, 4294967295);
       <LineId Id="63" Count="0" />
       <LineId Id="83" Count="0" />
       <LineId Id="82" Count="0" />
-      <LineId Id="85" Count="1" />
+      <LineId Id="85" Count="0" />
+      <LineId Id="100" Count="1" />
+      <LineId Id="97" Count="0" />
+      <LineId Id="86" Count="0" />
+      <LineId Id="99" Count="0" />
+      <LineId Id="98" Count="0" />
       <LineId Id="80" Count="0" />
       <LineId Id="79" Count="0" />
       <LineId Id="81" Count="0" />
@@ -853,8 +1160,11 @@ pointerToMem := MIN(pointerToMem, 4294967295);
       <LineId Id="88" Count="0" />
       <LineId Id="87" Count="0" />
       <LineId Id="89" Count="0" />
-      <LineId Id="78" Count="0" />
-      <LineId Id="74" Count="2" />
+      <LineId Id="112" Count="0" />
+      <LineId Id="74" Count="1" />
+      <LineId Id="121" Count="0" />
+      <LineId Id="133" Count="8" />
+      <LineId Id="143" Count="5" />
       <LineId Id="48" Count="0" />
     </LineIds>
   </POU>
