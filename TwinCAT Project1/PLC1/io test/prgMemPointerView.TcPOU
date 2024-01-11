@@ -32,25 +32,49 @@ IF puls.Q THEN
 	
 	//limit value
 	//pointerToMem := MIN(pointerToMem, 4294967295);
-		
-	//read values from raw pointer + offset
-	MEMCPY(destAddr:=ADR(ioView.ViewingArray[0]), srcAddr:=pointerToMem + 0,n:=4);
-	MEMCPY(destAddr:=ADR(ioView.ViewingArray[1]), srcAddr:=pointerToMem + 4,n:=4);
-	MEMCPY(destAddr:=ADR(ioView.ViewingArray[2]), srcAddr:=pointerToMem + 8,n:=4);
-	MEMCPY(destAddr:=ADR(ioView.ViewingArray[3]), srcAddr:=pointerToMem + 12,n:=4);
-	MEMCPY(destAddr:=ADR(ioView.ViewingArray[4]), srcAddr:=pointerToMem + 16,n:=4);
-	MEMCPY(destAddr:=ADR(ioView.ViewingArray[5]), srcAddr:=pointerToMem + 20,n:=4);
-	MEMCPY(destAddr:=ADR(ioView.ViewingArray[6]), srcAddr:=pointerToMem + 24,n:=4);
-	MEMCPY(destAddr:=ADR(ioView.ViewingArray[7]), srcAddr:=pointerToMem + 32,n:=4);
-	MEMCPY(destAddr:=ADR(ioView.ViewingArray[8]), srcAddr:=pointerToMem + 36,n:=4);
-	MEMCPY(destAddr:=ADR(ioView.ViewingArray[9]), srcAddr:=pointerToMem + 40,n:=4);
-	MEMCPY(destAddr:=ADR(ioView.ViewingArray[10]), srcAddr:=pointerToMem + 44,n:=4);
-	MEMCPY(destAddr:=ADR(ioView.ViewingArray[11]), srcAddr:=pointerToMem + 48,n:=4);
-	MEMCPY(destAddr:=ADR(ioView.ViewingArray[12]), srcAddr:=pointerToMem + 52,n:=4);
-	MEMCPY(destAddr:=ADR(ioView.ViewingArray[13]), srcAddr:=pointerToMem + 56,n:=4);
-	MEMCPY(destAddr:=ADR(ioView.ViewingArray[14]), srcAddr:=pointerToMem + 60,n:=4);
-	MEMCPY(destAddr:=ADR(ioView.ViewingArray[15]), srcAddr:=pointerToMem + 64,n:=4);
 	
+	
+	//for 16bit
+	IF ioView.memsize = 1 THEN //2 bytes per index 
+		//read values from raw pointer + offset
+		MEMCPY(destAddr:=ADR(ioView.ViewingArray[0]), srcAddr:=pointerToMem + 0,n:=2);
+		MEMCPY(destAddr:=ADR(ioView.ViewingArray[1]), srcAddr:=pointerToMem + 2,n:=2);
+		MEMCPY(destAddr:=ADR(ioView.ViewingArray[2]), srcAddr:=pointerToMem + 4,n:=2);
+		MEMCPY(destAddr:=ADR(ioView.ViewingArray[3]), srcAddr:=pointerToMem + 6,n:=2);
+		MEMCPY(destAddr:=ADR(ioView.ViewingArray[4]), srcAddr:=pointerToMem + 8,n:=2);
+		MEMCPY(destAddr:=ADR(ioView.ViewingArray[5]), srcAddr:=pointerToMem + 10,n:=2);
+		MEMCPY(destAddr:=ADR(ioView.ViewingArray[6]), srcAddr:=pointerToMem + 12,n:=2);
+		MEMCPY(destAddr:=ADR(ioView.ViewingArray[7]), srcAddr:=pointerToMem + 14,n:=2);
+		MEMCPY(destAddr:=ADR(ioView.ViewingArray[8]), srcAddr:=pointerToMem + 16,n:=2);
+		MEMCPY(destAddr:=ADR(ioView.ViewingArray[9]), srcAddr:=pointerToMem + 18,n:=2);
+		MEMCPY(destAddr:=ADR(ioView.ViewingArray[10]), srcAddr:=pointerToMem + 20,n:=2);
+		MEMCPY(destAddr:=ADR(ioView.ViewingArray[11]), srcAddr:=pointerToMem + 22,n:=2);
+		MEMCPY(destAddr:=ADR(ioView.ViewingArray[12]), srcAddr:=pointerToMem + 24,n:=2);
+		MEMCPY(destAddr:=ADR(ioView.ViewingArray[13]), srcAddr:=pointerToMem + 26,n:=2);
+		MEMCPY(destAddr:=ADR(ioView.ViewingArray[14]), srcAddr:=pointerToMem + 28,n:=2);
+		MEMCPY(destAddr:=ADR(ioView.ViewingArray[15]), srcAddr:=pointerToMem + 30,n:=2);
+	END_IF
+		
+	//for 32bit
+	IF ioView.memsize = 2 THEN //4 bytes per index 
+		//read values from raw pointer + offset
+		MEMCPY(destAddr:=ADR(ioView.ViewingArray[0]), srcAddr:=pointerToMem + 0,n:=4);
+		MEMCPY(destAddr:=ADR(ioView.ViewingArray[1]), srcAddr:=pointerToMem + 4,n:=4);
+		MEMCPY(destAddr:=ADR(ioView.ViewingArray[2]), srcAddr:=pointerToMem + 8,n:=4);
+		MEMCPY(destAddr:=ADR(ioView.ViewingArray[3]), srcAddr:=pointerToMem + 12,n:=4);
+		MEMCPY(destAddr:=ADR(ioView.ViewingArray[4]), srcAddr:=pointerToMem + 16,n:=4);
+		MEMCPY(destAddr:=ADR(ioView.ViewingArray[5]), srcAddr:=pointerToMem + 20,n:=4);
+		MEMCPY(destAddr:=ADR(ioView.ViewingArray[6]), srcAddr:=pointerToMem + 24,n:=4);
+		MEMCPY(destAddr:=ADR(ioView.ViewingArray[7]), srcAddr:=pointerToMem + 32,n:=4);
+		MEMCPY(destAddr:=ADR(ioView.ViewingArray[8]), srcAddr:=pointerToMem + 36,n:=4);
+		MEMCPY(destAddr:=ADR(ioView.ViewingArray[9]), srcAddr:=pointerToMem + 40,n:=4);
+		MEMCPY(destAddr:=ADR(ioView.ViewingArray[10]), srcAddr:=pointerToMem + 44,n:=4);
+		MEMCPY(destAddr:=ADR(ioView.ViewingArray[11]), srcAddr:=pointerToMem + 48,n:=4);
+		MEMCPY(destAddr:=ADR(ioView.ViewingArray[12]), srcAddr:=pointerToMem + 52,n:=4);
+		MEMCPY(destAddr:=ADR(ioView.ViewingArray[13]), srcAddr:=pointerToMem + 56,n:=4);
+		MEMCPY(destAddr:=ADR(ioView.ViewingArray[14]), srcAddr:=pointerToMem + 60,n:=4);
+		MEMCPY(destAddr:=ADR(ioView.ViewingArray[15]), srcAddr:=pointerToMem + 64,n:=4);
+	END_IF
 END_IF]]></ST>
     </Implementation>
     <Action Name="actAdjustOffset" Id="{768519a0-735e-466b-9cc6-26b77674c384}">
@@ -1160,8 +1184,14 @@ END_IF]]></ST>
       <LineId Id="88" Count="0" />
       <LineId Id="87" Count="0" />
       <LineId Id="89" Count="0" />
+      <LineId Id="162" Count="1" />
+      <LineId Id="165" Count="18" />
+      <LineId Id="164" Count="0" />
       <LineId Id="112" Count="0" />
-      <LineId Id="74" Count="1" />
+      <LineId Id="156" Count="0" />
+      <LineId Id="158" Count="0" />
+      <LineId Id="157" Count="0" />
+      <LineId Id="75" Count="0" />
       <LineId Id="121" Count="0" />
       <LineId Id="133" Count="8" />
       <LineId Id="143" Count="5" />
