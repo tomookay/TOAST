@@ -59,7 +59,7 @@ actShiftBytes();
 outputRow.valStr := convString.qString;
 
 
-outputRow.hexVal := DWORD_TO_HEXSTR(in:=iWordData, iPrecision:=8,bLoCase:=FALSE);
+outputRow.hexVal := DWORD_TO_HEXSTR(in:=convString.arryDINT, iPrecision:=8,bLoCase:=FALSE);
 
 outputRow.memLoc := blockCount + ioView.memoffset;
 
