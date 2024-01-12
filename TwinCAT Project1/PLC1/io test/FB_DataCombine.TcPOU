@@ -5,6 +5,7 @@
 VAR
 convString:typeCombineString;
 
+	testDWORD: DWORD;
 END_VAR
 
 VAR_INPUT
@@ -49,6 +50,10 @@ outputRow.floatVal := DWORD_TO_REAL(iWordData); //apply swapping
 
 //convert
 convString.arryDINT := iWordData;
+
+//shift bytes in word if number of bytes is not displayed in WORD on HMI
+actShiftBytes();
+
 
 //string view
 outputRow.valStr := convString.qString;
@@ -203,6 +208,30 @@ CASE iWordSize OF
 END_CASE]]></ST>
       </Implementation>
     </Action>
+    <Action Name="actShiftBytes" Id="{a5d630a1-b97f-412e-9751-d13850fdaee1}">
+      <Implementation>
+        <ST><![CDATA[CASE iWordSize OF
+	0: //8bit
+	convString.arryDINT :=  convString.arryDINT AND 16#000000FF;
+	
+	1: //16bit
+	convString.arryDINT := convString.arryDINT AND 16#0000FFFF;
+	
+	
+	2: //32bit
+	
+	//no shift
+	convString.arryDINT := convString.arryDINT ;
+	
+	3: //not used
+	outputRow.Hideb0 := TRUE;
+	outputRow.Hideb1 := TRUE;
+	outputRow.Hideb2 := TRUE;
+	outputRow.Hideb3 := TRUE;
+	
+END_CASE]]></ST>
+      </Implementation>
+    </Action>
     <LineIds Name="FB_DataCombine">
       <LineId Id="14" Count="0" />
       <LineId Id="77" Count="0" />
@@ -222,7 +251,10 @@ END_CASE]]></ST>
       <LineId Id="55" Count="0" />
       <LineId Id="88" Count="1" />
       <LineId Id="67" Count="0" />
-      <LineId Id="90" Count="1" />
+      <LineId Id="90" Count="0" />
+      <LineId Id="166" Count="2" />
+      <LineId Id="165" Count="0" />
+      <LineId Id="91" Count="0" />
       <LineId Id="66" Count="0" />
       <LineId Id="69" Count="0" />
       <LineId Id="87" Count="0" />
@@ -271,6 +303,16 @@ END_CASE]]></ST>
       <LineId Id="29" Count="3" />
       <LineId Id="28" Count="0" />
       <LineId Id="7" Count="1" />
+    </LineIds>
+    <LineIds Name="FB_DataCombine.actShiftBytes">
+      <LineId Id="2" Count="1" />
+      <LineId Id="7" Count="2" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="14" Count="1" />
+      <LineId Id="27" Count="1" />
+      <LineId Id="19" Count="7" />
+      <LineId Id="1" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
