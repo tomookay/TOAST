@@ -5,6 +5,13 @@
 VAR_IN_OUT
 	
 	iqArrayToCheck:typeMessage; //type of message bounds
+	iqPassThruMessageStart:INT; //pass to /from alarm to warning start, warnings listed after all alarms
+	
+	//
+	//new message rows using table
+	qSpecialMsgRows:ARRAY[1..HMIData.gNumberOfMessagesScreen] OF typeNewMsg;
+	qSpecialMsgRowsStyle:ARRAY[1..HMIData.gNumberOfMessagesScreen] OF typeNewMsgStyle;
+	
 	
 END_VAR
 VAR_OUTPUT
@@ -18,9 +25,7 @@ VAR_OUTPUT
 	//declare, follows typeMessageRowsArry
 	qMsgRows:ARRAY[1..HMIData.gNumberOfMessagesScreen] OF typeMessageRow;
 	
-	//new message rows using table
-	qSpecialMsgRows:ARRAY[1..HMIData.gNumberOfMessagesScreen] OF typeNewMsg;
-	qSpecialMsgRowsStyle:ARRAY[1..HMIData.gNumberOfMessagesScreen] OF typeNewMsgStyle;
+	
 	
 	
 
@@ -47,6 +52,7 @@ VAR
 	rollingOffset:INT; //offset for injecting further messages
 	k: UINT;
 	strlengtest: INT;
+	tWarnOffset:INT; //starting location for warning
 END_VAR
 
 VAR_INPUT
@@ -56,6 +62,10 @@ VAR_INPUT
 
 
 
+
+END_VAR
+
+VAR_IN_OUT
 
 END_VAR
 ]]></Declaration>
@@ -132,25 +142,23 @@ IF memchanged THEN //if the memory array have changed, then process the message
 			//the current message is active, but not yet written
 			IF iqArrayToCheck.message[i] = TRUE  THEN
 				
-								//combine message texts into long string with CR LFs
-								newlineInsert := concat(iqArrayToCheck.text[i], '$0D'); //make new line
+				//combine message texts into long string with CR LFs
+				newlineInsert := concat(iqArrayToCheck.text[i], '$0D'); //make new line
 								
-								//calc message number
-								messagenum := iMessageGroup + INT_TO_UINT(i); //creates 10000 + 1, 10001 mesage number
+				//calc message number
+				messagenum := iMessageGroup + INT_TO_UINT(i); //creates 10000 + 1, 10001 mesage number
 								
-								//string header
-								strheader := concat(DINT_TO_STRING(messagenum), ' '); //'10001 ' with space
+				//string header
+				strheader := concat(DINT_TO_STRING(messagenum), ' '); //'10001 ' with space
 								
-								//add message number
-								newlineInsert := concat(strheader,newlineInsert);
+				//add message number
+				newlineInsert := concat(strheader,newlineInsert);
 									 
-								allstrings := concat(newlineInsert,allstrings); //and put it at the top of the pack
+				allstrings := concat(newlineInsert,allstrings); //and put it at the top of the pack
 								
-								//message was written, so turn on message active bit iqArrayToCheck.messageActive[i]
-								iqArrayToCheck.messageActive[i] := TRUE;
-								
-								
-						
+				//message was written, so turn on message active bit iqArrayToCheck.messageActive[i]
+				iqArrayToCheck.messageActive[i] := TRUE;
+			
 			END_IF	
 			
 		END_IF
@@ -184,31 +192,34 @@ END_IF
 msgindex := 1;
 IF memchanged THEN
 	
-	
+	//check if isWarning, then apply messages to bottom of list
+	IF isWarning THEN
+		tWarnOffset := iqPassThruMessageStart;
+		ELSE
+		tWarnOffset := 0;
+	END_IF
+
 
 	FOR i := 0 TO GlobalMessages.gNumMessagesPerType DO
-		
-			//find next TRUE alarm
+		//find next TRUE alarm
 			IF iqArrayToCheck.messageActive[i] = TRUE THEN
-				
-			
+							
 				//assign text to other alarm view 	
 				qMsgRows[msgindex].msgText := iqArrayToCheck.text[i];
-				qSpecialMsgRows[msgIndex].text := iqArrayToCheck.text[i];
-				qSpecialMsgRows[msgIndex].timeRaised := UDINT_TO_STRING(iqArrayToCheck.messageTimeActive[i]);
-				
-				
+				qSpecialMsgRows[msgIndex + tWarnOffset].text := iqArrayToCheck.text[i];
+				qSpecialMsgRows[msgIndex + tWarnOffset].timeRaised := UDINT_TO_STRING(iqArrayToCheck.messageTimeActive[i]);
+								
 				//assign special colour
-				qSpecialMsgRowsStyle[msgIndex].colourToApply := HMIColour.colourGreyBackground;
-				qSpecialMsgRowsStyle[msgIndex].isColoured := FALSE;
+				qSpecialMsgRowsStyle[msgIndex + tWarnOffset].colourToApply := HMIColour.colourGreyBackground;
+				qSpecialMsgRowsStyle[msgIndex + tWarnOffset].isColoured := FALSE;
 				
 				//assign colour
 				IF isAlarm THEN
 					qMsgRows[msgIndex].isAlarm := TRUE;
 					
 					//assign special colour
-					qSpecialMsgRowsStyle[msgIndex].colourToApply := HMIColour.colourRed;
-					qSpecialMsgRowsStyle[msgIndex].isColoured := TRUE;
+					qSpecialMsgRowsStyle[msgIndex + tWarnOffset].colourToApply := HMIColour.colourRed;
+					qSpecialMsgRowsStyle[msgIndex + tWarnOffset].isColoured := TRUE;
 					
 					ELSE
 					qMsgRows[msgIndex].isAlarm := FALSE;	
@@ -220,8 +231,8 @@ IF memchanged THEN
 					qMsgRows[msgIndex].isWarning := TRUE;
 					
 					//assign special colour
-					qSpecialMsgRowsStyle[msgIndex].colourToApply := HMIColour.colourYellow;
-					qSpecialMsgRowsStyle[msgIndex].isColoured := TRUE;
+					qSpecialMsgRowsStyle[msgIndex + tWarnOffset].colourToApply := HMIColour.colourYellow;
+					qSpecialMsgRowsStyle[msgIndex + tWarnOffset].isColoured := TRUE;
 					
 					
 					ELSE
@@ -236,18 +247,17 @@ IF memchanged THEN
 				IF msgIndex > GlobalMessages.gNumMessagesPerType - 1 THEN
 					EXIT;
 				END_IF
-				
-			END_IF
-		
+		END_IF
+		rollingOffset:= 0;
 	END_FOR
-
-
+	
 END_IF
 
 
-IF memchanged THEN
+IF memchanged OR TRUE THEN //need to loop constantly if message is active to work out offset for other blocks
 		//find the number OF used message
-
+				
+				
 			//find the next free entry (blank text) '' 
 				FOR k := 1 TO HMIData.gNumberOfMessagesScreen DO
 					
@@ -260,9 +270,12 @@ IF memchanged THEN
 					END_IF
 				END_FOR
 
+
 END_IF
 	
-			
+
+	//alarms pass to warnings to start
+iqPassThruMessageStart := rollingOffset;		
 
 
 
@@ -931,7 +944,7 @@ END_IF
                               <v n="Fixed">false</v>
                               <v n="Extensible">false</v>
                             </o>
-                            <v n="Id">37L</v>
+                            <v n="Id">78L</v>
                           </o>
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
@@ -1090,7 +1103,7 @@ END_IF
                               <v n="Fixed">false</v>
                               <v n="Extensible">false</v>
                             </o>
-                            <v n="Id">21L</v>
+                            <v n="Id">79L</v>
                           </o>
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
@@ -1186,6 +1199,131 @@ END_IF
                     <l2 n="Connectors" />
                     <v n="Id">1L</v>
                   </o>
+                  <o>
+                    <v n="ILActive">false</v>
+                    <v n="FBDValid">false</v>
+                    <v n="ILValid">false</v>
+                    <l2 n="ILLines" />
+                    <v n="Comment">""</v>
+                    <v n="Title">""</v>
+                    <v n="Label">""</v>
+                    <v n="OutCommented">false</v>
+                    <l2 n="NetworkItems" cet="BoxTreeBox">
+                      <o>
+                        <v n="BoxType">"MOVE"</v>
+                        <o n="Instance" t="Operand">
+                          <n n="Operand" />
+                          <v n="Type">""</v>
+                          <v n="Comment">""</v>
+                          <v n="SymbolComment">""</v>
+                          <v n="Address">""</v>
+                          <o n="Flags" t="Flags">
+                            <v n="Flags">0</v>
+                            <v n="Fixed">false</v>
+                            <v n="Extensible">false</v>
+                          </o>
+                          <v n="LValue">false</v>
+                          <v n="Boolean">false</v>
+                          <v n="IsInstance">true</v>
+                          <v n="Id">66L</v>
+                        </o>
+                        <o n="OutputItems" t="OutputItemList">
+                          <l2 n="OutputItems" cet="Operand">
+                            <n />
+                            <o>
+                              <v n="Operand">"rollingOffset"</v>
+                              <v n="Type">"INT"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">""</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">0</v>
+                                <v n="Fixed">false</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">true</v>
+                              <v n="Boolean">false</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">59L</v>
+                            </o>
+                          </l2>
+                        </o>
+                        <o n="Flags" t="Flags">
+                          <v n="Flags">0</v>
+                          <v n="Fixed">true</v>
+                          <v n="Extensible">false</v>
+                        </o>
+                        <n n="InputFlags" />
+                        <l2 n="InputItems" cet="BoxTreeOperand">
+                          <o>
+                            <o n="Operand" t="Operand">
+                              <v n="Operand">"isAlarm"</v>
+                              <v n="Type">"BOOL"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">""</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">0</v>
+                                <v n="Fixed">false</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">false</v>
+                              <v n="Boolean">false</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">61L</v>
+                            </o>
+                            <v n="Id">60L</v>
+                          </o>
+                          <o>
+                            <o n="Operand" t="Operand">
+                              <v n="Operand">"0"</v>
+                              <v n="Type">"INT"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">""</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">0</v>
+                                <v n="Fixed">false</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">false</v>
+                              <v n="Boolean">false</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">63L</v>
+                            </o>
+                            <v n="Id">62L</v>
+                          </o>
+                        </l2>
+                        <o n="InputParam" t="ParamList">
+                          <l2 n="Names" cet="String">
+                            <v>EN</v>
+                          </l2>
+                          <l2 n="Types" cet="String">
+                            <v>BOOL</v>
+                          </l2>
+                        </o>
+                        <o n="OutputParam" t="ParamList">
+                          <l2 n="Names" cet="String">
+                            <v>ENO</v>
+                            <v></v>
+                          </l2>
+                          <l2 n="Types" cet="String">
+                            <v>BOOL</v>
+                            <v></v>
+                          </l2>
+                        </o>
+                        <v n="CallType" t="Operator">Move</v>
+                        <v n="EN">true</v>
+                        <v n="ENO">true</v>
+                        <n n="STSnippet" />
+                        <v n="ContainsExtensibleInputs">false</v>
+                        <v n="ProvidesSTSnippet">false</v>
+                        <v n="Id">67L</v>
+                      </o>
+                    </l2>
+                    <l2 n="Connectors" />
+                    <v n="Id">50L</v>
+                  </o>
                 </l2>
                 <v n="BranchCounter">0</v>
                 <v n="ValidIds">true</v>
@@ -1229,7 +1367,29 @@ END_IF
       </XmlArchive>
     </ObjectProperties>
     <LineIds Name="FB_CheckMessageBounds">
-      <LineId Id="3" Count="205" />
+      <LineId Id="3" Count="87" />
+      <LineId Id="94" Count="0" />
+      <LineId Id="289" Count="0" />
+      <LineId Id="95" Count="31" />
+      <LineId Id="274" Count="1" />
+      <LineId Id="277" Count="0" />
+      <LineId Id="282" Count="2" />
+      <LineId Id="127" Count="3" />
+      <LineId Id="132" Count="1" />
+      <LineId Id="135" Count="4" />
+      <LineId Id="141" Count="38" />
+      <LineId Id="298" Count="0" />
+      <LineId Id="182" Count="0" />
+      <LineId Id="288" Count="0" />
+      <LineId Id="185" Count="5" />
+      <LineId Id="297" Count="0" />
+      <LineId Id="191" Count="10" />
+      <LineId Id="280" Count="0" />
+      <LineId Id="202" Count="2" />
+      <LineId Id="273" Count="0" />
+      <LineId Id="205" Count="0" />
+      <LineId Id="287" Count="0" />
+      <LineId Id="206" Count="2" />
       <LineId Id="2" Count="0" />
     </LineIds>
   </POU>

@@ -41,7 +41,7 @@ END_VAR
                         <v n="LValue">false</v>
                         <v n="Boolean">false</v>
                         <v n="IsInstance">true</v>
-                        <v n="Id">47L</v>
+                        <v n="Id">73L</v>
                       </o>
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems" cet="Operand">
@@ -64,7 +64,7 @@ END_VAR
                           </o>
                           <o>
                             <v n="Operand">"GlobalMessages.gMsgS3Stat.numWarning"</v>
-                            <v n="Type">"INT"</v>
+                            <v n="Type">"UINT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
                             <v n="Address">""</v>
@@ -126,6 +126,38 @@ END_VAR
                             <v n="IsInstance">false</v>
                             <v n="Id">41L</v>
                           </o>
+                          <o>
+                            <v n="Operand">""</v>
+                            <v n="Type">"ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeNewMsg"</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">""</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">true</v>
+                            <v n="Boolean">false</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">75L</v>
+                          </o>
+                          <o>
+                            <v n="Operand">""</v>
+                            <v n="Type">"ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeNewMsgStyle"</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">""</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">true</v>
+                            <v n="Boolean">false</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">76L</v>
+                          </o>
                         </l2>
                       </o>
                       <o n="Flags" t="Flags">
@@ -162,6 +194,25 @@ END_VAR
                             <v n="Id">16L</v>
                           </o>
                           <v n="Id">15L</v>
+                        </o>
+                        <o t="BoxTreeOperand">
+                          <o n="Operand" t="Operand">
+                            <v n="Operand">"GlobalMessages.gMsgS5.passThruStart"</v>
+                            <v n="Type">"INT"</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">""</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">false</v>
+                            <v n="Boolean">false</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">78L</v>
+                          </o>
+                          <v n="Id">77L</v>
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
@@ -225,6 +276,7 @@ END_VAR
                         <l2 n="Names" cet="String">
                           <v>EN</v>
                           <v>iqArrayToCheck</v>
+                          <v>iqPassThruMessageStart</v>
                           <v>iMessageGroup</v>
                           <v>isAlarm</v>
                           <v>isWarning</v>
@@ -232,7 +284,8 @@ END_VAR
                         <l2 n="Types" cet="String">
                           <v>BOOL</v>
                           <v>typeMessage[REF]</v>
-                          <v>INT</v>
+                          <v>INT[REF]</v>
+                          <v>UINT</v>
                           <v>BOOL</v>
                           <v>BOOL</v>
                         </l2>
@@ -245,14 +298,18 @@ END_VAR
                           <v>qSingleMessage</v>
                           <v>qAllMessages</v>
                           <v>qMsgRows</v>
+                          <v>qSpecialMsgRows</v>
+                          <v>qSpecialMsgRowsStyle</v>
                         </l2>
                         <l2 n="Types" cet="String">
                           <v>BOOL</v>
                           <v>BOOL</v>
-                          <v>INT</v>
+                          <v>UINT</v>
                           <v>STRING(255)</v>
                           <v>STRING</v>
                           <v>ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeMessageRow</v>
+                          <v>ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeNewMsg</v>
+                          <v>ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeNewMsgStyle</v>
                         </l2>
                       </o>
                       <v n="CallType" t="Operator">FunctionBlock</v>
@@ -261,7 +318,7 @@ END_VAR
                       <n n="STSnippet" />
                       <v n="ContainsExtensibleInputs">false</v>
                       <v n="ProvidesSTSnippet">false</v>
-                      <v n="Id">48L</v>
+                      <v n="Id">74L</v>
                     </o>
                   </l2>
                   <l2 n="Connectors" />

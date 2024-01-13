@@ -45,7 +45,7 @@ GlobalMessages.gMsgS1Stat.IsAlarm
                         <v n="LValue">false</v>
                         <v n="Boolean">false</v>
                         <v n="IsInstance">true</v>
-                        <v n="Id">315L</v>
+                        <v n="Id">336L</v>
                       </o>
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems" cet="Operand">
@@ -68,7 +68,7 @@ GlobalMessages.gMsgS1Stat.IsAlarm
                           </o>
                           <o>
                             <v n="Operand">"GlobalMessages.gMsgS3Stat.numAlarm"</v>
-                            <v n="Type">"INT"</v>
+                            <v n="Type">"UINT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
                             <v n="Address">""</v>
@@ -130,6 +130,38 @@ GlobalMessages.gMsgS1Stat.IsAlarm
                             <v n="IsInstance">false</v>
                             <v n="Id">309L</v>
                           </o>
+                          <o>
+                            <v n="Operand">""</v>
+                            <v n="Type">"ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeNewMsg"</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">""</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">true</v>
+                            <v n="Boolean">false</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">338L</v>
+                          </o>
+                          <o>
+                            <v n="Operand">""</v>
+                            <v n="Type">"ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeNewMsgStyle"</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">""</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">true</v>
+                            <v n="Boolean">false</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">339L</v>
+                          </o>
                         </l2>
                       </o>
                       <o n="Flags" t="Flags">
@@ -166,6 +198,25 @@ GlobalMessages.gMsgS1Stat.IsAlarm
                             <v n="Id">274L</v>
                           </o>
                           <v n="Id">273L</v>
+                        </o>
+                        <o t="BoxTreeOperand">
+                          <o n="Operand" t="Operand">
+                            <v n="Operand">"GlobalMessages.gMsgS4.passThruStart"</v>
+                            <v n="Type">"INT"</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">""</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">false</v>
+                            <v n="Boolean">false</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">341L</v>
+                          </o>
+                          <v n="Id">340L</v>
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
@@ -229,6 +280,7 @@ GlobalMessages.gMsgS1Stat.IsAlarm
                         <l2 n="Names" cet="String">
                           <v>EN</v>
                           <v>iqArrayToCheck</v>
+                          <v>iqPassThruMessageStart</v>
                           <v>iMessageGroup</v>
                           <v>isAlarm</v>
                           <v>isWarning</v>
@@ -236,7 +288,8 @@ GlobalMessages.gMsgS1Stat.IsAlarm
                         <l2 n="Types" cet="String">
                           <v>BOOL</v>
                           <v>typeMessage[REF]</v>
-                          <v>INT</v>
+                          <v>INT[REF]</v>
+                          <v>UINT</v>
                           <v>BOOL</v>
                           <v>BOOL</v>
                         </l2>
@@ -249,14 +302,18 @@ GlobalMessages.gMsgS1Stat.IsAlarm
                           <v>qSingleMessage</v>
                           <v>qAllMessages</v>
                           <v>qMsgRows</v>
+                          <v>qSpecialMsgRows</v>
+                          <v>qSpecialMsgRowsStyle</v>
                         </l2>
                         <l2 n="Types" cet="String">
                           <v>BOOL</v>
                           <v>BOOL</v>
-                          <v>INT</v>
+                          <v>UINT</v>
                           <v>STRING(255)</v>
                           <v>STRING</v>
                           <v>ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeMessageRow</v>
+                          <v>ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeNewMsg</v>
+                          <v>ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeNewMsgStyle</v>
                         </l2>
                       </o>
                       <v n="CallType" t="Operator">FunctionBlock</v>
@@ -265,7 +322,7 @@ GlobalMessages.gMsgS1Stat.IsAlarm
                       <n n="STSnippet" />
                       <v n="ContainsExtensibleInputs">false</v>
                       <v n="ProvidesSTSnippet">false</v>
-                      <v n="Id">316L</v>
+                      <v n="Id">337L</v>
                     </o>
                   </l2>
                   <l2 n="Connectors" />
