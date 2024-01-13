@@ -421,6 +421,10 @@
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
+    <Compile Include="HMI1\Screens\SS_80_DataDisplay.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+    </Compile>
     <Compile Include="HMI1\Templates\LanguageRow.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
@@ -452,6 +456,10 @@
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
+    <Compile Include="HMI1\Templates\visuDataDisplay.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+    </Compile>
     <Compile Include="HMI1\types\LanguageLocation.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -478,33 +486,6 @@
     </Compile>
     <Compile Include="HMI1\types\typeStationEnables.TcDUT">
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="io test\dutDWord.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="io test\FB_DataCombine.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="io test\prgMemPointerView.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="io test\ioView.TcGVL">
-      <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
-    </Compile>
-    <Compile Include="io test\pouDataDisplay.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="io test\SS_99_DataDisplay.TcVIS">
-      <SubType>Code</SubType>
-      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
-    </Compile>
-    <Compile Include="io test\typeCombineString.TcDUT">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="io test\visuDataDisplay.TcVIS">
-      <SubType>Code</SubType>
-      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
     <Compile Include="msg test\FB_OrderMessages.TcPOU">
       <SubType>Code</SubType>
@@ -570,6 +551,25 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\FBs\FBs\Motions\FB_Motion2way.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\IO View\dutDWord.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\IO View\FB_DataCombine.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\IO View\ioView.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="POUs\IO View\pouDataDisplay.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\IO View\prgMemPointerView.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\IO View\typeCombineString.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\Machine\Base\Axis\Axis.TcGVL">
@@ -1565,7 +1565,6 @@
     <Folder Include="HMI1\Screens\Diagnostic" />
     <Folder Include="HMI1\types" />
     <Folder Include="msg test" />
-    <Folder Include="io test" />
     <Folder Include="POUs\FBs" />
     <Folder Include="POUs\FBs\Drives" />
     <Folder Include="POUs\FBs\FBs\Motions" />
@@ -1574,6 +1573,7 @@
     <Folder Include="HMI1\Screens" />
     <Folder Include="HMI1\Templates" />
     <Folder Include="POUs\FBs\FBs" />
+    <Folder Include="POUs\IO View" />
     <Folder Include="POUs\Machine" />
     <Folder Include="POUs\Machine\Base" />
     <Folder Include="POUs\Machine\Base\Axis" />
