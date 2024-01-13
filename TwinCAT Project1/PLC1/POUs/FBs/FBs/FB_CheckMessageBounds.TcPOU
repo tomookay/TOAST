@@ -45,8 +45,8 @@ VAR
 	timWaitDelay: TON;
 	
 	rollingOffset:INT; //offset for injecting further messages
-	k: INT;
-		strlengtest: INT;
+	k: UINT;
+	strlengtest: INT;
 END_VAR
 
 VAR_INPUT
@@ -256,7 +256,7 @@ IF memchanged THEN
 											
 				
 					IF strlengtest > 0 THEN
-						rollingOffset := k;
+						rollingOffset := UINT_TO_INT(k);
 					END_IF
 				END_FOR
 
@@ -1229,29 +1229,7 @@ END_IF
       </XmlArchive>
     </ObjectProperties>
     <LineIds Name="FB_CheckMessageBounds">
-      <LineId Id="3" Count="122" />
-      <LineId Id="255" Count="0" />
-      <LineId Id="257" Count="0" />
-      <LineId Id="256" Count="0" />
-      <LineId Id="126" Count="3" />
-      <LineId Id="240" Count="1" />
-      <LineId Id="131" Count="50" />
-      <LineId Id="286" Count="1" />
-      <LineId Id="277" Count="0" />
-      <LineId Id="291" Count="3" />
-      <LineId Id="301" Count="1" />
-      <LineId Id="304" Count="0" />
-      <LineId Id="306" Count="0" />
-      <LineId Id="303" Count="0" />
-      <LineId Id="295" Count="0" />
-      <LineId Id="299" Count="0" />
-      <LineId Id="297" Count="0" />
-      <LineId Id="288" Count="0" />
-      <LineId Id="290" Count="0" />
-      <LineId Id="289" Count="0" />
-      <LineId Id="285" Count="0" />
-      <LineId Id="278" Count="0" />
-      <LineId Id="182" Count="2" />
+      <LineId Id="3" Count="205" />
       <LineId Id="2" Count="0" />
     </LineIds>
   </POU>
