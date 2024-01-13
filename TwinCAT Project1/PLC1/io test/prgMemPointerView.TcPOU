@@ -16,7 +16,6 @@ END_VAR
 //buttons for adjusting offset, visu is keypad entry
 actAdjustOffset();
 
-
 //only do stuff every second
 puls(clk:=System.OneSecond);
 
@@ -25,8 +24,8 @@ IF puls.Q THEN
 	//move offset to keep global
 	offset := ioView.memoffset * 4;
 	
-	//for M, MEMORY, MD, MW, Mx.y
-	pointerToMem := ADR(%MD0);
+	//get pointer fata
+	actCapturePointer();
 	
 	//add offset, from 0, add offset to desired memory location, e.g. "0 + 1024 = 1024" to view MD1024 and resulting areas
 	pointerToMem := pointerToMem + offset;
@@ -47,29 +46,7 @@ IF puls.Q THEN
 			MEMCPY(destAddr:=ADR(ioView.ViewingArray[i]), srcAddr:=pointerToMem + INT_TO_DWORD(i) * 4,n:=4);
 		END_FOR
 	END_CASE
-	
 
-//	//for 8bit
-//	IF ioView.memsize = 0 THEN //1 bytes per index 
-//		FOR i := 0 TO 15 DO
-//			MEMCPY(destAddr:=ADR(ioView.ViewingArray[i]), srcAddr:=pointerToMem + INT_TO_DWORD(i),n:=1);
-//		END_FOR
-//	END_IF
-	
-//	//for 16bit
-//	IF ioView.memsize = 1 THEN //2 bytes per index 
-//		FOR i := 0 TO 15 DO
-//			MEMCPY(destAddr:=ADR(ioView.ViewingArray[i]), srcAddr:=pointerToMem + INT_TO_DWORD(i) * 2,n:=2);
-//	END_FOR
-//	END_IF
-		
-//	//for 32bit
-//	IF ioView.memsize = 2 THEN //4 bytes per index 
-//		FOR i := 0 TO 15 DO
-//				MEMCPY(destAddr:=ADR(ioView.ViewingArray[i]), srcAddr:=pointerToMem + INT_TO_DWORD(i) * 4,n:=4);
-//		END_FOR
-//	END_IF
-	
 END_IF]]></ST>
     </Implementation>
     <Action Name="actAdjustOffset" Id="{768519a0-735e-466b-9cc6-26b77674c384}">
@@ -1160,12 +1137,34 @@ END_IF]]></ST>
         </NWL>
       </Implementation>
     </Action>
+    <Action Name="actCapturePointer" Id="{f96964f9-c358-4464-bd11-f7fd4791c184}">
+      <Implementation>
+        <ST><![CDATA[//for M, MEMORY, MD, MW, Mx.y
+//theme rbJgtdJLvo8?t=2110	
+CASE ioView.memtype OF
+	0: //I
+	pointerToMem := ADR(%ID0);
+	
+	1: //Q
+	pointerToMem := ADR(%QD0);
+	
+	2: //M
+	pointerToMem := ADR(%MD0);
+	
+	3: //L
+	pointerToMem := ADR(%MD0);
+END_CASE
+
+
+]]></ST>
+      </Implementation>
+    </Action>
     <LineIds Name="prgMemPointerView">
       <LineId Id="63" Count="0" />
       <LineId Id="83" Count="0" />
       <LineId Id="82" Count="0" />
       <LineId Id="85" Count="0" />
-      <LineId Id="100" Count="1" />
+      <LineId Id="100" Count="0" />
       <LineId Id="97" Count="0" />
       <LineId Id="86" Count="0" />
       <LineId Id="192" Count="0" />
@@ -1174,8 +1173,9 @@ END_IF]]></ST>
       <LineId Id="79" Count="0" />
       <LineId Id="81" Count="0" />
       <LineId Id="77" Count="0" />
-      <LineId Id="65" Count="0" />
-      <LineId Id="68" Count="3" />
+      <LineId Id="309" Count="0" />
+      <LineId Id="308" Count="0" />
+      <LineId Id="69" Count="2" />
       <LineId Id="197" Count="1" />
       <LineId Id="269" Count="0" />
       <LineId Id="297" Count="0" />
@@ -1191,26 +1191,23 @@ END_IF]]></ST>
       <LineId Id="283" Count="0" />
       <LineId Id="280" Count="0" />
       <LineId Id="284" Count="0" />
-      <LineId Id="289" Count="0" />
       <LineId Id="199" Count="0" />
-      <LineId Id="207" Count="1" />
-      <LineId Id="226" Count="0" />
-      <LineId Id="230" Count="0" />
-      <LineId Id="233" Count="0" />
-      <LineId Id="229" Count="0" />
-      <LineId Id="201" Count="0" />
-      <LineId Id="206" Count="0" />
-      <LineId Id="166" Count="0" />
-      <LineId Id="240" Count="1" />
-      <LineId Id="235" Count="0" />
-      <LineId Id="164" Count="0" />
-      <LineId Id="112" Count="0" />
-      <LineId Id="156" Count="0" />
-      <LineId Id="158" Count="0" />
-      <LineId Id="247" Count="2" />
-      <LineId Id="147" Count="0" />
-      <LineId Id="266" Count="0" />
       <LineId Id="48" Count="0" />
+    </LineIds>
+    <LineIds Name="prgMemPointerView.actCapturePointer">
+      <LineId Id="2" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="17" Count="3" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="22" Count="1" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="6" Count="1" />
+      <LineId Id="1" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
