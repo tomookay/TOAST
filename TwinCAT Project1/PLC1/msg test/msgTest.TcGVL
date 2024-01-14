@@ -14,8 +14,10 @@ VAR_GLOBAL
 	//new implementation
 	//S1_msg :structEventViewMsg;
 	
+	//nulls do not apply, have to assign to FB
 	msgArrynull: ARRAY[1..HMIData.gNumberOfMessagesScreen] OF typeNewMsg;
 	msgArryStylenull: ARRAY[1..HMIData.gNumberOfMessagesScreen] OF typeNewMsgStyle;
+	msgWasChangednull:BOOL;
 	
 END_VAR]]></Declaration>
   </GVL>
