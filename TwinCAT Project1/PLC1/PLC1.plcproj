@@ -424,6 +424,7 @@
     <Compile Include="HMI1\Screens\SS_80_DataDisplay.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+      <ExcludeFromBuild>true</ExcludeFromBuild>
     </Compile>
     <Compile Include="HMI1\Templates\LanguageRow.TcVIS">
       <SubType>Code</SubType>
@@ -459,6 +460,8 @@
     <Compile Include="HMI1\Templates\visuDataDisplay.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+      <External>false</External>
+      <ExcludeFromBuild>true</ExcludeFromBuild>
     </Compile>
     <Compile Include="HMI1\types\LanguageLocation.TcDUT">
       <SubType>Code</SubType>
@@ -492,7 +495,6 @@
     </Compile>
     <Compile Include="msg test\msgTest.TcGVL">
       <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
     </Compile>
     <Compile Include="msg test\pouTestMessages.TcPOU">
       <SubType>Code</SubType>
@@ -555,19 +557,23 @@
     </Compile>
     <Compile Include="POUs\IO View\dutDWord.TcDUT">
       <SubType>Code</SubType>
+      <ExcludeFromBuild>true</ExcludeFromBuild>
     </Compile>
     <Compile Include="POUs\IO View\FB_DataCombine.TcPOU">
       <SubType>Code</SubType>
+      <ExcludeFromBuild>true</ExcludeFromBuild>
     </Compile>
     <Compile Include="POUs\IO View\ioView.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
+      <ExcludeFromBuild>true</ExcludeFromBuild>
     </Compile>
     <Compile Include="POUs\IO View\pouDataDisplay.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\IO View\prgMemPointerView.TcPOU">
       <SubType>Code</SubType>
+      <ExcludeFromBuild>true</ExcludeFromBuild>
     </Compile>
     <Compile Include="POUs\IO View\typeCombineString.TcDUT">
       <SubType>Code</SubType>
@@ -1471,7 +1477,6 @@
     </Compile>
     <Compile Include="HMI1\Data\HMIData.TcGVL">
       <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
     </Compile>
     <Compile Include="HMI1\Data\MotionRowImages.TcIPO">
       <SubType>Code</SubType>
@@ -1757,6 +1762,11 @@
     <None Include="PLC1.tmc">
       <SubType>Content</SubType>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <SubObject Include="pouDataDisplay.actDataCombineCall">
+      <ExcludeFromBuild>true</ExcludeFromBuild>
+    </SubObject>
   </ItemGroup>
   <ProjectExtensions>
     <PlcProjectOptions>

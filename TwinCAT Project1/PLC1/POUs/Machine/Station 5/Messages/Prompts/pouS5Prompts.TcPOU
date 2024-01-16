@@ -44,7 +44,7 @@ END_VAR
                         <v n="LValue">false</v>
                         <v n="Boolean">false</v>
                         <v n="IsInstance">true</v>
-                        <v n="Id">70L</v>
+                        <v n="Id">83L</v>
                       </o>
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems" cet="Operand">
@@ -129,38 +129,6 @@ END_VAR
                             <v n="IsInstance">false</v>
                             <v n="Id">47L</v>
                           </o>
-                          <o>
-                            <v n="Operand">""</v>
-                            <v n="Type">"ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeNewMsg"</v>
-                            <v n="Comment">""</v>
-                            <v n="SymbolComment">""</v>
-                            <v n="Address">""</v>
-                            <o n="Flags" t="Flags">
-                              <v n="Flags">0</v>
-                              <v n="Fixed">false</v>
-                              <v n="Extensible">false</v>
-                            </o>
-                            <v n="LValue">true</v>
-                            <v n="Boolean">false</v>
-                            <v n="IsInstance">false</v>
-                            <v n="Id">72L</v>
-                          </o>
-                          <o>
-                            <v n="Operand">""</v>
-                            <v n="Type">"ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeNewMsgStyle"</v>
-                            <v n="Comment">""</v>
-                            <v n="SymbolComment">""</v>
-                            <v n="Address">""</v>
-                            <o n="Flags" t="Flags">
-                              <v n="Flags">0</v>
-                              <v n="Fixed">false</v>
-                              <v n="Extensible">false</v>
-                            </o>
-                            <v n="LValue">true</v>
-                            <v n="Boolean">false</v>
-                            <v n="IsInstance">false</v>
-                            <v n="Id">73L</v>
-                          </o>
                         </l2>
                       </o>
                       <o n="Flags" t="Flags">
@@ -216,6 +184,63 @@ END_VAR
                             <v n="Id">75L</v>
                           </o>
                           <v n="Id">74L</v>
+                        </o>
+                        <o t="BoxTreeOperand">
+                          <o n="Operand" t="Operand">
+                            <v n="Operand">"msgTest.msgArrynull"</v>
+                            <v n="Type">"ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeNewMsg"</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">""</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">false</v>
+                            <v n="Boolean">false</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">86L</v>
+                          </o>
+                          <v n="Id">85L</v>
+                        </o>
+                        <o t="BoxTreeOperand">
+                          <o n="Operand" t="Operand">
+                            <v n="Operand">"msgTest.msgArryStylenull"</v>
+                            <v n="Type">"ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeNewMsgStyle"</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">""</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">false</v>
+                            <v n="Boolean">false</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">88L</v>
+                          </o>
+                          <v n="Id">87L</v>
+                        </o>
+                        <o t="BoxTreeOperand">
+                          <o n="Operand" t="Operand">
+                            <v n="Operand">"msgTest.msgWasChangednull"</v>
+                            <v n="Type">"BOOL"</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">""</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">false</v>
+                            <v n="Boolean">true</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">90L</v>
+                          </o>
+                          <v n="Id">89L</v>
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
@@ -280,6 +305,9 @@ END_VAR
                           <v>EN</v>
                           <v>iqArrayToCheck</v>
                           <v>iqPassThruMessageStart</v>
+                          <v>qSpecialMsgRows</v>
+                          <v>qSpecialMsgRowsStyle</v>
+                          <v>iqMsgChangeUpdateList</v>
                           <v>iMessageGroup</v>
                           <v>isAlarm</v>
                           <v>isWarning</v>
@@ -288,6 +316,9 @@ END_VAR
                           <v>BOOL</v>
                           <v>typeMessage[REF]</v>
                           <v>INT[REF]</v>
+                          <v>ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeNewMsg[REF]</v>
+                          <v>ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeNewMsgStyle[REF]</v>
+                          <v>BOOL[REF]</v>
                           <v>UINT</v>
                           <v>BOOL</v>
                           <v>BOOL</v>
@@ -301,8 +332,6 @@ END_VAR
                           <v>qSingleMessage</v>
                           <v>qAllMessages</v>
                           <v>qMsgRows</v>
-                          <v>qSpecialMsgRows</v>
-                          <v>qSpecialMsgRowsStyle</v>
                         </l2>
                         <l2 n="Types" cet="String">
                           <v>BOOL</v>
@@ -311,8 +340,6 @@ END_VAR
                           <v>STRING(255)</v>
                           <v>STRING</v>
                           <v>ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeMessageRow</v>
-                          <v>ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeNewMsg</v>
-                          <v>ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeNewMsgStyle</v>
                         </l2>
                       </o>
                       <v n="CallType" t="Operator">FunctionBlock</v>
@@ -321,7 +348,7 @@ END_VAR
                       <n n="STSnippet" />
                       <v n="ContainsExtensibleInputs">false</v>
                       <v n="ProvidesSTSnippet">false</v>
-                      <v n="Id">71L</v>
+                      <v n="Id">84L</v>
                     </o>
                   </l2>
                   <l2 n="Connectors" />

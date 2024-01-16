@@ -982,8 +982,8 @@ External Setpoint Generation:
 			</Relations>
 		</DataType>
 	</DataTypes>
-	<Project GUID="{1A267E57-8424-4A7E-91A6-205EF3BB5B1A}" Name="PLC1" PrjFilePath="..\..\PLC1\PLC1.plcproj" TmcFilePath="..\..\PLC1\PLC1.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x001f" CopyTmcToTarget="true" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc" TmcHash="{C91EA9A7-48AA-06A8-4351-54D516640568}">
+	<Project GUID="{1A267E57-8424-4A7E-91A6-205EF3BB5B1A}" Name="PLC1" PrjFilePath="..\..\PLC1\PLC1.plcproj" TmcFilePath="..\..\PLC1\PLC1.tmc" ReloadTmc="true" AmsPort="851" TargetArchiveSettings="#x000f" FileArchiveSettings="#x001f" CopyTmcToTarget="true" ClearInvalidPersist="true" SymbolicMapping="true">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc" TmcHash="{606B1033-F8DA-66DC-3348-5FFD5CB546C8}">
 			<Name>PLC1 Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">
@@ -9065,12 +9065,23 @@ External Setpoint Generation:
 					<ManualConfig>
 						<OTCID>#x02010030</OTCID>
 					</ManualConfig>
-					<Priority>20</Priority>
-					<CycleTime>1000000000</CycleTime>
+					<Priority>6</Priority>
+					<CycleTime>20000000</CycleTime>
+					<DependOn>FixedConfig</DependOn>
+				</Context>
+				<Context>
+					<Id>1</Id>
+					<ManualConfig>
+						<OTCID>#x02010050</OTCID>
+					</ManualConfig>
+					<Priority>8</Priority>
+					<CycleTime>200000000</CycleTime>
+					<DependOn>FixedConfig</DependOn>
 				</Context>
 			</Contexts>
 			<TaskPouOids>
-				<TaskPouOid Prio="20" OTCID="#x08502001"/>
+				<TaskPouOid Prio="6" OTCID="#x08502002"/>
+				<TaskPouOid Prio="8" OTCID="#x08502003"/>
 			</TaskPouOids>
 		</Instance>
 	</Project>
