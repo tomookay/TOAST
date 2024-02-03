@@ -4,8 +4,8 @@
     <Declaration><![CDATA[TYPE structEventViewMsg :
 STRUCT
 	//combined implementation
-	msgArry: ARRAY[1..HMIData.gNumberOfMessagesScreen] OF typeNewMsg;
-	msgArryStyle: ARRAY[1..HMIData.gNumberOfMessagesScreen] OF typeNewMsgStyle;
+	msgArry: ARRAY[1..gHMIData.gNumberOfMessagesScreen] OF typeNewMsg;
+	msgArryStyle: ARRAY[1..gHMIData.gNumberOfMessagesScreen] OF typeNewMsgStyle;
 	msgHeader:typeNewMsgHeader;
 END_STRUCT
 END_TYPE

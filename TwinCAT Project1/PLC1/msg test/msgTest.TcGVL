@@ -6,8 +6,8 @@ VAR_GLOBAL
 	
 
 
-	msgArry: ARRAY[1..HMIData.gNumberOfMessagesScreen] OF typeNewMsg;
-	msgArryStyle: ARRAY[1..HMIData.gNumberOfMessagesScreen] OF typeNewMsgStyle;
+	msgArry: ARRAY[1..gHMIData.gNumberOfMessagesScreen] OF typeNewMsg;
+	msgArryStyle: ARRAY[1..gHMIData.gNumberOfMessagesScreen] OF typeNewMsgStyle;
 	msgHeader:typeNewMsgHeader;
 	
 	
@@ -15,8 +15,8 @@ VAR_GLOBAL
 	//S1_msg :structEventViewMsg;
 	
 	//nulls do not apply, have to assign to FB
-	msgArrynull: ARRAY[1..HMIData.gNumberOfMessagesScreen] OF typeNewMsg;
-	msgArryStylenull: ARRAY[1..HMIData.gNumberOfMessagesScreen] OF typeNewMsgStyle;
+	msgArrynull: ARRAY[1..gHMIData.gNumberOfMessagesScreen] OF typeNewMsg;
+	msgArryStylenull: ARRAY[1..gHMIData.gNumberOfMessagesScreen] OF typeNewMsgStyle;
 	msgWasChangednull:BOOL;
 	
 END_VAR]]></Declaration>

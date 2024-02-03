@@ -567,7 +567,7 @@ etherCATdiag.EtherCATslaveDiag[i].currentState.suffix := decode.suffix;
 	
 	//clear inner box when fault is resolved
 	IF 	etherCATdiag.EtherCATslaveDiag[i].currentState.isFault = FALSE AND
-	   HMIData.btnReset THEN
+	   gHMIData.btnReset THEN
 	   etherCATdiag.EtherCATslaveDiag[i].historicalState.isFault := FALSE;
 	END_IF
 	
