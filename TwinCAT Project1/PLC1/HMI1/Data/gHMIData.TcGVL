@@ -3,81 +3,41 @@
   <GVL Name="gHMIData" Id="{ff709847-a0f4-40ed-b932-b67e11c424ed}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
-	//motion rows and buttons to feedback into program
-	gMotionRows: typeMotionScreen;
-	gMotionRowButtons: typeMotionScreenBtn;
-	
 	//station selected as BOOL
-	gStationSelected: ARRAY[1..gNumberOfStations] OF BOOL;
+	gStationSelected: ARRAY[1..gHMIDataConsts.gNumberOfStations] OF BOOL;
+	
+	//hide display elements
+	gHideDisplayElements:ARRAY[0..gHMIDataConsts.gNumberOfStations] OF BOOL;
+	
+	//stations enabled
+	gStationEnabled: ARRAY[1..gHMIDataConsts.gNumberOfStations] OF BOOL;
+	
+	gRowElementOffset: ARRAY[1..gHMIDataConsts.gNumberRowsPerPage] OF UINT;
+	
+	//number of the active station for message display
+	gNumActivePromptTextList:ARRAY[0..gHMIDataConsts.gNumberOfStations] OF UINT;
+	gNumActiveWarningTextList:ARRAY[0..gHMIDataConsts.gNumberOfStations] OF UINT;
+	gNumActiveAlarmTextList:ARRAY[0..gHMIDataConsts.gNumberOfStations] OF UINT;
+	
 	//station selected as integer
 	gActiveStationNumber:UINT; 
-		
-	//stations enabled
-	gStationEnabled: ARRAY[1..gNumberOfStations] OF BOOL;
 	
 	gActivePageNumber:UINT; //current page number
 	gMaxPageNumber:UINT;  //max pages exist for station, e.g. 5
-
 	
 	gActiveScreen:UINT; //combo of station + page, expressed as integer 0-999999+, reference to the text list
-	gRowElementOffset: ARRAY[1..gNumberRowsPerPage] OF UINT;
 	
-		
 	//machine prompt number to display (summation)
 	gMachinePromptNumber: UINT;
-	
-	//hide display elements
-	gHideDisplayElements:ARRAY[0..gNumberOfStations] OF BOOL;
-	
-	//number of the active station for message display
-	gNumActivePromptTextList:ARRAY[0..gNumberOfStations] OF UINT;
-	gNumActiveWarningTextList:ARRAY[0..gNumberOfStations] OF UINT;
-	gNumActiveAlarmTextList:ARRAY[0..gNumberOfStations] OF UINT;
-	
+
 	//current number of screen on HMI
 	gScreenNumber: UINT;
-		
-	//buttons to select a station
-	btnSelectStation1: BOOL;
-	btnSelectStation2: BOOL;
-	btnSelectStation3: BOOL;
-	btnSelectStation4: BOOL;
-	btnSelectStation5: BOOL;
-	btnSelectStation6: BOOL;
-
-	btnSelectAll: BOOL;	//button to select all stations
-	btnAllStationsSelected: BOOL;
-
-	//reset button for global use
-	btnReset: BOOL;
-
-	//manual screen
-	btnAbsMode:BOOL; //TRUE if abs mode, False if sys mode
-	btnNextPage: BOOL;
-	btnPrevPage: BOOL;
 
 	//hide display elements based on what station is selected
 	gHideDisplayElementAlarmView: typeStationEnables;
 	gHideDisplayElementWarningView: typeStationEnables;
 	gHideDisplayElementPromptView: typeStationEnables;
 	
-	//hide button data for main screen
-	btnHides:typeBtnHides;
-	
-	//hmi buttons
-	btnMode:typeBtnPress;
-	
-	//hmi buttons feedback
-	btnFdbk: typeBtnFdbk;
-	
-	//Unit rows and buttons to feedback into program
-	gUnitRows: typeMotionScreen;
-	gUnitButtons: typeMotionScreenBtn;
-	gActiveUnitPageNumber:UINT; //current page number for units
-	gMaxPageNumberUnit:UINT;  //max pages exist for station, e.g. 5
-	gActiveStationNumberUnit:UINT; 
-	gUnitRowElementOffset: ARRAY[1..gNumberRowsPerPage] OF UINT; //seperate calculation for units
-
 	
 	gAlarmViewMsg: typeMessageRowsArry; //connect data to the HMI
 	
@@ -85,7 +45,7 @@ VAR_GLOBAL
 	hmiHeader:typeHMIheader;
 	
 	//language screen
-	gLangRowElementOffset: ARRAY[1..gNumberRowsPerPage] OF UINT; //seperate calculation for languages
+	gLangRowElementOffset: ARRAY[1..gHMIDataConsts.gNumberRowsPerPage] OF UINT; //seperate calculation for languages
 	gLangRows: typeMotionScreen;
 	gLangButtons: typeMotionScreenBtn;
 	gActiveLangPageNumber:UINT; //current page number for units
@@ -94,13 +54,7 @@ VAR_GLOBAL
 END_VAR
 
 
-VAR_GLOBAL CONSTANT
-	gNumberOfStations: UINT := 6; //number of station in the machine
-	gNumberRowsPerPage:UINT := 6; //number of motion rows in the HMI
-	gNumberElementsPerRow:UINT := 20;  //number of _things_ in each row, buttons, indicators, etc
-	gNumberOfMessagesScreen:UINT:= 100; //number of messages to consider in the alarm screen (number of text lines in alarm view for multiple rows)
-	
-END_VAR
+
 
 ]]></Declaration>
   </GVL>

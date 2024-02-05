@@ -49,52 +49,52 @@ END_IF
         <ST><![CDATA[//hide/show buttons on mode screen
 
 //row 0
-gHMIData.btnHides.btn00Hide := FALSE;
-gHMIData.btnHides.btn01Hide := FALSE;
-gHMIData.btnHides.btn02Hide := FALSE;
-gHMIData.btnHides.btn03Hide := FALSE;
-gHMIData.btnHides.btn04Hide := FALSE;
-gHMIData.btnHides.btn05Hide := FALSE;
-gHMIData.btnHides.btn06Hide := FALSE;
-gHMIData.btnHides.btn07Hide := FALSE;
-gHMIData.btnHides.btn08Hide := FALSE;
-gHMIData.btnHides.btn09Hide := FALSE;
+gHMIButtons.btnHides.btn00Hide := FALSE;
+gHMIButtons.btnHides.btn01Hide := FALSE;
+gHMIButtons.btnHides.btn02Hide := FALSE;
+gHMIButtons.btnHides.btn03Hide := FALSE;
+gHMIButtons.btnHides.btn04Hide := FALSE;
+gHMIButtons.btnHides.btn05Hide := FALSE;
+gHMIButtons.btnHides.btn06Hide := FALSE;
+gHMIButtons.btnHides.btn07Hide := FALSE;
+gHMIButtons.btnHides.btn08Hide := FALSE;
+gHMIButtons.btnHides.btn09Hide := FALSE;
 
 //row 1
-gHMIData.btnHides.btn10Hide := FALSE;
-gHMIData.btnHides.btn11Hide := FALSE;
-gHMIData.btnHides.btn12Hide := FALSE;
-gHMIData.btnHides.btn13Hide := FALSE;
-gHMIData.btnHides.btn14Hide := FALSE;
-gHMIData.btnHides.btn15Hide := FALSE;
-gHMIData.btnHides.btn16Hide := FALSE;
-gHMIData.btnHides.btn17Hide := FALSE;
-gHMIData.btnHides.btn18Hide := FALSE;
-gHMIData.btnHides.btn19Hide := FALSE;
+gHMIButtons.btnHides.btn10Hide := FALSE;
+gHMIButtons.btnHides.btn11Hide := FALSE;
+gHMIButtons.btnHides.btn12Hide := FALSE;
+gHMIButtons.btnHides.btn13Hide := FALSE;
+gHMIButtons.btnHides.btn14Hide := FALSE;
+gHMIButtons.btnHides.btn15Hide := FALSE;
+gHMIButtons.btnHides.btn16Hide := FALSE;
+gHMIButtons.btnHides.btn17Hide := FALSE;
+gHMIButtons.btnHides.btn18Hide := FALSE;
+gHMIButtons.btnHides.btn19Hide := FALSE;
 
 //row 2
-gHMIData.btnHides.btn20Hide := FALSE;
-gHMIData.btnHides.btn21Hide := FALSE;
-gHMIData.btnHides.btn22Hide := FALSE;
-gHMIData.btnHides.btn23Hide := FALSE;
-gHMIData.btnHides.btn24Hide := FALSE;
-gHMIData.btnHides.btn25Hide := FALSE;
-gHMIData.btnHides.btn26Hide := FALSE;
-gHMIData.btnHides.btn27Hide := FALSE;
-gHMIData.btnHides.btn28Hide := FALSE;
-gHMIData.btnHides.btn29Hide := FALSE;
+gHMIButtons.btnHides.btn20Hide := FALSE;
+gHMIButtons.btnHides.btn21Hide := FALSE;
+gHMIButtons.btnHides.btn22Hide := FALSE;
+gHMIButtons.btnHides.btn23Hide := FALSE;
+gHMIButtons.btnHides.btn24Hide := FALSE;
+gHMIButtons.btnHides.btn25Hide := FALSE;
+gHMIButtons.btnHides.btn26Hide := FALSE;
+gHMIButtons.btnHides.btn27Hide := FALSE;
+gHMIButtons.btnHides.btn28Hide := FALSE;
+gHMIButtons.btnHides.btn29Hide := FALSE;
 
 //row 3
-gHMIData.btnHides.btn30Hide := FALSE;
-gHMIData.btnHides.btn31Hide := FALSE;
-gHMIData.btnHides.btn32Hide := FALSE;
-gHMIData.btnHides.btn33Hide := FALSE;
-gHMIData.btnHides.btn34Hide := FALSE;
-gHMIData.btnHides.btn35Hide := FALSE;
-gHMIData.btnHides.btn36Hide := FALSE;
-gHMIData.btnHides.btn37Hide := FALSE;
-gHMIData.btnHides.btn38Hide := FALSE;
-gHMIData.btnHides.btn39Hide := FALSE;]]></ST>
+gHMIButtons.btnHides.btn30Hide := FALSE;
+gHMIButtons.btnHides.btn31Hide := FALSE;
+gHMIButtons.btnHides.btn32Hide := FALSE;
+gHMIButtons.btnHides.btn33Hide := FALSE;
+gHMIButtons.btnHides.btn34Hide := FALSE;
+gHMIButtons.btnHides.btn35Hide := FALSE;
+gHMIButtons.btnHides.btn36Hide := FALSE;
+gHMIButtons.btnHides.btn37Hide := FALSE;
+gHMIButtons.btnHides.btn38Hide := FALSE;
+gHMIButtons.btnHides.btn39Hide := FALSE;]]></ST>
       </Implementation>
     </Action>
     <Action Name="actHideAll_S_1" Id="{abe56097-31da-4055-bd38-076656c53d06}">
@@ -104,52 +104,52 @@ tStationNumber:= 1;
 
 
 //row 0
-gHMIData.btnHides.btn00Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowAutoCycle;
-gHMIData.btnHides.btn01Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowManualMode;
-gHMIData.btnHides.btn02Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSemiAuto;
-gHMIData.btnHides.btn03Hide := TRUE; //spare button
-gHMIData.btnHides.btn04Hide := TRUE; //spare button
-gHMIData.btnHides.btn05Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowRemoteControl;
-gHMIData.btnHides.btn06Hide := TRUE;
-gHMIData.btnHides.btn07Hide := FALSE;
-gHMIData.btnHides.btn08Hide := FALSE;
-gHMIData.btnHides.btn09Hide := FALSE;
+gHMIButtons.btnHides.btn00Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowAutoCycle;
+gHMIButtons.btnHides.btn01Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowManualMode;
+gHMIButtons.btnHides.btn02Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSemiAuto;
+gHMIButtons.btnHides.btn03Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn04Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn05Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowRemoteControl;
+gHMIButtons.btnHides.btn06Hide := TRUE;
+gHMIButtons.btnHides.btn07Hide := FALSE;
+gHMIButtons.btnHides.btn08Hide := FALSE;
+gHMIButtons.btnHides.btn09Hide := FALSE;
 
 //row 1
-gHMIData.btnHides.btn10Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowContinuousCycle;
-gHMIData.btnHides.btn11Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowDryCycle;
-gHMIData.btnHides.btn12Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSEOC;
-gHMIData.btnHides.btn13Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSingleCycle;
-gHMIData.btnHides.btn14Hide := TRUE; //spare button
-gHMIData.btnHides.btn15Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSilenceHorn;
-gHMIData.btnHides.btn16Hide := TRUE; //spare button
-gHMIData.btnHides.btn17Hide := FALSE;
-gHMIData.btnHides.btn18Hide := FALSE;
-gHMIData.btnHides.btn19Hide := FALSE;
+gHMIButtons.btnHides.btn10Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowContinuousCycle;
+gHMIButtons.btnHides.btn11Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowDryCycle;
+gHMIButtons.btnHides.btn12Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSEOC;
+gHMIButtons.btnHides.btn13Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSingleCycle;
+gHMIButtons.btnHides.btn14Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn15Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSilenceHorn;
+gHMIButtons.btnHides.btn16Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn17Hide := FALSE;
+gHMIButtons.btnHides.btn18Hide := FALSE;
+gHMIButtons.btnHides.btn19Hide := FALSE;
 
 //row 2
-gHMIData.btnHides.btn20Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowGate1Req;
-gHMIData.btnHides.btn21Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowGate1Req;
-gHMIData.btnHides.btn22Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowLockAccessGates;
-gHMIData.btnHides.btn23Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowEnablePendent;
-gHMIData.btnHides.btn24Hide := TRUE; //spare button
-gHMIData.btnHides.btn25Hide := TRUE; //spare button
-gHMIData.btnHides.btn26Hide := TRUE; //spare button
-gHMIData.btnHides.btn27Hide := FALSE;
-gHMIData.btnHides.btn28Hide := FALSE;
-gHMIData.btnHides.btn29Hide := FALSE;
+gHMIButtons.btnHides.btn20Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowGate1Req;
+gHMIButtons.btnHides.btn21Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowGate1Req;
+gHMIButtons.btnHides.btn22Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowLockAccessGates;
+gHMIButtons.btnHides.btn23Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowEnablePendent;
+gHMIButtons.btnHides.btn24Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn25Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn26Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn27Hide := FALSE;
+gHMIButtons.btnHides.btn28Hide := FALSE;
+gHMIButtons.btnHides.btn29Hide := FALSE;
 
 //row 3
-gHMIData.btnHides.btn30Hide := FALSE;
-gHMIData.btnHides.btn31Hide := FALSE;
-gHMIData.btnHides.btn32Hide := FALSE;
-gHMIData.btnHides.btn33Hide := FALSE;
-gHMIData.btnHides.btn34Hide := FALSE;
-gHMIData.btnHides.btn35Hide := FALSE;
-gHMIData.btnHides.btn36Hide := FALSE;
-gHMIData.btnHides.btn37Hide := FALSE;
-gHMIData.btnHides.btn38Hide := FALSE;
-gHMIData.btnHides.btn39Hide := FALSE;
+gHMIButtons.btnHides.btn30Hide := FALSE;
+gHMIButtons.btnHides.btn31Hide := FALSE;
+gHMIButtons.btnHides.btn32Hide := FALSE;
+gHMIButtons.btnHides.btn33Hide := FALSE;
+gHMIButtons.btnHides.btn34Hide := FALSE;
+gHMIButtons.btnHides.btn35Hide := FALSE;
+gHMIButtons.btnHides.btn36Hide := FALSE;
+gHMIButtons.btnHides.btn37Hide := FALSE;
+gHMIButtons.btnHides.btn38Hide := FALSE;
+gHMIButtons.btnHides.btn39Hide := FALSE;
 
 ]]></ST>
       </Implementation>
@@ -161,52 +161,52 @@ tStationNumber:= 1;
 
 
 //row 0
-gHMIData.btnHides.btn00Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowAutoCycle;
-gHMIData.btnHides.btn01Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowManualMode;
-gHMIData.btnHides.btn02Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSemiAuto;
-gHMIData.btnHides.btn03Hide := TRUE; //spare button
-gHMIData.btnHides.btn04Hide := TRUE; //spare button
-gHMIData.btnHides.btn05Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowRemoteControl;
-gHMIData.btnHides.btn06Hide := TRUE;
-gHMIData.btnHides.btn07Hide := FALSE;
-gHMIData.btnHides.btn08Hide := FALSE;
-gHMIData.btnHides.btn09Hide := FALSE;
+gHMIButtons.btnHides.btn00Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowAutoCycle;
+gHMIButtons.btnHides.btn01Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowManualMode;
+gHMIButtons.btnHides.btn02Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSemiAuto;
+gHMIButtons.btnHides.btn03Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn04Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn05Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowRemoteControl;
+gHMIButtons.btnHides.btn06Hide := TRUE;
+gHMIButtons.btnHides.btn07Hide := FALSE;
+gHMIButtons.btnHides.btn08Hide := FALSE;
+gHMIButtons.btnHides.btn09Hide := FALSE;
 
 //row 1
-gHMIData.btnHides.btn10Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowContinuousCycle;
-gHMIData.btnHides.btn11Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowDryCycle;
-gHMIData.btnHides.btn12Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSEOC;
-gHMIData.btnHides.btn13Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSingleCycle;
-gHMIData.btnHides.btn14Hide := TRUE; //spare button
-gHMIData.btnHides.btn15Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSilenceHorn;
-gHMIData.btnHides.btn16Hide := TRUE; //spare button
-gHMIData.btnHides.btn17Hide := FALSE;
-gHMIData.btnHides.btn18Hide := FALSE;
-gHMIData.btnHides.btn19Hide := FALSE;
+gHMIButtons.btnHides.btn10Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowContinuousCycle;
+gHMIButtons.btnHides.btn11Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowDryCycle;
+gHMIButtons.btnHides.btn12Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSEOC;
+gHMIButtons.btnHides.btn13Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSingleCycle;
+gHMIButtons.btnHides.btn14Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn15Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSilenceHorn;
+gHMIButtons.btnHides.btn16Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn17Hide := FALSE;
+gHMIButtons.btnHides.btn18Hide := FALSE;
+gHMIButtons.btnHides.btn19Hide := FALSE;
 
 //row 2
-gHMIData.btnHides.btn20Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowGate1Req;
-gHMIData.btnHides.btn21Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowGate1Req;
-gHMIData.btnHides.btn22Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowLockAccessGates;
-gHMIData.btnHides.btn23Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowEnablePendent;
-gHMIData.btnHides.btn24Hide := TRUE; //spare button
-gHMIData.btnHides.btn25Hide := TRUE; //spare button
-gHMIData.btnHides.btn26Hide := TRUE; //spare button
-gHMIData.btnHides.btn27Hide := FALSE;
-gHMIData.btnHides.btn28Hide := FALSE;
-gHMIData.btnHides.btn29Hide := FALSE;
+gHMIButtons.btnHides.btn20Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowGate1Req;
+gHMIButtons.btnHides.btn21Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowGate1Req;
+gHMIButtons.btnHides.btn22Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowLockAccessGates;
+gHMIButtons.btnHides.btn23Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowEnablePendent;
+gHMIButtons.btnHides.btn24Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn25Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn26Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn27Hide := FALSE;
+gHMIButtons.btnHides.btn28Hide := FALSE;
+gHMIButtons.btnHides.btn29Hide := FALSE;
 
 //row 3
-gHMIData.btnHides.btn30Hide := FALSE;
-gHMIData.btnHides.btn31Hide := FALSE;
-gHMIData.btnHides.btn32Hide := FALSE;
-gHMIData.btnHides.btn33Hide := FALSE;
-gHMIData.btnHides.btn34Hide := FALSE;
-gHMIData.btnHides.btn35Hide := FALSE;
-gHMIData.btnHides.btn36Hide := FALSE;
-gHMIData.btnHides.btn37Hide := FALSE;
-gHMIData.btnHides.btn38Hide := FALSE;
-gHMIData.btnHides.btn39Hide := FALSE;
+gHMIButtons.btnHides.btn30Hide := FALSE;
+gHMIButtons.btnHides.btn31Hide := FALSE;
+gHMIButtons.btnHides.btn32Hide := FALSE;
+gHMIButtons.btnHides.btn33Hide := FALSE;
+gHMIButtons.btnHides.btn34Hide := FALSE;
+gHMIButtons.btnHides.btn35Hide := FALSE;
+gHMIButtons.btnHides.btn36Hide := FALSE;
+gHMIButtons.btnHides.btn37Hide := FALSE;
+gHMIButtons.btnHides.btn38Hide := FALSE;
+gHMIButtons.btnHides.btn39Hide := FALSE;
 
 ]]></ST>
       </Implementation>
@@ -218,52 +218,52 @@ tStationNumber:= 1;
 
 
 //row 0
-gHMIData.btnHides.btn00Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowAutoCycle;
-gHMIData.btnHides.btn01Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowManualMode;
-gHMIData.btnHides.btn02Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSemiAuto;
-gHMIData.btnHides.btn03Hide := TRUE; //spare button
-gHMIData.btnHides.btn04Hide := TRUE; //spare button
-gHMIData.btnHides.btn05Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowRemoteControl;
-gHMIData.btnHides.btn06Hide := TRUE;
-gHMIData.btnHides.btn07Hide := FALSE;
-gHMIData.btnHides.btn08Hide := FALSE;
-gHMIData.btnHides.btn09Hide := FALSE;
+gHMIButtons.btnHides.btn00Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowAutoCycle;
+gHMIButtons.btnHides.btn01Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowManualMode;
+gHMIButtons.btnHides.btn02Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSemiAuto;
+gHMIButtons.btnHides.btn03Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn04Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn05Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowRemoteControl;
+gHMIButtons.btnHides.btn06Hide := TRUE;
+gHMIButtons.btnHides.btn07Hide := FALSE;
+gHMIButtons.btnHides.btn08Hide := FALSE;
+gHMIButtons.btnHides.btn09Hide := FALSE;
 
 //row 1
-gHMIData.btnHides.btn10Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowContinuousCycle;
-gHMIData.btnHides.btn11Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowDryCycle;
-gHMIData.btnHides.btn12Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSEOC;
-gHMIData.btnHides.btn13Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSingleCycle;
-gHMIData.btnHides.btn14Hide := TRUE; //spare button
-gHMIData.btnHides.btn15Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSilenceHorn;
-gHMIData.btnHides.btn16Hide := TRUE; //spare button
-gHMIData.btnHides.btn17Hide := FALSE;
-gHMIData.btnHides.btn18Hide := FALSE;
-gHMIData.btnHides.btn19Hide := FALSE;
+gHMIButtons.btnHides.btn10Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowContinuousCycle;
+gHMIButtons.btnHides.btn11Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowDryCycle;
+gHMIButtons.btnHides.btn12Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSEOC;
+gHMIButtons.btnHides.btn13Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSingleCycle;
+gHMIButtons.btnHides.btn14Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn15Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSilenceHorn;
+gHMIButtons.btnHides.btn16Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn17Hide := FALSE;
+gHMIButtons.btnHides.btn18Hide := FALSE;
+gHMIButtons.btnHides.btn19Hide := FALSE;
 
 //row 2
-gHMIData.btnHides.btn20Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowGate1Req;
-gHMIData.btnHides.btn21Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowGate1Req;
-gHMIData.btnHides.btn22Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowLockAccessGates;
-gHMIData.btnHides.btn23Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowEnablePendent;
-gHMIData.btnHides.btn24Hide := TRUE; //spare button
-gHMIData.btnHides.btn25Hide := TRUE; //spare button
-gHMIData.btnHides.btn26Hide := TRUE; //spare button
-gHMIData.btnHides.btn27Hide := FALSE;
-gHMIData.btnHides.btn28Hide := FALSE;
-gHMIData.btnHides.btn29Hide := FALSE;
+gHMIButtons.btnHides.btn20Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowGate1Req;
+gHMIButtons.btnHides.btn21Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowGate1Req;
+gHMIButtons.btnHides.btn22Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowLockAccessGates;
+gHMIButtons.btnHides.btn23Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowEnablePendent;
+gHMIButtons.btnHides.btn24Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn25Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn26Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn27Hide := FALSE;
+gHMIButtons.btnHides.btn28Hide := FALSE;
+gHMIButtons.btnHides.btn29Hide := FALSE;
 
 //row 3
-gHMIData.btnHides.btn30Hide := FALSE;
-gHMIData.btnHides.btn31Hide := FALSE;
-gHMIData.btnHides.btn32Hide := FALSE;
-gHMIData.btnHides.btn33Hide := FALSE;
-gHMIData.btnHides.btn34Hide := FALSE;
-gHMIData.btnHides.btn35Hide := FALSE;
-gHMIData.btnHides.btn36Hide := FALSE;
-gHMIData.btnHides.btn37Hide := FALSE;
-gHMIData.btnHides.btn38Hide := FALSE;
-gHMIData.btnHides.btn39Hide := FALSE;
+gHMIButtons.btnHides.btn30Hide := FALSE;
+gHMIButtons.btnHides.btn31Hide := FALSE;
+gHMIButtons.btnHides.btn32Hide := FALSE;
+gHMIButtons.btnHides.btn33Hide := FALSE;
+gHMIButtons.btnHides.btn34Hide := FALSE;
+gHMIButtons.btnHides.btn35Hide := FALSE;
+gHMIButtons.btnHides.btn36Hide := FALSE;
+gHMIButtons.btnHides.btn37Hide := FALSE;
+gHMIButtons.btnHides.btn38Hide := FALSE;
+gHMIButtons.btnHides.btn39Hide := FALSE;
 
 ]]></ST>
       </Implementation>
@@ -275,52 +275,52 @@ tStationNumber:= 1;
 
 
 //row 0
-gHMIData.btnHides.btn00Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowAutoCycle;
-gHMIData.btnHides.btn01Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowManualMode;
-gHMIData.btnHides.btn02Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSemiAuto;
-gHMIData.btnHides.btn03Hide := TRUE; //spare button
-gHMIData.btnHides.btn04Hide := TRUE; //spare button
-gHMIData.btnHides.btn05Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowRemoteControl;
-gHMIData.btnHides.btn06Hide := TRUE;
-gHMIData.btnHides.btn07Hide := FALSE;
-gHMIData.btnHides.btn08Hide := FALSE;
-gHMIData.btnHides.btn09Hide := FALSE;
+gHMIButtons.btnHides.btn00Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowAutoCycle;
+gHMIButtons.btnHides.btn01Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowManualMode;
+gHMIButtons.btnHides.btn02Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSemiAuto;
+gHMIButtons.btnHides.btn03Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn04Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn05Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowRemoteControl;
+gHMIButtons.btnHides.btn06Hide := TRUE;
+gHMIButtons.btnHides.btn07Hide := FALSE;
+gHMIButtons.btnHides.btn08Hide := FALSE;
+gHMIButtons.btnHides.btn09Hide := FALSE;
 
 //row 1
-gHMIData.btnHides.btn10Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowContinuousCycle;
-gHMIData.btnHides.btn11Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowDryCycle;
-gHMIData.btnHides.btn12Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSEOC;
-gHMIData.btnHides.btn13Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSingleCycle;
-gHMIData.btnHides.btn14Hide := TRUE; //spare button
-gHMIData.btnHides.btn15Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSilenceHorn;
-gHMIData.btnHides.btn16Hide := TRUE; //spare button
-gHMIData.btnHides.btn17Hide := FALSE;
-gHMIData.btnHides.btn18Hide := FALSE;
-gHMIData.btnHides.btn19Hide := FALSE;
+gHMIButtons.btnHides.btn10Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowContinuousCycle;
+gHMIButtons.btnHides.btn11Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowDryCycle;
+gHMIButtons.btnHides.btn12Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSEOC;
+gHMIButtons.btnHides.btn13Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSingleCycle;
+gHMIButtons.btnHides.btn14Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn15Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSilenceHorn;
+gHMIButtons.btnHides.btn16Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn17Hide := FALSE;
+gHMIButtons.btnHides.btn18Hide := FALSE;
+gHMIButtons.btnHides.btn19Hide := FALSE;
 
 //row 2
-gHMIData.btnHides.btn20Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowGate1Req;
-gHMIData.btnHides.btn21Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowGate1Req;
-gHMIData.btnHides.btn22Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowLockAccessGates;
-gHMIData.btnHides.btn23Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowEnablePendent;
-gHMIData.btnHides.btn24Hide := TRUE; //spare button
-gHMIData.btnHides.btn25Hide := TRUE; //spare button
-gHMIData.btnHides.btn26Hide := TRUE; //spare button
-gHMIData.btnHides.btn27Hide := FALSE;
-gHMIData.btnHides.btn28Hide := FALSE;
-gHMIData.btnHides.btn29Hide := FALSE;
+gHMIButtons.btnHides.btn20Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowGate1Req;
+gHMIButtons.btnHides.btn21Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowGate1Req;
+gHMIButtons.btnHides.btn22Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowLockAccessGates;
+gHMIButtons.btnHides.btn23Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowEnablePendent;
+gHMIButtons.btnHides.btn24Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn25Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn26Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn27Hide := FALSE;
+gHMIButtons.btnHides.btn28Hide := FALSE;
+gHMIButtons.btnHides.btn29Hide := FALSE;
 
 //row 3
-gHMIData.btnHides.btn30Hide := FALSE;
-gHMIData.btnHides.btn31Hide := FALSE;
-gHMIData.btnHides.btn32Hide := FALSE;
-gHMIData.btnHides.btn33Hide := FALSE;
-gHMIData.btnHides.btn34Hide := FALSE;
-gHMIData.btnHides.btn35Hide := FALSE;
-gHMIData.btnHides.btn36Hide := FALSE;
-gHMIData.btnHides.btn37Hide := FALSE;
-gHMIData.btnHides.btn38Hide := FALSE;
-gHMIData.btnHides.btn39Hide := FALSE;
+gHMIButtons.btnHides.btn30Hide := FALSE;
+gHMIButtons.btnHides.btn31Hide := FALSE;
+gHMIButtons.btnHides.btn32Hide := FALSE;
+gHMIButtons.btnHides.btn33Hide := FALSE;
+gHMIButtons.btnHides.btn34Hide := FALSE;
+gHMIButtons.btnHides.btn35Hide := FALSE;
+gHMIButtons.btnHides.btn36Hide := FALSE;
+gHMIButtons.btnHides.btn37Hide := FALSE;
+gHMIButtons.btnHides.btn38Hide := FALSE;
+gHMIButtons.btnHides.btn39Hide := FALSE;
 
 ]]></ST>
       </Implementation>
@@ -332,52 +332,52 @@ tStationNumber:= 1;
 
 
 //row 0
-gHMIData.btnHides.btn00Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowAutoCycle;
-gHMIData.btnHides.btn01Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowManualMode;
-gHMIData.btnHides.btn02Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSemiAuto;
-gHMIData.btnHides.btn03Hide := TRUE; //spare button
-gHMIData.btnHides.btn04Hide := TRUE; //spare button
-gHMIData.btnHides.btn05Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowRemoteControl;
-gHMIData.btnHides.btn06Hide := TRUE;
-gHMIData.btnHides.btn07Hide := FALSE;
-gHMIData.btnHides.btn08Hide := FALSE;
-gHMIData.btnHides.btn09Hide := FALSE;
+gHMIButtons.btnHides.btn00Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowAutoCycle;
+gHMIButtons.btnHides.btn01Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowManualMode;
+gHMIButtons.btnHides.btn02Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSemiAuto;
+gHMIButtons.btnHides.btn03Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn04Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn05Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowRemoteControl;
+gHMIButtons.btnHides.btn06Hide := TRUE;
+gHMIButtons.btnHides.btn07Hide := FALSE;
+gHMIButtons.btnHides.btn08Hide := FALSE;
+gHMIButtons.btnHides.btn09Hide := FALSE;
 
 //row 1
-gHMIData.btnHides.btn10Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowContinuousCycle;
-gHMIData.btnHides.btn11Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowDryCycle;
-gHMIData.btnHides.btn12Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSEOC;
-gHMIData.btnHides.btn13Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSingleCycle;
-gHMIData.btnHides.btn14Hide := TRUE; //spare button
-gHMIData.btnHides.btn15Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSilenceHorn;
-gHMIData.btnHides.btn16Hide := TRUE; //spare button
-gHMIData.btnHides.btn17Hide := FALSE;
-gHMIData.btnHides.btn18Hide := FALSE;
-gHMIData.btnHides.btn19Hide := FALSE;
+gHMIButtons.btnHides.btn10Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowContinuousCycle;
+gHMIButtons.btnHides.btn11Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowDryCycle;
+gHMIButtons.btnHides.btn12Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSEOC;
+gHMIButtons.btnHides.btn13Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSingleCycle;
+gHMIButtons.btnHides.btn14Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn15Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSilenceHorn;
+gHMIButtons.btnHides.btn16Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn17Hide := FALSE;
+gHMIButtons.btnHides.btn18Hide := FALSE;
+gHMIButtons.btnHides.btn19Hide := FALSE;
 
 //row 2
-gHMIData.btnHides.btn20Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowGate1Req;
-gHMIData.btnHides.btn21Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowGate1Req;
-gHMIData.btnHides.btn22Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowLockAccessGates;
-gHMIData.btnHides.btn23Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowEnablePendent;
-gHMIData.btnHides.btn24Hide := TRUE; //spare button
-gHMIData.btnHides.btn25Hide := TRUE; //spare button
-gHMIData.btnHides.btn26Hide := TRUE; //spare button
-gHMIData.btnHides.btn27Hide := FALSE;
-gHMIData.btnHides.btn28Hide := FALSE;
-gHMIData.btnHides.btn29Hide := FALSE;
+gHMIButtons.btnHides.btn20Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowGate1Req;
+gHMIButtons.btnHides.btn21Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowGate1Req;
+gHMIButtons.btnHides.btn22Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowLockAccessGates;
+gHMIButtons.btnHides.btn23Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowEnablePendent;
+gHMIButtons.btnHides.btn24Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn25Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn26Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn27Hide := FALSE;
+gHMIButtons.btnHides.btn28Hide := FALSE;
+gHMIButtons.btnHides.btn29Hide := FALSE;
 
 //row 3
-gHMIData.btnHides.btn30Hide := FALSE;
-gHMIData.btnHides.btn31Hide := FALSE;
-gHMIData.btnHides.btn32Hide := FALSE;
-gHMIData.btnHides.btn33Hide := FALSE;
-gHMIData.btnHides.btn34Hide := FALSE;
-gHMIData.btnHides.btn35Hide := FALSE;
-gHMIData.btnHides.btn36Hide := FALSE;
-gHMIData.btnHides.btn37Hide := FALSE;
-gHMIData.btnHides.btn38Hide := FALSE;
-gHMIData.btnHides.btn39Hide := FALSE;
+gHMIButtons.btnHides.btn30Hide := FALSE;
+gHMIButtons.btnHides.btn31Hide := FALSE;
+gHMIButtons.btnHides.btn32Hide := FALSE;
+gHMIButtons.btnHides.btn33Hide := FALSE;
+gHMIButtons.btnHides.btn34Hide := FALSE;
+gHMIButtons.btnHides.btn35Hide := FALSE;
+gHMIButtons.btnHides.btn36Hide := FALSE;
+gHMIButtons.btnHides.btn37Hide := FALSE;
+gHMIButtons.btnHides.btn38Hide := FALSE;
+gHMIButtons.btnHides.btn39Hide := FALSE;
 
 ]]></ST>
       </Implementation>
@@ -389,52 +389,52 @@ tStationNumber:= 1;
 
 
 //row 0
-gHMIData.btnHides.btn00Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowAutoCycle;
-gHMIData.btnHides.btn01Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowManualMode;
-gHMIData.btnHides.btn02Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSemiAuto;
-gHMIData.btnHides.btn03Hide := TRUE; //spare button
-gHMIData.btnHides.btn04Hide := TRUE; //spare button
-gHMIData.btnHides.btn05Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowRemoteControl;
-gHMIData.btnHides.btn06Hide := TRUE;
-gHMIData.btnHides.btn07Hide := FALSE;
-gHMIData.btnHides.btn08Hide := FALSE;
-gHMIData.btnHides.btn09Hide := FALSE;
+gHMIButtons.btnHides.btn00Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowAutoCycle;
+gHMIButtons.btnHides.btn01Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowManualMode;
+gHMIButtons.btnHides.btn02Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSemiAuto;
+gHMIButtons.btnHides.btn03Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn04Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn05Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowRemoteControl;
+gHMIButtons.btnHides.btn06Hide := TRUE;
+gHMIButtons.btnHides.btn07Hide := FALSE;
+gHMIButtons.btnHides.btn08Hide := FALSE;
+gHMIButtons.btnHides.btn09Hide := FALSE;
 
 //row 1
-gHMIData.btnHides.btn10Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowContinuousCycle;
-gHMIData.btnHides.btn11Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowDryCycle;
-gHMIData.btnHides.btn12Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSEOC;
-gHMIData.btnHides.btn13Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSingleCycle;
-gHMIData.btnHides.btn14Hide := TRUE; //spare button
-gHMIData.btnHides.btn15Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSilenceHorn;
-gHMIData.btnHides.btn16Hide := TRUE; //spare button
-gHMIData.btnHides.btn17Hide := FALSE;
-gHMIData.btnHides.btn18Hide := FALSE;
-gHMIData.btnHides.btn19Hide := FALSE;
+gHMIButtons.btnHides.btn10Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowContinuousCycle;
+gHMIButtons.btnHides.btn11Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowDryCycle;
+gHMIButtons.btnHides.btn12Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSEOC;
+gHMIButtons.btnHides.btn13Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSingleCycle;
+gHMIButtons.btnHides.btn14Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn15Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowSilenceHorn;
+gHMIButtons.btnHides.btn16Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn17Hide := FALSE;
+gHMIButtons.btnHides.btn18Hide := FALSE;
+gHMIButtons.btnHides.btn19Hide := FALSE;
 
 //row 2
-gHMIData.btnHides.btn20Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowGate1Req;
-gHMIData.btnHides.btn21Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowGate1Req;
-gHMIData.btnHides.btn22Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowLockAccessGates;
-gHMIData.btnHides.btn23Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowEnablePendent;
-gHMIData.btnHides.btn24Hide := TRUE; //spare button
-gHMIData.btnHides.btn25Hide := TRUE; //spare button
-gHMIData.btnHides.btn26Hide := TRUE; //spare button
-gHMIData.btnHides.btn27Hide := FALSE;
-gHMIData.btnHides.btn28Hide := FALSE;
-gHMIData.btnHides.btn29Hide := FALSE;
+gHMIButtons.btnHides.btn20Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowGate1Req;
+gHMIButtons.btnHides.btn21Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowGate1Req;
+gHMIButtons.btnHides.btn22Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowLockAccessGates;
+gHMIButtons.btnHides.btn23Hide := NOT System.gSetup.stationFunctions[tStationNumber].allowEnablePendent;
+gHMIButtons.btnHides.btn24Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn25Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn26Hide := TRUE; //spare button
+gHMIButtons.btnHides.btn27Hide := FALSE;
+gHMIButtons.btnHides.btn28Hide := FALSE;
+gHMIButtons.btnHides.btn29Hide := FALSE;
 
 //row 3
-gHMIData.btnHides.btn30Hide := FALSE;
-gHMIData.btnHides.btn31Hide := FALSE;
-gHMIData.btnHides.btn32Hide := FALSE;
-gHMIData.btnHides.btn33Hide := FALSE;
-gHMIData.btnHides.btn34Hide := FALSE;
-gHMIData.btnHides.btn35Hide := FALSE;
-gHMIData.btnHides.btn36Hide := FALSE;
-gHMIData.btnHides.btn37Hide := FALSE;
-gHMIData.btnHides.btn38Hide := FALSE;
-gHMIData.btnHides.btn39Hide := FALSE;
+gHMIButtons.btnHides.btn30Hide := FALSE;
+gHMIButtons.btnHides.btn31Hide := FALSE;
+gHMIButtons.btnHides.btn32Hide := FALSE;
+gHMIButtons.btnHides.btn33Hide := FALSE;
+gHMIButtons.btnHides.btn34Hide := FALSE;
+gHMIButtons.btnHides.btn35Hide := FALSE;
+gHMIButtons.btnHides.btn36Hide := FALSE;
+gHMIButtons.btnHides.btn37Hide := FALSE;
+gHMIButtons.btnHides.btn38Hide := FALSE;
+gHMIButtons.btnHides.btn39Hide := FALSE;
 
 ]]></ST>
       </Implementation>

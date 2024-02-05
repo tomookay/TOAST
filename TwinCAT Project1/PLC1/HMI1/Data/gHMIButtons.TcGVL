@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="gHMIButtons" Id="{6eef2951-d3fc-4c65-869e-d331015ae160}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	//buttons to select a station
+	btnSelectStation1: BOOL;
+	btnSelectStation2: BOOL;
+	btnSelectStation3: BOOL;
+	btnSelectStation4: BOOL;
+	btnSelectStation5: BOOL;
+	btnSelectStation6: BOOL;
+
+	btnSelectAll: BOOL;	//button to select all stations
+	btnAllStationsSelected: BOOL;
+
+	//reset button for global use
+	btnReset: BOOL;
+
+	//manual screen
+	btnAbsMode:BOOL; //TRUE if abs mode, False if sys mode
+	btnNextPage: BOOL;
+	btnPrevPage: BOOL;
+	
+	//hide button data for main screen
+	btnHides:typeBtnHides;
+	
+	//hmi buttons
+	btnMode:typeBtnPress;
+	
+	//hmi buttons feedback
+	btnFdbk: typeBtnFdbk;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

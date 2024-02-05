@@ -971,7 +971,7 @@ ProfiNetDiag.ProfiNetslaveDiag[i].currentState.suffix := decode.suffix; //isnt r
 	
 	//clear inner box when fault is resolved
 	IF 	ProfiNetDiag.ProfiNetslaveDiag[i].currentState.isFault = FALSE AND
-	   gHMIData.btnReset THEN
+	   gHMIButtons.btnReset THEN
 	   ProfiNetDiag.ProfiNetslaveDiag[i].historicalState.isFault := FALSE;
 	  	ProfiNetDiag.ProfiNetslaveDiag[i].historicalState.state := PROFINETstate.NoError;
 		ProfiNetDiag.ProfiNetslaveDiag[i].historicalState.suffix := ProfiNetSuffix.NoDiagnostics;

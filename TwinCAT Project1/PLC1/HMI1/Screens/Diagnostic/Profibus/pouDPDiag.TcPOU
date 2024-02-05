@@ -275,7 +275,7 @@ END_FOR]]></ST>
 	
 	//clear inner box when fault is resolved
 	IF profibusDiag.RawDPStateDiag[i] = 0 AND 
-	   gHMIData.btnReset THEN
+	   gHMIButtons.btnReset THEN
 	   profibusDiag.DPslaveDiag[i].historicalState := HMIColour.colourGreyBackground;
 	END_IF
 	

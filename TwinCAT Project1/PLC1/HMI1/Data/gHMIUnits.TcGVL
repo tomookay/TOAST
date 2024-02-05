@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="gHMIUnits" Id="{12556182-378f-4440-b758-a48e41ca1856}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	//Unit rows and buttons to feedback into program
+	gUnitRows: typeMotionScreen;
+	gUnitButtons: typeMotionScreenBtn;
+	gUnitActivePageNumber:UINT; //current page number for units
+	gUnitMaxPageNumber:UINT;  //max pages exist for station, e.g. 5
+	gUnitActiveStationNumber:UINT; 
+	gUnitRowElementOffset: ARRAY[1..gHMIDataConsts.gNumberRowsPerPage] OF UINT; //seperate calculation for units
+
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>
