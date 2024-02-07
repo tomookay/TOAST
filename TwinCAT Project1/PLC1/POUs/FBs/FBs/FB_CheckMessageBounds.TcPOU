@@ -9,8 +9,8 @@ VAR_IN_OUT
 	
 	//
 	//new message rows using table
-	qSpecialMsgRows:ARRAY[1..gHMIDataConsts.gNumberOfMessagesScreen] OF typeNewMsg;
-	qSpecialMsgRowsStyle:ARRAY[1..gHMIDataConsts.gNumberOfMessagesScreen] OF typeNewMsgStyle;
+	qSpecialMsgRows:ARRAY[1..gHMIDataConst.gNumberOfMessagesScreen] OF typeNewMsg;
+	qSpecialMsgRowsStyle:ARRAY[1..gHMIDataConst.gNumberOfMessagesScreen] OF typeNewMsgStyle;
 	
 	//messages were changed, update list
 	iqMsgChangeUpdateList:BOOL;
@@ -26,7 +26,7 @@ VAR_OUTPUT
 	qAllMessages: STRING;
 	
 	//declare, follows typeMessageRowsArry
-	qMsgRows:ARRAY[1..gHMIDataConsts.gNumberOfMessagesScreen] OF typeMessageRow;
+	qMsgRows:ARRAY[1..gHMIDataConst.gNumberOfMessagesScreen] OF typeMessageRow;
 	
 	
 	
@@ -267,7 +267,7 @@ IF (memchanged OR TRUE) AND isAlarm THEN //need to loop constantly if message is
 				
 				
 			//find the next free entry (blank text) '' 
-				FOR k := 1 TO gHMIDataConsts.gNumberOfMessagesScreen DO
+				FOR k := 1 TO gHMIDataConst.gNumberOfMessagesScreen DO
 					
 					//check string length
 					strlengtest := len(qSpecialMsgRows[k].text);

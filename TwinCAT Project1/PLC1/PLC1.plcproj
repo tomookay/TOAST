@@ -212,9 +212,8 @@
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
-    <Compile Include="HMI1\Data\gHMIDataConsts.TcGVL">
+    <Compile Include="HMI1\Data\gHMIDataConst.TcGVL">
       <SubType>Code</SubType>
-      <LinkAlways>true</LinkAlways>
     </Compile>
     <Compile Include="HMI1\Data\gHMIMotionRows.TcGVL">
       <SubType>Code</SubType>
@@ -440,7 +439,7 @@
     <Compile Include="HMI1\Screens\SS_80_DataDisplay.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
-      <ExcludeFromBuild>true</ExcludeFromBuild>
+      <ExcludeFromBuild>false</ExcludeFromBuild>
     </Compile>
     <Compile Include="HMI1\Templates\LanguageRow.TcVIS">
       <SubType>Code</SubType>
@@ -477,7 +476,7 @@
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
       <External>false</External>
-      <ExcludeFromBuild>true</ExcludeFromBuild>
+      <ExcludeFromBuild>false</ExcludeFromBuild>
     </Compile>
     <Compile Include="HMI1\types\LanguageLocation.TcDUT">
       <SubType>Code</SubType>
@@ -573,23 +572,23 @@
     </Compile>
     <Compile Include="POUs\IO View\dutDWord.TcDUT">
       <SubType>Code</SubType>
-      <ExcludeFromBuild>true</ExcludeFromBuild>
+      <ExcludeFromBuild>false</ExcludeFromBuild>
     </Compile>
     <Compile Include="POUs\IO View\FB_DataCombine.TcPOU">
       <SubType>Code</SubType>
-      <ExcludeFromBuild>true</ExcludeFromBuild>
+      <ExcludeFromBuild>false</ExcludeFromBuild>
     </Compile>
     <Compile Include="POUs\IO View\ioView.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
-      <ExcludeFromBuild>true</ExcludeFromBuild>
+      <ExcludeFromBuild>false</ExcludeFromBuild>
     </Compile>
     <Compile Include="POUs\IO View\pouDataDisplay.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="POUs\IO View\prgMemPointerView.TcPOU">
       <SubType>Code</SubType>
-      <ExcludeFromBuild>true</ExcludeFromBuild>
+      <ExcludeFromBuild>false</ExcludeFromBuild>
     </Compile>
     <Compile Include="POUs\IO View\typeCombineString.TcDUT">
       <SubType>Code</SubType>
@@ -1779,11 +1778,6 @@
       <SubType>Content</SubType>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <SubObject Include="pouDataDisplay.actDataCombineCall">
-      <ExcludeFromBuild>true</ExcludeFromBuild>
-    </SubObject>
-  </ItemGroup>
   <ProjectExtensions>
     <PlcProjectOptions>
       <XmlArchive>
@@ -1892,7 +1886,7 @@
           <d n="SubKeys" t="Hashtable" />
           <d n="Values" t="Hashtable" ckt="String">
             <v>UnicodeStrings</v>
-            <v>false</v>
+            <v>true</v>
             <v>GlobalTextListFilePath</v>
             <v>""</v>
             <v>ExtendedSettings</v>

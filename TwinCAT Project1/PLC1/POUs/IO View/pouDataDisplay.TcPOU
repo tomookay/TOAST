@@ -4,7 +4,7 @@
     <Declaration><![CDATA[PROGRAM pouDataDisplay
 VAR
 	werd: DWORD;
-//	dataCombi: ARRAY[0..15] OF FB_DataCombine;
+	dataCombi: ARRAY[0..15] OF FB_DataCombine;
 	i: INT;
 	
 END_VAR
@@ -25,7 +25,7 @@ END_VAR
                   <v n="Comment">"capture data from memory areas"</v>
                   <v n="Title">""</v>
                   <v n="Label">""</v>
-                  <v n="OutCommented">true</v>
+                  <v n="OutCommented">false</v>
                   <l2 n="NetworkItems" cet="BoxTreeBox">
                     <o>
                       <v n="BoxType">"prgMemPointerView"</v>
@@ -56,25 +56,15 @@ END_VAR
                         <v n="Extensible">false</v>
                       </o>
                       <n n="InputFlags" />
-                      <l2 n="InputItems" cet="BoxTreeOperand">
+                      <l2 n="InputItems" cet="BoxTreeTerminator">
                         <o>
-                          <o n="Operand" t="Operand">
-                            <v n="Operand">"FALSE"</v>
-                            <v n="Type">"BOOL"</v>
-                            <v n="Comment">""</v>
-                            <v n="SymbolComment">""</v>
-                            <v n="Address">""</v>
-                            <o n="Flags" t="Flags">
-                              <v n="Flags">0</v>
-                              <v n="Fixed">true</v>
-                              <v n="Extensible">false</v>
-                            </o>
-                            <v n="LValue">false</v>
-                            <v n="Boolean">true</v>
-                            <v n="IsInstance">false</v>
-                            <v n="Id">512L</v>
+                          <n n="Input" />
+                          <o n="Flags" t="Flags">
+                            <v n="Flags">0</v>
+                            <v n="Fixed">false</v>
+                            <v n="Extensible">false</v>
                           </o>
-                          <v n="Id">511L</v>
+                          <v n="Id">536L</v>
                         </o>
                       </l2>
                       <o n="InputParam" t="ParamList">
@@ -113,7 +103,7 @@ END_VAR
                   <v n="Comment">"create loop counter for IN_OUT later, want to start internal FB math from 0"</v>
                   <v n="Title">""</v>
                   <v n="Label">""</v>
-                  <v n="OutCommented">true</v>
+                  <v n="OutCommented">false</v>
                   <l2 n="NetworkItems" cet="BoxTreeBox">
                     <o>
                       <v n="BoxType">"MOVE"</v>
@@ -160,27 +150,17 @@ END_VAR
                         <v n="Extensible">false</v>
                       </o>
                       <n n="InputFlags" />
-                      <l2 n="InputItems" cet="BoxTreeOperand">
-                        <o>
-                          <o n="Operand" t="Operand">
-                            <v n="Operand">"FALSE"</v>
-                            <v n="Type">"BOOL"</v>
-                            <v n="Comment">""</v>
-                            <v n="SymbolComment">""</v>
-                            <v n="Address">""</v>
-                            <o n="Flags" t="Flags">
-                              <v n="Flags">0</v>
-                              <v n="Fixed">true</v>
-                              <v n="Extensible">false</v>
-                            </o>
-                            <v n="LValue">false</v>
-                            <v n="Boolean">true</v>
-                            <v n="IsInstance">false</v>
-                            <v n="Id">520L</v>
+                      <l2 n="InputItems">
+                        <o t="BoxTreeTerminator">
+                          <n n="Input" />
+                          <o n="Flags" t="Flags">
+                            <v n="Flags">0</v>
+                            <v n="Fixed">false</v>
+                            <v n="Extensible">false</v>
                           </o>
-                          <v n="Id">519L</v>
+                          <v n="Id">537L</v>
                         </o>
-                        <o>
+                        <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
                             <v n="Operand">"-1"</v>
                             <v n="Type">"INT"</v>
@@ -238,7 +218,7 @@ END_VAR
                   <v n="Comment">"move data to HMI used instance"</v>
                   <v n="Title">""</v>
                   <v n="Label">""</v>
-                  <v n="OutCommented">true</v>
+                  <v n="OutCommented">false</v>
                   <l2 n="NetworkItems" cet="BoxTreeBox">
                     <o>
                       <v n="BoxType">"actDataCombineCall"</v>
@@ -285,25 +265,15 @@ END_VAR
                         <v n="Extensible">false</v>
                       </o>
                       <n n="InputFlags" />
-                      <l2 n="InputItems" cet="BoxTreeOperand">
+                      <l2 n="InputItems" cet="BoxTreeTerminator">
                         <o>
-                          <o n="Operand" t="Operand">
-                            <v n="Operand">"FALSE"</v>
-                            <v n="Type">"BOOL"</v>
-                            <v n="Comment">""</v>
-                            <v n="SymbolComment">""</v>
-                            <v n="Address">""</v>
-                            <o n="Flags" t="Flags">
-                              <v n="Flags">0</v>
-                              <v n="Fixed">true</v>
-                              <v n="Extensible">false</v>
-                            </o>
-                            <v n="LValue">false</v>
-                            <v n="Boolean">true</v>
-                            <v n="IsInstance">false</v>
-                            <v n="Id">528L</v>
+                          <n n="Input" />
+                          <o n="Flags" t="Flags">
+                            <v n="Flags">0</v>
+                            <v n="Fixed">false</v>
+                            <v n="Extensible">false</v>
                           </o>
-                          <v n="Id">527L</v>
+                          <v n="Id">538L</v>
                         </o>
                       </l2>
                       <o n="InputParam" t="ParamList">
@@ -343,6 +313,7 @@ END_VAR
             <Type n="Boolean">System.Boolean</Type>
             <Type n="BoxTreeBox">{acfc6f68-8e3a-4af5-bf81-3dd512095a46}</Type>
             <Type n="BoxTreeOperand">{9de7f100-1b87-424c-a62e-45b0cfc85ed2}</Type>
+            <Type n="BoxTreeTerminator">{5f9848d3-568d-4cc5-9e31-8e28e9607ff1}</Type>
             <Type n="Flags">{668066f2-6069-46b3-8962-8db8d13d7db2}</Type>
             <Type n="Int32">System.Int32</Type>
             <Type n="Int64">System.Int64</Type>

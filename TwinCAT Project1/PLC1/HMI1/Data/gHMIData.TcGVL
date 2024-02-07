@@ -4,20 +4,20 @@
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
 	//station selected as BOOL
-	gStationSelected: ARRAY[1..gHMIDataConsts.gNumberOfStations] OF BOOL;
+	gStationSelected: ARRAY[1..gHMIDataConst.gNumberOfStations] OF BOOL;
 	
 	//hide display elements
-	gHideDisplayElements:ARRAY[0..gHMIDataConsts.gNumberOfStations] OF BOOL;
+	gHideDisplayElements:ARRAY[0..gHMIDataConst.gNumberOfStations] OF BOOL;
 	
 	//stations enabled
-	gStationEnabled: ARRAY[1..gHMIDataConsts.gNumberOfStations] OF BOOL;
+	gStationEnabled: ARRAY[1..gHMIDataConst.gNumberOfStations] OF BOOL;
 	
-	gRowElementOffset: ARRAY[1..gHMIDataConsts.gNumberRowsPerPage] OF UINT;
+	gRowElementOffset: ARRAY[1..gHMIDataConst.gNumberRowsPerPage] OF UINT;
 	
 	//number of the active station for message display
-	gNumActivePromptTextList:ARRAY[0..gHMIDataConsts.gNumberOfStations] OF UINT;
-	gNumActiveWarningTextList:ARRAY[0..gHMIDataConsts.gNumberOfStations] OF UINT;
-	gNumActiveAlarmTextList:ARRAY[0..gHMIDataConsts.gNumberOfStations] OF UINT;
+	gNumActivePromptTextList:ARRAY[0..gHMIDataConst.gNumberOfStations] OF UINT;
+	gNumActiveWarningTextList:ARRAY[0..gHMIDataConst.gNumberOfStations] OF UINT;
+	gNumActiveAlarmTextList:ARRAY[0..gHMIDataConst.gNumberOfStations] OF UINT;
 	
 	//station selected as integer
 	gActiveStationNumber:UINT; 
@@ -45,7 +45,7 @@ VAR_GLOBAL
 	hmiHeader:typeHMIheader;
 	
 	//language screen
-	gLangRowElementOffset: ARRAY[1..gHMIDataConsts.gNumberRowsPerPage] OF UINT; //seperate calculation for languages
+	gLangRowElementOffset: ARRAY[1..gHMIDataConst.gNumberRowsPerPage] OF UINT; //seperate calculation for languages
 	gLangRows: typeMotionScreen;
 	gLangButtons: typeMotionScreenBtn;
 	gActiveLangPageNumber:UINT; //current page number for units
