@@ -147,7 +147,7 @@
         </Event>
       </Events>
     </DeploymentEvents>
-    <CompilerDefines />
+    <CompilerDefines>VISU_USEWSTRING</CompilerDefines>
     <ProjectVersion>0.0.1</ProjectVersion>
   </PropertyGroup>
   <ItemGroup>
@@ -214,6 +214,7 @@
     </Compile>
     <Compile Include="HMI1\Data\gHMIDataConst.TcGVL">
       <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
     </Compile>
     <Compile Include="HMI1\Data\gHMIMotionRows.TcGVL">
       <SubType>Code</SubType>
@@ -508,13 +509,13 @@
     <Compile Include="msg test\FB_OrderMessages.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="msg test\msgTest.TcGVL">
+    <Compile Include="msg test\gmsgTest.TcGVL">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="msg test\pouTestMessages.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="msg test\SS_12_AlarmsTest.TcVIS">
+    <Compile Include="msg test\SS_12_AlarmsTests.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
