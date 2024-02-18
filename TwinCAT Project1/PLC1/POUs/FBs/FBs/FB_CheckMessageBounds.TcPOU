@@ -280,6 +280,12 @@ IF (memchanged OR TRUE) AND isAlarm THEN //need to loop constantly if message is
 					ELSE
 							//iqPassThruMessageStart := 0;
 					END_IF
+					
+					//try to exit from this loop if no work to do
+					IF strlengtest = 0 THEN
+						EXIT;
+					END_IF
+					
 				END_FOR
 
 	actPassMesageFinish(); //only on 2nd call
@@ -1804,7 +1810,11 @@ as the warning are written below the alarms"</v>
       </XmlArchive>
     </ObjectProperties>
     <LineIds Name="FB_CheckMessageBounds">
-      <LineId Id="3" Count="225" />
+      <LineId Id="3" Count="205" />
+      <LineId Id="300" Count="1" />
+      <LineId Id="303" Count="2" />
+      <LineId Id="302" Count="0" />
+      <LineId Id="209" Count="19" />
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="FB_CheckMessageBounds.actClearDownExcessWarn">
