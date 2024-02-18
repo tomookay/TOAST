@@ -60,6 +60,7 @@ VAR
 	timPulseChange: TP;
 	timPulseChangedMessage: TP;
 	j: INT;
+	a: UINT;
 END_VAR
 
 VAR_INPUT
@@ -188,11 +189,6 @@ IF memchanged OR iqMsgChangeUpdateList THEN //if the memory array have changed, 
 	
 	END_FOR;
 
-	//fill alarm rows
-//	FOR n := 0 TO HMIData.gNumberOfMessagesScreen DO
-	//	qMsgRows.AlarmViewMsg[n].msgText := '';
-			
-//	END_FOR
 END_IF
 
 
@@ -207,6 +203,10 @@ IF memchanged OR iqMsgChangeUpdateList THEN
 		tWarnOffset := 0;
 	END_IF
 
+	//check if is alarm an no alarms to clear down warnoffset
+	IF isAlarm AND NOT qAnyMsgActive THEN
+		iqPassThruMessageStart := 0;
+	END_IF
 
 	FOR i := 0 TO GlobalMessages.gNumMessagesPerType DO
 		//find next TRUE alarm
@@ -234,7 +234,7 @@ IF memchanged OR iqMsgChangeUpdateList THEN
 				
 				END_IF
 				
-					//assign colour
+				//assign colour
 				IF isWarning THEN
 					qMsgRows[msgIndex].isWarning := TRUE;
 					
@@ -246,6 +246,12 @@ IF memchanged OR iqMsgChangeUpdateList THEN
 					ELSE
 					qMsgRows[msgIndex].isWarning := FALSE;
 				
+				END_IF
+				
+				//clear down phantom text
+				IF qSpecialMsgRows[msgIndex].text = '' THEN
+					qSpecialMsgRows[msgIndex].timeRaised := '';
+					
 				END_IF
 				
 				//increment message index and try again
@@ -283,7 +289,10 @@ IF (memchanged OR TRUE) AND isAlarm THEN //need to loop constantly if message is
 					
 					//try to exit from this loop if no work to do
 					IF strlengtest = 0 THEN
-						EXIT;
+						//do something to make a brakepoint
+					//	a:=k+0;
+						
+					//	EXIT;
 					END_IF
 					
 				END_FOR
@@ -817,7 +826,7 @@ END_IF
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
                               <v n="Operand">"adr(qMsgRows)"</v>
-                              <v n="Type">"POINTER TO ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeMessageRow"</v>
+                              <v n="Type">"POINTER TO ARRAY [1..gHMIDataConst.gNumberOfMessagesScreen] OF typeMessageRow"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
                               <v n="Address">""</v>
@@ -986,7 +995,7 @@ END_IF
                           <o>
                             <o n="Operand" t="Operand">
                               <v n="Operand">"adr(qSpecialMsgRows)"</v>
-                              <v n="Type">"POINTER TO ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeNewMsg"</v>
+                              <v n="Type">"POINTER TO ARRAY [1..gHMIDataConst.gNumberOfMessagesScreen] OF typeNewMsg"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
                               <v n="Address">""</v>
@@ -1155,7 +1164,7 @@ END_IF
                           <o>
                             <o n="Operand" t="Operand">
                               <v n="Operand">"adr(qSpecialMsgRowsStyle)"</v>
-                              <v n="Type">"POINTER TO ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeNewMsgStyle"</v>
+                              <v n="Type">"POINTER TO ARRAY [1..gHMIDataConst.gNumberOfMessagesScreen] OF typeNewMsgStyle"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
                               <v n="Address">""</v>
@@ -1810,11 +1819,20 @@ as the warning are written below the alarms"</v>
       </XmlArchive>
     </ObjectProperties>
     <LineIds Name="FB_CheckMessageBounds">
-      <LineId Id="3" Count="205" />
-      <LineId Id="300" Count="1" />
-      <LineId Id="303" Count="2" />
-      <LineId Id="302" Count="0" />
-      <LineId Id="209" Count="19" />
+      <LineId Id="3" Count="112" />
+      <LineId Id="315" Count="0" />
+      <LineId Id="122" Count="12" />
+      <LineId Id="323" Count="0" />
+      <LineId Id="135" Count="0" />
+      <LineId Id="324" Count="2" />
+      <LineId Id="136" Count="39" />
+      <LineId Id="317" Count="3" />
+      <LineId Id="322" Count="0" />
+      <LineId Id="321" Count="0" />
+      <LineId Id="316" Count="0" />
+      <LineId Id="177" Count="34" />
+      <LineId Id="306" Count="2" />
+      <LineId Id="212" Count="22" />
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="FB_CheckMessageBounds.actClearDownExcessWarn">
