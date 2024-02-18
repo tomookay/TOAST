@@ -132,6 +132,10 @@ System.myPlcInfoTask1 := TwinCAT_SystemInfoVarList._TaskInfo[1];
 System.ScanTimeReq := UDINT_TO_REAL(System.myPlcInfoTask1.CycleTime);
 System.ScanTimeAct := UDINT_TO_REAL(System.myPlcInfoTask1.LastExecTime);
 
+//scale to correct factor
+System.ScanTimeReq := System.ScanTimeReq / 10000;
+System.ScanTimeAct := System.ScanTimeAct / 10000;
+
 //if the scan time is a new record, then save the scan time and the scan number
 IF System.ScanTimeAct > System.ScanTimeRecord THEN
 	//debug message for new record scan
@@ -246,7 +250,12 @@ System.timeDT := SYSTEMTIME_TO_DT(TIMESTR:=system.thetime);
       <LineId Id="3" Count="0" />
       <LineId Id="11" Count="0" />
       <LineId Id="10" Count="0" />
-      <LineId Id="13" Count="2" />
+      <LineId Id="13" Count="1" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="15" Count="0" />
       <LineId Id="12" Count="0" />
       <LineId Id="16" Count="1" />
       <LineId Id="19" Count="1" />
