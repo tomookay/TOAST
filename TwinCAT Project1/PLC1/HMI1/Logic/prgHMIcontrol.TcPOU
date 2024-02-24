@@ -1177,6 +1177,48 @@ IF NOT GlobalMessages.gMsgS6Stat.IsAlarm THEN
 	gHMIData.gHideDisplayElementAlarmView.S6Enabled := TRUE;
 END_IF
 
+//move set global fault
+IF GlobalMessages.gMsgS1Stat.IsAlarm THEN
+	S1_Global.Data.Fault := TRUE;
+	ELSE
+	S1_Global.Data.Fault := FALSE;
+END_IF
+
+//move set global fault
+IF GlobalMessages.gMsgS2Stat.IsAlarm THEN
+	S2_Global.Data.Fault := TRUE;
+	ELSE
+	S2_Global.Data.Fault := FALSE;
+END_IF
+
+//move set global fault
+IF GlobalMessages.gMsgS3Stat.IsAlarm THEN
+	S3_Global.Data.Fault := TRUE;
+	ELSE
+	S3_Global.Data.Fault := FALSE;
+END_IF
+
+//move set global fault
+IF GlobalMessages.gMsgS4Stat.IsAlarm THEN
+	S4_Global.Data.Fault := TRUE;
+	ELSE
+	S4_Global.Data.Fault := FALSE;
+END_IF
+
+//move set global fault
+IF GlobalMessages.gMsgS5Stat.IsAlarm THEN
+	S5_Global.Data.Fault := TRUE;
+	ELSE
+	S5_Global.Data.Fault := FALSE;
+END_IF
+
+//move set global fault
+IF GlobalMessages.gMsgS6Stat.IsAlarm THEN
+	S6_Global.Data.Fault := TRUE;
+	ELSE
+	S6_Global.Data.Fault := FALSE;
+END_IF
+
 ]]></ST>
       </Implementation>
     </Action>
@@ -1566,7 +1608,21 @@ END_IF
       <LineId Id="46" Count="0" />
       <LineId Id="56" Count="7" />
       <LineId Id="55" Count="0" />
+      <LineId Id="67" Count="1" />
       <LineId Id="65" Count="0" />
+      <LineId Id="72" Count="2" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="78" Count="5" />
+      <LineId Id="77" Count="0" />
+      <LineId Id="85" Count="5" />
+      <LineId Id="84" Count="0" />
+      <LineId Id="92" Count="5" />
+      <LineId Id="91" Count="0" />
+      <LineId Id="99" Count="5" />
+      <LineId Id="98" Count="0" />
+      <LineId Id="106" Count="5" />
+      <LineId Id="105" Count="0" />
+      <LineId Id="76" Count="0" />
       <LineId Id="64" Count="0" />
     </LineIds>
     <LineIds Name="prgHMIcontrol.actEnablePrompts">
