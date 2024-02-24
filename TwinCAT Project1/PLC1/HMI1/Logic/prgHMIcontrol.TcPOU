@@ -1351,6 +1351,49 @@ IF NOT GlobalMessages.gMsgS6Stat.IsWarning THEN
 	gHMIData.gHideDisplayElementWarningView.S6Enabled := TRUE;
 END_IF
 
+
+//move set global fault
+IF GlobalMessages.gMsgS1Stat.IsWarning THEN
+	S1_Global.Data.Warning := TRUE;
+	ELSE
+	S1_Global.Data.Warning := FALSE;
+END_IF
+
+//move set global fault
+IF GlobalMessages.gMsgS2Stat.IsWarning THEN
+	S2_Global.Data.Warning := TRUE;
+	ELSE
+	S2_Global.Data.Warning := FALSE;
+END_IF
+
+//move set global fault
+IF GlobalMessages.gMsgS3Stat.IsWarning THEN
+	S3_Global.Data.Warning := TRUE;
+	ELSE
+	S3_Global.Data.Warning := FALSE;
+END_IF
+
+//move set global fault
+IF GlobalMessages.gMsgS4Stat.IsWarning THEN
+	S4_Global.Data.Warning := TRUE;
+	ELSE
+	S4_Global.Data.Warning := FALSE;
+END_IF
+
+//move set global fault
+IF GlobalMessages.gMsgS5Stat.IsWarning THEN
+	S5_Global.Data.Warning := TRUE;
+	ELSE
+	S5_Global.Data.Warning := FALSE;
+END_IF
+
+//move set global fault
+IF GlobalMessages.gMsgS6Stat.IsWarning THEN
+	S6_Global.Data.Warning := TRUE;
+	ELSE
+	S6_Global.Data.Warning := FALSE;
+END_IF
+
 ]]></ST>
       </Implementation>
     </Action>
@@ -1672,6 +1715,7 @@ END_IF
       <LineId Id="46" Count="0" />
       <LineId Id="56" Count="7" />
       <LineId Id="55" Count="0" />
+      <LineId Id="66" Count="42" />
       <LineId Id="65" Count="0" />
       <LineId Id="64" Count="0" />
     </LineIds>

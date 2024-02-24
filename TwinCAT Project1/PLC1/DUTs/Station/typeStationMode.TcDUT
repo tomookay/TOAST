@@ -12,8 +12,9 @@ STRUCT
 	Bypass:					BOOL; //TRUE if the station is in bypass mode (no process to be performed)
 	ContCycle:				BOOL :=TRUE;
 	SingleCycle:			BOOL; //TRUE if the station is in single cycle mode
-	StopEOC:				BOOL; //TRUE if the machine is stopping at end of cycle
-	Fault:					BOOL; //TRUE if the system is in fault state
+	StopEOC:				BOOL; //TRUE if the station is stopping at end of cycle
+	Fault:					BOOL; //TRUE if the station is in fault state
+	Warning:				BOOL; //TRUE if the station is in a warning state
 
 
 	btnStartAutoCycle: 		BOOL; //button to start auto cycle

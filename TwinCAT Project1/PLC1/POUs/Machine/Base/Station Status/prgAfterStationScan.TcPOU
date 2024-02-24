@@ -10,6 +10,8 @@ END_VAR
 //call at the end of scan of stations..
 //..for data to be processed after all values of a station
 actAnyAlarmsGlobal();
+actAnyWarningGlobal();
+
 ]]></ST>
     </Implementation>
     <Action Name="actAnyAlarmsGlobal" Id="{976dde39-5720-4a2c-860b-750f4fc28559}">
@@ -18,12 +20,12 @@ actAnyAlarmsGlobal();
 //if any station has fault state, then set logic for all stations...
 //writes to data multiple times due to manipulation of scan
 IF 
-	S1_Global.hmiHeader.isFaultState OR 
-	S2_Global.hmiHeader.isFaultState OR 
-	S3_Global.hmiHeader.isFaultState OR 
-	S4_Global.hmiHeader.isFaultState OR 
-	S5_Global.hmiHeader.isFaultState OR 
-	S6_Global.hmiHeader.isFaultState OR
+	GlobalMessages.gMsgS1Stat.IsAlarm OR 
+	GlobalMessages.gMsgS2Stat.IsAlarm OR 
+	GlobalMessages.gMsgS3Stat.IsAlarm OR 
+	GlobalMessages.gMsgS4Stat.IsAlarm OR 
+	GlobalMessages.gMsgS5Stat.IsAlarm OR 
+	GlobalMessages.gMsgS6Stat.IsAlarm OR
 	GlobalMessages.gMsgMcStat.IsAlarm
 THEN
 	S1_Global.hmiHeader.AnyStationFaultHeaderActive := System.OneSecond;
@@ -32,24 +34,51 @@ THEN
 	S4_Global.hmiHeader.AnyStationFaultHeaderActive := System.OneSecond;
 	S5_Global.hmiHeader.AnyStationFaultHeaderActive := System.OneSecond;
 	S6_Global.hmiHeader.AnyStationFaultHeaderActive := System.OneSecond;
+	
+	S1_Global.hmiHeader.AnyStationFaultColour		:= HMIColour.colourRed;
+	S2_Global.hmiHeader.AnyStationFaultColour		:= HMIColour.colourRed;
+	S3_Global.hmiHeader.AnyStationFaultColour		:= HMIColour.colourRed;
+	S4_Global.hmiHeader.AnyStationFaultColour		:= HMIColour.colourRed;
+	S5_Global.hmiHeader.AnyStationFaultColour		:= HMIColour.colourRed;
+	S6_Global.hmiHeader.AnyStationFaultColour		:= HMIColour.colourRed;
+	
+	S1_Global.hmiHeader.isAnyFaultState				:= TRUE;
+	S2_Global.hmiHeader.isAnyFaultState				:= TRUE;
+	S3_Global.hmiHeader.isAnyFaultState				:= TRUE;
+	S4_Global.hmiHeader.isAnyFaultState				:= TRUE;
+	S5_Global.hmiHeader.isAnyFaultState				:= TRUE;
+	S6_Global.hmiHeader.isAnyFaultState				:= TRUE;
+	
 ELSE
 	S1_Global.hmiHeader.AnyStationFaultHeaderActive := FALSE;
 	S2_Global.hmiHeader.AnyStationFaultHeaderActive := FALSE;
 	S3_Global.hmiHeader.AnyStationFaultHeaderActive := FALSE;
 	S4_Global.hmiHeader.AnyStationFaultHeaderActive := FALSE;
 	S5_Global.hmiHeader.AnyStationFaultHeaderActive := FALSE;
-	S6_Global.hmiHeader.AnyStationFaultHeaderActive := FALSE;	
+	S6_Global.hmiHeader.AnyStationFaultHeaderActive := FALSE;
+
+	S1_Global.hmiHeader.AnyStationFaultColour		:= HMIColour.colourBlue;
+	S2_Global.hmiHeader.AnyStationFaultColour		:= HMIColour.colourBlue;
+	S3_Global.hmiHeader.AnyStationFaultColour		:= HMIColour.colourBlue;
+	S4_Global.hmiHeader.AnyStationFaultColour		:= HMIColour.colourBlue;
+	S5_Global.hmiHeader.AnyStationFaultColour		:= HMIColour.colourBlue;
+	S6_Global.hmiHeader.AnyStationFaultColour		:= HMIColour.colourBlue;
+
+	S1_Global.hmiHeader.isAnyFaultState				:= FALSE;
+	S2_Global.hmiHeader.isAnyFaultState				:= FALSE;
+	S3_Global.hmiHeader.isAnyFaultState				:= FALSE;
+	S4_Global.hmiHeader.isAnyFaultState				:= FALSE;
+	S5_Global.hmiHeader.isAnyFaultState				:= FALSE;
+	S6_Global.hmiHeader.isAnyFaultState				:= FALSE;	
 END_IF
 
-//set indicators to 0
+	//set indicators to 0
 	S1_Global.hmiHeader.AnyStationFaultHeader := 0;
 	S2_Global.hmiHeader.AnyStationFaultHeader := 0;
 	S3_Global.hmiHeader.AnyStationFaultHeader := 0;
 	S4_Global.hmiHeader.AnyStationFaultHeader := 0;
 	S5_Global.hmiHeader.AnyStationFaultHeader := 0;
 	S6_Global.hmiHeader.AnyStationFaultHeader := 0;
-
-
 
 //write station 1 is in fault
 IF 	S1_Global.hmiHeader.isFaultState THEN
@@ -139,11 +168,167 @@ IF GlobalMessages.gMsgMcStat.IsAlarm THEN
 END_IF]]></ST>
       </Implementation>
     </Action>
+    <Action Name="actAnyWarningGlobal" Id="{a977cc66-8f5a-446a-96fb-20ddf805ab2d}">
+      <Implementation>
+        <ST><![CDATA[//call for end of scan
+//if any station has Warning state, then set logic for all stations...
+//writes to data multiple times due to manipulation of scan
+IF 
+	GlobalMessages.gMsgS1Stat.IsWarning OR 
+	GlobalMessages.gMsgS2Stat.IsWarning OR 
+	GlobalMessages.gMsgS3Stat.IsWarning OR 
+	GlobalMessages.gMsgS4Stat.IsWarning OR 
+	GlobalMessages.gMsgS5Stat.IsWarning OR 
+	GlobalMessages.gMsgS6Stat.IsWarning OR
+	GlobalMessages.gMsgMcStat.IsWarning
+THEN
+	S1_Global.hmiHeader.AnyStationWarningHeaderActive := System.OneSecond;
+	S2_Global.hmiHeader.AnyStationWarningHeaderActive := System.OneSecond;
+	S3_Global.hmiHeader.AnyStationWarningHeaderActive := System.OneSecond;
+	S4_Global.hmiHeader.AnyStationWarningHeaderActive := System.OneSecond;
+	S5_Global.hmiHeader.AnyStationWarningHeaderActive := System.OneSecond;
+	S6_Global.hmiHeader.AnyStationWarningHeaderActive := System.OneSecond;
+	
+	S1_Global.hmiHeader.AnyStationWarningColour		:= HMIColour.colourYellow;
+	S2_Global.hmiHeader.AnyStationWarningColour		:= HMIColour.colourYellow;
+	S3_Global.hmiHeader.AnyStationWarningColour		:= HMIColour.colourYellow;
+	S4_Global.hmiHeader.AnyStationWarningColour		:= HMIColour.colourYellow;
+	S5_Global.hmiHeader.AnyStationWarningColour		:= HMIColour.colourYellow;
+	S6_Global.hmiHeader.AnyStationWarningColour		:= HMIColour.colourYellow;
+	
+	S1_Global.hmiHeader.isAnyWarningState				:= TRUE;
+	S2_Global.hmiHeader.isAnyWarningState				:= TRUE;
+	S3_Global.hmiHeader.isAnyWarningState				:= TRUE;
+	S4_Global.hmiHeader.isAnyWarningState				:= TRUE;
+	S5_Global.hmiHeader.isAnyWarningState				:= TRUE;
+	S6_Global.hmiHeader.isAnyWarningState				:= TRUE;
+	
+ELSE
+	S1_Global.hmiHeader.AnyStationWarningHeaderActive := FALSE;
+	S2_Global.hmiHeader.AnyStationWarningHeaderActive := FALSE;
+	S3_Global.hmiHeader.AnyStationWarningHeaderActive := FALSE;
+	S4_Global.hmiHeader.AnyStationWarningHeaderActive := FALSE;
+	S5_Global.hmiHeader.AnyStationWarningHeaderActive := FALSE;
+	S6_Global.hmiHeader.AnyStationWarningHeaderActive := FALSE;
+
+	S1_Global.hmiHeader.AnyStationWarningColour		:= HMIColour.colourBlue;
+	S2_Global.hmiHeader.AnyStationWarningColour		:= HMIColour.colourBlue;
+	S3_Global.hmiHeader.AnyStationWarningColour		:= HMIColour.colourBlue;
+	S4_Global.hmiHeader.AnyStationWarningColour		:= HMIColour.colourBlue;
+	S5_Global.hmiHeader.AnyStationWarningColour		:= HMIColour.colourBlue;
+	S6_Global.hmiHeader.AnyStationWarningColour		:= HMIColour.colourBlue;
+
+	S1_Global.hmiHeader.isAnyWarningState				:= FALSE;
+	S2_Global.hmiHeader.isAnyWarningState				:= FALSE;
+	S3_Global.hmiHeader.isAnyWarningState				:= FALSE;
+	S4_Global.hmiHeader.isAnyWarningState				:= FALSE;
+	S5_Global.hmiHeader.isAnyWarningState				:= FALSE;
+	S6_Global.hmiHeader.isAnyWarningState				:= FALSE;	
+END_IF
+
+	//set indicators to 0
+	S1_Global.hmiHeader.AnyStationWarningHeader := 0;
+	S2_Global.hmiHeader.AnyStationWarningHeader := 0;
+	S3_Global.hmiHeader.AnyStationWarningHeader := 0;
+	S4_Global.hmiHeader.AnyStationWarningHeader := 0;
+	S5_Global.hmiHeader.AnyStationWarningHeader := 0;
+	S6_Global.hmiHeader.AnyStationWarningHeader := 0;
+
+//write station 1 is in Warning
+IF 	S1_Global.hmiHeader.isWarningState THEN
+	S1_Global.hmiHeader.AnyStationWarningHeader := 1;
+	S2_Global.hmiHeader.AnyStationWarningHeader := 1;
+	S3_Global.hmiHeader.AnyStationWarningHeader := 1;
+	S4_Global.hmiHeader.AnyStationWarningHeader := 1;
+	S5_Global.hmiHeader.AnyStationWarningHeader := 1;
+	S6_Global.hmiHeader.AnyStationWarningHeader := 1;
+END_IF
+
+//write station 2 is in Warning
+IF 	S2_Global.hmiHeader.isWarningState THEN
+	S1_Global.hmiHeader.AnyStationWarningHeader := 2;
+	S2_Global.hmiHeader.AnyStationWarningHeader := 2;
+	S3_Global.hmiHeader.AnyStationWarningHeader := 2;
+	S4_Global.hmiHeader.AnyStationWarningHeader := 2;
+	S5_Global.hmiHeader.AnyStationWarningHeader := 2;
+	S6_Global.hmiHeader.AnyStationWarningHeader := 2;
+END_IF
+
+//write station 3 is in Warning
+IF 	S3_Global.hmiHeader.isWarningState THEN
+	S1_Global.hmiHeader.AnyStationWarningHeader := 3;
+	S2_Global.hmiHeader.AnyStationWarningHeader := 3;
+	S3_Global.hmiHeader.AnyStationWarningHeader := 3;
+	S4_Global.hmiHeader.AnyStationWarningHeader := 3;
+	S5_Global.hmiHeader.AnyStationWarningHeader := 3;
+	S6_Global.hmiHeader.AnyStationWarningHeader := 3;
+END_IF
+
+//write station 4 is in Warning
+IF 	S4_Global.hmiHeader.isWarningState THEN
+	S1_Global.hmiHeader.AnyStationWarningHeader := 4;
+	S2_Global.hmiHeader.AnyStationWarningHeader := 4;
+	S3_Global.hmiHeader.AnyStationWarningHeader := 4;
+	S4_Global.hmiHeader.AnyStationWarningHeader := 4;
+	S5_Global.hmiHeader.AnyStationWarningHeader := 4;
+	S6_Global.hmiHeader.AnyStationWarningHeader := 4;
+END_IF
+
+//write station 5 is in Warning
+IF 	S5_Global.hmiHeader.isWarningState THEN
+	S1_Global.hmiHeader.AnyStationWarningHeader := 5;
+	S2_Global.hmiHeader.AnyStationWarningHeader := 5;
+	S3_Global.hmiHeader.AnyStationWarningHeader := 5;
+	S4_Global.hmiHeader.AnyStationWarningHeader := 5;
+	S5_Global.hmiHeader.AnyStationWarningHeader := 5;
+	S6_Global.hmiHeader.AnyStationWarningHeader := 5;
+END_IF
+
+//write station 6 is in Warning
+IF 	S6_Global.hmiHeader.isWarningState THEN
+	S1_Global.hmiHeader.AnyStationWarningHeader := 6;
+	S2_Global.hmiHeader.AnyStationWarningHeader := 6;
+	S3_Global.hmiHeader.AnyStationWarningHeader := 6;
+	S4_Global.hmiHeader.AnyStationWarningHeader := 6;
+	S5_Global.hmiHeader.AnyStationWarningHeader := 6;
+	S6_Global.hmiHeader.AnyStationWarningHeader := 6;
+END_IF
+
+//..so it appears in all usage of the HMI for a given station
+
+//add for base station header
+IF GlobalMessages.gMsgMcStat.IsWarning THEN
+	//set special case for base machine
+	S1_Global.hmiHeader.AnyStationWarningHeader := 99;
+	S2_Global.hmiHeader.AnyStationWarningHeader := 99;
+	S3_Global.hmiHeader.AnyStationWarningHeader := 99;
+	S4_Global.hmiHeader.AnyStationWarningHeader := 99;
+	S5_Global.hmiHeader.AnyStationWarningHeader := 99;
+	S6_Global.hmiHeader.AnyStationWarningHeader := 99;
+	
+	S1_Global.hmiHeader.isWarningState := TRUE;
+	S2_Global.hmiHeader.isWarningState := TRUE;
+	S3_Global.hmiHeader.isWarningState := TRUE;
+	S4_Global.hmiHeader.isWarningState := TRUE;
+	S5_Global.hmiHeader.isWarningState := TRUE;
+	S6_Global.hmiHeader.isWarningState := TRUE;
+	
+	S1_Global.hmiHeader.WarningStateHeader := 1;
+	S2_Global.hmiHeader.WarningStateHeader := 1;
+	S3_Global.hmiHeader.WarningStateHeader := 1;
+	S4_Global.hmiHeader.WarningStateHeader := 1;
+	S5_Global.hmiHeader.WarningStateHeader := 1;
+	S6_Global.hmiHeader.WarningStateHeader := 1;
+END_IF]]></ST>
+      </Implementation>
+    </Action>
     <LineIds Name="prgAfterStationScan">
       <LineId Id="11" Count="0" />
       <LineId Id="5" Count="0" />
       <LineId Id="13" Count="0" />
-      <LineId Id="6" Count="1" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="14" Count="1" />
+      <LineId Id="7" Count="0" />
     </LineIds>
     <LineIds Name="prgAfterStationScan.actAnyAlarmsGlobal">
       <LineId Id="1" Count="0" />
@@ -156,16 +341,77 @@ END_IF]]></ST>
       <LineId Id="14" Count="0" />
       <LineId Id="20" Count="0" />
       <LineId Id="22" Count="4" />
+      <LineId Id="157" Count="1" />
+      <LineId Id="163" Count="4" />
+      <LineId Id="224" Count="0" />
+      <LineId Id="226" Count="4" />
+      <LineId Id="225" Count="0" />
+      <LineId Id="168" Count="0" />
       <LineId Id="29" Count="0" />
       <LineId Id="32" Count="4" />
       <LineId Id="30" Count="0" />
+      <LineId Id="170" Count="5" />
+      <LineId Id="169" Count="0" />
+      <LineId Id="232" Count="5" />
+      <LineId Id="231" Count="0" />
       <LineId Id="12" Count="0" />
       <LineId Id="120" Count="1" />
       <LineId Id="124" Count="4" />
       <LineId Id="123" Count="0" />
-      <LineId Id="122" Count="0" />
-      <LineId Id="119" Count="0" />
-      <LineId Id="38" Count="2" />
+      <LineId Id="238" Count="0" />
+      <LineId Id="39" Count="1" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="48" Count="4" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="113" Count="0" />
+      <LineId Id="56" Count="7" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="114" Count="0" />
+      <LineId Id="65" Count="6" />
+      <LineId Id="109" Count="1" />
+      <LineId Id="115" Count="0" />
+      <LineId Id="111" Count="1" />
+      <LineId Id="76" Count="5" />
+      <LineId Id="73" Count="0" />
+      <LineId Id="116" Count="0" />
+      <LineId Id="83" Count="7" />
+      <LineId Id="82" Count="0" />
+      <LineId Id="117" Count="0" />
+      <LineId Id="92" Count="7" />
+      <LineId Id="91" Count="0" />
+      <LineId Id="118" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="130" Count="0" />
+      <LineId Id="129" Count="0" />
+      <LineId Id="131" Count="0" />
+      <LineId Id="140" Count="0" />
+      <LineId Id="134" Count="4" />
+      <LineId Id="132" Count="0" />
+      <LineId Id="141" Count="6" />
+      <LineId Id="149" Count="6" />
+      <LineId Id="133" Count="0" />
+    </LineIds>
+    <LineIds Name="prgAfterStationScan.actAnyWarningGlobal">
+      <LineId Id="1" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="148" Count="0" />
+      <LineId Id="224" Count="7" />
+      <LineId Id="184" Count="0" />
+      <LineId Id="194" Count="12" />
+      <LineId Id="232" Count="0" />
+      <LineId Id="235" Count="4" />
+      <LineId Id="234" Count="0" />
+      <LineId Id="233" Count="0" />
+      <LineId Id="208" Count="0" />
+      <LineId Id="211" Count="12" />
+      <LineId Id="241" Count="5" />
+      <LineId Id="240" Count="0" />
+      <LineId Id="210" Count="0" />
+      <LineId Id="120" Count="1" />
+      <LineId Id="124" Count="4" />
+      <LineId Id="123" Count="0" />
+      <LineId Id="247" Count="0" />
+      <LineId Id="39" Count="1" />
       <LineId Id="46" Count="0" />
       <LineId Id="48" Count="4" />
       <LineId Id="47" Count="0" />
