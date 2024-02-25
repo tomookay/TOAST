@@ -51,7 +51,7 @@ GlobalMessages.gMsgS1Stat.IsAlarm
                         <l2 n="OutputItems" cet="Operand">
                           <n />
                           <o>
-                            <v n="Operand">"GlobalMessages.gMsgS3Stat.IsAlarm"</v>
+                            <v n="Operand">"GlobalMessages.gMsgS5Stat.IsAlarm"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -67,7 +67,7 @@ GlobalMessages.gMsgS1Stat.IsAlarm
                             <v n="Id">282L</v>
                           </o>
                           <o>
-                            <v n="Operand">"GlobalMessages.gMsgS3Stat.numAlarm"</v>
+                            <v n="Operand">"GlobalMessages.gMsgS5Stat.numAlarm"</v>
                             <v n="Type">"UINT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -83,7 +83,7 @@ GlobalMessages.gMsgS1Stat.IsAlarm
                             <v n="Id">283L</v>
                           </o>
                           <o>
-                            <v n="Operand">"GlobalMessages.gMsgS3.Alarm.topMessage"</v>
+                            <v n="Operand">"GlobalMessages.gMsgS5.Alarm.topMessage"</v>
                             <v n="Type">"STRING(255)"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -99,7 +99,7 @@ GlobalMessages.gMsgS1Stat.IsAlarm
                             <v n="Id">284L</v>
                           </o>
                           <o>
-                            <v n="Operand">"GlobalMessages.gMsgS3.Alarm.allMessage"</v>
+                            <v n="Operand">"GlobalMessages.gMsgS5.Alarm.allMessage"</v>
                             <v n="Type">"STRING"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -115,8 +115,8 @@ GlobalMessages.gMsgS1Stat.IsAlarm
                             <v n="Id">292L</v>
                           </o>
                           <o>
-                            <v n="Operand">"GlobalMessages.gListMsgS3.AlarmViewMsg"</v>
-                            <v n="Type">"ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeMessageRow"</v>
+                            <v n="Operand">"GlobalMessages.gListMsgS5.AlarmViewMsg"</v>
+                            <v n="Type">"ARRAY [1..gHMIDataConst.gNumberOfMessagesScreen] OF typeMessageRow"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
                             <v n="Address">""</v>
@@ -189,7 +189,7 @@ GlobalMessages.gMsgS1Stat.IsAlarm
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
                             <v n="Operand">"gmsgTest.msgArrynull"</v>
-                            <v n="Type">"ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeNewMsg"</v>
+                            <v n="Type">"ARRAY [1..gHMIDataConst.gNumberOfMessagesScreen] OF typeNewMsg"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
                             <v n="Address">""</v>
@@ -208,7 +208,7 @@ GlobalMessages.gMsgS1Stat.IsAlarm
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
                             <v n="Operand">"gmsgTest.msgArryStylenull"</v>
-                            <v n="Type">"ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeNewMsgStyle"</v>
+                            <v n="Type">"ARRAY [1..gHMIDataConst.gNumberOfMessagesScreen] OF typeNewMsgStyle"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
                             <v n="Address">""</v>
@@ -340,7 +340,7 @@ GlobalMessages.gMsgS1Stat.IsAlarm
                           <v>UINT</v>
                           <v>STRING(255)</v>
                           <v>STRING</v>
-                          <v>ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeMessageRow</v>
+                          <v>ARRAY [1..gHMIDataConst.gNumberOfMessagesScreen] OF typeMessageRow</v>
                         </l2>
                       </o>
                       <v n="CallType" t="Operator">FunctionBlock</v>

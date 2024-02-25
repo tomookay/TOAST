@@ -50,7 +50,7 @@ END_VAR
                         <l2 n="OutputItems" cet="Operand">
                           <n />
                           <o>
-                            <v n="Operand">"GlobalMessages.gMsgS3Stat.IsPrompt"</v>
+                            <v n="Operand">"GlobalMessages.gMsgS5Stat.IsPrompt"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -66,7 +66,7 @@ END_VAR
                             <v n="Id">23L</v>
                           </o>
                           <o>
-                            <v n="Operand">"GlobalMessages.gMsgS3Stat.numPrompt"</v>
+                            <v n="Operand">"GlobalMessages.gMsgS5Stat.numPrompt"</v>
                             <v n="Type">"UINT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -82,7 +82,7 @@ END_VAR
                             <v n="Id">24L</v>
                           </o>
                           <o>
-                            <v n="Operand">"GlobalMessages.gMsgS3.Prompts.topMessage"</v>
+                            <v n="Operand">"GlobalMessages.gMsgS5.Prompts.topMessage"</v>
                             <v n="Type">"STRING(255)"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -98,7 +98,7 @@ END_VAR
                             <v n="Id">25L</v>
                           </o>
                           <o>
-                            <v n="Operand">"GlobalMessages.gMsgS3.Prompts.allMessage"</v>
+                            <v n="Operand">"GlobalMessages.gMsgS5.Prompts.allMessage"</v>
                             <v n="Type">"STRING"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -114,8 +114,8 @@ END_VAR
                             <v n="Id">35L</v>
                           </o>
                           <o>
-                            <v n="Operand">"GlobalMessages.gListMsgS3.PromptViewMsg"</v>
-                            <v n="Type">"ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeMessageRow"</v>
+                            <v n="Operand">"GlobalMessages.gListMsgS5.PromptViewMsg"</v>
+                            <v n="Type">"ARRAY [1..gHMIDataConst.gNumberOfMessagesScreen] OF typeMessageRow"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
                             <v n="Address">""</v>
@@ -188,7 +188,7 @@ END_VAR
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
                             <v n="Operand">"gmsgTest.msgArrynull"</v>
-                            <v n="Type">"ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeNewMsg"</v>
+                            <v n="Type">"ARRAY [1..gHMIDataConst.gNumberOfMessagesScreen] OF typeNewMsg"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
                             <v n="Address">""</v>
@@ -207,7 +207,7 @@ END_VAR
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
                             <v n="Operand">"gmsgTest.msgArryStylenull"</v>
-                            <v n="Type">"ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeNewMsgStyle"</v>
+                            <v n="Type">"ARRAY [1..gHMIDataConst.gNumberOfMessagesScreen] OF typeNewMsgStyle"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
                             <v n="Address">""</v>
@@ -339,7 +339,7 @@ END_VAR
                           <v>UINT</v>
                           <v>STRING(255)</v>
                           <v>STRING</v>
-                          <v>ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeMessageRow</v>
+                          <v>ARRAY [1..gHMIDataConst.gNumberOfMessagesScreen] OF typeMessageRow</v>
                         </l2>
                       </o>
                       <v n="CallType" t="Operator">FunctionBlock</v>

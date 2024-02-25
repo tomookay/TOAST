@@ -47,7 +47,7 @@ END_VAR
                         <l2 n="OutputItems" cet="Operand">
                           <n />
                           <o>
-                            <v n="Operand">"GlobalMessages.gMsgS3Stat.IsWarning"</v>
+                            <v n="Operand">"GlobalMessages.gMsgS4Stat.IsWarning"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -63,7 +63,7 @@ END_VAR
                             <v n="Id">21L</v>
                           </o>
                           <o>
-                            <v n="Operand">"GlobalMessages.gMsgS3Stat.numWarning"</v>
+                            <v n="Operand">"GlobalMessages.gMsgS4Stat.numWarning"</v>
                             <v n="Type">"UINT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -79,7 +79,7 @@ END_VAR
                             <v n="Id">22L</v>
                           </o>
                           <o>
-                            <v n="Operand">"GlobalMessages.gMsgS3.Warning.topMessage"</v>
+                            <v n="Operand">"GlobalMessages.gMsgS4.Warning.topMessage"</v>
                             <v n="Type">"STRING(255)"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -95,7 +95,7 @@ END_VAR
                             <v n="Id">23L</v>
                           </o>
                           <o>
-                            <v n="Operand">"GlobalMessages.gMsgS3.Warning.allMessage"</v>
+                            <v n="Operand">"GlobalMessages.gMsgS4.Warning.allMessage"</v>
                             <v n="Type">"STRING"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -111,8 +111,8 @@ END_VAR
                             <v n="Id">31L</v>
                           </o>
                           <o>
-                            <v n="Operand">"GlobalMessages.gListMsgS3.WarningViewMsg"</v>
-                            <v n="Type">"ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeMessageRow"</v>
+                            <v n="Operand">"GlobalMessages.gListMsgS4.WarningViewMsg"</v>
+                            <v n="Type">"ARRAY [1..gHMIDataConst.gNumberOfMessagesScreen] OF typeMessageRow"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
                             <v n="Address">""</v>
@@ -185,7 +185,7 @@ END_VAR
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
                             <v n="Operand">"gmsgTest.msgArrynull"</v>
-                            <v n="Type">"ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeNewMsg"</v>
+                            <v n="Type">"ARRAY [1..gHMIDataConst.gNumberOfMessagesScreen] OF typeNewMsg"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
                             <v n="Address">""</v>
@@ -204,7 +204,7 @@ END_VAR
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
                             <v n="Operand">"gmsgTest.msgArryStylenull"</v>
-                            <v n="Type">"ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeNewMsgStyle"</v>
+                            <v n="Type">"ARRAY [1..gHMIDataConst.gNumberOfMessagesScreen] OF typeNewMsgStyle"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
                             <v n="Address">""</v>
@@ -223,7 +223,7 @@ END_VAR
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
                             <v n="Operand">"gmsgTest.msgWasChangednull"</v>
-                            <v n="Type">"BOOL[REF]"</v>
+                            <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
                             <v n="Address">""</v>
@@ -336,7 +336,7 @@ END_VAR
                           <v>UINT</v>
                           <v>STRING(255)</v>
                           <v>STRING</v>
-                          <v>ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeMessageRow</v>
+                          <v>ARRAY [1..gHMIDataConst.gNumberOfMessagesScreen] OF typeMessageRow</v>
                         </l2>
                       </o>
                       <v n="CallType" t="Operator">FunctionBlock</v>
