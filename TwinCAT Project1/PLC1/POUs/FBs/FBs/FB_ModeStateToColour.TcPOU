@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_ModeStateToColour" Id="{7bb523b7-3f37-40a3-a2e4-99638f172644}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_ModeStateToColour
+VAR_INPUT
+	iModeState:INT;
+END_VAR
+VAR
+END_VAR
+
+VAR_OUTPUT
+	qBackColour:DWORD;
+	qTextColour:DWORD;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//theme:V5e09AHRtmc
+
+//converts mode state as integer to colour as DWORD
+CASE iModeState OF
+	//0 = No State
+	0:
+	qBackColour := HMIColour.colourWhite;
+	qTextColour	:= HMIColour.colourBlack;
+	
+	//1 = Power OFF	
+	1:
+	qBackColour := HMIColour.colourWhite;
+	qTextColour	:= HMIColour.colourBlack;
+	
+	//2 = Power ON
+	2:
+	qBackColour := HMIColour.colourBlue;
+	qTextColour	:= HMIColour.colourWhite;
+	
+	//3 = ManualMode
+	3:
+	qBackColour := HMIColour.colourBlue;
+	qTextColour	:= HMIColour.colourWhite;
+	
+	//4 = AutoMode
+	4:
+	qBackColour := HMIColour.colourBlue;
+	qTextColour	:= HMIColour.colourWhite;
+	
+	//5 = AutoCycling
+	5:
+	qBackColour := HMIColour.colourGreen;
+	qTextColour	:= HMIColour.colourBlack;
+	
+	//6 = SemiAuto
+	6:
+	qBackColour := HMIColour.colourBlue;
+	qTextColour	:= HMIColour.colourWhite;
+	
+	//7 = Fault
+	7:
+	qBackColour := HMIColour.colourRed;
+	qTextColour	:= HMIColour.colourWhite;
+	
+	//8 = Bypass
+	8:
+	qBackColour := HMIColour.colourBlue;
+	qTextColour	:= HMIColour.colourWhite;
+	
+	//9 = AutoCycleStopping
+	9:
+	qBackColour := HMIColour.colourGreen;
+	qTextColour	:= HMIColour.colourBlack;
+	
+	//10 = Dry Cycle
+	10:
+	qBackColour := HMIColour.colourYellow;
+	qTextColour	:= HMIColour.colourBlack;
+	
+	//11> = spare
+	11..32767:
+	qBackColour := HMIColour.colourWhite;
+	qTextColour	:= HMIColour.colourBlack;
+END_CASE]]></ST>
+    </Implementation>
+    <LineIds Name="FB_ModeStateToColour">
+      <LineId Id="99" Count="0" />
+      <LineId Id="102" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="62" Count="1" />
+      <LineId Id="75" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="76" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="79" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="28" Count="1" />
+      <LineId Id="81" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="77" Count="0" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="82" Count="0" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="83" Count="0" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="45" Count="1" />
+      <LineId Id="84" Count="0" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="49" Count="1" />
+      <LineId Id="85" Count="0" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="53" Count="1" />
+      <LineId Id="86" Count="0" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="57" Count="1" />
+      <LineId Id="78" Count="0" />
+      <LineId Id="11" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
