@@ -826,7 +826,7 @@ END_IF
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
                               <v n="Operand">"adr(qMsgRows)"</v>
-                              <v n="Type">"POINTER TO ARRAY [1..gHMIDataConst.gNumberOfMessagesScreen] OF typeMessageRow"</v>
+                              <v n="Type">"POINTER TO ARRAY [1..gHMIDataConsts.gNumberOfMessagesScreen] OF typeMessageRow"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
                               <v n="Address">""</v>
@@ -995,7 +995,7 @@ END_IF
                           <o>
                             <o n="Operand" t="Operand">
                               <v n="Operand">"adr(qSpecialMsgRows)"</v>
-                              <v n="Type">"POINTER TO ARRAY [1..gHMIDataConst.gNumberOfMessagesScreen] OF typeNewMsg"</v>
+                              <v n="Type">"POINTER TO ARRAY [1..gHMIDataConsts.gNumberOfMessagesScreen] OF typeNewMsg"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
                               <v n="Address">""</v>
@@ -1164,7 +1164,7 @@ END_IF
                           <o>
                             <o n="Operand" t="Operand">
                               <v n="Operand">"adr(qSpecialMsgRowsStyle)"</v>
-                              <v n="Type">"POINTER TO ARRAY [1..gHMIDataConst.gNumberOfMessagesScreen] OF typeNewMsgStyle"</v>
+                              <v n="Type">"POINTER TO ARRAY [1..gHMIDataConsts.gNumberOfMessagesScreen] OF typeNewMsgStyle"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
                               <v n="Address">""</v>
@@ -1409,7 +1409,8 @@ END_IF
       <Implementation>
         <ST><![CDATA[
 //clear down warning messages after last alarm message
-FOR j:= tWarnOffset + 1 TO GlobalMessages.gNumMessagesPerType DO
+//FOR j:= tWarnOffset + 1 TO GlobalMessages.gNumMessagesPerType DO
+FOR j:= tWarnOffset + 1 TO UINT_TO_INT(gHMIDataConst.gNumberOfMessagesScreen) DO
  qSpecialMsgRowsStyle[j].colourToApply := HMIColour.colourGreyBackground;
  qSpecialMsgRowsStyle[j].isColoured := FALSE;
  qSpecialMsgRows[j].text := '';
@@ -1819,24 +1820,11 @@ as the warning are written below the alarms"</v>
       </XmlArchive>
     </ObjectProperties>
     <LineIds Name="FB_CheckMessageBounds">
-      <LineId Id="3" Count="112" />
-      <LineId Id="315" Count="0" />
-      <LineId Id="122" Count="12" />
-      <LineId Id="323" Count="0" />
-      <LineId Id="135" Count="0" />
-      <LineId Id="324" Count="2" />
-      <LineId Id="136" Count="39" />
-      <LineId Id="317" Count="3" />
-      <LineId Id="322" Count="0" />
-      <LineId Id="321" Count="0" />
-      <LineId Id="316" Count="0" />
-      <LineId Id="177" Count="34" />
-      <LineId Id="306" Count="2" />
-      <LineId Id="212" Count="22" />
+      <LineId Id="3" Count="239" />
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="FB_CheckMessageBounds.actClearDownExcessWarn">
-      <LineId Id="2" Count="7" />
+      <LineId Id="2" Count="8" />
       <LineId Id="1" Count="0" />
     </LineIds>
   </POU>
