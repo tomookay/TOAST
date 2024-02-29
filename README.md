@@ -8,5 +8,5 @@ Example show for gantry loaded drill press with RFID, clamps, cutting coolant pu
 
 global mode screen 
 
-![image](https://github.com/tomookay/transline2003/assets/144595622/42555ea0-b179-4c69-ae3f-4887a8cd8c53)
+![image](https://github.com/tomookay/transline2003/assets/144595622/2e1b651d-b452-46de-82bd-31caf1bda969)
 
