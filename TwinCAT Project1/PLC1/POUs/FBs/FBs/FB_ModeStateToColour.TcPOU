@@ -55,8 +55,15 @@ CASE iModeState OF
 	
 	//7 = Fault
 	7:
+	
+	//flashing action
+	IF System.OneSecond THEN
 	qBackColour := HMIColour.colourRed;
-	qTextColour	:= HMIColour.colourWhite;
+	qTextColour	:= HMIColour.colourBlack;
+	ELSE
+	qBackColour := HMIColour.colourBlue;
+	qTextColour	:= HMIColour.colourBlack;
+	END_IF
 	
 	//8 = Bypass
 	8:
@@ -119,8 +126,12 @@ END_CASE]]></ST>
       <LineId Id="39" Count="0" />
       <LineId Id="38" Count="0" />
       <LineId Id="41" Count="0" />
+      <LineId Id="114" Count="2" />
       <LineId Id="40" Count="0" />
       <LineId Id="83" Count="0" />
+      <LineId Id="117" Count="1" />
+      <LineId Id="120" Count="0" />
+      <LineId Id="119" Count="0" />
       <LineId Id="43" Count="0" />
       <LineId Id="42" Count="0" />
       <LineId Id="45" Count="1" />
