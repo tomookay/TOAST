@@ -112,7 +112,7 @@ END_VAR
                           </o>
                           <o>
                             <v n="Operand">"GlobalMessages.gListMsgS3.WarningViewMsg"</v>
-                            <v n="Type">"ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeMessageRow"</v>
+                            <v n="Type">"ARRAY [1..gHMIDataConst.gNumberOfMessagesScreen] OF typeMessageRow"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
                             <v n="Address">""</v>
@@ -184,8 +184,8 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"gmsgTest.msgArrynull"</v>
-                            <v n="Type">"ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeNewMsg"</v>
+                            <v n="Operand">"GlobalMessages.gS3AlarmView.msgArry"</v>
+                            <v n="Type">"ARRAY [1..gHMIDataConst.gNumberOfMessagesScreen] OF typeNewMsg"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
                             <v n="Address">""</v>
@@ -203,8 +203,8 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"gmsgTest.msgArryStylenull"</v>
-                            <v n="Type">"ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeNewMsgStyle"</v>
+                            <v n="Operand">"GlobalMessages.gS3AlarmView.msgArryStyle"</v>
+                            <v n="Type">"ARRAY [1..gHMIDataConst.gNumberOfMessagesScreen] OF typeNewMsgStyle"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
                             <v n="Address">""</v>
@@ -222,8 +222,8 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"gmsgTest.msgWasChangednull"</v>
-                            <v n="Type">"BOOL[REF]"</v>
+                            <v n="Operand">"GlobalMessages.gMsgS3.msgWasChanged"</v>
+                            <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
                             <v n="Address">""</v>
@@ -336,7 +336,7 @@ END_VAR
                           <v>UINT</v>
                           <v>STRING(255)</v>
                           <v>STRING</v>
-                          <v>ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeMessageRow</v>
+                          <v>ARRAY [1..gHMIDataConst.gNumberOfMessagesScreen] OF typeMessageRow</v>
                         </l2>
                       </o>
                       <v n="CallType" t="Operator">FunctionBlock</v>

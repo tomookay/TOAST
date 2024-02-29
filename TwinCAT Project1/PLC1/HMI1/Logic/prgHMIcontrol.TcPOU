@@ -956,36 +956,61 @@ IF gHMIData.gStationSelected[1] THEN
 	retvalll := MEMCPY(	destAddr:=	ADR(	gHMIData.gAlarmViewMsg), 
 						srcAddr:=	ADR(	GlobalMessages.gListMsgS1), 
 						n:=			SIZEOF(	GlobalMessages.gListMsgS1));
+						
+	retvalll := MEMCPY(	destAddr:=	ADR(	GlobalMessages.gHMIAlarmView), 
+						srcAddr:=	ADR(	GlobalMessages.gS1AlarmView), 
+						n:=			SIZEOF(	GlobalMessages.gS1AlarmView));
 END_IF
 
 IF gHMIData.gStationSelected[2] THEN
 	retvalll := MEMCPY(	destAddr:=	ADR(	gHMIData.gAlarmViewMsg), 
 						srcAddr:=	ADR(	GlobalMessages.gListMsgS2), 
 						n:=			SIZEOF(	GlobalMessages.gListMsgS2));
+						
+	retvalll := MEMCPY(	destAddr:=	ADR(	GlobalMessages.gHMIAlarmView), 
+						srcAddr:=	ADR(	GlobalMessages.gS2AlarmView), 
+						n:=			SIZEOF(	GlobalMessages.gS2AlarmView));
 END_IF
 
 IF gHMIData.gStationSelected[3] THEN
 	retvalll := MEMCPY(	destAddr:=	ADR(	gHMIData.gAlarmViewMsg), 
 						srcAddr:=	ADR(	GlobalMessages.gListMsgS3), 
 						n:=			SIZEOF(	GlobalMessages.gListMsgS3));
+
+	retvalll := MEMCPY(	destAddr:=	ADR(	GlobalMessages.gHMIAlarmView), 
+						srcAddr:=	ADR(	GlobalMessages.gS3AlarmView), 
+						n:=			SIZEOF(	GlobalMessages.gS3AlarmView));
 END_IF
 
 IF gHMIData.gStationSelected[4] THEN
 	retvalll := MEMCPY(	destAddr:=	ADR(	gHMIData.gAlarmViewMsg), 
 						srcAddr:=	ADR(	GlobalMessages.gListMsgS4), 
 						n:=			SIZEOF(	GlobalMessages.gListMsgS4));
+
+	retvalll := MEMCPY(	destAddr:=	ADR(	GlobalMessages.gHMIAlarmView), 
+						srcAddr:=	ADR(	GlobalMessages.gS4AlarmView), 
+						n:=			SIZEOF(	GlobalMessages.gS4AlarmView));
 END_IF
 
 IF gHMIData.gStationSelected[5] THEN
 	retvalll := MEMCPY(	destAddr:=	ADR(	gHMIData.gAlarmViewMsg), 
 						srcAddr:=	ADR(	GlobalMessages.gListMsgS5), 
 						n:=			SIZEOF(	GlobalMessages.gListMsgS5));
+
+	retvalll := MEMCPY(	destAddr:=	ADR(	GlobalMessages.gHMIAlarmView), 
+						srcAddr:=	ADR(	GlobalMessages.gS5AlarmView), 
+						n:=			SIZEOF(	GlobalMessages.gS6AlarmView));
+
 END_IF
 
 IF gHMIData.gStationSelected[6] THEN
 	retvalll := MEMCPY(	destAddr:=	ADR(	gHMIData.gAlarmViewMsg), 
 						srcAddr:=	ADR(	GlobalMessages.gListMsgS6), 
 						n:=			SIZEOF(	GlobalMessages.gListMsgS6));
+
+	retvalll := MEMCPY(	destAddr:=	ADR(	GlobalMessages.gHMIAlarmView), 
+						srcAddr:=	ADR(	GlobalMessages.gS6AlarmView), 
+						n:=			SIZEOF(	GlobalMessages.gS6AlarmView));
 END_IF
 
 ]]></ST>
@@ -1567,16 +1592,35 @@ END_IF
       <LineId Id="2" Count="0" />
       <LineId Id="8" Count="0" />
       <LineId Id="11" Count="1" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="55" Count="1" />
+      <LineId Id="54" Count="0" />
       <LineId Id="5" Count="0" />
       <LineId Id="17" Count="4" />
+      <LineId Id="57" Count="0" />
+      <LineId Id="59" Count="1" />
+      <LineId Id="58" Count="0" />
       <LineId Id="16" Count="0" />
       <LineId Id="23" Count="4" />
+      <LineId Id="62" Count="0" />
+      <LineId Id="64" Count="1" />
+      <LineId Id="63" Count="0" />
       <LineId Id="22" Count="0" />
       <LineId Id="29" Count="4" />
+      <LineId Id="66" Count="0" />
+      <LineId Id="68" Count="1" />
+      <LineId Id="67" Count="0" />
       <LineId Id="28" Count="0" />
       <LineId Id="35" Count="4" />
+      <LineId Id="76" Count="0" />
+      <LineId Id="72" Count="1" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="75" Count="0" />
       <LineId Id="34" Count="0" />
       <LineId Id="41" Count="4" />
+      <LineId Id="77" Count="0" />
+      <LineId Id="79" Count="1" />
+      <LineId Id="78" Count="0" />
       <LineId Id="40" Count="0" />
       <LineId Id="47" Count="0" />
       <LineId Id="46" Count="0" />

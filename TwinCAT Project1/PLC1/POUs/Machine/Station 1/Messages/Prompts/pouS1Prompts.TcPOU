@@ -115,7 +115,7 @@ END_VAR
                           </o>
                           <o>
                             <v n="Operand">"GlobalMessages.gListMsgS1.PromptViewMsg"</v>
-                            <v n="Type">"ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeMessageRow"</v>
+                            <v n="Type">"ARRAY [1..gHMIDataConst.gNumberOfMessagesScreen] OF typeMessageRow"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
                             <v n="Address">""</v>
@@ -187,8 +187,8 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"gmsgTest.msgArrynull"</v>
-                            <v n="Type">"ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeNewMsg"</v>
+                            <v n="Operand">"gMsgView.msgArrynull"</v>
+                            <v n="Type">"ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeNewMsg[REF]"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
                             <v n="Address">""</v>
@@ -206,8 +206,8 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"gmsgTest.msgArryStylenull"</v>
-                            <v n="Type">"ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeNewMsgStyle"</v>
+                            <v n="Operand">"gMsgView.msgArryStylenull"</v>
+                            <v n="Type">"ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeNewMsgStyle[REF]"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
                             <v n="Address">""</v>
@@ -225,7 +225,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"gmsgTest.msgWasChangednull"</v>
+                            <v n="Operand">"gMsgView.msgWasChangednull"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -339,7 +339,7 @@ END_VAR
                           <v>UINT</v>
                           <v>STRING(255)</v>
                           <v>STRING</v>
-                          <v>ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeMessageRow</v>
+                          <v>ARRAY [1..gHMIDataConst.gNumberOfMessagesScreen] OF typeMessageRow</v>
                         </l2>
                       </o>
                       <v n="CallType" t="Operator">FunctionBlock</v>

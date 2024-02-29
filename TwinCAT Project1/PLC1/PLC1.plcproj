@@ -151,6 +151,9 @@
     <ProjectVersion>0.0.1</ProjectVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DUTs\Message\typeAlarmViewStation.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="DUTs\Message\typeMessage.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -501,15 +504,16 @@
     <Compile Include="HMI1\types\typeStationEnables.TcDUT">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="msg test\gmsgTest.TcGVL">
+    <Compile Include="msg test\gMsgView.TcGVL">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="msg test\SS_12_AlarmsTests.TcVIS">
+    <Compile Include="msg test\SS_12_AlarmsView.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
     <Compile Include="msg test\structEventViewMsg.TcDUT">
       <SubType>Code</SubType>
+      <ExcludeFromBuild>true</ExcludeFromBuild>
     </Compile>
     <Compile Include="msg test\typeNewMsg.TcDUT">
       <SubType>Code</SubType>

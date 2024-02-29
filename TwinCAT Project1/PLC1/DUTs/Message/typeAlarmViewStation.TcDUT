@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="typeAlarmViewStation" Id="{b4c5a0cc-b8c6-4be5-a8a9-509622a0acc5}">
+    <Declaration><![CDATA[//theme:r-wlcUg13s0
+TYPE typeAlarmViewStation :
+STRUCT
+	//alarm view of messages in alarmview form
+	msgArry: ARRAY[1..gHMIDataConst.gNumberOfMessagesScreen] OF typeNewMsg;
+	msgArryStyle: ARRAY[1..gHMIDataConst.gNumberOfMessagesScreen] OF typeNewMsgStyle;
+	msgHeader:typeNewMsgHeader;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
