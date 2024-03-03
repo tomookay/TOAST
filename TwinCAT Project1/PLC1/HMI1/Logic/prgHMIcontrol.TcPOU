@@ -999,7 +999,7 @@ IF gHMIData.gStationSelected[5] THEN
 
 	retvalll := MEMCPY(	destAddr:=	ADR(	GlobalMessages.gHMIAlarmView), 
 						srcAddr:=	ADR(	GlobalMessages.gS5AlarmView), 
-						n:=			SIZEOF(	GlobalMessages.gS6AlarmView));
+						n:=			SIZEOF(	GlobalMessages.gS5AlarmView));
 
 END_IF
 
@@ -1532,10 +1532,10 @@ END_IF
     </Action>
     <Action Name="actPartStatus" Id="{cab25dde-a4a3-4552-af6a-583c332d34bc}">
       <Implementation>
-        <ST><![CDATA[
+        <ST><![CDATA[//may not need any of this, as the part data is moved to mc_global.part in each part process call
 //move station data into global data area for viewing
 IF gHMIData.gStationSelected[1] THEN
-	retval := memcpy(	destAddr:=	ADR(gHMIData.gAlarmViewMsg),
+	retval := memcpy(	destAddr:=	ADR(Mc_Global.part),
 						srcAddr:=	ADR(S1_Global.part),
 						n:=			SIZEOF(S1_Global.part)
 						);
@@ -1543,7 +1543,7 @@ END_IF
 
 //move station data into global data area for viewing
 IF gHMIData.gStationSelected[2] THEN
-	retval := memcpy(	destAddr:=	ADR(gHMIData.gAlarmViewMsg),
+	retval := memcpy(	destAddr:=	ADR(Mc_Global.part),
 						srcAddr:=	ADR(S2_Global.part),
 						n:=			SIZEOF(S2_Global.part)
 						);
@@ -1551,7 +1551,7 @@ END_IF
 
 //move station data into global data area for viewing
 IF gHMIData.gStationSelected[3] THEN
-	retval := memcpy(	destAddr:=	ADR(gHMIData.gAlarmViewMsg),
+	retval := memcpy(	destAddr:=	ADR(Mc_Global.part),
 						srcAddr:=	ADR(S3_Global.part),
 						n:=			SIZEOF(S3_Global.part)
 						);
@@ -1559,7 +1559,7 @@ END_IF
 
 //move station data into global data area for viewing
 IF gHMIData.gStationSelected[4] THEN
-	retval := memcpy(	destAddr:=	ADR(gHMIData.gAlarmViewMsg),
+	retval := memcpy(	destAddr:=	ADR(Mc_Global.part),
 						srcAddr:=	ADR(S4_Global.part),
 						n:=			SIZEOF(S4_Global.part)
 						);
@@ -1567,7 +1567,7 @@ END_IF
 
 //move station data into global data area for viewing
 IF gHMIData.gStationSelected[5] THEN
-	retval := memcpy(	destAddr:=	ADR(gHMIData.gAlarmViewMsg),
+	retval := memcpy(	destAddr:=	ADR(Mc_Global.part),
 						srcAddr:=	ADR(S5_Global.part),
 						n:=			SIZEOF(S5_Global.part)
 						);
@@ -1575,7 +1575,7 @@ END_IF
 
 //move station data into global data area for viewing
 IF gHMIData.gStationSelected[6] THEN
-	retval := memcpy(	destAddr:=	ADR(gHMIData.gAlarmViewMsg),
+	retval := memcpy(	destAddr:=	ADR(Mc_Global.part),
 						srcAddr:=	ADR(S6_Global.part),
 						n:=			SIZEOF(S6_Global.part)
 						);
