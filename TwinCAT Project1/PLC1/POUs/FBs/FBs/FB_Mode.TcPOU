@@ -830,25 +830,6 @@ END_VAR
                                       </o>
                                       <o>
                                         <o n="Operand" t="Operand">
-                                          <v n="Operand">"iSemiAutoMode"</v>
-                                          <v n="Type">"BOOL"</v>
-                                          <v n="Comment">""</v>
-                                          <v n="SymbolComment">""</v>
-                                          <v n="Address">""</v>
-                                          <o n="Flags" t="Flags">
-                                            <v n="Flags">0</v>
-                                            <v n="Fixed">true</v>
-                                            <v n="Extensible">false</v>
-                                          </o>
-                                          <v n="LValue">false</v>
-                                          <v n="Boolean">true</v>
-                                          <v n="IsInstance">false</v>
-                                          <v n="Id">903L</v>
-                                        </o>
-                                        <v n="Id">902L</v>
-                                      </o>
-                                      <o>
-                                        <o n="Operand" t="Operand">
                                           <v n="Operand">"iAutoMode"</v>
                                           <v n="Type">"BOOL"</v>
                                           <v n="Comment">""</v>
@@ -865,6 +846,25 @@ END_VAR
                                           <v n="Id">905L</v>
                                         </o>
                                         <v n="Id">904L</v>
+                                      </o>
+                                      <o>
+                                        <o n="Operand" t="Operand">
+                                          <v n="Operand">"iSemiAutoMode"</v>
+                                          <v n="Type">"BOOL"</v>
+                                          <v n="Comment">""</v>
+                                          <v n="SymbolComment">""</v>
+                                          <v n="Address">""</v>
+                                          <o n="Flags" t="Flags">
+                                            <v n="Flags">0</v>
+                                            <v n="Fixed">true</v>
+                                            <v n="Extensible">false</v>
+                                          </o>
+                                          <v n="LValue">false</v>
+                                          <v n="Boolean">true</v>
+                                          <v n="IsInstance">false</v>
+                                          <v n="Id">1560L</v>
+                                        </o>
+                                        <v n="Id">1559L</v>
                                       </o>
                                     </l2>
                                     <o n="InputParam" t="ParamList">
@@ -3959,8 +3959,8 @@ END_VAR
                                       <v n="Extensible">false</v>
                                     </o>
                                     <n n="InputFlags" />
-                                    <l2 n="InputItems" cet="BoxTreeOperand">
-                                      <o>
+                                    <l2 n="InputItems">
+                                      <o t="BoxTreeOperand">
                                         <o n="Operand" t="Operand">
                                           <v n="Operand">"iManualMode"</v>
                                           <v n="Type">"BOOL"</v>
@@ -3979,7 +3979,7 @@ END_VAR
                                         </o>
                                         <v n="Id">332L</v>
                                       </o>
-                                      <o>
+                                      <o t="BoxTreeOperand">
                                         <o n="Operand" t="Operand">
                                           <v n="Operand">"iAutoMode"</v>
                                           <v n="Type">"BOOL"</v>
@@ -3994,28 +3994,92 @@ END_VAR
                                           <v n="LValue">false</v>
                                           <v n="Boolean">true</v>
                                           <v n="IsInstance">false</v>
-                                          <v n="Id">815L</v>
+                                          <v n="Id">1568L</v>
                                         </o>
-                                        <v n="Id">814L</v>
+                                        <v n="Id">1567L</v>
                                       </o>
-                                      <o>
-                                        <o n="Operand" t="Operand">
-                                          <v n="Operand">"iStartAutoCycle"</v>
-                                          <v n="Type">"BOOL"</v>
+                                      <o t="BoxTreeBox">
+                                        <v n="BoxType">"AND"</v>
+                                        <o n="Instance" t="Operand">
+                                          <n n="Operand" />
+                                          <v n="Type">""</v>
                                           <v n="Comment">""</v>
                                           <v n="SymbolComment">""</v>
                                           <v n="Address">""</v>
                                           <o n="Flags" t="Flags">
                                             <v n="Flags">0</v>
-                                            <v n="Fixed">true</v>
+                                            <v n="Fixed">false</v>
                                             <v n="Extensible">false</v>
                                           </o>
                                           <v n="LValue">false</v>
-                                          <v n="Boolean">true</v>
-                                          <v n="IsInstance">false</v>
-                                          <v n="Id">817L</v>
+                                          <v n="Boolean">false</v>
+                                          <v n="IsInstance">true</v>
+                                          <v n="Id">1573L</v>
                                         </o>
-                                        <v n="Id">816L</v>
+                                        <o n="OutputItems" t="OutputItemList">
+                                          <l2 n="OutputItems" />
+                                        </o>
+                                        <o n="Flags" t="Flags">
+                                          <v n="Flags">0</v>
+                                          <v n="Fixed">false</v>
+                                          <v n="Extensible">false</v>
+                                        </o>
+                                        <n n="InputFlags" />
+                                        <l2 n="InputItems" cet="BoxTreeOperand">
+                                          <o>
+                                            <o n="Operand" t="Operand">
+                                              <v n="Operand">"iAutoMode"</v>
+                                              <v n="Type">"BOOL"</v>
+                                              <v n="Comment">""</v>
+                                              <v n="SymbolComment">""</v>
+                                              <v n="Address">""</v>
+                                              <o n="Flags" t="Flags">
+                                                <v n="Flags">0</v>
+                                                <v n="Fixed">true</v>
+                                                <v n="Extensible">false</v>
+                                              </o>
+                                              <v n="LValue">false</v>
+                                              <v n="Boolean">true</v>
+                                              <v n="IsInstance">false</v>
+                                              <v n="Id">1576L</v>
+                                            </o>
+                                            <v n="Id">1575L</v>
+                                          </o>
+                                          <o>
+                                            <o n="Operand" t="Operand">
+                                              <v n="Operand">"iStartAutoCycle"</v>
+                                              <v n="Type">"BOOL"</v>
+                                              <v n="Comment">""</v>
+                                              <v n="SymbolComment">""</v>
+                                              <v n="Address">""</v>
+                                              <o n="Flags" t="Flags">
+                                                <v n="Flags">0</v>
+                                                <v n="Fixed">true</v>
+                                                <v n="Extensible">false</v>
+                                              </o>
+                                              <v n="LValue">false</v>
+                                              <v n="Boolean">true</v>
+                                              <v n="IsInstance">false</v>
+                                              <v n="Id">1572L</v>
+                                            </o>
+                                            <v n="Id">1571L</v>
+                                          </o>
+                                        </l2>
+                                        <o n="InputParam" t="ParamList">
+                                          <l2 n="Names" />
+                                          <l2 n="Types" />
+                                        </o>
+                                        <o n="OutputParam" t="ParamList">
+                                          <l2 n="Names" />
+                                          <l2 n="Types" />
+                                        </o>
+                                        <v n="CallType" t="Operator">And</v>
+                                        <n n="EN" />
+                                        <n n="ENO" />
+                                        <n n="STSnippet" />
+                                        <v n="ContainsExtensibleInputs">false</v>
+                                        <v n="ProvidesSTSnippet">false</v>
+                                        <v n="Id">1574L</v>
                                       </o>
                                     </l2>
                                     <o n="InputParam" t="ParamList">
@@ -7525,7 +7589,7 @@ END_VAR
                       <v n="BoxType">"FB_ModeStateToColour"</v>
                       <o n="Instance" t="Operand">
                         <v n="Operand">"ModeColourConv"</v>
-                        <v n="Type">"FC_ModeStateToColour"</v>
+                        <v n="Type">"FB_ModeStateToColour"</v>
                         <v n="Comment">""</v>
                         <v n="SymbolComment">""</v>
                         <v n="Address">""</v>
