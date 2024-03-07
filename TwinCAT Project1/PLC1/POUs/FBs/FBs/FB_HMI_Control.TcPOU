@@ -129,10 +129,11 @@ IF iConfig.5	THEN MotionRowLocation.Advance.bHideTime		:= TRUE; END_IF
 IF iConfig.6	THEN MotionRowLocation.Returned.bHideButton		:= TRUE; END_IF
 IF iConfig.7	THEN MotionRowLocation.Returned.bHideCoil		:= TRUE; END_IF
 IF iConfig.8	THEN MotionRowLocation.Returned.bHideDepth		:= TRUE; END_IF
-IF iConfig.9	THEN MotionRowLocation.Advance.bHideButton		:= TRUE; END_IF
-IF iConfig.10	THEN MotionRowLocation.Returned.bHideInterlock	:= TRUE; END_IF
-IF iConfig.11	THEN MotionRowLocation.Returned.bHidePrompt		:= TRUE; END_IF
-IF iConfig.12	THEN MotionRowLocation.Returned.bHideTime		:= TRUE; END_IF
+IF iConfig.9	THEN MotionRowLocation.Returned.bHideInterlock	:= TRUE; END_IF
+IF iConfig.10	THEN MotionRowLocation.Returned.bHidePrompt		:= TRUE; END_IF
+IF iConfig.11	THEN MotionRowLocation.Returned.bHideTime		:= TRUE; END_IF
+IF iConfig.12	THEN MotionRowLocation.bHidePosn				:= TRUE; END_IF
+IF iConfig.13	THEN MotionRowLocation.bHideName				:= TRUE; END_IF
 
 
 //advance number of order
@@ -233,6 +234,7 @@ END_IF
       <LineId Id="195" Count="5" />
       <LineId Id="204" Count="2" />
       <LineId Id="208" Count="2" />
+      <LineId Id="272" Count="0" />
       <LineId Id="212" Count="1" />
       <LineId Id="207" Count="0" />
       <LineId Id="187" Count="0" />
