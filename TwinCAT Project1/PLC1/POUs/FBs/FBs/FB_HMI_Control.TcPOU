@@ -3044,6 +3044,84 @@ n= number of messages per row"</v>
                   <l2 n="Connectors" />
                   <v n="Id">686L</v>
                 </o>
+                <o>
+                  <v n="ILActive">false</v>
+                  <v n="FBDValid">false</v>
+                  <v n="ILValid">false</v>
+                  <l2 n="ILLines" />
+                  <v n="Comment">""</v>
+                  <v n="Title">""</v>
+                  <v n="Label">""</v>
+                  <v n="OutCommented">false</v>
+                  <l2 n="NetworkItems" cet="BoxTreeBox">
+                    <o>
+                      <v n="BoxType">"actAdvColour"</v>
+                      <o n="Instance" t="Operand">
+                        <n n="Operand" />
+                        <v n="Type">""</v>
+                        <v n="Comment">""</v>
+                        <v n="SymbolComment">""</v>
+                        <v n="Address">""</v>
+                        <o n="Flags" t="Flags">
+                          <v n="Flags">0</v>
+                          <v n="Fixed">false</v>
+                          <v n="Extensible">false</v>
+                        </o>
+                        <v n="LValue">false</v>
+                        <v n="Boolean">false</v>
+                        <v n="IsInstance">true</v>
+                        <v n="Id">911L</v>
+                      </o>
+                      <o n="OutputItems" t="OutputItemList">
+                        <l2 n="OutputItems">
+                          <n />
+                        </l2>
+                      </o>
+                      <o n="Flags" t="Flags">
+                        <v n="Flags">0</v>
+                        <v n="Fixed">true</v>
+                        <v n="Extensible">false</v>
+                      </o>
+                      <n n="InputFlags" />
+                      <l2 n="InputItems" cet="BoxTreeTerminator">
+                        <o>
+                          <n n="Input" />
+                          <o n="Flags" t="Flags">
+                            <v n="Flags">0</v>
+                            <v n="Fixed">false</v>
+                            <v n="Extensible">false</v>
+                          </o>
+                          <v n="Id">913L</v>
+                        </o>
+                      </l2>
+                      <o n="InputParam" t="ParamList">
+                        <l2 n="Names" cet="String">
+                          <v>EN</v>
+                        </l2>
+                        <l2 n="Types" cet="String">
+                          <v>BOOL</v>
+                        </l2>
+                      </o>
+                      <o n="OutputParam" t="ParamList">
+                        <l2 n="Names" cet="String">
+                          <v>ENO</v>
+                        </l2>
+                        <l2 n="Types" cet="String">
+                          <v>BOOL</v>
+                        </l2>
+                      </o>
+                      <v n="CallType" t="Operator">Action</v>
+                      <v n="EN">true</v>
+                      <v n="ENO">true</v>
+                      <n n="STSnippet" />
+                      <v n="ContainsExtensibleInputs">false</v>
+                      <v n="ProvidesSTSnippet">false</v>
+                      <v n="Id">912L</v>
+                    </o>
+                  </l2>
+                  <l2 n="Connectors" />
+                  <v n="Id">895L</v>
+                </o>
               </l2>
               <v n="BranchCounter">0</v>
               <v n="ValidIds">true</v>
@@ -3069,6 +3147,37 @@ n= number of messages per row"</v>
         </XmlArchive>
       </NWL>
     </Implementation>
+    <Action Name="actAdvColour" Id="{484f7e2c-2cbc-4df8-87fe-04c88cb0fd5e}">
+      <Implementation>
+        <ST><![CDATA[
+IF qAdvanceReq THEN
+	MotionRowLocation.Advance.CoilColour := HMIColour.colourGreen;
+	ELSE
+	MotionRowLocation.Advance.CoilColour:= HMIColour.colourGreyBackground;
+END_IF
+
+IF qReturnReq THEN
+	MotionRowLocation.Returned.CoilColour := HMIColour.colourYellow;
+	ELSE
+	MotionRowLocation.Returned.CoilColour:= HMIColour.colourGreyBackground;
+END_IF
+
+
+
+
+IF iAdvanceLimit THEN
+	MotionRowLocation.Advance.FdbkColour := HMIColour.colourGreen;
+	ELSE
+	MotionRowLocation.Advance.FdbkColour:= HMIColour.colourGreyBackground;
+END_IF
+
+IF iReturnLimit THEN
+	MotionRowLocation.Returned.FdbkColour := HMIColour.colourYellow;
+	ELSE
+	MotionRowLocation.Returned.FdbkColour:= HMIColour.colourGreyBackground;
+END_IF]]></ST>
+      </Implementation>
+    </Action>
     <ObjectProperties>
       <XmlArchive>
         <Data>
@@ -3086,5 +3195,14 @@ n= number of messages per row"</v>
         </TypeList>
       </XmlArchive>
     </ObjectProperties>
+    <LineIds Name="FB_HMI_Control.actAdvColour">
+      <LineId Id="8" Count="0" />
+      <LineId Id="1" Count="1" />
+      <LineId Id="5" Count="2" />
+      <LineId Id="10" Count="4" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="16" Count="13" />
+      <LineId Id="15" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>
