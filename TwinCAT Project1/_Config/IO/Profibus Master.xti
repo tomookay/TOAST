@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.55" ClassName="CDevFC3100Def" SubType="127" TcProjectVariant="NoPLC">
+	<Device Id="2" Disabled="true" DevType="127" AmsPort="28674" AmsNetId="192.168.56.1.3.1" RemoteName="PROFIBUS Master">
+		<Name>__FILENAME__</Name>
+		<ProjectVariant PvUseDisable="true">
+			<Variant>
+				<Name>NoPLC</Name>
+				<Disable>1</Disable>
+			</Variant>
+			<Variant>
+				<Name>PLCTest</Name>
+				<Disable>0</Disable>
+			</Variant>
+		</ProjectVariant>
+		<AddressInfo>
+			<Ccat>
+				<Address>0</Address>
+				<Offset>0</Offset>
+				<Size>0</Size>
+				<BaseAddr>0</BaseAddr>
+				<BusNo>0</BusNo>
+				<SlotNo>0</SlotNo>
+			</Ccat>
+		</AddressInfo>
+		<Image Id="3" AddrType="1" ImageType="3">
+			<Name>Image</Name>
+		</Image>
+		<Box File="Box 4 (IP10xx-B3xx).xti" Id="4"/>
+		<Profibus>
+			<Fcxxxx>
+				<DevSettings NetId="c0a838010301"/>
+				<EquiParameter RelationShiftCycle="25"/>
+			</Fcxxxx>
+		</Profibus>
+	</Device>
+</TcSmItem>

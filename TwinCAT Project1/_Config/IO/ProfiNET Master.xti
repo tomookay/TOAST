@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.55" ClassName="CDevEthernetProtocolPnMasterDef" SubType="113" TcProjectVariant="NoPLC">
+	<Device Id="3" Disabled="true" DevType="113" AmsPort="28675" AmsNetId="192.168.56.1.4.1" RemoteName="PROFINET Master">
+		<Name>__FILENAME__</Name>
+		<ProjectVariant PvUseDisable="true">
+			<Variant>
+				<Name>NoPLC</Name>
+				<Disable>1</Disable>
+			</Variant>
+			<Variant>
+				<Name>PLCTest</Name>
+				<Disable>0</Disable>
+			</Variant>
+		</ProjectVariant>
+		<DevData>00000000000000000000000000000000ffffffff000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000000000000000000000</DevData>
+		<Image Id="4" AddrType="1" ImageType="3" SizeIn="2" SizeOut="6">
+			<Name>Image</Name>
+		</Image>
+		<Profinet PLCPortNr="851" AddPortCount="1">
+			<Ethernet/>
+			<PNController ClientPort="60000" ServerPort="61000" VendorId="288" DeviceId="35" IPData="00000000c0a80101ffffff00c0a80101" SystemName="tc-pncontroller" IRTSendClock="32">
+				<RTData CableLength="10"/>
+			</PNController>
+		</Profinet>
+	</Device>
+</TcSmItem>

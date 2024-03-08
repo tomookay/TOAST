@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.55" ClassName="CBk3x00Def" SubType="1021" TcProjectVariant="NoPLC">
+	<ImageDatas>
+		<ImageData Id="1000">424de6000000000000007600000028000000100000000e000000010004000000000070000000120b0000120b0000100000001000000000000000000080000080000000808000800000008000800080800000c0c0c000808080000000ff0000ff000000ffff00ff000000ff00ff00ffff0000ffffff00dddddddddddddddddddddddddddddddddddddddddddddddd000000000000000007070707000000000a0a0a0a000000000000000000000770000000000000077007070707000000000a0a0a0a000000000000000000000000dddddddddddddddddddddddddddddddddddddddddddddddd</ImageData>
+	</ImageDatas>
+	<Box Id="4" BoxType="1021">
+		<Name>__FILENAME__</Name>
+		<Comment><![CDATA[Digital Input Compact Box
+Vendor:   BECKHOFF
+Revision: Revision 3.2
+]]></Comment>
+		<ImageId>1000</ImageId>
+		<Vars VarGrpType="1">
+			<Name>Inputs</Name>
+			<Var BoxStateVariable="true">
+				<Name>DpState</Name>
+				<Comment><![CDATA[0 = No error
+1 = Station deactivated
+2 = Station not exists
+3 = Master lock
+4 = Invalid slave response
+5 = Parameter fault
+6 = Not supported
+7 = Config fault
+8 = Station not ready
+9 = Static diagnosis
+10 = Diagnosis overflow
+11 = Physical fault
+12 = Data-Exchange left
+13 = Severe bus fault
+14 = Telegram fault
+15 = Station has no ressources
+16 = Service not activated
+17 = Unexpected telegram
+18 = Station ready
+31 = only for EtherCAT gateways: WC-State of cyclic EtherCAT frame is 1
+128 = slave, waiting for data transfer (or DP-Master in CLEAR-Mode)
+129	= slave, waiting for configuration
+130	= slave, waiting for parameter
+131	= slave, waiting for baudrate
+132	= slave, waiting for station no. from PLC
+]]></Comment>
+				<Type>USINT</Type>
+			</Var>
+			<Var BoxStateVariable="true">
+				<Name>ExtDiagFlag</Name>
+				<Comment><![CDATA[0 = Diagnosis Data unchanged
+1 = Diagnosis Data changed, use ADS-Read to get the data]]></Comment>
+				<Type>BIT</Type>
+				<BitOffs>8</BitOffs>
+			</Var>
+		</Vars>
+		<Vars VarGrpType="2">
+			<Name>Outputs</Name>
+		</Vars>
+		<BusCoupler NewHardware="true">
+			<Flags SupportFbbTerms="true" HasNoEndTerm="true" OnlyOneTerm="true"/>
+			<Term Id="1" TermType="#x640003ea" Fieldbus="1">
+				<Name>Term 1</Name>
+				<ImageId>66</ImageId>
+				<Vars VarGrpType="3">
+					<Name>Channel 1</Name>
+					<Var>
+						<Name>Input</Name>
+						<Type>BIT</Type>
+						<BitOffs>112</BitOffs>
+						<InOut>0</InOut>
+					</Var>
+				</Vars>
+				<Vars VarGrpType="3">
+					<Name>Channel 2</Name>
+					<Var>
+						<Name>Input</Name>
+						<Type>BIT</Type>
+						<BitOffs>113</BitOffs>
+						<InOut>0</InOut>
+					</Var>
+				</Vars>
+				<Vars VarGrpType="3">
+					<Name>Channel 3</Name>
+					<Var>
+						<Name>Input</Name>
+						<Type>BIT</Type>
+						<BitOffs>114</BitOffs>
+						<InOut>0</InOut>
+					</Var>
+				</Vars>
+				<Vars VarGrpType="3">
+					<Name>Channel 4</Name>
+					<Var>
+						<Name>Input</Name>
+						<Type>BIT</Type>
+						<BitOffs>115</BitOffs>
+						<InOut>0</InOut>
+					</Var>
+				</Vars>
+				<Vars VarGrpType="3">
+					<Name>Channel 5</Name>
+					<Var>
+						<Name>Input</Name>
+						<Type>BIT</Type>
+						<BitOffs>116</BitOffs>
+						<InOut>0</InOut>
+					</Var>
+				</Vars>
+				<Vars VarGrpType="3">
+					<Name>Channel 6</Name>
+					<Var>
+						<Name>Input</Name>
+						<Type>BIT</Type>
+						<BitOffs>117</BitOffs>
+						<InOut>0</InOut>
+					</Var>
+				</Vars>
+				<Vars VarGrpType="3">
+					<Name>Channel 7</Name>
+					<Var>
+						<Name>Input</Name>
+						<Type>BIT</Type>
+						<BitOffs>118</BitOffs>
+						<InOut>0</InOut>
+					</Var>
+				</Vars>
+				<Vars VarGrpType="3">
+					<Name>Channel 8</Name>
+					<Var>
+						<Name>Input</Name>
+						<Type>BIT</Type>
+						<BitOffs>119</BitOffs>
+						<InOut>0</InOut>
+					</Var>
+				</Vars>
+			</Term>
+		</BusCoupler>
+		<Profibus Model="IP10xx-B3xx" StationNo="2" MinSlaveInterval="1" Ident="1304" MaxUserPrmData="15" WatchDogTime="200" SupportFlags="263135" IoAccessDiv="1" WatchDog="true" SlaveParaSet="a000400004000001" C2Settings="e803000000000000000000000000" PrmData="400008000000004000630040000000" CfgData="10" EquiPara="2c2d2e2f38393a3b303134353c3d4041000044450000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000">
+			<UserPrm Key="86">46617374204672656552756e2d4d6f6465000000000000000000000000000000010000000400000000000000000000000100000001000000</UserPrm>
+			<PrmText Key="65537">is active</PrmText>
+			<PrmText Key="65536">is not active</PrmText>
+			<UserPrmRef>0900000056000000</UserPrmRef>
+		</Profibus>
+	</Box>
+</TcSmItem>

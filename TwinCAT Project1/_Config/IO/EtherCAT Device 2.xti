@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.55" ClassName="CDevEtherCATDef" SubType="111" TcProjectVariant="NoPLC">
+	<Device Id="4" Disabled="true" DevType="111" DevFlags="#x0003" AmsPort="28676" AmsNetId="192.168.56.1.5.1" RemoteName="EtherCAT Device 2" InfoImageId="6">
+		<Name>__FILENAME__</Name>
+		<ProjectVariant PvUseDisable="true">
+			<Variant>
+				<Name>NoPLC</Name>
+				<Disable>1</Disable>
+			</Variant>
+			<Variant>
+				<Name>PLCTest</Name>
+				<Disable>0</Disable>
+			</Variant>
+		</ProjectVariant>
+		<AddressInfo>
+			<Pci>
+				<Address>0</Address>
+				<Size>0</Size>
+				<BusNo>0</BusNo>
+				<SlotNo>0</SlotNo>
+				<VendorId>5612</VendorId>
+			</Pci>
+		</AddressInfo>
+		<Image Id="5" AddrType="9" ImageType="3">
+			<Name>Image</Name>
+		</Image>
+		<Box File="Box 1 (EP1008-0002).xti" Id="1">
+			<EtherCAT PortABoxInfo="#x00ffffff"/>
+		</Box>
+		<Box File="Box 2 (EP1008-0002).xti" Id="2">
+			<EtherCAT PortABoxInfo="#x01000001"/>
+		</Box>
+		<Box File="Box 3 (EP2008-0002).xti" Id="3">
+			<EtherCAT PortABoxInfo="#x01000002"/>
+		</Box>
+		<EtherCAT/>
+	</Device>
+</TcSmItem>

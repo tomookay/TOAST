@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.55">
+<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.55" TcProjectVariant="NoPLC">
 	<Project ProjectGUID="{CBB6B967-8DC9-4921-B370-AF4230B79606}" Target64Bit="true" AutoPrioManagement="true" ShowHideConfigurations="#x346">
 		<System>
 			<Settings MaxCpus="12" MaxStackSize="32">
@@ -19,5 +19,21 @@
 			<Project File="PLC1.xti"/>
 			<PlcAuxTask Affinity="#x00000800"/>
 		</Plc>
+		<Io>
+			<Device File="EtherCAT Device 1.xti" Id="1"/>
+			<Device File="PROFIBUS Master.xti" Id="2"/>
+			<Device File="PROFINET Master.xti" Id="3"/>
+			<Device File="Device 5 (NOV-DP-RAM).xti" Id="5"/>
+			<Device File="EtherCAT Device 2.xti" Id="4"/>
+		</Io>
+		<Variants SpecificLocalBootFolder="true">
+			<Variant Save="true">
+				<Name>NoPLC</Name>
+				<Desc><![CDATA[Develop with no PLC]]></Desc>
+			</Variant>
+			<Variant>
+				<Name>PLCTest</Name>
+			</Variant>
+		</Variants>
 	</Project>
 </TcSmProject>
