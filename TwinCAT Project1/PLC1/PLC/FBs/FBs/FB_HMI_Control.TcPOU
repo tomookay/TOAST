@@ -73,7 +73,6 @@ MotionRowLocation.Returned.Prompt := FALSE;
 IF MotionRowBtnLocation.btnAdvance	THEN	qAdvanceReq := TRUE;						END_IF
 IF MotionRowBtnLocation.btnReturn	THEN	qReturnReq := TRUE;							END_IF
 
-
 //limit switches
 IF iAdvanceLimit					THEN	MotionRowLocation.Advance.Depth := TRUE;	END_IF
 IF iReturnLimit						THEN	MotionRowLocation.Returned.Depth := TRUE;	END_IF
@@ -151,31 +150,17 @@ IF gHMIButtons.btnAbsMode THEN
 	MotionRowLocation.bIsAbsSymSwitch := FALSE;
 END_IF
 
-
+//setup default colour
+MotionRowLocation.Advance.CoilColour	:= HMIColour.colourGreyBackground;
+MotionRowLocation.Returned.CoilColour	:= HMIColour.colourGreyBackground;
+MotionRowLocation.Advance.FdbkColour	:= HMIColour.colourGreyBackground;
+MotionRowLocation.Returned.FdbkColour	:= HMIColour.colourGreyBackground;
+	
 //colour setup for row
-IF qAdvanceReq THEN
-	MotionRowLocation.Advance.CoilColour := HMIColour.colourGreen;
-	ELSE
-	MotionRowLocation.Advance.CoilColour:= HMIColour.colourGreyBackground;
-END_IF
-
-IF qReturnReq THEN
-	MotionRowLocation.Returned.CoilColour := HMIColour.colourYellow;
-	ELSE
-	MotionRowLocation.Returned.CoilColour:= HMIColour.colourGreyBackground;
-END_IF
-
-IF iAdvanceLimit THEN
-	MotionRowLocation.Advance.FdbkColour := HMIColour.colourGreen;
-	ELSE
-	MotionRowLocation.Advance.FdbkColour:= HMIColour.colourGreyBackground;
-END_IF
-
-IF iReturnLimit THEN
-	MotionRowLocation.Returned.FdbkColour := HMIColour.colourYellow;
-	ELSE
-	MotionRowLocation.Returned.FdbkColour:= HMIColour.colourGreyBackground;
-END_IF
+IF	qAdvanceReq		THEN MotionRowLocation.Advance.CoilColour	:= HMIColour.colourGreen;	END_IF
+IF	qReturnReq		THEN MotionRowLocation.Returned.CoilColour	:= HMIColour.colourYellow;	END_IF
+IF	iAdvanceLimit	THEN MotionRowLocation.Advance.FdbkColour	:= HMIColour.colourGreen;	END_IF
+IF	iReturnLimit	THEN MotionRowLocation.Returned.FdbkColour	:= HMIColour.colourYellow;	END_IF
 ]]></ST>
     </Implementation>
     <LineIds Name="FB_HMI_Control">
@@ -192,7 +177,7 @@ END_IF
       <LineId Id="76" Count="1" />
       <LineId Id="75" Count="0" />
       <LineId Id="83" Count="0" />
-      <LineId Id="91" Count="1" />
+      <LineId Id="91" Count="0" />
       <LineId Id="90" Count="0" />
       <LineId Id="94" Count="0" />
       <LineId Id="104" Count="0" />
@@ -247,11 +232,17 @@ END_IF
       <LineId Id="219" Count="0" />
       <LineId Id="223" Count="2" />
       <LineId Id="222" Count="0" />
-      <LineId Id="227" Count="1" />
+      <LineId Id="320" Count="0" />
+      <LineId Id="227" Count="0" />
+      <LineId Id="321" Count="0" />
+      <LineId Id="228" Count="0" />
+      <LineId Id="324" Count="1" />
+      <LineId Id="322" Count="0" />
       <LineId Id="184" Count="0" />
-      <LineId Id="230" Count="11" />
-      <LineId Id="245" Count="9" />
-      <LineId Id="229" Count="0" />
+      <LineId Id="230" Count="0" />
+      <LineId Id="236" Count="0" />
+      <LineId Id="245" Count="0" />
+      <LineId Id="251" Count="0" />
       <LineId Id="93" Count="0" />
     </LineIds>
   </POU>
