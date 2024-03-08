@@ -13,6 +13,20 @@ END_VAR
 //For a given machine, enable the stationEnables below for the presence of a station
 //If a stationEnable is FALSE, then the related allowX below are not used
 
+(*
+General Setup Instructions
+1. Follow this FC_Setup and set values TRUE/FALSE as required. Typically, only the .stationEnables can be set
+2. Define the motions in the system by editing the 'MotionRowText' text list.
+3. Add IO mapping and motion name text to fault messages in the system by editing the textlists in the 'X_Language Text' folder.
+4. Add Power on logic
+5. Add interlocks for each motion in "Sx_xx_Motion_xx_xx" PRGs in "MyAdvanceInterlock" and "MyReturnInterlock"
+6. Map Inputs and outputs using "Sx_IO.Rowxx.qAdvanceCoil/Sx_IO.Rowxx.qReturnedCoil" and "Sxx_IO.Rowxx.iAdvanceDepth/Sx_IO.Rowxx.iReturnedDepth"
+7. Test each motion using manual mode. Each device, e.g. a cylinder should advance and return
+8. Edit other FB_HMI_Control values as required
+9. Add auto logic
+10. Auto Cycle --> Start
+*)
+
 //setup machine
 System.gSetup.stationEnable[1] := TRUE; //TRUE if station is present
 System.gSetup.stationEnable[2] := TRUE; //FALSE if the station does not exist on this machine
@@ -156,25 +170,19 @@ System.gSetup.stationFunctions[6].allowEnablePendent := TRUE;
       </XmlArchive>
     </ObjectProperties>
     <LineIds Name="FC_Setup">
-      <LineId Id="154" Count="0" />
-      <LineId Id="156" Count="2" />
-      <LineId Id="155" Count="0" />
-      <LineId Id="7" Count="5" />
-      <LineId Id="14" Count="0" />
+      <LineId Id="3" Count="3" />
+      <LineId Id="137" Count="0" />
+      <LineId Id="136" Count="0" />
+      <LineId Id="139" Count="0" />
+      <LineId Id="143" Count="1" />
+      <LineId Id="146" Count="0" />
       <LineId Id="148" Count="0" />
-      <LineId Id="15" Count="0" />
-      <LineId Id="13" Count="0" />
-      <LineId Id="16" Count="7" />
-      <LineId Id="36" Count="1" />
-      <LineId Id="49" Count="5" />
-      <LineId Id="40" Count="0" />
-      <LineId Id="55" Count="18" />
-      <LineId Id="41" Count="0" />
-      <LineId Id="74" Count="17" />
-      <LineId Id="42" Count="0" />
-      <LineId Id="35" Count="0" />
-      <LineId Id="92" Count="55" />
-      <LineId Id="24" Count="0" />
+      <LineId Id="151" Count="1" />
+      <LineId Id="149" Count="1" />
+      <LineId Id="153" Count="1" />
+      <LineId Id="138" Count="0" />
+      <LineId Id="7" Count="123" />
+      <LineId Id="2" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
