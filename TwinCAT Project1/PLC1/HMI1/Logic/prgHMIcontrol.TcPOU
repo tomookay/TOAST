@@ -1057,11 +1057,11 @@ tScreenElementsPerPage := tNumElementsPerScreen  * 1;]]></ST>
       <Implementation>
         <ST><![CDATA[//calculate byte offset - motions
 tSizeOfMotionRow		:= gHMIData.gActivePageNumber * SIZEOF(gHMIMotionRows.gMotionRows);
-tSizeOfMotionRow 		:= SIZEOF(gHMIMotionRows.gMotionRows) - tSizeOfMotionRow;
+tSizeOfMotionRow 		:= tSizeOfMotionRow - SIZEOF(gHMIMotionRows.gMotionRows);
 
 //calculate byte offset - buttons
 tSizeOfMotionRowButtons := gHMIData.gActivePageNumber * SIZEOF(gHMIMotionRows.gMotionRowButtons);
-tSizeOfMotionRowButtons := SIZEOF(gHMIMotionRows.gMotionRowButtons) - tSizeOfMotionRowButtons;
+tSizeOfMotionRowButtons := tSizeOfMotionRowButtons - SIZEOF(gHMIMotionRows.gMotionRowButtons);
 
 //move data based on station and page number
 //Move feedback indicator data
@@ -1650,11 +1650,10 @@ END_IF
     </LineIds>
     <LineIds Name="prgHMIcontrol.actCallMotionScreen">
       <LineId Id="1" Count="1" />
-      <LineId Id="82" Count="0" />
-      <LineId Id="5" Count="0" />
+      <LineId Id="84" Count="1" />
       <LineId Id="4" Count="0" />
       <LineId Id="6" Count="0" />
-      <LineId Id="83" Count="0" />
+      <LineId Id="87" Count="0" />
       <LineId Id="8" Count="2" />
       <LineId Id="7" Count="0" />
       <LineId Id="11" Count="1" />
