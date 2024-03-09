@@ -1,0 +1,320 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="prgMotionRow" Id="{4ecda869-418e-4b2d-994d-c4c6ccf53283}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM prgMotionRow
+VAR
+		tStationNumberIndex: UINT;	
+		tNumElementsPerScreen: UINT;
+		tScreenElementsPerPage: UINT;
+		tTrueStationIndex: UINT;
+		tSizeOfMotionRow: UINT;
+		tSizeOfMotionRowButtons: UINT;
+		retval: UDINT;
+		btnNext:R_TRIG;
+		btnPrev:R_TRIG;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//call logic for Motion screen using motion Rows
+
+
+//select station on HMI
+actPageControl();
+
+//calculate screen range
+actCalcScreenNumber();
+
+//call manual screen rows
+actCallMotionScreen();
+
+//calculate screen range
+actCalcMotionRowPosn();
+]]></ST>
+    </Implementation>
+    <Action Name="actCalcMotionRowPosn" Id="{d052a485-2ab5-4274-9ad1-f666fbdc1383}">
+      <Implementation>
+        <ST><![CDATA[//calaculate station index for pages
+tTrueStationIndex := tStationNumberIndex + ((tScreenElementsPerPage * gHMIData.gActivePageNumber) -  tScreenElementsPerPage);
+
+//calculate offset for row x
+gHMIData.gRowElementOffset[1]:= tTrueStationIndex + ((gHMIDataConst.gNumberElementsPerRow * 1) - gHMIDataConst.gNumberElementsPerRow);
+gHMIData.gRowElementOffset[2]:= tTrueStationIndex + ((gHMIDataConst.gNumberElementsPerRow * 2) - gHMIDataConst.gNumberElementsPerRow);
+gHMIData.gRowElementOffset[3]:= tTrueStationIndex + ((gHMIDataConst.gNumberElementsPerRow * 3) - gHMIDataConst.gNumberElementsPerRow);
+gHMIData.gRowElementOffset[4]:= tTrueStationIndex + ((gHMIDataConst.gNumberElementsPerRow * 4) - gHMIDataConst.gNumberElementsPerRow);
+gHMIData.gRowElementOffset[5]:= tTrueStationIndex + ((gHMIDataConst.gNumberElementsPerRow * 5) - gHMIDataConst.gNumberElementsPerRow);
+gHMIData.gRowElementOffset[6]:= tTrueStationIndex + ((gHMIDataConst.gNumberElementsPerRow * 6) - gHMIDataConst.gNumberElementsPerRow);
+
+
+//move to global to be picked up by each row
+gHMIMotionRows.gMotionRows.gMotionRow1.IndexLocation := gHMIData.gRowElementOffset[1];
+gHMIMotionRows.gMotionRows.gMotionRow2.IndexLocation := gHMIData.gRowElementOffset[2];
+gHMIMotionRows.gMotionRows.gMotionRow3.IndexLocation := gHMIData.gRowElementOffset[3];
+gHMIMotionRows.gMotionRows.gMotionRow4.IndexLocation := gHMIData.gRowElementOffset[4];
+gHMIMotionRows.gMotionRows.gMotionRow5.IndexLocation := gHMIData.gRowElementOffset[5];
+gHMIMotionRows.gMotionRows.gMotionRow6.IndexLocation := gHMIData.gRowElementOffset[6];
+
+]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="actCalcScreenNumber" Id="{6c34dbe5-12b3-4058-a71b-5a6feb4de7c0}">
+      <Implementation>
+        <ST><![CDATA[//create number for station
+tStationNumberIndex := gHMIData.gActiveStationNumber * 10000;
+
+//calculate number of elements per screen
+tNumElementsPerScreen := gHMIDataConst.gNumberRowsPerPage * gHMIDataConst.gNumberElementsPerRow;
+
+//calculate screen per page index
+tScreenElementsPerPage := tNumElementsPerScreen  * 1;]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="actCallMotionScreen" Id="{7fde1ebb-b0f7-4572-8651-feb24111554c}">
+      <Implementation>
+        <ST><![CDATA[//calculate byte offset - motions
+tSizeOfMotionRow		:= gHMIData.gActivePageNumber * SIZEOF(gHMIMotionRows.gMotionRows);
+tSizeOfMotionRow 		:= tSizeOfMotionRow - SIZEOF(gHMIMotionRows.gMotionRows);
+
+//calculate byte offset - buttons
+tSizeOfMotionRowButtons := gHMIData.gActivePageNumber * SIZEOF(gHMIMotionRows.gMotionRowButtons);
+tSizeOfMotionRowButtons := tSizeOfMotionRowButtons - SIZEOF(gHMIMotionRows.gMotionRowButtons);
+
+//move data based on station and page number
+//Move feedback indicator data
+//Move Button BOOL state back adr(S1_Global.MotionRow)
+IF gHMIData.gStationSelected[1] THEN
+	retval := memcpy(	destAddr:=	ADR(gHMIMotionRows.gMotionRows),
+						srcAddr:=	ADR(S1_Global.MotionRow) + tSizeOfMotionRow,
+						n:=			SIZEOF(gHMIMotionRows.gMotionRows)
+						);
+						
+	retval := memcpy(	destAddr:=	ADR(S1_Global.MotionRowBtn) + tSizeOfMotionRowButtons,
+						srcAddr:=	ADR(gHMIMotionRows.gMotionRowButtons),
+						n:=			SIZEOF(gHMIMotionRows.gMotionRowButtons)
+						);
+END_IF
+
+IF gHMIData.gStationSelected[2] THEN
+	retval := memcpy(	destAddr:=	ADR(gHMIMotionRows.gMotionRows),
+						srcAddr:=	ADR(S2_Global.MotionRow) + tSizeOfMotionRow,
+						n:=			SIZEOF(gHMIMotionRows.gMotionRows)
+						);
+						
+	retval := memcpy(	destAddr:=	ADR(S2_Global.MotionRowBtn) + tSizeOfMotionRowButtons,
+						srcAddr:=	ADR(gHMIMotionRows.gMotionRowButtons),
+						n:=			SIZEOF(gHMIMotionRows.gMotionRowButtons)
+						);
+END_IF
+
+IF gHMIData.gStationSelected[3] THEN
+	retval := memcpy(	destAddr:=	ADR(gHMIMotionRows.gMotionRows),
+						srcAddr:=	ADR(S3_Global.MotionRow) + tSizeOfMotionRow,
+						n:=			SIZEOF(gHMIMotionRows.gMotionRows)
+						);
+						
+	retval := memcpy(	destAddr:=	ADR(S3_Global.MotionRowBtn) + tSizeOfMotionRowButtons,
+						srcAddr:=	ADR(gHMIMotionRows.gMotionRowButtons),
+						n:=			SIZEOF(gHMIMotionRows.gMotionRowButtons)
+						);
+END_IF
+
+IF gHMIData.gStationSelected[4] THEN
+	retval := memcpy(	destAddr:=	ADR(gHMIMotionRows.gMotionRows),
+						srcAddr:=	ADR(S4_Global.MotionRow) + tSizeOfMotionRow,
+						n:=			SIZEOF(gHMIMotionRows.gMotionRows)
+						);
+						
+	retval := memcpy(	destAddr:=	ADR(S4_Global.MotionRowBtn) + tSizeOfMotionRowButtons,
+						srcAddr:=	ADR(gHMIMotionRows.gMotionRowButtons),
+						n:=			SIZEOF(gHMIMotionRows.gMotionRowButtons)
+						);
+END_IF
+
+IF gHMIData.gStationSelected[5] THEN
+	retval := memcpy(	destAddr:=	ADR(gHMIMotionRows.gMotionRows),
+						srcAddr:=	ADR(S5_Global.MotionRow) + tSizeOfMotionRow,
+						n:=			SIZEOF(gHMIMotionRows.gMotionRows)
+						);
+						
+	retval := memcpy(	destAddr:=	ADR(S5_Global.MotionRowBtn) + tSizeOfMotionRowButtons,
+						srcAddr:=	ADR(gHMIMotionRows.gMotionRowButtons),
+						n:=			SIZEOF(gHMIMotionRows.gMotionRowButtons)
+						);
+END_IF
+
+IF gHMIData.gStationSelected[6] THEN
+	retval := memcpy(	destAddr:=	ADR(gHMIMotionRows.gMotionRows),
+						srcAddr:=	ADR(S6_Global.MotionRow) + tSizeOfMotionRow,
+						n:=			SIZEOF(gHMIMotionRows.gMotionRows)
+						);
+						
+	retval := memcpy(	destAddr:=	ADR(S6_Global.MotionRowBtn) + tSizeOfMotionRowButtons,
+						srcAddr:=	ADR(gHMIMotionRows.gMotionRowButtons),
+						n:=			SIZEOF(gHMIMotionRows.gMotionRowButtons)
+						);
+END_IF]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="actPageControl" Id="{30c64ed5-f661-4d65-b1ea-51ade9043dc1}">
+      <Implementation>
+        <ST><![CDATA[//imply TRIG call
+btnNext(clk:=gHMIButtons.btnNextPage);
+btnPrev(clk:=gHMIButtons.btnPrevPage);
+
+
+//next page
+IF btnNext.Q THEN
+	gHMIData.gActivePageNumber := gHMIData.gActivePageNumber + 1;
+END_IF
+
+//previous page
+IF btnPrev.Q THEN
+	gHMIData.gActivePageNumber := gHMIData.gActivePageNumber - 1;
+END_IF
+
+//apply limits
+IF gHMIData.gActivePageNumber < 1 THEN
+	gHMIData.gActivePageNumber := 1;
+END_IF
+
+//apply limits
+IF gHMIData.gActivePageNumber > gHMIData.gMaxPageNumber THEN
+	gHMIData.gActivePageNumber := gHMIData.gMaxPageNumber;
+END_IF
+
+//station 1 control
+IF gHMIData.gStationSelected[1] THEN
+	gHMIData.gMaxPageNumber := S1_Global.Data.NumberOfPages;
+END_IF
+
+//station 2 control
+IF gHMIData.gStationSelected[2] THEN
+	gHMIData.gMaxPageNumber := S2_Global.Data.NumberOfPages;
+END_IF
+
+//station 3 control
+IF gHMIData.gStationSelected[3] THEN
+	gHMIData.gMaxPageNumber := S3_Global.Data.NumberOfPages;
+END_IF
+
+//station 4 control
+IF gHMIData.gStationSelected[4] THEN
+	gHMIData.gMaxPageNumber := S4_Global.Data.NumberOfPages;
+END_IF
+
+//station 5 control
+IF gHMIData.gStationSelected[5] THEN
+	gHMIData.gMaxPageNumber := S5_Global.Data.NumberOfPages;
+END_IF
+
+//station 6 control
+IF gHMIData.gStationSelected[6] THEN
+	gHMIData.gMaxPageNumber := S6_Global.Data.NumberOfPages;
+END_IF
+
+]]></ST>
+      </Implementation>
+    </Action>
+    <LineIds Name="prgMotionRow">
+      <LineId Id="5" Count="0" />
+      <LineId Id="12" Count="1" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="10" Count="1" />
+    </LineIds>
+    <LineIds Name="prgMotionRow.actCalcMotionRowPosn">
+      <LineId Id="1" Count="1" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="4" Count="0" />
+      <LineId Id="3" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="9" Count="3" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="14" Count="5" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="20" Count="0" />
+    </LineIds>
+    <LineIds Name="prgMotionRow.actCalcScreenNumber">
+      <LineId Id="1" Count="1" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="4" Count="0" />
+      <LineId Id="3" Count="0" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="prgMotionRow.actCallMotionScreen">
+      <LineId Id="1" Count="1" />
+      <LineId Id="84" Count="1" />
+      <LineId Id="4" Count="0" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="87" Count="0" />
+      <LineId Id="8" Count="2" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="11" Count="1" />
+      <LineId Id="14" Count="3" />
+      <LineId Id="19" Count="2" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="23" Count="10" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="35" Count="10" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="47" Count="10" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="59" Count="10" />
+      <LineId Id="58" Count="0" />
+      <LineId Id="71" Count="10" />
+      <LineId Id="70" Count="0" />
+    </LineIds>
+    <LineIds Name="prgMotionRow.actPageControl">
+      <LineId Id="5" Count="0" />
+      <LineId Id="1" Count="1" />
+      <LineId Id="6" Count="1" />
+      <LineId Id="4" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="13" Count="1" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="15" Count="1" />
+      <LineId Id="3" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="24" Count="3" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="30" Count="1" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="35" Count="2" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="39" Count="2" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="43" Count="2" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="62" Count="0" />
+      <LineId Id="47" Count="2" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="63" Count="0" />
+      <LineId Id="51" Count="2" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="64" Count="0" />
+      <LineId Id="58" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

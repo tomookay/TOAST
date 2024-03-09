@@ -75,13 +75,11 @@ END_VAR
 
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[	//mark active message as inactive
+      <ST><![CDATA[//mark active message as inactive
 	//reset before scan
 	actArraysMatch();
 	actPassMessageChange();
 
-
-	
 IF memchanged OR iqMsgChangeUpdateList THEN //if the memory array have changed, then process the message
 	
 			//reset assumption that message is active
@@ -310,11 +308,6 @@ IF qAnyMsgActive AND isWarning AND qSpecialMsgRowsStyle[tWarnOffset + 1].colourT
 	IF isWarning THEN iqMsgChangeUpdateList := FALSE; END_IF
 
 END_IF
-
-	
-
-
-
 ]]></ST>
     </Implementation>
     <Action Name="actArraysMatch" Id="{deaf4cea-369a-4b23-adf0-691b3612839c}">
@@ -1820,7 +1813,8 @@ as the warning are written below the alarms"</v>
       </XmlArchive>
     </ObjectProperties>
     <LineIds Name="FB_CheckMessageBounds">
-      <LineId Id="3" Count="239" />
+      <LineId Id="3" Count="4" />
+      <LineId Id="10" Count="227" />
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="FB_CheckMessageBounds.actClearDownExcessWarn">

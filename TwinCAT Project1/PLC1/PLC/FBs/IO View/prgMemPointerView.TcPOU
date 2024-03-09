@@ -16,10 +16,7 @@ END_VAR
 //buttons for adjusting offset, visu is keypad entry
 actAdjustOffset();
 
-//only do stuff every second
-puls(clk:=System.OneSecond);
-
-IF puls.Q THEN
+IF System.PulseOneSecond THEN
 
 	//move offset to keep global
 	offset := ioView.memoffset * 4;
@@ -1165,9 +1162,6 @@ END_CASE
       <LineId Id="82" Count="0" />
       <LineId Id="85" Count="0" />
       <LineId Id="100" Count="0" />
-      <LineId Id="97" Count="0" />
-      <LineId Id="86" Count="0" />
-      <LineId Id="192" Count="0" />
       <LineId Id="98" Count="0" />
       <LineId Id="80" Count="0" />
       <LineId Id="79" Count="0" />

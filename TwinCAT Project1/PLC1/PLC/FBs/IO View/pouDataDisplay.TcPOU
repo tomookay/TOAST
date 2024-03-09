@@ -445,30 +445,28 @@ END_VAR
     </Implementation>
     <Action Name="actDataCombineCall" Id="{5fb03654-dc97-4cb1-987a-81f27fdba4f1}">
       <Implementation>
-        <ST><![CDATA[//call data for each row
-FOR i:=0 TO 15 DO
-	
-	datacombi[i](iWordData:=ioView.ViewingArray[i],
+        <ST><![CDATA[IF System.PulseHundredMilliSecond THEN
+	//call data for each row
+	FOR i:=0 TO 15 DO
+		datacombi[i](iWordData:=ioView.ViewingArray[i],
 				 iRealHEXConv:=ioView.memHexDisplay,
 				 iWordSize:= ioView.memsize,
 				 blockCount:= ioView.blockNum);
 
 	ioView.ByteRow[i]:=dataCombi[i].outputRow;
-	
-
-END_FOR]]></ST>
+	END_FOR	
+END_IF]]></ST>
       </Implementation>
     </Action>
     <LineIds Name="pouDataDisplay.actDataCombineCall">
+      <LineId Id="26" Count="0" />
       <LineId Id="1" Count="1" />
       <LineId Id="13" Count="0" />
-      <LineId Id="15" Count="0" />
       <LineId Id="17" Count="2" />
       <LineId Id="14" Count="0" />
       <LineId Id="10" Count="0" />
       <LineId Id="21" Count="0" />
-      <LineId Id="12" Count="0" />
-      <LineId Id="11" Count="0" />
+      <LineId Id="30" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

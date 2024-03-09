@@ -3,22 +3,8 @@
   <POU Name="prgHMIcontrol" Id="{f2bb902c-68c6-495b-ba1a-10a09cc0583e}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM prgHMIcontrol
 VAR
-	tStationNumberIndex: UINT;
-	tNumElementsPerScreen: UINT;
-	tScreenElementsPerPage: UINT;
-	tTrueStationIndex: UINT;
 	retval: UDINT;
-	tSizeOfMotionRow: UINT;
-	tSizeOfMotionRowButtons: UINT;
-
-
-	tNoMessagesOnMC: BOOL;
 	retvalll: UDINT;
-
-	CLK: BOOL;
-	
-	btnNext:R_TRIG;
-	btnPrev:R_TRIG;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -34,13 +20,13 @@ END_VAR
                   <v n="FBDValid">false</v>
                   <v n="ILValid">false</v>
                   <l2 n="ILLines" />
-                  <v n="Comment">"select station on HMI"</v>
+                  <v n="Comment">""</v>
                   <v n="Title">""</v>
                   <v n="Label">""</v>
                   <v n="OutCommented">false</v>
                   <l2 n="NetworkItems" cet="BoxTreeBox">
                     <o>
-                      <v n="BoxType">"actPageControl"</v>
+                      <v n="BoxType">"prgMotionRow"</v>
                       <o n="Instance" t="Operand">
                         <n n="Operand" />
                         <v n="Type">""</v>
@@ -55,7 +41,7 @@ END_VAR
                         <v n="LValue">false</v>
                         <v n="Boolean">false</v>
                         <v n="IsInstance">true</v>
-                        <v n="Id">29L</v>
+                        <v n="Id">318L</v>
                       </o>
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems">
@@ -68,25 +54,15 @@ END_VAR
                         <v n="Extensible">false</v>
                       </o>
                       <n n="InputFlags" />
-                      <l2 n="InputItems" cet="BoxTreeOperand">
+                      <l2 n="InputItems" cet="BoxTreeTerminator">
                         <o>
-                          <o n="Operand" t="Operand">
-                            <v n="Operand">"TRUE"</v>
-                            <v n="Type">"BOOL"</v>
-                            <v n="Comment">""</v>
-                            <v n="SymbolComment">""</v>
-                            <v n="Address">"Constant_Address_Serialization_Value"</v>
-                            <o n="Flags" t="Flags">
-                              <v n="Flags">0</v>
-                              <v n="Fixed">false</v>
-                              <v n="Extensible">false</v>
-                            </o>
-                            <v n="LValue">false</v>
-                            <v n="Boolean">false</v>
-                            <v n="IsInstance">false</v>
-                            <v n="Id">32L</v>
+                          <n n="Input" />
+                          <o n="Flags" t="Flags">
+                            <v n="Flags">0</v>
+                            <v n="Fixed">false</v>
+                            <v n="Extensible">false</v>
                           </o>
-                          <v n="Id">31L</v>
+                          <v n="Id">320L</v>
                         </o>
                       </l2>
                       <o n="InputParam" t="ParamList">
@@ -105,281 +81,17 @@ END_VAR
                           <v>BOOL</v>
                         </l2>
                       </o>
-                      <v n="CallType" t="Operator">Action</v>
+                      <v n="CallType" t="Operator">Program</v>
                       <v n="EN">true</v>
                       <v n="ENO">true</v>
                       <n n="STSnippet" />
                       <v n="ContainsExtensibleInputs">false</v>
                       <v n="ProvidesSTSnippet">false</v>
-                      <v n="Id">30L</v>
+                      <v n="Id">319L</v>
                     </o>
                   </l2>
                   <l2 n="Connectors" />
-                  <v n="Id">28L</v>
-                </o>
-                <o>
-                  <v n="ILActive">false</v>
-                  <v n="FBDValid">false</v>
-                  <v n="ILValid">false</v>
-                  <l2 n="ILLines" />
-                  <v n="Comment">"calculate screen range"</v>
-                  <v n="Title">""</v>
-                  <v n="Label">""</v>
-                  <v n="OutCommented">false</v>
-                  <l2 n="NetworkItems" cet="BoxTreeBox">
-                    <o>
-                      <v n="BoxType">"actCalcScreenNumber"</v>
-                      <o n="Instance" t="Operand">
-                        <n n="Operand" />
-                        <v n="Type">""</v>
-                        <v n="Comment">""</v>
-                        <v n="SymbolComment">""</v>
-                        <v n="Address">""</v>
-                        <o n="Flags" t="Flags">
-                          <v n="Flags">0</v>
-                          <v n="Fixed">false</v>
-                          <v n="Extensible">false</v>
-                        </o>
-                        <v n="LValue">false</v>
-                        <v n="Boolean">false</v>
-                        <v n="IsInstance">true</v>
-                        <v n="Id">39L</v>
-                      </o>
-                      <o n="OutputItems" t="OutputItemList">
-                        <l2 n="OutputItems">
-                          <n />
-                        </l2>
-                      </o>
-                      <o n="Flags" t="Flags">
-                        <v n="Flags">0</v>
-                        <v n="Fixed">true</v>
-                        <v n="Extensible">false</v>
-                      </o>
-                      <n n="InputFlags" />
-                      <l2 n="InputItems" cet="BoxTreeOperand">
-                        <o>
-                          <o n="Operand" t="Operand">
-                            <v n="Operand">"TRUE"</v>
-                            <v n="Type">"BOOL"</v>
-                            <v n="Comment">""</v>
-                            <v n="SymbolComment">""</v>
-                            <v n="Address">"Constant_Address_Serialization_Value"</v>
-                            <o n="Flags" t="Flags">
-                              <v n="Flags">0</v>
-                              <v n="Fixed">false</v>
-                              <v n="Extensible">false</v>
-                            </o>
-                            <v n="LValue">false</v>
-                            <v n="Boolean">false</v>
-                            <v n="IsInstance">false</v>
-                            <v n="Id">42L</v>
-                          </o>
-                          <v n="Id">41L</v>
-                        </o>
-                      </l2>
-                      <o n="InputParam" t="ParamList">
-                        <l2 n="Names" cet="String">
-                          <v>EN</v>
-                        </l2>
-                        <l2 n="Types" cet="String">
-                          <v>BOOL</v>
-                        </l2>
-                      </o>
-                      <o n="OutputParam" t="ParamList">
-                        <l2 n="Names" cet="String">
-                          <v>ENO</v>
-                        </l2>
-                        <l2 n="Types" cet="String">
-                          <v>BOOL</v>
-                        </l2>
-                      </o>
-                      <v n="CallType" t="Operator">Action</v>
-                      <v n="EN">true</v>
-                      <v n="ENO">true</v>
-                      <n n="STSnippet" />
-                      <v n="ContainsExtensibleInputs">false</v>
-                      <v n="ProvidesSTSnippet">false</v>
-                      <v n="Id">40L</v>
-                    </o>
-                  </l2>
-                  <l2 n="Connectors" />
-                  <v n="Id">38L</v>
-                </o>
-                <o>
-                  <v n="ILActive">false</v>
-                  <v n="FBDValid">false</v>
-                  <v n="ILValid">false</v>
-                  <l2 n="ILLines" />
-                  <v n="Comment">"call manual screen rows"</v>
-                  <v n="Title">""</v>
-                  <v n="Label">""</v>
-                  <v n="OutCommented">false</v>
-                  <l2 n="NetworkItems" cet="BoxTreeBox">
-                    <o>
-                      <v n="BoxType">"actCallMotionScreen"</v>
-                      <o n="Instance" t="Operand">
-                        <n n="Operand" />
-                        <v n="Type">""</v>
-                        <v n="Comment">""</v>
-                        <v n="SymbolComment">""</v>
-                        <v n="Address">""</v>
-                        <o n="Flags" t="Flags">
-                          <v n="Flags">0</v>
-                          <v n="Fixed">false</v>
-                          <v n="Extensible">false</v>
-                        </o>
-                        <v n="LValue">false</v>
-                        <v n="Boolean">false</v>
-                        <v n="IsInstance">true</v>
-                        <v n="Id">279L</v>
-                      </o>
-                      <o n="OutputItems" t="OutputItemList">
-                        <l2 n="OutputItems">
-                          <n />
-                        </l2>
-                      </o>
-                      <o n="Flags" t="Flags">
-                        <v n="Flags">0</v>
-                        <v n="Fixed">true</v>
-                        <v n="Extensible">false</v>
-                      </o>
-                      <n n="InputFlags" />
-                      <l2 n="InputItems" cet="BoxTreeOperand">
-                        <o>
-                          <o n="Operand" t="Operand">
-                            <v n="Operand">"TRUE"</v>
-                            <v n="Type">"BOOL"</v>
-                            <v n="Comment">""</v>
-                            <v n="SymbolComment">""</v>
-                            <v n="Address">"Constant_Address_Serialization_Value"</v>
-                            <o n="Flags" t="Flags">
-                              <v n="Flags">0</v>
-                              <v n="Fixed">false</v>
-                              <v n="Extensible">false</v>
-                            </o>
-                            <v n="LValue">false</v>
-                            <v n="Boolean">false</v>
-                            <v n="IsInstance">false</v>
-                            <v n="Id">282L</v>
-                          </o>
-                          <v n="Id">281L</v>
-                        </o>
-                      </l2>
-                      <o n="InputParam" t="ParamList">
-                        <l2 n="Names" cet="String">
-                          <v>EN</v>
-                        </l2>
-                        <l2 n="Types" cet="String">
-                          <v>BOOL</v>
-                        </l2>
-                      </o>
-                      <o n="OutputParam" t="ParamList">
-                        <l2 n="Names" cet="String">
-                          <v>ENO</v>
-                        </l2>
-                        <l2 n="Types" cet="String">
-                          <v>BOOL</v>
-                        </l2>
-                      </o>
-                      <v n="CallType" t="Operator">Action</v>
-                      <v n="EN">true</v>
-                      <v n="ENO">true</v>
-                      <n n="STSnippet" />
-                      <v n="ContainsExtensibleInputs">false</v>
-                      <v n="ProvidesSTSnippet">false</v>
-                      <v n="Id">280L</v>
-                    </o>
-                  </l2>
-                  <l2 n="Connectors" />
-                  <v n="Id">278L</v>
-                </o>
-                <o>
-                  <v n="ILActive">false</v>
-                  <v n="FBDValid">false</v>
-                  <v n="ILValid">false</v>
-                  <l2 n="ILLines" />
-                  <v n="Comment">"calculate screen range"</v>
-                  <v n="Title">""</v>
-                  <v n="Label">""</v>
-                  <v n="OutCommented">false</v>
-                  <l2 n="NetworkItems" cet="BoxTreeBox">
-                    <o>
-                      <v n="BoxType">"actCalcMotionRowPosn"</v>
-                      <o n="Instance" t="Operand">
-                        <n n="Operand" />
-                        <v n="Type">""</v>
-                        <v n="Comment">""</v>
-                        <v n="SymbolComment">""</v>
-                        <v n="Address">""</v>
-                        <o n="Flags" t="Flags">
-                          <v n="Flags">0</v>
-                          <v n="Fixed">false</v>
-                          <v n="Extensible">false</v>
-                        </o>
-                        <v n="LValue">false</v>
-                        <v n="Boolean">false</v>
-                        <v n="IsInstance">true</v>
-                        <v n="Id">131L</v>
-                      </o>
-                      <o n="OutputItems" t="OutputItemList">
-                        <l2 n="OutputItems">
-                          <n />
-                        </l2>
-                      </o>
-                      <o n="Flags" t="Flags">
-                        <v n="Flags">0</v>
-                        <v n="Fixed">true</v>
-                        <v n="Extensible">false</v>
-                      </o>
-                      <n n="InputFlags" />
-                      <l2 n="InputItems" cet="BoxTreeOperand">
-                        <o>
-                          <o n="Operand" t="Operand">
-                            <v n="Operand">"TRUE"</v>
-                            <v n="Type">"BOOL"</v>
-                            <v n="Comment">""</v>
-                            <v n="SymbolComment">""</v>
-                            <v n="Address">"Constant_Address_Serialization_Value"</v>
-                            <o n="Flags" t="Flags">
-                              <v n="Flags">0</v>
-                              <v n="Fixed">false</v>
-                              <v n="Extensible">false</v>
-                            </o>
-                            <v n="LValue">false</v>
-                            <v n="Boolean">false</v>
-                            <v n="IsInstance">false</v>
-                            <v n="Id">134L</v>
-                          </o>
-                          <v n="Id">133L</v>
-                        </o>
-                      </l2>
-                      <o n="InputParam" t="ParamList">
-                        <l2 n="Names" cet="String">
-                          <v>EN</v>
-                        </l2>
-                        <l2 n="Types" cet="String">
-                          <v>BOOL</v>
-                        </l2>
-                      </o>
-                      <o n="OutputParam" t="ParamList">
-                        <l2 n="Names" cet="String">
-                          <v>ENO</v>
-                        </l2>
-                        <l2 n="Types" cet="String">
-                          <v>BOOL</v>
-                        </l2>
-                      </o>
-                      <v n="CallType" t="Operator">Action</v>
-                      <v n="EN">true</v>
-                      <v n="ENO">true</v>
-                      <n n="STSnippet" />
-                      <v n="ContainsExtensibleInputs">false</v>
-                      <v n="ProvidesSTSnippet">false</v>
-                      <v n="Id">132L</v>
-                    </o>
-                  </l2>
-                  <l2 n="Connectors" />
-                  <v n="Id">130L</v>
+                  <v n="Id">302L</v>
                 </o>
                 <o>
                   <v n="ILActive">false</v>
@@ -511,7 +223,7 @@ END_VAR
                       <l2 n="InputItems" cet="BoxTreeOperand">
                         <o>
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"TRUE"</v>
+                            <v n="Operand">"System.PulseHundredMilliSecond"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -599,7 +311,7 @@ END_VAR
                       <l2 n="InputItems" cet="BoxTreeOperand">
                         <o>
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"TRUE"</v>
+                            <v n="Operand">"System.PulseHundredMilliSecond"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -687,7 +399,7 @@ END_VAR
                       <l2 n="InputItems" cet="BoxTreeOperand">
                         <o>
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"TRUE"</v>
+                            <v n="Operand">"System.PulseHundredMilliSecond"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -775,7 +487,7 @@ END_VAR
                       <l2 n="InputItems" cet="BoxTreeOperand">
                         <o>
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"TRUE"</v>
+                            <v n="Operand">"System.PulseHundredMilliSecond"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -863,13 +575,13 @@ END_VAR
                       <l2 n="InputItems" cet="BoxTreeOperand">
                         <o>
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"System.OneSecond"</v>
+                            <v n="Operand">"System.PulseHundredMilliSecond"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
                             <v n="Address">"Constant_Address_Serialization_Value"</v>
                             <o n="Flags" t="Flags">
-                              <v n="Flags">16</v>
+                              <v n="Flags">0</v>
                               <v n="Fixed">true</v>
                               <v n="Extensible">false</v>
                             </o>
@@ -931,6 +643,7 @@ END_VAR
             <Type n="Boolean">System.Boolean</Type>
             <Type n="BoxTreeBox">{acfc6f68-8e3a-4af5-bf81-3dd512095a46}</Type>
             <Type n="BoxTreeOperand">{9de7f100-1b87-424c-a62e-45b0cfc85ed2}</Type>
+            <Type n="BoxTreeTerminator">{5f9848d3-568d-4cc5-9e31-8e28e9607ff1}</Type>
             <Type n="Flags">{668066f2-6069-46b3-8962-8db8d13d7db2}</Type>
             <Type n="Int32">System.Int32</Type>
             <Type n="Int64">System.Int64</Type>
@@ -1014,129 +727,6 @@ IF gHMIData.gStationSelected[6] THEN
 END_IF
 
 ]]></ST>
-      </Implementation>
-    </Action>
-    <Action Name="actCalcMotionRowPosn" Id="{d052a485-2ab5-4274-9ad1-f666fbdc1383}">
-      <Implementation>
-        <ST><![CDATA[//calaculate station index for pages
-tTrueStationIndex := tStationNumberIndex + ((tScreenElementsPerPage * gHMIData.gActivePageNumber) -  tScreenElementsPerPage);
-
-//calculate offset for row x
-gHMIData.gRowElementOffset[1]:= tTrueStationIndex + ((gHMIDataConst.gNumberElementsPerRow * 1) - gHMIDataConst.gNumberElementsPerRow);
-gHMIData.gRowElementOffset[2]:= tTrueStationIndex + ((gHMIDataConst.gNumberElementsPerRow * 2) - gHMIDataConst.gNumberElementsPerRow);
-gHMIData.gRowElementOffset[3]:= tTrueStationIndex + ((gHMIDataConst.gNumberElementsPerRow * 3) - gHMIDataConst.gNumberElementsPerRow);
-gHMIData.gRowElementOffset[4]:= tTrueStationIndex + ((gHMIDataConst.gNumberElementsPerRow * 4) - gHMIDataConst.gNumberElementsPerRow);
-gHMIData.gRowElementOffset[5]:= tTrueStationIndex + ((gHMIDataConst.gNumberElementsPerRow * 5) - gHMIDataConst.gNumberElementsPerRow);
-gHMIData.gRowElementOffset[6]:= tTrueStationIndex + ((gHMIDataConst.gNumberElementsPerRow * 6) - gHMIDataConst.gNumberElementsPerRow);
-
-
-//move to global to be picked up by each row
-gHMIMotionRows.gMotionRows.gMotionRow1.IndexLocation := gHMIData.gRowElementOffset[1];
-gHMIMotionRows.gMotionRows.gMotionRow2.IndexLocation := gHMIData.gRowElementOffset[2];
-gHMIMotionRows.gMotionRows.gMotionRow3.IndexLocation := gHMIData.gRowElementOffset[3];
-gHMIMotionRows.gMotionRows.gMotionRow4.IndexLocation := gHMIData.gRowElementOffset[4];
-gHMIMotionRows.gMotionRows.gMotionRow5.IndexLocation := gHMIData.gRowElementOffset[5];
-gHMIMotionRows.gMotionRows.gMotionRow6.IndexLocation := gHMIData.gRowElementOffset[6];
-
-]]></ST>
-      </Implementation>
-    </Action>
-    <Action Name="actCalcScreenNumber" Id="{6c34dbe5-12b3-4058-a71b-5a6feb4de7c0}">
-      <Implementation>
-        <ST><![CDATA[//create number for station
-tStationNumberIndex := gHMIData.gActiveStationNumber * 10000;
-
-//calculate number of elements per screen
-tNumElementsPerScreen := gHMIDataConst.gNumberRowsPerPage * gHMIDataConst.gNumberElementsPerRow;
-
-//calculate screen per page index
-tScreenElementsPerPage := tNumElementsPerScreen  * 1;]]></ST>
-      </Implementation>
-    </Action>
-    <Action Name="actCallMotionScreen" Id="{7fde1ebb-b0f7-4572-8651-feb24111554c}">
-      <Implementation>
-        <ST><![CDATA[//calculate byte offset - motions
-tSizeOfMotionRow		:= gHMIData.gActivePageNumber * SIZEOF(gHMIMotionRows.gMotionRows);
-tSizeOfMotionRow 		:= tSizeOfMotionRow - SIZEOF(gHMIMotionRows.gMotionRows);
-
-//calculate byte offset - buttons
-tSizeOfMotionRowButtons := gHMIData.gActivePageNumber * SIZEOF(gHMIMotionRows.gMotionRowButtons);
-tSizeOfMotionRowButtons := tSizeOfMotionRowButtons - SIZEOF(gHMIMotionRows.gMotionRowButtons);
-
-//move data based on station and page number
-//Move feedback indicator data
-//Move Button BOOL state back adr(S1_Global.MotionRow)
-IF gHMIData.gStationSelected[1] THEN
-	retval := memcpy(	destAddr:=	ADR(gHMIMotionRows.gMotionRows),
-						srcAddr:=	ADR(S1_Global.MotionRow) + tSizeOfMotionRow,
-						n:=			SIZEOF(gHMIMotionRows.gMotionRows)
-						);
-						
-	retval := memcpy(	destAddr:=	ADR(S1_Global.MotionRowBtn) + tSizeOfMotionRowButtons,
-						srcAddr:=	ADR(gHMIMotionRows.gMotionRowButtons),
-						n:=			SIZEOF(gHMIMotionRows.gMotionRowButtons)
-						);
-END_IF
-
-IF gHMIData.gStationSelected[2] THEN
-	retval := memcpy(	destAddr:=	ADR(gHMIMotionRows.gMotionRows),
-						srcAddr:=	ADR(S2_Global.MotionRow) + tSizeOfMotionRow,
-						n:=			SIZEOF(gHMIMotionRows.gMotionRows)
-						);
-						
-	retval := memcpy(	destAddr:=	ADR(S2_Global.MotionRowBtn) + tSizeOfMotionRowButtons,
-						srcAddr:=	ADR(gHMIMotionRows.gMotionRowButtons),
-						n:=			SIZEOF(gHMIMotionRows.gMotionRowButtons)
-						);
-END_IF
-
-IF gHMIData.gStationSelected[3] THEN
-	retval := memcpy(	destAddr:=	ADR(gHMIMotionRows.gMotionRows),
-						srcAddr:=	ADR(S3_Global.MotionRow) + tSizeOfMotionRow,
-						n:=			SIZEOF(gHMIMotionRows.gMotionRows)
-						);
-						
-	retval := memcpy(	destAddr:=	ADR(S3_Global.MotionRowBtn) + tSizeOfMotionRowButtons,
-						srcAddr:=	ADR(gHMIMotionRows.gMotionRowButtons),
-						n:=			SIZEOF(gHMIMotionRows.gMotionRowButtons)
-						);
-END_IF
-
-IF gHMIData.gStationSelected[4] THEN
-	retval := memcpy(	destAddr:=	ADR(gHMIMotionRows.gMotionRows),
-						srcAddr:=	ADR(S4_Global.MotionRow) + tSizeOfMotionRow,
-						n:=			SIZEOF(gHMIMotionRows.gMotionRows)
-						);
-						
-	retval := memcpy(	destAddr:=	ADR(S4_Global.MotionRowBtn) + tSizeOfMotionRowButtons,
-						srcAddr:=	ADR(gHMIMotionRows.gMotionRowButtons),
-						n:=			SIZEOF(gHMIMotionRows.gMotionRowButtons)
-						);
-END_IF
-
-IF gHMIData.gStationSelected[5] THEN
-	retval := memcpy(	destAddr:=	ADR(gHMIMotionRows.gMotionRows),
-						srcAddr:=	ADR(S5_Global.MotionRow) + tSizeOfMotionRow,
-						n:=			SIZEOF(gHMIMotionRows.gMotionRows)
-						);
-						
-	retval := memcpy(	destAddr:=	ADR(S5_Global.MotionRowBtn) + tSizeOfMotionRowButtons,
-						srcAddr:=	ADR(gHMIMotionRows.gMotionRowButtons),
-						n:=			SIZEOF(gHMIMotionRows.gMotionRowButtons)
-						);
-END_IF
-
-IF gHMIData.gStationSelected[6] THEN
-	retval := memcpy(	destAddr:=	ADR(gHMIMotionRows.gMotionRows),
-						srcAddr:=	ADR(S6_Global.MotionRow) + tSizeOfMotionRow,
-						n:=			SIZEOF(gHMIMotionRows.gMotionRows)
-						);
-						
-	retval := memcpy(	destAddr:=	ADR(S6_Global.MotionRowBtn) + tSizeOfMotionRowButtons,
-						srcAddr:=	ADR(gHMIMotionRows.gMotionRowButtons),
-						n:=			SIZEOF(gHMIMotionRows.gMotionRowButtons)
-						);
-END_IF]]></ST>
       </Implementation>
     </Action>
     <Action Name="actEnableAlarms" Id="{5245f169-b89e-4c0b-9dd8-16f27db7d894}">
@@ -1470,66 +1060,6 @@ gHMIButtons.btnFdbk.btnAutoCyclingFdbk := FALSE;
 gHMIButtons.btnFdbk.btnIsHomeFdbk := FALSE;]]></ST>
       </Implementation>
     </Action>
-    <Action Name="actPageControl" Id="{30c64ed5-f661-4d65-b1ea-51ade9043dc1}">
-      <Implementation>
-        <ST><![CDATA[//imply TRIG call
-btnNext(clk:=gHMIButtons.btnNextPage);
-btnPrev(clk:=gHMIButtons.btnPrevPage);
-
-
-//next page
-IF btnNext.Q THEN
-	gHMIData.gActivePageNumber := gHMIData.gActivePageNumber + 1;
-END_IF
-
-//previous page
-IF btnPrev.Q THEN
-	gHMIData.gActivePageNumber := gHMIData.gActivePageNumber - 1;
-END_IF
-
-//apply limits
-IF gHMIData.gActivePageNumber < 1 THEN
-	gHMIData.gActivePageNumber := 1;
-END_IF
-
-//apply limits
-IF gHMIData.gActivePageNumber > gHMIData.gMaxPageNumber THEN
-	gHMIData.gActivePageNumber := gHMIData.gMaxPageNumber;
-END_IF
-
-//station 1 control
-IF gHMIData.gStationSelected[1] THEN
-	gHMIData.gMaxPageNumber := S1_Global.Data.NumberOfPages;
-END_IF
-
-//station 2 control
-IF gHMIData.gStationSelected[2] THEN
-	gHMIData.gMaxPageNumber := S2_Global.Data.NumberOfPages;
-END_IF
-
-//station 3 control
-IF gHMIData.gStationSelected[3] THEN
-	gHMIData.gMaxPageNumber := S3_Global.Data.NumberOfPages;
-END_IF
-
-//station 4 control
-IF gHMIData.gStationSelected[4] THEN
-	gHMIData.gMaxPageNumber := S4_Global.Data.NumberOfPages;
-END_IF
-
-//station 5 control
-IF gHMIData.gStationSelected[5] THEN
-	gHMIData.gMaxPageNumber := S5_Global.Data.NumberOfPages;
-END_IF
-
-//station 6 control
-IF gHMIData.gStationSelected[6] THEN
-	gHMIData.gMaxPageNumber := S6_Global.Data.NumberOfPages;
-END_IF
-
-]]></ST>
-      </Implementation>
-    </Action>
     <Action Name="actPartStatus" Id="{cab25dde-a4a3-4552-af6a-583c332d34bc}">
       <Implementation>
         <ST><![CDATA[//may not need any of this, as the part data is moved to mc_global.part in each part process call
@@ -1624,53 +1154,6 @@ END_IF
       <LineId Id="40" Count="0" />
       <LineId Id="47" Count="0" />
       <LineId Id="46" Count="0" />
-    </LineIds>
-    <LineIds Name="prgHMIcontrol.actCalcMotionRowPosn">
-      <LineId Id="1" Count="1" />
-      <LineId Id="13" Count="0" />
-      <LineId Id="4" Count="0" />
-      <LineId Id="3" Count="0" />
-      <LineId Id="7" Count="0" />
-      <LineId Id="9" Count="3" />
-      <LineId Id="8" Count="0" />
-      <LineId Id="6" Count="0" />
-      <LineId Id="5" Count="0" />
-      <LineId Id="14" Count="5" />
-      <LineId Id="21" Count="0" />
-      <LineId Id="20" Count="0" />
-    </LineIds>
-    <LineIds Name="prgHMIcontrol.actCalcScreenNumber">
-      <LineId Id="1" Count="1" />
-      <LineId Id="8" Count="0" />
-      <LineId Id="4" Count="0" />
-      <LineId Id="3" Count="0" />
-      <LineId Id="6" Count="0" />
-      <LineId Id="5" Count="0" />
-      <LineId Id="7" Count="0" />
-    </LineIds>
-    <LineIds Name="prgHMIcontrol.actCallMotionScreen">
-      <LineId Id="1" Count="1" />
-      <LineId Id="84" Count="1" />
-      <LineId Id="4" Count="0" />
-      <LineId Id="6" Count="0" />
-      <LineId Id="87" Count="0" />
-      <LineId Id="8" Count="2" />
-      <LineId Id="7" Count="0" />
-      <LineId Id="11" Count="1" />
-      <LineId Id="14" Count="3" />
-      <LineId Id="19" Count="2" />
-      <LineId Id="18" Count="0" />
-      <LineId Id="13" Count="0" />
-      <LineId Id="23" Count="10" />
-      <LineId Id="22" Count="0" />
-      <LineId Id="35" Count="10" />
-      <LineId Id="34" Count="0" />
-      <LineId Id="47" Count="10" />
-      <LineId Id="46" Count="0" />
-      <LineId Id="59" Count="10" />
-      <LineId Id="58" Count="0" />
-      <LineId Id="71" Count="10" />
-      <LineId Id="70" Count="0" />
     </LineIds>
     <LineIds Name="prgHMIcontrol.actEnableAlarms">
       <LineId Id="1" Count="2" />
@@ -1776,46 +1259,6 @@ END_IF
       <LineId Id="76" Count="0" />
       <LineId Id="75" Count="0" />
       <LineId Id="77" Count="1" />
-    </LineIds>
-    <LineIds Name="prgHMIcontrol.actPageControl">
-      <LineId Id="5" Count="0" />
-      <LineId Id="1" Count="1" />
-      <LineId Id="6" Count="1" />
-      <LineId Id="4" Count="0" />
-      <LineId Id="9" Count="0" />
-      <LineId Id="13" Count="1" />
-      <LineId Id="10" Count="0" />
-      <LineId Id="8" Count="0" />
-      <LineId Id="15" Count="1" />
-      <LineId Id="3" Count="0" />
-      <LineId Id="18" Count="0" />
-      <LineId Id="17" Count="0" />
-      <LineId Id="19" Count="0" />
-      <LineId Id="22" Count="0" />
-      <LineId Id="20" Count="0" />
-      <LineId Id="24" Count="3" />
-      <LineId Id="23" Count="0" />
-      <LineId Id="32" Count="0" />
-      <LineId Id="29" Count="0" />
-      <LineId Id="28" Count="0" />
-      <LineId Id="30" Count="1" />
-      <LineId Id="59" Count="0" />
-      <LineId Id="35" Count="2" />
-      <LineId Id="34" Count="0" />
-      <LineId Id="60" Count="0" />
-      <LineId Id="39" Count="2" />
-      <LineId Id="38" Count="0" />
-      <LineId Id="61" Count="0" />
-      <LineId Id="43" Count="2" />
-      <LineId Id="42" Count="0" />
-      <LineId Id="62" Count="0" />
-      <LineId Id="47" Count="2" />
-      <LineId Id="46" Count="0" />
-      <LineId Id="63" Count="0" />
-      <LineId Id="51" Count="2" />
-      <LineId Id="50" Count="0" />
-      <LineId Id="64" Count="0" />
-      <LineId Id="58" Count="0" />
     </LineIds>
     <LineIds Name="prgHMIcontrol.actPartStatus">
       <LineId Id="12" Count="1" />

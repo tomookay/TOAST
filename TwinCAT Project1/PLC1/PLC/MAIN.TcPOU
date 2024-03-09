@@ -10,8 +10,15 @@ VAR
 
 	oneSec: fb_flasher;
 	tenSec: fb_flasher;
-	
 	oneMSec: fb_flasher;
+	hundredMSec: fb_flasher;
+	
+	pulseoneSec: R_TRIG;
+	pulsetenSec: R_TRIG;
+	pulseoneMSec: R_TRIG;
+	pulsehundredMSec: R_TRIG;
+	
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -67,14 +74,37 @@ pouDataDisplay();]]></ST>
     <Action Name="actClockMemory" Id="{70b275c8-6e52-422a-a97c-c2dc26306982}">
       <Implementation>
         <ST><![CDATA[//clock memory call
+
+//timer call
 oneMsec(timeVal:=T#1MS);
 System.oneMilliSecond:=oneMSec.q;
+pulseoneMSec(CLK:= System.oneMilliSecond);
+System.PulseOneMilliSecond := pulseoneMSec.Q;
 
 oneSec(timeVal:=T#1S);
 System.OneSecond:=oneSec.q;
+pulseoneSec(CLK:= System.OneSecond);
+System.PulseOneSecond  := pulseoneSec.Q;
 
 tenSec(timeVal:=T#10S);
-System.TenSecond:=tenSec.q;]]></ST>
+System.TenSecond:=tenSec.q;
+pulsetenSec(CLK:= System.TenSecond);
+System.PulseTenSecond := pulsetenSec.Q;
+
+hundredMSec(timeVal:=T#100MS);
+System.hundredMilliSecond:=hundredMSec.q;
+pulsehundredMSec(CLK:= System.hundredMilliSecond);
+System.PulseHundredMilliSecond := pulsehundredMSec.Q;
+
+
+
+
+
+
+
+
+
+]]></ST>
       </Implementation>
     </Action>
     <Action Name="actDiag" Id="{64b32e1c-14ce-4e5e-ba1b-93c63e0d0e72}">
@@ -125,45 +155,48 @@ FC_Setup();
     <Action Name="actPLC" Id="{28d0350d-3a28-47f0-90b1-3e048fd4248d}">
       <Implementation>
         <ST><![CDATA[//act call PLC
+IF System.PulseHundredMilliSecond THEN
 
-//get PLC app data
-System.myPlcAppSystemInfo:=TwinCAT_SystemInfoVarList._AppInfo;
-
-//get task info
-System.myPlcInfoTask1 := TwinCAT_SystemInfoVarList._TaskInfo[1];
-
-//move task scan time to memory
-System.ScanTimeReq := UDINT_TO_REAL(System.myPlcInfoTask1.CycleTime);
-System.ScanTimeAct := UDINT_TO_REAL(System.myPlcInfoTask1.LastExecTime);
-
-//scale to correct factor
-System.ScanTimeReq := System.ScanTimeReq / 10000;
-System.ScanTimeAct := System.ScanTimeAct / 10000;
-
-//if the scan time is a new record, then save the scan time and the scan number
-IF System.ScanTimeAct > System.ScanTimeRecord THEN
-	//debug message for new record scan
-	System.ScanTimeRecord := System.ScanTimeAct;
-	System.ScanTimeRecordScan:= System.myPlcInfoTask1.CycleCount;
-END_IF
-
-//get the local AMS address
-getLocalAMS(	bExecute:=System.myPlcInfoTask1.FirstCycle, 
-				tTimeOut:=T#1M
+	//get PLC app data
+	System.myPlcAppSystemInfo:=TwinCAT_SystemInfoVarList._AppInfo;
+	
+	//get task info
+	System.myPlcInfoTask1 := TwinCAT_SystemInfoVarList._TaskInfo[1];
+	
+	//move task scan time to memory
+	System.ScanTimeReq := UDINT_TO_REAL(System.myPlcInfoTask1.CycleTime);
+	System.ScanTimeAct := UDINT_TO_REAL(System.myPlcInfoTask1.LastExecTime);
+	
+	//scale to correct factor
+	System.ScanTimeReq := System.ScanTimeReq / 10000;
+	System.ScanTimeAct := System.ScanTimeAct / 10000;
+	
+	//if the scan time is a new record, then save the scan time and the scan number
+	IF System.ScanTimeAct > System.ScanTimeRecord  THEN
+		//debug message for new record scan
+		System.ScanTimeRecord := System.ScanTimeAct;
+		System.ScanTimeRecordScan:= System.myPlcInfoTask1.CycleCount;
+	END_IF
+	
+	//get the local AMS address
+	getLocalAMS(	bExecute:=System.myPlcInfoTask1.FirstCycle, 
+					tTimeOut:=T#1M
+				);
+	
+	System.localAMS:=getLocalAMS.AddrString;
+	System.localAMSbytes:=getLocalAMS.AddrBytes;
+	
+	//get the time
+	GetTime(		NETID:=system.localAMS,
+					START:=System.OneSecond
 			);
+	
+	System.thetime:= GetTime.TIMESTR;
+	
+	//convert timestruct to DT time
+	System.timeDT := SYSTEMTIME_TO_DT(TIMESTR:=system.thetime);
 
-System.localAMS:=getLocalAMS.AddrString;
-System.localAMSbytes:=getLocalAMS.AddrBytes;
-
-//get the time
-GetTime(		NETID:=system.localAMS,
-				START:=System.OneSecond
-		);
-
-System.thetime:= GetTime.TIMESTR;
-
-//convert timestruct to DT time
-System.timeDT := SYSTEMTIME_TO_DT(TIMESTR:=system.thetime);
+END_IF
 	
 
 
@@ -210,12 +243,28 @@ System.timeDT := SYSTEMTIME_TO_DT(TIMESTR:=system.thetime);
       <LineId Id="116" Count="0" />
     </LineIds>
     <LineIds Name="MAIN.actClockMemory">
-      <LineId Id="1" Count="2" />
-      <LineId Id="5" Count="1" />
+      <LineId Id="1" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="2" Count="1" />
+      <LineId Id="38" Count="2" />
+      <LineId Id="6" Count="0" />
       <LineId Id="4" Count="0" />
+      <LineId Id="42" Count="1" />
       <LineId Id="10" Count="0" />
       <LineId Id="9" Count="0" />
       <LineId Id="7" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="44" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="29" Count="1" />
+      <LineId Id="24" Count="2" />
+      <LineId Id="32" Count="3" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="36" Count="0" />
     </LineIds>
     <LineIds Name="MAIN.actDiag">
       <LineId Id="1" Count="1" />
@@ -249,7 +298,8 @@ System.timeDT := SYSTEMTIME_TO_DT(TIMESTR:=system.thetime);
     </LineIds>
     <LineIds Name="MAIN.actPLC">
       <LineId Id="1" Count="0" />
-      <LineId Id="7" Count="0" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="54" Count="0" />
       <LineId Id="6" Count="0" />
       <LineId Id="2" Count="0" />
       <LineId Id="9" Count="0" />
@@ -278,6 +328,8 @@ System.timeDT := SYSTEMTIME_TO_DT(TIMESTR:=system.thetime);
       <LineId Id="41" Count="0" />
       <LineId Id="40" Count="0" />
       <LineId Id="39" Count="0" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="51" Count="0" />
       <LineId Id="42" Count="0" />
       <LineId Id="32" Count="1" />
       <LineId Id="21" Count="0" />
