@@ -795,6 +795,15 @@ External Setpoint Generation:
 			</Relations>
 		</DataType>
 		<DataType>
+			<Name GUID="{0B5BBC5D-75B7-11B9-17A3-3E8876EE3859}" IecBaseType="true" AutoDeleteType="true">ARRAY [1..127] OF USINT</Name>
+			<BitSize>1016</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000002}">USINT</BaseType>
+			<ArrayInfo>
+				<LBound>1</LBound>
+				<Elements>127</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
 			<Name GUID="{875D2B22-B7EB-497E-B933-0C004593CCF3}" Namespace="MC" TcBaseType="true" HideType="true" IecDeclaration="DWORD;">PLCTONC_AXIS_REF_CTRL</Name>
 			<BitSize>32</BitSize>
 			<SubItem>
@@ -983,7 +992,7 @@ External Setpoint Generation:
 		</DataType>
 	</DataTypes>
 	<Project GUID="{1A267E57-8424-4A7E-91A6-205EF3BB5B1A}" Name="PLC1" PrjFilePath="..\..\PLC1\PLC1.plcproj" TmcFilePath="..\..\PLC1\PLC1.tmc" ReloadTmc="true" AmsPort="851" TargetArchiveSettings="#x000f" FileArchiveSettings="#x001f" CopyTmcToTarget="true" ClearInvalidPersist="true" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc" TmcHash="{2A919880-35DC-AF2B-D71C-9ECFA96DCA17}">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc" TmcHash="{3D0A658F-CE1E-F6C3-DF93-2A1B066FB5B0}">
 			<Name>PLC1 Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">
@@ -5258,6 +5267,11 @@ External Setpoint Generation:
 					<Name>S6_IO.Row99.iReturnedDepth</Name>
 					<Type>BOOL</Type>
 				</Var>
+				<Var>
+					<Name>profibusDiag.RawDPStateDiag</Name>
+					<Comment><![CDATA[assign to mapped IO for DPstate]]></Comment>
+					<Type GUID="{0B5BBC5D-75B7-11B9-17A3-3E8876EE3859}">ARRAY [1..127] OF USINT</Type>
+				</Var>
 			</Vars>
 			<Vars VarGrpType="2" AreaNo="1">
 				<Name>PlcTask Outputs</Name>
@@ -9074,4 +9088,43 @@ External Setpoint Generation:
 			</TaskPouOids>
 		</Instance>
 	</Project>
+	<Mappings>
+		<OwnerA Name="PLC1 Instance">
+			<OwnerB Name="TIID^EtherCAT Device 1^Term 5 (EK1101)^Term 6 (EL1008)">
+				<Link VarA="PlcTask Inputs^S1_IO.Row01.iAdvanceDepth" VarB="Channel 1^S1_IO.Row01.iAdvanceDepth" Size="1"/>
+				<Link VarA="PlcTask Inputs^S1_IO.Row01.iReturnedDepth" VarB="Channel 2^S1_IO.Row01.iReturnedDepth" Size="1"/>
+				<Link VarA="PlcTask Inputs^S1_IO.Row02.iAdvanceDepth" VarB="Channel 3^S1_IO.Row02.iAdvanceDepth" Size="1"/>
+				<Link VarA="PlcTask Inputs^S1_IO.Row02.iReturnedDepth" VarB="Channel 4^S1_IO.Row02.iReturnedDepth" Size="1"/>
+				<Link VarA="PlcTask Inputs^S1_IO.Row03.iAdvanceDepth" VarB="Channel 5^S1_IO.Row03.iAdvanceDepth" Size="1"/>
+				<Link VarA="PlcTask Inputs^S1_IO.Row03.iReturnedDepth" VarB="Channel 6^S1_IO.Row03.iReturnedDepth" Size="1"/>
+				<Link VarA="PlcTask Inputs^S1_IO.Row04.iAdvanceDepth" VarB="Channel 7^S1_IO.Row04.iAdvanceDepth" Size="1"/>
+				<Link VarA="PlcTask Inputs^S1_IO.Row04.iReturnedDepth" VarB="Channel 8^S1_IO.Row04.iReturnedDepth" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^EtherCAT Device 1^Term 5 (EK1101)^Term 7 (EL2008)">
+				<Link VarA="PlcTask Outputs^S1_IO.Row01.qAdvanceCoil" VarB="Channel 1^S1_IO.Row01.qAdvanceCoil" Size="1"/>
+				<Link VarA="PlcTask Outputs^S1_IO.Row01.qReturnedCoil" VarB="Channel 2^S1_IO.Row01.qReturnedCoil" Size="1"/>
+				<Link VarA="PlcTask Outputs^S1_IO.Row02.qAdvanceCoil" VarB="Channel 3^S1_IO.Row02.qAdvanceCoil" Size="1"/>
+				<Link VarA="PlcTask Outputs^S1_IO.Row02.qReturnedCoil" VarB="Channel 4^S1_IO.Row02.qReturnedCoil" Size="1"/>
+				<Link VarA="PlcTask Outputs^S1_IO.Row03.qAdvanceCoil" VarB="Channel 5^S1_IO.Row03.qAdvanceCoil" Size="1"/>
+				<Link VarA="PlcTask Outputs^S1_IO.Row03.qReturnedCoil" VarB="Channel 6^S1_IO.Row03.qReturnedCoil" Size="1"/>
+				<Link VarA="PlcTask Outputs^S1_IO.Row04.qAdvanceCoil" VarB="Channel 7^S1_IO.Row04.qAdvanceCoil" Size="1"/>
+				<Link VarA="PlcTask Outputs^S1_IO.Row04.qReturnedCoil" VarB="Channel 8^S1_IO.Row04.qReturnedCoil" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^EtherCAT Device 2^Box 1 (EP1008-0002)">
+				<Link VarA="PlcTask Inputs^S2_IO.Row01.iAdvanceDepth" VarB="Channel 1^S2_IO.Row01.iAdvanceDepth" Size="1"/>
+				<Link VarA="PlcTask Inputs^S2_IO.Row01.iReturnedDepth" VarB="Channel 2^S2_IO.Row01.iReturnedDepth" Size="1"/>
+				<Link VarA="PlcTask Inputs^S2_IO.Row02.iAdvanceDepth" VarB="Channel 3^S2_IO.Row02.iAdvanceDepth" Size="1"/>
+				<Link VarA="PlcTask Inputs^S2_IO.Row02.iReturnedDepth" VarB="Channel 4^S2_IO.Row02.iReturnedDepth" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^EtherCAT Device 2^Box 2 (EP1008-0002)">
+				<Link VarA="PlcTask Inputs^S2_IO.Row03.iAdvanceDepth" VarB="Channel 1^S2_IO.Row03.iAdvanceDepth" Size="1"/>
+				<Link VarA="PlcTask Inputs^S2_IO.Row03.iReturnedDepth" VarB="Channel 2^S2_IO.Row03.iReturnedDepth" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^PROFIBUS Master^Box 4 (IP10xx-B3xx)">
+				<Link VarA="PlcTask Inputs^S1_IO.Row05.iAdvanceDepth" VarB="Term 1^Channel 1^S1_IO.Row05.iAdvanceDepth" Size="1"/>
+				<Link VarA="PlcTask Inputs^S1_IO.Row05.iReturnedDepth" VarB="Term 1^Channel 2^S1_IO.Row05.iReturnedDepth" Size="1"/>
+				<Link VarA="PlcTask Inputs^profibusDiag.RawDPStateDiag[2]" VarB="Inputs^DpState"/>
+			</OwnerB>
+		</OwnerA>
+	</Mappings>
 </TcSmItem>
