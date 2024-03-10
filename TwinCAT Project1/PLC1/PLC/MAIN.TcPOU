@@ -153,9 +153,7 @@ FC_Setup();
     <Action Name="actPLC" Id="{28d0350d-3a28-47f0-90b1-3e048fd4248d}">
       <Implementation>
         <ST><![CDATA[//act call PLC
-IF System.PulseHundredMilliSecond THEN
-
-	//get PLC app data
+//get PLC app data
 	System.myPlcAppSystemInfo:=TwinCAT_SystemInfoVarList._AppInfo;
 	
 	//get task info
@@ -186,15 +184,14 @@ IF System.PulseHundredMilliSecond THEN
 	
 	//get the time
 	GetTime(		NETID:=system.localAMS,
-					START:=System.OneSecond
+					START:=System.OneSecond,
 			);
 	
 	System.thetime:= GetTime.TIMESTR;
 	
 	//convert timestruct to DT time
 	System.timeDT := SYSTEMTIME_TO_DT(TIMESTR:=system.thetime);
-END_IF
-	
+
 
 
 
@@ -295,8 +292,6 @@ END_IF
     </LineIds>
     <LineIds Name="MAIN.actPLC">
       <LineId Id="1" Count="0" />
-      <LineId Id="48" Count="0" />
-      <LineId Id="54" Count="0" />
       <LineId Id="6" Count="0" />
       <LineId Id="2" Count="0" />
       <LineId Id="9" Count="0" />
@@ -325,7 +320,6 @@ END_IF
       <LineId Id="41" Count="0" />
       <LineId Id="40" Count="0" />
       <LineId Id="39" Count="0" />
-      <LineId Id="51" Count="0" />
       <LineId Id="42" Count="0" />
       <LineId Id="32" Count="1" />
       <LineId Id="21" Count="0" />
