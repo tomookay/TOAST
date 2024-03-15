@@ -865,9 +865,9 @@ END_IF
 
 //move set global fault
 IF GlobalMessages.gMsgS1Stat.IsAlarm THEN
-	S1_Global.Data.Fault := TRUE;
+	S1_Global.station.Data.Fault := TRUE;
 	ELSE
-	S1_Global.Data.Fault := FALSE;
+	S1_Global.station.Data.Fault := FALSE;
 END_IF
 
 //move set global fault
@@ -1040,9 +1040,9 @@ END_IF
 
 //move set global fault
 IF GlobalMessages.gMsgS1Stat.IsWarning THEN
-	S1_Global.Data.Warning := TRUE;
+	S1_Global.station.Data.Warning := TRUE;
 	ELSE
-	S1_Global.Data.Warning := FALSE;
+	S1_Global.station.Data.Warning := FALSE;
 END_IF
 
 //move set global fault
@@ -1137,8 +1137,8 @@ gHMIButtons.btnFdbk.btnIsHomeFdbk := FALSE;]]></ST>
 //move station data into global data area for viewing
 IF gHMIData.gStationSelected[1] THEN
 	retval := memcpy(	destAddr:=	ADR(Mc_Global.part),
-						srcAddr:=	ADR(S1_Global.part),
-						n:=			SIZEOF(S1_Global.part)
+						srcAddr:=	ADR(S1_Global.station.part),
+						n:=			SIZEOF(S1_Global.station.part)
 						);
 END_IF
 

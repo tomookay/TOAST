@@ -28,21 +28,21 @@ IF
 	GlobalMessages.gMsgS6Stat.IsAlarm OR
 	GlobalMessages.gMsgMcStat.IsAlarm
 THEN
-	S1_Global.hmiHeader.AnyStationFaultHeaderActive := System.OneSecond;
+	S1_Global.station.hmiHeader.AnyStationFaultHeaderActive := System.OneSecond;
 	S2_Global.hmiHeader.AnyStationFaultHeaderActive := System.OneSecond;
 	S3_Global.hmiHeader.AnyStationFaultHeaderActive := System.OneSecond;
 	S4_Global.hmiHeader.AnyStationFaultHeaderActive := System.OneSecond;
 	S5_Global.hmiHeader.AnyStationFaultHeaderActive := System.OneSecond;
 	S6_Global.hmiHeader.AnyStationFaultHeaderActive := System.OneSecond;
 	
-	S1_Global.hmiHeader.AnyStationFaultColour		:= HMIColour.colourRed;
+	S1_Global.station.hmiHeader.AnyStationFaultColour		:= HMIColour.colourRed;
 	S2_Global.hmiHeader.AnyStationFaultColour		:= HMIColour.colourRed;
 	S3_Global.hmiHeader.AnyStationFaultColour		:= HMIColour.colourRed;
 	S4_Global.hmiHeader.AnyStationFaultColour		:= HMIColour.colourRed;
 	S5_Global.hmiHeader.AnyStationFaultColour		:= HMIColour.colourRed;
 	S6_Global.hmiHeader.AnyStationFaultColour		:= HMIColour.colourRed;
 	
-	S1_Global.hmiHeader.isAnyFaultState				:= TRUE;
+	S1_Global.station.hmiHeader.isAnyFaultState				:= TRUE;
 	S2_Global.hmiHeader.isAnyFaultState				:= TRUE;
 	S3_Global.hmiHeader.isAnyFaultState				:= TRUE;
 	S4_Global.hmiHeader.isAnyFaultState				:= TRUE;
@@ -50,22 +50,22 @@ THEN
 	S6_Global.hmiHeader.isAnyFaultState				:= TRUE;
 	
 ELSE
-	S1_Global.hmiHeader.AnyStationFaultHeaderActive := FALSE;
+	S1_Global.station.hmiHeader.AnyStationFaultHeaderActive := FALSE;
 	S2_Global.hmiHeader.AnyStationFaultHeaderActive := FALSE;
 	S3_Global.hmiHeader.AnyStationFaultHeaderActive := FALSE;
 	S4_Global.hmiHeader.AnyStationFaultHeaderActive := FALSE;
 	S5_Global.hmiHeader.AnyStationFaultHeaderActive := FALSE;
 	S6_Global.hmiHeader.AnyStationFaultHeaderActive := FALSE;
 
-	S1_Global.hmiHeader.AnyStationFaultColour		:= HMIColour.colourBlue;
+	S1_Global.station.hmiHeader.AnyStationFaultColour		:= HMIColour.colourBlue;
 	S2_Global.hmiHeader.AnyStationFaultColour		:= HMIColour.colourBlue;
 	S3_Global.hmiHeader.AnyStationFaultColour		:= HMIColour.colourBlue;
 	S4_Global.hmiHeader.AnyStationFaultColour		:= HMIColour.colourBlue;
 	S5_Global.hmiHeader.AnyStationFaultColour		:= HMIColour.colourBlue;
 	S6_Global.hmiHeader.AnyStationFaultColour		:= HMIColour.colourBlue;
 
-	S1_Global.hmiHeader.isAnyFaultState				:= FALSE;
-	S2_Global.hmiHeader.isAnyFaultState				:= FALSE;
+	S1_Global.station.hmiHeader.isAnyFaultState				:= FALSE;
+	S1_Global.station.hmiHeader.isAnyFaultState				:= FALSE;
 	S3_Global.hmiHeader.isAnyFaultState				:= FALSE;
 	S4_Global.hmiHeader.isAnyFaultState				:= FALSE;
 	S5_Global.hmiHeader.isAnyFaultState				:= FALSE;
@@ -73,7 +73,7 @@ ELSE
 END_IF
 
 	//set indicators to 0
-	S1_Global.hmiHeader.AnyStationFaultHeader := 0;
+	S1_Global.station.hmiHeader.AnyStationFaultHeader := 0;
 	S2_Global.hmiHeader.AnyStationFaultHeader := 0;
 	S3_Global.hmiHeader.AnyStationFaultHeader := 0;
 	S4_Global.hmiHeader.AnyStationFaultHeader := 0;
@@ -81,8 +81,8 @@ END_IF
 	S6_Global.hmiHeader.AnyStationFaultHeader := 0;
 
 //write station 1 is in fault
-IF 	S1_Global.hmiHeader.isFaultState THEN
-	S1_Global.hmiHeader.AnyStationFaultHeader := 1;
+IF 	S1_Global.station.hmiHeader.isFaultState THEN
+	S1_Global.station.hmiHeader.AnyStationFaultHeader := 1;
 	S2_Global.hmiHeader.AnyStationFaultHeader := 1;
 	S3_Global.hmiHeader.AnyStationFaultHeader := 1;
 	S4_Global.hmiHeader.AnyStationFaultHeader := 1;
@@ -92,7 +92,7 @@ END_IF
 
 //write station 2 is in fault
 IF 	S2_Global.hmiHeader.isFaultState THEN
-	S1_Global.hmiHeader.AnyStationFaultHeader := 2;
+	S1_Global.station.hmiHeader.AnyStationFaultHeader := 2;
 	S2_Global.hmiHeader.AnyStationFaultHeader := 2;
 	S3_Global.hmiHeader.AnyStationFaultHeader := 2;
 	S4_Global.hmiHeader.AnyStationFaultHeader := 2;
@@ -102,7 +102,7 @@ END_IF
 
 //write station 3 is in fault
 IF 	S3_Global.hmiHeader.isFaultState THEN
-	S1_Global.hmiHeader.AnyStationFaultHeader := 3;
+	S1_Global.station.hmiHeader.AnyStationFaultHeader := 3;
 	S2_Global.hmiHeader.AnyStationFaultHeader := 3;
 	S3_Global.hmiHeader.AnyStationFaultHeader := 3;
 	S4_Global.hmiHeader.AnyStationFaultHeader := 3;
@@ -112,7 +112,7 @@ END_IF
 
 //write station 4 is in fault
 IF 	S4_Global.hmiHeader.isFaultState THEN
-	S1_Global.hmiHeader.AnyStationFaultHeader := 4;
+	S1_Global.station.hmiHeader.AnyStationFaultHeader := 4;
 	S2_Global.hmiHeader.AnyStationFaultHeader := 4;
 	S3_Global.hmiHeader.AnyStationFaultHeader := 4;
 	S4_Global.hmiHeader.AnyStationFaultHeader := 4;
@@ -122,7 +122,7 @@ END_IF
 
 //write station 5 is in fault
 IF 	S5_Global.hmiHeader.isFaultState THEN
-	S1_Global.hmiHeader.AnyStationFaultHeader := 5;
+	S1_Global.station.hmiHeader.AnyStationFaultHeader := 5;
 	S2_Global.hmiHeader.AnyStationFaultHeader := 5;
 	S3_Global.hmiHeader.AnyStationFaultHeader := 5;
 	S4_Global.hmiHeader.AnyStationFaultHeader := 5;
@@ -132,7 +132,7 @@ END_IF
 
 //write station 6 is in fault
 IF 	S6_Global.hmiHeader.isFaultState THEN
-	S1_Global.hmiHeader.AnyStationFaultHeader := 6;
+	S1_Global.station.hmiHeader.AnyStationFaultHeader := 6;
 	S2_Global.hmiHeader.AnyStationFaultHeader := 6;
 	S3_Global.hmiHeader.AnyStationFaultHeader := 6;
 	S4_Global.hmiHeader.AnyStationFaultHeader := 6;
@@ -145,21 +145,21 @@ END_IF
 //add for base station header
 IF GlobalMessages.gMsgMcStat.IsAlarm THEN
 	//set special case for base machine
-	S1_Global.hmiHeader.AnyStationFaultHeader := 99;
+	S1_Global.station.hmiHeader.AnyStationFaultHeader := 99;
 	S2_Global.hmiHeader.AnyStationFaultHeader := 99;
 	S3_Global.hmiHeader.AnyStationFaultHeader := 99;
 	S4_Global.hmiHeader.AnyStationFaultHeader := 99;
 	S5_Global.hmiHeader.AnyStationFaultHeader := 99;
 	S6_Global.hmiHeader.AnyStationFaultHeader := 99;
 	
-	S1_Global.hmiHeader.isFaultState := TRUE;
+	S1_Global.station.hmiHeader.isFaultState := TRUE;
 	S2_Global.hmiHeader.isFaultState := TRUE;
 	S3_Global.hmiHeader.isFaultState := TRUE;
 	S4_Global.hmiHeader.isFaultState := TRUE;
 	S5_Global.hmiHeader.isFaultState := TRUE;
 	S6_Global.hmiHeader.isFaultState := TRUE;
 	
-	S1_Global.hmiHeader.FaultStateHeader := 1;
+	S1_Global.station.hmiHeader.FaultStateHeader := 1;
 	S2_Global.hmiHeader.FaultStateHeader := 1;
 	S3_Global.hmiHeader.FaultStateHeader := 1;
 	S4_Global.hmiHeader.FaultStateHeader := 1;
@@ -182,21 +182,21 @@ IF
 	GlobalMessages.gMsgS6Stat.IsWarning OR
 	GlobalMessages.gMsgMcStat.IsWarning
 THEN
-	S1_Global.hmiHeader.AnyStationWarningHeaderActive := System.OneSecond;
+	S1_Global.station.hmiHeader.AnyStationWarningHeaderActive := System.OneSecond;
 	S2_Global.hmiHeader.AnyStationWarningHeaderActive := System.OneSecond;
 	S3_Global.hmiHeader.AnyStationWarningHeaderActive := System.OneSecond;
 	S4_Global.hmiHeader.AnyStationWarningHeaderActive := System.OneSecond;
 	S5_Global.hmiHeader.AnyStationWarningHeaderActive := System.OneSecond;
 	S6_Global.hmiHeader.AnyStationWarningHeaderActive := System.OneSecond;
 	
-	S1_Global.hmiHeader.AnyStationWarningColour		:= HMIColour.colourYellow;
+	S1_Global.station.hmiHeader.AnyStationWarningColour		:= HMIColour.colourYellow;
 	S2_Global.hmiHeader.AnyStationWarningColour		:= HMIColour.colourYellow;
 	S3_Global.hmiHeader.AnyStationWarningColour		:= HMIColour.colourYellow;
 	S4_Global.hmiHeader.AnyStationWarningColour		:= HMIColour.colourYellow;
 	S5_Global.hmiHeader.AnyStationWarningColour		:= HMIColour.colourYellow;
 	S6_Global.hmiHeader.AnyStationWarningColour		:= HMIColour.colourYellow;
 	
-	S1_Global.hmiHeader.isAnyWarningState				:= TRUE;
+	S1_Global.station.hmiHeader.isAnyWarningState				:= TRUE;
 	S2_Global.hmiHeader.isAnyWarningState				:= TRUE;
 	S3_Global.hmiHeader.isAnyWarningState				:= TRUE;
 	S4_Global.hmiHeader.isAnyWarningState				:= TRUE;
@@ -204,21 +204,21 @@ THEN
 	S6_Global.hmiHeader.isAnyWarningState				:= TRUE;
 	
 ELSE
-	S1_Global.hmiHeader.AnyStationWarningHeaderActive := FALSE;
+	S1_Global.station.hmiHeader.AnyStationWarningHeaderActive := FALSE;
 	S2_Global.hmiHeader.AnyStationWarningHeaderActive := FALSE;
 	S3_Global.hmiHeader.AnyStationWarningHeaderActive := FALSE;
 	S4_Global.hmiHeader.AnyStationWarningHeaderActive := FALSE;
 	S5_Global.hmiHeader.AnyStationWarningHeaderActive := FALSE;
 	S6_Global.hmiHeader.AnyStationWarningHeaderActive := FALSE;
 
-	S1_Global.hmiHeader.AnyStationWarningColour		:= HMIColour.colourBlue;
+	S1_Global.station.hmiHeader.AnyStationWarningColour		:= HMIColour.colourBlue;
 	S2_Global.hmiHeader.AnyStationWarningColour		:= HMIColour.colourBlue;
 	S3_Global.hmiHeader.AnyStationWarningColour		:= HMIColour.colourBlue;
 	S4_Global.hmiHeader.AnyStationWarningColour		:= HMIColour.colourBlue;
 	S5_Global.hmiHeader.AnyStationWarningColour		:= HMIColour.colourBlue;
 	S6_Global.hmiHeader.AnyStationWarningColour		:= HMIColour.colourBlue;
 
-	S1_Global.hmiHeader.isAnyWarningState				:= FALSE;
+	S1_Global.station.hmiHeader.isAnyWarningState				:= FALSE;
 	S2_Global.hmiHeader.isAnyWarningState				:= FALSE;
 	S3_Global.hmiHeader.isAnyWarningState				:= FALSE;
 	S4_Global.hmiHeader.isAnyWarningState				:= FALSE;
@@ -227,7 +227,7 @@ ELSE
 END_IF
 
 	//set indicators to 0
-	S1_Global.hmiHeader.AnyStationWarningHeader := 0;
+	S1_Global.station.hmiHeader.AnyStationWarningHeader := 0;
 	S2_Global.hmiHeader.AnyStationWarningHeader := 0;
 	S3_Global.hmiHeader.AnyStationWarningHeader := 0;
 	S4_Global.hmiHeader.AnyStationWarningHeader := 0;
@@ -235,8 +235,8 @@ END_IF
 	S6_Global.hmiHeader.AnyStationWarningHeader := 0;
 
 //write station 1 is in Warning
-IF 	S1_Global.hmiHeader.isWarningState THEN
-	S1_Global.hmiHeader.AnyStationWarningHeader := 1;
+IF 	S1_Global.station.hmiHeader.isWarningState THEN
+	S1_Global.station.hmiHeader.AnyStationWarningHeader := 1;
 	S2_Global.hmiHeader.AnyStationWarningHeader := 1;
 	S3_Global.hmiHeader.AnyStationWarningHeader := 1;
 	S4_Global.hmiHeader.AnyStationWarningHeader := 1;
@@ -246,7 +246,7 @@ END_IF
 
 //write station 2 is in Warning
 IF 	S2_Global.hmiHeader.isWarningState THEN
-	S1_Global.hmiHeader.AnyStationWarningHeader := 2;
+	S1_Global.station.hmiHeader.AnyStationWarningHeader := 2;
 	S2_Global.hmiHeader.AnyStationWarningHeader := 2;
 	S3_Global.hmiHeader.AnyStationWarningHeader := 2;
 	S4_Global.hmiHeader.AnyStationWarningHeader := 2;
@@ -256,7 +256,7 @@ END_IF
 
 //write station 3 is in Warning
 IF 	S3_Global.hmiHeader.isWarningState THEN
-	S1_Global.hmiHeader.AnyStationWarningHeader := 3;
+	S1_Global.station.hmiHeader.AnyStationWarningHeader := 3;
 	S2_Global.hmiHeader.AnyStationWarningHeader := 3;
 	S3_Global.hmiHeader.AnyStationWarningHeader := 3;
 	S4_Global.hmiHeader.AnyStationWarningHeader := 3;
@@ -266,7 +266,7 @@ END_IF
 
 //write station 4 is in Warning
 IF 	S4_Global.hmiHeader.isWarningState THEN
-	S1_Global.hmiHeader.AnyStationWarningHeader := 4;
+	S1_Global.station.hmiHeader.AnyStationWarningHeader := 4;
 	S2_Global.hmiHeader.AnyStationWarningHeader := 4;
 	S3_Global.hmiHeader.AnyStationWarningHeader := 4;
 	S4_Global.hmiHeader.AnyStationWarningHeader := 4;
@@ -276,7 +276,7 @@ END_IF
 
 //write station 5 is in Warning
 IF 	S5_Global.hmiHeader.isWarningState THEN
-	S1_Global.hmiHeader.AnyStationWarningHeader := 5;
+	S1_Global.station.hmiHeader.AnyStationWarningHeader := 5;
 	S2_Global.hmiHeader.AnyStationWarningHeader := 5;
 	S3_Global.hmiHeader.AnyStationWarningHeader := 5;
 	S4_Global.hmiHeader.AnyStationWarningHeader := 5;
@@ -286,7 +286,7 @@ END_IF
 
 //write station 6 is in Warning
 IF 	S6_Global.hmiHeader.isWarningState THEN
-	S1_Global.hmiHeader.AnyStationWarningHeader := 6;
+	S1_Global.station.hmiHeader.AnyStationWarningHeader := 6;
 	S2_Global.hmiHeader.AnyStationWarningHeader := 6;
 	S3_Global.hmiHeader.AnyStationWarningHeader := 6;
 	S4_Global.hmiHeader.AnyStationWarningHeader := 6;
@@ -299,21 +299,21 @@ END_IF
 //add for base station header
 IF GlobalMessages.gMsgMcStat.IsWarning THEN
 	//set special case for base machine
-	S1_Global.hmiHeader.AnyStationWarningHeader := 99;
+	S1_Global.station.hmiHeader.AnyStationWarningHeader := 99;
 	S2_Global.hmiHeader.AnyStationWarningHeader := 99;
 	S3_Global.hmiHeader.AnyStationWarningHeader := 99;
 	S4_Global.hmiHeader.AnyStationWarningHeader := 99;
 	S5_Global.hmiHeader.AnyStationWarningHeader := 99;
 	S6_Global.hmiHeader.AnyStationWarningHeader := 99;
 	
-	S1_Global.hmiHeader.isWarningState := TRUE;
+	S1_Global.station.hmiHeader.isWarningState := TRUE;
 	S2_Global.hmiHeader.isWarningState := TRUE;
 	S3_Global.hmiHeader.isWarningState := TRUE;
 	S4_Global.hmiHeader.isWarningState := TRUE;
 	S5_Global.hmiHeader.isWarningState := TRUE;
 	S6_Global.hmiHeader.isWarningState := TRUE;
 	
-	S1_Global.hmiHeader.WarningStateHeader := 1;
+	S1_Global.station.hmiHeader.WarningStateHeader := 1;
 	S2_Global.hmiHeader.WarningStateHeader := 1;
 	S3_Global.hmiHeader.WarningStateHeader := 1;
 	S4_Global.hmiHeader.WarningStateHeader := 1;

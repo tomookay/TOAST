@@ -3,7 +3,7 @@
   <POU Name="FB_HMI_Control" Id="{01ed13c7-6a6a-43a8-8dee-d4708dd83b55}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_HMI_Control
 VAR_INPUT
-	iStationNumber : UINT;
+	//iStationNumber : UINT;
 	iRowNumber : UINT;
 	
 	iAdvanceLimit: BOOL;
@@ -40,12 +40,18 @@ VAR
 	tNumMessagesPerRow: UINT;
 	tMessageOffset: UINT;
 	unitsString: STRING(255);
+	
+	advPulse:R_TRIG;
+	retPulse:R_TRIG;
 END_VAR
 
 VAR_IN_OUT
-	NumRows: UINT;
-	MotionRowLocation: typeMotionRow;
-	MotionRowBtnLocation: typeMotionRowButtons;
+	//NumRows: UINT;
+	//MotionRowLocation: typeMotionRow;
+	////MotionRowBtnLocation: typeMotionRowButtons;
+	//iqMotionRecordStation: typeMotionRowArry;
+	
+	stndata:typeStation;
 END_VAR
 
 //theme:DrmpZtxr0kY]]></Declaration>
@@ -54,44 +60,44 @@ END_VAR
 qRow := iRowNumber * 20; //20 = number messages per row, or things per row
 
 //Calculate number of rows
-NumRows := NumRows + 1; //increment on scan of IN_OUT
+stndata.Data.NumOfRows := stndata.Data.NumOfRows + 1; //increment on scan of IN_OUT
 
 //setup block clear down values
 qAdvanceReq := FALSE;
 qReturnReq := FALSE;
-MotionRowLocation.Advance.Depth := FALSE;
-MotionRowLocation.Returned.Depth := FALSE;
-MotionRowLocation.Advance.RequestCoil := FALSE;
-MotionRowLocation.Returned.RequestCoil := FALSE;
-MotionRowLocation.Advance.InterlockOK := FALSE;
-MotionRowLocation.Returned.InterlockOK := FALSE;
-MotionRowLocation.Advance.Prompt := FALSE;
-MotionRowLocation.Returned.Prompt := FALSE;
+stndata.MotionRow[iRowNumber].Advance.Depth := FALSE;
+stndata.MotionRow[iRowNumber].Returned.Depth := FALSE;
+stndata.MotionRow[iRowNumber].Advance.RequestCoil := FALSE;
+stndata.MotionRow[iRowNumber].Returned.RequestCoil := FALSE;
+stndata.MotionRow[iRowNumber].Advance.InterlockOK := FALSE;
+stndata.MotionRow[iRowNumber].Returned.InterlockOK := FALSE;
+stndata.MotionRow[iRowNumber].Advance.Prompt := FALSE;
+stndata.MotionRow[iRowNumber].Returned.Prompt := FALSE;
 		
 
 //advance feedback for HMI
-IF MotionRowBtnLocation.btnAdvance	THEN	qAdvanceReq := TRUE;						END_IF
-IF MotionRowBtnLocation.btnReturn	THEN	qReturnReq := TRUE;							END_IF
+IF stndata.MotionRowBtn[iRowNumber].btnAdvance	THEN	qAdvanceReq := TRUE;						END_IF
+IF stndata.MotionRowBtn[iRowNumber].btnReturn	THEN	qReturnReq := TRUE;							END_IF
 
 //limit switches
-IF iAdvanceLimit					THEN	MotionRowLocation.Advance.Depth := TRUE;	END_IF
-IF iReturnLimit						THEN	MotionRowLocation.Returned.Depth := TRUE;	END_IF
+IF iAdvanceLimit					THEN	stndata.MotionRow[iRowNumber].Advance.Depth := TRUE;	END_IF
+IF iReturnLimit						THEN	stndata.MotionRow[iRowNumber].Returned.Depth := TRUE;	END_IF
 
 //coil feedback
-IF iAdvanceCoil						THEN  	MotionRowLocation.Advance.RequestCoil := TRUE;	END_IF
-IF iReturnCoil						THEN	MotionRowLocation.Returned.RequestCoil := TRUE; END_IF
+IF iAdvanceCoil						THEN  	stndata.MotionRow[iRowNumber].Advance.RequestCoil := TRUE;	END_IF
+IF iReturnCoil						THEN	stndata.MotionRow[iRowNumber].Returned.RequestCoil := TRUE; END_IF
 
 //interlocks
-IF iAdvanceInterlock				THEN	MotionRowLocation.Advance.InterlockOK := TRUE;	END_IF
-IF iReturnInterlock					THEN	MotionRowLocation.Returned.InterlockOK := TRUE; END_IF
+IF iAdvanceInterlock				THEN	stndata.MotionRow[iRowNumber].Advance.InterlockOK := TRUE;	END_IF
+IF iReturnInterlock					THEN	stndata.MotionRow[iRowNumber].Returned.InterlockOK := TRUE; END_IF
 
 //prompts
-IF iAdvancePrompt					THEN	MotionRowLocation.Advance.Prompt := TRUE;		END_IF
-IF iReturnPrompt					THEN 	MotionRowLocation.Returned.Prompt := TRUE;		END_IF
+IF iAdvancePrompt					THEN	stndata.MotionRow[iRowNumber].Advance.Prompt := TRUE;		END_IF
+IF iReturnPrompt					THEN 	stndata.MotionRow[iRowNumber].Returned.Prompt := TRUE;		END_IF
 
 //times
-MotionRowLocation.Advance.TimeTaken		:= iAdvanceTime;
-MotionRowLocation.Returned.TimeTaken	:= iReturnTime;
+stndata.MotionRow[iRowNumber].Advance.TimeTaken		:= iAdvanceTime;
+stndata.MotionRow[iRowNumber].Returned.TimeTaken	:= iReturnTime;
 
 //Number of messages per motion, typ. 5 messages with space for more (10)
 tNumMessagesPerRow						:= GlobalMessages.AllocMsgPerRow;
@@ -103,66 +109,86 @@ qResultMessageOffset := tMessageOffset - tNumMessagesPerRow;
 
 //config
 //clear down config
-MotionRowLocation.Advance.bHideButton		:= FALSE;
-MotionRowLocation.Advance.bHideCoil			:= FALSE;
-MotionRowLocation.Advance.bHideDepth		:= FALSE;
-MotionRowLocation.Advance.bHideInterlock	:= FALSE;
-MotionRowLocation.Advance.bHidePrompt		:= FALSE;
-MotionRowLocation.Advance.bHideTime			:= FALSE;
-MotionRowLocation.Returned.bHideButton		:= FALSE;
-MotionRowLocation.Returned.bHideCoil		:= FALSE;
-MotionRowLocation.Returned.bHideDepth		:= FALSE;
-MotionRowLocation.Returned.bHideInterlock	:= FALSE;
-MotionRowLocation.Returned.bHidePrompt		:= FALSE;
-MotionRowLocation.Returned.bHideTime		:= FALSE;
-MotionRowLocation.bHideName					:= FALSE;
-MotionRowLocation.bHidePosn					:= FALSE;
+stndata.MotionRow[iRowNumber].Advance.bHideButton		:= FALSE;
+stndata.MotionRow[iRowNumber].Advance.bHideCoil			:= FALSE;
+stndata.MotionRow[iRowNumber].Advance.bHideDepth		:= FALSE;
+stndata.MotionRow[iRowNumber].Advance.bHideInterlock	:= FALSE;
+stndata.MotionRow[iRowNumber].Advance.bHidePrompt		:= FALSE;
+stndata.MotionRow[iRowNumber].Advance.bHideTime			:= FALSE;
+stndata.MotionRow[iRowNumber].Returned.bHideButton		:= FALSE;
+stndata.MotionRow[iRowNumber].Returned.bHideCoil		:= FALSE;
+stndata.MotionRow[iRowNumber].Returned.bHideDepth		:= FALSE;
+stndata.MotionRow[iRowNumber].Returned.bHideInterlock	:= FALSE;
+stndata.MotionRow[iRowNumber].Returned.bHidePrompt		:= FALSE;
+stndata.MotionRow[iRowNumber].Returned.bHideTime		:= FALSE;
+stndata.MotionRow[iRowNumber].bHideName					:= FALSE;
+stndata.MotionRow[iRowNumber].bHidePosn					:= FALSE;
 
 //setup config
-IF iConfig.0	THEN MotionRowLocation.Advance.bHideButton		:= TRUE; END_IF
-IF iConfig.1	THEN MotionRowLocation.Advance.bHideCoil		:= TRUE; END_IF
-IF iConfig.2	THEN MotionRowLocation.Advance.bHideDepth		:= TRUE; END_IF
-IF iConfig.3	THEN MotionRowLocation.Advance.bHideInterlock	:= TRUE; END_IF
-IF iConfig.4	THEN MotionRowLocation.Advance.bHidePrompt		:= TRUE; END_IF
-IF iConfig.5	THEN MotionRowLocation.Advance.bHideTime		:= TRUE; END_IF
-IF iConfig.6	THEN MotionRowLocation.Returned.bHideButton		:= TRUE; END_IF
-IF iConfig.7	THEN MotionRowLocation.Returned.bHideCoil		:= TRUE; END_IF
-IF iConfig.8	THEN MotionRowLocation.Returned.bHideDepth		:= TRUE; END_IF
-IF iConfig.9	THEN MotionRowLocation.Returned.bHideInterlock	:= TRUE; END_IF
-IF iConfig.10	THEN MotionRowLocation.Returned.bHidePrompt		:= TRUE; END_IF
-IF iConfig.11	THEN MotionRowLocation.Returned.bHideTime		:= TRUE; END_IF
-IF iConfig.12	THEN MotionRowLocation.bHidePosn				:= TRUE; END_IF
-IF iConfig.13	THEN MotionRowLocation.bHideName				:= TRUE; END_IF
+IF iConfig.0	THEN stndata.MotionRow[iRowNumber].Advance.bHideButton		:= TRUE; END_IF
+IF iConfig.1	THEN stndata.MotionRow[iRowNumber].Advance.bHideCoil		:= TRUE; END_IF
+IF iConfig.2	THEN stndata.MotionRow[iRowNumber].Advance.bHideDepth		:= TRUE; END_IF
+IF iConfig.3	THEN stndata.MotionRow[iRowNumber].Advance.bHideInterlock	:= TRUE; END_IF
+IF iConfig.4	THEN stndata.MotionRow[iRowNumber].Advance.bHidePrompt		:= TRUE; END_IF
+IF iConfig.5	THEN stndata.MotionRow[iRowNumber].Advance.bHideTime		:= TRUE; END_IF
+IF iConfig.6	THEN stndata.MotionRow[iRowNumber].Returned.bHideButton		:= TRUE; END_IF
+IF iConfig.7	THEN stndata.MotionRow[iRowNumber].Returned.bHideCoil		:= TRUE; END_IF
+IF iConfig.8	THEN stndata.MotionRow[iRowNumber].Returned.bHideDepth		:= TRUE; END_IF
+IF iConfig.9	THEN stndata.MotionRow[iRowNumber].Returned.bHideInterlock	:= TRUE; END_IF
+IF iConfig.10	THEN stndata.MotionRow[iRowNumber].Returned.bHidePrompt		:= TRUE; END_IF
+IF iConfig.11	THEN stndata.MotionRow[iRowNumber].Returned.bHideTime		:= TRUE; END_IF
+IF iConfig.12	THEN stndata.MotionRow[iRowNumber].bHidePosn				:= TRUE; END_IF
+IF iConfig.13	THEN stndata.MotionRow[iRowNumber].bHideName				:= TRUE; END_IF
 
 
 //advance number of order
-MotionRowLocation.Advance.NumberOrder := iAdvanceNumber;
+stndata.MotionRow[iRowNumber].Advance.NumberOrder := iAdvanceNumber;
 //return number of order
-MotionRowLocation.Returned.NumberOrder := iReturnNumber;
+stndata.MotionRow[iRowNumber].Returned.NumberOrder := iReturnNumber;
 
 
 //assemble posn string
-MotionRowLocation.strPosn := CONCAT(STR1:=iPosn, STR2:=iUnits);
+stndata.MotionRow[iRowNumber].strPosn := CONCAT(STR1:=iPosn, STR2:=iUnits);
 
 IF gHMIButtons.btnAbsMode THEN
-	MotionRowLocation.bIsAbsSymSwitch := TRUE;
+	stndata.MotionRow[iRowNumber].bIsAbsSymSwitch := TRUE;
 	ELSE
-	MotionRowLocation.bIsAbsSymSwitch := FALSE;
+	stndata.MotionRow[iRowNumber].bIsAbsSymSwitch := FALSE;
 END_IF
 
 //setup default colour
-MotionRowLocation.Advance.CoilColour	:= HMIColour.colourGreyBackground;
-MotionRowLocation.Returned.CoilColour	:= HMIColour.colourGreyBackground;
-MotionRowLocation.Advance.FdbkColour	:= HMIColour.colourGreyBackground;
-MotionRowLocation.Returned.FdbkColour	:= HMIColour.colourGreyBackground;
+stndata.MotionRow[iRowNumber].Advance.CoilColour	:= HMIColour.colourGreyBackground;
+stndata.MotionRow[iRowNumber].Returned.CoilColour	:= HMIColour.colourGreyBackground;
+stndata.MotionRow[iRowNumber].Advance.FdbkColour	:= HMIColour.colourGreyBackground;
+stndata.MotionRow[iRowNumber].Returned.FdbkColour	:= HMIColour.colourGreyBackground;
 	
 //colour setup for row
-IF	qAdvanceReq		THEN MotionRowLocation.Advance.CoilColour	:= HMIColour.colourGreen;	END_IF
-IF	qReturnReq		THEN MotionRowLocation.Returned.CoilColour	:= HMIColour.colourYellow;	END_IF
-IF	iAdvanceLimit	THEN MotionRowLocation.Advance.FdbkColour	:= HMIColour.colourGreen;	END_IF
-IF	iReturnLimit	THEN MotionRowLocation.Returned.FdbkColour	:= HMIColour.colourYellow;	END_IF
+IF	qAdvanceReq		THEN stndata.MotionRow[iRowNumber].Advance.CoilColour	:= HMIColour.colourGreen;	END_IF
+IF	qReturnReq		THEN stndata.MotionRow[iRowNumber].Returned.CoilColour	:= HMIColour.colourYellow;	END_IF
+IF	iAdvanceLimit	THEN stndata.MotionRow[iRowNumber].Advance.FdbkColour	:= HMIColour.colourGreen;	END_IF
+IF	iReturnLimit	THEN stndata.MotionRow[iRowNumber].Returned.FdbkColour	:= HMIColour.colourYellow;	END_IF
 ]]></ST>
     </Implementation>
+    <Action Name="actUpdateRecord" Id="{434e14d4-429c-464f-877e-d0874076e223}">
+      <Implementation>
+        <ST><![CDATA[//generate pulse per motion limit
+advPulse(CLK:=iAdvanceLimit);
+retPulse(CLK:=iReturnLimit);
+
+
+//update motion record
+IF advPulse.Q THEN
+		stndata.MotionRecordStation.data[iRowNumber].Advanced 
+	:=	stndata.MotionRecordStation.data[iRowNumber].Advanced  + 1;
+END_IF
+
+//update motion record
+IF retPulse.Q THEN
+		stndata.MotionRecordStation.data[iRowNumber].Returned 
+	:=	stndata.MotionRecordStation.data[iRowNumber].Returned + 1;
+END_IF]]></ST>
+      </Implementation>
+    </Action>
     <LineIds Name="FB_HMI_Control">
       <LineId Id="9" Count="0" />
       <LineId Id="71" Count="0" />
@@ -244,6 +270,18 @@ IF	iReturnLimit	THEN MotionRowLocation.Returned.FdbkColour	:= HMIColour.colourYe
       <LineId Id="245" Count="0" />
       <LineId Id="251" Count="0" />
       <LineId Id="93" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_HMI_Control.actUpdateRecord">
+      <LineId Id="13" Count="0" />
+      <LineId Id="2" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="7" Count="2" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="16" Count="4" />
+      <LineId Id="15" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

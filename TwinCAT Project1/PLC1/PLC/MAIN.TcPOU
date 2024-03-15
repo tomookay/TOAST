@@ -46,19 +46,19 @@ pouMachine();
 pouStation1();
 
 //call station 2
-pouStation2();
+//pouStation2();
 
 //call station 3
-pouStation3();
+//pouStation3();
 
 //call station 4
-pouStation4();
+//pouStation4();
 
 //call station 5
-pouStation5();
+//pouStation5();
 
 //call station 6
-pouStation6();
+//pouStation6();
 
 //there are only ever 6 maximum stations
 
@@ -134,10 +134,10 @@ IF System.myPlcInfoTask1.FirstCycle THEN
 	
 	
 	//start in manual mode
-	S1_Global.Data.Manual := TRUE;
-	S1_Global.Data.AutoCycle := FALSE;
-	S1_Global.Data.ContCycle := TRUE;
-	S1_Global.Data.SingleCycle := FALSE;
+	S1_Global.station.Data.Manual := TRUE;
+	S1_Global.station.Data.AutoCycle := FALSE;
+	S1_Global.station.Data.ContCycle := TRUE;
+	S1_Global.station.Data.SingleCycle := FALSE;
 END_IF
 
 //globals used in future scan(s)

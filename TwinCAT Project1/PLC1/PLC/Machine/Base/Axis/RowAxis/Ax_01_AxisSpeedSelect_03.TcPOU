@@ -3,7 +3,7 @@
   <POU Name="Ax_01_AxisSpeedSelect_03" Id="{0469215d-e5f1-44a0-bcb4-c71d7d6b3479}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM Ax_01_AxisSpeedSelect_03
 VAR
-	HMI_Motion: FB_HMI_Control;
+	HMI_Motion: FB_HMI_Control_NoGroupRef;
 
 
 	tMessageOffset: UINT;
@@ -173,10 +173,10 @@ END_VAR
                   <v n="OutCommented">false</v>
                   <l2 n="NetworkItems" cet="BoxTreeBox">
                     <o>
-                      <v n="BoxType">"FB_HMI_Control"</v>
+                      <v n="BoxType">"FB_HMI_Control_NoGroupRef"</v>
                       <o n="Instance" t="Operand">
                         <v n="Operand">"HMI_Motion"</v>
-                        <v n="Type">"FB_HMI_Control"</v>
+                        <v n="Type">"FB_HMI_Control_NoGroupRef"</v>
                         <v n="Comment">""</v>
                         <v n="SymbolComment">""</v>
                         <v n="Address">""</v>
@@ -188,7 +188,7 @@ END_VAR
                         <v n="LValue">false</v>
                         <v n="Boolean">false</v>
                         <v n="IsInstance">true</v>
-                        <v n="Id">434L</v>
+                        <v n="Id">875L</v>
                       </o>
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems" cet="Operand">
@@ -726,7 +726,7 @@ END_VAR
                       <n n="STSnippet" />
                       <v n="ContainsExtensibleInputs">false</v>
                       <v n="ProvidesSTSnippet">false</v>
-                      <v n="Id">435L</v>
+                      <v n="Id">876L</v>
                     </o>
                   </l2>
                   <l2 n="Connectors" />

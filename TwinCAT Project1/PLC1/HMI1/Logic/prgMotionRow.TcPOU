@@ -83,11 +83,11 @@ tSizeOfMotionRowButtons := tSizeOfMotionRowButtons - SIZEOF(gHMIMotionRows.gMoti
 //Move Button BOOL state back adr(S1_Global.MotionRow)
 IF gHMIData.gStationSelected[1] THEN
 	retval := memcpy(	destAddr:=	ADR(gHMIMotionRows.gMotionRows),
-						srcAddr:=	ADR(S1_Global.MotionRow) + tSizeOfMotionRow,
+						srcAddr:=	ADR(S1_Global.station.MotionRow) + tSizeOfMotionRow,
 						n:=			SIZEOF(gHMIMotionRows.gMotionRows)
 						);
 						
-	retval := memcpy(	destAddr:=	ADR(S1_Global.MotionRowBtn) + tSizeOfMotionRowButtons,
+	retval := memcpy(	destAddr:=	ADR(S1_Global.station.MotionRowBtn) + tSizeOfMotionRowButtons,
 						srcAddr:=	ADR(gHMIMotionRows.gMotionRowButtons),
 						n:=			SIZEOF(gHMIMotionRows.gMotionRowButtons)
 						);
@@ -183,7 +183,7 @@ END_IF
 
 //station 1 control
 IF gHMIData.gStationSelected[1] THEN
-	gHMIData.gMaxPageNumber := S1_Global.Data.NumberOfPages;
+	gHMIData.gMaxPageNumber := S1_Global.station.Data.NumberOfPages;
 END_IF
 
 //station 2 control

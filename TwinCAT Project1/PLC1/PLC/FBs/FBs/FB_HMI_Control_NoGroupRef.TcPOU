@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_HMI_Control_NoGroupRef" Id="{c803f4a0-2d7c-416d-b27b-7e1db046aea2}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_HMI_Control_NoGroupRef
+VAR_INPUT
+	iStationNumber : UINT;
+	iRowNumber : UINT;
+	
+	iAdvanceLimit: BOOL;
+	iReturnLimit: BOOL;
+	iAdvanceCoil: BOOL;
+	iReturnCoil: BOOL;
+	
+	iAdvanceTime:TIME;
+	iReturnTime: TIME;
+	
+	iAdvanceInterlock: BOOL;
+	iReturnInterlock: BOOL;
+
+	iAdvancePrompt: BOOL;
+	iReturnPrompt: BOOL;
+	
+	iConfig: WORD; //config for hide data
+	
+	iAdvanceNumber: UINT; //advance row number of sequence
+	iReturnNumber: UINT; //return row number of sequence
+
+	iUnits: STRING := ' mm';
+	iPosn:   STRING := '0.0';
+END_VAR
+
+VAR_OUTPUT
+	qRow: UINT;
+	qAdvanceReq: BOOL;
+	qReturnReq: BOOL;
+	qResultMessageOffset: UINT;
+END_VAR
+
+VAR
+	tNumMessagesPerRow: UINT;
+	tMessageOffset: UINT;
+	unitsString: STRING(255);
+END_VAR
+
+VAR_IN_OUT
+	NumRows: UINT;
+	MotionRowLocation: typeMotionRow;
+	MotionRowBtnLocation: typeMotionRowButtons;
+END_VAR
+
+//theme:DjMKwLkgS-k]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//this block is the same as FB_HMI_Control, except the IN_OUT variables declared are not part of the typStation group.
+
+//calculate row order
+qRow := iRowNumber * 20; //20 = number messages per row, or things per row
+
+//Calculate number of rows
+NumRows := NumRows + 1; //increment on scan of IN_OUT
+
+//setup block clear down values
+qAdvanceReq := FALSE;
+qReturnReq := FALSE;
+MotionRowLocation.Advance.Depth := FALSE;
+MotionRowLocation.Returned.Depth := FALSE;
+MotionRowLocation.Advance.RequestCoil := FALSE;
+MotionRowLocation.Returned.RequestCoil := FALSE;
+MotionRowLocation.Advance.InterlockOK := FALSE;
+MotionRowLocation.Returned.InterlockOK := FALSE;
+MotionRowLocation.Advance.Prompt := FALSE;
+MotionRowLocation.Returned.Prompt := FALSE;
+		
+
+//advance feedback for HMI
+IF MotionRowBtnLocation.btnAdvance	THEN	qAdvanceReq := TRUE;						END_IF
+IF MotionRowBtnLocation.btnReturn	THEN	qReturnReq := TRUE;							END_IF
+
+//limit switches
+IF iAdvanceLimit					THEN	MotionRowLocation.Advance.Depth := TRUE;	END_IF
+IF iReturnLimit						THEN	MotionRowLocation.Returned.Depth := TRUE;	END_IF
+
+//coil feedback
+IF iAdvanceCoil						THEN  	MotionRowLocation.Advance.RequestCoil := TRUE;	END_IF
+IF iReturnCoil						THEN	MotionRowLocation.Returned.RequestCoil := TRUE; END_IF
+
+//interlocks
+IF iAdvanceInterlock				THEN	MotionRowLocation.Advance.InterlockOK := TRUE;	END_IF
+IF iReturnInterlock					THEN	MotionRowLocation.Returned.InterlockOK := TRUE; END_IF
+
+//prompts
+IF iAdvancePrompt					THEN	MotionRowLocation.Advance.Prompt := TRUE;		END_IF
+IF iReturnPrompt					THEN 	MotionRowLocation.Returned.Prompt := TRUE;		END_IF
+
+//times
+MotionRowLocation.Advance.TimeTaken		:= iAdvanceTime;
+MotionRowLocation.Returned.TimeTaken	:= iReturnTime;
+
+//Number of messages per motion, typ. 5 messages with space for more (10)
+tNumMessagesPerRow						:= GlobalMessages.AllocMsgPerRow;
+
+//define message position
+//n= number of messages per row
+tMessageOffset := tNumMessagesPerRow * iRowNumber;
+qResultMessageOffset := tMessageOffset - tNumMessagesPerRow;
+
+//config
+//clear down config
+MotionRowLocation.Advance.bHideButton		:= FALSE;
+MotionRowLocation.Advance.bHideCoil			:= FALSE;
+MotionRowLocation.Advance.bHideDepth		:= FALSE;
+MotionRowLocation.Advance.bHideInterlock	:= FALSE;
+MotionRowLocation.Advance.bHidePrompt		:= FALSE;
+MotionRowLocation.Advance.bHideTime			:= FALSE;
+MotionRowLocation.Returned.bHideButton		:= FALSE;
+MotionRowLocation.Returned.bHideCoil		:= FALSE;
+MotionRowLocation.Returned.bHideDepth		:= FALSE;
+MotionRowLocation.Returned.bHideInterlock	:= FALSE;
+MotionRowLocation.Returned.bHidePrompt		:= FALSE;
+MotionRowLocation.Returned.bHideTime		:= FALSE;
+MotionRowLocation.bHideName					:= FALSE;
+MotionRowLocation.bHidePosn					:= FALSE;
+
+//setup config
+IF iConfig.0	THEN MotionRowLocation.Advance.bHideButton		:= TRUE; END_IF
+IF iConfig.1	THEN MotionRowLocation.Advance.bHideCoil		:= TRUE; END_IF
+IF iConfig.2	THEN MotionRowLocation.Advance.bHideDepth		:= TRUE; END_IF
+IF iConfig.3	THEN MotionRowLocation.Advance.bHideInterlock	:= TRUE; END_IF
+IF iConfig.4	THEN MotionRowLocation.Advance.bHidePrompt		:= TRUE; END_IF
+IF iConfig.5	THEN MotionRowLocation.Advance.bHideTime		:= TRUE; END_IF
+IF iConfig.6	THEN MotionRowLocation.Returned.bHideButton		:= TRUE; END_IF
+IF iConfig.7	THEN MotionRowLocation.Returned.bHideCoil		:= TRUE; END_IF
+IF iConfig.8	THEN MotionRowLocation.Returned.bHideDepth		:= TRUE; END_IF
+IF iConfig.9	THEN MotionRowLocation.Returned.bHideInterlock	:= TRUE; END_IF
+IF iConfig.10	THEN MotionRowLocation.Returned.bHidePrompt		:= TRUE; END_IF
+IF iConfig.11	THEN MotionRowLocation.Returned.bHideTime		:= TRUE; END_IF
+IF iConfig.12	THEN MotionRowLocation.bHidePosn				:= TRUE; END_IF
+IF iConfig.13	THEN MotionRowLocation.bHideName				:= TRUE; END_IF
+
+
+//advance number of order
+MotionRowLocation.Advance.NumberOrder := iAdvanceNumber;
+//return number of order
+MotionRowLocation.Returned.NumberOrder := iReturnNumber;
+
+
+//assemble posn string
+MotionRowLocation.strPosn := CONCAT(STR1:=iPosn, STR2:=iUnits);
+
+IF gHMIButtons.btnAbsMode THEN
+	MotionRowLocation.bIsAbsSymSwitch := TRUE;
+	ELSE
+	MotionRowLocation.bIsAbsSymSwitch := FALSE;
+END_IF
+
+//setup default colour
+MotionRowLocation.Advance.CoilColour	:= HMIColour.colourGreyBackground;
+MotionRowLocation.Returned.CoilColour	:= HMIColour.colourGreyBackground;
+MotionRowLocation.Advance.FdbkColour	:= HMIColour.colourGreyBackground;
+MotionRowLocation.Returned.FdbkColour	:= HMIColour.colourGreyBackground;
+	
+//colour setup for row
+IF	qAdvanceReq		THEN MotionRowLocation.Advance.CoilColour	:= HMIColour.colourGreen;	END_IF
+IF	qReturnReq		THEN MotionRowLocation.Returned.CoilColour	:= HMIColour.colourYellow;	END_IF
+IF	iAdvanceLimit	THEN MotionRowLocation.Advance.FdbkColour	:= HMIColour.colourGreen;	END_IF
+IF	iReturnLimit	THEN MotionRowLocation.Returned.FdbkColour	:= HMIColour.colourYellow;	END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_HMI_Control_NoGroupRef">
+      <LineId Id="537" Count="1" />
+      <LineId Id="379" Count="110" />
+      <LineId Id="93" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
