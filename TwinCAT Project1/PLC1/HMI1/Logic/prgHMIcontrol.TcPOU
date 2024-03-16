@@ -872,37 +872,37 @@ END_IF
 
 //move set global fault
 IF GlobalMessages.gMsgS2Stat.IsAlarm THEN
-	S2_Global.Data.Fault := TRUE;
+	S2_Global.station.Data.Fault := TRUE;
 	ELSE
-	S2_Global.Data.Fault := FALSE;
+	S2_Global.station.Data.Fault := FALSE;
 END_IF
 
 //move set global fault
 IF GlobalMessages.gMsgS3Stat.IsAlarm THEN
-	S3_Global.Data.Fault := TRUE;
+	S3_Global.station.Data.Fault := TRUE;
 	ELSE
-	S3_Global.Data.Fault := FALSE;
+	S3_Global.station.Data.Fault := FALSE;
 END_IF
 
 //move set global fault
 IF GlobalMessages.gMsgS4Stat.IsAlarm THEN
-	S4_Global.Data.Fault := TRUE;
+	S4_Global.station.Data.Fault := TRUE;
 	ELSE
-	S4_Global.Data.Fault := FALSE;
+	S4_Global.station.Data.Fault := FALSE;
 END_IF
 
 //move set global fault
 IF GlobalMessages.gMsgS5Stat.IsAlarm THEN
-	S5_Global.Data.Fault := TRUE;
+	S5_Global.station.Data.Fault := TRUE;
 	ELSE
-	S5_Global.Data.Fault := FALSE;
+	S5_Global.station.Data.Fault := FALSE;
 END_IF
 
 //move set global fault
 IF GlobalMessages.gMsgS6Stat.IsAlarm THEN
-	S6_Global.Data.Fault := TRUE;
+	S6_Global.station.Data.Fault := TRUE;
 	ELSE
-	S6_Global.Data.Fault := FALSE;
+	S6_Global.station.Data.Fault := FALSE;
 END_IF
 
 ]]></ST>
@@ -1047,37 +1047,37 @@ END_IF
 
 //move set global fault
 IF GlobalMessages.gMsgS2Stat.IsWarning THEN
-	S2_Global.Data.Warning := TRUE;
+	S2_Global.station.Data.Warning := TRUE;
 	ELSE
-	S2_Global.Data.Warning := FALSE;
+	S2_Global.station.Data.Warning := FALSE;
 END_IF
 
 //move set global fault
 IF GlobalMessages.gMsgS3Stat.IsWarning THEN
-	S3_Global.Data.Warning := TRUE;
+	S3_Global.station.Data.Warning := TRUE;
 	ELSE
-	S3_Global.Data.Warning := FALSE;
+	S3_Global.station.Data.Warning := FALSE;
 END_IF
 
 //move set global fault
 IF GlobalMessages.gMsgS4Stat.IsWarning THEN
-	S4_Global.Data.Warning := TRUE;
+	S4_Global.station.Data.Warning := TRUE;
 	ELSE
-	S4_Global.Data.Warning := FALSE;
+	S4_Global.station.Data.Warning := FALSE;
 END_IF
 
 //move set global fault
 IF GlobalMessages.gMsgS5Stat.IsWarning THEN
-	S5_Global.Data.Warning := TRUE;
+	S5_Global.station.Data.Warning := TRUE;
 	ELSE
-	S5_Global.Data.Warning := FALSE;
+	S5_Global.station.Data.Warning := FALSE;
 END_IF
 
 //move set global fault
 IF GlobalMessages.gMsgS6Stat.IsWarning THEN
-	S6_Global.Data.Warning := TRUE;
+	S6_Global.station.Data.Warning := TRUE;
 	ELSE
-	S6_Global.Data.Warning := FALSE;
+	S6_Global.station.Data.Warning := FALSE;
 END_IF
 
 ]]></ST>
@@ -1145,40 +1145,40 @@ END_IF
 //move station data into global data area for viewing
 IF gHMIData.gStationSelected[2] THEN
 	retval := memcpy(	destAddr:=	ADR(Mc_Global.part),
-						srcAddr:=	ADR(S2_Global.part),
-						n:=			SIZEOF(S2_Global.part)
+						srcAddr:=	ADR(S2_Global.station.part),
+						n:=			SIZEOF(S2_Global.station.part)
 						);
 END_IF
 
 //move station data into global data area for viewing
 IF gHMIData.gStationSelected[3] THEN
 	retval := memcpy(	destAddr:=	ADR(Mc_Global.part),
-						srcAddr:=	ADR(S3_Global.part),
-						n:=			SIZEOF(S3_Global.part)
+						srcAddr:=	ADR(S3_Global.station.part),
+						n:=			SIZEOF(S3_Global.station.part)
 						);
 END_IF
 
 //move station data into global data area for viewing
 IF gHMIData.gStationSelected[4] THEN
 	retval := memcpy(	destAddr:=	ADR(Mc_Global.part),
-						srcAddr:=	ADR(S4_Global.part),
-						n:=			SIZEOF(S4_Global.part)
+						srcAddr:=	ADR(S4_Global.station.part),
+						n:=			SIZEOF(S4_Global.station.part)
 						);
 END_IF
 
 //move station data into global data area for viewing
 IF gHMIData.gStationSelected[5] THEN
 	retval := memcpy(	destAddr:=	ADR(Mc_Global.part),
-						srcAddr:=	ADR(S5_Global.part),
-						n:=			SIZEOF(S5_Global.part)
+						srcAddr:=	ADR(S5_Global.station.part),
+						n:=			SIZEOF(S5_Global.station.part)
 						);
 END_IF
 
 //move station data into global data area for viewing
 IF gHMIData.gStationSelected[6] THEN
 	retval := memcpy(	destAddr:=	ADR(Mc_Global.part),
-						srcAddr:=	ADR(S6_Global.part),
-						n:=			SIZEOF(S6_Global.part)
+						srcAddr:=	ADR(S6_Global.station.part),
+						n:=			SIZEOF(S6_Global.station.part)
 						);
 END_IF
 

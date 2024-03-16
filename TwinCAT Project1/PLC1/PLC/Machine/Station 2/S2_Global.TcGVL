@@ -3,16 +3,7 @@
   <GVL Name="S2_Global" Id="{f2ca5b31-1de6-4f3f-a24a-982c8035197d}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
-	Data: typeStationMode;
-	hmiHeader:typeHMIheader;
-	
-	
-	//all motion rows in the station, to be inserted into the main HMI motion screen
-	MotionRow: ARRAY[1..99] OF typeMotionRow;
-	MotionRowBtn: ARRAY[1..99] OF typeMotionRowButtons;
-	
-
-	part: typeStationTask;
+	station:typeStation; //data relating to the entire station
 END_VAR
 
 ]]></Declaration>

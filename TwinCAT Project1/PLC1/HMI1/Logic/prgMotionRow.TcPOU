@@ -95,11 +95,11 @@ END_IF
 
 IF gHMIData.gStationSelected[2] THEN
 	retval := memcpy(	destAddr:=	ADR(gHMIMotionRows.gMotionRows),
-						srcAddr:=	ADR(S2_Global.MotionRow) + tSizeOfMotionRow,
+						srcAddr:=	ADR(S2_Global.station.MotionRow) + tSizeOfMotionRow,
 						n:=			SIZEOF(gHMIMotionRows.gMotionRows)
 						);
 						
-	retval := memcpy(	destAddr:=	ADR(S2_Global.MotionRowBtn) + tSizeOfMotionRowButtons,
+	retval := memcpy(	destAddr:=	ADR(S2_Global.station.MotionRowBtn) + tSizeOfMotionRowButtons,
 						srcAddr:=	ADR(gHMIMotionRows.gMotionRowButtons),
 						n:=			SIZEOF(gHMIMotionRows.gMotionRowButtons)
 						);
@@ -107,11 +107,11 @@ END_IF
 
 IF gHMIData.gStationSelected[3] THEN
 	retval := memcpy(	destAddr:=	ADR(gHMIMotionRows.gMotionRows),
-						srcAddr:=	ADR(S3_Global.MotionRow) + tSizeOfMotionRow,
+						srcAddr:=	ADR(S3_Global.station.MotionRow) + tSizeOfMotionRow,
 						n:=			SIZEOF(gHMIMotionRows.gMotionRows)
 						);
 						
-	retval := memcpy(	destAddr:=	ADR(S3_Global.MotionRowBtn) + tSizeOfMotionRowButtons,
+	retval := memcpy(	destAddr:=	ADR(S3_Global.station.MotionRowBtn) + tSizeOfMotionRowButtons,
 						srcAddr:=	ADR(gHMIMotionRows.gMotionRowButtons),
 						n:=			SIZEOF(gHMIMotionRows.gMotionRowButtons)
 						);
@@ -119,11 +119,11 @@ END_IF
 
 IF gHMIData.gStationSelected[4] THEN
 	retval := memcpy(	destAddr:=	ADR(gHMIMotionRows.gMotionRows),
-						srcAddr:=	ADR(S4_Global.MotionRow) + tSizeOfMotionRow,
+						srcAddr:=	ADR(S4_Global.station.MotionRow) + tSizeOfMotionRow,
 						n:=			SIZEOF(gHMIMotionRows.gMotionRows)
 						);
 						
-	retval := memcpy(	destAddr:=	ADR(S4_Global.MotionRowBtn) + tSizeOfMotionRowButtons,
+	retval := memcpy(	destAddr:=	ADR(S4_Global.station.MotionRowBtn) + tSizeOfMotionRowButtons,
 						srcAddr:=	ADR(gHMIMotionRows.gMotionRowButtons),
 						n:=			SIZEOF(gHMIMotionRows.gMotionRowButtons)
 						);
@@ -131,11 +131,11 @@ END_IF
 
 IF gHMIData.gStationSelected[5] THEN
 	retval := memcpy(	destAddr:=	ADR(gHMIMotionRows.gMotionRows),
-						srcAddr:=	ADR(S5_Global.MotionRow) + tSizeOfMotionRow,
+						srcAddr:=	ADR(S5_Global.station.MotionRow) + tSizeOfMotionRow,
 						n:=			SIZEOF(gHMIMotionRows.gMotionRows)
 						);
 						
-	retval := memcpy(	destAddr:=	ADR(S5_Global.MotionRowBtn) + tSizeOfMotionRowButtons,
+	retval := memcpy(	destAddr:=	ADR(S5_Global.station.MotionRowBtn) + tSizeOfMotionRowButtons,
 						srcAddr:=	ADR(gHMIMotionRows.gMotionRowButtons),
 						n:=			SIZEOF(gHMIMotionRows.gMotionRowButtons)
 						);
@@ -143,11 +143,11 @@ END_IF
 
 IF gHMIData.gStationSelected[6] THEN
 	retval := memcpy(	destAddr:=	ADR(gHMIMotionRows.gMotionRows),
-						srcAddr:=	ADR(S6_Global.MotionRow) + tSizeOfMotionRow,
+						srcAddr:=	ADR(S6_Global.station.MotionRow) + tSizeOfMotionRow,
 						n:=			SIZEOF(gHMIMotionRows.gMotionRows)
 						);
 						
-	retval := memcpy(	destAddr:=	ADR(S6_Global.MotionRowBtn) + tSizeOfMotionRowButtons,
+	retval := memcpy(	destAddr:=	ADR(S6_Global.station.MotionRowBtn) + tSizeOfMotionRowButtons,
 						srcAddr:=	ADR(gHMIMotionRows.gMotionRowButtons),
 						n:=			SIZEOF(gHMIMotionRows.gMotionRowButtons)
 						);
@@ -188,27 +188,27 @@ END_IF
 
 //station 2 control
 IF gHMIData.gStationSelected[2] THEN
-	gHMIData.gMaxPageNumber := S2_Global.Data.NumberOfPages;
+	gHMIData.gMaxPageNumber := S2_Global.station.Data.NumberOfPages;
 END_IF
 
 //station 3 control
 IF gHMIData.gStationSelected[3] THEN
-	gHMIData.gMaxPageNumber := S3_Global.Data.NumberOfPages;
+	gHMIData.gMaxPageNumber := S3_Global.station.Data.NumberOfPages;
 END_IF
 
 //station 4 control
 IF gHMIData.gStationSelected[4] THEN
-	gHMIData.gMaxPageNumber := S4_Global.Data.NumberOfPages;
+	gHMIData.gMaxPageNumber := S4_Global.station.Data.NumberOfPages;
 END_IF
 
 //station 5 control
 IF gHMIData.gStationSelected[5] THEN
-	gHMIData.gMaxPageNumber := S5_Global.Data.NumberOfPages;
+	gHMIData.gMaxPageNumber := S5_Global.station.Data.NumberOfPages;
 END_IF
 
 //station 6 control
 IF gHMIData.gStationSelected[6] THEN
-	gHMIData.gMaxPageNumber := S6_Global.Data.NumberOfPages;
+	gHMIData.gMaxPageNumber := S6_Global.station.Data.NumberOfPages;
 END_IF
 
 ]]></ST>
