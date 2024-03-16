@@ -151,6 +151,9 @@
     <ProjectVersion>0.0.1</ProjectVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="HMI1\Data\ScreenNames.TcTLO">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="HMI1\Logic\prgMotionRow.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -243,7 +246,7 @@
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
-    <Compile Include="HMI1\Screens\Units\Unt_402_Language.TcVIS">
+    <Compile Include="HMI1\Screens\Units\Unt_403_Language.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
@@ -557,12 +560,6 @@
     <Compile Include="HMI1\Templates\MessageRow.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
-    </Compile>
-    <Compile Include="HMI1\Templates\visuDataDisplay.TcVIS">
-      <SubType>Code</SubType>
-      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
-      <External>false</External>
-      <ExcludeFromBuild>false</ExcludeFromBuild>
     </Compile>
     <Compile Include="PlcTask.TcTTO">
       <SubType>Code</SubType>

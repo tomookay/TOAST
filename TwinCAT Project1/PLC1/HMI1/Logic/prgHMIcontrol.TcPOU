@@ -1203,7 +1203,13 @@ workString := RIGHT(STR:=gHMIData.gHMIScreenString,size:=strLen - a);
 b := find(STR1:=workString, STR2:='_');
 workString2 := LEFT(STR:=workString,size:=b - 1);
 
-gHMIData.gHMIScreenNum := STRING_TO_UINT(workString2);
+
+IF a = 0 OR b = 0 THEN
+	gHMIData.gScreenNumber := 32767;
+	ELSE
+	gHMIData.gScreenNumber := STRING_TO_UINT(workString2);
+END_IF
+
 
 
 
@@ -1388,7 +1394,11 @@ gHMIData.gHMIScreenNum := STRING_TO_UINT(workString2);
       <LineId Id="20" Count="1" />
       <LineId Id="16" Count="0" />
       <LineId Id="15" Count="0" />
+      <LineId Id="25" Count="1" />
       <LineId Id="22" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="30" Count="1" />
+      <LineId Id="28" Count="0" />
       <LineId Id="14" Count="0" />
       <LineId Id="23" Count="0" />
       <LineId Id="13" Count="0" />
