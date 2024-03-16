@@ -101,7 +101,7 @@ END_VAR
                         <v n="LValue">false</v>
                         <v n="Boolean">false</v>
                         <v n="IsInstance">true</v>
-                        <v n="Id">434L</v>
+                        <v n="Id">458L</v>
                       </o>
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems" cet="Operand">
@@ -187,25 +187,6 @@ END_VAR
                             <v n="Extensible">false</v>
                           </o>
                           <v n="Id">14L</v>
-                        </o>
-                        <o t="BoxTreeOperand">
-                          <o n="Operand" t="Operand">
-                            <v n="Operand">"S5_Global.Data.StationNumber"</v>
-                            <v n="Type">"UINT"</v>
-                            <v n="Comment">""</v>
-                            <v n="SymbolComment">""</v>
-                            <v n="Address">"Constant_Address_Serialization_Value"</v>
-                            <o n="Flags" t="Flags">
-                              <v n="Flags">0</v>
-                              <v n="Fixed">false</v>
-                              <v n="Extensible">false</v>
-                            </o>
-                            <v n="LValue">false</v>
-                            <v n="Boolean">false</v>
-                            <v n="IsInstance">false</v>
-                            <v n="Id">16L</v>
-                          </o>
-                          <v n="Id">15L</v>
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
@@ -513,11 +494,11 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"S5_Global.Data.NumOfRows"</v>
-                            <v n="Type">"UINT"</v>
+                            <v n="Operand">"S4_Global.station"</v>
+                            <v n="Type">"typeStation"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
-                            <v n="Address">"Constant_Address_Serialization_Value"</v>
+                            <v n="Address">""</v>
                             <o n="Flags" t="Flags">
                               <v n="Flags">0</v>
                               <v n="Fixed">false</v>
@@ -526,53 +507,14 @@ END_VAR
                             <v n="LValue">false</v>
                             <v n="Boolean">false</v>
                             <v n="IsInstance">false</v>
-                            <v n="Id">20L</v>
+                            <v n="Id">461L</v>
                           </o>
-                          <v n="Id">19L</v>
-                        </o>
-                        <o t="BoxTreeOperand">
-                          <o n="Operand" t="Operand">
-                            <v n="Operand">"S5_Global.MotionRow[HMI_Motion.iRowNumber]"</v>
-                            <v n="Type">"typeMotionRow"</v>
-                            <v n="Comment">""</v>
-                            <v n="SymbolComment">""</v>
-                            <v n="Address">"Constant_Address_Serialization_Value"</v>
-                            <o n="Flags" t="Flags">
-                              <v n="Flags">0</v>
-                              <v n="Fixed">false</v>
-                              <v n="Extensible">false</v>
-                            </o>
-                            <v n="LValue">false</v>
-                            <v n="Boolean">false</v>
-                            <v n="IsInstance">false</v>
-                            <v n="Id">43L</v>
-                          </o>
-                          <v n="Id">42L</v>
-                        </o>
-                        <o t="BoxTreeOperand">
-                          <o n="Operand" t="Operand">
-                            <v n="Operand">"S5_Global.MotionRowBtn[HMI_Motion.iRowNumber]"</v>
-                            <v n="Type">"typeMotionRowButtons"</v>
-                            <v n="Comment">""</v>
-                            <v n="SymbolComment">""</v>
-                            <v n="Address">"Constant_Address_Serialization_Value"</v>
-                            <o n="Flags" t="Flags">
-                              <v n="Flags">0</v>
-                              <v n="Fixed">false</v>
-                              <v n="Extensible">false</v>
-                            </o>
-                            <v n="LValue">false</v>
-                            <v n="Boolean">false</v>
-                            <v n="IsInstance">false</v>
-                            <v n="Id">307L</v>
-                          </o>
-                          <v n="Id">306L</v>
+                          <v n="Id">460L</v>
                         </o>
                       </l2>
                       <o n="InputParam" t="ParamList">
                         <l2 n="Names" cet="String">
                           <v>EN</v>
-                          <v>iStationNumber</v>
                           <v>iRowNumber</v>
                           <v>iAdvanceLimit</v>
                           <v>iReturnLimit</v>
@@ -589,13 +531,10 @@ END_VAR
                           <v>iReturnNumber</v>
                           <v>iUnits</v>
                           <v>iPosn</v>
-                          <v>NumRows</v>
-                          <v>MotionRowLocation</v>
-                          <v>MotionRowBtnLocation</v>
+                          <v>stndata</v>
                         </l2>
                         <l2 n="Types" cet="String">
                           <v>BOOL</v>
-                          <v>UINT</v>
                           <v>UINT</v>
                           <v>BOOL</v>
                           <v>BOOL</v>
@@ -612,9 +551,7 @@ END_VAR
                           <v>UINT</v>
                           <v>STRING</v>
                           <v>STRING</v>
-                          <v>UINT[REF]</v>
-                          <v>typeMotionRow[REF]</v>
-                          <v>typeMotionRowButtons[REF]</v>
+                          <v>typeStation[REF]</v>
                         </l2>
                       </o>
                       <o n="OutputParam" t="ParamList">
@@ -639,7 +576,7 @@ END_VAR
                       <n n="STSnippet" />
                       <v n="ContainsExtensibleInputs">false</v>
                       <v n="ProvidesSTSnippet">false</v>
-                      <v n="Id">435L</v>
+                      <v n="Id">459L</v>
                     </o>
                   </l2>
                   <l2 n="Connectors" />
@@ -1699,7 +1636,7 @@ Is the motion the next in the process?"</v>
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"S5_Global.Data"</v>
+                            <v n="Operand">"S5_Global.station.Data"</v>
                             <v n="Type">"typeStationMode"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
