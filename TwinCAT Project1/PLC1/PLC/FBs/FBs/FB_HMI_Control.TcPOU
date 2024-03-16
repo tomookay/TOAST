@@ -167,6 +167,10 @@ IF	qAdvanceReq		THEN stndata.MotionRow[iRowNumber].Advance.CoilColour	:= HMIColo
 IF	qReturnReq		THEN stndata.MotionRow[iRowNumber].Returned.CoilColour	:= HMIColour.colourYellow;	END_IF
 IF	iAdvanceLimit	THEN stndata.MotionRow[iRowNumber].Advance.FdbkColour	:= HMIColour.colourGreen;	END_IF
 IF	iReturnLimit	THEN stndata.MotionRow[iRowNumber].Returned.FdbkColour	:= HMIColour.colourYellow;	END_IF
+
+//record number of motions
+actUpdateRecord();
+
 ]]></ST>
     </Implementation>
     <Action Name="actUpdateRecord" Id="{434e14d4-429c-464f-877e-d0874076e223}">
@@ -269,6 +273,9 @@ END_IF]]></ST>
       <LineId Id="236" Count="0" />
       <LineId Id="245" Count="0" />
       <LineId Id="251" Count="0" />
+      <LineId Id="380" Count="0" />
+      <LineId Id="379" Count="0" />
+      <LineId Id="381" Count="1" />
       <LineId Id="93" Count="0" />
     </LineIds>
     <LineIds Name="FB_HMI_Control.actUpdateRecord">
