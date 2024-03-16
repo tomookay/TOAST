@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <POU Name="FB_Flasher" Id="{ab9ee524-2100-4c00-9352-d5c1d062606f}" SpecialFunc="None">
+  <POU Name="FB_Flasher" Id="{91d2bfd0-504b-4e5a-9e47-8efd9a85c590}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_Flasher
 VAR
 	timON: TON;
 	timOFF: TON;
+
 END_VAR
 
 VAR_INPUT
@@ -17,311 +18,34 @@ VAR_OUTPUT
 
 END_VAR]]></Declaration>
     <Implementation>
-      <NWL>
-        <XmlArchive>
-          <Data>
-            <o xml:space="preserve" t="NWLImplementationObject">
-              <v n="NetworkListComment">""</v>
-              <v n="DefaultViewMode">"Ld"</v>
-              <l2 n="NetworkList" cet="Network">
-                <o>
-                  <v n="ILActive">false</v>
-                  <v n="FBDValid">false</v>
-                  <v n="ILValid">false</v>
-                  <l2 n="ILLines" />
-                  <v n="Comment">"time on"</v>
-                  <v n="Title">""</v>
-                  <v n="Label">""</v>
-                  <v n="OutCommented">false</v>
-                  <l2 n="NetworkItems" cet="BoxTreeBox">
-                    <o>
-                      <v n="BoxType">"TON"</v>
-                      <o n="Instance" t="Operand">
-                        <v n="Operand">"timON"</v>
-                        <v n="Type">"TON"</v>
-                        <v n="Comment">""</v>
-                        <v n="SymbolComment">""</v>
-                        <v n="Address">""</v>
-                        <o n="Flags" t="Flags">
-                          <v n="Flags">0</v>
-                          <v n="Fixed">false</v>
-                          <v n="Extensible">false</v>
-                        </o>
-                        <v n="LValue">false</v>
-                        <v n="Boolean">false</v>
-                        <v n="IsInstance">true</v>
-                        <v n="Id">47L</v>
-                      </o>
-                      <o n="OutputItems" t="OutputItemList">
-                        <l2 n="OutputItems" cet="Operand">
-                          <n />
-                          <o>
-                            <v n="Operand">"q"</v>
-                            <v n="Type">"BOOL"</v>
-                            <v n="Comment">""</v>
-                            <v n="SymbolComment">""</v>
-                            <v n="Address">""</v>
-                            <o n="Flags" t="Flags">
-                              <v n="Flags">0</v>
-                              <v n="Fixed">false</v>
-                              <v n="Extensible">false</v>
-                            </o>
-                            <v n="LValue">true</v>
-                            <v n="Boolean">false</v>
-                            <v n="IsInstance">false</v>
-                            <v n="Id">49L</v>
-                          </o>
-                        </l2>
-                      </o>
-                      <o n="Flags" t="Flags">
-                        <v n="Flags">0</v>
-                        <v n="Fixed">true</v>
-                        <v n="Extensible">false</v>
-                      </o>
-                      <n n="InputFlags" />
-                      <l2 n="InputItems">
-                        <o t="BoxTreeTerminator">
-                          <n n="Input" />
-                          <o n="Flags" t="Flags">
-                            <v n="Flags">0</v>
-                            <v n="Fixed">false</v>
-                            <v n="Extensible">false</v>
-                          </o>
-                          <v n="Id">31L</v>
-                        </o>
-                        <o t="BoxTreeOperand">
-                          <o n="Operand" t="Operand">
-                            <v n="Operand">"timOFF.q"</v>
-                            <v n="Type">"BOOL"</v>
-                            <v n="Comment">""</v>
-                            <v n="SymbolComment">""</v>
-                            <v n="Address">""</v>
-                            <o n="Flags" t="Flags">
-                              <v n="Flags">1</v>
-                              <v n="Fixed">true</v>
-                              <v n="Extensible">false</v>
-                            </o>
-                            <v n="LValue">false</v>
-                            <v n="Boolean">false</v>
-                            <v n="IsInstance">false</v>
-                            <v n="Id">33L</v>
-                          </o>
-                          <v n="Id">32L</v>
-                        </o>
-                        <o t="BoxTreeOperand">
-                          <o n="Operand" t="Operand">
-                            <v n="Operand">"timeVal"</v>
-                            <v n="Type">"TIME"</v>
-                            <v n="Comment">""</v>
-                            <v n="SymbolComment">""</v>
-                            <v n="Address">""</v>
-                            <o n="Flags" t="Flags">
-                              <v n="Flags">0</v>
-                              <v n="Fixed">false</v>
-                              <v n="Extensible">false</v>
-                            </o>
-                            <v n="LValue">false</v>
-                            <v n="Boolean">false</v>
-                            <v n="IsInstance">false</v>
-                            <v n="Id">35L</v>
-                          </o>
-                          <v n="Id">34L</v>
-                        </o>
-                      </l2>
-                      <o n="InputParam" t="ParamList">
-                        <l2 n="Names" cet="String">
-                          <v>EN</v>
-                          <v>IN</v>
-                          <v>PT</v>
-                        </l2>
-                        <l2 n="Types" cet="String">
-                          <v>BOOL</v>
-                          <v>BOOL</v>
-                          <v>TIME</v>
-                        </l2>
-                      </o>
-                      <o n="OutputParam" t="ParamList">
-                        <l2 n="Names" cet="String">
-                          <v>ENO</v>
-                          <v>Q</v>
-                        </l2>
-                        <l2 n="Types" cet="String">
-                          <v>BOOL</v>
-                          <v>BOOL</v>
-                        </l2>
-                      </o>
-                      <v n="CallType" t="Operator">FunctionBlock</v>
-                      <v n="EN">true</v>
-                      <v n="ENO">true</v>
-                      <n n="STSnippet" />
-                      <v n="ContainsExtensibleInputs">false</v>
-                      <v n="ProvidesSTSnippet">false</v>
-                      <v n="Id">48L</v>
-                    </o>
-                  </l2>
-                  <l2 n="Connectors" />
-                  <v n="Id">26L</v>
-                </o>
-                <o>
-                  <v n="ILActive">false</v>
-                  <v n="FBDValid">false</v>
-                  <v n="ILValid">false</v>
-                  <l2 n="ILLines" />
-                  <v n="Comment">"time off"</v>
-                  <v n="Title">""</v>
-                  <v n="Label">""</v>
-                  <v n="OutCommented">false</v>
-                  <l2 n="NetworkItems" cet="BoxTreeBox">
-                    <o>
-                      <v n="BoxType">"TON"</v>
-                      <o n="Instance" t="Operand">
-                        <v n="Operand">"timOFF"</v>
-                        <v n="Type">"TON"</v>
-                        <v n="Comment">""</v>
-                        <v n="SymbolComment">""</v>
-                        <v n="Address">""</v>
-                        <o n="Flags" t="Flags">
-                          <v n="Flags">0</v>
-                          <v n="Fixed">false</v>
-                          <v n="Extensible">false</v>
-                        </o>
-                        <v n="LValue">false</v>
-                        <v n="Boolean">false</v>
-                        <v n="IsInstance">true</v>
-                        <v n="Id">21L</v>
-                      </o>
-                      <o n="OutputItems" t="OutputItemList">
-                        <l2 n="OutputItems">
-                          <n />
-                        </l2>
-                      </o>
-                      <o n="Flags" t="Flags">
-                        <v n="Flags">0</v>
-                        <v n="Fixed">true</v>
-                        <v n="Extensible">false</v>
-                      </o>
-                      <n n="InputFlags" />
-                      <l2 n="InputItems">
-                        <o t="BoxTreeTerminator">
-                          <n n="Input" />
-                          <o n="Flags" t="Flags">
-                            <v n="Flags">0</v>
-                            <v n="Fixed">false</v>
-                            <v n="Extensible">false</v>
-                          </o>
-                          <v n="Id">25L</v>
-                        </o>
-                        <o t="BoxTreeOperand">
-                          <o n="Operand" t="Operand">
-                            <v n="Operand">"timON.Q"</v>
-                            <v n="Type">"BOOL"</v>
-                            <v n="Comment">""</v>
-                            <v n="SymbolComment">""</v>
-                            <v n="Address">""</v>
-                            <o n="Flags" t="Flags">
-                              <v n="Flags">0</v>
-                              <v n="Fixed">false</v>
-                              <v n="Extensible">false</v>
-                            </o>
-                            <v n="LValue">false</v>
-                            <v n="Boolean">false</v>
-                            <v n="IsInstance">false</v>
-                            <v n="Id">18L</v>
-                          </o>
-                          <v n="Id">17L</v>
-                        </o>
-                        <o t="BoxTreeOperand">
-                          <o n="Operand" t="Operand">
-                            <v n="Operand">"timeVal"</v>
-                            <v n="Type">"TIME"</v>
-                            <v n="Comment">""</v>
-                            <v n="SymbolComment">""</v>
-                            <v n="Address">""</v>
-                            <o n="Flags" t="Flags">
-                              <v n="Flags">0</v>
-                              <v n="Fixed">false</v>
-                              <v n="Extensible">false</v>
-                            </o>
-                            <v n="LValue">false</v>
-                            <v n="Boolean">false</v>
-                            <v n="IsInstance">false</v>
-                            <v n="Id">20L</v>
-                          </o>
-                          <v n="Id">19L</v>
-                        </o>
-                      </l2>
-                      <o n="InputParam" t="ParamList">
-                        <l2 n="Names" cet="String">
-                          <v>EN</v>
-                          <v>IN</v>
-                          <v>PT</v>
-                        </l2>
-                        <l2 n="Types" cet="String">
-                          <v>BOOL</v>
-                          <v>BOOL</v>
-                          <v>TIME</v>
-                        </l2>
-                      </o>
-                      <o n="OutputParam" t="ParamList">
-                        <l2 n="Names" cet="String">
-                          <v>ENO</v>
-                        </l2>
-                        <l2 n="Types" cet="String">
-                          <v>BOOL</v>
-                        </l2>
-                      </o>
-                      <v n="CallType" t="Operator">FunctionBlock</v>
-                      <v n="EN">true</v>
-                      <v n="ENO">true</v>
-                      <n n="STSnippet" />
-                      <v n="ContainsExtensibleInputs">false</v>
-                      <v n="ProvidesSTSnippet">false</v>
-                      <v n="Id">22L</v>
-                    </o>
-                  </l2>
-                  <l2 n="Connectors" />
-                  <v n="Id">5L</v>
-                </o>
-              </l2>
-              <v n="BranchCounter">0</v>
-              <v n="ValidIds">true</v>
-            </o>
-          </Data>
-          <TypeList>
-            <Type n="Boolean">System.Boolean</Type>
-            <Type n="BoxTreeBox">{acfc6f68-8e3a-4af5-bf81-3dd512095a46}</Type>
-            <Type n="BoxTreeOperand">{9de7f100-1b87-424c-a62e-45b0cfc85ed2}</Type>
-            <Type n="BoxTreeTerminator">{5f9848d3-568d-4cc5-9e31-8e28e9607ff1}</Type>
-            <Type n="Flags">{668066f2-6069-46b3-8962-8db8d13d7db2}</Type>
-            <Type n="Int32">System.Int32</Type>
-            <Type n="Int64">System.Int64</Type>
-            <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
-            <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
-            <Type n="Operand">{c9b2f165-48a2-4a45-8326-3952d8a3d708}</Type>
-            <Type n="Operator">{bffb3c53-f105-4e85-aba2-e30df579d75f}</Type>
-            <Type n="OutputItemList">{f40d3e09-c02c-4522-a88c-dac23558cfc4}</Type>
-            <Type n="ParamList">{71496971-9e0c-4677-a832-b9583b571130}</Type>
-            <Type n="String">System.String</Type>
-          </TypeList>
-        </XmlArchive>
-      </NWL>
+      <ST><![CDATA[//time on flasher
+timON(	IN:= NOT timOFF.Q,
+		PT:= timeVal
+		);
+		
+q:= timON.Q;
+
+
+//time off
+timOFF(	IN:= timON.Q,
+		PT:= timeVal
+		);
+
+		
+		]]></ST>
     </Implementation>
-    <ObjectProperties>
-      <XmlArchive>
-        <Data>
-          <o xml:space="preserve" t="POUImageProperty">
-            <a n="ImageData" cet="Byte">Qk02EAAAAAAAADYAAAAoAAAAIAAAACAAAAABACAAAAAAAAAAAADEDgAAxA4AAAAAAAAAAAAA////////////////////////////////18L//8mu///49f///////////////////////////////////////////////////f3//+fb///Jrv//zbT///Tu///////////////////////////////////////////////////////////////////////////////////h0f//y7H//8mu///z7f////////////////////////////////////////39///o3P//ya7//9C4///w6f//////////////////////////////////+ejn//ru7f/////////////////////////////////////////////////i0///ya7//820///w6P//////////////////////////////////+PX//8mu///Ruf//7ub////////////////////////////////////////mpJ//7Lq3///////////////////////////////////////////////////////k1///ya7//9C4///u5v/////////////////////////////h0v//ya7//93M/////////////////////////////////////////////+akn//cgXv/+ejn///////////////////////////////////////////////////////m2v//ya7//9G5///u5v/////////////i0///3cz//8mu///Su///8uz/////////////////////////////////////////////5qSf/8xIP//y0c////////////////////////////////////////////////////////39///o3P//ya7//9C4///Xwv//18L//8ux///Jrv//zrb///Xw///////////////////////////////////77u3/2XZv/9l2b//TX1f/zEg///LRz/////////////////////////////////////////////////////////////39///n2///ya7//8mu///Jrv//ya7///j1///59v///////////////////////////////////////9JcVP/MSD//zEg//8xIP//MSD//8tHP////////////////////////////////////////////////////////////////////////////3cz//8mu///Jrv//////////////////////////////////////////////////zEg//8xIP//MSD//zEg//8xIP//y0c/////////////SX1f/////////////////////////////////////////////////////////////////18L//8mu///////////////////////////////////////////////////66+r/0l9X/9JfV//PVEv/zEg///LRz////////////9JfV//////////////////////////////////////////////////////////////////Xwv//ya7//////////////////////////////////////////////////////////////////+akn//MSD//8tHP////////////0FZO/+y6t//surf/7Lq3//jl5P///////////////////////////////////////////9fC///Jrv///////////////////////////////////////////////////fb2/+y6t//surf/3IJ7/8xIP//y0c/////////////jmJP/zEg//8xIP//MSD//7Lq3////////////////////////////////////////////18L//8mu///////////////////////////////////////////////////jmJP/zEg//8xIP//MSD//zEg///LRz/////////////no5//MSD//zEg//8xIP//surf////////////////////////////////////////////Xwv//ya7//////////////////////////////////////////////////8xIP//MSD//zEg//8xIP//MSD//8tHP////////////+ejn/8xIP//MSD//zEg//+y6t////////////////////////////////////////////9fC///Jrv//18L//9fC///h0f//////////////////////////////////7sC9/8xIP//MSD//zEg//8xIP//y0c/////////////+/Pz/7cC9/8xIP//jmZP//fb2////////////////////////////7uX//9C4///QuP//y7H//8mu///Jrv//ya7//8ux///QuP//0Lj//9C4///QuP//+fb////////+/Pz/+ejn//no5//jmZP/zEg///LRz//////////////////y0c//zEg//+akn///////////////////////+PX//8mu///Jrv//ya7//8mu///Jrv//ya7////////49f//ya7//8mu///Jrv//ya7//8mu///Jrv//ya7//8mu///Xwv///////+akn//MSD//8tHP///////////////////////surf/45mT//329v/69///+PX//8mu///Jrv//y7H//9C4///n3P///////9fC///Jrv//////////////////////////////////3Mr//9C4///QuP//z7f//8mu///Jrv//y4Gr/9BbV//019X///////////////////////HLyf/TX1f/7Lq3/9fC///Jrv//ya7//9fC///h0f////////368v/69ub/1sD5/8mu///69ub/+/fp///////////////////////////////////////6+P//18L//9fC///Xwv//8On//////////////////////////////////+W3w//fttL/0rv//8mu///dzP//////////////////9ezM/+rZmf/Rueb/ya7//+rZmf/t3qb/////////////////////////////////////////////////////////////////////////////////////////////////8uv//9O9///Jrv//4dL////////////////////////17Mz/6tmZ/9G55v/Jrv//6tmZ/+3epv//////////////////////////////////////////////////////////////////////////////////////////////////////8uz//+vh///8+//////////////8+e//8ue//+7grP/q2Zn/0bnm/8mu///q2Zn/69ue//Lnv//38Nf//////////////////////////////////////////////////////////////////////////////////////////////////////////////////fv1/+7grP/q2Zn/6tmZ/9rFyf/Lsfn/ya7//9G55v/q2Zn/6tmZ/+zdo//v47P/+fXj///////////////////////////////////////////////////////////////////////////////////////////////////////8+vL/6tmZ/+DLuv/Ns/L/y7D6/8mu///Jrv//ya7//82z8v/Uvdz/6tmZ/+rZmf/38dn//////////////////////////////////////////////////////////////////////////////////////////////////////+rZmf/q2Zn/3sm//8mu///Jrv//ya7//8mu///Jrv//ya7//8mu///Vvtn/6tmZ/+rZmf/69ub////////////////////////////////////////////////////////////////////////////////////////////8+vL/6tmZ/+LOs//Jrv//ya7//8mu///Jrv//ya7//8mu///Jrv//ya7//8mu///axMz/6tmZ//r25v///////////////////////////////////////////////////////////////////////////////////////////+rZmf/p2Jz/3MbG/8mu///Jrv//ya7//8mu///Jrv//ya7//8mu///Jrv//ya7//9rEzP/q2Zn/+vbm////////////////////////////////////////////////////////////////////////////////////////////6tmZ/+bUpv/Jrv//ya7//8mu///Jrv//ya7//8mu///Jrv//ya7//8mu///OtPH/4My5/+rZmf/69ub////////////////////////////////////////////////////////////////////////////////////////////q2Zn/6Neg/9rEzP/UvN//ya7//8mu///Jrv//ya7//8mu///Jrv//zbTz/+DMuf/q2Zn/8eW5//378////////////////////////////////////////////////////////////////////////////////////////////+rZmf/q2Zn/6tmZ/+bTp//eyb//3sm//8617//bxsf/3sm//97Jv//hzbb/6tmZ//Hluf/8+vH/////////////////////////////////////////////////////////////////////////////////////////////////+vbm/+rZmf/q2Zn/6tmZ/+rZmf/q2Zn/5NGs/+nYnP/q2Zn/6tmZ/+rZmf/w5Lb//fry/////////////////////////////////////////////////////////////////////////////////////////////////////////////Pry//z68v/8+vL//Pry//Hluv/q2Zn/6tmZ//z68v/8+vL//Pry//389////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////w==</a>
-            <v n="TransparencyColor">"White"</v>
-            <v n="MakeTransparent">true</v>
-          </o>
-        </Data>
-        <TypeList>
-          <Type n="Boolean">System.Boolean</Type>
-          <Type n="Byte">System.Byte</Type>
-          <Type n="POUImageProperty">{bb741845-1ec5-4be9-bb0d-2cf7058af574}</Type>
-          <Type n="String">System.String</Type>
-        </TypeList>
-      </XmlArchive>
-    </ObjectProperties>
+    <LineIds Name="FB_Flasher">
+      <LineId Id="9" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="30" Count="2" />
+      <LineId Id="34" Count="1" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="36" Count="1" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="27" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>
