@@ -72,8 +72,15 @@ CASE iModeState OF
 	
 	//9 = AutoCycleStopping
 	9:
+	
+	//flashing action
+	IF System.OneSecond THEN
 	qBackColour := HMIColour.colourGreen;
 	qTextColour	:= HMIColour.colourBlack;
+	ELSE
+	qBackColour := HMIColour.colourBlue;
+	qTextColour	:= HMIColour.colourWhite;
+	END_IF
 	
 	//10 = Dry Cycle
 	10:
@@ -138,8 +145,10 @@ END_CASE]]></ST>
       <LineId Id="84" Count="0" />
       <LineId Id="48" Count="0" />
       <LineId Id="47" Count="0" />
-      <LineId Id="49" Count="1" />
-      <LineId Id="85" Count="0" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="132" Count="0" />
+      <LineId Id="134" Count="6" />
+      <LineId Id="133" Count="0" />
       <LineId Id="52" Count="0" />
       <LineId Id="51" Count="0" />
       <LineId Id="53" Count="1" />
