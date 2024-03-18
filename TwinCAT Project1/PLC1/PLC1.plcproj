@@ -7,7 +7,7 @@
     <SubObjectsSortedByName>True</SubObjectsSortedByName>
     <DownloadApplicationInfo>true</DownloadApplicationInfo>
     <WriteProductVersion>true</WriteProductVersion>
-    <GenerateTpy>false</GenerateTpy>
+    <GenerateTpy>true</GenerateTpy>
     <Name>PLC1</Name>
     <ProgramVersion>3.1.4024.0</ProgramVersion>
     <Application>{a3679b04-b6e1-4b08-994c-6de08857cf68}</Application>
@@ -336,6 +336,10 @@
     </Compile>
     <Compile Include="PLC\FBs\IO View\prgMemPointerView.TcPOU">
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PLC\Machine\Base\Mc_Variant.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
     </Compile>
     <Compile Include="X_DUTs\Diagnostic\typeDPSlaveIndicator.TcDUT">
       <SubType>Code</SubType>

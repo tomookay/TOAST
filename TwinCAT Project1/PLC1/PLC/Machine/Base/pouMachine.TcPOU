@@ -484,6 +484,84 @@ END_VAR
                   <l2 n="Connectors" />
                   <v n="Id">48L</v>
                 </o>
+                <o>
+                  <v n="ILActive">false</v>
+                  <v n="FBDValid">false</v>
+                  <v n="ILValid">false</v>
+                  <l2 n="ILLines" />
+                  <v n="Comment">"enumerate variant"</v>
+                  <v n="Title">""</v>
+                  <v n="Label">""</v>
+                  <v n="OutCommented">false</v>
+                  <l2 n="NetworkItems" cet="BoxTreeBox">
+                    <o>
+                      <v n="BoxType">"actVariant"</v>
+                      <o n="Instance" t="Operand">
+                        <n n="Operand" />
+                        <v n="Type">""</v>
+                        <v n="Comment">""</v>
+                        <v n="SymbolComment">""</v>
+                        <v n="Address">""</v>
+                        <o n="Flags" t="Flags">
+                          <v n="Flags">0</v>
+                          <v n="Fixed">false</v>
+                          <v n="Extensible">false</v>
+                        </o>
+                        <v n="LValue">false</v>
+                        <v n="Boolean">false</v>
+                        <v n="IsInstance">true</v>
+                        <v n="Id">144L</v>
+                      </o>
+                      <o n="OutputItems" t="OutputItemList">
+                        <l2 n="OutputItems">
+                          <n />
+                        </l2>
+                      </o>
+                      <o n="Flags" t="Flags">
+                        <v n="Flags">0</v>
+                        <v n="Fixed">true</v>
+                        <v n="Extensible">false</v>
+                      </o>
+                      <n n="InputFlags" />
+                      <l2 n="InputItems" cet="BoxTreeTerminator">
+                        <o>
+                          <n n="Input" />
+                          <o n="Flags" t="Flags">
+                            <v n="Flags">0</v>
+                            <v n="Fixed">false</v>
+                            <v n="Extensible">false</v>
+                          </o>
+                          <v n="Id">146L</v>
+                        </o>
+                      </l2>
+                      <o n="InputParam" t="ParamList">
+                        <l2 n="Names" cet="String">
+                          <v>EN</v>
+                        </l2>
+                        <l2 n="Types" cet="String">
+                          <v>BOOL</v>
+                        </l2>
+                      </o>
+                      <o n="OutputParam" t="ParamList">
+                        <l2 n="Names" cet="String">
+                          <v>ENO</v>
+                        </l2>
+                        <l2 n="Types" cet="String">
+                          <v>BOOL</v>
+                        </l2>
+                      </o>
+                      <v n="CallType" t="Operator">Action</v>
+                      <v n="EN">true</v>
+                      <v n="ENO">true</v>
+                      <n n="STSnippet" />
+                      <v n="ContainsExtensibleInputs">false</v>
+                      <v n="ProvidesSTSnippet">false</v>
+                      <v n="Id">145L</v>
+                    </o>
+                  </l2>
+                  <l2 n="Connectors" />
+                  <v n="Id">128L</v>
+                </o>
               </l2>
               <v n="BranchCounter">0</v>
               <v n="ValidIds">true</v>
@@ -2657,5 +2735,50 @@ END_VAR
         </NWL>
       </Implementation>
     </Action>
+    <Action Name="actVariant" Id="{a6d5b483-94b7-4903-8313-6221ffbc9d3f}">
+      <Implementation>
+        <ST><![CDATA[//clear down variant
+//Mc_Variant.gVariantSelected	:= 2#00000000000000000000000000000000;
+
+//insert into control DWORD to clear down future memory allocations
+{IF defined (NoPLC)}
+    Mc_Variant.gVariantSelected	:= 2#00000000000000000000000000000001;
+{ELSIF defined (PLCTest)}
+ 	Mc_Variant.gVariantSelected	:= 2#00000000000000000000000000000010;
+{END_IF}
+
+//with the DWORD cleared down, then enumerate the variant
+IF Mc_Variant.gVariantSelected = 2#00000000000000000000000000000001 THEN 	Mc_Variant.gIsNoPLC		:= TRUE; ELSE Mc_Variant.gIsNoPLC		:= FALSE; END_IF
+IF Mc_Variant.gVariantSelected = 2#00000000000000000000000000000010 THEN	Mc_Variant.gIsPLCTest	:= TRUE; ELSE Mc_Variant.gIsPLCTest		:= FALSE; END_IF
+IF Mc_Variant.gVariantSelected = 2#00000000000000000000000000000110 THEN	Mc_Variant.gIsVariant1	:= TRUE; ELSE Mc_Variant.gIsVariant1	:= FALSE; END_IF
+IF Mc_Variant.gVariantSelected = 2#00000000000000000000000000001000 THEN	Mc_Variant.gIsVariant2	:= TRUE; ELSE Mc_Variant.gIsVariant2	:= FALSE; END_IF
+IF Mc_Variant.gVariantSelected = 2#00000000000000000000000000010000 THEN	Mc_Variant.gIsVariant3	:= TRUE; ELSE Mc_Variant.gIsVariant3	:= FALSE; END_IF
+IF Mc_Variant.gVariantSelected = 2#00000000000000000000000000100000 THEN	Mc_Variant.gIsVariant4	:= TRUE; ELSE Mc_Variant.gIsVariant4	:= FALSE; END_IF
+IF Mc_Variant.gVariantSelected = 2#00000000000000000000000001000000 THEN	Mc_Variant.gIsVariant5	:= TRUE; ELSE Mc_Variant.gIsVariant5	:= FALSE; END_IF
+IF Mc_Variant.gVariantSelected = 2#00000000000000000000000010000000 THEN	Mc_Variant.gIsVariant6	:= TRUE; ELSE Mc_Variant.gIsVariant6	:= FALSE; END_IF
+IF Mc_Variant.gVariantSelected = 2#00000000000000000000000100000000 THEN	Mc_Variant.gIsVariant7	:= TRUE; ELSE Mc_Variant.gIsVariant7	:= FALSE; END_IF
+//etc
+
+
+]]></ST>
+      </Implementation>
+    </Action>
+    <LineIds Name="pouMachine.actVariant">
+      <LineId Id="10" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="2" Count="1" />
+      <LineId Id="5" Count="1" />
+      <LineId Id="1" Count="0" />
+      <LineId Id="18" Count="1" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="23" Count="6" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="14" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

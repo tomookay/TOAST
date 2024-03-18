@@ -991,8 +991,18 @@ External Setpoint Generation:
 			</Relations>
 		</DataType>
 	</DataTypes>
-	<Project GUID="{1A267E57-8424-4A7E-91A6-205EF3BB5B1A}" Name="PLC1" PrjFilePath="..\..\PLC1\PLC1.plcproj" TmcFilePath="..\..\PLC1\PLC1.tmc" ReloadTmc="true" AmsPort="851" TargetArchiveSettings="#x000f" FileArchiveSettings="#x001f" CopyTmcToTarget="true" ClearInvalidPersist="true" SymbolicMapping="true">
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc" TmcHash="{1B61158A-5A9A-9A64-2ED1-3E4A55165F79}">
+	<Project GUID="{1A267E57-8424-4A7E-91A6-205EF3BB5B1A}" Name="PLC1" PrjFilePath="..\..\PLC1\PLC1.plcproj" TmcFilePath="..\..\PLC1\PLC1.tmc" EnableImplicitDefines="true" ReloadTmc="true" AmsPort="851" TargetArchiveSettings="#x000f" FileArchiveSettings="#x001f" CopyTmcToTarget="true" ClearInvalidPersist="true" SymbolicMapping="true">
+		<ProjectVariant PvUseDefine="true">
+			<Variant>
+				<Name>NoPLC</Name>
+				<Name>PLCTest</Name>
+				<Name>Variant1</Name>
+				<Name>Variant2</Name>
+				<Name>Variant3</Name>
+				<Defines></Defines>
+			</Variant>
+		</ProjectVariant>
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc" TmcHash="{B7DB4A0A-B08D-5212-A413-B1056FA90C6E}">
 			<Name>PLC1 Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">
