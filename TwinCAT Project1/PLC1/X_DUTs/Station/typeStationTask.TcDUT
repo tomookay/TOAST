@@ -3,15 +3,12 @@
   <DUT Name="typeStationTask" Id="{0a2fc6be-9015-4c46-8ccd-5294bdfffe51}">
     <Declaration><![CDATA[TYPE typeStationTask :
 STRUCT
-
-
 	//platern data
 	PlaternID: UINT;			//identity of the platern
 	PlaternIDValid: BOOL;		//indicator
 
 	PlaternNumOps: UINT;		//number of operations the platerns has seen
 	PlaternNumOpsValid: BOOL;   //indicator
-
 	
 	//reading of data
 	DataReadOK: BOOL;			//TRUE if the part data has been read OK
@@ -24,21 +21,28 @@ STRUCT
 	PartDescriptionValid:BOOL;		//indicator
 	//PartXXXXNumber: STRING[4]; 
 	
-
 	//status data
 	OKtoBuild: BOOL;			//TRUE if the part is OK to build
 	NOKtoBuild: BOOL;			//TRUE if the part is NOK to build
 	QuarantinePart: BOOL;		//TRUE if the part is quarantined
 	ScrapPart:BOOL;				//TRUE if the part is scrap status
 	PartPresent: BOOL;			//TRUE if the part is present in the station (memory or sensor feedback)
+	PartComplete:BOOL;			//TRUE if the part is complete
 
-	
+
 	//process data
 	NumberOfRejectAttempts: USINT; 	//number of times the part failed the process
 	NumberOfRejectAttemptsValid: BOOL; //indicator
 	NumberOfRejectAttemptsFailed: BOOL; //indicator
 	LastOperationNumber:UINT;		//last operation number of the previous machine tool
 	LastOperationNumberValid: BOOL; //indicator
+	
+	CycleTimeTarget: REAL :=60.0;	//target cycle time, e.g. 60s
+	CycleTimeActual: REAL :=0;		//actual cycle time
+	CycleTimeGrossOver:REAL:=120; 	//time for grossly over cycle time
+	CycleTimeLast: REAL;			//last part cycle time
+	OverCycleTime:BOOL;				//TRUE if over cycle time
+	CycleTimeIsGrossOver:BOOL;		//TRUE if cycle time is grossly over
 
 END_STRUCT
 END_TYPE

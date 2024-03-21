@@ -35,6 +35,28 @@ System.gSetup.stationEnable[4] := TRUE;
 System.gSetup.stationEnable[5] := TRUE;
 System.gSetup.stationEnable[6] := TRUE;
 
+//set up cycle time setpoints
+S1_Global.station.part.CycleTimeTarget := 60;
+S1_Global.station.part.CycleTimeGrossOver := S1_Global.station.part.CycleTimeTarget  * 2;
+
+S2_Global.station.part.CycleTimeTarget := 60;
+S2_Global.station.part.CycleTimeGrossOver := S2_Global.station.part.CycleTimeTarget  * 2;
+
+S3_Global.station.part.CycleTimeTarget := 60;
+S3_Global.station.part.CycleTimeGrossOver := S3_Global.station.part.CycleTimeTarget  * 2;
+
+S4_Global.station.part.CycleTimeTarget := 60;
+S4_Global.station.part.CycleTimeGrossOver := S4_Global.station.part.CycleTimeTarget  * 2;
+
+S5_Global.station.part.CycleTimeTarget := 60;
+S5_Global.station.part.CycleTimeGrossOver := S5_Global.station.part.CycleTimeTarget  * 2;
+
+S6_Global.station.part.CycleTimeTarget := 60;
+S6_Global.station.part.CycleTimeGrossOver := S6_Global.station.part.CycleTimeTarget  * 2;
+
+
+
+
 //station features
 System.gSetup.stationFunctions[1].allowAutoCycle := TRUE;	//TRUE to allow auto cycle
 System.gSetup.stationFunctions[1].allowManualMode := TRUE;	//Generally speaking....
@@ -170,18 +192,24 @@ System.gSetup.stationFunctions[6].allowEnablePendent := TRUE;
       </XmlArchive>
     </ObjectProperties>
     <LineIds Name="FC_Setup">
-      <LineId Id="3" Count="3" />
-      <LineId Id="137" Count="0" />
-      <LineId Id="136" Count="0" />
-      <LineId Id="139" Count="0" />
-      <LineId Id="143" Count="1" />
-      <LineId Id="146" Count="0" />
-      <LineId Id="148" Count="0" />
+      <LineId Id="3" Count="25" />
       <LineId Id="151" Count="1" />
-      <LineId Id="149" Count="1" />
-      <LineId Id="153" Count="1" />
-      <LineId Id="138" Count="0" />
-      <LineId Id="7" Count="123" />
+      <LineId Id="155" Count="0" />
+      <LineId Id="157" Count="0" />
+      <LineId Id="159" Count="1" />
+      <LineId Id="158" Count="0" />
+      <LineId Id="162" Count="1" />
+      <LineId Id="161" Count="0" />
+      <LineId Id="165" Count="1" />
+      <LineId Id="164" Count="0" />
+      <LineId Id="168" Count="1" />
+      <LineId Id="167" Count="0" />
+      <LineId Id="171" Count="1" />
+      <LineId Id="170" Count="0" />
+      <LineId Id="156" Count="0" />
+      <LineId Id="153" Count="0" />
+      <LineId Id="150" Count="0" />
+      <LineId Id="29" Count="115" />
       <LineId Id="2" Count="0" />
     </LineIds>
   </POU>
