@@ -2,11 +2,7 @@
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_Mode" Id="{ce08c7f1-a47e-41ce-a12a-5019455503c9}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_Mode
-
 VAR_INPUT
-	iStatusPowerOn:				BOOL; //true if the machine is powered on
-	iStatusMotivePowerOn:		BOOL; //true if the machine motive power is on (drives, air, etc)
-
 	iManualMode:				BOOL; //manual button
 	iAutoMode:					BOOL; //auto button
 	iStartAutoCycle:			BOOL; //start auto cycle button
@@ -23,19 +19,15 @@ VAR_INPUT
 	
 	iLocalRemoteEnable: BOOL; //TRUE if the local station is in remote mode
 
-	
-	
 	iRemoteData:typeRemote; //data from remote source
 	
 	iStartAutoCycleDelay:TIME:=T#2S; //delay time to start auto cycle
 	iFirstScan:BOOL:=TRUE; //first scan logic for seting inital mode
 	iStopCycleTimeout:TIME:=T#120s; //time to stop auto cycle if home not reached in (t). Set to 110% of expected station cycle time
-	
 END_VAR
 	
 	
 VAR
-	
 	tAutoCycleStop: BOOL;
 	timDelayRemoteOn: ton;
 	ModeColourConv: FB_ModeStateToColour;
@@ -44,31 +36,12 @@ VAR
 END_VAR
 
 VAR_OUTPUT
-	qManualMode: BOOL;
-	qAutoMode: BOOL;
-	qAutoCycling: BOOL;
-	qSemiAuto: BOOL; 
-	qContCycle: BOOL; //machine is in continous cycle mode
-	qSingleCycle: BOOL; //machine is in single cycle mode, auto cycle will stop when HOME is reached
-	qDryCycle: BOOL; //machine will function as normal but with no part present sensors feedback
-	qCycleStopping: BOOL; //TRUE if cycle is stopping
-	qRemoteEnabled: BOOL; //TRUE if remote is enabled
-
-
-
-
-	qModeState: INT; //value feedback for HMI
-	qModeStateColour: DWORD; //colour of mode
-	qModeTextColour: DWORD; //colour of text
-
-
 END_VAR
 
 VAR_IN_OUT
 	stationState:typeStationMode;
-	
 END_VAR
-]]></Declaration>
+//theme:LYwABmhF6lY]]></Declaration>
     <Implementation>
       <NWL>
         <XmlArchive>
@@ -248,7 +221,7 @@ END_VAR
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems" cet="Operand">
                           <o>
-                            <v n="Operand">"qAutoMode"</v>
+                            <v n="Operand">"stationState.AutoCycle"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -264,7 +237,7 @@ END_VAR
                             <v n="Id">1648L</v>
                           </o>
                           <o>
-                            <v n="Operand">"qManualMode"</v>
+                            <v n="Operand">"stationState.Manual"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -280,7 +253,7 @@ END_VAR
                             <v n="Id">1647L</v>
                           </o>
                           <o>
-                            <v n="Operand">"qSemiAuto"</v>
+                            <v n="Operand">"stationState.SemiAuto"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -296,7 +269,7 @@ END_VAR
                             <v n="Id">1650L</v>
                           </o>
                           <o>
-                            <v n="Operand">"qDryCycle"</v>
+                            <v n="Operand">"stationState.DryCycle"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -312,7 +285,7 @@ END_VAR
                             <v n="Id">1649L</v>
                           </o>
                           <o>
-                            <v n="Operand">"qContCycle"</v>
+                            <v n="Operand">"stationState.ContCycle"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -373,7 +346,7 @@ END_VAR
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems" cet="Operand">
                           <o>
-                            <v n="Operand">"qManualMode"</v>
+                            <v n="Operand">"stationState.Manual"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -693,7 +666,7 @@ END_VAR
                           </o>
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
-                              <v n="Operand">"qAutoCycling"</v>
+                              <v n="Operand">"stationState.AutoCycling"</v>
                               <v n="Type">"BOOL"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
@@ -747,7 +720,7 @@ END_VAR
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems" cet="Operand">
                           <o>
-                            <v n="Operand">"qManualMode"</v>
+                            <v n="Operand">"stationState.Manual"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -940,7 +913,7 @@ END_VAR
                                     <l2 n="InputItems" cet="BoxTreeOperand">
                                       <o>
                                         <o n="Operand" t="Operand">
-                                          <v n="Operand">"qDryCycle"</v>
+                                          <v n="Operand">"stationState.DryCycle"</v>
                                           <v n="Type">"BOOL"</v>
                                           <v n="Comment">""</v>
                                           <v n="SymbolComment">""</v>
@@ -1249,7 +1222,7 @@ END_VAR
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems" cet="Operand">
                           <o>
-                            <v n="Operand">"qAutoMode"</v>
+                            <v n="Operand">"stationState.AutoCycle"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -1604,7 +1577,7 @@ END_VAR
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems" cet="Operand">
                           <o>
-                            <v n="Operand">"qAutoMode"</v>
+                            <v n="Operand">"stationState.AutoCycle"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -1816,7 +1789,7 @@ END_VAR
                                       </o>
                                       <o>
                                         <o n="Operand" t="Operand">
-                                          <v n="Operand">"qManualMode"</v>
+                                          <v n="Operand">"stationState.Manual"</v>
                                           <v n="Type">"BOOL"</v>
                                           <v n="Comment">""</v>
                                           <v n="SymbolComment">""</v>
@@ -2071,7 +2044,7 @@ END_VAR
                           </o>
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
-                              <v n="Operand">"qAutoCycling"</v>
+                              <v n="Operand">"stationState.AutoCycling"</v>
                               <v n="Type">"BOOL"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
@@ -2225,7 +2198,7 @@ or timeout"</v>
                               </o>
                               <o>
                                 <o n="Operand" t="Operand">
-                                  <v n="Operand">"qCycleStopping"</v>
+                                  <v n="Operand">"stationState.CycleStopping"</v>
                                   <v n="Type">"BOOL"</v>
                                   <v n="Comment">""</v>
                                   <v n="SymbolComment">""</v>
@@ -2315,7 +2288,7 @@ or timeout"</v>
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems" cet="Operand">
                           <o>
-                            <v n="Operand">"qAutoCycling"</v>
+                            <v n="Operand">"stationState.AutoCycling"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -2367,7 +2340,7 @@ or timeout"</v>
                         <l2 n="InputItems">
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
-                              <v n="Operand">"iStatusPowerOn"</v>
+                              <v n="Operand">"stationState.PowerOn"</v>
                               <v n="Type">"BOOL"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
@@ -2461,7 +2434,7 @@ or timeout"</v>
                                   </o>
                                   <o>
                                     <o n="Operand" t="Operand">
-                                      <v n="Operand">"qAutoMode"</v>
+                                      <v n="Operand">"stationState.AutoCycle"</v>
                                       <v n="Type">"BOOL"</v>
                                       <v n="Comment">""</v>
                                       <v n="SymbolComment">""</v>
@@ -2665,7 +2638,7 @@ or timeout"</v>
                                   </o>
                                   <o>
                                     <o n="Operand" t="Operand">
-                                      <v n="Operand">"qAutoCycling"</v>
+                                      <v n="Operand">"stationState.AutoCycling"</v>
                                       <v n="Type">"BOOL"</v>
                                       <v n="Comment">""</v>
                                       <v n="SymbolComment">""</v>
@@ -2805,7 +2778,7 @@ or timeout"</v>
                                   </o>
                                   <o>
                                     <o n="Operand" t="Operand">
-                                      <v n="Operand">"qAutoCycling"</v>
+                                      <v n="Operand">"stationState.AutoCycling"</v>
                                       <v n="Type">"BOOL"</v>
                                       <v n="Comment">""</v>
                                       <v n="SymbolComment">""</v>
@@ -2931,7 +2904,7 @@ or timeout"</v>
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems" cet="Operand">
                           <o>
-                            <v n="Operand">"qDryCycle"</v>
+                            <v n="Operand">"stationState.DryCycle"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -3096,7 +3069,7 @@ or timeout"</v>
                                   </o>
                                   <o>
                                     <o n="Operand" t="Operand">
-                                      <v n="Operand">"qManualMode"</v>
+                                      <v n="Operand">"stationState.Manual"</v>
                                       <v n="Type">"BOOL"</v>
                                       <v n="Comment">""</v>
                                       <v n="SymbolComment">""</v>
@@ -3236,7 +3209,7 @@ or timeout"</v>
                                   </o>
                                   <o>
                                     <o n="Operand" t="Operand">
-                                      <v n="Operand">"qManualMode"</v>
+                                      <v n="Operand">"stationState.Manual"</v>
                                       <v n="Type">"BOOL"</v>
                                       <v n="Comment">""</v>
                                       <v n="SymbolComment">""</v>
@@ -3343,7 +3316,7 @@ or timeout"</v>
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems" cet="Operand">
                           <o>
-                            <v n="Operand">"qDryCycle"</v>
+                            <v n="Operand">"stationState.DryCycle"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -3461,7 +3434,7 @@ or timeout"</v>
                             <l2 n="InputItems" cet="BoxTreeOperand">
                               <o>
                                 <o n="Operand" t="Operand">
-                                  <v n="Operand">"qManualMode"</v>
+                                  <v n="Operand">"stationState.Manual"</v>
                                   <v n="Type">"BOOL"</v>
                                   <v n="Comment">""</v>
                                   <v n="SymbolComment">""</v>
@@ -3480,7 +3453,7 @@ or timeout"</v>
                               </o>
                               <o>
                                 <o n="Operand" t="Operand">
-                                  <v n="Operand">"qSemiAuto"</v>
+                                  <v n="Operand">"stationState.SemiAuto"</v>
                                   <v n="Type">"BOOL"</v>
                                   <v n="Comment">""</v>
                                   <v n="SymbolComment">""</v>
@@ -3551,7 +3524,7 @@ or timeout"</v>
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems" cet="Operand">
                           <o>
-                            <v n="Operand">"qSemiAuto"</v>
+                            <v n="Operand">"stationState.SemiAuto"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -3735,7 +3708,7 @@ or timeout"</v>
                                   </o>
                                   <o>
                                     <o n="Operand" t="Operand">
-                                      <v n="Operand">"qAutoCycling"</v>
+                                      <v n="Operand">"stationState.AutoCycling"</v>
                                       <v n="Type">"BOOL"</v>
                                       <v n="Comment">""</v>
                                       <v n="SymbolComment">""</v>
@@ -3856,7 +3829,7 @@ or timeout"</v>
                                   </o>
                                   <o>
                                     <o n="Operand" t="Operand">
-                                      <v n="Operand">"qAutoCycling"</v>
+                                      <v n="Operand">"stationState.AutoCycling"</v>
                                       <v n="Type">"BOOL"</v>
                                       <v n="Comment">""</v>
                                       <v n="SymbolComment">""</v>
@@ -3944,7 +3917,7 @@ or timeout"</v>
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems" cet="Operand">
                           <o>
-                            <v n="Operand">"qSemiAuto"</v>
+                            <v n="Operand">"stationState.SemiAuto"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -4633,7 +4606,7 @@ or timeout"</v>
                           </o>
                           <o>
                             <o n="Operand" t="Operand">
-                              <v n="Operand">"qAutoCycling"</v>
+                              <v n="Operand">"stationState.AutoCycling"</v>
                               <v n="Type">"BOOL"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
@@ -4673,7 +4646,7 @@ or timeout"</v>
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems" cet="Operand">
                           <o>
-                            <v n="Operand">"qContCycle"</v>
+                            <v n="Operand">"stationState.ContCycle"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -4689,7 +4662,7 @@ or timeout"</v>
                             <v n="Id">398L</v>
                           </o>
                           <o>
-                            <v n="Operand">"qSingleCycle"</v>
+                            <v n="Operand">"stationState.SingleCycle"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -4997,7 +4970,7 @@ or timeout"</v>
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems" cet="Operand">
                           <o>
-                            <v n="Operand">"qSingleCycle"</v>
+                            <v n="Operand">"stationState.SingleCycle"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -5013,7 +4986,7 @@ or timeout"</v>
                             <v n="Id">406L</v>
                           </o>
                           <o>
-                            <v n="Operand">"qContCycle"</v>
+                            <v n="Operand">"stationState.ContCycle"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -5396,7 +5369,7 @@ or timeout"</v>
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems" cet="Operand">
                           <o>
-                            <v n="Operand">"qCycleStopping"</v>
+                            <v n="Operand">"stationState.CycleStopping"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -5668,7 +5641,7 @@ or timeout"</v>
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems" cet="Operand">
                           <o>
-                            <v n="Operand">"qCycleStopping"</v>
+                            <v n="Operand">"stationState.CycleStopping"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -5739,7 +5712,7 @@ or timeout"</v>
                           </o>
                           <o>
                             <o n="Operand" t="Operand">
-                              <v n="Operand">"qAutoCycling"</v>
+                              <v n="Operand">"stationState.AutoCycling"</v>
                               <v n="Type">"BOOL"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
@@ -5830,7 +5803,7 @@ or timeout"</v>
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"qCycleStopping"</v>
+                            <v n="Operand">"stationState.CycleStopping"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -5931,7 +5904,7 @@ or timeout"</v>
                         <l2 n="OutputItems" cet="Operand">
                           <n />
                           <o>
-                            <v n="Operand">"qRemoteEnabled"</v>
+                            <v n="Operand">"stationState.IsRemote"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -6051,7 +6024,7 @@ or timeout"</v>
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems" cet="Operand">
                           <o>
-                            <v n="Operand">"qRemoteEnabled"</v>
+                            <v n="Operand">"stationState.IsRemote"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -6153,7 +6126,7 @@ or timeout"</v>
                         <l2 n="OutputItems" cet="Operand">
                           <n />
                           <o>
-                            <v n="Operand">"qModeState"</v>
+                            <v n="Operand">"stationstate.StationState"</v>
                             <v n="Type">"INT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -6212,7 +6185,7 @@ or timeout"</v>
                             </o>
                             <o t="BoxTreeOperand">
                               <o n="Operand" t="Operand">
-                                <v n="Operand">"iStatusPowerOn"</v>
+                                <v n="Operand">"stationState.PowerOn"</v>
                                 <v n="Type">"BOOL"</v>
                                 <v n="Comment">""</v>
                                 <v n="SymbolComment">""</v>
@@ -6314,7 +6287,7 @@ or timeout"</v>
                         <l2 n="OutputItems" cet="Operand">
                           <n />
                           <o>
-                            <v n="Operand">"qModeState"</v>
+                            <v n="Operand">"stationstate.StationState"</v>
                             <v n="Type">"INT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -6373,7 +6346,7 @@ or timeout"</v>
                             </o>
                             <o t="BoxTreeOperand">
                               <o n="Operand" t="Operand">
-                                <v n="Operand">"qManualMode"</v>
+                                <v n="Operand">"stationState.Manual"</v>
                                 <v n="Type">"BOOL"</v>
                                 <v n="Comment">""</v>
                                 <v n="SymbolComment">""</v>
@@ -6475,7 +6448,7 @@ or timeout"</v>
                         <l2 n="OutputItems" cet="Operand">
                           <n />
                           <o>
-                            <v n="Operand">"qModeState"</v>
+                            <v n="Operand">"stationstate.StationState"</v>
                             <v n="Type">"INT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -6534,7 +6507,7 @@ or timeout"</v>
                             </o>
                             <o t="BoxTreeOperand">
                               <o n="Operand" t="Operand">
-                                <v n="Operand">"qAutoMode"</v>
+                                <v n="Operand">"stationState.AutoCycle"</v>
                                 <v n="Type">"BOOL"</v>
                                 <v n="Comment">""</v>
                                 <v n="SymbolComment">""</v>
@@ -6636,7 +6609,7 @@ or timeout"</v>
                         <l2 n="OutputItems" cet="Operand">
                           <n />
                           <o>
-                            <v n="Operand">"qModeState"</v>
+                            <v n="Operand">"stationstate.StationState"</v>
                             <v n="Type">"INT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -6695,7 +6668,7 @@ or timeout"</v>
                             </o>
                             <o t="BoxTreeOperand">
                               <o n="Operand" t="Operand">
-                                <v n="Operand">"qAutoCycling"</v>
+                                <v n="Operand">"stationState.AutoCycling"</v>
                                 <v n="Type">"BOOL"</v>
                                 <v n="Comment">""</v>
                                 <v n="SymbolComment">""</v>
@@ -6797,7 +6770,7 @@ or timeout"</v>
                         <l2 n="OutputItems" cet="Operand">
                           <n />
                           <o>
-                            <v n="Operand">"qModeState"</v>
+                            <v n="Operand">"stationstate.StationState"</v>
                             <v n="Type">"INT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -6856,7 +6829,7 @@ or timeout"</v>
                             </o>
                             <o t="BoxTreeOperand">
                               <o n="Operand" t="Operand">
-                                <v n="Operand">"qSemiAuto"</v>
+                                <v n="Operand">"stationState.SemiAuto"</v>
                                 <v n="Type">"BOOL"</v>
                                 <v n="Comment">""</v>
                                 <v n="SymbolComment">""</v>
@@ -6958,7 +6931,7 @@ or timeout"</v>
                         <l2 n="OutputItems" cet="Operand">
                           <n />
                           <o>
-                            <v n="Operand">"qModeState"</v>
+                            <v n="Operand">"stationstate.StationState"</v>
                             <v n="Type">"INT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -7119,7 +7092,7 @@ or timeout"</v>
                         <l2 n="OutputItems" cet="Operand">
                           <n />
                           <o>
-                            <v n="Operand">"qModeState"</v>
+                            <v n="Operand">"stationstate.StationState"</v>
                             <v n="Type">"INT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -7280,7 +7253,7 @@ or timeout"</v>
                         <l2 n="OutputItems" cet="Operand">
                           <n />
                           <o>
-                            <v n="Operand">"qModeState"</v>
+                            <v n="Operand">"stationstate.StationState"</v>
                             <v n="Type">"INT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -7339,7 +7312,7 @@ or timeout"</v>
                             </o>
                             <o t="BoxTreeOperand">
                               <o n="Operand" t="Operand">
-                                <v n="Operand">"qAutoCycling"</v>
+                                <v n="Operand">"stationState.AutoCycling"</v>
                                 <v n="Type">"BOOL"</v>
                                 <v n="Comment">""</v>
                                 <v n="SymbolComment">""</v>
@@ -7358,7 +7331,7 @@ or timeout"</v>
                             </o>
                             <o t="BoxTreeOperand">
                               <o n="Operand" t="Operand">
-                                <v n="Operand">"qCycleStopping"</v>
+                                <v n="Operand">"stationState.CycleStopping"</v>
                                 <v n="Type">"BOOL"</v>
                                 <v n="Comment">""</v>
                                 <v n="SymbolComment">""</v>
@@ -7460,7 +7433,7 @@ or timeout"</v>
                         <l2 n="OutputItems" cet="Operand">
                           <n />
                           <o>
-                            <v n="Operand">"qModeState"</v>
+                            <v n="Operand">"stationstate.StationState"</v>
                             <v n="Type">"INT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -7519,7 +7492,7 @@ or timeout"</v>
                             </o>
                             <o t="BoxTreeOperand">
                               <o n="Operand" t="Operand">
-                                <v n="Operand">"qDryCycle"</v>
+                                <v n="Operand">"stationState.DryCycle"</v>
                                 <v n="Type">"BOOL"</v>
                                 <v n="Comment">""</v>
                                 <v n="SymbolComment">""</v>
@@ -7621,7 +7594,7 @@ or timeout"</v>
                         <l2 n="OutputItems" cet="Operand">
                           <n />
                           <o>
-                            <v n="Operand">"qModeState"</v>
+                            <v n="Operand">"stationstate.StationState"</v>
                             <v n="Type">"INT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -7796,7 +7769,7 @@ or timeout"</v>
                         <l2 n="OutputItems" cet="Operand">
                           <n />
                           <o>
-                            <v n="Operand">"qModeState"</v>
+                            <v n="Operand">"stationstate.StationState"</v>
                             <v n="Type">"INT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -7822,7 +7795,7 @@ or timeout"</v>
                       <l2 n="InputItems" cet="BoxTreeOperand">
                         <o>
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"iStatusPowerOn"</v>
+                            <v n="Operand">"stationState.PowerOn"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -7921,7 +7894,7 @@ or timeout"</v>
                         <l2 n="OutputItems" cet="Operand">
                           <n />
                           <o>
-                            <v n="Operand">"qModeStateColour"</v>
+                            <v n="Operand">"stationstate.StationStateColour"</v>
                             <v n="Type">"DWORD"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -7937,7 +7910,7 @@ or timeout"</v>
                             <v n="Id">1432L</v>
                           </o>
                           <o>
-                            <v n="Operand">"qModeTextColour"</v>
+                            <v n="Operand">"stationstate.StationStateTextColour"</v>
                             <v n="Type">"DWORD"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -7972,7 +7945,7 @@ or timeout"</v>
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"qModeState"</v>
+                            <v n="Operand">"stationstate.StationState"</v>
                             <v n="Type">"INT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
