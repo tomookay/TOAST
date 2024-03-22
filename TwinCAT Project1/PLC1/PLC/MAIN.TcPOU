@@ -4,7 +4,7 @@
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
 	GetTime: NT_GetTime;
-
+	cpuusage:TC_CpuUsage;
 	getLocalAMS: FB_GetLocalAmsNetId;
 	
 
@@ -192,10 +192,15 @@ FC_Setup();
 	//convert timestruct to DT time
 	System.timeDT := SYSTEMTIME_TO_DT(TIMESTR:=system.thetime);
 
-
-
-
-
+	
+	//get CPU usage
+	cpuusage(	netID:=,
+				Start:=System.PulseHundredMilliSecond,
+				TMOUT:=T#10S);
+				
+	System.cpuusageval  := cpuusage.USAGE;
+	
+			
 ]]></ST>
       </Implementation>
     </Action>
@@ -321,9 +326,14 @@ FC_Setup();
       <LineId Id="40" Count="0" />
       <LineId Id="39" Count="0" />
       <LineId Id="42" Count="0" />
-      <LineId Id="32" Count="1" />
-      <LineId Id="21" Count="0" />
       <LineId Id="5" Count="0" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="66" Count="1" />
+      <LineId Id="69" Count="0" />
+      <LineId Id="73" Count="0" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="68" Count="0" />
       <LineId Id="4" Count="0" />
     </LineIds>
   </POU>
