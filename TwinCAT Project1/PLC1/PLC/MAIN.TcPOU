@@ -12,6 +12,7 @@ VAR
 	stopTC:TC_Stop;
 	configModeTC:TC_Config;
 	reqHostName:FB_GetHostName;
+	getNetworkadaptors:FB_GetAdaptersInfo;
 	
 	
 	
@@ -251,6 +252,15 @@ FC_Setup();
 	System.NThostname := reqHostName.sHostName;
 	
 	
+	//get networkadaptors
+	getNetworkadaptors(	sNetID:=,
+						bExecute:=system.OneSecond,
+						tTimeout:=T#10S,
+						);
+	System.networkadaptors:=getNetworkadaptors.arrAdapters;
+						
+	
+	
 	]]></ST>
       </Implementation>
     </Action>
@@ -402,6 +412,10 @@ FC_Setup();
       <LineId Id="107" Count="4" />
       <LineId Id="113" Count="0" />
       <LineId Id="104" Count="0" />
+      <LineId Id="128" Count="2" />
+      <LineId Id="132" Count="0" />
+      <LineId Id="134" Count="3" />
+      <LineId Id="133" Count="0" />
       <LineId Id="115" Count="0" />
       <LineId Id="86" Count="1" />
     </LineIds>
