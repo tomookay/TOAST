@@ -7,6 +7,7 @@ VAR
 	cpuusage:TC_CpuUsage;
 	getLocalAMS: FB_GetLocalAmsNetId;
 	ReadSystemInfo:PLC_ReadSymInfo;
+	getLatency:TC_SysLatency;
 	
 	
 
@@ -211,6 +212,14 @@ FC_Setup();
 	system.symCount:=ReadSystemInfo.SYMCOUNT;
 	system.sysSize:=ReadSystemInfo.SYMSIZE;
 	
+	//get latency
+	getLatency(	NETID:=,
+				Start:=system.OneSecond,
+				TMOUT:=T#10S,
+				);
+	System.LatencyMicroSec := getLatency.ACTUAL;
+	system.MaxLatencyMicroSec := getLatency.MAXIMUM;
+	
 	]]></ST>
       </Implementation>
     </Action>
@@ -348,6 +357,11 @@ FC_Setup();
       <LineId Id="79" Count="0" />
       <LineId Id="4" Count="0" />
       <LineId Id="82" Count="0" />
+      <LineId Id="88" Count="1" />
+      <LineId Id="91" Count="1" />
+      <LineId Id="94" Count="1" />
+      <LineId Id="90" Count="0" />
+      <LineId Id="97" Count="0" />
       <LineId Id="86" Count="1" />
     </LineIds>
   </POU>
