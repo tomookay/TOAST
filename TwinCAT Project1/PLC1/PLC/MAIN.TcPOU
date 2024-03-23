@@ -9,6 +9,10 @@ VAR
 	ReadSystemInfo:PLC_ReadSymInfo;
 	getLatency:TC_SysLatency;
 	restartTC:TC_Restart;
+	stopTC:TC_Stop;
+	configModeTC:TC_Config;
+	reqHostName:FB_GetHostName;
+	
 	
 	
 
@@ -214,19 +218,38 @@ FC_Setup();
 	system.sysSize:=ReadSystemInfo.SYMSIZE;
 	
 	//get latency
-	getLatency(	NETID:=,
-				Start:=system.OneSecond,
-				TMOUT:=T#10S,
-				);
+	getLatency(		NETID:=,
+					Start:=system.OneSecond,
+					TMOUT:=T#10S,
+					);
 	System.LatencyMicroSec := getLatency.ACTUAL;
 	system.MaxLatencyMicroSec := getLatency.MAXIMUM;
 	
 	//restart TC
-	restartTC(	NETID:=,
-				Restart:=System.TCRestartReq,
-				TMOUT:=T#30S
-				);
+	restartTC(		NETID:=,
+					Restart:=System.TCRestartReq,
+					TMOUT:=T#10S
+					);
+					
+	//stop TC
+	stopTC(			NETID:=,
+					STOP:=System.TCStopReq,
+					TMOUT:=T#10S
+					);
+					
+	//config mode TC
+	configModeTC(	NETID:=,
+					SET:=System.TCConfigReq,
+					TMOUT:=T#10S
+					);
 				
+	//get host name
+	reqHostName(	sNetID:=,
+					bExecute:=system.OneSecond,
+					tTimeout:=T#10S
+					);
+	System.NThostname := reqHostName.sHostName;
+	
 	
 	]]></ST>
       </Implementation>
@@ -369,7 +392,17 @@ FC_Setup();
       <LineId Id="91" Count="1" />
       <LineId Id="94" Count="1" />
       <LineId Id="90" Count="0" />
-      <LineId Id="97" Count="7" />
+      <LineId Id="97" Count="6" />
+      <LineId Id="116" Count="0" />
+      <LineId Id="118" Count="3" />
+      <LineId Id="117" Count="0" />
+      <LineId Id="122" Count="0" />
+      <LineId Id="124" Count="3" />
+      <LineId Id="123" Count="0" />
+      <LineId Id="107" Count="4" />
+      <LineId Id="113" Count="0" />
+      <LineId Id="104" Count="0" />
+      <LineId Id="115" Count="0" />
       <LineId Id="86" Count="1" />
     </LineIds>
   </POU>

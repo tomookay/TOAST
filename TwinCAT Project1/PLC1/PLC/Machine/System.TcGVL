@@ -45,7 +45,10 @@ sysSize: UDINT; //Max. byte size of symbol information
 LatencyMicroSec:UDINT;	//Actual latency in µs 
 MaxLatencyMicroSec:UDINT; //Maximum latency in µs
 
-TCRestartReq:BOOL; 
+TCRestartReq:BOOL; //restart TC
+TCStopReq:BOOL; //stop TC
+TCConfigReq:BOOL; //stop TC
+NThostname:T_MaxString; //NT hostname
 
 
 END_VAR]]></Declaration>
