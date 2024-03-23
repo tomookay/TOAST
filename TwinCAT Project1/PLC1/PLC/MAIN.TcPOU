@@ -8,6 +8,7 @@ VAR
 	getLocalAMS: FB_GetLocalAmsNetId;
 	ReadSystemInfo:PLC_ReadSymInfo;
 	getLatency:TC_SysLatency;
+	restartTC:TC_Restart;
 	
 	
 
@@ -220,6 +221,13 @@ FC_Setup();
 	System.LatencyMicroSec := getLatency.ACTUAL;
 	system.MaxLatencyMicroSec := getLatency.MAXIMUM;
 	
+	//restart TC
+	restartTC(	NETID:=,
+				Restart:=System.TCRestartReq,
+				TMOUT:=T#30S
+				);
+				
+	
 	]]></ST>
       </Implementation>
     </Action>
@@ -361,7 +369,7 @@ FC_Setup();
       <LineId Id="91" Count="1" />
       <LineId Id="94" Count="1" />
       <LineId Id="90" Count="0" />
-      <LineId Id="97" Count="0" />
+      <LineId Id="97" Count="7" />
       <LineId Id="86" Count="1" />
     </LineIds>
   </POU>
