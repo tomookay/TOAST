@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="typeIndividualTask" Id="{905dc1c7-78a1-4a2f-88a3-1c26df13683f}">
+    <Declaration><![CDATA[TYPE typeIndividualTask :
+STRUCT
+	singleTaskName:STRING(255):='Unnamed Task';
+	CycleTimeTarget: REAL :=60.0;	//target cycle time, e.g. 60s
+	CycleTimeActual: REAL :=0;		//actual cycle time
+	CycleTimePartOver:REAL:=5;		//cycle time is part over, e.g. 5s
+	CycleTimeGrossOver:REAL:=120; 	//time for grossly over cycle time
+	CycleTimeLast: REAL;			//last part cycle time
+	OverCycleTime:BOOL;				//TRUE if over cycle time
+	CycleTimeIsGrossOver:BOOL;		//TRUE if cycle time is grossly over
+	IsTaskEnabled:BOOL;				//TRUE if the task is enabled
+	IsTaskComplete:BOOL;			//TRUE if the task is complete
+	TaskStatus:USINT;				//task status
+
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

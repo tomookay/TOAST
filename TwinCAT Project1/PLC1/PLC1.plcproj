@@ -154,6 +154,9 @@
     <Compile Include="HMI1\Data\ScreenNames.TcTLO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="HMI1\Data\TaskText.TcTLO">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="HMI1\Logic\prgMotionRow.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -198,6 +201,10 @@
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
     <Compile Include="HMI1\Screens\Dialogs\visuDataDisplay.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="HMI1\Screens\Dialogs\visuTaskData.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
@@ -458,6 +465,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="X_DUTs\Setup\typeSetupStation.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="X_DUTs\Station\typeIndividualTask.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="X_DUTs\Station\typeRemote.TcDUT">
