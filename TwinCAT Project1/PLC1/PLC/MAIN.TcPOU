@@ -6,6 +6,8 @@ VAR
 	GetTime: NT_GetTime;
 	cpuusage:TC_CpuUsage;
 	getLocalAMS: FB_GetLocalAmsNetId;
+	ReadSystemInfo:PLC_ReadSymInfo;
+	
 	
 
 	oneSec: fb_flasher;
@@ -196,12 +198,20 @@ FC_Setup();
 	//get CPU usage
 	cpuusage(	netID:=,
 				Start:=System.PulseHundredMilliSecond,
-				TMOUT:=T#10S);
-				
+				TMOUT:=T#10S
+				);
 	System.cpuusageval  := cpuusage.USAGE;
 	
-			
-]]></ST>
+	//get symbol count, usage
+	ReadSystemInfo( NETID:=,
+					Port:=System.myPlcAppSystemInfo.AdsPort,
+					Start:=system.OneSecond,
+					TMOUT:=T#10S,
+					);
+	system.symCount:=ReadSystemInfo.SYMCOUNT;
+	system.sysSize:=ReadSystemInfo.SYMSIZE;
+	
+	]]></ST>
       </Implementation>
     </Action>
     <LineIds Name="MAIN">
@@ -330,11 +340,15 @@ FC_Setup();
       <LineId Id="72" Count="0" />
       <LineId Id="71" Count="0" />
       <LineId Id="66" Count="1" />
-      <LineId Id="69" Count="0" />
+      <LineId Id="80" Count="0" />
       <LineId Id="73" Count="0" />
       <LineId Id="70" Count="0" />
-      <LineId Id="68" Count="0" />
+      <LineId Id="85" Count="0" />
+      <LineId Id="74" Count="3" />
+      <LineId Id="79" Count="0" />
       <LineId Id="4" Count="0" />
+      <LineId Id="82" Count="0" />
+      <LineId Id="86" Count="1" />
     </LineIds>
   </POU>
 </TcPlcObject>
