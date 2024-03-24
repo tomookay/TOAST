@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FC_S5_AssignTaskTimes" Id="{58847235-60e4-4c35-a8c3-84d0ca369cf9}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION FC_S5_AssignTaskTimes : BOOL
+VAR_INPUT
+END_VAR
+VAR
+END_VAR
+VAR_IN_OUT
+	iqPartData:typeStation; //insert station data
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//Change the cycle times, (CycleTimeTarget) to the expected time of the Task
+//Task 1, typicaly LOAD
+iqPartData.part.tasks[1].singleTaskName:='Unused Task 1';
+iqPartData.part.tasks[1].CycleTimeGrossOver:=1.0;
+iqPartData.part.tasks[1].CycleTimePartOver:=5.0;
+iqPartData.part.tasks[1].CycleTimeTarget:=40.0;
+
+//Task 2, typicaly PROCESS
+iqPartData.part.tasks[2].singleTaskName:='Unused Task 2';
+iqPartData.part.tasks[2].CycleTimeGrossOver:=1.0;
+iqPartData.part.tasks[2].CycleTimePartOver:=5.0;
+iqPartData.part.tasks[2].CycleTimeTarget:=10.0;
+
+//Task 3, typicaly UNLOAD
+iqPartData.part.tasks[3].singleTaskName:='Unused Task 3';
+iqPartData.part.tasks[3].CycleTimeGrossOver:=51.0;
+iqPartData.part.tasks[3].CycleTimePartOver:=5.0;
+iqPartData.part.tasks[3].CycleTimeTarget:=10.0;
+
+//Task 4, specify times
+iqPartData.part.tasks[4].singleTaskName:='Unused Task 4';
+iqPartData.part.tasks[4].CycleTimeGrossOver:=5.0;
+iqPartData.part.tasks[4].CycleTimePartOver:=5.0;
+iqPartData.part.tasks[4].CycleTimeTarget:=3.0;
+
+//Task 5, specify times
+iqPartData.part.tasks[5].singleTaskName:='Unused Task 5';
+iqPartData.part.tasks[5].CycleTimeGrossOver:=5.0;
+iqPartData.part.tasks[5].CycleTimePartOver:=5.0;
+iqPartData.part.tasks[5].CycleTimeTarget:=3.0;
+
+//Task 6, specify times
+iqPartData.part.tasks[6].singleTaskName:='Unused Task 6';
+iqPartData.part.tasks[6].CycleTimeGrossOver:=5.0;
+iqPartData.part.tasks[6].CycleTimePartOver:=5.0;
+iqPartData.part.tasks[6].CycleTimeTarget:=3.0;
+
+//Task 7, specify times
+iqPartData.part.tasks[7].singleTaskName:='Unused Task 7';
+iqPartData.part.tasks[7].CycleTimeGrossOver:=5.0;
+iqPartData.part.tasks[7].CycleTimePartOver:=5.0;
+iqPartData.part.tasks[7].CycleTimeTarget:=3.0;
+
+//Task 8, specify times
+iqPartData.part.tasks[8].singleTaskName:='Unused Task 8';
+iqPartData.part.tasks[8].CycleTimeGrossOver:=5.0;
+iqPartData.part.tasks[8].CycleTimePartOver:=5.0;
+iqPartData.part.tasks[8].CycleTimeTarget:=3.0;
+
+//Task 9, specify times
+iqPartData.part.tasks[9].singleTaskName:='Unused Task 9';
+iqPartData.part.tasks[9].CycleTimeGrossOver:=5.0;
+iqPartData.part.tasks[9].CycleTimePartOver:=5.0;
+iqPartData.part.tasks[9].CycleTimeTarget:=3.0;
+
+//Task 10, specify times
+iqPartData.part.tasks[10].singleTaskName:='Unused Task 10';
+iqPartData.part.tasks[10].CycleTimeGrossOver:=5.0;
+iqPartData.part.tasks[10].CycleTimePartOver:=5.0;
+iqPartData.part.tasks[10].CycleTimeTarget:=3.0;
+
+//Task 11, specify times
+iqPartData.part.tasks[11].singleTaskName:='Unused Task 11';
+iqPartData.part.tasks[11].CycleTimeGrossOver:=5.0;
+iqPartData.part.tasks[11].CycleTimePartOver:=5.0;
+iqPartData.part.tasks[11].CycleTimeTarget:=3.0;
+
+//Task 12, specify times
+iqPartData.part.tasks[12].singleTaskName:='Unused Task 12';
+iqPartData.part.tasks[12].CycleTimeGrossOver:=5.0;
+iqPartData.part.tasks[12].CycleTimePartOver:=5.0;
+iqPartData.part.tasks[12].CycleTimeTarget:=3.0;
+
+//Task 13, specify times
+iqPartData.part.tasks[13].singleTaskName:='Unused Task 13';
+iqPartData.part.tasks[13].CycleTimeGrossOver:=5.0;
+iqPartData.part.tasks[13].CycleTimePartOver:=5.0;
+iqPartData.part.tasks[13].CycleTimeTarget:=3.0;
+
+//Task 14, specify times
+iqPartData.part.tasks[14].singleTaskName:='Unused Task 14';
+iqPartData.part.tasks[14].CycleTimeGrossOver:=5.0;
+iqPartData.part.tasks[14].CycleTimePartOver:=5.0;
+iqPartData.part.tasks[14].CycleTimeTarget:=3.0;
+
+//Task 15, specify times
+iqPartData.part.tasks[15].singleTaskName:='Unused Task 15';
+iqPartData.part.tasks[15].CycleTimeGrossOver:=5.0;
+iqPartData.part.tasks[15].CycleTimePartOver:=5.0;
+iqPartData.part.tasks[15].CycleTimeTarget:=3.0;
+
+//Task 16, specify times
+iqPartData.part.tasks[16].singleTaskName:='Unused Task 16';
+iqPartData.part.tasks[16].CycleTimeGrossOver:=5.0;
+iqPartData.part.tasks[16].CycleTimePartOver:=5.0;
+iqPartData.part.tasks[16].CycleTimeTarget:=3.0;
+
+//Task 17, specify times
+iqPartData.part.tasks[17].singleTaskName:='Unused Task 17';
+iqPartData.part.tasks[17].CycleTimeGrossOver:=5.0;
+iqPartData.part.tasks[17].CycleTimePartOver:=5.0;
+iqPartData.part.tasks[17].CycleTimeTarget:=3.0;
+
+//Task 18, specify times
+iqPartData.part.tasks[18].singleTaskName:='Unused Task 18';
+iqPartData.part.tasks[18].CycleTimeGrossOver:=5.0;
+iqPartData.part.tasks[18].CycleTimePartOver:=5.0;
+iqPartData.part.tasks[18].CycleTimeTarget:=3.0;
+
+//Task 19, specify times
+iqPartData.part.tasks[19].singleTaskName:='Unused Task 19';
+iqPartData.part.tasks[19].CycleTimeGrossOver:=5.0;
+iqPartData.part.tasks[19].CycleTimePartOver:=5.0;
+iqPartData.part.tasks[19].CycleTimeTarget:=3.0;
+
+//Task 20, specify times
+iqPartData.part.tasks[20].singleTaskName:='Unused Task 20';
+iqPartData.part.tasks[20].CycleTimeGrossOver:=5.0;
+iqPartData.part.tasks[20].CycleTimePartOver:=5.0;
+iqPartData.part.tasks[20].CycleTimeTarget:=3.0;
+
+
+
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="FC_S5_AssignTaskTimes">
+      <LineId Id="387" Count="123" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

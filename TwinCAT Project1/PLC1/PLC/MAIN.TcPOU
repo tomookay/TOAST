@@ -147,6 +147,15 @@ IF System.myPlcInfoTask1.FirstCycle THEN
 	S1_Global.station.Data.AutoCycle := FALSE;
 	S1_Global.station.Data.ContCycle := TRUE;
 	S1_Global.station.Data.SingleCycle := FALSE;
+	
+	FC_S1_AssignTaskTimes(iqPartData:=S1_Global.station);
+	FC_S2_AssignTaskTimes(iqPartData:=S2_Global.station);
+	FC_S3_AssignTaskTimes(iqPartData:=S3_Global.station);
+	FC_S4_AssignTaskTimes(iqPartData:=S4_Global.station);
+	FC_S5_AssignTaskTimes(iqPartData:=S5_Global.station);
+	FC_S6_AssignTaskTimes(iqPartData:=S6_Global.station);
+	
+	
 END_IF
 
 //globals used in future scan(s)
@@ -345,6 +354,10 @@ FC_Setup();
       <LineId Id="16" Count="0" />
       <LineId Id="19" Count="0" />
       <LineId Id="21" Count="1" />
+      <LineId Id="34" Count="1" />
+      <LineId Id="38" Count="4" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="36" Count="0" />
       <LineId Id="13" Count="0" />
       <LineId Id="24" Count="0" />
       <LineId Id="23" Count="0" />

@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_CheckTasks" Id="{c4783f8d-b6d2-4c4f-98af-16aaa73e252f}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_CheckTasks
+VAR_INPUT
+	tTimeTaskError: BOOL;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	i: UINT;
+	tAreAllTasksComeplete: BOOL;
+	tSumTaskTime: LREAL;
+	tTaskTimeError: BOOL;
+END_VAR
+VAR_IN_OUT
+	iqPartData:typeStation; //insert station data
+END_VAR
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//theme:MPa8jVeIbTM]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//check all tasks for depth or skipped
+
+//set complete logic
+tAreAllTasksComeplete:=TRUE;
+tSumTaskTime:=0.0;
+
+
+
+//scan status of current tasks and inverse logic TRUE if the task is completed
+FOR i := 1 TO maxNumTasks DO;
+	
+	IF  NOT iqPartData.part.tasks[i].IsTaskEnabled THEN
+		tAreAllTasksComeplete := FALSE;
+	END_IF
+	
+	IF  NOT iqPartData.part.tasks[i].IsTaskComplete THEN
+		tAreAllTasksComeplete := FALSE;
+	END_IF
+	
+	IF  iqPartData.part.tasks[i].IsTaskEnabled THEN
+		//get summation of cycle time from tasks
+		tSumTaskTime := tSumTaskTime + iqPartData.part.tasks[i].CycleTimeActual;
+	END_IF
+	
+END_FOR
+
+//if the loop did not detect and tasks not enabled, or tasks not complete,
+//then set the station complete to TRUE
+IF tAreAllTasksComeplete THEN
+	iqPartData.part.PartComplete:=TRUE;
+	ELSE
+	//do not reset here, PartComplete resets when part removed via gantry/conveyor
+END_IF
+
+
+//check if sum of task cycle time does not match station declared station time
+IF tSumTaskTime = iqPartData.part.CycleTimeTarget THEN //compare reals??1?
+	tTaskTimeError:=TRUE;
+	ELSE
+	tTimeTaskError:=FALSE;
+END_IF
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_CheckTasks">
+      <LineId Id="9" Count="0" />
+      <LineId Id="37" Count="2" />
+      <LineId Id="68" Count="1" />
+      <LineId Id="41" Count="1" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="18" Count="3" />
+      <LineId Id="23" Count="1" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="66" Count="0" />
+      <LineId Id="82" Count="2" />
+      <LineId Id="81" Count="0" />
+      <LineId Id="67" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="47" Count="2" />
+      <LineId Id="51" Count="1" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="71" Count="1" />
+      <LineId Id="64" Count="0" />
+      <LineId Id="73" Count="1" />
+      <LineId Id="76" Count="0" />
+      <LineId Id="78" Count="0" />
+      <LineId Id="75" Count="0" />
+      <LineId Id="65" Count="0" />
+      <LineId Id="43" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

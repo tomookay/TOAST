@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_Task" Id="{15173ef1-ba55-44a8-a63e-6bf619f6f525}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Task
+VAR_INPUT
+	iTaskNumber:USINT; //number of the task in the station, e.g. 1,2,3,4
+	iEnableTask:BOOL; //TRUE to enable the task
+	iBypassTask:BOOL; //TRUE to skip the task if not required for a particular complexity
+	iStartTask:BOOL; //TRUE to start task
+	iCompleteTask:BOOL; //TRUE if the task is complete
+	iTaskName:STRING(255); //name of task
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	startosr:R_TRIG; //start osr
+	endosr:R_TRIG; //end osr
+	TaskRunning: BOOL;
+END_VAR
+VAR_IN_OUT
+	iqPartData:typeStation; //insert station data
+END_VAR
+
+
+
+
+
+
+
+
+
+//theme:2mcGhpbWlyg]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[startosr(CLK:=iStartTask);
+endosr(CLK:=iCompleteTask);
+
+IF iEnableTask THEN
+	iqPartData.part.tasks[iTaskNumber].IsTaskEnabled := TRUE;
+	ELSE
+	iqPartData.part.tasks[iTaskNumber].IsTaskEnabled := FALSE;
+END_IF
+
+//start task
+IF startosr.Q THEN
+	TaskRunning:=TRUE; //start task
+END_IF
+
+//end task conditions
+IF endosr.Q THEN
+	TaskRunning:=FALSE;
+	iqPartData.part.tasks[iTaskNumber].TaskStatus := TaskState.Completed;
+END_IF
+
+//increment task time
+IF TaskRunning AND System.PulseHundredMilliSecond THEN
+	iqPartData.part.tasks[iTaskNumber].TaskStatus := TaskState.Started;
+	iqPartData.part.tasks[iTaskNumber].CycleTimeActual := iqPartData.part.tasks[iTaskNumber].CycleTimeActual + 0.1;
+END_IF
+
+IF iBypassTask THEN
+	iqPartData.part.tasks[iTaskNumber].TaskStatus := TaskState.Bypassed;
+END_IF
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_Task">
+      <LineId Id="9" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="73" Count="0" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="74" Count="0" />
+      <LineId Id="77" Count="0" />
+      <LineId Id="76" Count="0" />
+      <LineId Id="75" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="83" Count="0" />
+      <LineId Id="38" Count="1" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="79" Count="0" />
+      <LineId Id="81" Count="1" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="41" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

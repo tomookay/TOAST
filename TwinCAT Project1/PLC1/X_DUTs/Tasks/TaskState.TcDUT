@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="TaskState" Id="{77e91dec-2ada-4686-8697-eebac109ec9e}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE TaskState :
+(
+	NoText := 0, 
+	NotStarted := 1, 
+	Started := 2, 
+	Completed := 3,
+	Passed := 4,
+	Failed := 5,
+	Rejected := 6,
+	Skipped := 7,
+	Bypassed := 8,
+	Unknown := 9,
+	spare := 10,
+	spare1 := 11
+		
+)USINT;
+END_TYPE
+
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
