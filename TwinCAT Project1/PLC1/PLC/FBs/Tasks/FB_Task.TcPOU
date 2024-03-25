@@ -34,6 +34,12 @@ END_VAR
       <ST><![CDATA[startosr(CLK:=iStartTask);
 endosr(CLK:=iCompleteTask);
 
+//set base colour
+iqPartData.part.tasks[iTaskNumber].StateColour := HMIColour.colourGreyBackground;
+
+//set task name
+iqPartData.part.tasks[iTaskNumber].singleTaskName := iTaskName;
+
 IF iEnableTask THEN
 	iqPartData.part.tasks[iTaskNumber].IsTaskEnabled := TRUE;
 	ELSE
@@ -58,7 +64,27 @@ IF TaskRunning AND System.PulseHundredMilliSecond THEN
 END_IF
 
 IF iBypassTask THEN
-	iqPartData.part.tasks[iTaskNumber].TaskStatus := TaskState.Bypassed;
+	;
+END_IF
+
+
+//set colour based on pass/fail
+IF  iqPartData.part.tasks[iTaskNumber].IsTaskPassed THEN //set outcome colour
+	iqPartData.part.tasks[iTaskNumber].StateColour := HMIColour.colourGreen;
+END_IF
+
+IF  iqPartData.part.tasks[iTaskNumber].IsTaskFailed THEN //set outcome colour
+	iqPartData.part.tasks[iTaskNumber].StateColour := HMIColour.colourRed;
+END_IF
+
+
+//sum of pass / fail = Task Complete
+IF 	(iqPartData.part.tasks[iTaskNumber].IsTaskPassed OR
+	iqPartData.part.tasks[iTaskNumber].IsTaskFailed) OR
+	iqPartData.part.tasks[iTaskNumber].TaskStatus = TaskState.Bypassed THEN
+	iqPartData.part.tasks[iTaskNumber].IsTaskComplete := TRUE;
+	ELSE
+	iqPartData.part.tasks[iTaskNumber].IsTaskComplete := FALSE;
 END_IF
 
 ]]></ST>
@@ -66,6 +92,12 @@ END_IF
     <LineIds Name="FB_Task">
       <LineId Id="9" Count="0" />
       <LineId Id="21" Count="0" />
+      <LineId Id="114" Count="0" />
+      <LineId Id="113" Count="0" />
+      <LineId Id="112" Count="0" />
+      <LineId Id="138" Count="0" />
+      <LineId Id="137" Count="0" />
+      <LineId Id="139" Count="0" />
       <LineId Id="73" Count="0" />
       <LineId Id="72" Count="0" />
       <LineId Id="74" Count="0" />
@@ -91,7 +123,20 @@ END_IF
       <LineId Id="80" Count="0" />
       <LineId Id="79" Count="0" />
       <LineId Id="81" Count="1" />
-      <LineId Id="42" Count="0" />
+      <LineId Id="115" Count="0" />
+      <LineId Id="135" Count="0" />
+      <LineId Id="116" Count="3" />
+      <LineId Id="123" Count="2" />
+      <LineId Id="122" Count="0" />
+      <LineId Id="126" Count="0" />
+      <LineId Id="134" Count="0" />
+      <LineId Id="127" Count="0" />
+      <LineId Id="121" Count="0" />
+      <LineId Id="128" Count="0" />
+      <LineId Id="136" Count="0" />
+      <LineId Id="130" Count="2" />
+      <LineId Id="129" Count="0" />
+      <LineId Id="120" Count="0" />
       <LineId Id="41" Count="0" />
     </LineIds>
   </POU>

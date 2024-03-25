@@ -14,6 +14,10 @@ STRUCT
 	IsTaskEnabled:BOOL;				//TRUE if the task is enabled
 	IsTaskComplete:BOOL;			//TRUE if the task is complete
 	TaskStatus:USINT;				//task status
+	StateColour:DWORD; 				//colour state of task indicator
+	
+	IsTaskPassed:BOOL;				//TRUE if the task was PASSED...
+	IsTaskFailed:BOOL;				//TRUE if the task was FAILED, but still complete
 
 END_STRUCT
 END_TYPE
