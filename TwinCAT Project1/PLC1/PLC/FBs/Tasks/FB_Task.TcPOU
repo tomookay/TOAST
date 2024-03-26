@@ -16,6 +16,18 @@ VAR
 	startosr:R_TRIG; //start osr
 	endosr:R_TRIG; //end osr
 	TaskRunning: BOOL;
+	
+	//task state OSRs
+	osrNotStarted:R_TRIG;
+	osrStarted:R_TRIG;
+	osrCompleted:R_TRIG;
+	osrPassed:R_TRIG;
+	osrFailed:R_TRIG; //failed to perform process
+	osrRejected:R_TRIG; //failed on guage test
+	osrSkipped:R_TRIG;
+	osrBypassed:R_TRIG;
+	osrUnknown:R_TRIG;
+	
 END_VAR
 VAR_IN_OUT
 	iqPartData:typeStation; //insert station data
@@ -33,6 +45,9 @@ END_VAR
     <Implementation>
       <ST><![CDATA[startosr(CLK:=iStartTask);
 endosr(CLK:=iCompleteTask);
+
+//call assign states
+actAssignState();
 
 //set base colour
 iqPartData.part.tasks[iTaskNumber].StateColour := HMIColour.colourGreyBackground;
@@ -87,11 +102,41 @@ IF 	(iqPartData.part.tasks[iTaskNumber].IsTaskPassed OR
 	iqPartData.part.tasks[iTaskNumber].IsTaskComplete := FALSE;
 END_IF
 
+
 ]]></ST>
     </Implementation>
+    <Action Name="actAssignState" Id="{37109fc0-0d72-408a-be10-beb38c4b6abe}">
+      <Implementation>
+        <ST><![CDATA[//OSR check for setting feedback
+osrNotStarted		(CLK:=NOT iqPartData.part.PartPresent					);
+osrStarted			(CLK:=iStartTask										);
+osrCompleted		(CLK:=iCompleteTask										);
+osrPassed			(CLK:=iqPartData.part.tasks[iTaskNumber].IsTaskPassed	);
+osrFailed			(CLK:=iqPartData.part.tasks[iTaskNumber].IsTaskFailed	); //failed to perform process
+osrRejected			(CLK:=iqPartData.part.tasks[iTaskNumber].IsTaskRejected	); //failed on guage test
+osrSkipped			(CLK:=iqPartData.part.tasks[iTaskNumber].IsTaskSkipped	);
+osrBypassed			(CLK:=iqPartData.part.tasks[iTaskNumber].IsTaskBypassed	);
+osrUnknown			(CLK:=NOT iqPartData.part.PartPresent AND iqPartData.part.DataReadNOK	);
+
+IF osrNotStarted.Q	THEN ;		ELSE	;		END_IF;
+IF osrStarted.Q		THEN ;		ELSE	;		END_IF;
+IF osrCompleted.Q	THEN ;		ELSE	;		END_IF;
+IF osrPassed.Q		THEN ;		ELSE	;		END_IF;
+IF osrFailed.Q		THEN ;		ELSE	;		END_IF;
+IF osrRejected.Q	THEN ;		ELSE	;		END_IF;
+IF osrSkipped.Q		THEN ;		ELSE	;		END_IF;
+IF osrBypassed.Q	THEN ;		ELSE	;		END_IF;
+IF osrUnknown.Q		THEN ;		ELSE	;		END_IF;
+IF osrRejected.Q	THEN ;		ELSE	;		END_IF;
+]]></ST>
+      </Implementation>
+    </Action>
     <LineIds Name="FB_Task">
       <LineId Id="9" Count="0" />
       <LineId Id="21" Count="0" />
+      <LineId Id="218" Count="0" />
+      <LineId Id="216" Count="0" />
+      <LineId Id="219" Count="0" />
       <LineId Id="114" Count="0" />
       <LineId Id="113" Count="0" />
       <LineId Id="112" Count="0" />
@@ -136,8 +181,12 @@ END_IF
       <LineId Id="136" Count="0" />
       <LineId Id="130" Count="2" />
       <LineId Id="129" Count="0" />
-      <LineId Id="120" Count="0" />
+      <LineId Id="181" Count="1" />
       <LineId Id="41" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Task.actAssignState">
+      <LineId Id="2" Count="20" />
+      <LineId Id="1" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
