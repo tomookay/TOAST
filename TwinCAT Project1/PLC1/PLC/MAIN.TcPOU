@@ -13,6 +13,7 @@ VAR
 	configModeTC:TC_Config;
 	reqHostName:FB_GetHostName;
 	getNetworkadaptors:FB_GetAdaptersInfo;
+	getDeviceInfoEx:FB_GetDeviceIdentificationEx;
 	
 	
 	
@@ -267,6 +268,16 @@ FC_Setup();
 						tTimeout:=T#10S,
 						);
 	System.networkadaptors:=getNetworkadaptors.arrAdapters;
+	
+	//get Device Infomation
+	getDeviceInfoEx(	bExecute := System.sysDeviceUpdate,
+						tTimeout := T#10S,
+						sNetId:=
+					);
+					
+	System.sysDeviceInfo := getDeviceInfoEx.stDevIdent;
+	
+					
 						
 	
 	
@@ -427,7 +438,9 @@ FC_Setup();
       <LineId Id="104" Count="0" />
       <LineId Id="128" Count="2" />
       <LineId Id="132" Count="0" />
-      <LineId Id="134" Count="3" />
+      <LineId Id="134" Count="6" />
+      <LineId Id="143" Count="5" />
+      <LineId Id="141" Count="0" />
       <LineId Id="133" Count="0" />
       <LineId Id="115" Count="0" />
       <LineId Id="86" Count="1" />
