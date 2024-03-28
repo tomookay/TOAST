@@ -15,6 +15,8 @@ VAR
 	getNetworkadaptors:FB_GetAdaptersInfo;
 	getDeviceInfoEx:FB_GetDeviceIdentificationEx;
 	
+	getLicences:FB_GetLicensesEx;
+	
 	
 	
 
@@ -27,6 +29,8 @@ VAR
 	pulsetenSec: R_TRIG;
 	pulseoneMSec: R_TRIG;
 	pulsehundredMSec: R_TRIG;
+	i: INT;
+	nLicPres: UDINT;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -277,8 +281,41 @@ FC_Setup();
 					
 	System.sysDeviceInfo := getDeviceInfoEx.stDevIdent;
 	
+	//get licence info
+	getLicences		(	bExecute:= system.OneSecond,
+						tTimeout:=T#10S,
+						sNetId:=
+					);
 					
-						
+System.nValidLicences		:=	getLicences.nValidLicenses;
+System.aValidLicences		:=	getLicences.aValidLicenses;
+
+System.nPendingLicences		:=	getLicences.nPendingLicenses;
+System.aPendingLicences		:=	getLicences.aPendingLicenses;
+
+System.nDemoLicences		:=	getLicences.nDemoLicenses;
+System.aDemoLicences		:=	getLicences.aDemoLicenses;
+
+System.nOEMLicences			:=	getLicences.nOemLicenses;
+System.aOEMLicences			:=	getLicences.aOemLicenses;
+
+System.nFailedLicences		:=	getLicences.nFailedLicenses;
+System.aFailedLicences		:=	getLicences.aFailedLicenses;
+
+System.nInvalidLicences		:=	getLicences.nInvalidLicenses;
+System.aInvalidLicences		:=	getLicences.aInvalidLicenses;
+
+System.maxlicenceIndex := 	System.nDemoLicences;
+System.tActiveLicenceArray := system.ademoLicences[1];
+
+//assign licence name into array
+FOR nLicPres := 1 TO System.maxlicenceIndex DO
+	System.tActiveLicenceList[nLicPres] := System.aDemoLicences[nLicPres].sLicenseName;
+END_FOR
+
+//move selected array into viewing arrayh
+System.tActiveLicenceArray := System.aDemoLicences[nLicPres];
+					
 	
 	
 	]]></ST>
@@ -441,7 +478,21 @@ FC_Setup();
       <LineId Id="134" Count="6" />
       <LineId Id="143" Count="5" />
       <LineId Id="141" Count="0" />
+      <LineId Id="149" Count="0" />
+      <LineId Id="154" Count="3" />
+      <LineId Id="159" Count="1" />
+      <LineId Id="176" Count="0" />
+      <LineId Id="162" Count="13" />
+      <LineId Id="158" Count="0" />
+      <LineId Id="151" Count="0" />
       <LineId Id="133" Count="0" />
+      <LineId Id="179" Count="0" />
+      <LineId Id="178" Count="0" />
+      <LineId Id="180" Count="2" />
+      <LineId Id="184" Count="0" />
+      <LineId Id="183" Count="0" />
+      <LineId Id="185" Count="0" />
+      <LineId Id="177" Count="0" />
       <LineId Id="115" Count="0" />
       <LineId Id="86" Count="1" />
     </LineIds>
