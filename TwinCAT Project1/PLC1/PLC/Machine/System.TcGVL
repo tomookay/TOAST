@@ -54,33 +54,6 @@ networkadaptors: ARRAY [0..MAX_LOCAL_ADAPTERS] OF ST_IpAdapterInfo;
 sysDeviceInfo: Tc2_Utilities.ST_DeviceIdentificationEx;
 sysDeviceUpdate:BOOL;
 
-//licences
-licenceType:INT; //selection from radio button
-maxlicenceIndex:UDINT;//max index num
-nValidLicences:UDINT;
-aValidLicences: ARRAY [1..nMaxLicenses] OF ST_TcOnlineLicenseInfoDataEx;
-
-nPendingLicences:UDINT;
-aPendingLicences: ARRAY [1..nMaxLicenses] OF ST_TcOnlineLicenseInfoDataEx;
-
-nDemoLicences:UDINT;
-aDemoLicences: ARRAY [1..nMaxLicenses] OF ST_TcOnlineLicenseInfoDataEx;
-
-nOEMLicences:UDINT;
-aOEMLicences: ARRAY [1..nMaxLicenses] OF ST_TcOnlineLicenseInfoDataEx;
-
-nFailedLicences:UDINT;
-aFailedLicences: ARRAY [1..nMaxLicenses] OF ST_TcOnlineLicenseInfoDataEx;
-
-nInvalidLicences:UDINT;
-aInvalidLicences: ARRAY [1..nMaxLicenses] OF ST_TcOnlineLicenseInfoDataEx;
-
-tActiveLicenceNum:UDINT;
-tActiveLicenceSel:UDINT;
-tActiveLicenceArray: ST_TcOnlineLicenseInfoDataEx;
-tActiveLicenceList:ARRAY[1..nMaxLicenses] OF STRING(80);
-
-
 
 
 END_VAR]]></Declaration>

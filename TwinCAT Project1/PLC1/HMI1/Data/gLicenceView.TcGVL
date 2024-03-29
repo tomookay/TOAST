@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="gLicenceView" Id="{35e58ff1-c290-4339-ab02-7390438af429}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	
+//licences
+licenceType:UDINT; //selection from radio button
+maxlicenceIndex:UDINT;//max index num
+nValidLicences:UDINT;
+aValidLicences: ARRAY [1..nMaxLicenses] OF ST_TcOnlineLicenseInfoDataEx;
+
+nPendingLicences:UDINT;
+aPendingLicences: ARRAY [1..nMaxLicenses] OF ST_TcOnlineLicenseInfoDataEx;
+
+nDemoLicences:UDINT;
+aDemoLicences: ARRAY [1..nMaxLicenses] OF ST_TcOnlineLicenseInfoDataEx;
+
+nOEMLicences:UDINT;
+aOEMLicences: ARRAY [1..nMaxLicenses] OF ST_TcOnlineLicenseInfoDataEx;
+
+nFailedLicences:UDINT;
+aFailedLicences: ARRAY [1..nMaxLicenses] OF ST_TcOnlineLicenseInfoDataEx;
+
+nInvalidLicences:UDINT;
+aInvalidLicences: ARRAY [1..nMaxLicenses] OF ST_TcOnlineLicenseInfoDataEx;
+
+tActiveLicenceSel:UDINT;
+tActiveLicenceSelLast:UDINT;
+tActiveLicenceArray: ST_TcOnlineLicenseInfoDataEx;
+tActiveLicenceList:ARRAY[1..nMaxLicenses] OF STRING(80);
+tCallUpdateLicenceList:BOOL; //TRUE to update FB
+
+
+
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

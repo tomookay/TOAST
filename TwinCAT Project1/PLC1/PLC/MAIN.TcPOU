@@ -46,6 +46,10 @@ actClockMemory();
 //call all diagnostics
 actDiag();
 
+//call licence view
+actLicenceView();
+
+
 //call base machine
 
 //call HMI
@@ -173,6 +177,144 @@ FC_Setup();
 ]]></ST>
       </Implementation>
     </Action>
+    <Action Name="actLicenceView" Id="{fc1ab9e8-5a1d-4a9c-8cd4-6f130b987644}">
+      <Implementation>
+        <ST><![CDATA[	//get licence info
+	getLicences		(	bExecute:= gLicenceView.tCallUpdateLicenceList,
+						tTimeout:=T#10S,
+						sNetId:=
+					);
+	//reset read BOOL
+	gLicenceView.tCallUpdateLicenceList := FALSE;
+					
+gLicenceView.nValidLicences		:=	getLicences.nValidLicenses;
+gLicenceView.aValidLicences		:=	getLicences.aValidLicenses;
+
+gLicenceView.nPendingLicences	:=	getLicences.nPendingLicenses;
+gLicenceView.aPendingLicences	:=	getLicences.aPendingLicenses;
+
+gLicenceView.nDemoLicences		:=	getLicences.nDemoLicenses;
+gLicenceView.aDemoLicences		:=	getLicences.aDemoLicenses;
+
+gLicenceView.nOEMLicences		:=	getLicences.nOemLicenses;
+gLicenceView.aOEMLicences		:=	getLicences.aOemLicenses;
+
+gLicenceView.nFailedLicences	:=	getLicences.nFailedLicenses;
+gLicenceView.aFailedLicences	:=	getLicences.aFailedLicenses;
+
+gLicenceView.nInvalidLicences	:=	getLicences.nInvalidLicenses;
+gLicenceView.aInvalidLicences	:=	getLicences.aInvalidLicenses;
+
+//gLicenceView.maxlicenceIndex := 	gLicenceView.nDemoLicences;
+//gLicenceView.tActiveLicenceArray := gLicenceView.ademoLicences[1];
+
+
+//check if last radio index was changed
+IF gLicenceView.licenceType = gLicenceView.tActiveLicenceSelLast THEN
+	;
+	ELSE
+		
+	//update list BOOL
+	gLicenceView.tCallUpdateLicenceList := TRUE;
+	//reset check for next scan
+	gLicenceView.tActiveLicenceSelLast :=  gLicenceView.licenceType;
+	
+END_IF
+
+//assign licence name into array
+IF gLicenceView.tCallUpdateLicenceList THEN
+	
+	//set integer limits for array selection
+gLicenceView.tActiveLicenceSel := MAX(gLicenceView.tActiveLicenceSel,1);
+gLicenceView.tActiveLicenceSel := MIN(gLicenceView.tActiveLicenceSel,nMaxLicenses);
+
+	
+	memset( destAddr:=	ADR(gLicenceView.tActiveLicenceArray),
+		 	fillByte:=	16#0,
+			n:=			SIZEOF(gLicenceView.tActiveLicenceArray)
+			);
+	
+	memset( destAddr:=	ADR(gLicenceView.tActiveLicenceList),
+		 	fillByte:=	16#0,
+			n:=			SIZEOF(gLicenceView.tActiveLicenceList)
+			);
+			
+		
+	
+	
+	CASE gLicenceView.licenceType OF
+		0:
+		gLicenceView.maxlicenceIndex := 	gLicenceView.nValidLicences;
+		FOR nLicPres := 1 TO gLicenceView.maxlicenceIndex DO
+			gLicenceView.tActiveLicenceList[nLicPres] := gLicenceView.aValidLicences[nLicPres].sLicenseName;
+		END_FOR
+		
+		1:
+		gLicenceView.maxlicenceIndex := 	gLicenceView.nPendingLicences;
+		FOR nLicPres := 1 TO gLicenceView.maxlicenceIndex DO
+			gLicenceView.tActiveLicenceList[nLicPres] := gLicenceView.aPendingLicences[nLicPres].sLicenseName;
+		END_FOR
+		
+		2:
+		gLicenceView.maxlicenceIndex := 	gLicenceView.nDemoLicences;
+		FOR nLicPres := 1 TO gLicenceView.maxlicenceIndex DO
+			gLicenceView.tActiveLicenceList[nLicPres] := gLicenceView.aDemoLicences[nLicPres].sLicenseName;
+		END_FOR
+		
+		3:
+		gLicenceView.maxlicenceIndex := 	gLicenceView.nOEMLicences;
+		FOR nLicPres := 1 TO gLicenceView.maxlicenceIndex DO
+			gLicenceView.tActiveLicenceList[nLicPres] := gLicenceView.aOEMLicences[nLicPres].sLicenseName;
+		END_FOR
+		
+		4:
+		gLicenceView.maxlicenceIndex := 	gLicenceView.nFailedLicences;
+		FOR nLicPres := 1 TO gLicenceView.maxlicenceIndex DO
+			gLicenceView.tActiveLicenceList[nLicPres] := gLicenceView.aFailedLicences[nLicPres].sLicenseName;
+		END_FOR
+		
+		5:
+		gLicenceView.maxlicenceIndex := 	gLicenceView.nInvalidLicences;
+		FOR nLicPres := 1 TO gLicenceView.maxlicenceIndex DO
+			gLicenceView.tActiveLicenceList[nLicPres] := gLicenceView.aInvalidLicences[nLicPres].sLicenseName;
+		END_FOR
+	
+	END_CASE
+END_IF
+
+//move data structure into sole struct on HMI
+IF gLicenceView.licenceType > 0 THEN
+
+CASE gLicenceView.licenceType OF
+	0: 
+	//move selected array into viewing arrayh
+	gLicenceView.tActiveLicenceArray := gLicenceView.aValidLicences[gLicenceView.tActiveLicenceSel];
+	
+	1: 
+	//move selected array into viewing arrayh
+	gLicenceView.tActiveLicenceArray := gLicenceView.aPendingLicences[gLicenceView.tActiveLicenceSel];
+	
+	2: 
+	//move selected array into viewing arrayh
+	gLicenceView.tActiveLicenceArray := gLicenceView.aDemoLicences[gLicenceView.tActiveLicenceSel];
+	
+	3: 
+	//move selected array into viewing arrayh
+	gLicenceView.tActiveLicenceArray := gLicenceView.aOEMLicences[gLicenceView.tActiveLicenceSel];
+	
+	4: 
+	//move selected array into viewing arrayh
+	gLicenceView.tActiveLicenceArray := gLicenceView.aFailedLicences[gLicenceView.tActiveLicenceSel];
+	
+	5: 
+	//move selected array into viewing arrayh
+	gLicenceView.tActiveLicenceArray := gLicenceView.aInvalidLicences[gLicenceView.tActiveLicenceSel];
+	
+END_CASE
+END_IF			
+	]]></ST>
+      </Implementation>
+    </Action>
     <Action Name="actPLC" Id="{28d0350d-3a28-47f0-90b1-3e048fd4248d}">
       <Implementation>
         <ST><![CDATA[//act call PLC
@@ -281,42 +423,7 @@ FC_Setup();
 					
 	System.sysDeviceInfo := getDeviceInfoEx.stDevIdent;
 	
-	//get licence info
-	getLicences		(	bExecute:= system.OneSecond,
-						tTimeout:=T#10S,
-						sNetId:=
-					);
-					
-System.nValidLicences		:=	getLicences.nValidLicenses;
-System.aValidLicences		:=	getLicences.aValidLicenses;
 
-System.nPendingLicences		:=	getLicences.nPendingLicenses;
-System.aPendingLicences		:=	getLicences.aPendingLicenses;
-
-System.nDemoLicences		:=	getLicences.nDemoLicenses;
-System.aDemoLicences		:=	getLicences.aDemoLicenses;
-
-System.nOEMLicences			:=	getLicences.nOemLicenses;
-System.aOEMLicences			:=	getLicences.aOemLicenses;
-
-System.nFailedLicences		:=	getLicences.nFailedLicenses;
-System.aFailedLicences		:=	getLicences.aFailedLicenses;
-
-System.nInvalidLicences		:=	getLicences.nInvalidLicenses;
-System.aInvalidLicences		:=	getLicences.aInvalidLicenses;
-
-System.maxlicenceIndex := 	System.nDemoLicences;
-System.tActiveLicenceArray := system.ademoLicences[1];
-
-//assign licence name into array
-FOR nLicPres := 1 TO System.maxlicenceIndex DO
-	System.tActiveLicenceList[nLicPres] := System.aDemoLicences[nLicPres].sLicenseName;
-END_FOR
-
-//move selected array into viewing arrayh
-System.tActiveLicenceArray := System.aDemoLicences[nLicPres];
-					
-	
 	
 	]]></ST>
       </Implementation>
@@ -333,6 +440,9 @@ System.tActiveLicenceArray := System.aDemoLicences[nLicPres];
       <LineId Id="87" Count="0" />
       <LineId Id="74" Count="0" />
       <LineId Id="88" Count="0" />
+      <LineId Id="165" Count="0" />
+      <LineId Id="164" Count="0" />
+      <LineId Id="166" Count="1" />
       <LineId Id="57" Count="0" />
       <LineId Id="2" Count="0" />
       <LineId Id="41" Count="0" />
@@ -416,6 +526,22 @@ System.tActiveLicenceArray := System.aDemoLicences[nLicPres];
       <LineId Id="32" Count="0" />
       <LineId Id="25" Count="0" />
     </LineIds>
+    <LineIds Name="MAIN.actLicenceView">
+      <LineId Id="2" Count="43" />
+      <LineId Id="125" Count="0" />
+      <LineId Id="127" Count="2" />
+      <LineId Id="126" Count="0" />
+      <LineId Id="46" Count="5" />
+      <LineId Id="132" Count="3" />
+      <LineId Id="130" Count="1" />
+      <LineId Id="52" Count="40" />
+      <LineId Id="96" Count="1" />
+      <LineId Id="136" Count="0" />
+      <LineId Id="138" Count="0" />
+      <LineId Id="98" Count="25" />
+      <LineId Id="140" Count="0" />
+      <LineId Id="1" Count="0" />
+    </LineIds>
     <LineIds Name="MAIN.actPLC">
       <LineId Id="1" Count="0" />
       <LineId Id="6" Count="0" />
@@ -477,22 +603,6 @@ System.tActiveLicenceArray := System.aDemoLicences[nLicPres];
       <LineId Id="132" Count="0" />
       <LineId Id="134" Count="6" />
       <LineId Id="143" Count="5" />
-      <LineId Id="141" Count="0" />
-      <LineId Id="149" Count="0" />
-      <LineId Id="154" Count="3" />
-      <LineId Id="159" Count="1" />
-      <LineId Id="176" Count="0" />
-      <LineId Id="162" Count="13" />
-      <LineId Id="158" Count="0" />
-      <LineId Id="151" Count="0" />
-      <LineId Id="133" Count="0" />
-      <LineId Id="179" Count="0" />
-      <LineId Id="178" Count="0" />
-      <LineId Id="180" Count="2" />
-      <LineId Id="184" Count="0" />
-      <LineId Id="183" Count="0" />
-      <LineId Id="185" Count="0" />
-      <LineId Id="177" Count="0" />
       <LineId Id="115" Count="0" />
       <LineId Id="86" Count="1" />
     </LineIds>
