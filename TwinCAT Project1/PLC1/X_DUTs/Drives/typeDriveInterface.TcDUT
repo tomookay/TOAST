@@ -12,6 +12,9 @@ STRUCT
 	MoveReq: BOOL; //TRUE to move the drive
 	isManualMode: BOOL; //TRUE to run a lower speeds
 
+	isVeloMove:BOOL; //TRUE if velocity move
+	veloDirection:MC_Direction; //direction of velocity
+	
 	
 	
 	//speeds and feeds
@@ -20,6 +23,21 @@ STRUCT
 	TargetAcc:LREAL;
 	TargetDec:LREAL;
 	TargetJerk:LREAL;
+	
+	//feedback value from drive
+	actualPosn:LREAL;
+	actualVelo:LREAL;
+	
+	//set posn
+	SetPosn:BOOL; //TRUE to set new posn
+	newPosn:LREAL; //new posn target
+
+	//error word feedback
+	AxisErrorID : DWORD;
+	
+	jogFwdReq:BOOL; //TRUE to jog forward
+	jogRevReq:BOOL; //TRUE to jog reverse
+	
 	
 
 
