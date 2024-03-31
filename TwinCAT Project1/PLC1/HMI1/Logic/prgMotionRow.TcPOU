@@ -29,6 +29,9 @@ actCallMotionScreen();
 
 //calculate screen range
 actCalcMotionRowPosn();
+
+//calculate page title
+actCalcPageTitle();
 ]]></ST>
     </Implementation>
     <Action Name="actCalcMotionRowPosn" Id="{d052a485-2ab5-4274-9ad1-f666fbdc1383}">
@@ -54,6 +57,20 @@ gHMIMotionRows.gMotionRows.gMotionRow5.IndexLocation := gHMIData.gRowElementOffs
 gHMIMotionRows.gMotionRows.gMotionRow6.IndexLocation := gHMIData.gRowElementOffset[6];
 
 ]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="actCalcPageTitle" Id="{904b6009-924e-4962-82c3-1f501316d522}">
+      <Implementation>
+        <ST><![CDATA[//get the page number index relating the group of motions displayed
+gHMIData.gManualScreenTitle := tStationNumberIndex + gHMIData.gActivePageNumber;
+
+//10001 = station 1, page 1
+//10002 = station 1, page 2
+
+//20001 = station 1, page 1
+//etc
+
+//assign text in textlist ManualPageTitle]]></ST>
       </Implementation>
     </Action>
     <Action Name="actCalcScreenNumber" Id="{6c34dbe5-12b3-4058-a71b-5a6feb4de7c0}">
@@ -227,7 +244,11 @@ END_IF
       <LineId Id="9" Count="0" />
       <LineId Id="19" Count="0" />
       <LineId Id="18" Count="0" />
-      <LineId Id="10" Count="1" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="11" Count="0" />
     </LineIds>
     <LineIds Name="prgMotionRow.actCalcMotionRowPosn">
       <LineId Id="1" Count="1" />
@@ -242,6 +263,18 @@ END_IF
       <LineId Id="14" Count="5" />
       <LineId Id="21" Count="0" />
       <LineId Id="20" Count="0" />
+    </LineIds>
+    <LineIds Name="prgMotionRow.actCalcPageTitle">
+      <LineId Id="3" Count="0" />
+      <LineId Id="1" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="4" Count="0" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="2" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="9" Count="0" />
     </LineIds>
     <LineIds Name="prgMotionRow.actCalcScreenNumber">
       <LineId Id="1" Count="1" />
