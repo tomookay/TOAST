@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="prgHMIaxis" Id="{81ccfde1-3dc2-41c4-84d9-bc7dafad625d}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM prgHMIaxis
+VAR
+	
+	i: UINT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//logic for HMI diag screens for axis
+
+//assign text for diag screen
+FOR i := 1 TO Axis.gNumAxisInSystem DO
+	//populate dropdown box
+	driveGlobals.tAxisList[i] := Axis.axisPresent[i].AxisName;
+END_FOR
+
+//assign nc info to HMI nc info
+CASE driveGlobals.hmiAxisSel OF
+	1:	driveGlobals.hmiAxis :=driveGlobals.ncAxis1;
+	2:	driveGlobals.hmiAxis :=driveGlobals.ncAxis2;
+	3:	driveGlobals.hmiAxis :=driveGlobals.ncAxis3;
+	4:	driveGlobals.hmiAxis :=driveGlobals.ncAxis4;
+	5:	driveGlobals.hmiAxis :=driveGlobals.ncAxis5;
+	6:	driveGlobals.hmiAxis :=driveGlobals.ncAxis6;
+	7:	driveGlobals.hmiAxis :=driveGlobals.ncAxis7;
+	8:	driveGlobals.hmiAxis :=driveGlobals.ncAxis8;	
+END_CASE]]></ST>
+    </Implementation>
+    <LineIds Name="prgHMIaxis">
+      <LineId Id="5" Count="1" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="47" Count="5" />
+      <LineId Id="31" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
