@@ -295,7 +295,6 @@ IF (memchanged OR TRUE) AND isAlarm THEN //need to loop constantly if message is
 					
 				END_FOR
 
-	actPassMesageFinish(); //only on 2nd call
 END_IF
 
 
@@ -1412,166 +1411,6 @@ END_FOR
  ]]></ST>
       </Implementation>
     </Action>
-    <Action Name="actPassMesageFinish" Id="{54453d18-a877-4018-9174-bf0c6b44470b}">
-      <Implementation>
-        <NWL>
-          <XmlArchive>
-            <Data>
-              <o xml:space="preserve" t="NWLImplementationObject">
-                <v n="NetworkListComment">""</v>
-                <v n="DefaultViewMode">"Ld"</v>
-                <l2 n="NetworkList" cet="Network">
-                  <o>
-                    <v n="ILActive">false</v>
-                    <v n="FBDValid">false</v>
-                    <v n="ILValid">false</v>
-                    <l2 n="ILLines" />
-                    <v n="Comment">"if its a warning, and the process has completed, then don't update the list anymore,
-as the warning are written below the alarms"</v>
-                    <v n="Title">""</v>
-                    <v n="Label">""</v>
-                    <v n="OutCommented">true</v>
-                    <l2 n="NetworkItems" cet="BoxTreeAssign">
-                      <o>
-                        <o n="OutputItems" t="OutputItemList">
-                          <l2 n="OutputItems" cet="Operand">
-                            <o>
-                              <v n="Operand">"iqMsgChangeUpdateList"</v>
-                              <v n="Type">"BOOL"</v>
-                              <v n="Comment">""</v>
-                              <v n="SymbolComment">""</v>
-                              <v n="Address">""</v>
-                              <o n="Flags" t="Flags">
-                                <v n="Flags">3</v>
-                                <v n="Fixed">true</v>
-                                <v n="Extensible">false</v>
-                              </o>
-                              <v n="LValue">true</v>
-                              <v n="Boolean">true</v>
-                              <v n="IsInstance">false</v>
-                              <v n="Id">4L</v>
-                            </o>
-                          </l2>
-                        </o>
-                        <o n="Flags" t="Flags">
-                          <v n="Flags">0</v>
-                          <v n="Fixed">false</v>
-                          <v n="Extensible">false</v>
-                        </o>
-                        <o n="RValue" t="BoxTreeBox">
-                          <v n="BoxType">"AND"</v>
-                          <o n="Instance" t="Operand">
-                            <n n="Operand" />
-                            <v n="Type">""</v>
-                            <v n="Comment">""</v>
-                            <v n="SymbolComment">""</v>
-                            <v n="Address">""</v>
-                            <o n="Flags" t="Flags">
-                              <v n="Flags">0</v>
-                              <v n="Fixed">false</v>
-                              <v n="Extensible">false</v>
-                            </o>
-                            <v n="LValue">false</v>
-                            <v n="Boolean">false</v>
-                            <v n="IsInstance">true</v>
-                            <v n="Id">10L</v>
-                          </o>
-                          <o n="OutputItems" t="OutputItemList">
-                            <l2 n="OutputItems" />
-                          </o>
-                          <o n="Flags" t="Flags">
-                            <v n="Flags">0</v>
-                            <v n="Fixed">false</v>
-                            <v n="Extensible">false</v>
-                          </o>
-                          <n n="InputFlags" />
-                          <l2 n="InputItems" cet="BoxTreeOperand">
-                            <o>
-                              <o n="Operand" t="Operand">
-                                <v n="Operand">"iqMsgChangeUpdateList"</v>
-                                <v n="Type">"BOOL"</v>
-                                <v n="Comment">""</v>
-                                <v n="SymbolComment">""</v>
-                                <v n="Address">""</v>
-                                <o n="Flags" t="Flags">
-                                  <v n="Flags">0</v>
-                                  <v n="Fixed">false</v>
-                                  <v n="Extensible">false</v>
-                                </o>
-                                <v n="LValue">false</v>
-                                <v n="Boolean">true</v>
-                                <v n="IsInstance">false</v>
-                                <v n="Id">9L</v>
-                              </o>
-                              <v n="Id">8L</v>
-                            </o>
-                            <o>
-                              <o n="Operand" t="Operand">
-                                <v n="Operand">"isWarning"</v>
-                                <v n="Type">"BOOL"</v>
-                                <v n="Comment">""</v>
-                                <v n="SymbolComment">""</v>
-                                <v n="Address">""</v>
-                                <o n="Flags" t="Flags">
-                                  <v n="Flags">0</v>
-                                  <v n="Fixed">false</v>
-                                  <v n="Extensible">false</v>
-                                </o>
-                                <v n="LValue">false</v>
-                                <v n="Boolean">true</v>
-                                <v n="IsInstance">false</v>
-                                <v n="Id">3L</v>
-                              </o>
-                              <v n="Id">2L</v>
-                            </o>
-                          </l2>
-                          <o n="InputParam" t="ParamList">
-                            <l2 n="Names" />
-                            <l2 n="Types" />
-                          </o>
-                          <o n="OutputParam" t="ParamList">
-                            <l2 n="Names" />
-                            <l2 n="Types" />
-                          </o>
-                          <v n="CallType" t="Operator">And</v>
-                          <n n="EN" />
-                          <n n="ENO" />
-                          <n n="STSnippet" />
-                          <v n="ContainsExtensibleInputs">false</v>
-                          <v n="ProvidesSTSnippet">false</v>
-                          <v n="Id">11L</v>
-                        </o>
-                        <v n="Id">5L</v>
-                      </o>
-                    </l2>
-                    <l2 n="Connectors" />
-                    <v n="Id">1L</v>
-                  </o>
-                </l2>
-                <v n="BranchCounter">0</v>
-                <v n="ValidIds">true</v>
-              </o>
-            </Data>
-            <TypeList>
-              <Type n="Boolean">System.Boolean</Type>
-              <Type n="BoxTreeAssign">{9873c309-1f09-4ebf-9078-42d8057ef11b}</Type>
-              <Type n="BoxTreeBox">{acfc6f68-8e3a-4af5-bf81-3dd512095a46}</Type>
-              <Type n="BoxTreeOperand">{9de7f100-1b87-424c-a62e-45b0cfc85ed2}</Type>
-              <Type n="Flags">{668066f2-6069-46b3-8962-8db8d13d7db2}</Type>
-              <Type n="Int32">System.Int32</Type>
-              <Type n="Int64">System.Int64</Type>
-              <Type n="Network">{d9a99d73-b633-47db-b876-a752acb25871}</Type>
-              <Type n="NWLImplementationObject">{25e509de-33d4-4447-93f8-c9e4ea381c8b}</Type>
-              <Type n="Operand">{c9b2f165-48a2-4a45-8326-3952d8a3d708}</Type>
-              <Type n="Operator">{bffb3c53-f105-4e85-aba2-e30df579d75f}</Type>
-              <Type n="OutputItemList">{f40d3e09-c02c-4522-a88c-dac23558cfc4}</Type>
-              <Type n="ParamList">{71496971-9e0c-4677-a832-b9583b571130}</Type>
-              <Type n="String">System.String</Type>
-            </TypeList>
-          </XmlArchive>
-        </NWL>
-      </Implementation>
-    </Action>
     <Action Name="actPassMessageChange" Id="{d6737f3f-2922-49a8-82a5-cbae2265c9fc}">
       <Implementation>
         <NWL>
@@ -1813,8 +1652,8 @@ as the warning are written below the alarms"</v>
       </XmlArchive>
     </ObjectProperties>
     <LineIds Name="FB_CheckMessageBounds">
-      <LineId Id="3" Count="4" />
-      <LineId Id="10" Count="227" />
+      <LineId Id="3" Count="219" />
+      <LineId Id="224" Count="11" />
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="FB_CheckMessageBounds.actClearDownExcessWarn">
