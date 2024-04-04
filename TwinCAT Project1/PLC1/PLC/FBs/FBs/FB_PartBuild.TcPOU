@@ -34,6 +34,24 @@ VAR
 	j: UINT;
 	tNumTasksEnabled: UINT;
 	tNumTasksEnabledCompleted: UINT;
+	fileopeny: FB_FileOpen;
+	testready: BOOL;
+	stationstring: STRING;
+	formattedString: STRING(255);
+	fileclosey: FB_FileClose;
+	testclose: BOOL;
+	openfilehandle: UINT;
+	fileOpenError: BOOL;
+	
+	stationcomplexity:typeStationComplexity;
+	stationcomplexityBuffer:typeStationComplexityBuffer;
+	
+	
+	
+	fileReady:FB_FileRead;
+	
+	readfile: BOOL;
+	testreadthefile: BOOL;
 END_VAR
 
 VAR_IN_OUT
@@ -2583,6 +2601,84 @@ END_VAR
                   <v n="FBDValid">false</v>
                   <v n="ILValid">false</v>
                   <l2 n="ILLines" />
+                  <v n="Comment">""</v>
+                  <v n="Title">""</v>
+                  <v n="Label">""</v>
+                  <v n="OutCommented">false</v>
+                  <l2 n="NetworkItems" cet="BoxTreeBox">
+                    <o>
+                      <v n="BoxType">"actReadComplexity"</v>
+                      <o n="Instance" t="Operand">
+                        <n n="Operand" />
+                        <v n="Type">""</v>
+                        <v n="Comment">""</v>
+                        <v n="SymbolComment">""</v>
+                        <v n="Address">""</v>
+                        <o n="Flags" t="Flags">
+                          <v n="Flags">0</v>
+                          <v n="Fixed">false</v>
+                          <v n="Extensible">false</v>
+                        </o>
+                        <v n="LValue">false</v>
+                        <v n="Boolean">false</v>
+                        <v n="IsInstance">true</v>
+                        <v n="Id">603L</v>
+                      </o>
+                      <o n="OutputItems" t="OutputItemList">
+                        <l2 n="OutputItems">
+                          <n />
+                        </l2>
+                      </o>
+                      <o n="Flags" t="Flags">
+                        <v n="Flags">0</v>
+                        <v n="Fixed">true</v>
+                        <v n="Extensible">false</v>
+                      </o>
+                      <n n="InputFlags" />
+                      <l2 n="InputItems" cet="BoxTreeTerminator">
+                        <o>
+                          <n n="Input" />
+                          <o n="Flags" t="Flags">
+                            <v n="Flags">0</v>
+                            <v n="Fixed">false</v>
+                            <v n="Extensible">false</v>
+                          </o>
+                          <v n="Id">605L</v>
+                        </o>
+                      </l2>
+                      <o n="InputParam" t="ParamList">
+                        <l2 n="Names" cet="String">
+                          <v>EN</v>
+                        </l2>
+                        <l2 n="Types" cet="String">
+                          <v>BOOL</v>
+                        </l2>
+                      </o>
+                      <o n="OutputParam" t="ParamList">
+                        <l2 n="Names" cet="String">
+                          <v>ENO</v>
+                        </l2>
+                        <l2 n="Types" cet="String">
+                          <v>BOOL</v>
+                        </l2>
+                      </o>
+                      <v n="CallType" t="Operator">Action</v>
+                      <v n="EN">true</v>
+                      <v n="ENO">true</v>
+                      <n n="STSnippet" />
+                      <v n="ContainsExtensibleInputs">false</v>
+                      <v n="ProvidesSTSnippet">false</v>
+                      <v n="Id">604L</v>
+                    </o>
+                  </l2>
+                  <l2 n="Connectors" />
+                  <v n="Id">585L</v>
+                </o>
+                <o>
+                  <v n="ILActive">false</v>
+                  <v n="FBDValid">false</v>
+                  <v n="ILValid">false</v>
+                  <l2 n="ILLines" />
                   <v n="Comment">"with part removed, clear down task data"</v>
                   <v n="Title">""</v>
                   <v n="Label">""</v>
@@ -4004,6 +4100,54 @@ this may need to live somewhere else as the iqData gets cleared down"</v>
         </NWL>
       </Implementation>
     </Action>
+    <Action Name="actReadComplexity" Id="{6779435a-2407-4ad2-8551-0332f3fe5353}">
+      <Implementation>
+        <ST><![CDATA[//set default path name
+stationstring := 'C:\PLC\Complexity\p.dat';
+
+//insert part number from part data into part of .dat file
+formattedString:= INSERT(	STR1:=stationstring, 
+							STR2:=UINT_TO_STRING(iqData.partType), 
+							POS:=find(str2:='p.dat', str1:=stationstring));
+
+//open file
+fileopeny(	sNetId:=,
+			sPathName:=formattedString,
+			nMode:=FOPEN_MODEREAD,
+			ePath:=,
+			bExecute:=testready,
+			tTimeout:=T#10S
+			);
+			
+openfilehandle := fileopeny.hFile;
+fileOpenError := fileopeny.bError;
+
+
+//do some work here to read the file...
+fileReady(	sNetId:=,
+			hFile:= openfilehandle,
+			pReadBuff:=ADR(stationcomplexityBuffer),
+			cbReadLen:=2048,
+			tTimeout:=T#10S,
+			bExecute:=testreadthefile
+			
+			);
+			
+			
+
+
+
+//close the file
+fileclosey(	sNetId:=,
+			hFile:=openfilehandle,
+			bExecute:=testclose,
+			tTimeout:=T#10S
+			);
+
+			
+]]></ST>
+      </Implementation>
+    </Action>
     <ObjectProperties>
       <XmlArchive>
         <Data>
@@ -4022,24 +4166,39 @@ this may need to live somewhere else as the iqData gets cleared down"</v>
       </XmlArchive>
     </ObjectProperties>
     <LineIds Name="FB_PartBuild.actCheckAllTasks">
-      <LineId Id="38" Count="0" />
-      <LineId Id="42" Count="0" />
-      <LineId Id="39" Count="2" />
-      <LineId Id="27" Count="0" />
-      <LineId Id="31" Count="5" />
-      <LineId Id="30" Count="0" />
-      <LineId Id="28" Count="1" />
-      <LineId Id="2" Count="0" />
-      <LineId Id="37" Count="0" />
-      <LineId Id="3" Count="0" />
-      <LineId Id="5" Count="1" />
-      <LineId Id="20" Count="1" />
-      <LineId Id="7" Count="0" />
+      <LineId Id="2" Count="30" />
       <LineId Id="1" Count="0" />
-      <LineId Id="44" Count="2" />
-      <LineId Id="49" Count="1" />
-      <LineId Id="43" Count="0" />
-      <LineId Id="47" Count="1" />
+    </LineIds>
+    <LineIds Name="FB_PartBuild.actReadComplexity">
+      <LineId Id="13" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="21" Count="1" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="1" Count="0" />
+      <LineId Id="4" Count="3" />
+      <LineId Id="10" Count="1" />
+      <LineId Id="30" Count="1" />
+      <LineId Id="38" Count="1" />
+      <LineId Id="34" Count="2" />
+      <LineId Id="50" Count="3" />
+      <LineId Id="56" Count="1" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="25" Count="1" />
+      <LineId Id="28" Count="1" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="2" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

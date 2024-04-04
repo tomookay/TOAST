@@ -11,6 +11,7 @@ VAR_INPUT
 	iTaskName:STRING(255); //name of task
 END_VAR
 VAR_OUTPUT
+	qComplexity:UINT; //complexity of task
 END_VAR
 VAR
 	startosr:R_TRIG; //start osr
@@ -102,6 +103,11 @@ IF 	(iqPartData.part.tasks[iTaskNumber].IsTaskPassed OR
 	iqPartData.part.tasks[iTaskNumber].IsTaskComplete := FALSE;
 END_IF
 
+IF iqPartData.part.OKtoBuild THEN
+	qComplexity := 1;
+	ELSE
+	qComplexity := 0; //no complexity task	
+END_IF
 
 ]]></ST>
     </Implementation>
@@ -181,7 +187,12 @@ IF osrRejected.Q	THEN ;		ELSE	;		END_IF;
       <LineId Id="136" Count="0" />
       <LineId Id="130" Count="2" />
       <LineId Id="129" Count="0" />
-      <LineId Id="181" Count="1" />
+      <LineId Id="261" Count="0" />
+      <LineId Id="181" Count="0" />
+      <LineId Id="262" Count="0" />
+      <LineId Id="265" Count="1" />
+      <LineId Id="263" Count="0" />
+      <LineId Id="182" Count="0" />
       <LineId Id="41" Count="0" />
     </LineIds>
     <LineIds Name="FB_Task.actAssignState">

@@ -45,6 +45,8 @@ STRUCT
 	OverCycleTime:BOOL;				//TRUE if over cycle time
 	CycleTimeIsGrossOver:BOOL;		//TRUE if cycle time is grossly over
 	
+	partType:UINT;					//part type
+	
 
 	tasks:ARRAY[1..maxNumTasks]  OF typeIndividualTask;	//collection of tasks used in station
 END_STRUCT
