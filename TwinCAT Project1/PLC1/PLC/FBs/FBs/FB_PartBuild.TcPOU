@@ -52,6 +52,11 @@ VAR
 	complexityRead: BOOL;
 	
 	openbusy: BOOL;
+	
+	//values to move in to current station/task/complexity
+	currentstn: UINT;
+	currenttask: UINT;
+	currentcomplexity: UINT;
 END_VAR
 
 VAR_IN_OUT
@@ -4103,12 +4108,12 @@ this may need to live somewhere else as the iqData gets cleared down"</v>
     <Action Name="actReadComplexity" Id="{6779435a-2407-4ad2-8551-0332f3fe5353}">
       <Implementation>
         <ST><![CDATA[//set default path name
-stationstring := 'C:\PLC\Complexity\p.dat';
+stationstring := 'C:\PLC\Complexity\p.cpxty';
 
 //insert part number from part data into part of .dat file, so p.dat becomes p1.dat
 formattedString:= INSERT(	STR1:=stationstring, 
 							STR2:=UINT_TO_STRING(iqData.partType), 
-							POS:=find(str2:='p.dat', str1:=stationstring));
+							POS:=find(str2:='p.cpxty', str1:=stationstring));
 
 //open file
 partTypeOpenFile(	sNetId:=,
@@ -4135,7 +4140,10 @@ CASE nProcComplexity OF
 
 0:
 //start the process of reading
-IF startReadComplex AND NOT complexityRead THEN nProcComplexity := 1; END_IF
+IF	startReadComplex	AND
+	NOT complexityRead	AND
+	iqData.partType >= 1
+	THEN nProcComplexity := 1; END_IF
 1:
 
 //start of process
@@ -4143,8 +4151,8 @@ IF startReadComplex AND NOT complexityRead THEN nProcComplexity := 1; END_IF
 partTypeOpenFile(	bExecute := TRUE);
 
 //check for open
-openerror := partTypeOpenFile.bError;
-openbusy := partTypeOpenFile.bBusy;
+openerror	:= partTypeOpenFile.bError;
+openbusy	:= partTypeOpenFile.bBusy;
 
 //check for complete open
 IF 		NOT openerror AND 
@@ -4174,32 +4182,49 @@ nProcComplexity := 5;
 
 5:
 //get line and length of line
-readfilestring := partTypeReadLine.sLine;
-complexlen := len(str:=readfilestring);
+readfilestring	:= partTypeReadLine.sLine;
+complexlen 		:= len(str:=readfilestring);
 
 //get station number
-findStn:= find(STR1:=readfilestring, str2:='S');
-findtask:= find(STR1:=readfilestring, str2:='T');
-findcomplex:= find(STR1:=readfilestring, str2:='C');
+findStn			:= find(STR1:=readfilestring, str2:='S');
+findtask		:= find(STR1:=readfilestring, str2:='T');
+findcomplex		:= find(STR1:=readfilestring, str2:='C');
 
 //get the station location string, e.g. S1,T minus the last T and the delimit
-stnstr := mid(	str:=readfilestring,
-				len:=(findtask - 3),
-				pos:=findStn + 1
-				);
+stnstr		:= mid(	str:=readfilestring,
+					len:=(findtask - 3),
+					pos:=findStn + 1
+					);
 //get the task string single digit or double digit	
-taskstr := mid( str:=readfilestring,
-				len:= findcomplex - findtask - 2,
-				pos:= findtask + 1
-				);
+taskstr		:= mid( str:=readfilestring,
+					len:= findcomplex - findtask - 2,
+					pos:= findtask + 1
+					);
 
 //get the complexity string	
-complexstr := mid(	str:=readfilestring,
+complexstr	:= mid(	str:=readfilestring,
 					len:=complexlen - findcomplex - 1,
 					pos:=findcomplex + 1
 					); 
 
-//TODO move strings to complexity values
+currentstn			:= STRING_TO_UINT(stnstr);
+currenttask			:= STRING_TO_UINT(taskstr);
+currentcomplexity	:= STRING_TO_UINT(complexstr);
+
+
+//check if station is valid
+IF currentstn >= 1 AND currentstn <= gHMIDataConst.gNumberOfStations THEN
+	
+	//if the current station (1) is the same as the line read in the complexity file, then
+	IF currentstn = iStationData.StationNumber THEN
+		//station number match, move complexity number into present task
+		iqData.tasks[currenttask].complexity := currentcomplexity;
+	END_IF
+	
+	ELSE
+	//exception for invalid complexity file, number of stations not valid
+
+END_IF
 
 //check if string is short, so EOF, then close file
 IF complexlen < 3 THEN 
@@ -4216,8 +4241,10 @@ partTypeCloseFile(bExecute := TRUE);
 nProcComplexity := 101;
 
 101:
-IF partTypeCloseFile.bExecute AND NOT partTypeCloseFile.bBusy THEN nProcComplexity := 102; END_IF
-
+IF	partTypeCloseFile.bExecute AND
+	NOT partTypeCloseFile.bBusy 
+	THEN nProcComplexity := 102;
+END_IF
 102:
 //stop close call
 partTypeCloseFile(bExecute := FALSE);
@@ -4251,83 +4278,23 @@ END_CASE
       <LineId Id="1" Count="0" />
     </LineIds>
     <LineIds Name="FB_PartBuild.actReadComplexity">
-      <LineId Id="2" Count="6" />
-      <LineId Id="111" Count="0" />
-      <LineId Id="114" Count="4" />
-      <LineId Id="120" Count="0" />
-      <LineId Id="94" Count="0" />
-      <LineId Id="148" Count="3" />
-      <LineId Id="153" Count="0" />
+      <LineId Id="2" Count="1" />
+      <LineId Id="148" Count="0" />
+      <LineId Id="5" Count="30" />
+      <LineId Id="145" Count="0" />
       <LineId Id="147" Count="0" />
-      <LineId Id="112" Count="0" />
-      <LineId Id="199" Count="2" />
-      <LineId Id="203" Count="1" />
-      <LineId Id="9" Count="0" />
-      <LineId Id="95" Count="0" />
-      <LineId Id="97" Count="0" />
-      <LineId Id="100" Count="0" />
-      <LineId Id="99" Count="0" />
-      <LineId Id="106" Count="0" />
-      <LineId Id="101" Count="0" />
-      <LineId Id="98" Count="0" />
-      <LineId Id="107" Count="0" />
-      <LineId Id="103" Count="0" />
-      <LineId Id="108" Count="1" />
-      <LineId Id="122" Count="0" />
-      <LineId Id="121" Count="0" />
-      <LineId Id="123" Count="1" />
-      <LineId Id="131" Count="0" />
-      <LineId Id="110" Count="0" />
-      <LineId Id="102" Count="0" />
-      <LineId Id="126" Count="1" />
-      <LineId Id="130" Count="0" />
-      <LineId Id="19" Count="0" />
-      <LineId Id="133" Count="0" />
-      <LineId Id="132" Count="0" />
-      <LineId Id="212" Count="0" />
-      <LineId Id="211" Count="0" />
-      <LineId Id="210" Count="0" />
-      <LineId Id="134" Count="0" />
-      <LineId Id="20" Count="0" />
-      <LineId Id="136" Count="1" />
-      <LineId Id="139" Count="0" />
-      <LineId Id="144" Count="1" />
-      <LineId Id="157" Count="0" />
       <LineId Id="146" Count="0" />
-      <LineId Id="154" Count="0" />
-      <LineId Id="156" Count="0" />
-      <LineId Id="155" Count="0" />
-      <LineId Id="159" Count="0" />
-      <LineId Id="141" Count="0" />
-      <LineId Id="161" Count="0" />
-      <LineId Id="160" Count="0" />
-      <LineId Id="164" Count="23" />
-      <LineId Id="163" Count="0" />
-      <LineId Id="234" Count="0" />
-      <LineId Id="231" Count="0" />
-      <LineId Id="237" Count="0" />
-      <LineId Id="235" Count="0" />
-      <LineId Id="238" Count="0" />
-      <LineId Id="247" Count="0" />
-      <LineId Id="244" Count="0" />
-      <LineId Id="248" Count="0" />
-      <LineId Id="246" Count="0" />
-      <LineId Id="239" Count="1" />
-      <LineId Id="243" Count="0" />
-      <LineId Id="190" Count="0" />
-      <LineId Id="196" Count="1" />
-      <LineId Id="205" Count="0" />
-      <LineId Id="209" Count="0" />
-      <LineId Id="208" Count="0" />
-      <LineId Id="224" Count="1" />
-      <LineId Id="217" Count="0" />
-      <LineId Id="214" Count="0" />
-      <LineId Id="213" Count="0" />
-      <LineId Id="229" Count="0" />
-      <LineId Id="219" Count="0" />
-      <LineId Id="226" Count="0" />
-      <LineId Id="143" Count="0" />
+      <LineId Id="36" Count="68" />
+      <LineId Id="136" Count="1" />
+      <LineId Id="144" Count="0" />
+      <LineId Id="106" Count="3" />
+      <LineId Id="141" Count="2" />
       <LineId Id="140" Count="0" />
+      <LineId Id="139" Count="0" />
+      <LineId Id="110" Count="16" />
+      <LineId Id="149" Count="1" />
+      <LineId Id="154" Count="0" />
+      <LineId Id="128" Count="7" />
       <LineId Id="1" Count="0" />
     </LineIds>
   </POU>
