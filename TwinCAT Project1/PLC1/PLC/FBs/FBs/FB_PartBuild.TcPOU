@@ -15,6 +15,7 @@ END_VAR
 VAR_OUTPUT
 	qMsgNoPartRead: BOOL; //message for no part data read yet
 	qMsgPartNOKBuild: BOOL; //message for part data NOK to build
+	qNoPartNumber:BOOL; //message, TRUE if no part number detected
 
 
 END_VAR
@@ -57,6 +58,7 @@ VAR
 	currentstn: UINT;
 	currenttask: UINT;
 	currentcomplexity: UINT;
+	wasResetted: BOOL;
 END_VAR
 
 VAR_IN_OUT
@@ -2848,6 +2850,128 @@ END_VAR
                   <l2 n="Connectors" />
                   <v n="Id">530L</v>
                 </o>
+                <o>
+                  <v n="ILActive">false</v>
+                  <v n="FBDValid">false</v>
+                  <v n="ILValid">false</v>
+                  <l2 n="ILLines" />
+                  <v n="Comment">"reset read complexity file"</v>
+                  <v n="Title">""</v>
+                  <v n="Label">""</v>
+                  <v n="OutCommented">false</v>
+                  <l2 n="NetworkItems" cet="BoxTreeAssign">
+                    <o>
+                      <o n="OutputItems" t="OutputItemList">
+                        <l2 n="OutputItems" cet="Operand">
+                          <o>
+                            <v n="Operand">"complexityRead"</v>
+                            <v n="Type">"BOOL"</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">""</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">3</v>
+                              <v n="Fixed">true</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">true</v>
+                            <v n="Boolean">true</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">681L</v>
+                          </o>
+                        </l2>
+                      </o>
+                      <o n="Flags" t="Flags">
+                        <v n="Flags">0</v>
+                        <v n="Fixed">false</v>
+                        <v n="Extensible">false</v>
+                      </o>
+                      <o n="RValue" t="BoxTreeOperand">
+                        <o n="Operand" t="Operand">
+                          <v n="Operand">"iqData.PartPresent"</v>
+                          <v n="Type">"BOOL"</v>
+                          <v n="Comment">""</v>
+                          <v n="SymbolComment">""</v>
+                          <v n="Address">""</v>
+                          <o n="Flags" t="Flags">
+                            <v n="Flags">32</v>
+                            <v n="Fixed">true</v>
+                            <v n="Extensible">false</v>
+                          </o>
+                          <v n="LValue">false</v>
+                          <v n="Boolean">true</v>
+                          <v n="IsInstance">false</v>
+                          <v n="Id">680L</v>
+                        </o>
+                        <v n="Id">679L</v>
+                      </o>
+                      <v n="Id">682L</v>
+                    </o>
+                  </l2>
+                  <l2 n="Connectors" />
+                  <v n="Id">678L</v>
+                </o>
+                <o>
+                  <v n="ILActive">false</v>
+                  <v n="FBDValid">false</v>
+                  <v n="ILValid">false</v>
+                  <l2 n="ILLines" />
+                  <v n="Comment">"reset read complexity file"</v>
+                  <v n="Title">""</v>
+                  <v n="Label">""</v>
+                  <v n="OutCommented">false</v>
+                  <l2 n="NetworkItems" cet="BoxTreeAssign">
+                    <o>
+                      <o n="OutputItems" t="OutputItemList">
+                        <l2 n="OutputItems" cet="Operand">
+                          <o>
+                            <v n="Operand">"wasResetted"</v>
+                            <v n="Type">"BOOL"</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">""</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">2</v>
+                              <v n="Fixed">true</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">true</v>
+                            <v n="Boolean">true</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">672L</v>
+                          </o>
+                        </l2>
+                      </o>
+                      <o n="Flags" t="Flags">
+                        <v n="Flags">0</v>
+                        <v n="Fixed">false</v>
+                        <v n="Extensible">false</v>
+                      </o>
+                      <o n="RValue" t="BoxTreeOperand">
+                        <o n="Operand" t="Operand">
+                          <v n="Operand">"iqData.PartPresent"</v>
+                          <v n="Type">"BOOL"</v>
+                          <v n="Comment">""</v>
+                          <v n="SymbolComment">""</v>
+                          <v n="Address">""</v>
+                          <o n="Flags" t="Flags">
+                            <v n="Flags">32</v>
+                            <v n="Fixed">true</v>
+                            <v n="Extensible">false</v>
+                          </o>
+                          <v n="LValue">false</v>
+                          <v n="Boolean">true</v>
+                          <v n="IsInstance">false</v>
+                          <v n="Id">677L</v>
+                        </o>
+                        <v n="Id">676L</v>
+                      </o>
+                      <v n="Id">673L</v>
+                    </o>
+                  </l2>
+                  <l2 n="Connectors" />
+                  <v n="Id">669L</v>
+                </o>
               </l2>
               <v n="BranchCounter">0</v>
               <v n="ValidIds">true</v>
@@ -4107,7 +4231,15 @@ this may need to live somewhere else as the iqData gets cleared down"</v>
     </Action>
     <Action Name="actReadComplexity" Id="{6779435a-2407-4ad2-8551-0332f3fe5353}">
       <Implementation>
-        <ST><![CDATA[//set default path name
+        <ST><![CDATA[//check if a part number exists
+IF iqData.partType >= 1 THEN
+	qNoPartNumber := FALSE;
+	ELSE
+	qNoPartNumber := TRUE;
+END_IF
+
+
+//set default path name
 stationstring := 'C:\PLC\Complexity\p.cpxty';
 
 //insert part number from part data into part of .dat file, so p.dat becomes p1.dat
@@ -4134,6 +4266,12 @@ partTypeCloseFile(	sNetId:=,
 			hFile:=openfilehandle,
 			tTimeout:=T#10S
 			);
+			
+			
+			
+//check to read complexity file
+IF iPartReadOK AND iqData.partType >= 1 THEN startReadComplex := TRUE; END_IF
+
 							
 //process part complexity
 CASE nProcComplexity OF
@@ -4249,6 +4387,10 @@ END_IF
 //stop close call
 partTypeCloseFile(bExecute := FALSE);
 
+//reset call
+startReadComplex := FALSE;
+
+
 //return to start
 nProcComplexity := 0;
 
@@ -4278,23 +4420,20 @@ END_CASE
       <LineId Id="1" Count="0" />
     </LineIds>
     <LineIds Name="FB_PartBuild.actReadComplexity">
-      <LineId Id="2" Count="1" />
-      <LineId Id="148" Count="0" />
-      <LineId Id="5" Count="30" />
-      <LineId Id="145" Count="0" />
-      <LineId Id="147" Count="0" />
-      <LineId Id="146" Count="0" />
-      <LineId Id="36" Count="68" />
-      <LineId Id="136" Count="1" />
-      <LineId Id="144" Count="0" />
-      <LineId Id="106" Count="3" />
-      <LineId Id="141" Count="2" />
-      <LineId Id="140" Count="0" />
-      <LineId Id="139" Count="0" />
-      <LineId Id="110" Count="16" />
-      <LineId Id="149" Count="1" />
       <LineId Id="154" Count="0" />
-      <LineId Id="128" Count="7" />
+      <LineId Id="157" Count="1" />
+      <LineId Id="160" Count="1" />
+      <LineId Id="159" Count="0" />
+      <LineId Id="155" Count="1" />
+      <LineId Id="2" Count="26" />
+      <LineId Id="148" Count="5" />
+      <LineId Id="29" Count="10" />
+      <LineId Id="163" Count="0" />
+      <LineId Id="41" Count="101" />
+      <LineId Id="164" Count="1" />
+      <LineId Id="167" Count="0" />
+      <LineId Id="166" Count="0" />
+      <LineId Id="143" Count="4" />
       <LineId Id="1" Count="0" />
     </LineIds>
   </POU>
