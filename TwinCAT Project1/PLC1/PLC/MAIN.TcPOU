@@ -402,7 +402,7 @@ END_IF
 				
 	//get host name
 	reqHostName(	sNetID:=,
-					bExecute:=system.OneSecond,
+					bExecute:=system.TenSecond,
 					tTimeout:=T#10S
 					);
 	System.NThostname := reqHostName.sHostName;
@@ -410,7 +410,7 @@ END_IF
 	
 	//get networkadaptors
 	getNetworkadaptors(	sNetID:=,
-						bExecute:=system.OneSecond,
+						bExecute:=system.TenSecond,
 						tTimeout:=T#10S,
 						);
 	System.networkadaptors:=getNetworkadaptors.arrAdapters;
