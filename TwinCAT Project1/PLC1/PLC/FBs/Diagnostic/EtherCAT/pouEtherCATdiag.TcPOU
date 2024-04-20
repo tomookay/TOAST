@@ -18,6 +18,14 @@ VAR
 	tDiagScreenSize: UINT;
 	tDiagScreenWidth: UINT;
 	tDiagScreenPointer: UINT;
+	
+	
+	readcoe: FB_EcCoESdoRead;
+	
+	isCoeBusy: BOOL;
+	isCoeError: BOOL;
+	isCoecbRead: UDINT;
+	currentReadNum: UINT;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -607,6 +615,66 @@ etherCATdiag.EtherCATslaveDiag[i].currentState.suffix := decode.suffix;
 	
 	
 END_FOR
+]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="actGetCoEData" Id="{7fab3804-7adb-4c5b-bb8f-fc49082e9037}">
+      <Implementation>
+        <ST><![CDATA[
+//get slave id of each slave to read data from
+
+//Index 1018 Identity
+
+//data from beckhoff manuals
+(*
+1018:0 Identity Information for identifying the slave UINT8 RO 0x04 (4dec)
+1018:01 Vendor ID Vendor ID of the EtherCAT slave UINT32 RO 0x00000002 (2dec)
+1018:02 Product code Product code of the EtherCAT slave UINT32 RO 0x071B4052 (119226450dec)
+1018:03 Revision Revision number of the EtherCAT slave; the Low Word (bit 0-15) indicates the special terminal number, the High Word (bit 16-31) refers to the  device description UINT32 RO 0x00000000 (0dec)
+1018:04 Serial number Serial number of the EtherCAT slave; the Low Byte (bit 0-7) of the Low Word contains the year of production, the High Byte (bit 8-15) of the Low Word contains the week of production, the High Word (bit 16-31) is 0 UINT32 RO 0x00000000 (0dec) CoE parameters 162 Version: 3.7 EP1xxx
+*)
+
+
+
+//only input type modules?
+(*
+F900:02 Internal Temperature Internal temperature INT8 RO 0x00 (0dec)
+F900:04 Voltage Us Measured value of the supply voltage US UINT16 RO 0x0000 (0dec)
+*)
+
+
+
+//only output type modules?
+(*
+F900:02 Internal Temperature INT8 RO 0x00 (0dec) 
+F900:04 Voltage Us UINT16 RO 0x0000 (0dec)
+F900:05 Voltage Up UINT16 RO 0x0000 (0dec)
+*)
+
+//zero counter
+currentReadNum := 0;
+
+//count out of scan for each entry of detected ethercat slave
+
+//IF etherCATdiag.arryEcConfSlaveInfo[currentReadNum].
+
+
+//read CoE data
+readcoe(	sNetId:=,
+			nSlaveAddr:=,
+			nSubIndex:=,
+			nIndex:=,
+			pDstBuf:=,
+			cbBufLen:=,
+			bExecute:=,
+			tTimeout:=T#5S
+			);
+			
+isCoeBusy := readcoe.bBusy;
+isCoeError := readcoe.bError;
+isCoecbRead := readcoe.cbRead;
+
+
 ]]></ST>
       </Implementation>
     </Action>
@@ -2677,6 +2745,50 @@ END_FOR]]></ST>
       <LineId Id="108" Count="0" />
       <LineId Id="56" Count="2" />
       <LineId Id="1" Count="0" />
+    </LineIds>
+    <LineIds Name="pouEtherCATdiag.actGetCoEData">
+      <LineId Id="14" Count="1" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="103" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="24" Count="1" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="99" Count="1" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="101" Count="1" />
+      <LineId Id="60" Count="1" />
+      <LineId Id="65" Count="0" />
+      <LineId Id="77" Count="0" />
+      <LineId Id="89" Count="0" />
+      <LineId Id="62" Count="0" />
+      <LineId Id="112" Count="0" />
+      <LineId Id="109" Count="0" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="113" Count="0" />
+      <LineId Id="111" Count="0" />
+      <LineId Id="114" Count="0" />
+      <LineId Id="110" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="12" Count="1" />
+      <LineId Id="1" Count="0" />
+      <LineId Id="3" Count="7" />
+      <LineId Id="104" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="105" Count="1" />
+      <LineId Id="108" Count="0" />
+      <LineId Id="107" Count="0" />
+      <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="pouEtherCATdiag.actMoveLocalData">
       <LineId Id="12" Count="5" />
