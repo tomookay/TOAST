@@ -344,11 +344,11 @@ END_IF
 					tTimeOut:=T#1M
 				);
 	
-	System.ecAMSmaster1:=getLocalAMS.AddrString;
-	System.ecAMSbytesmaster1:=getLocalAMS.AddrBytes;
+	System.AmsNetIdstr:=getLocalAMS.AddrString;
+	System.AmsNetIdbytes:=getLocalAMS.AddrBytes;
 	
 	//get the time
-	GetTime(		NETID:=system.ecAMSmaster1,
+	GetTime(		NETID:='',
 					START:=System.OneSecond,
 			);
 	

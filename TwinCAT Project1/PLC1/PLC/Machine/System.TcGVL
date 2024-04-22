@@ -21,16 +21,25 @@ ScanTimeRecordScan:LREAL; //the scan number of the record scan time
 
 
 //EtherCAT master 1
-ecAMSmaster1: T_AmsNetId;
+ecAMSmaster1 AT %I* :AMSNETID;
 ecAMSbytesmaster1: T_AmsNetIdArr;
+ecMaster1CfgSlaveCount AT %I* : UINT;
+ecMaster1ActSlaveCount AT %I* : UINT;
+ecMaster1DevId AT %I* : UINT;
 
 //EtherCAT master 2
-ecAMSmaster2: T_AmsNetId;
+ecAMSmaster2 AT %I* :AMSNETID;;
 ecAMSbytesmaster2: T_AmsNetIdArr;
+ecMaster2CfgSlaveCount AT %I* : UINT;
+ecMaster2ActSlaveCount AT %I* : UINT;
+ecMaster2DevId AT %I* : UINT;
 
 //EtherCAT master 3
-ecAMSmaster3: T_AmsNetId;
+ecAMSmaster3 AT %I* :AMSNETID;
 ecAMSbytesmaster3: T_AmsNetIdArr;
+ecMaster3CfgSlaveCount AT %I* : UINT;
+ecMaster3ActSlaveCount AT %I* : UINT;
+ecMaster3DevId AT %I* : UINT;
 
 
 thetime: TIMESTRUCT;
@@ -67,7 +76,8 @@ sysDeviceInfo: Tc2_Utilities.ST_DeviceIdentificationEx;
 sysDeviceUpdate:BOOL;
 
 
-
+AmsNetIdstr: STRING(23);
+AmsNetIdbytes: ARRAY[0..5] OF BYTE;
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>
