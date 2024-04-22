@@ -19,8 +19,20 @@ ScanTimeAct:REAL; //the last scan time, effective current scan time.
 ScanTimeRecord:REAL; //the record scan time
 ScanTimeRecordScan:LREAL; //the scan number of the record scan time
 
-localAMS: T_AmsNetId;
-localAMSbytes: T_AmsNetIdArr;
+
+//EtherCAT master 1
+ecAMSmaster1: T_AmsNetId;
+ecAMSbytesmaster1: T_AmsNetIdArr;
+
+//EtherCAT master 2
+ecAMSmaster2: T_AmsNetId;
+ecAMSbytesmaster2: T_AmsNetIdArr;
+
+//EtherCAT master 3
+ecAMSmaster3: T_AmsNetId;
+ecAMSbytesmaster3: T_AmsNetIdArr;
+
+
 thetime: TIMESTRUCT;
 
 oneMilliSecond: BOOL;
