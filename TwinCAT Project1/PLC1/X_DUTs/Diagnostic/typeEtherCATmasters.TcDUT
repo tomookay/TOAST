@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="typeEtherCATmasters" Id="{d9e10cfb-da90-437f-9d24-a27aca6200ef}">
+    <Declaration><![CDATA[TYPE typeEtherCATmasters :
+STRUCT
+	ecAMSmaster AT %I* :AMSNETID;
+	//ecAMSbytesmaster: T_AmsNetIdArr;
+	ecAMSmasterstr: T_AmsNetID;
+	ecMasterCfgSlaveCount AT %I* : UINT;
+	ecMasterActSlaveCount AT %I* : UINT;
+	ecMasterDevId AT %I* : UINT;
+	ecMasterChangeCount AT %I* : UINT;
+	ecMasterDevState AT %I* : UINT;
+	ecEKInfostateDataState AT %I* : UINT;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

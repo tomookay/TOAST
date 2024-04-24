@@ -26,6 +26,7 @@ VAR
 	isCoeError: BOOL;
 	isCoecbRead: UDINT;
 	currentReadNum: UINT;
+	f: UINT;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -36,6 +37,84 @@ END_VAR
               <v n="NetworkListComment">""</v>
               <v n="DefaultViewMode">"Ld"</v>
               <l2 n="NetworkList" cet="Network">
+                <o>
+                  <v n="ILActive">false</v>
+                  <v n="FBDValid">false</v>
+                  <v n="ILValid">false</v>
+                  <l2 n="ILLines" />
+                  <v n="Comment">"update ec string listing"</v>
+                  <v n="Title">""</v>
+                  <v n="Label">""</v>
+                  <v n="OutCommented">false</v>
+                  <l2 n="NetworkItems" cet="BoxTreeBox">
+                    <o>
+                      <v n="BoxType">"actUpdateECmasterListing"</v>
+                      <o n="Instance" t="Operand">
+                        <n n="Operand" />
+                        <v n="Type">""</v>
+                        <v n="Comment">""</v>
+                        <v n="SymbolComment">""</v>
+                        <v n="Address">""</v>
+                        <o n="Flags" t="Flags">
+                          <v n="Flags">0</v>
+                          <v n="Fixed">false</v>
+                          <v n="Extensible">false</v>
+                        </o>
+                        <v n="LValue">false</v>
+                        <v n="Boolean">false</v>
+                        <v n="IsInstance">true</v>
+                        <v n="Id">266L</v>
+                      </o>
+                      <o n="OutputItems" t="OutputItemList">
+                        <l2 n="OutputItems">
+                          <n />
+                        </l2>
+                      </o>
+                      <o n="Flags" t="Flags">
+                        <v n="Flags">0</v>
+                        <v n="Fixed">true</v>
+                        <v n="Extensible">false</v>
+                      </o>
+                      <n n="InputFlags" />
+                      <l2 n="InputItems" cet="BoxTreeTerminator">
+                        <o>
+                          <n n="Input" />
+                          <o n="Flags" t="Flags">
+                            <v n="Flags">0</v>
+                            <v n="Fixed">false</v>
+                            <v n="Extensible">false</v>
+                          </o>
+                          <v n="Id">268L</v>
+                        </o>
+                      </l2>
+                      <o n="InputParam" t="ParamList">
+                        <l2 n="Names" cet="String">
+                          <v>EN</v>
+                        </l2>
+                        <l2 n="Types" cet="String">
+                          <v>BOOL</v>
+                        </l2>
+                      </o>
+                      <o n="OutputParam" t="ParamList">
+                        <l2 n="Names" cet="String">
+                          <v>ENO</v>
+                        </l2>
+                        <l2 n="Types" cet="String">
+                          <v>BOOL</v>
+                        </l2>
+                      </o>
+                      <v n="CallType" t="Operator">Action</v>
+                      <v n="EN">true</v>
+                      <v n="ENO">true</v>
+                      <n n="STSnippet" />
+                      <v n="ContainsExtensibleInputs">false</v>
+                      <v n="ProvidesSTSnippet">false</v>
+                      <v n="Id">267L</v>
+                    </o>
+                  </l2>
+                  <l2 n="Connectors" />
+                  <v n="Id">246L</v>
+                </o>
                 <o>
                   <v n="ILActive">false</v>
                   <v n="FBDValid">false</v>
@@ -62,7 +141,7 @@ END_VAR
                         <v n="LValue">false</v>
                         <v n="Boolean">false</v>
                         <v n="IsInstance">true</v>
-                        <v n="Id">192L</v>
+                        <v n="Id">252L</v>
                       </o>
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems">
@@ -83,7 +162,7 @@ END_VAR
                             <v n="Fixed">false</v>
                             <v n="Extensible">false</v>
                           </o>
-                          <v n="Id">194L</v>
+                          <v n="Id">254L</v>
                         </o>
                       </l2>
                       <o n="InputParam" t="ParamList">
@@ -108,18 +187,18 @@ END_VAR
                       <n n="STSnippet" />
                       <v n="ContainsExtensibleInputs">false</v>
                       <v n="ProvidesSTSnippet">false</v>
-                      <v n="Id">193L</v>
+                      <v n="Id">253L</v>
                     </o>
                   </l2>
                   <l2 n="Connectors" />
-                  <v n="Id">191L</v>
+                  <v n="Id">251L</v>
                 </o>
                 <o>
                   <v n="ILActive">false</v>
                   <v n="FBDValid">false</v>
                   <v n="ILValid">false</v>
                   <l2 n="ILLines" />
-                  <v n="Comment">""</v>
+                  <v n="Comment">"update listing in array"</v>
                   <v n="Title">""</v>
                   <v n="Label">""</v>
                   <v n="OutCommented">false</v>
@@ -153,25 +232,15 @@ END_VAR
                         <v n="Extensible">false</v>
                       </o>
                       <n n="InputFlags" />
-                      <l2 n="InputItems" cet="BoxTreeOperand">
+                      <l2 n="InputItems" cet="BoxTreeTerminator">
                         <o>
-                          <o n="Operand" t="Operand">
-                            <v n="Operand">"System.OneSecond"</v>
-                            <v n="Type">"BOOL"</v>
-                            <v n="Comment">""</v>
-                            <v n="SymbolComment">""</v>
-                            <v n="Address">""</v>
-                            <o n="Flags" t="Flags">
-                              <v n="Flags">16</v>
-                              <v n="Fixed">true</v>
-                              <v n="Extensible">false</v>
-                            </o>
-                            <v n="LValue">false</v>
-                            <v n="Boolean">true</v>
-                            <v n="IsInstance">false</v>
-                            <v n="Id">215L</v>
+                          <n n="Input" />
+                          <o n="Flags" t="Flags">
+                            <v n="Flags">0</v>
+                            <v n="Fixed">false</v>
+                            <v n="Extensible">false</v>
                           </o>
-                          <v n="Id">214L</v>
+                          <v n="Id">269L</v>
                         </o>
                       </l2>
                       <o n="InputParam" t="ParamList">
@@ -380,25 +449,15 @@ END_VAR
                         <v n="Extensible">false</v>
                       </o>
                       <n n="InputFlags" />
-                      <l2 n="InputItems" cet="BoxTreeOperand">
+                      <l2 n="InputItems" cet="BoxTreeTerminator">
                         <o>
-                          <o n="Operand" t="Operand">
-                            <v n="Operand">"System.OneSecond"</v>
-                            <v n="Type">"BOOL"</v>
-                            <v n="Comment">""</v>
-                            <v n="SymbolComment">""</v>
-                            <v n="Address">""</v>
-                            <o n="Flags" t="Flags">
-                              <v n="Flags">16</v>
-                              <v n="Fixed">true</v>
-                              <v n="Extensible">false</v>
-                            </o>
-                            <v n="LValue">false</v>
-                            <v n="Boolean">true</v>
-                            <v n="IsInstance">false</v>
-                            <v n="Id">217L</v>
+                          <n n="Input" />
+                          <o n="Flags" t="Flags">
+                            <v n="Flags">0</v>
+                            <v n="Fixed">false</v>
+                            <v n="Extensible">false</v>
                           </o>
-                          <v n="Id">216L</v>
+                          <v n="Id">270L</v>
                         </o>
                       </l2>
                       <o n="InputParam" t="ParamList">
@@ -534,88 +593,77 @@ END_VAR
     </Implementation>
     <Action Name="actEtherCATSlaveDiag" Id="{ad26e273-933b-4a92-8e3a-4cf2719bddff}">
       <Implementation>
-        <ST><![CDATA[
-
-
-FOR i := 1 TO  etherCATdiag.maxNumEtherCATSlaves DO //
-
-////////////////////////////////////////////////////////////////
-//test write value
-//TODO: REMOVE
-//etherCATdiag.RawEtherCATStateDiag[i] := 16#8008; 
-//etherCATdiag.EtherCATslaveDiag[i].SlaveNumber := i;
-//etherCATdiag.EtherCATslaveDiag[i].crcCount.portA := i;
-/////////////////////////////////////////////////////////////////
-
-
-//move temp data from scan to temp declarations
-decode(iVal:=etherCATdiag.RawEtherCATStateDiag[i]);
-etherCATdiag.EtherCATslaveDiag[i].currentState.state := decode.state;
-etherCATdiag.EtherCATslaveDiag[i].currentState.suffix := decode.suffix;
-
-
-	//check values for fault
-	//current state
-	IF etherCATdiag.EtherCATslaveDiag[i].currentState.state <> EtherCATstate.OP  OR //EtherCATstate.OP 
-		etherCATdiag.EtherCATslaveDiag[i].currentState.suffix <> EtherCATSuffix.NoState THEN //EtherCATSuffix.NoState
-		etherCATdiag.EtherCATslaveDiag[i].currentState.isFault := TRUE;
-		ELSE
-		etherCATdiag.EtherCATslaveDiag[i].currentState.isFault := FALSE;	
-	END_IF
+        <ST><![CDATA[IF System.PulseOneSecond THEN
+	FOR i := 1 TO  etherCATdiag.maxNumEtherCATSlaves DO //
 	
-
-	//record outer box
-	//record previous state, latching 
-	IF etherCATdiag.EtherCATslaveDiag[i].currentState.isFault = FALSE AND 
-	   etherCATdiag.EtherCATslaveDiag[i].historicalState.isFault = FALSE THEN
-		//at this time, record the current state in the historical state
-		etherCATdiag.EtherCATslaveDiag[i].historicalState.state := etherCATdiag.EtherCATslaveDiag[i].currentState.state;
-		etherCATdiag.EtherCATslaveDiag[i].historicalState.suffix := etherCATdiag.EtherCATslaveDiag[i].currentState.suffix;
-	END_IF
+	////////////////////////////////////////////////////////////////
+	//test write value
+	//TODO: REMOVE
+	//etherCATdiag.RawEtherCATStateDiag[i] := 16#8008; 
+	//etherCATdiag.EtherCATslaveDiag[i].SlaveNumber := i;
+	//etherCATdiag.EtherCATslaveDiag[i].crcCount.portA := i;
+	/////////////////////////////////////////////////////////////////
 	
-	//clear inner box when fault is resolved
-	IF 	etherCATdiag.EtherCATslaveDiag[i].currentState.isFault = FALSE AND
-	   gHMIButtons.btnReset THEN
-	   etherCATdiag.EtherCATslaveDiag[i].historicalState.isFault := FALSE;
-	END_IF
+	//move temp data from scan to temp declarations
+	decode(iVal:=etherCATdiag.RawEtherCATStateDiag[i]);
+	etherCATdiag.EtherCATslaveDiag[i].currentState.state := decode.state;
+	etherCATdiag.EtherCATslaveDiag[i].currentState.suffix := decode.suffix;
 	
-	
-			//check if any suffix fault exits
-			IF etherCATdiag.EtherCATslaveDiag[i].currentState.suffix > 1 THEN
-				
-				//check suffix
-				CASE etherCATdiag.EtherCATslaveDiag[i].currentState.suffix OF 
-				EtherCATSuffix.SlaveSignalsError					: 	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
-				EtherCATSuffix.InvalidVendor				: 	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
-				EtherCATSuffix.InitError 					: 	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
-				EtherCATSuffix.SlaveDisabled				:	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
-				EtherCATSuffix.SlaveNotPresent				: 	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
-				EtherCATSuffix.SlaveSignalsLinkError		:	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
-				EtherCATSuffix.SlaveSignalsMissingLink		:	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
-				EtherCATSuffix.SlaveSignalsUnExpectLink		:	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
-				EtherCATSuffix.CommsPortA					:	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
-				EtherCATSuffix.CommsPortB					:	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
-				EtherCATSuffix.CommsPortC					:	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
-				EtherCATSuffix.CommsPortD					:	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
-				END_CASE;
-				
+		//check values for fault
+		//current state
+		IF etherCATdiag.EtherCATslaveDiag[i].currentState.state <> EtherCATstate.OP  OR //EtherCATstate.OP 
+			etherCATdiag.EtherCATslaveDiag[i].currentState.suffix <> EtherCATSuffix.NoState THEN //EtherCATSuffix.NoState
+			etherCATdiag.EtherCATslaveDiag[i].currentState.isFault := TRUE;
 			ELSE
-				//otherwise check state to get green
-				CASE etherCATdiag.EtherCATslaveDiag[i].currentState.state OF 
-				EtherCATstate.INIT		: 	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
-				EtherCATstate.PREOP		: 	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
-				EtherCATstate.BOOT		: 	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
-				EtherCATstate.SAFEOP	: 	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
-				EtherCATstate.OP		: 	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourGreen;
-				END_CASE;
-				
-			END_IF
-	
-	
-	
-	
-END_FOR
-]]></ST>
+			etherCATdiag.EtherCATslaveDiag[i].currentState.isFault := FALSE;	
+		END_IF
+		
+		//record outer box
+		//record previous state, latching 
+		IF etherCATdiag.EtherCATslaveDiag[i].currentState.isFault = FALSE AND 
+		   etherCATdiag.EtherCATslaveDiag[i].historicalState.isFault = FALSE THEN
+			//at this time, record the current state in the historical state
+			etherCATdiag.EtherCATslaveDiag[i].historicalState.state := etherCATdiag.EtherCATslaveDiag[i].currentState.state;
+			etherCATdiag.EtherCATslaveDiag[i].historicalState.suffix := etherCATdiag.EtherCATslaveDiag[i].currentState.suffix;
+		END_IF
+		
+		//clear inner box when fault is resolved
+		IF 	etherCATdiag.EtherCATslaveDiag[i].currentState.isFault = FALSE AND
+		   gHMIButtons.btnReset THEN
+		   etherCATdiag.EtherCATslaveDiag[i].historicalState.isFault := FALSE;
+		END_IF
+				//check if any suffix fault exits
+				IF etherCATdiag.EtherCATslaveDiag[i].currentState.suffix > 1 THEN
+					
+					//check suffix
+					CASE etherCATdiag.EtherCATslaveDiag[i].currentState.suffix OF 
+					EtherCATSuffix.SlaveSignalsError					: 	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
+					EtherCATSuffix.InvalidVendor				: 	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
+					EtherCATSuffix.InitError 					: 	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
+					EtherCATSuffix.SlaveDisabled				:	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
+					EtherCATSuffix.SlaveNotPresent				: 	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
+					EtherCATSuffix.SlaveSignalsLinkError		:	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
+					EtherCATSuffix.SlaveSignalsMissingLink		:	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
+					EtherCATSuffix.SlaveSignalsUnExpectLink		:	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
+					EtherCATSuffix.CommsPortA					:	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
+					EtherCATSuffix.CommsPortB					:	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
+					EtherCATSuffix.CommsPortC					:	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
+					EtherCATSuffix.CommsPortD					:	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
+					END_CASE;
+					
+				ELSE
+					//otherwise check state to get green
+					CASE etherCATdiag.EtherCATslaveDiag[i].currentState.state OF 
+					EtherCATstate.INIT		: 	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
+					EtherCATstate.PREOP		: 	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
+					EtherCATstate.BOOT		: 	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
+					EtherCATstate.SAFEOP	: 	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourRed;
+					EtherCATstate.OP		: 	etherCATdiag.EtherCATslaveDiag[i].currentState.colour := HMIColour.colourGreen;
+					END_CASE;
+					
+				END_IF
+	END_FOR
+END_IF]]></ST>
       </Implementation>
     </Action>
     <Action Name="actGetCoEData" Id="{7fab3804-7adb-4c5b-bb8f-fc49082e9037}">
@@ -767,7 +815,7 @@ isCoecbRead := readcoe.cbRead;
                           </o>
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
-                              <v n="Operand">"system.ecAMSmaster1"</v>
+                              <v n="Operand">"system.ecMasterData[1].ecAMSmaster"</v>
                               <v n="Type">"AMSNETID"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
@@ -1436,13 +1484,12 @@ isCoecbRead := readcoe.cbRead;
     </Action>
     <Action Name="actMoveLocalData" Id="{07442dd0-a551-4aff-8d35-4ea4b270238f}">
       <Implementation>
-        <ST><![CDATA[//move data from FB_EcGetConfSlaves (etherCATdiag.arryEcConfSlaveInfo) to data for HMI
-
-FOR a := 1 TO etherCATdiag.maxNumEtherCATSlaves DO
-	
-	etherCATdiag.EtherCATslaveDiag[a].ConfigData := etherCATdiag.arryEcConfSlaveInfo[a];
-
-END_FOR]]></ST>
+        <ST><![CDATA[IF System.PulseOneSecond THEN
+	//move data from FB_EcGetConfSlaves (etherCATdiag.arryEcConfSlaveInfo) to data for HMI
+	FOR a := 1 TO etherCATdiag.maxNumEtherCATSlaves DO
+		etherCATdiag.EtherCATslaveDiag[a].ConfigData := etherCATdiag.arryEcConfSlaveInfo[a];
+	END_FOR
+END_IF]]></ST>
       </Implementation>
     </Action>
     <Action Name="actScreenControl" Id="{4f5ebe78-f033-4000-933c-17c11db7a664}">
@@ -2823,9 +2870,27 @@ END_FOR]]></ST>
         </NWL>
       </Implementation>
     </Action>
+    <Action Name="actUpdateECmasterListing" Id="{8099666f-0b1c-4403-910b-3efdba95e88e}">
+      <Implementation>
+        <ST><![CDATA[//update array memory
+
+IF System.PulseOneSecond THEN
+	FOR f := 1 TO etherCATdiag.maxNumEtherCATmasters DO
+		 IF system.ecMasterData[f].ecAMSmaster[0] > 1 THEN
+			 //convert from byte to string for viewing
+			 system.ecMasterData[f].ecAMSmasterstr := F_CreateAmsNetId(system.ecMasterData[f].ecAMSmaster);
+			 
+			 //move to internal memory
+			 etherCATmasters.strActiveMastersList[f] := system.ecMasterData[f].ecAMSmasterstr;
+		 END_IF
+	END_FOR
+END_IF]]></ST>
+      </Implementation>
+    </Action>
     <LineIds Name="pouEtherCATdiag.actEtherCATSlaveDiag">
-      <LineId Id="179" Count="2" />
-      <LineId Id="173" Count="1" />
+      <LineId Id="179" Count="0" />
+      <LineId Id="182" Count="0" />
+      <LineId Id="174" Count="0" />
       <LineId Id="168" Count="0" />
       <LineId Id="3" Count="0" />
       <LineId Id="170" Count="0" />
@@ -2834,23 +2899,20 @@ END_FOR]]></ST>
       <LineId Id="178" Count="0" />
       <LineId Id="177" Count="0" />
       <LineId Id="167" Count="0" />
-      <LineId Id="166" Count="0" />
       <LineId Id="158" Count="0" />
       <LineId Id="162" Count="0" />
       <LineId Id="164" Count="1" />
       <LineId Id="161" Count="0" />
-      <LineId Id="157" Count="0" />
       <LineId Id="93" Count="0" />
       <LineId Id="102" Count="0" />
       <LineId Id="95" Count="1" />
       <LineId Id="98" Count="3" />
       <LineId Id="97" Count="0" />
-      <LineId Id="92" Count="0" />
       <LineId Id="4" Count="3" />
       <LineId Id="9" Count="1" />
       <LineId Id="103" Count="0" />
-      <LineId Id="11" Count="7" />
-      <LineId Id="155" Count="1" />
+      <LineId Id="11" Count="6" />
+      <LineId Id="156" Count="0" />
       <LineId Id="123" Count="0" />
       <LineId Id="127" Count="14" />
       <LineId Id="125" Count="0" />
@@ -2858,9 +2920,7 @@ END_FOR]]></ST>
       <LineId Id="147" Count="7" />
       <LineId Id="145" Count="0" />
       <LineId Id="126" Count="0" />
-      <LineId Id="124" Count="0" />
-      <LineId Id="108" Count="0" />
-      <LineId Id="56" Count="2" />
+      <LineId Id="58" Count="0" />
       <LineId Id="1" Count="0" />
     </LineIds>
     <LineIds Name="pouEtherCATdiag.actGetCoEData">
@@ -2908,8 +2968,24 @@ END_FOR]]></ST>
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="pouEtherCATdiag.actMoveLocalData">
-      <LineId Id="12" Count="5" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="16" Count="0" />
       <LineId Id="9" Count="0" />
+      <LineId Id="22" Count="0" />
+    </LineIds>
+    <LineIds Name="pouEtherCATdiag.actUpdateECmasterListing">
+      <LineId Id="4" Count="1" />
+      <LineId Id="1" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="19" Count="2" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="3" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

@@ -20,27 +20,8 @@ ScanTimeRecord:REAL; //the record scan time
 ScanTimeRecordScan:LREAL; //the scan number of the record scan time
 
 
-//EtherCAT master 1
-ecAMSmaster1 AT %I* :AMSNETID;
-ecAMSbytesmaster1: T_AmsNetIdArr;
-ecMaster1CfgSlaveCount AT %I* : UINT;
-ecMaster1ActSlaveCount AT %I* : UINT;
-ecMaster1DevId AT %I* : UINT;
-
-//EtherCAT master 2
-ecAMSmaster2 AT %I* :AMSNETID;;
-ecAMSbytesmaster2: T_AmsNetIdArr;
-ecMaster2CfgSlaveCount AT %I* : UINT;
-ecMaster2ActSlaveCount AT %I* : UINT;
-ecMaster2DevId AT %I* : UINT;
-
-//EtherCAT master 3
-ecAMSmaster3 AT %I* :AMSNETID;
-ecAMSbytesmaster3: T_AmsNetIdArr;
-ecMaster3CfgSlaveCount AT %I* : UINT;
-ecMaster3ActSlaveCount AT %I* : UINT;
-ecMaster3DevId AT %I* : UINT;
-
+//EtherCAT masters mapped into all memory
+ecMasterData :ARRAY[1..etherCATdiag.maxNumEtherCATmasters] OF typeEtherCATmasters;
 
 thetime: TIMESTRUCT;
 

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="etherCATmasters" Id="{ab5f070f-5140-43fa-8291-68b78e1c7fbc}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+strActiveMastersList:ARRAY[1..etherCATdiag.maxNumEtherCATmasters] OF STRING(23);	
+valActiveMastersSel:UDINT;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

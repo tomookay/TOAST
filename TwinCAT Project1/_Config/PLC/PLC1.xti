@@ -2,24 +2,6 @@
 <TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.55" ClassName="CNestedPlcProjDef" TcProjectVariant="NoPLC">
 	<DataTypes>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-000000000041}" TcBaseType="true" HideSubItems="true" CName="AmsNetId">AMSNETID</Name>
-			<BitSize>48</BitSize>
-			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
-			<ArrayInfo>
-				<LBound>0</LBound>
-				<Elements>6</Elements>
-			</ArrayInfo>
-			<Format>
-				<Printf>%d.%d.%d.%d.%d.%d</Printf>
-				<Parameter>[0]</Parameter>
-				<Parameter>[1]</Parameter>
-				<Parameter>[2]</Parameter>
-				<Parameter>[3]</Parameter>
-				<Parameter>[4]</Parameter>
-				<Parameter>[5]</Parameter>
-			</Format>
-		</DataType>
-		<DataType>
 			<Name GUID="{CBC83B73-B816-4597-A9E5-2B03263CA131}" Namespace="MC" TcBaseType="true" HideType="true" IecDeclaration="DWORD;">NCTOPLC_AXIS_REF_STATE</Name>
 			<BitSize>32</BitSize>
 			<SubItem>
@@ -813,6 +795,24 @@ External Setpoint Generation:
 			</Relations>
 		</DataType>
 		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-000000000041}" TcBaseType="true" HideSubItems="true" CName="AmsNetId">AMSNETID</Name>
+			<BitSize>48</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>6</Elements>
+			</ArrayInfo>
+			<Format>
+				<Printf>%d.%d.%d.%d.%d.%d</Printf>
+				<Parameter>[0]</Parameter>
+				<Parameter>[1]</Parameter>
+				<Parameter>[2]</Parameter>
+				<Parameter>[3]</Parameter>
+				<Parameter>[4]</Parameter>
+				<Parameter>[5]</Parameter>
+			</Format>
+		</DataType>
+		<DataType>
 			<Name GUID="{0B5BBC5D-75B7-11B9-17A3-3E8876EE3859}" IecBaseType="true" AutoDeleteType="true">ARRAY [1..127] OF USINT</Name>
 			<BitSize>1016</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000002}">USINT</BaseType>
@@ -1023,46 +1023,11 @@ External Setpoint Generation:
 				<Defines/>
 			</Variant>
 		</ProjectVariant>
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc" TmcHash="{C815D044-6AD7-3F43-2D8B-5CC7A4272805}">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc" TmcHash="{951D12E6-44A5-518A-259D-13E7A7573C3C}">
 			<Name>PLC1 Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">
 				<Name>PlcTask Inputs</Name>
-				<Var>
-					<Name>System.ecAMSmaster1</Name>
-					<Comment><![CDATA[EtherCAT master 1]]></Comment>
-					<Type GUID="{18071995-0000-0000-0000-000000000041}">AMSNETID</Type>
-				</Var>
-				<Var>
-					<Name>System.ecMaster1CfgSlaveCount</Name>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>System.ecMaster1DevId</Name>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>System.ecAMSmaster2</Name>
-					<Comment><![CDATA[EtherCAT master 2]]></Comment>
-					<Type GUID="{18071995-0000-0000-0000-000000000041}">AMSNETID</Type>
-				</Var>
-				<Var>
-					<Name>System.ecMaster2CfgSlaveCount</Name>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>System.ecMaster2DevId</Name>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>System.ecAMSmaster3</Name>
-					<Comment><![CDATA[EtherCAT master 3]]></Comment>
-					<Type GUID="{18071995-0000-0000-0000-000000000041}">AMSNETID</Type>
-				</Var>
-				<Var>
-					<Name>System.ecMaster3CfgSlaveCount</Name>
-					<Type>UINT</Type>
-				</Var>
 				<Var>
 					<Name>driveGlobals.ncAxis1.NcToPlc</Name>
 					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
@@ -5370,19 +5335,87 @@ External Setpoint Generation:
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>System.ecMaster3DevId</Name>
+					<Name>System.ecMasterData[1].ecAMSmaster</Name>
+					<Type GUID="{18071995-0000-0000-0000-000000000041}">AMSNETID</Type>
+				</Var>
+				<Var>
+					<Name>System.ecMasterData[1].ecMasterCfgSlaveCount</Name>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>System.ecMaster1ActSlaveCount</Name>
+					<Name>System.ecMasterData[1].ecMasterActSlaveCount</Name>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>System.ecMaster2ActSlaveCount</Name>
+					<Name>System.ecMasterData[1].ecMasterDevId</Name>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>System.ecMaster3ActSlaveCount</Name>
+					<Name>System.ecMasterData[1].ecMasterChangeCount</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>System.ecMasterData[1].ecMasterDevState</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>System.ecMasterData[1].ecEKInfostateDataState</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>System.ecMasterData[2].ecAMSmaster</Name>
+					<Type GUID="{18071995-0000-0000-0000-000000000041}">AMSNETID</Type>
+				</Var>
+				<Var>
+					<Name>System.ecMasterData[2].ecMasterCfgSlaveCount</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>System.ecMasterData[2].ecMasterActSlaveCount</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>System.ecMasterData[2].ecMasterDevId</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>System.ecMasterData[2].ecMasterChangeCount</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>System.ecMasterData[2].ecMasterDevState</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>System.ecMasterData[2].ecEKInfostateDataState</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>System.ecMasterData[3].ecAMSmaster</Name>
+					<Type GUID="{18071995-0000-0000-0000-000000000041}">AMSNETID</Type>
+				</Var>
+				<Var>
+					<Name>System.ecMasterData[3].ecMasterCfgSlaveCount</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>System.ecMasterData[3].ecMasterActSlaveCount</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>System.ecMasterData[3].ecMasterDevId</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>System.ecMasterData[3].ecMasterChangeCount</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>System.ecMasterData[3].ecMasterDevState</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>System.ecMasterData[3].ecEKInfostateDataState</Name>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
@@ -9245,10 +9278,15 @@ External Setpoint Generation:
 	<Mappings>
 		<OwnerA Name="PLC1 Instance">
 			<OwnerB Name="TIID^EtherCAT Device 1">
-				<Link VarA="PlcTask Inputs^System.ecAMSmaster1" VarB="InfoData^AmsNetId"/>
-				<Link VarA="PlcTask Inputs^System.ecMaster1ActSlaveCount" VarB="Inputs^SlaveCount"/>
-				<Link VarA="PlcTask Inputs^System.ecMaster1CfgSlaveCount" VarB="InfoData^CfgSlaveCount"/>
-				<Link VarA="PlcTask Inputs^System.ecMaster1DevId" VarB="InfoData^DevId"/>
+				<Link VarA="PlcTask Inputs^System.ecMasterData[1].ecAMSmaster" VarB="InfoData^AmsNetId"/>
+				<Link VarA="PlcTask Inputs^System.ecMasterData[1].ecMasterActSlaveCount" VarB="Inputs^SlaveCount"/>
+				<Link VarA="PlcTask Inputs^System.ecMasterData[1].ecMasterCfgSlaveCount" VarB="InfoData^CfgSlaveCount"/>
+				<Link VarA="PlcTask Inputs^System.ecMasterData[1].ecMasterChangeCount" VarB="InfoData^ChangeCount"/>
+				<Link VarA="PlcTask Inputs^System.ecMasterData[1].ecMasterDevId" VarB="InfoData^DevId"/>
+				<Link VarA="PlcTask Inputs^System.ecMasterData[1].ecMasterDevState" VarB="Inputs^DevState"/>
+			</OwnerB>
+			<OwnerB Name="TIID^EtherCAT Device 1^Term 5 (EK1101)">
+				<Link VarA="PlcTask Inputs^System.ecMasterData[1].ecEKInfostateDataState" VarB="InfoData^State"/>
 			</OwnerB>
 			<OwnerB Name="TIID^EtherCAT Device 1^Term 5 (EK1101)^Term 6 (EL1008)">
 				<Link VarA="PlcTask Inputs^S1_IO.Row01.iAdvanceDepth" VarB="Channel 1^S1_IO.Row01.iAdvanceDepth" Size="1"/>
@@ -9271,10 +9309,12 @@ External Setpoint Generation:
 				<Link VarA="PlcTask Outputs^S1_IO.Row04.qReturnedCoil" VarB="Channel 8^S1_IO.Row04.qReturnedCoil" Size="1"/>
 			</OwnerB>
 			<OwnerB Name="TIID^EtherCAT Device 2">
-				<Link VarA="PlcTask Inputs^System.ecAMSmaster2" VarB="InfoData^AmsNetId"/>
-				<Link VarA="PlcTask Inputs^System.ecMaster2ActSlaveCount" VarB="Inputs^SlaveCount"/>
-				<Link VarA="PlcTask Inputs^System.ecMaster2CfgSlaveCount" VarB="InfoData^CfgSlaveCount"/>
-				<Link VarA="PlcTask Inputs^System.ecMaster2DevId" VarB="InfoData^DevId"/>
+				<Link VarA="PlcTask Inputs^System.ecMasterData[2].ecAMSmaster" VarB="InfoData^AmsNetId"/>
+				<Link VarA="PlcTask Inputs^System.ecMasterData[2].ecMasterActSlaveCount" VarB="Inputs^SlaveCount"/>
+				<Link VarA="PlcTask Inputs^System.ecMasterData[2].ecMasterCfgSlaveCount" VarB="InfoData^CfgSlaveCount"/>
+				<Link VarA="PlcTask Inputs^System.ecMasterData[2].ecMasterChangeCount" VarB="InfoData^ChangeCount"/>
+				<Link VarA="PlcTask Inputs^System.ecMasterData[2].ecMasterDevId" VarB="InfoData^DevId"/>
+				<Link VarA="PlcTask Inputs^System.ecMasterData[2].ecMasterDevState" VarB="Inputs^DevState"/>
 			</OwnerB>
 			<OwnerB Name="TIID^EtherCAT Device 2^Box 1 (EP1008-0002)">
 				<Link VarA="PlcTask Inputs^S2_IO.Row01.iAdvanceDepth" VarB="Channel 1^S2_IO.Row01.iAdvanceDepth" Size="1"/>
