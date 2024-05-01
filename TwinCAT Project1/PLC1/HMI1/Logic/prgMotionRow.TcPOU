@@ -46,6 +46,9 @@ gHMIData.gRowElementOffset[3]:= tTrueStationIndex + ((gHMIDataConst.gNumberEleme
 gHMIData.gRowElementOffset[4]:= tTrueStationIndex + ((gHMIDataConst.gNumberElementsPerRow * 4) - gHMIDataConst.gNumberElementsPerRow);
 gHMIData.gRowElementOffset[5]:= tTrueStationIndex + ((gHMIDataConst.gNumberElementsPerRow * 5) - gHMIDataConst.gNumberElementsPerRow);
 gHMIData.gRowElementOffset[6]:= tTrueStationIndex + ((gHMIDataConst.gNumberElementsPerRow * 6) - gHMIDataConst.gNumberElementsPerRow);
+gHMIData.gRowElementOffset[7]:= tTrueStationIndex + ((gHMIDataConst.gNumberElementsPerRow * 7) - gHMIDataConst.gNumberElementsPerRow);
+gHMIData.gRowElementOffset[8]:= tTrueStationIndex + ((gHMIDataConst.gNumberElementsPerRow * 8) - gHMIDataConst.gNumberElementsPerRow);
+gHMIData.gRowElementOffset[9]:= tTrueStationIndex + ((gHMIDataConst.gNumberElementsPerRow * 9) - gHMIDataConst.gNumberElementsPerRow);
 
 
 //move to global to be picked up by each row
@@ -55,6 +58,9 @@ gHMIMotionRows.gMotionRows.gMotionRow3.IndexLocation := gHMIData.gRowElementOffs
 gHMIMotionRows.gMotionRows.gMotionRow4.IndexLocation := gHMIData.gRowElementOffset[4];
 gHMIMotionRows.gMotionRows.gMotionRow5.IndexLocation := gHMIData.gRowElementOffset[5];
 gHMIMotionRows.gMotionRows.gMotionRow6.IndexLocation := gHMIData.gRowElementOffset[6];
+gHMIMotionRows.gMotionRows.gMotionRow7.IndexLocation := gHMIData.gRowElementOffset[7];
+gHMIMotionRows.gMotionRows.gMotionRow8.IndexLocation := gHMIData.gRowElementOffset[8];
+gHMIMotionRows.gMotionRows.gMotionRow9.IndexLocation := gHMIData.gRowElementOffset[9];
 
 ]]></ST>
       </Implementation>
@@ -257,11 +263,13 @@ END_IF
       <LineId Id="3" Count="0" />
       <LineId Id="7" Count="0" />
       <LineId Id="9" Count="3" />
+      <LineId Id="22" Count="2" />
       <LineId Id="8" Count="0" />
       <LineId Id="6" Count="0" />
       <LineId Id="5" Count="0" />
       <LineId Id="14" Count="5" />
       <LineId Id="21" Count="0" />
+      <LineId Id="25" Count="2" />
       <LineId Id="20" Count="0" />
     </LineIds>
     <LineIds Name="prgMotionRow.actCalcPageTitle">
