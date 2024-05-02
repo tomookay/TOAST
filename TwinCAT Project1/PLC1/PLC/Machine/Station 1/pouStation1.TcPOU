@@ -4531,12 +4531,12 @@ S1_Global.station.hmiHeader.flasher := System.OneSecond;
 
 IF 
 //are all motions returned
-S1_01_Motion_01_01.Motion.qReturnDepth AND
-S1_01_Motion_01_02.Motion.qReturnDepth AND
-S1_01_Motion_01_03.Motion.qReturnDepth AND
-S1_01_Motion_01_04.Motion.qReturnDepth AND
-S1_01_Motion_01_05.Motion.qReturnDepth AND
-S1_01_Motion_01_06.Motion.qReturnDepth
+S1_01_Motion_1.Motion.qReturnDepth AND
+S1_01_Motion_2.Motion.qReturnDepth AND
+S1_01_Motion_3.Motion.qReturnDepth AND
+S1_01_Motion_4.Motion.qReturnDepth AND
+S1_01_Motion_5.Motion.qReturnDepth AND
+S1_01_Motion_6.Motion.qReturnDepth
 
 	THEN
 		//set IsHome value for station
@@ -5978,53 +5978,130 @@ UINT_TO_REAL(S1_Global.S1_NumOfRows)"</v>
 //init number of rows
 S1_Global.station.Data.NumOfRows := 0;
 
+//set to 0
+s1_global.station.dynRowNumber := 0;
+
+
 //page 1
-S1_01_Motion_01_01();
-S1_01_Motion_01_02();
-S1_01_Motion_01_03();
-S1_01_Motion_01_04();
-S1_01_Motion_01_05();
-S1_01_Motion_01_06();
+S1_01_Motion_1();
+S1_01_Motion_2();
+S1_01_Motion_3();
+S1_01_Motion_4();
+S1_01_Motion_5();
+S1_01_Motion_6();
+S1_01_Motion_7();
+S1_01_Motion_8();
+S1_01_Motion_9();
 
 //page 2
-S1_01_Motion_02_07();
-S1_01_Motion_02_08();
-S1_01_Motion_02_09();
-S1_01_Motion_02_10();
-S1_01_Motion_02_11();
-S1_01_Motion_02_12();
+S1_01_Motion_10();
+S1_01_Motion_11();
+S1_01_Motion_12();
+S1_01_Motion_13();
+S1_01_Motion_14();
+S1_01_Motion_15();
+S1_01_Motion_16();
+S1_01_Motion_17();
+S1_01_Motion_18();
+S1_01_Motion_19();
 
 //page 3
-S1_01_Motion_03_13();
-S1_01_Motion_03_14();
-S1_01_Motion_03_15();
-S1_01_Motion_03_16();
-S1_01_Motion_03_17();
-S1_01_Motion_03_18();
+S1_01_Motion_20();
+S1_01_Motion_21();
+S1_01_Motion_22();
+S1_01_Motion_23();
+S1_01_Motion_24();
+S1_01_Motion_25();
+S1_01_Motion_26();
+S1_01_Motion_27();
+S1_01_Motion_28();
+S1_01_Motion_29();
 
 //page 4
-S1_01_Motion_04_19();
-S1_01_Motion_04_20();
-S1_01_Motion_04_21();
-S1_01_Motion_04_22();
-S1_01_Motion_04_23();
-S1_01_Motion_04_24();
+S1_01_Motion_30();
+S1_01_Motion_31();
+S1_01_Motion_32();
+S1_01_Motion_33();
+S1_01_Motion_34();
+S1_01_Motion_35();
+S1_01_Motion_36();
+S1_01_Motion_37();
+S1_01_Motion_38();
+S1_01_Motion_39();
 
 //page 5
-S1_01_Motion_05_25();
-S1_01_Motion_05_26();
-S1_01_Motion_05_27();
-S1_01_Motion_05_28();
-S1_01_Motion_05_29();
-S1_01_Motion_05_30();
+S1_01_Motion_40();
+S1_01_Motion_41();
+S1_01_Motion_42();
+S1_01_Motion_43();
+S1_01_Motion_44();
+S1_01_Motion_45();
+S1_01_Motion_46();
+S1_01_Motion_47();
+S1_01_Motion_48();
+S1_01_Motion_49();
 
 //page 6
-S1_01_Motion_06_31();
-S1_01_Motion_06_32();
-S1_01_Motion_06_33();
-S1_01_Motion_06_34();
-S1_01_Motion_06_35();
-S1_01_Motion_06_36();
+S1_01_Motion_50();
+S1_01_Motion_51();
+S1_01_Motion_52();
+S1_01_Motion_53();
+S1_01_Motion_54();
+S1_01_Motion_55();
+S1_01_Motion_56();
+S1_01_Motion_57();
+S1_01_Motion_58();
+S1_01_Motion_59();
+
+//page 7
+S1_01_Motion_60();
+S1_01_Motion_61();
+S1_01_Motion_62();
+S1_01_Motion_63();
+S1_01_Motion_64();
+S1_01_Motion_65();
+S1_01_Motion_66();
+S1_01_Motion_67();
+S1_01_Motion_68();
+S1_01_Motion_69();
+
+//page 8
+S1_01_Motion_70();
+S1_01_Motion_71();
+S1_01_Motion_72();
+S1_01_Motion_73();
+S1_01_Motion_74();
+S1_01_Motion_75();
+S1_01_Motion_76();
+S1_01_Motion_77();
+S1_01_Motion_78();
+S1_01_Motion_79();
+
+//page 9
+S1_01_Motion_80();
+S1_01_Motion_81();
+S1_01_Motion_82();
+S1_01_Motion_83();
+S1_01_Motion_84();
+S1_01_Motion_85();
+S1_01_Motion_86();
+S1_01_Motion_87();
+S1_01_Motion_88();
+S1_01_Motion_89();
+
+//page 10
+S1_01_Motion_90();
+S1_01_Motion_91();
+S1_01_Motion_92();
+S1_01_Motion_93();
+S1_01_Motion_94();
+S1_01_Motion_95();
+S1_01_Motion_96();
+S1_01_Motion_97();
+S1_01_Motion_98();
+S1_01_Motion_99();
+
+
 
 //must be called after motionRow calls
 actMaxNumStationPages();]]></ST>
@@ -7101,7 +7178,7 @@ actMaxNumStationPages();]]></ST>
                           </o>
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
-                              <v n="Operand">"S1_01_Motion_01_01.Motion.qAdvanceCoil"</v>
+                              <v n="Operand">"S1_01_Motion_1.Motion.qAdvanceCoil"</v>
                               <v n="Type">"BOOL"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
@@ -7120,7 +7197,7 @@ actMaxNumStationPages();]]></ST>
                           </o>
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
-                              <v n="Operand">"S1_01_Motion_01_01.Motion.iAdvanceDepth"</v>
+                              <v n="Operand">"S1_01_Motion_1.Motion.iAdvanceDepth"</v>
                               <v n="Type">"BOOL"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
@@ -11994,50 +12071,44 @@ if they are all at depth then set global station .complete"</v>
       <LineId Id="22" Count="0" />
     </LineIds>
     <LineIds Name="pouStation1.actHome">
-      <LineId Id="1" Count="0" />
-      <LineId Id="3" Count="0" />
-      <LineId Id="2" Count="0" />
-      <LineId Id="10" Count="0" />
-      <LineId Id="9" Count="0" />
-      <LineId Id="17" Count="4" />
-      <LineId Id="12" Count="0" />
-      <LineId Id="11" Count="0" />
-      <LineId Id="24" Count="0" />
-      <LineId Id="15" Count="0" />
-      <LineId Id="13" Count="1" />
-      <LineId Id="7" Count="0" />
-      <LineId Id="25" Count="0" />
+      <LineId Id="26" Count="17" />
       <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="pouStation1.actMotions">
-      <LineId Id="1" Count="0" />
-      <LineId Id="7" Count="1" />
-      <LineId Id="6" Count="0" />
-      <LineId Id="5" Count="0" />
-      <LineId Id="14" Count="1" />
-      <LineId Id="4" Count="0" />
-      <LineId Id="13" Count="0" />
-      <LineId Id="16" Count="2" />
-      <LineId Id="20" Count="0" />
-      <LineId Id="58" Count="0" />
-      <LineId Id="26" Count="5" />
-      <LineId Id="21" Count="0" />
-      <LineId Id="59" Count="0" />
-      <LineId Id="9" Count="0" />
-      <LineId Id="32" Count="4" />
-      <LineId Id="10" Count="0" />
-      <LineId Id="60" Count="0" />
-      <LineId Id="38" Count="5" />
-      <LineId Id="37" Count="0" />
-      <LineId Id="61" Count="0" />
-      <LineId Id="44" Count="0" />
-      <LineId Id="46" Count="4" />
-      <LineId Id="45" Count="0" />
-      <LineId Id="62" Count="0" />
-      <LineId Id="52" Count="5" />
-      <LineId Id="51" Count="0" />
-      <LineId Id="11" Count="0" />
-      <LineId Id="3" Count="0" />
+      <LineId Id="63" Count="4" />
+      <LineId Id="121" Count="0" />
+      <LineId Id="119" Count="0" />
+      <LineId Id="118" Count="0" />
+      <LineId Id="120" Count="0" />
+      <LineId Id="68" Count="1" />
+      <LineId Id="115" Count="0" />
+      <LineId Id="123" Count="3" />
+      <LineId Id="134" Count="3" />
+      <LineId Id="229" Count="0" />
+      <LineId Id="228" Count="0" />
+      <LineId Id="138" Count="9" />
+      <LineId Id="231" Count="0" />
+      <LineId Id="230" Count="0" />
+      <LineId Id="148" Count="9" />
+      <LineId Id="233" Count="0" />
+      <LineId Id="232" Count="0" />
+      <LineId Id="158" Count="9" />
+      <LineId Id="235" Count="1" />
+      <LineId Id="168" Count="9" />
+      <LineId Id="237" Count="1" />
+      <LineId Id="178" Count="9" />
+      <LineId Id="241" Count="0" />
+      <LineId Id="240" Count="0" />
+      <LineId Id="188" Count="9" />
+      <LineId Id="243" Count="1" />
+      <LineId Id="198" Count="9" />
+      <LineId Id="245" Count="1" />
+      <LineId Id="208" Count="9" />
+      <LineId Id="247" Count="1" />
+      <LineId Id="218" Count="9" />
+      <LineId Id="130" Count="0" />
+      <LineId Id="129" Count="0" />
+      <LineId Id="116" Count="1" />
       <LineId Id="2" Count="0" />
     </LineIds>
   </POU>
