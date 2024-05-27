@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GVL Name="Safety" Id="{4ccdf42a-4076-4bd4-ac6b-5c2277d1ede5}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+
+//mapped from safety CPU EL6910	
+gSafetyProgramChecksum	AT %I*	:WORD;		//checksum of user program	
+gSafetySerialNumber		AT %I*	:UDINT;		//serial number of safety CPU
+gSafetyCPUState			AT %I*	:UINT;		//CPU state as ethercat slave
+gSafetyCPUADSadr		AT %I*	:AMSADDR;	//CPU AMSADR
+
+//on request (latch-use) from PLC program to safety program
+//this comes from the "Motive Power ON" from the PLC
+//otherwise the Safety reset would enable motive power on a _reset_ button
+//outputs from PLC (i) program become inputs to safety program (q)
+iEnableSafetyDevices	AT %Q*	:BOOL;
+
+//mapped from safety program
+//outputs from PLC (i) program become inputs to safety program (q)
+iGroupPort_ErrAck	AT %Q*	:BOOL;
+iModuleFault		AT %Q*	:BOOL;
+iRunStop			AT %Q*	:BOOL;
+iResetFBs			AT %Q*	:BOOL; //seperate reset logic
+
+//outputs from safety program (q) become inputs to PLC program (i) 
+qComError			AT %I*	:BOOL;
+qCommStartup		AT %I*	:BOOL;
+qFBDeactive			AT %I*	:BOOL;
+qFBError			AT %I*	:BOOL;
+qInRun				AT %I*	:BOOL;
+qOtherError			AT %I*	:BOOL;
+qOutError			AT %I*	:BOOL;
+qRun				AT %I*	:BOOL;
+
+//feedback from program for device evaluation
+iEstop1State		AT %I*	:USINT;
+iEstop1Diag			AT %I*	:UINT;
+
+iEstop2State		AT %I*	:USINT;
+iEstop2Diag			AT %I*	:UINT;
+
+iEstop3State		AT %I*	:USINT;
+iEstop3Diag			AT %I*	:UINT;
+
+iAccessGate1State	AT %I*	:USINT;
+iAccessGate1Diag	AT %I*	:UINT;
+
+iAccessGate2State	AT %I*	:USINT;
+iAccessGate2Diag	AT %I*	:UINT;
+
+
+
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

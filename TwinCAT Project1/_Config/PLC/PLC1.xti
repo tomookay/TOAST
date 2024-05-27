@@ -20,6 +20,42 @@
 			</Format>
 		</DataType>
 		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-000000000042}" TcBaseType="true" CName="AmsAddr">AMSADDR</Name>
+			<BitSize>64</BitSize>
+			<SubItem>
+				<Name>netId</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000041}">AMSNETID</Type>
+				<BitSize>48</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>port</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000004}">WORD</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>48</BitOffs>
+			</SubItem>
+			<Format>
+				<Printf>%d.%d.%d.%d.%d.%d:%d</Printf>
+				<Parameter>.netId[0]</Parameter>
+				<Parameter>.netId[1]</Parameter>
+				<Parameter>.netId[2]</Parameter>
+				<Parameter>.netId[3]</Parameter>
+				<Parameter>.netId[4]</Parameter>
+				<Parameter>.netId[5]</Parameter>
+				<Parameter>.port</Parameter>
+			</Format>
+			<Format Name="Iec">
+				<Printf>(netId:=[%d.%d.%d.%d.%d.%d], port :=%d)</Printf>
+				<Parameter>.netId[0]</Parameter>
+				<Parameter>.netId[1]</Parameter>
+				<Parameter>.netId[2]</Parameter>
+				<Parameter>.netId[3]</Parameter>
+				<Parameter>.netId[4]</Parameter>
+				<Parameter>.netId[5]</Parameter>
+				<Parameter>.port</Parameter>
+			</Format>
+		</DataType>
+		<DataType>
 			<Name GUID="{CBC83B73-B816-4597-A9E5-2B03263CA131}" Namespace="MC" TcBaseType="true" HideType="true" IecDeclaration="DWORD;">NCTOPLC_AXIS_REF_STATE</Name>
 			<BitSize>32</BitSize>
 			<SubItem>
@@ -1023,7 +1059,7 @@ External Setpoint Generation:
 				<Defines/>
 			</Variant>
 		</ProjectVariant>
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc" TmcHash="{50DDB8F7-1AEB-4EF4-A683-0965E1E9C713}">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc" TmcHash="{E5D439A3-56CA-7CD7-3570-D9086C10AC03}">
 			<Name>PLC1 Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">
@@ -1110,6 +1146,100 @@ External Setpoint Generation:
 				</Var>
 				<Var>
 					<Name>System.ecMasterData[3].ecEKInfostateDataState</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Safety.gSafetyProgramChecksum</Name>
+					<Comment><![CDATA[checksum of user program	]]></Comment>
+					<Type>WORD</Type>
+				</Var>
+				<Var>
+					<Name>Safety.gSafetyCPUState</Name>
+					<Comment><![CDATA[CPU state as ethercat slave]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Safety.gSafetySerialNumber</Name>
+					<Comment><![CDATA[serial number of safety CPU]]></Comment>
+					<Type>UDINT</Type>
+				</Var>
+				<Var>
+					<Name>Safety.gSafetyCPUADSadr</Name>
+					<Comment><![CDATA[CPU AMSADR]]></Comment>
+					<Type GUID="{18071995-0000-0000-0000-000000000042}">AMSADDR</Type>
+				</Var>
+				<Var>
+					<Name>Safety.qComError</Name>
+					<Comment><![CDATA[outputs from safety program (q) become inputs to PLC program (i) ]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Safety.qCommStartup</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Safety.qFBDeactive</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Safety.qFBError</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Safety.qInRun</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Safety.qOtherError</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Safety.qOutError</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Safety.qRun</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iEstop1State</Name>
+					<Comment><![CDATA[feedback from program for device evaluation]]></Comment>
+					<Type>USINT</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iEstop1Diag</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iEstop2State</Name>
+					<Type>USINT</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iEstop3State</Name>
+					<Type>USINT</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iEstop2Diag</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iEstop3Diag</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iAccessGate1State</Name>
+					<Type>USINT</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iAccessGate2State</Name>
+					<Type>USINT</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iAccessGate1Diag</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iAccessGate2Diag</Name>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
@@ -5431,6 +5561,33 @@ External Setpoint Generation:
 			<Vars VarGrpType="2" AreaNo="1">
 				<Name>PlcTask Outputs</Name>
 				<Var>
+					<Name>Safety.iEnableSafetyDevices</Name>
+					<Comment><![CDATA[on request (latch-use) from PLC program to safety program
+this comes from the "Motive Power ON" from the PLC
+otherwise the Safety reset would enable motive power on a _reset_ button
+outputs from PLC (i) program become inputs to safety program (q)]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iGroupPort_ErrAck</Name>
+					<Comment><![CDATA[mapped from safety program
+outputs from PLC (i) program become inputs to safety program (q)]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iModuleFault</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iRunStop</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iResetFBs</Name>
+					<Comment><![CDATA[seperate reset logic]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
 					<Name>driveGlobals.ncAxis1.PlcToNc</Name>
 					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
@@ -9315,6 +9472,20 @@ External Setpoint Generation:
 				<Link VarA="PlcTask Outputs^S1_IO.Row03.qReturnedCoil" VarB="Channel 6^S1_IO.Row03.qReturnedCoil" Size="1"/>
 				<Link VarA="PlcTask Outputs^S1_IO.Row04.qAdvanceCoil" VarB="Channel 7^S1_IO.Row04.qAdvanceCoil" Size="1"/>
 				<Link VarA="PlcTask Outputs^S1_IO.Row04.qReturnedCoil" VarB="Channel 8^S1_IO.Row04.qReturnedCoil" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^EtherCAT Device 1^Term 5 (EK1101)^Term 8 (EL6910)">
+				<Link VarA="PlcTask Inputs^Safety.gSafetyCPUADSadr" VarB="InfoData^AdsAddr"/>
+				<Link VarA="PlcTask Inputs^Safety.gSafetyCPUState" VarB="InfoData^State"/>
+				<Link VarA="PlcTask Inputs^Safety.qComError" VarB="StandardInputs^Standard Out Var 4" Size="1"/>
+				<Link VarA="PlcTask Inputs^Safety.qCommStartup" VarB="StandardInputs^Standard Out Var 7" Size="1"/>
+				<Link VarA="PlcTask Inputs^Safety.qFBDeactive" VarB="StandardInputs^Standard Out Var 8" Size="1"/>
+				<Link VarA="PlcTask Inputs^Safety.qFBError" VarB="StandardInputs^Standard Out Var 3" Size="1"/>
+				<Link VarA="PlcTask Inputs^Safety.qInRun" VarB="StandardInputs^Standard Out Var 10" Size="1"/>
+				<Link VarA="PlcTask Inputs^Safety.qOtherError" VarB="StandardInputs^Standard Out Var 6" Size="1"/>
+				<Link VarA="PlcTask Inputs^Safety.qRun" VarB="StandardInputs^Standard Out Var 9" Size="1"/>
+				<Link VarA="PlcTask Outputs^Safety.iGroupPort_ErrAck" VarB="StandardOutputs^Standard In Var 14" Size="1"/>
+				<Link VarA="PlcTask Outputs^Safety.iResetFBs" VarB="StandardOutputs^Standard In Var 16" Size="1"/>
+				<Link VarA="PlcTask Outputs^Safety.iRunStop" VarB="StandardOutputs^Standard In Var 15" Size="1"/>
 			</OwnerB>
 			<OwnerB Name="TIID^EtherCAT Device 2">
 				<Link VarA="PlcTask Inputs^System.ecMasterData[2].ecAMSmaster" VarB="InfoData^AmsNetId"/>
