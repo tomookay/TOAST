@@ -14,7 +14,9 @@ gSafetyCPUADSadr		AT %I*	:AMSADDR;	//CPU AMSADR
 //this comes from the "Motive Power ON" from the PLC
 //otherwise the Safety reset would enable motive power on a _reset_ button
 //outputs from PLC (i) program become inputs to safety program (q)
-iEnableSafetyDevices	AT %Q*	:BOOL;
+//iEnableSafetyDevices	AT %Q*	:BOOL;
+iEnableSafetyDevicesuint	AT %Q*	:UINT;
+iEnablePendantSafetyDevicesuint AT %Q*:UINT;
 
 //mapped from safety program
 //outputs from PLC (i) program become inputs to safety program (q)

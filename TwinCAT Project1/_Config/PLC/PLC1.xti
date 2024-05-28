@@ -1059,7 +1059,7 @@ External Setpoint Generation:
 				<Defines/>
 			</Variant>
 		</ProjectVariant>
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc" TmcHash="{E5D439A3-56CA-7CD7-3570-D9086C10AC03}">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc" TmcHash="{1E782964-ABAE-5E9F-7228-11E0C5BD2FC2}">
 			<Name>PLC1 Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">
@@ -5561,18 +5561,19 @@ External Setpoint Generation:
 			<Vars VarGrpType="2" AreaNo="1">
 				<Name>PlcTask Outputs</Name>
 				<Var>
-					<Name>Safety.iEnableSafetyDevices</Name>
-					<Comment><![CDATA[on request (latch-use) from PLC program to safety program
-this comes from the "Motive Power ON" from the PLC
-otherwise the Safety reset would enable motive power on a _reset_ button
-outputs from PLC (i) program become inputs to safety program (q)]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
 					<Name>Safety.iGroupPort_ErrAck</Name>
 					<Comment><![CDATA[mapped from safety program
 outputs from PLC (i) program become inputs to safety program (q)]]></Comment>
 					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iEnableSafetyDevicesuint</Name>
+					<Comment><![CDATA[on request (latch-use) from PLC program to safety program
+this comes from the "Motive Power ON" from the PLC
+otherwise the Safety reset would enable motive power on a _reset_ button
+outputs from PLC (i) program become inputs to safety program (q)
+iEnableSafetyDevices	AT %Q*	:BOOL;]]></Comment>
+					<Type>UINT</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iModuleFault</Name>
@@ -9423,6 +9424,10 @@ outputs from PLC (i) program become inputs to safety program (q)]]></Comment>
 					<Name>S6_IO.Row99.qReturnedCoil</Name>
 					<Type>BOOL</Type>
 				</Var>
+				<Var>
+					<Name>Safety.iEnablePendantSafetyDevicesuint</Name>
+					<Type>UINT</Type>
+				</Var>
 			</Vars>
 			<Contexts>
 				<Context>
@@ -9453,6 +9458,21 @@ outputs from PLC (i) program become inputs to safety program (q)]]></Comment>
 			<OwnerB Name="TIID^EtherCAT Device 1^Term 5 (EK1101)">
 				<Link VarA="PlcTask Inputs^System.ecMasterData[1].ecEKInfostateDataState" VarB="InfoData^State"/>
 			</OwnerB>
+			<OwnerB Name="TIID^EtherCAT Device 1^Term 5 (EK1101)^Safety PLC and Input Module (EL6910)">
+				<Link VarA="PlcTask Inputs^Safety.gSafetyCPUADSadr" VarB="InfoData^AdsAddr"/>
+				<Link VarA="PlcTask Inputs^Safety.gSafetyCPUState" VarB="InfoData^State"/>
+				<Link VarA="PlcTask Inputs^Safety.qComError" VarB="StandardInputs^Standard Out Var 4" Size="1"/>
+				<Link VarA="PlcTask Inputs^Safety.qCommStartup" VarB="StandardInputs^Standard Out Var 7" Size="1"/>
+				<Link VarA="PlcTask Inputs^Safety.qFBDeactive" VarB="StandardInputs^Standard Out Var 8" Size="1"/>
+				<Link VarA="PlcTask Inputs^Safety.qFBError" VarB="StandardInputs^Standard Out Var 3" Size="1"/>
+				<Link VarA="PlcTask Inputs^Safety.qInRun" VarB="StandardInputs^Standard Out Var 10" Size="1"/>
+				<Link VarA="PlcTask Inputs^Safety.qOtherError" VarB="StandardInputs^Standard Out Var 6" Size="1"/>
+				<Link VarA="PlcTask Inputs^Safety.qRun" VarB="StandardInputs^Standard Out Var 9" Size="1"/>
+				<Link VarA="PlcTask Outputs^Safety.iEnableSafetyDevicesuint" VarB="StandardOutputs^Standard In Var 26"/>
+				<Link VarA="PlcTask Outputs^Safety.iGroupPort_ErrAck" VarB="StandardOutputs^Standard In Var 14" Size="1"/>
+				<Link VarA="PlcTask Outputs^Safety.iResetFBs" VarB="StandardOutputs^Standard In Var 16" Size="1"/>
+				<Link VarA="PlcTask Outputs^Safety.iRunStop" VarB="StandardOutputs^Standard In Var 15" Size="1"/>
+			</OwnerB>
 			<OwnerB Name="TIID^EtherCAT Device 1^Term 5 (EK1101)^Term 6 (EL1008)">
 				<Link VarA="PlcTask Inputs^S1_IO.Row01.iAdvanceDepth" VarB="Channel 1^S1_IO.Row01.iAdvanceDepth" Size="1"/>
 				<Link VarA="PlcTask Inputs^S1_IO.Row01.iReturnedDepth" VarB="Channel 2^S1_IO.Row01.iReturnedDepth" Size="1"/>
@@ -9472,20 +9492,6 @@ outputs from PLC (i) program become inputs to safety program (q)]]></Comment>
 				<Link VarA="PlcTask Outputs^S1_IO.Row03.qReturnedCoil" VarB="Channel 6^S1_IO.Row03.qReturnedCoil" Size="1"/>
 				<Link VarA="PlcTask Outputs^S1_IO.Row04.qAdvanceCoil" VarB="Channel 7^S1_IO.Row04.qAdvanceCoil" Size="1"/>
 				<Link VarA="PlcTask Outputs^S1_IO.Row04.qReturnedCoil" VarB="Channel 8^S1_IO.Row04.qReturnedCoil" Size="1"/>
-			</OwnerB>
-			<OwnerB Name="TIID^EtherCAT Device 1^Term 5 (EK1101)^Term 8 (EL6910)">
-				<Link VarA="PlcTask Inputs^Safety.gSafetyCPUADSadr" VarB="InfoData^AdsAddr"/>
-				<Link VarA="PlcTask Inputs^Safety.gSafetyCPUState" VarB="InfoData^State"/>
-				<Link VarA="PlcTask Inputs^Safety.qComError" VarB="StandardInputs^Standard Out Var 4" Size="1"/>
-				<Link VarA="PlcTask Inputs^Safety.qCommStartup" VarB="StandardInputs^Standard Out Var 7" Size="1"/>
-				<Link VarA="PlcTask Inputs^Safety.qFBDeactive" VarB="StandardInputs^Standard Out Var 8" Size="1"/>
-				<Link VarA="PlcTask Inputs^Safety.qFBError" VarB="StandardInputs^Standard Out Var 3" Size="1"/>
-				<Link VarA="PlcTask Inputs^Safety.qInRun" VarB="StandardInputs^Standard Out Var 10" Size="1"/>
-				<Link VarA="PlcTask Inputs^Safety.qOtherError" VarB="StandardInputs^Standard Out Var 6" Size="1"/>
-				<Link VarA="PlcTask Inputs^Safety.qRun" VarB="StandardInputs^Standard Out Var 9" Size="1"/>
-				<Link VarA="PlcTask Outputs^Safety.iGroupPort_ErrAck" VarB="StandardOutputs^Standard In Var 14" Size="1"/>
-				<Link VarA="PlcTask Outputs^Safety.iResetFBs" VarB="StandardOutputs^Standard In Var 16" Size="1"/>
-				<Link VarA="PlcTask Outputs^Safety.iRunStop" VarB="StandardOutputs^Standard In Var 15" Size="1"/>
 			</OwnerB>
 			<OwnerB Name="TIID^EtherCAT Device 2">
 				<Link VarA="PlcTask Inputs^System.ecMasterData[2].ecAMSmaster" VarB="InfoData^AmsNetId"/>
