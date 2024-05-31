@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="structSafetyEstopDiagBOOList" Id="{fd49a4c1-48be-4b04-bde2-7404d120b09c}">
+    <Declaration><![CDATA[TYPE structSafetyEstopDiagBOOList :
+STRUCT
+	//from Function blocks for TwinSAFE logic components.pdf
+	//3.4.2.1 Diagnostic and state information for FB ESTOP
+	b0_DiscrapencyErrorInputGroup1	:BOOL;
+	b1_DiscrapencyErrorInputGroup2	:BOOL;
+	b2_DiscrapencyErrorInputGroup3	:BOOL;
+	b3_DiscrapencyErrorInputGroup4	:BOOL;
+	b4_EDMmonitoringErrorEDM1		:BOOL;
+	b5_EDMmonitoringErrorEDM2		:BOOL;
+	b6_NotUsed						:BOOL;
+	b7_NotUsed						:BOOL;
+	b8_DiscrepancyErrorInputGroup1	:BOOL; //with activated option "Safe Inputs after Disc Error" 
+	b9_DiscrepancyErrorInputGroup2	:BOOL; //with activated option "Safe Inputs after Disc Error"
+	b10_DiscrepancyErrorInputGroup3	:BOOL; //with activated option "Safe Inputs after Disc Error"
+	b11_DiscrepancyErrorInputGroup4	:BOOL; //with activated option "Safe Inputs after Disc Error"
+	b12_NotUsed						:BOOL; 
+	b13_NotUsed						:BOOL; 
+	b14_NotUsed						:BOOL; 
+	b15_NotUsed						:BOOL;  
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

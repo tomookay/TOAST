@@ -56,6 +56,128 @@
 			</Format>
 		</DataType>
 		<DataType>
+			<Name GUID="{DBB29239-45C9-7823-4599-D207DB31C0FE}" AutoDeleteType="true">structSafetyEstopDiagBOOList</Name>
+			<BitSize>128</BitSize>
+			<SubItem>
+				<Name>b0_DiscrapencyErrorInputGroup1</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[from Function blocks for TwinSAFE logic components.pdf
+3.4.2.1 Diagnostic and state information for FB ESTOP]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>b1_DiscrapencyErrorInputGroup2</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>8</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>b2_DiscrapencyErrorInputGroup3</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>16</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>b3_DiscrapencyErrorInputGroup4</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>24</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>b4_EDMmonitoringErrorEDM1</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>32</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>b5_EDMmonitoringErrorEDM2</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>40</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>b6_NotUsed</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>48</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>b7_NotUsed</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>56</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>b8_DiscrepancyErrorInputGroup1</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[with activated option "Safe Inputs after Disc Error" ]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>64</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>b9_DiscrepancyErrorInputGroup2</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[with activated option "Safe Inputs after Disc Error"]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>72</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>b10_DiscrepancyErrorInputGroup3</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[with activated option "Safe Inputs after Disc Error"]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>80</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>b11_DiscrepancyErrorInputGroup4</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<Comment><![CDATA[with activated option "Safe Inputs after Disc Error"]]></Comment>
+				<BitSize>8</BitSize>
+				<BitOffs>88</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>b12_NotUsed</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>96</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>b13_NotUsed</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>104</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>b14_NotUsed</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>112</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>b15_NotUsed</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>120</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{2A4AAA35-0BF8-03D0-72B3-558192052311}" AutoDeleteType="true">structEstopDiag</Name>
+			<BitSize>128</BitSize>
+			<SubItem>
+				<Name>iwordvalue</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>bitvalue</Name>
+				<Type GUID="{DBB29239-45C9-7823-4599-D207DB31C0FE}">structSafetyEstopDiagBOOList</Type>
+				<BitSize>128</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
 			<Name GUID="{CBC83B73-B816-4597-A9E5-2B03263CA131}" Namespace="MC" TcBaseType="true" HideType="true" IecDeclaration="DWORD;">NCTOPLC_AXIS_REF_STATE</Name>
 			<BitSize>32</BitSize>
 			<SubItem>
@@ -1059,7 +1181,7 @@ External Setpoint Generation:
 				<Defines/>
 			</Variant>
 		</ProjectVariant>
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc" TmcHash="{1E782964-ABAE-5E9F-7228-11E0C5BD2FC2}">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc" TmcHash="{F2050F70-2451-D78F-D2DB-D8C5B9A674B6}">
 			<Name>PLC1 Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">
@@ -1208,7 +1330,7 @@ External Setpoint Generation:
 				</Var>
 				<Var>
 					<Name>Safety.iEstop1Diag</Name>
-					<Type>UINT</Type>
+					<Type GUID="{2A4AAA35-0BF8-03D0-72B3-558192052311}">structEstopDiag</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iEstop2State</Name>
@@ -1220,11 +1342,11 @@ External Setpoint Generation:
 				</Var>
 				<Var>
 					<Name>Safety.iEstop2Diag</Name>
-					<Type>UINT</Type>
+					<Type GUID="{2A4AAA35-0BF8-03D0-72B3-558192052311}">structEstopDiag</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iEstop3Diag</Name>
-					<Type>UINT</Type>
+					<Type GUID="{2A4AAA35-0BF8-03D0-72B3-558192052311}">structEstopDiag</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iAccessGate1State</Name>
@@ -1236,11 +1358,19 @@ External Setpoint Generation:
 				</Var>
 				<Var>
 					<Name>Safety.iAccessGate1Diag</Name>
-					<Type>UINT</Type>
+					<Type GUID="{2A4AAA35-0BF8-03D0-72B3-558192052311}">structEstopDiag</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iAccessGate2Diag</Name>
-					<Type>UINT</Type>
+					<Type GUID="{2A4AAA35-0BF8-03D0-72B3-558192052311}">structEstopDiag</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iEnablingPendantState</Name>
+					<Type>USINT</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iEnablingPendantDiag</Name>
+					<Type GUID="{2A4AAA35-0BF8-03D0-72B3-558192052311}">structEstopDiag</Type>
 				</Var>
 				<Var>
 					<Name>driveGlobals.ncAxis1.NcToPlc</Name>
@@ -5576,6 +5706,10 @@ iEnableSafetyDevices	AT %Q*	:BOOL;]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
+					<Name>Safety.iEnablePendantSafetyDevicesuint</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
 					<Name>Safety.iModuleFault</Name>
 					<Type>BOOL</Type>
 				</Var>
@@ -9424,10 +9558,6 @@ iEnableSafetyDevices	AT %Q*	:BOOL;]]></Comment>
 					<Name>S6_IO.Row99.qReturnedCoil</Name>
 					<Type>BOOL</Type>
 				</Var>
-				<Var>
-					<Name>Safety.iEnablePendantSafetyDevicesuint</Name>
-					<Type>UINT</Type>
-				</Var>
 			</Vars>
 			<Contexts>
 				<Context>
@@ -9461,6 +9591,20 @@ iEnableSafetyDevices	AT %Q*	:BOOL;]]></Comment>
 			<OwnerB Name="TIID^EtherCAT Device 1^Term 5 (EK1101)^Safety PLC and Input Module (EL6910)">
 				<Link VarA="PlcTask Inputs^Safety.gSafetyCPUADSadr" VarB="InfoData^AdsAddr"/>
 				<Link VarA="PlcTask Inputs^Safety.gSafetyCPUState" VarB="InfoData^State"/>
+				<Link VarA="PlcTask Inputs^Safety.gSafetyProgramChecksum" VarB="Device Info Data^Project CRC"/>
+				<Link VarA="PlcTask Inputs^Safety.gSafetySerialNumber" VarB="Device Info Data^Serial Number"/>
+				<Link VarA="PlcTask Inputs^Safety.iAccessGate1Diag^iwordvalue" VarB="Function Block Info Data^TwinSafeGroup1.AccessGate_1.FBAccessGate1 Info Data^Diag"/>
+				<Link VarA="PlcTask Inputs^Safety.iAccessGate1State" VarB="Function Block Info Data^TwinSafeGroup1.AccessGate_1.FBAccessGate1 Info Data^State"/>
+				<Link VarA="PlcTask Inputs^Safety.iAccessGate2Diag^iwordvalue" VarB="Function Block Info Data^TwinSafeGroup1.AccessGate_2.FBAccessGate2 Info Data^Diag"/>
+				<Link VarA="PlcTask Inputs^Safety.iAccessGate2State" VarB="Function Block Info Data^TwinSafeGroup1.AccessGate_2.FBAccessGate2 Info Data^State"/>
+				<Link VarA="PlcTask Inputs^Safety.iEnablingPendantDiag^iwordvalue" VarB="Function Block Info Data^TwinSafeGroup1.PendantEvalulation.FBEnablePendent Info Data^Diag"/>
+				<Link VarA="PlcTask Inputs^Safety.iEnablingPendantState" VarB="Function Block Info Data^TwinSafeGroup1.PendantEvalulation.FBEnablePendent Info Data^State"/>
+				<Link VarA="PlcTask Inputs^Safety.iEstop1Diag^iwordvalue" VarB="Function Block Info Data^TwinSafeGroup1.EmergencyStop_1.FBEstop1 Info Data^Diag"/>
+				<Link VarA="PlcTask Inputs^Safety.iEstop1State" VarB="Function Block Info Data^TwinSafeGroup1.EmergencyStop_1.FBEstop1 Info Data^State"/>
+				<Link VarA="PlcTask Inputs^Safety.iEstop2Diag^iwordvalue" VarB="Function Block Info Data^TwinSafeGroup1.EmergencyStop_2.FBEstop2 Info Data^Diag"/>
+				<Link VarA="PlcTask Inputs^Safety.iEstop2State" VarB="Function Block Info Data^TwinSafeGroup1.EmergencyStop_2.FBEstop2 Info Data^State"/>
+				<Link VarA="PlcTask Inputs^Safety.iEstop3Diag^iwordvalue" VarB="Function Block Info Data^TwinSafeGroup1.EmergencyStop_3.FBEstop3 Info Data^Diag"/>
+				<Link VarA="PlcTask Inputs^Safety.iEstop3State" VarB="Function Block Info Data^TwinSafeGroup1.EmergencyStop_3.FBEstop3 Info Data^State"/>
 				<Link VarA="PlcTask Inputs^Safety.qComError" VarB="StandardInputs^Standard Out Var 4" Size="1"/>
 				<Link VarA="PlcTask Inputs^Safety.qCommStartup" VarB="StandardInputs^Standard Out Var 7" Size="1"/>
 				<Link VarA="PlcTask Inputs^Safety.qFBDeactive" VarB="StandardInputs^Standard Out Var 8" Size="1"/>

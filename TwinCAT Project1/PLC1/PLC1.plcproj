@@ -279,6 +279,14 @@
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
+    <Compile Include="HMI1\Screens\Safety\Saf_700_SafetyStatus.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="HMI1\Screens\Safety\visuSafetyRow.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+    </Compile>
     <Compile Include="HMI1\Screens\System\Sys_900_About.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
@@ -717,11 +725,20 @@
     <Compile Include="PLC\Machine\Station 1\Motions\Screen 9\S1_01_Motion_88.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="PLC\Safety\enumEstopState.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="PLC\Safety\Safety.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
     <Compile Include="PLC\Safety\prgSafetyMain.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PLC\Safety\structEstopDiag.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PLC\Safety\structSafetyEstopDiagBOOList.TcDUT">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="X_DUTs\Diagnostic\typeDPSlaveIndicator.TcDUT">
@@ -1883,6 +1900,7 @@
     <Folder Include="HMI1\Screens\Motion" />
     <Folder Include="HMI1\Screens\Diagnostic IO View" />
     <Folder Include="HMI1\Screens\Layout" />
+    <Folder Include="HMI1\Screens\Safety" />
     <Folder Include="HMI1\Screens\Process" />
     <Folder Include="HMI1\Screens\System" />
     <Folder Include="HMI1\Screens\Units" />

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="enumEstopState" Id="{a6e7c59c-37ce-4969-89a2-417cd2082f0c}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+
+//TwinSAFE-Logic-FBen.pdf
+//Table 3-24: State information (8-bit value)
+
+TYPE enumEstopState :
+(
+	undefined	:=	0,
+	Run			:=	1,
+	Stop		:=	2,
+	Safe		:=	3,
+	Error		:=	4,
+	Reset		:=	5,
+	Start		:=	6,
+	NoStateDef1	:=	7,
+	DelayOut	:=	8,
+	NoStateDef2	:=	9
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
