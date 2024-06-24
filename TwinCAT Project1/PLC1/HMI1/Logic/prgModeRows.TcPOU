@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="prgModeRows" Id="{767b4522-f0b4-4e13-b8aa-2d8f01ac42f8}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM prgModeRows
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[actcallRows();
+
+]]></ST>
+    </Implementation>
+    <Action Name="actCallRows" Id="{131fe314-d854-446b-a3e7-9a871f15e3fe}">
+      <Implementation>
+        <ST><![CDATA[//hard code location and address for special case of alternate motion row use for mode
+
+//motion row 1, Power ON/OFF
+gModeAlternate.gModeRows.gMotionRow1.IndexLocation := 10000; 
+
+//motion row 2, Auto / Manual
+gModeAlternate.gModeRows.gMotionRow2.IndexLocation := gModeAlternate.gModeRows.gMotionRow1.IndexLocation + 20; 
+
+//motion row 3, Auto / Manual
+gModeAlternate.gModeRows.gMotionRow3.IndexLocation := gModeAlternate.gModeRows.gMotionRow2.IndexLocation + 20; 
+
+//motion row 4, Auto / Manual
+gModeAlternate.gModeRows.gMotionRow4.IndexLocation := gModeAlternate.gModeRows.gMotionRow3.IndexLocation + 20; 
+
+//motion row 5, Auto / Manual
+gModeAlternate.gModeRows.gMotionRow5.IndexLocation := gModeAlternate.gModeRows.gMotionRow4.IndexLocation + 20;
+
+//motion row 6, Auto / Manual
+gModeAlternate.gModeRows.gMotionRow6.IndexLocation := gModeAlternate.gModeRows.gMotionRow5.IndexLocation + 20;
+
+//motion row 7, Auto / Manual
+gModeAlternate.gModeRows.gMotionRow7.IndexLocation := gModeAlternate.gModeRows.gMotionRow6.IndexLocation + 20;
+
+//motion row 8, Auto / Manual
+gModeAlternate.gModeRows.gMotionRow8.IndexLocation := gModeAlternate.gModeRows.gMotionRow7.IndexLocation + 20;
+
+//motion row 9, Auto / Manual
+gModeAlternate.gModeRows.gMotionRow9.IndexLocation := gModeAlternate.gModeRows.gMotionRow8.IndexLocation + 20;]]></ST>
+      </Implementation>
+    </Action>
+    <LineIds Name="prgModeRows">
+      <LineId Id="5" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="6" Count="0" />
+    </LineIds>
+    <LineIds Name="prgModeRows.actCallRows">
+      <LineId Id="8" Count="1" />
+      <LineId Id="1" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="4" Count="0" />
+      <LineId Id="3" Count="0" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="13" Count="1" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="16" Count="1" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="19" Count="1" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="22" Count="1" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="25" Count="1" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="28" Count="1" />
+      <LineId Id="27" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

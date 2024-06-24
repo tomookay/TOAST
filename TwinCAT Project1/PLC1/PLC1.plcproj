@@ -155,7 +155,14 @@
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
     </Compile>
+    <Compile Include="HMI1\Data\gModeAlternate.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
     <Compile Include="HMI1\Data\ManualPageTitle.TcTLO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="HMI1\Data\ModeRowText.TcTLO">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="HMI1\Data\ScreenNames.TcTLO">
@@ -170,6 +177,9 @@
     <Compile Include="HMI1\Logic\prgHMIaxis.TcPOU">
       <SubType>Code</SubType>
       <ExcludeFromBuild>false</ExcludeFromBuild>
+    </Compile>
+    <Compile Include="HMI1\Logic\prgModeRows.TcPOU">
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="HMI1\Logic\prgMotionRow.TcPOU">
       <SubType>Code</SubType>
@@ -263,6 +273,12 @@
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
       <LinkAlways>true</LinkAlways>
     </Compile>
+    <Compile Include="HMI1\Screens\Mode\Mod_002_ModeScreenRows.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+      <LinkAlways>true</LinkAlways>
+      <ExcludeFromBuild>false</ExcludeFromBuild>
+    </Compile>
     <Compile Include="HMI1\Screens\Motion\Mot_010_Motions.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
@@ -312,6 +328,10 @@
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
     <Compile Include="HMI1\Templates\AxisRow.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="HMI1\Templates\ModeRow.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
