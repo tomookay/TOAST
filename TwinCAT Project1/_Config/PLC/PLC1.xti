@@ -1181,7 +1181,7 @@ External Setpoint Generation:
 				<Defines/>
 			</Variant>
 		</ProjectVariant>
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc" TmcHash="{9BB78B7A-3354-7FFE-B55B-062B63E0DCA7}">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc" TmcHash="{F10A6398-DB3E-5340-B8BE-259C631E4F1E}">
 			<Name>PLC1 Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">
@@ -5691,16 +5691,6 @@ External Setpoint Generation:
 			<Vars VarGrpType="2" AreaNo="1">
 				<Name>PlcTask Outputs</Name>
 				<Var>
-					<Name>Safety.iGroupPort_ErrAck</Name>
-					<Comment><![CDATA[mapped from safety program
-outputs from PLC (i) program become inputs to safety program (q)]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Safety.iModuleFault</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
 					<Name>Safety.iEnableSafetyDevicesuint</Name>
 					<Comment><![CDATA[on request (latch-use) from PLC program to safety program
 this comes from the "Motive Power ON" from the PLC
@@ -5712,6 +5702,16 @@ iEnableSafetyDevices	AT %Q*	:BOOL;]]></Comment>
 				<Var>
 					<Name>Safety.iEnablePendantSafetyDevicesuint</Name>
 					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iGroupPort_ErrAck</Name>
+					<Comment><![CDATA[mapped from safety program
+outputs from PLC (i) program become inputs to safety program (q)]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iModuleFault</Name>
+					<Type>BOOL</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iRunStop</Name>
