@@ -27,6 +27,17 @@ END_VAR
       <ST><![CDATA[//zero indexing code
 tNumRows := 0;
 
+//clear HMI row for manual insertion
+gModeAlternate.gModeRows.gMotionRow1.IndexLocation := 0;
+gModeAlternate.gModeRows.gMotionRow2.IndexLocation := 20;
+gModeAlternate.gModeRows.gMotionRow3.IndexLocation := 40;
+gModeAlternate.gModeRows.gMotionRow4.IndexLocation := 60;
+gModeAlternate.gModeRows.gMotionRow5.IndexLocation := 80;
+gModeAlternate.gModeRows.gMotionRow6.IndexLocation := 100;
+gModeAlternate.gModeRows.gMotionRow7.IndexLocation := 120;
+gModeAlternate.gModeRows.gMotionRow8.IndexLocation := 140;
+gModeAlternate.gModeRows.gMotionRow9.IndexLocation := 160;
+
 //call the rows
 actcallRows();
 
@@ -61,6 +72,10 @@ ModeRow1	(	iStationNumber		:=1,
 				MotionRowBtnLocation:=gModeAlternate.gModeButtons.gMotionRow1btn
 				);
 
+//manually set row number for textlist offset				
+gModeAlternate.gModeRows.gMotionRow1.IndexLocation := gModeAlternate.gModeRows.gMotionRow1.IndexLocation + 10000;			
+
+
 //motion row 2, Auto / Manual
 ModeRow2	(	iStationNumber		:=1,
 				iRowNumber			:=2,
@@ -83,6 +98,11 @@ ModeRow2	(	iStationNumber		:=1,
 				MotionRowLocation	:=gModeAlternate.gModeRows.gMotionRow2,
 				MotionRowBtnLocation:=gModeAlternate.gModeButtons.gMotionRow2btn
 				);
+				
+				
+//manually set row number for textlist offset				
+gModeAlternate.gModeRows.gMotionRow2.IndexLocation := gModeAlternate.gModeRows.gMotionRow2.IndexLocation + 10000;			
+
 
 //motion row 3, cycle cont / single
 ModeRow3	(	iStationNumber		:=1,
@@ -106,6 +126,10 @@ ModeRow3	(	iStationNumber		:=1,
 				MotionRowLocation	:=gModeAlternate.gModeRows.gMotionRow3,
 				MotionRowBtnLocation:=gModeAlternate.gModeButtons.gMotionRow3btn
 				);
+				
+//manually set row number for textlist offset				
+gModeAlternate.gModeRows.gMotionRow3.IndexLocation := gModeAlternate.gModeRows.gMotionRow3.IndexLocation + 10000;			
+
 
 //motion row 4, cycle start / stop
 ModeRow4	(	iStationNumber		:=1,
@@ -129,6 +153,9 @@ ModeRow4	(	iStationNumber		:=1,
 				MotionRowLocation	:=gModeAlternate.gModeRows.gMotionRow4,
 				MotionRowBtnLocation:=gModeAlternate.gModeButtons.gMotionRow4btn
 				);
+				
+//manually set row number for textlist offset				
+gModeAlternate.gModeRows.gMotionRow4.IndexLocation := gModeAlternate.gModeRows.gMotionRow4.IndexLocation + 10000;			
 
 //motion row 5, return home
 ModeRow5	(	iStationNumber		:=1,
@@ -152,6 +179,9 @@ ModeRow5	(	iStationNumber		:=1,
 				MotionRowLocation	:=gModeAlternate.gModeRows.gMotionRow5,
 				MotionRowBtnLocation:=gModeAlternate.gModeButtons.gMotionRow5btn
 				);
+				
+//manually set row number for textlist offset				
+gModeAlternate.gModeRows.gMotionRow5.IndexLocation := gModeAlternate.gModeRows.gMotionRow5.IndexLocation + 10000;			
 
 //motion row 6, spare
 ModeRow6	(	iStationNumber		:=1,
@@ -175,6 +205,9 @@ ModeRow6	(	iStationNumber		:=1,
 				MotionRowLocation	:=gModeAlternate.gModeRows.gMotionRow6,
 				MotionRowBtnLocation:=gModeAlternate.gModeButtons.gMotionRow6btn
 				);
+				
+//manually set row number for textlist offset				
+gModeAlternate.gModeRows.gMotionRow6.IndexLocation := gModeAlternate.gModeRows.gMotionRow6.IndexLocation + 10000;			
 
 //motion row 7, spare
 ModeRow7	(	iStationNumber		:=1,
@@ -199,6 +232,9 @@ ModeRow7	(	iStationNumber		:=1,
 				MotionRowBtnLocation:=gModeAlternate.gModeButtons.gMotionRow7btn
 				);
 
+//manually set row number for textlist offset				
+gModeAlternate.gModeRows.gMotionRow7.IndexLocation := gModeAlternate.gModeRows.gMotionRow7.IndexLocation + 10000;			
+				
 //motion row 8, gate lock, return only
 ModeRow8	(	iStationNumber		:=1,
 				iRowNumber			:=8,
@@ -221,6 +257,9 @@ ModeRow8	(	iStationNumber		:=1,
 				MotionRowLocation	:=gModeAlternate.gModeRows.gMotionRow8,
 				MotionRowBtnLocation:=gModeAlternate.gModeButtons.gMotionRow8btn
 				);
+				
+//manually set row number for textlist offset				
+gModeAlternate.gModeRows.gMotionRow8.IndexLocation := gModeAlternate.gModeRows.gMotionRow8.IndexLocation + 10000;			
 
 //motion row 9, gate unlocks
 ModeRow9	(	iStationNumber		:=1,
@@ -243,12 +282,19 @@ ModeRow9	(	iStationNumber		:=1,
 				NumRows				:=tNumRows,
 				MotionRowLocation	:=gModeAlternate.gModeRows.gMotionRow9,
 				MotionRowBtnLocation:=gModeAlternate.gModeButtons.gMotionRow9btn
-				);]]></ST>
+				);
+				
+//manually set row number for textlist offset				
+gModeAlternate.gModeRows.gMotionRow9.IndexLocation := gModeAlternate.gModeRows.gMotionRow9.IndexLocation + 10000;			
+]]></ST>
       </Implementation>
     </Action>
     <LineIds Name="prgModeRows">
       <LineId Id="44" Count="0" />
       <LineId Id="41" Count="0" />
+      <LineId Id="67" Count="6" />
+      <LineId Id="66" Count="0" />
+      <LineId Id="74" Count="2" />
       <LineId Id="43" Count="0" />
       <LineId Id="42" Count="0" />
       <LineId Id="5" Count="0" />
@@ -268,32 +314,55 @@ ModeRow9	(	iStationNumber		:=1,
       <LineId Id="356" Count="0" />
       <LineId Id="354" Count="1" />
       <LineId Id="214" Count="0" />
+      <LineId Id="523" Count="0" />
+      <LineId Id="522" Count="0" />
+      <LineId Id="520" Count="1" />
       <LineId Id="4" Count="0" />
       <LineId Id="3" Count="0" />
       <LineId Id="359" Count="19" />
       <LineId Id="47" Count="0" />
+      <LineId Id="524" Count="0" />
+      <LineId Id="526" Count="2" />
+      <LineId Id="525" Count="0" />
       <LineId Id="10" Count="0" />
       <LineId Id="12" Count="0" />
       <LineId Id="379" Count="19" />
       <LineId Id="61" Count="0" />
+      <LineId Id="531" Count="2" />
+      <LineId Id="530" Count="0" />
       <LineId Id="13" Count="1" />
       <LineId Id="399" Count="19" />
       <LineId Id="75" Count="0" />
+      <LineId Id="534" Count="0" />
+      <LineId Id="536" Count="1" />
       <LineId Id="16" Count="1" />
       <LineId Id="419" Count="19" />
       <LineId Id="89" Count="0" />
-      <LineId Id="19" Count="1" />
+      <LineId Id="538" Count="0" />
+      <LineId Id="540" Count="1" />
+      <LineId Id="539" Count="0" />
+      <LineId Id="20" Count="0" />
       <LineId Id="439" Count="19" />
       <LineId Id="103" Count="0" />
-      <LineId Id="22" Count="1" />
+      <LineId Id="542" Count="0" />
+      <LineId Id="544" Count="1" />
+      <LineId Id="543" Count="0" />
+      <LineId Id="23" Count="0" />
       <LineId Id="459" Count="19" />
       <LineId Id="117" Count="0" />
-      <LineId Id="25" Count="1" />
+      <LineId Id="546" Count="0" />
+      <LineId Id="548" Count="2" />
+      <LineId Id="26" Count="0" />
       <LineId Id="479" Count="19" />
       <LineId Id="131" Count="0" />
+      <LineId Id="551" Count="0" />
+      <LineId Id="553" Count="1" />
       <LineId Id="28" Count="1" />
       <LineId Id="499" Count="19" />
       <LineId Id="146" Count="0" />
+      <LineId Id="555" Count="0" />
+      <LineId Id="557" Count="1" />
+      <LineId Id="556" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
