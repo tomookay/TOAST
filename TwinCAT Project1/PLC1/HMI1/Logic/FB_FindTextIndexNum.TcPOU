@@ -3,11 +3,11 @@
   <POU Name="FB_FindTextIndexNum" Id="{ef499ef2-7994-44de-86ff-07d709cf8dbb}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_FindTextIndexNum
 VAR_INPUT
-	iText:T_MaxString;
+	iText:T_MaxString; //input text string to find text in
 END_VAR
 VAR_OUTPUT
-	qIndexNum: INT;
-	qLineIsValid: BOOL;
+	qIndexNum: INT; //index number of string
+	qLineIsValid: BOOL; //TRUE if the line valid to be processed?
 END_VAR
 VAR
 	textidNameLocation: INT;
