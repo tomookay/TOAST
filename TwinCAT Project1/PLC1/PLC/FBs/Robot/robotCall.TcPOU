@@ -24,7 +24,7 @@ END_VAR]]></Declaration>
                   <v n="FBDValid">false</v>
                   <v n="ILValid">false</v>
                   <l2 n="ILLines" />
-                  <v n="Comment">""</v>
+                  <v n="Comment">"perform motion on robot"</v>
                   <v n="Title">""</v>
                   <v n="Label">""</v>
                   <v n="OutCommented">false</v>
@@ -45,11 +45,43 @@ END_VAR]]></Declaration>
                         <v n="LValue">false</v>
                         <v n="Boolean">false</v>
                         <v n="IsInstance">true</v>
-                        <v n="Id">111L</v>
+                        <v n="Id">134L</v>
                       </o>
                       <o n="OutputItems" t="OutputItemList">
-                        <l2 n="OutputItems">
+                        <l2 n="OutputItems" cet="Operand">
                           <n />
+                          <o>
+                            <v n="Operand">""</v>
+                            <v n="Type">"BOOL"</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">""</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">true</v>
+                            <v n="Boolean">false</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">136L</v>
+                          </o>
+                          <o>
+                            <v n="Operand">""</v>
+                            <v n="Type">"BOOL"</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">""</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">true</v>
+                            <v n="Boolean">false</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">137L</v>
+                          </o>
                         </l2>
                       </o>
                       <o n="Flags" t="Flags">
@@ -146,6 +178,25 @@ END_VAR]]></Declaration>
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
+                            <v n="Operand">"t#10s"</v>
+                            <v n="Type">"TIME"</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">""</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">false</v>
+                            <v n="Boolean">false</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">139L</v>
+                          </o>
+                          <v n="Id">138L</v>
+                        </o>
+                        <o t="BoxTreeOperand">
+                          <o n="Operand" t="Operand">
                             <v n="Operand">"robotGlobals.robot"</v>
                             <v n="Type">"structRobot"</v>
                             <v n="Comment">""</v>
@@ -171,6 +222,7 @@ END_VAR]]></Declaration>
                           <v>iRoutineNumber</v>
                           <v>iTargetPosition</v>
                           <v>iInterlock</v>
+                          <v>iTimeoutTime</v>
                           <v>iqRobotData</v>
                         </l2>
                         <l2 n="Types" cet="String">
@@ -179,14 +231,19 @@ END_VAR]]></Declaration>
                           <v>INT</v>
                           <v>INT</v>
                           <v>BOOL</v>
+                          <v>TIME</v>
                           <v>structRobot[REF]</v>
                         </l2>
                       </o>
                       <o n="OutputParam" t="ParamList">
                         <l2 n="Names" cet="String">
                           <v>ENO</v>
+                          <v>qRoutineComplete</v>
+                          <v>qMotionTimeout</v>
                         </l2>
                         <l2 n="Types" cet="String">
+                          <v>BOOL</v>
+                          <v>BOOL</v>
                           <v>BOOL</v>
                         </l2>
                       </o>
@@ -196,7 +253,7 @@ END_VAR]]></Declaration>
                       <n n="STSnippet" />
                       <v n="ContainsExtensibleInputs">false</v>
                       <v n="ProvidesSTSnippet">false</v>
-                      <v n="Id">112L</v>
+                      <v n="Id">135L</v>
                     </o>
                   </l2>
                   <l2 n="Connectors" />
@@ -207,7 +264,7 @@ END_VAR]]></Declaration>
                   <v n="FBDValid">false</v>
                   <v n="ILValid">false</v>
                   <l2 n="ILLines" />
-                  <v n="Comment">""</v>
+                  <v n="Comment">"perform another motion on the robot"</v>
                   <v n="Title">""</v>
                   <v n="Label">""</v>
                   <v n="OutCommented">false</v>
@@ -228,11 +285,43 @@ END_VAR]]></Declaration>
                         <v n="LValue">false</v>
                         <v n="Boolean">false</v>
                         <v n="IsInstance">true</v>
-                        <v n="Id">117L</v>
+                        <v n="Id">153L</v>
                       </o>
                       <o n="OutputItems" t="OutputItemList">
-                        <l2 n="OutputItems">
+                        <l2 n="OutputItems" cet="Operand">
                           <n />
+                          <o>
+                            <v n="Operand">""</v>
+                            <v n="Type">"BOOL"</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">""</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">true</v>
+                            <v n="Boolean">false</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">142L</v>
+                          </o>
+                          <o>
+                            <v n="Operand">""</v>
+                            <v n="Type">"BOOL"</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">""</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">true</v>
+                            <v n="Boolean">false</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">143L</v>
+                          </o>
                         </l2>
                       </o>
                       <o n="Flags" t="Flags">
@@ -329,6 +418,25 @@ END_VAR]]></Declaration>
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
+                            <v n="Operand">"t#7s"</v>
+                            <v n="Type">"TIME"</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">""</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">false</v>
+                            <v n="Boolean">false</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">145L</v>
+                          </o>
+                          <v n="Id">144L</v>
+                        </o>
+                        <o t="BoxTreeOperand">
+                          <o n="Operand" t="Operand">
                             <v n="Operand">"robotGlobals.robot"</v>
                             <v n="Type">"structRobot"</v>
                             <v n="Comment">""</v>
@@ -354,6 +462,7 @@ END_VAR]]></Declaration>
                           <v>iRoutineNumber</v>
                           <v>iTargetPosition</v>
                           <v>iInterlock</v>
+                          <v>iTimeoutTime</v>
                           <v>iqRobotData</v>
                         </l2>
                         <l2 n="Types" cet="String">
@@ -362,14 +471,19 @@ END_VAR]]></Declaration>
                           <v>INT</v>
                           <v>INT</v>
                           <v>BOOL</v>
+                          <v>TIME</v>
                           <v>structRobot[REF]</v>
                         </l2>
                       </o>
                       <o n="OutputParam" t="ParamList">
                         <l2 n="Names" cet="String">
                           <v>ENO</v>
+                          <v>qRoutineComplete</v>
+                          <v>qMotionTimeout</v>
                         </l2>
                         <l2 n="Types" cet="String">
+                          <v>BOOL</v>
+                          <v>BOOL</v>
                           <v>BOOL</v>
                         </l2>
                       </o>
@@ -379,7 +493,7 @@ END_VAR]]></Declaration>
                       <n n="STSnippet" />
                       <v n="ContainsExtensibleInputs">false</v>
                       <v n="ProvidesSTSnippet">false</v>
-                      <v n="Id">118L</v>
+                      <v n="Id">154L</v>
                     </o>
                   </l2>
                   <l2 n="Connectors" />
@@ -390,7 +504,7 @@ END_VAR]]></Declaration>
                   <v n="FBDValid">false</v>
                   <v n="ILValid">false</v>
                   <l2 n="ILLines" />
-                  <v n="Comment">""</v>
+                  <v n="Comment">"comms logic to the robot, called after motion blocks"</v>
                   <v n="Title">""</v>
                   <v n="Label">""</v>
                   <v n="OutCommented">false</v>
@@ -411,7 +525,7 @@ END_VAR]]></Declaration>
                         <v n="LValue">false</v>
                         <v n="Boolean">false</v>
                         <v n="IsInstance">true</v>
-                        <v n="Id">121L</v>
+                        <v n="Id">148L</v>
                       </o>
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems" cet="Operand">
@@ -464,6 +578,22 @@ END_VAR]]></Declaration>
                             <v n="IsInstance">false</v>
                             <v n="Id">124L</v>
                           </o>
+                          <o>
+                            <v n="Operand">""</v>
+                            <v n="Type">"BOOL"</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">""</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">true</v>
+                            <v n="Boolean">false</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">150L</v>
+                          </o>
                         </l2>
                       </o>
                       <o n="Flags" t="Flags">
@@ -484,63 +614,6 @@ END_VAR]]></Declaration>
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">""</v>
-                            <v n="Type">"BOOL"</v>
-                            <v n="Comment">""</v>
-                            <v n="SymbolComment">""</v>
-                            <v n="Address">""</v>
-                            <o n="Flags" t="Flags">
-                              <v n="Flags">0</v>
-                              <v n="Fixed">false</v>
-                              <v n="Extensible">false</v>
-                            </o>
-                            <v n="LValue">false</v>
-                            <v n="Boolean">true</v>
-                            <v n="IsInstance">false</v>
-                            <v n="Id">106L</v>
-                          </o>
-                          <v n="Id">105L</v>
-                        </o>
-                        <o t="BoxTreeOperand">
-                          <o n="Operand" t="Operand">
-                            <v n="Operand">""</v>
-                            <v n="Type">"BOOL"</v>
-                            <v n="Comment">""</v>
-                            <v n="SymbolComment">""</v>
-                            <v n="Address">""</v>
-                            <o n="Flags" t="Flags">
-                              <v n="Flags">0</v>
-                              <v n="Fixed">false</v>
-                              <v n="Extensible">false</v>
-                            </o>
-                            <v n="LValue">false</v>
-                            <v n="Boolean">true</v>
-                            <v n="IsInstance">false</v>
-                            <v n="Id">108L</v>
-                          </o>
-                          <v n="Id">107L</v>
-                        </o>
-                        <o t="BoxTreeOperand">
-                          <o n="Operand" t="Operand">
-                            <v n="Operand">""</v>
-                            <v n="Type">"BOOL"</v>
-                            <v n="Comment">""</v>
-                            <v n="SymbolComment">""</v>
-                            <v n="Address">""</v>
-                            <o n="Flags" t="Flags">
-                              <v n="Flags">0</v>
-                              <v n="Fixed">false</v>
-                              <v n="Extensible">false</v>
-                            </o>
-                            <v n="LValue">false</v>
-                            <v n="Boolean">true</v>
-                            <v n="IsInstance">false</v>
-                            <v n="Id">110L</v>
-                          </o>
-                          <v n="Id">109L</v>
-                        </o>
-                        <o t="BoxTreeOperand">
-                          <o n="Operand" t="Operand">
                             <v n="Operand">"robotGlobals.robot"</v>
                             <v n="Type">"structRobot"</v>
                             <v n="Comment">""</v>
@@ -558,21 +631,36 @@ END_VAR]]></Declaration>
                           </o>
                           <v n="Id">70L</v>
                         </o>
+                        <o t="BoxTreeOperand">
+                          <o n="Operand" t="Operand">
+                            <v n="Operand">"S1_Global.station"</v>
+                            <v n="Type">"typeStation"</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">""</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">false</v>
+                            <v n="Boolean">false</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">152L</v>
+                          </o>
+                          <v n="Id">151L</v>
+                        </o>
                       </l2>
                       <o n="InputParam" t="ParamList">
                         <l2 n="Names" cet="String">
                           <v>EN</v>
-                          <v>iStationPowerOn</v>
-                          <v>iStationManualMode</v>
-                          <v>iStationAutoCycling</v>
                           <v>iqRobotData</v>
+                          <v>station</v>
                         </l2>
                         <l2 n="Types" cet="String">
                           <v>BOOL</v>
-                          <v>BOOL</v>
-                          <v>BOOL</v>
-                          <v>BOOL</v>
                           <v>structRobot[REF]</v>
+                          <v>typeStation[REF]</v>
                         </l2>
                       </o>
                       <o n="OutputParam" t="ParamList">
@@ -581,8 +669,10 @@ END_VAR]]></Declaration>
                           <v>qWatchdogFault</v>
                           <v>qMotorsOnFault</v>
                           <v>qProgramRunFault</v>
+                          <v>qRoutinePoseFault</v>
                         </l2>
                         <l2 n="Types" cet="String">
+                          <v>BOOL</v>
                           <v>BOOL</v>
                           <v>BOOL</v>
                           <v>BOOL</v>
@@ -595,7 +685,7 @@ END_VAR]]></Declaration>
                       <n n="STSnippet" />
                       <v n="ContainsExtensibleInputs">false</v>
                       <v n="ProvidesSTSnippet">false</v>
-                      <v n="Id">122L</v>
+                      <v n="Id">149L</v>
                     </o>
                   </l2>
                   <l2 n="Connectors" />
