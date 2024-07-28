@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="structRobotOutputs" Id="{5e123f22-21a5-4d73-b677-321e1f6f75b7}">
+    <Declaration><![CDATA[TYPE structRobotOutputs :
+STRUCT
+	//outputs, to the robot
+	qWatchdog:BOOL; //TRUE/FALSE watchdog from the robot
+	qMotorsOnReq:BOOL; //Motors on request
+	qMotorsOffReq:BOOL; //Motors off request
+	qAutoModeReq:BOOL; //auto mode request
+	qManualModeReq:BOOL; //manual mode request (pendant possible)
+	qProgramRunReq:BOOL; //start run program
+	qProgramStopReq:BOOL; //stop run program
+	qRequestRoutineNum:INT; //value of routine number to run
+	qTargetPosnNum:INT;	//value of the target position
+	qStartRoutineReq:BOOL; //start routine
+
+ 
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

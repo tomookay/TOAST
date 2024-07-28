@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="structRobot" Id="{d8c2fa1e-5cfe-4772-bd97-790f088cac7b}">
+    <Declaration><![CDATA[TYPE structRobot :
+STRUCT
+	tAnyRoutineRequested:BOOL; //TRUE if any routine is being requested	
+	tRoutineNumReq:INT; //Routine Number to send to Robot
+	tTargetNumberPredicted:INT; //target number (pose)
+
+	inputData:structRobotInputs;
+	outputData:structRobotOutputs;
+	
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

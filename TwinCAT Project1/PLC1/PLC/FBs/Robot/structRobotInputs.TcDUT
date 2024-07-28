@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="structRobotInputs" Id="{1ba80ef4-5687-4eae-ba71-6987e92e1101}">
+    <Declaration><![CDATA[TYPE structRobotInputs :
+STRUCT
+	//inputs, from the robot
+	iWatchdog:BOOL; //TRUE/FALSE watchdog from the robot
+	iMotorsOn:BOOL; //TRUE if the motors are on (motive power possible)
+	iAutoModeActive:BOOL; //TRUE if the robot is in auto mode
+	iManualModeActive:BOOL; //TRUE if the robot is in manual mode (pendant enabled)
+	iProgramRunning:BOOL; //TRUE if the robot's program is running
+	iCurrentPosition:INT; //value of position 
+	iEnablingDevicePressed:BOOL; //TRUE if the enabling device(s) were pressed
+	iCurrentRoutineRunning:INT; //current value of routine running
+	
+	
+	
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

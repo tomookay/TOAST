@@ -421,6 +421,28 @@
     <Compile Include="PLC\FBs\IO View\prgMemPointerView.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="PLC\FBs\Robot\FB_RobotComms.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PLC\FBs\Robot\FB_RobotMotion.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PLC\FBs\Robot\robotCall.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PLC\FBs\Robot\robotGlobals.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="PLC\FBs\Robot\structRobot.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PLC\FBs\Robot\structRobotInputs.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PLC\FBs\Robot\structRobotOutputs.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="PLC\FBs\Tasks\FB_CheckTasks.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -1930,6 +1952,7 @@
     <Folder Include="PLC\FBs\Diagnostic\Profibus" />
     <Folder Include="PLC\FBs\Diagnostic\ProfiNet" />
     <Folder Include="PLC\FBs\IO View" />
+    <Folder Include="PLC\FBs\Robot" />
     <Folder Include="PLC\FBs\Tasks" />
     <Folder Include="PLC\Machine\Station 1\Motions\Screen 10" />
     <Folder Include="PLC\Machine\Station 1\Motions\Screen 9" />
