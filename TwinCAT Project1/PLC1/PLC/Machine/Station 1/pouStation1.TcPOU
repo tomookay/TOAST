@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
-  <POU Name="pouStation1" Id="{cbb126a5-ed47-44bc-850e-38b5e1137b4b}" SpecialFunc="None">
+  <POU Name="pouStation1" Id="{d19758f2-6963-0ec2-14a8-18eb12a82051}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM pouStation1
 VAR
 	stationMode: FB_Mode;
@@ -34,6 +34,10 @@ VAR
 	task19: FB_Task;
 	task20: FB_Task;
 	checkTasks: FB_CheckTasks;
+	
+	stationsfc:FB_S1_Sequence;
+	
+	runSFC: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -972,7 +976,85 @@ enable station calls, if this pou is copied and called"</v>
                         <v n="LValue">false</v>
                         <v n="Boolean">false</v>
                         <v n="IsInstance">true</v>
-                        <v n="Id">76L</v>
+                        <v n="Id">253L</v>
+                      </o>
+                      <o n="OutputItems" t="OutputItemList">
+                        <l2 n="OutputItems">
+                          <n />
+                        </l2>
+                      </o>
+                      <o n="Flags" t="Flags">
+                        <v n="Flags">0</v>
+                        <v n="Fixed">true</v>
+                        <v n="Extensible">false</v>
+                      </o>
+                      <n n="InputFlags" />
+                      <l2 n="InputItems" cet="BoxTreeTerminator">
+                        <o>
+                          <n n="Input" />
+                          <o n="Flags" t="Flags">
+                            <v n="Flags">0</v>
+                            <v n="Fixed">false</v>
+                            <v n="Extensible">false</v>
+                          </o>
+                          <v n="Id">255L</v>
+                        </o>
+                      </l2>
+                      <o n="InputParam" t="ParamList">
+                        <l2 n="Names" cet="String">
+                          <v>EN</v>
+                        </l2>
+                        <l2 n="Types" cet="String">
+                          <v>BOOL</v>
+                        </l2>
+                      </o>
+                      <o n="OutputParam" t="ParamList">
+                        <l2 n="Names" cet="String">
+                          <v>ENO</v>
+                        </l2>
+                        <l2 n="Types" cet="String">
+                          <v>BOOL</v>
+                        </l2>
+                      </o>
+                      <v n="CallType" t="Operator">Program</v>
+                      <v n="EN">true</v>
+                      <v n="ENO">true</v>
+                      <n n="STSnippet" />
+                      <v n="ContainsExtensibleInputs">false</v>
+                      <v n="ProvidesSTSnippet">false</v>
+                      <v n="Id">254L</v>
+                    </o>
+                  </l2>
+                  <l2 n="Connectors" />
+                  <v n="Id">252L</v>
+                </o>
+                <o>
+                  <v n="ILActive">false</v>
+                  <v n="FBDValid">false</v>
+                  <v n="ILValid">false</v>
+                  <l2 n="ILLines" />
+                  <v n="Comment">"call for sfc"</v>
+                  <v n="Title">""</v>
+                  <v n="Label">""</v>
+                  <v n="OutCommented">false</v>
+                  <l2 n="NetworkItems" cet="BoxTreeBox">
+                    <o>
+                      <v n="BoxType">"actSFC"</v>
+                      <o n="Instance" t="Operand">
+                        <n n="Operand" />
+                        <v n="Type">""</v>
+                        <v n="Comment">""</v>
+                        <v n="SymbolComment">""</v>
+                        <v n="Address">""</v>
+                        <o n="Flags" t="Flags">
+                          <v n="Flags">0</v>
+                          <v n="Fixed">false</v>
+                          <v n="Extensible">false</v>
+                        </o>
+                        <v n="LValue">false</v>
+                        <v n="Boolean">false</v>
+                        <v n="IsInstance">true</v>
+                        <v n="Id">256L</v>
                       </o>
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems">
@@ -1012,13 +1094,13 @@ enable station calls, if this pou is copied and called"</v>
                           <v>BOOL</v>
                         </l2>
                       </o>
-                      <v n="CallType" t="Operator">Program</v>
+                      <v n="CallType" t="Operator">Action</v>
                       <v n="EN">true</v>
                       <v n="ENO">true</v>
                       <n n="STSnippet" />
                       <v n="ContainsExtensibleInputs">false</v>
                       <v n="ProvidesSTSnippet">false</v>
-                      <v n="Id">77L</v>
+                      <v n="Id">257L</v>
                     </o>
                   </l2>
                   <l2 n="Connectors" />
@@ -1049,7 +1131,7 @@ enable station calls, if this pou is copied and called"</v>
         </XmlArchive>
       </NWL>
     </Implementation>
-    <Action Name="actButtonFeedback" Id="{346b2711-253c-4729-8cdf-c7e225583299}">
+    <Action Name="actButtonFeedback" Id="{2e4d5946-a118-0d57-1d79-e7bcd6e36983}">
       <Implementation>
         <NWL>
           <XmlArchive>
@@ -4483,7 +4565,7 @@ enable station calls, if this pou is copied and called"</v>
         </NWL>
       </Implementation>
     </Action>
-    <Action Name="actHMIHeader" Id="{c969292a-5ed6-49fd-a4d9-3d47570e8618}">
+    <Action Name="actHMIHeader" Id="{d34f577d-daf2-0383-357f-1d19a4b5dd02}">
       <Implementation>
         <ST><![CDATA[//set values on station
 IF NOT S1_Global.station.Data.IsHome THEN
@@ -4525,7 +4607,7 @@ S1_Global.station.hmiHeader.flasher := System.OneSecond;
 ]]></ST>
       </Implementation>
     </Action>
-    <Action Name="actHome" Id="{38f1ab27-9e47-4a19-9a7c-14bf7a049522}">
+    <Action Name="actHome" Id="{22d7d570-1a63-0067-0bda-34e189bfce38}">
       <Implementation>
         <ST><![CDATA[//Set home status for station
 
@@ -4548,7 +4630,7 @@ END_IF
 ]]></ST>
       </Implementation>
     </Action>
-    <Action Name="actMaxNumStationPages" Id="{499acf2e-11f1-41ab-acd8-6d6b219bcc13}">
+    <Action Name="actMaxNumStationPages" Id="{53bcb179-95d5-0bd5-3d7e-4d35d2209709}">
       <Implementation>
         <NWL>
           <XmlArchive>
@@ -4973,7 +5055,7 @@ UINT_TO_REAL(S1_Global.S1_NumOfRows)"</v>
         </NWL>
       </Implementation>
     </Action>
-    <Action Name="actMode" Id="{9732a77c-e29b-4611-92cd-047d0b53dcd5}">
+    <Action Name="actMode" Id="{8d14d92b-66bf-0c6f-036b-2423f8e887cf}">
       <Implementation>
         <NWL>
           <XmlArchive>
@@ -6219,7 +6301,7 @@ UINT_TO_REAL(S1_Global.S1_NumOfRows)"</v>
         </NWL>
       </Implementation>
     </Action>
-    <Action Name="actMotions" Id="{e014ca83-598c-489c-8352-44bf4d8deaf0}">
+    <Action Name="actMotions" Id="{fa32b4d4-dda8-02e2-12f4-64e1be36b1ea}">
       <Implementation>
         <ST><![CDATA[//station 1 = 10000 index
 
@@ -6356,7 +6438,7 @@ S1_01_Motion_99();
 actMaxNumStationPages();]]></ST>
       </Implementation>
     </Action>
-    <Action Name="actPartBuild" Id="{e298ac78-2bd3-48b2-9423-2952ffbdc450}">
+    <Action Name="actPartBuild" Id="{f8bed22f-aff7-02cc-0585-090c0c069f4a}">
       <Implementation>
         <NWL>
           <XmlArchive>
@@ -6902,7 +6984,7 @@ actMaxNumStationPages();]]></ST>
         </NWL>
       </Implementation>
     </Action>
-    <Action Name="actPower" Id="{ccf151c7-3331-4fe7-aca1-44f65b2a812b}">
+    <Action Name="actPower" Id="{d6d72f90-b715-0599-3d07-64a8a891da31}">
       <Implementation>
         <NWL>
           <XmlArchive>
@@ -7544,7 +7626,22 @@ actMaxNumStationPages();]]></ST>
         </NWL>
       </Implementation>
     </Action>
-    <Action Name="actTasks" Id="{b4d7b456-9e46-4a55-a0e6-32f8419d9b61}">
+    <Action Name="actSFC" Id="{36549665-e826-0b36-1656-ff80d56f910a}">
+      <Implementation>
+        <ST><![CDATA[//there is a flaw in using a SFC as a sequence, if the sequence is stopped mid process
+//the SFC cannot be started again without returning the station to a 'home' state
+//perhaps without parts loaded, pumps off, etc, not without writing counter-SFC logic
+//to re-setup the SFC to a 'home' state, in this case, it is often better to not use an SFC
+
+//call SFC for station1
+stationsfc();
+
+stationsfc.sfcinit := runSFC;
+
+]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="actTasks" Id="{aef1ca01-1a62-002b-3140-12a6b226c07b}">
       <Implementation>
         <NWL>
           <XmlArchive>
@@ -12609,6 +12706,16 @@ if they are all at depth then set global station .complete"</v>
       <LineId Id="129" Count="0" />
       <LineId Id="116" Count="1" />
       <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="pouStation1.actSFC">
+      <LineId Id="101" Count="0" />
+      <LineId Id="103" Count="2" />
+      <LineId Id="102" Count="0" />
+      <LineId Id="1" Count="1" />
+      <LineId Id="107" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="109" Count="0" />
+      <LineId Id="3" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

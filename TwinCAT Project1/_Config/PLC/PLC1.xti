@@ -1181,7 +1181,7 @@ External Setpoint Generation:
 				<Defines/>
 			</Variant>
 		</ProjectVariant>
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc" TmcHash="{C6CB2C78-AC78-C9B0-8C90-525ADD632DC7}">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc" TmcHash="{39D1306C-9C42-3DB3-5114-C6D13B748002}">
 			<Name>PLC1 Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">
@@ -1276,14 +1276,14 @@ External Setpoint Generation:
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>Safety.gSafetyCPUState</Name>
-					<Comment><![CDATA[CPU state as ethercat slave]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
 					<Name>Safety.gSafetySerialNumber</Name>
 					<Comment><![CDATA[serial number of safety CPU]]></Comment>
 					<Type>UDINT</Type>
+				</Var>
+				<Var>
+					<Name>Safety.gSafetyCPUState</Name>
+					<Comment><![CDATA[CPU state as ethercat slave]]></Comment>
+					<Type>UINT</Type>
 				</Var>
 				<Var>
 					<Name>Safety.gSafetyCPUADSadr</Name>
@@ -1329,44 +1329,44 @@ External Setpoint Generation:
 					<Type>USINT</Type>
 				</Var>
 				<Var>
-					<Name>Safety.iEstop2State</Name>
-					<Type>USINT</Type>
-				</Var>
-				<Var>
 					<Name>Safety.iEstop1Diag</Name>
 					<Type GUID="{2A4AAA35-0BF8-03D0-72B3-558192052311}">structEstopDiag</Type>
 				</Var>
 				<Var>
-					<Name>Safety.iEstop2Diag</Name>
-					<Type GUID="{2A4AAA35-0BF8-03D0-72B3-558192052311}">structEstopDiag</Type>
+					<Name>Safety.iEstop2State</Name>
+					<Type>USINT</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iEstop3State</Name>
 					<Type>USINT</Type>
 				</Var>
 				<Var>
-					<Name>Safety.iAccessGate1State</Name>
-					<Type>USINT</Type>
+					<Name>Safety.iEstop2Diag</Name>
+					<Type GUID="{2A4AAA35-0BF8-03D0-72B3-558192052311}">structEstopDiag</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iEstop3Diag</Name>
 					<Type GUID="{2A4AAA35-0BF8-03D0-72B3-558192052311}">structEstopDiag</Type>
 				</Var>
 				<Var>
-					<Name>Safety.iAccessGate1Diag</Name>
-					<Type GUID="{2A4AAA35-0BF8-03D0-72B3-558192052311}">structEstopDiag</Type>
+					<Name>Safety.iAccessGate1State</Name>
+					<Type>USINT</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iAccessGate2State</Name>
 					<Type>USINT</Type>
 				</Var>
 				<Var>
-					<Name>Safety.iEnablingPendantState</Name>
-					<Type>USINT</Type>
+					<Name>Safety.iAccessGate1Diag</Name>
+					<Type GUID="{2A4AAA35-0BF8-03D0-72B3-558192052311}">structEstopDiag</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iAccessGate2Diag</Name>
 					<Type GUID="{2A4AAA35-0BF8-03D0-72B3-558192052311}">structEstopDiag</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iEnablingPendantState</Name>
+					<Type>USINT</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iEnablingPendantDiag</Name>
@@ -5697,10 +5697,6 @@ outputs from PLC (i) program become inputs to safety program (q)]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Safety.iModuleFault</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
 					<Name>Safety.iEnableSafetyDevicesuint</Name>
 					<Comment><![CDATA[on request (latch-use) from PLC program to safety program
 this comes from the "Motive Power ON" from the PLC
@@ -5712,6 +5708,10 @@ iEnableSafetyDevices	AT %Q*	:BOOL;]]></Comment>
 				<Var>
 					<Name>Safety.iEnablePendantSafetyDevicesuint</Name>
 					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iModuleFault</Name>
+					<Type>BOOL</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iRunStop</Name>
