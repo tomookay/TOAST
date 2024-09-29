@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.55" ClassName="CNestedPlcProjDef" TcProjectVariant="NoPLC">
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.29" ClassName="CNestedPlcProjDef" TcProjectVariant="NoPLC">
 	<DataTypes>
 		<DataType>
 			<Name GUID="{18071995-0000-0000-0000-000000000041}" TcBaseType="true" HideSubItems="true" CName="AmsNetId">AMSNETID</Name>
@@ -643,7 +643,7 @@
 			</ArrayInfo>
 		</DataType>
 		<DataType>
-			<Name GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC" TcBaseType="true">NCTOPLC_AXIS_REF</Name>
+			<Name GUID="{10036166-C9D3-404B-BDD3-323034AAA7F4}" Namespace="MC" TcBaseType="true">NCTOPLC_AXIS_REF</Name>
 			<BitSize>2048</BitSize>
 			<SubItem>
 				<Name>StateDWord</Name>
@@ -925,12 +925,6 @@ External Setpoint Generation:
 				<BitSize>32</BitSize>
 				<BitOffs>1920</BitOffs>
 			</SubItem>
-			<SubItem>
-				<Name>UserData</Name>
-				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
-				<BitSize>64</BitSize>
-				<BitOffs>1984</BitOffs>
-			</SubItem>
 			<Properties>
 				<Property>
 					<Name>NcStructType</Name>
@@ -964,9 +958,6 @@ External Setpoint Generation:
 				</Relation>
 				<Relation Priority="100">
 					<Type GUID="{72F5AAAA-16DF-4ED3-8367-F6C8C3ADAE99}"></Type>
-				</Relation>
-				<Relation Priority="100">
-					<Type GUID="{10036166-C9D3-404B-BDD3-323034AAA7F4}"></Type>
 				</Relation>
 			</Relations>
 		</DataType>
@@ -1035,7 +1026,7 @@ External Setpoint Generation:
 			</Format>
 		</DataType>
 		<DataType>
-			<Name GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC" TcBaseType="true">PLCTONC_AXIS_REF</Name>
+			<Name GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC" TcBaseType="true">PLCTONC_AXIS_REF</Name>
 			<BitSize>1024</BitSize>
 			<SubItem>
 				<Name>ControlDWord</Name>
@@ -1145,12 +1136,6 @@ External Setpoint Generation:
 				<BitSize>8</BitSize>
 				<BitOffs>848</BitOffs>
 			</SubItem>
-			<SubItem>
-				<Name>ExtTorque</Name>
-				<Type GUID="{18071995-0000-0000-0000-00000000000E}">LREAL</Type>
-				<BitSize>64</BitSize>
-				<BitOffs>896</BitOffs>
-			</SubItem>
 			<Properties>
 				<Property>
 					<Name>NcStructType</Name>
@@ -1159,10 +1144,7 @@ External Setpoint Generation:
 			</Properties>
 			<Relations>
 				<Relation Priority="100">
-					<Type GUID="{60392271-8688-4F4C-B404-618DF106325D}"></Type>
-				</Relation>
-				<Relation Priority="100">
-					<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}"></Type>
+					<Type GUID="{60392271-8688-4F4C-B404-618DF106325D}">NCAXLESTRUCT_FROMPLC3</Type>
 				</Relation>
 			</Relations>
 		</DataType>
@@ -1181,7 +1163,7 @@ External Setpoint Generation:
 				<Defines/>
 			</Variant>
 		</ProjectVariant>
-		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc" TmcHash="{39D1306C-9C42-3DB3-5114-C6D13B748002}">
+		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc">
 			<Name>PLC1 Instance</Name>
 			<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 			<Vars VarGrpType="1">
@@ -1276,14 +1258,14 @@ External Setpoint Generation:
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>Safety.gSafetySerialNumber</Name>
-					<Comment><![CDATA[serial number of safety CPU]]></Comment>
-					<Type>UDINT</Type>
-				</Var>
-				<Var>
 					<Name>Safety.gSafetyCPUState</Name>
 					<Comment><![CDATA[CPU state as ethercat slave]]></Comment>
 					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Safety.gSafetySerialNumber</Name>
+					<Comment><![CDATA[serial number of safety CPU]]></Comment>
+					<Type>UDINT</Type>
 				</Var>
 				<Var>
 					<Name>Safety.gSafetyCPUADSadr</Name>
@@ -1329,44 +1311,44 @@ External Setpoint Generation:
 					<Type>USINT</Type>
 				</Var>
 				<Var>
-					<Name>Safety.iEstop1Diag</Name>
-					<Type GUID="{2A4AAA35-0BF8-03D0-72B3-558192052311}">structEstopDiag</Type>
-				</Var>
-				<Var>
 					<Name>Safety.iEstop2State</Name>
 					<Type>USINT</Type>
 				</Var>
 				<Var>
-					<Name>Safety.iEstop3State</Name>
-					<Type>USINT</Type>
+					<Name>Safety.iEstop1Diag</Name>
+					<Type GUID="{2A4AAA35-0BF8-03D0-72B3-558192052311}">structEstopDiag</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iEstop2Diag</Name>
 					<Type GUID="{2A4AAA35-0BF8-03D0-72B3-558192052311}">structEstopDiag</Type>
 				</Var>
 				<Var>
-					<Name>Safety.iEstop3Diag</Name>
-					<Type GUID="{2A4AAA35-0BF8-03D0-72B3-558192052311}">structEstopDiag</Type>
+					<Name>Safety.iEstop3State</Name>
+					<Type>USINT</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iAccessGate1State</Name>
 					<Type>USINT</Type>
 				</Var>
 				<Var>
-					<Name>Safety.iAccessGate2State</Name>
-					<Type>USINT</Type>
+					<Name>Safety.iEstop3Diag</Name>
+					<Type GUID="{2A4AAA35-0BF8-03D0-72B3-558192052311}">structEstopDiag</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iAccessGate1Diag</Name>
 					<Type GUID="{2A4AAA35-0BF8-03D0-72B3-558192052311}">structEstopDiag</Type>
 				</Var>
 				<Var>
-					<Name>Safety.iAccessGate2Diag</Name>
-					<Type GUID="{2A4AAA35-0BF8-03D0-72B3-558192052311}">structEstopDiag</Type>
+					<Name>Safety.iAccessGate2State</Name>
+					<Type>USINT</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iEnablingPendantState</Name>
 					<Type>USINT</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iAccessGate2Diag</Name>
+					<Type GUID="{2A4AAA35-0BF8-03D0-72B3-558192052311}">structEstopDiag</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iEnablingPendantDiag</Name>
@@ -1374,47 +1356,47 @@ External Setpoint Generation:
 				</Var>
 				<Var>
 					<Name>driveGlobals.ncAxis1.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+					<Type GUID="{10036166-C9D3-404B-BDD3-323034AAA7F4}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
 					<Name>driveGlobals.ncAxis2.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+					<Type GUID="{10036166-C9D3-404B-BDD3-323034AAA7F4}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
 					<Name>driveGlobals.ncAxis3.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+					<Type GUID="{10036166-C9D3-404B-BDD3-323034AAA7F4}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
 					<Name>driveGlobals.ncAxis4.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+					<Type GUID="{10036166-C9D3-404B-BDD3-323034AAA7F4}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
 					<Name>driveGlobals.ncAxis5.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+					<Type GUID="{10036166-C9D3-404B-BDD3-323034AAA7F4}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
 					<Name>driveGlobals.ncAxis6.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+					<Type GUID="{10036166-C9D3-404B-BDD3-323034AAA7F4}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
 					<Name>driveGlobals.ncAxis7.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+					<Type GUID="{10036166-C9D3-404B-BDD3-323034AAA7F4}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
 					<Name>driveGlobals.ncAxis8.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+					<Type GUID="{10036166-C9D3-404B-BDD3-323034AAA7F4}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
 					<Name>driveGlobals.ncAxis9.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+					<Type GUID="{10036166-C9D3-404B-BDD3-323034AAA7F4}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
 					<Name>driveGlobals.ncAxis10.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+					<Type GUID="{10036166-C9D3-404B-BDD3-323034AAA7F4}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
 					<Name>driveGlobals.hmiAxis.NcToPlc</Name>
-					<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+					<Type GUID="{10036166-C9D3-404B-BDD3-323034AAA7F4}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
 				</Var>
 				<Var>
 					<Name>S1_IO.Row01.iAdvanceDepth</Name>
@@ -5697,6 +5679,10 @@ outputs from PLC (i) program become inputs to safety program (q)]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
+					<Name>Safety.iModuleFault</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
 					<Name>Safety.iEnableSafetyDevicesuint</Name>
 					<Comment><![CDATA[on request (latch-use) from PLC program to safety program
 this comes from the "Motive Power ON" from the PLC
@@ -5710,10 +5696,6 @@ iEnableSafetyDevices	AT %Q*	:BOOL;]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>Safety.iModuleFault</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
 					<Name>Safety.iRunStop</Name>
 					<Type>BOOL</Type>
 				</Var>
@@ -5724,47 +5706,47 @@ iEnableSafetyDevices	AT %Q*	:BOOL;]]></Comment>
 				</Var>
 				<Var>
 					<Name>driveGlobals.ncAxis1.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+					<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
 					<Name>driveGlobals.ncAxis2.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+					<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
 					<Name>driveGlobals.ncAxis3.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+					<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
 					<Name>driveGlobals.ncAxis4.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+					<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
 					<Name>driveGlobals.ncAxis5.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+					<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
 					<Name>driveGlobals.ncAxis6.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+					<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
 					<Name>driveGlobals.ncAxis7.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+					<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
 					<Name>driveGlobals.ncAxis8.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+					<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
 					<Name>driveGlobals.ncAxis9.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+					<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
 					<Name>driveGlobals.ncAxis10.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+					<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
 					<Name>driveGlobals.hmiAxis.PlcToNc</Name>
-					<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+					<Type GUID="{63A84524-72E3-41C8-BEAB-4CCE44690A13}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 				</Var>
 				<Var>
 					<Name>S1_IO.Row01.qAdvanceCoil</Name>
@@ -9561,7 +9543,7 @@ iEnableSafetyDevices	AT %Q*	:BOOL;]]></Comment>
 			</Vars>
 			<Contexts>
 				<Context>
-					<Id>0</Id>
+					<Id NeedCalleeCall="true">0</Id>
 					<Name>PlcTask</Name>
 					<ManualConfig>
 						<OTCID>#x02010030</OTCID>
