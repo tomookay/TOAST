@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <POU Name="FB_PartBuild" Id="{bfc14baa-066e-4804-8b32-5d911ebfa702}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_PartBuild
 VAR_INPUT
@@ -2138,8 +2138,8 @@ END_VAR
                           <v n="Extensible">false</v>
                         </o>
                         <n n="InputFlags" />
-                        <l2 n="InputItems" cet="BoxTreeOperand">
-                          <o>
+                        <l2 n="InputItems">
+                          <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
                               <v n="Operand">"iStationData.PowerOn"</v>
                               <v n="Type">"BOOL"</v>
@@ -2154,11 +2154,94 @@ END_VAR
                               <v n="LValue">false</v>
                               <v n="Boolean">true</v>
                               <v n="IsInstance">false</v>
-                              <v n="Id">185L</v>
+                              <v n="Id">748L</v>
                             </o>
-                            <v n="Id">184L</v>
+                            <v n="Id">747L</v>
                           </o>
-                          <o>
+                          <o t="BoxTreeBox">
+                            <v n="BoxType">"OR"</v>
+                            <o n="Instance" t="Operand">
+                              <n n="Operand" />
+                              <v n="Type">""</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">""</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">0</v>
+                                <v n="Fixed">false</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">false</v>
+                              <v n="Boolean">false</v>
+                              <v n="IsInstance">true</v>
+                              <v n="Id">751L</v>
+                            </o>
+                            <o n="OutputItems" t="OutputItemList">
+                              <l2 n="OutputItems" />
+                            </o>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <n n="InputFlags" />
+                            <l2 n="InputItems" cet="BoxTreeOperand">
+                              <o>
+                                <o n="Operand" t="Operand">
+                                  <v n="Operand">"iStationData.AutoCycling"</v>
+                                  <v n="Type">"BOOL"</v>
+                                  <v n="Comment">""</v>
+                                  <v n="SymbolComment">""</v>
+                                  <v n="Address">""</v>
+                                  <o n="Flags" t="Flags">
+                                    <v n="Flags">0</v>
+                                    <v n="Fixed">true</v>
+                                    <v n="Extensible">false</v>
+                                  </o>
+                                  <v n="LValue">false</v>
+                                  <v n="Boolean">true</v>
+                                  <v n="IsInstance">false</v>
+                                  <v n="Id">185L</v>
+                                </o>
+                                <v n="Id">184L</v>
+                              </o>
+                              <o>
+                                <o n="Operand" t="Operand">
+                                  <v n="Operand">"iStationData.Manual"</v>
+                                  <v n="Type">"BOOL"</v>
+                                  <v n="Comment">""</v>
+                                  <v n="SymbolComment">""</v>
+                                  <v n="Address">""</v>
+                                  <o n="Flags" t="Flags">
+                                    <v n="Flags">0</v>
+                                    <v n="Fixed">true</v>
+                                    <v n="Extensible">false</v>
+                                  </o>
+                                  <v n="LValue">false</v>
+                                  <v n="Boolean">true</v>
+                                  <v n="IsInstance">false</v>
+                                  <v n="Id">754L</v>
+                                </o>
+                                <v n="Id">753L</v>
+                              </o>
+                            </l2>
+                            <o n="InputParam" t="ParamList">
+                              <l2 n="Names" />
+                              <l2 n="Types" />
+                            </o>
+                            <o n="OutputParam" t="ParamList">
+                              <l2 n="Names" />
+                              <l2 n="Types" />
+                            </o>
+                            <v n="CallType" t="Operator">Or</v>
+                            <n n="EN" />
+                            <n n="ENO" />
+                            <n n="STSnippet" />
+                            <v n="ContainsExtensibleInputs">false</v>
+                            <v n="ProvidesSTSnippet">false</v>
+                            <v n="Id">752L</v>
+                          </o>
+                          <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
                               <v n="Operand">"tDataRead"</v>
                               <v n="Type">"BOOL"</v>
@@ -4420,20 +4503,7 @@ END_CASE
       <LineId Id="1" Count="0" />
     </LineIds>
     <LineIds Name="FB_PartBuild.actReadComplexity">
-      <LineId Id="154" Count="0" />
-      <LineId Id="157" Count="1" />
-      <LineId Id="160" Count="1" />
-      <LineId Id="159" Count="0" />
-      <LineId Id="155" Count="1" />
-      <LineId Id="2" Count="26" />
-      <LineId Id="148" Count="5" />
-      <LineId Id="29" Count="10" />
-      <LineId Id="163" Count="0" />
-      <LineId Id="41" Count="101" />
-      <LineId Id="164" Count="1" />
-      <LineId Id="167" Count="0" />
-      <LineId Id="166" Count="0" />
-      <LineId Id="143" Count="4" />
+      <LineId Id="2" Count="163" />
       <LineId Id="1" Count="0" />
     </LineIds>
   </POU>
