@@ -1153,11 +1153,11 @@ External Setpoint Generation:
 		<ProjectVariant PvUseDefine="true">
 			<Variant>
 				<Name>NoPLC</Name>
+				<Name>Variant1</Name>
 				<Defines></Defines>
 			</Variant>
 			<Variant>
 				<Name>PLCTest</Name>
-				<Name>Variant1</Name>
 				<Name>Variant2</Name>
 				<Name>Variant3</Name>
 				<Defines/>
@@ -1311,44 +1311,44 @@ External Setpoint Generation:
 					<Type>USINT</Type>
 				</Var>
 				<Var>
-					<Name>Safety.iEstop2State</Name>
-					<Type>USINT</Type>
-				</Var>
-				<Var>
 					<Name>Safety.iEstop1Diag</Name>
 					<Type GUID="{2A4AAA35-0BF8-03D0-72B3-558192052311}">structEstopDiag</Type>
 				</Var>
 				<Var>
-					<Name>Safety.iEstop2Diag</Name>
-					<Type GUID="{2A4AAA35-0BF8-03D0-72B3-558192052311}">structEstopDiag</Type>
+					<Name>Safety.iEstop2State</Name>
+					<Type>USINT</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iEstop3State</Name>
 					<Type>USINT</Type>
 				</Var>
 				<Var>
-					<Name>Safety.iAccessGate1State</Name>
-					<Type>USINT</Type>
+					<Name>Safety.iEstop2Diag</Name>
+					<Type GUID="{2A4AAA35-0BF8-03D0-72B3-558192052311}">structEstopDiag</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iEstop3Diag</Name>
 					<Type GUID="{2A4AAA35-0BF8-03D0-72B3-558192052311}">structEstopDiag</Type>
 				</Var>
 				<Var>
-					<Name>Safety.iAccessGate1Diag</Name>
-					<Type GUID="{2A4AAA35-0BF8-03D0-72B3-558192052311}">structEstopDiag</Type>
+					<Name>Safety.iAccessGate1State</Name>
+					<Type>USINT</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iAccessGate2State</Name>
 					<Type>USINT</Type>
 				</Var>
 				<Var>
-					<Name>Safety.iEnablingPendantState</Name>
-					<Type>USINT</Type>
+					<Name>Safety.iAccessGate1Diag</Name>
+					<Type GUID="{2A4AAA35-0BF8-03D0-72B3-558192052311}">structEstopDiag</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iAccessGate2Diag</Name>
 					<Type GUID="{2A4AAA35-0BF8-03D0-72B3-558192052311}">structEstopDiag</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iEnablingPendantState</Name>
+					<Type>USINT</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iEnablingPendantDiag</Name>
@@ -5679,10 +5679,6 @@ outputs from PLC (i) program become inputs to safety program (q)]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Safety.iModuleFault</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
 					<Name>Safety.iEnableSafetyDevicesuint</Name>
 					<Comment><![CDATA[on request (latch-use) from PLC program to safety program
 this comes from the "Motive Power ON" from the PLC
@@ -5694,6 +5690,10 @@ iEnableSafetyDevices	AT %Q*	:BOOL;]]></Comment>
 				<Var>
 					<Name>Safety.iEnablePendantSafetyDevicesuint</Name>
 					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iModuleFault</Name>
+					<Type>BOOL</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iRunStop</Name>
