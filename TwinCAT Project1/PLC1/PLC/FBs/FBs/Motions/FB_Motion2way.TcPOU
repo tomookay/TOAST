@@ -577,8 +577,8 @@ END_VAR
                                     <v n="Extensible">false</v>
                                   </o>
                                   <n n="InputFlags" />
-                                  <l2 n="InputItems" cet="BoxTreeOperand">
-                                    <o>
+                                  <l2 n="InputItems">
+                                    <o t="BoxTreeOperand">
                                       <o n="Operand" t="Operand">
                                         <v n="Operand">"iCheckSwitchFaultsOff"</v>
                                         <v n="Type">"BOOL"</v>
@@ -597,7 +597,90 @@ END_VAR
                                       </o>
                                       <v n="Id">333L</v>
                                     </o>
-                                    <o>
+                                    <o t="BoxTreeBox">
+                                      <v n="BoxType">"OR"</v>
+                                      <o n="Instance" t="Operand">
+                                        <n n="Operand" />
+                                        <v n="Type">""</v>
+                                        <v n="Comment">""</v>
+                                        <v n="SymbolComment">""</v>
+                                        <v n="Address">""</v>
+                                        <o n="Flags" t="Flags">
+                                          <v n="Flags">0</v>
+                                          <v n="Fixed">false</v>
+                                          <v n="Extensible">false</v>
+                                        </o>
+                                        <v n="LValue">false</v>
+                                        <v n="Boolean">false</v>
+                                        <v n="IsInstance">true</v>
+                                        <v n="Id">442L</v>
+                                      </o>
+                                      <o n="OutputItems" t="OutputItemList">
+                                        <l2 n="OutputItems" />
+                                      </o>
+                                      <o n="Flags" t="Flags">
+                                        <v n="Flags">0</v>
+                                        <v n="Fixed">false</v>
+                                        <v n="Extensible">false</v>
+                                      </o>
+                                      <n n="InputFlags" />
+                                      <l2 n="InputItems" cet="BoxTreeOperand">
+                                        <o>
+                                          <o n="Operand" t="Operand">
+                                            <v n="Operand">"qAdvanceCoil"</v>
+                                            <v n="Type">"BOOL"</v>
+                                            <v n="Comment">""</v>
+                                            <v n="SymbolComment">""</v>
+                                            <v n="Address">""</v>
+                                            <o n="Flags" t="Flags">
+                                              <v n="Flags">0</v>
+                                              <v n="Fixed">true</v>
+                                              <v n="Extensible">false</v>
+                                            </o>
+                                            <v n="LValue">false</v>
+                                            <v n="Boolean">true</v>
+                                            <v n="IsInstance">false</v>
+                                            <v n="Id">441L</v>
+                                          </o>
+                                          <v n="Id">440L</v>
+                                        </o>
+                                        <o>
+                                          <o n="Operand" t="Operand">
+                                            <v n="Operand">"qReturnCoil"</v>
+                                            <v n="Type">"BOOL"</v>
+                                            <v n="Comment">""</v>
+                                            <v n="SymbolComment">""</v>
+                                            <v n="Address">""</v>
+                                            <o n="Flags" t="Flags">
+                                              <v n="Flags">0</v>
+                                              <v n="Fixed">true</v>
+                                              <v n="Extensible">false</v>
+                                            </o>
+                                            <v n="LValue">false</v>
+                                            <v n="Boolean">true</v>
+                                            <v n="IsInstance">false</v>
+                                            <v n="Id">445L</v>
+                                          </o>
+                                          <v n="Id">444L</v>
+                                        </o>
+                                      </l2>
+                                      <o n="InputParam" t="ParamList">
+                                        <l2 n="Names" />
+                                        <l2 n="Types" />
+                                      </o>
+                                      <o n="OutputParam" t="ParamList">
+                                        <l2 n="Names" />
+                                        <l2 n="Types" />
+                                      </o>
+                                      <v n="CallType" t="Operator">Or</v>
+                                      <n n="EN" />
+                                      <n n="ENO" />
+                                      <n n="STSnippet" />
+                                      <v n="ContainsExtensibleInputs">false</v>
+                                      <v n="ProvidesSTSnippet">false</v>
+                                      <v n="Id">443L</v>
+                                    </o>
+                                    <o t="BoxTreeOperand">
                                       <o n="Operand" t="Operand">
                                         <v n="Operand">"iAdvanceDepth"</v>
                                         <v n="Type">"BOOL"</v>
@@ -616,7 +699,7 @@ END_VAR
                                       </o>
                                       <v n="Id">329L</v>
                                     </o>
-                                    <o>
+                                    <o t="BoxTreeOperand">
                                       <o n="Operand" t="Operand">
                                         <v n="Operand">"iReturnDepth"</v>
                                         <v n="Type">"BOOL"</v>
