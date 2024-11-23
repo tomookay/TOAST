@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <POU Name="FB_HMI_Control" Id="{01ed13c7-6a6a-43a8-8dee-d4708dd83b55}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_HMI_Control
 VAR_INPUT
@@ -27,6 +27,7 @@ VAR_INPUT
 
 	iUnits: STRING := ' mm';
 	iPosn:   STRING := '0.0';
+	iUsePV:BOOL :=FALSE; //TRUE to use process value (PV) from HMI row input 
 END_VAR
 
 VAR_OUTPUT
@@ -34,6 +35,7 @@ VAR_OUTPUT
 	qAdvanceReq: BOOL;
 	qReturnReq: BOOL;
 	qResultMessageOffset: UINT;
+	qSP:STRING; //setpoint value returned from motionrow
 END_VAR
 
 VAR
@@ -43,6 +45,12 @@ VAR
 	
 	advPulse:R_TRIG;
 	retPulse:R_TRIG;
+	
+	
+	strSPvalue:STRING;
+	strPVvalue:STRING;
+	strResultSPPVstring:STRING;
+	
 END_VAR
 
 VAR_IN_OUT
@@ -146,9 +154,27 @@ stndata.MotionRow[iRowNumber].Advance.NumberOrder := iAdvanceNumber;
 //return number of order
 stndata.MotionRow[iRowNumber].Returned.NumberOrder := iReturnNumber;
 
-
-//assemble posn string
-stndata.MotionRow[iRowNumber].strPosn := CONCAT(STR1:=iPosn, STR2:=iUnits);
+IF iUsePV THEN
+	
+	//assemble SP / PV text
+	//SP: 123.456 PV:321.654 mm 
+	stndata.MotionRow[iRowNumber].strPosn := CONCAT(STR1:=iPosn, STR2:=iUnits);
+	
+	strSPvalue := CONCAT(STR1:='SP: ', STR2:=stndata.MotionRowBtn[iRowNumber].stnPosnInput);
+	strPVvalue := CONCAT(STR1:='PV: ', STR2:=stndata.MotionRow[iRowNumber].strPosn);	
+	strPVvalue := CONCAT(STR1:=' / ', STR2:=strPVvalue);	
+	strResultSPPVstring := CONCAT(STR1:=strSPvalue, STR2:=strPVvalue);
+	
+	stndata.MotionRow[iRowNumber].strPosn := strResultSPPVstring;
+	qSP := stndata.MotionRowBtn[iRowNumber].stnPosnInput;
+	 ELSE
+	//assemble posn string
+	// xxx.xxx <units>
+	// 123.456 mm
+	stndata.MotionRow[iRowNumber].strPosn := CONCAT(STR1:=iPosn, STR2:=iUnits);
+	qSP := '0.0';
+	
+END_IF
 
 IF gHMIButtons.btnAbsMode THEN
 	stndata.MotionRow[iRowNumber].bIsAbsSymSwitch := TRUE;
@@ -254,8 +280,22 @@ END_IF]]></ST>
       <LineId Id="214" Count="0" />
       <LineId Id="211" Count="0" />
       <LineId Id="216" Count="1" />
+      <LineId Id="448" Count="0" />
+      <LineId Id="450" Count="0" />
+      <LineId Id="453" Count="1" />
+      <LineId Id="458" Count="0" />
+      <LineId Id="461" Count="0" />
+      <LineId Id="465" Count="0" />
+      <LineId Id="472" Count="0" />
+      <LineId Id="460" Count="0" />
+      <LineId Id="468" Count="1" />
+      <LineId Id="449" Count="0" />
+      <LineId Id="447" Count="0" />
       <LineId Id="215" Count="0" />
+      <LineId Id="451" Count="1" />
       <LineId Id="218" Count="0" />
+      <LineId Id="470" Count="1" />
+      <LineId Id="442" Count="0" />
       <LineId Id="220" Count="0" />
       <LineId Id="219" Count="0" />
       <LineId Id="223" Count="2" />

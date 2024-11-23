@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <POU Name="S1_01_Motion_9" Id="{ef1120e8-9c65-459b-8c9e-8164d734c22c}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM S1_01_Motion_9
 VAR
@@ -226,7 +226,7 @@ END_VAR
                         <v n="LValue">false</v>
                         <v n="Boolean">false</v>
                         <v n="IsInstance">true</v>
-                        <v n="Id">464L</v>
+                        <v n="Id">593L</v>
                       </o>
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems" cet="Operand">
@@ -236,7 +236,7 @@ END_VAR
                             <v n="Type">"UINT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
-                            <v n="Address">"Constant_Address_Serialization_Value"</v>
+                            <v n="Address">""</v>
                             <o n="Flags" t="Flags">
                               <v n="Flags">0</v>
                               <v n="Fixed">false</v>
@@ -245,14 +245,14 @@ END_VAR
                             <v n="LValue">true</v>
                             <v n="Boolean">false</v>
                             <v n="IsInstance">false</v>
-                            <v n="Id">13L</v>
+                            <v n="Id">595L</v>
                           </o>
                           <o>
                             <v n="Operand">""</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
-                            <v n="Address">"Constant_Address_Serialization_Value"</v>
+                            <v n="Address">""</v>
                             <o n="Flags" t="Flags">
                               <v n="Flags">0</v>
                               <v n="Fixed">false</v>
@@ -261,14 +261,14 @@ END_VAR
                             <v n="LValue">true</v>
                             <v n="Boolean">false</v>
                             <v n="IsInstance">false</v>
-                            <v n="Id">56L</v>
+                            <v n="Id">596L</v>
                           </o>
                           <o>
                             <v n="Operand">""</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
-                            <v n="Address">"Constant_Address_Serialization_Value"</v>
+                            <v n="Address">""</v>
                             <o n="Flags" t="Flags">
                               <v n="Flags">0</v>
                               <v n="Fixed">false</v>
@@ -277,7 +277,7 @@ END_VAR
                             <v n="LValue">true</v>
                             <v n="Boolean">false</v>
                             <v n="IsInstance">false</v>
-                            <v n="Id">57L</v>
+                            <v n="Id">597L</v>
                           </o>
                           <o>
                             <v n="Operand">"tMessageOffset"</v>
@@ -294,6 +294,22 @@ END_VAR
                             <v n="Boolean">false</v>
                             <v n="IsInstance">false</v>
                             <v n="Id">245L</v>
+                          </o>
+                          <o>
+                            <v n="Operand">""</v>
+                            <v n="Type">"STRING"</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">""</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">true</v>
+                            <v n="Boolean">false</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">598L</v>
                           </o>
                         </l2>
                       </o>
@@ -619,6 +635,25 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
+                            <v n="Operand">""</v>
+                            <v n="Type">"BOOL"</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">""</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">false</v>
+                            <v n="Boolean">true</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">600L</v>
+                          </o>
+                          <v n="Id">599L</v>
+                        </o>
+                        <o t="BoxTreeOperand">
+                          <o n="Operand" t="Operand">
                             <v n="Operand">"S1_Global.station"</v>
                             <v n="Type">"typeStation"</v>
                             <v n="Comment">""</v>
@@ -656,6 +691,7 @@ END_VAR
                           <v>iReturnNumber</v>
                           <v>iUnits</v>
                           <v>iPosn</v>
+                          <v>iUsePV</v>
                           <v>stndata</v>
                         </l2>
                         <l2 n="Types" cet="String">
@@ -676,6 +712,7 @@ END_VAR
                           <v>UINT</v>
                           <v>STRING</v>
                           <v>STRING</v>
+                          <v>BOOL</v>
                           <v>typeStation[REF]</v>
                         </l2>
                       </o>
@@ -686,6 +723,7 @@ END_VAR
                           <v>qAdvanceReq</v>
                           <v>qReturnReq</v>
                           <v>qResultMessageOffset</v>
+                          <v>qSP</v>
                         </l2>
                         <l2 n="Types" cet="String">
                           <v>BOOL</v>
@@ -693,6 +731,7 @@ END_VAR
                           <v>BOOL</v>
                           <v>BOOL</v>
                           <v>UINT</v>
+                          <v>STRING</v>
                         </l2>
                       </o>
                       <v n="CallType" t="Operator">FunctionBlock</v>
@@ -701,7 +740,7 @@ END_VAR
                       <n n="STSnippet" />
                       <v n="ContainsExtensibleInputs">false</v>
                       <v n="ProvidesSTSnippet">false</v>
-                      <v n="Id">465L</v>
+                      <v n="Id">594L</v>
                     </o>
                   </l2>
                   <l2 n="Connectors" />
