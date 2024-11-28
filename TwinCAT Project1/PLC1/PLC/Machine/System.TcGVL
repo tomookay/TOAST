@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <GVL Name="System" Id="{fa1ba82a-a43b-47a5-9097-4bd33bbfce0d}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
@@ -56,9 +56,12 @@ networkadaptors: ARRAY [0..MAX_LOCAL_ADAPTERS] OF ST_IpAdapterInfo;
 sysDeviceInfo: Tc2_Utilities.ST_DeviceIdentificationEx;
 sysDeviceUpdate:BOOL;
 
-
 AmsNetIdstr: STRING(23);
 AmsNetIdbytes: ARRAY[0..5] OF BYTE;
+
+gHappyBirthday:BOOL;
+
+
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>
