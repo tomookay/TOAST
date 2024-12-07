@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <DUT Name="typeStationMode" Id="{4cdca883-5c17-4ed9-b7ea-6fce91fd8785}">
     <Declaration><![CDATA[TYPE typeStationMode :
 STRUCT
@@ -49,6 +49,12 @@ STRUCT
 	
 	StationStateColour:     DWORD;//colour feedback for station state of main screen
 	StationStateTextColour: DWORD;//colour feedback for station state of main screen
+	
+	stepNum:				INT;
+	stepNumListing:			ARRAY[0..32767] OF INT;
+	sizeofStepListing:		INT := 32767;
+	
+	
 
 
 END_STRUCT

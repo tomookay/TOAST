@@ -3,14 +3,17 @@
 	<Project ProjectGUID="{CBB6B967-8DC9-4921-B370-AF4230B79606}" Target64Bit="true" AutoPrioManagement="true" ShowHideConfigurations="#x346">
 		<System>
 			<Settings MaxCpus="12" MaxStackSize="32">
+				<Cpu CpuId="8" RtLimit="90" LatencyWarning="5000"/>
+				<Cpu CpuId="9" RtLimit="90" LatencyWarning="5000"/>
+				<Cpu CpuId="10" RtLimit="90" LatencyWarning="5000"/>
 				<Cpu CpuId="11" RtLimit="90" LatencyWarning="5000"/>
-				<IoIdleTask Priority="6" CycleTime="200000"/>
+				<IoIdleTask Priority="6" CycleTime="200000" Affinity="#x00000200"/>
 			</Settings>
 			<Tasks>
-				<Task Id="3" Priority="4" CycleTime="100000" AmsPort="350" TickModulo="1" DisableFpExceptions="true" AdtTasks="true">
+				<Task Id="3" Priority="4" CycleTime="100000" AmsPort="350" Affinity="#x00000100" TickModulo="1" DisableFpExceptions="true" AdtTasks="true">
 					<Name>PlcTask</Name>
 				</Task>
-				<Task Id="4" Priority="8" CycleTime="2000000" AmsPort="351" DisableFpExceptions="true" AdtTasks="true">
+				<Task Id="4" Priority="8" CycleTime="2000000" AmsPort="351" Affinity="#x00000400" DisableFpExceptions="true" AdtTasks="true">
 					<Name>VISU_TASK</Name>
 				</Task>
 			</Tasks>
