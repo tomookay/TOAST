@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <POU Name="FB_PowerDelay" Id="{8fccab49-d700-484a-83d5-ad9ca7362ed3}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_PowerDelay
 VAR_INPUT
@@ -8,6 +8,7 @@ VAR_INPUT
 	iPowerOffButton: BOOL;
 	iIsStationSelected: BOOL;
 	iPowerOnDelay: TIME:=T#3S; //option
+	iMotionPowerOn:BOOL;
 END_VAR
 VAR_OUTPUT
 	qPowerState: BOOL;
@@ -45,6 +46,15 @@ END_IF
 IF iPowerOffButton AND iIsStationSelected THEN
 	qPowerState := FALSE;
 END_IF
+
+//motion power on feedback logic
+IF qPowerState AND iMotionPowerOn THEN
+	qMotionPowerState := TRUE;
+	ELSE
+	qMotionPowerState := FALSE;
+END_IF
+
+
  			]]></ST>
     </Implementation>
     <LineIds Name="FB_PowerDelay">
@@ -59,6 +69,13 @@ END_IF
       <LineId Id="46" Count="0" />
       <LineId Id="44" Count="0" />
       <LineId Id="47" Count="3" />
+      <LineId Id="106" Count="0" />
+      <LineId Id="103" Count="0" />
+      <LineId Id="107" Count="1" />
+      <LineId Id="110" Count="1" />
+      <LineId Id="109" Count="0" />
+      <LineId Id="104" Count="0" />
+      <LineId Id="102" Count="0" />
       <LineId Id="43" Count="0" />
     </LineIds>
   </POU>

@@ -3,7 +3,7 @@
   <POU Name="FB_Step" Id="{61a658dd-5a98-09d1-28da-afd0d5f9d3a6}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_Step
 VAR_INPUT
-	iNumber:INT; //requested number of the step
+	iThisStepNum:INT; //requested number of the step
 	iDepth:BOOL; //TRUE if the step has been completed to depth
 END_VAR
 VAR_OUTPUT
@@ -17,14 +17,25 @@ VAR
 	j: INT;
 	tNextStepNum: INT;
 	osrDepth:R_TRIG;
+	rRunningTotal: INT;
+	k: INT;
 END_VAR
 VAR_IN_OUT
 	stationState:typeStationMode;
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//enable function
-//IF stationState.AutoCycling OR TRUE THEN
+      <ST><![CDATA[//step counter
+//starting step = 0
+//if the step counter is = 0, and if the autocycling state is TRUE, then move the step counter to 1
+//
+//each FB call houses one step change to the next step
+//the depth state of a step triggers the counter to move to the next step number,
+//e.g. 0,1,2,3,10,11,20,30,40,100,500
+
+
+//enable function
+//IF stationState.AutoCycling THEN
 IF stationState.AutoCycling OR TRUE THEN
 	tStepLive := TRUE;
 	ELSE
@@ -52,7 +63,7 @@ END_IF
 
 //if the previous step number, stepNum, then perform the step
 IF tStepLive THEN
-	IF stationState.stepNum = iNumber THEN
+	IF stationState.stepNum = iThisStepNum THEN
 			qGo := TRUE;
 		ELSE
 			qGo := FALSE;
@@ -69,7 +80,6 @@ IF tNextStepNum = stationState.sizeofStepListing THEN
 		qIsLastStep := FALSE;
 END_IF
 
-
 //depth trigger
 osrDepth(CLK := iDepth);
 IF osrDepth.Q THEN
@@ -82,6 +92,12 @@ IF osrDepth.Q THEN
 	
 END_IF
 
+//starting step
+IF stationState.stepNum = 0 AND tStepLive THEN
+	//stationState.stepNum = 1
+	
+END_IF
+
 
 
  ]]></ST>
@@ -89,17 +105,17 @@ END_IF
     <Action Name="actFindNextStep" Id="{2a97f42f-5167-0878-0a4e-4131435005a2}">
       <Implementation>
         <ST><![CDATA[//assign location of step
-stationState.stepNumListing[iNumber] := iNumber;
+stationState.stepNumListing[iThisStepNum] := iThisStepNum;
 
 //assign last step, for continuity
 stationState.stepNumListing[stationState.sizeofStepListing] := stationState.sizeofStepListing;
 
 
 //search for next step number, starting from the input from the current step, 
-FOR j := iNumber TO stationState.sizeofStepListing DO
+FOR j := iThisStepNum TO stationState.sizeofStepListing DO
 	//
 	//find the next highest number
-	IF stationState.stepNumListing[j] > iNumber THEN
+	IF stationState.stepNumListing[j] > iThisStepNum THEN
 		tNextStepNum := j; 
 		
 		//no further steps found, assign max possible number
@@ -110,64 +126,25 @@ FOR j := iNumber TO stationState.sizeofStepListing DO
 		
 		EXIT;
 	END_IF
-END_FOR
-]]></ST>
+END_FOR]]></ST>
       </Implementation>
     </Action>
     <LineIds Name="FB_Step">
-      <LineId Id="9" Count="0" />
-      <LineId Id="29" Count="0" />
-      <LineId Id="35" Count="0" />
-      <LineId Id="30" Count="0" />
-      <LineId Id="32" Count="1" />
-      <LineId Id="31" Count="0" />
-      <LineId Id="44" Count="0" />
-      <LineId Id="37" Count="0" />
-      <LineId Id="36" Count="0" />
-      <LineId Id="38" Count="3" />
-      <LineId Id="46" Count="0" />
-      <LineId Id="45" Count="0" />
-      <LineId Id="48" Count="1" />
-      <LineId Id="53" Count="0" />
-      <LineId Id="55" Count="2" />
-      <LineId Id="54" Count="0" />
-      <LineId Id="50" Count="2" />
-      <LineId Id="58" Count="11" />
-      <LineId Id="75" Count="0" />
-      <LineId Id="70" Count="4" />
-      <LineId Id="77" Count="0" />
-      <LineId Id="81" Count="1" />
-      <LineId Id="79" Count="0" />
-      <LineId Id="83" Count="0" />
-      <LineId Id="85" Count="1" />
-      <LineId Id="108" Count="0" />
-      <LineId Id="110" Count="3" />
-      <LineId Id="109" Count="0" />
-      <LineId Id="87" Count="0" />
-      <LineId Id="84" Count="0" />
-      <LineId Id="78" Count="0" />
-      <LineId Id="43" Count="0" />
+      <LineId Id="215" Count="0" />
+      <LineId Id="220" Count="6" />
+      <LineId Id="219" Count="0" />
+      <LineId Id="154" Count="45" />
+      <LineId Id="201" Count="10" />
+      <LineId Id="228" Count="0" />
+      <LineId Id="227" Count="0" />
+      <LineId Id="229" Count="0" />
+      <LineId Id="232" Count="0" />
+      <LineId Id="230" Count="1" />
+      <LineId Id="212" Count="2" />
       <LineId Id="42" Count="0" />
     </LineIds>
     <LineIds Name="FB_Step.actFindNextStep">
-      <LineId Id="12" Count="0" />
-      <LineId Id="15" Count="0" />
-      <LineId Id="28" Count="0" />
-      <LineId Id="27" Count="0" />
-      <LineId Id="16" Count="0" />
-      <LineId Id="13" Count="1" />
-      <LineId Id="5" Count="2" />
-      <LineId Id="10" Count="1" />
-      <LineId Id="17" Count="0" />
-      <LineId Id="20" Count="0" />
-      <LineId Id="25" Count="0" />
-      <LineId Id="22" Count="1" />
-      <LineId Id="26" Count="0" />
-      <LineId Id="24" Count="0" />
-      <LineId Id="21" Count="0" />
-      <LineId Id="19" Count="0" />
-      <LineId Id="18" Count="0" />
-      <LineId Id="9" Count="0" />
+      <LineId Id="33" Count="21" />
       <LineId Id="3" Count="0" />
     </LineIds>
   </POU>
