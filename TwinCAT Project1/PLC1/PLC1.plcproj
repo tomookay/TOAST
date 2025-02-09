@@ -148,8 +148,10 @@
       </Events>
     </DeploymentEvents>
     <CompilerDefines>VISU_USEWSTRING</CompilerDefines>
-    <ProjectVersion>0.0.1</ProjectVersion>
+    <ProjectVersion>0.0.1.1</ProjectVersion>
     <CombineIds>true</CombineIds>
+    <Company>Company Name</Company>
+    <Title>Project Title</Title>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="HMI1\Data\gLicenceView.TcGVL">
@@ -318,6 +320,10 @@
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
     <Compile Include="HMI1\Screens\System\Sys_900_About.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="HMI1\Screens\System\Sys_902_Version.TcVIS">
       <SubType>Code</SubType>
       <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
@@ -813,6 +819,21 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PLC\Safety\structSafetyEstopDiagBOOList.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Project Information\F_GetCompany.TcPOU">
+      <SubType>Code</SubType>
+      <SystemCall>true</SystemCall>
+    </Compile>
+    <Compile Include="Project Information\F_GetTitle.TcPOU">
+      <SubType>Code</SubType>
+      <SystemCall>true</SystemCall>
+    </Compile>
+    <Compile Include="Project Information\F_GetVersion.TcPOU">
+      <SubType>Code</SubType>
+      <SystemCall>true</SystemCall>
+    </Compile>
+    <Compile Include="Version\Global_Version.TcGVL">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="X_DUTs\Diagnostic\typeDPSlaveIndicator.TcDUT">
@@ -1998,6 +2019,8 @@
     <Folder Include="PLC\Machine\Station 1\Motions\Screen 1" />
     <Folder Include="PLC\Machine\Station 1\Sequence" />
     <Folder Include="PLC\Safety" />
+    <Folder Include="Project Information" />
+    <Folder Include="Version" />
     <Folder Include="X_DUTs" />
     <Folder Include="X_DUTs\HMI" />
     <Folder Include="X_DUTs\Motion" />
