@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <POU Name="pouEtherCATdiag" Id="{73650198-8c30-49b6-b422-2b646bfaa17e}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM pouEtherCATdiag
 VAR
@@ -27,6 +27,21 @@ VAR
 	isCoecbRead: UDINT;
 	currentReadNum: UINT;
 	f: UINT;
+	
+	getallSlaveState:FB_EcGetAllSlaveStates;// ST_EcSlaveStateST_EcSlaveState;
+	
+	test2: BOOL;
+	strSelectedMaster: INT;
+	sizeofdetaildiag: UINT;
+	sizeofdiagscreen: UINT;
+	timbtnoff: TON;
+	localreset: BOOL;
+	
+	readDataFromSlaves: BOOL;
+	ReadNextData:F_TRIG; //read data on next EC command
+	
+	getmoreSlaveData: BOOL;
+	testercord: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -198,13 +213,13 @@ END_VAR
                   <v n="FBDValid">false</v>
                   <v n="ILValid">false</v>
                   <l2 n="ILLines" />
-                  <v n="Comment">"update listing in array"</v>
+                  <v n="Comment">"move data into local array for later use"</v>
                   <v n="Title">""</v>
                   <v n="Label">""</v>
                   <v n="OutCommented">false</v>
                   <l2 n="NetworkItems" cet="BoxTreeBox">
                     <o>
-                      <v n="BoxType">"actEtherCATSlaveDiag"</v>
+                      <v n="BoxType">"actMoveLocalData"</v>
                       <o n="Instance" t="Operand">
                         <n n="Operand" />
                         <v n="Type">""</v>
@@ -219,7 +234,7 @@ END_VAR
                         <v n="LValue">false</v>
                         <v n="Boolean">false</v>
                         <v n="IsInstance">true</v>
-                        <v n="Id">38L</v>
+                        <v n="Id">397L</v>
                       </o>
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems">
@@ -240,7 +255,7 @@ END_VAR
                             <v n="Fixed">false</v>
                             <v n="Extensible">false</v>
                           </o>
-                          <v n="Id">269L</v>
+                          <v n="Id">415L</v>
                         </o>
                       </l2>
                       <o n="InputParam" t="ParamList">
@@ -265,11 +280,11 @@ END_VAR
                       <n n="STSnippet" />
                       <v n="ContainsExtensibleInputs">false</v>
                       <v n="ProvidesSTSnippet">false</v>
-                      <v n="Id">39L</v>
+                      <v n="Id">398L</v>
                     </o>
                   </l2>
                   <l2 n="Connectors" />
-                  <v n="Id">5L</v>
+                  <v n="Id">396L</v>
                 </o>
                 <o>
                   <v n="ILActive">false</v>
@@ -318,7 +333,7 @@ END_VAR
                             <v n="Fixed">false</v>
                             <v n="Extensible">false</v>
                           </o>
-                          <v n="Id">84L</v>
+                          <v n="Id">422L</v>
                         </o>
                       </l2>
                       <o n="InputParam" t="ParamList">
@@ -348,6 +363,84 @@ END_VAR
                   </l2>
                   <l2 n="Connectors" />
                   <v n="Id">65L</v>
+                </o>
+                <o>
+                  <v n="ILActive">false</v>
+                  <v n="FBDValid">false</v>
+                  <v n="ILValid">false</v>
+                  <l2 n="ILLines" />
+                  <v n="Comment">"update listing in array"</v>
+                  <v n="Title">""</v>
+                  <v n="Label">""</v>
+                  <v n="OutCommented">false</v>
+                  <l2 n="NetworkItems" cet="BoxTreeBox">
+                    <o>
+                      <v n="BoxType">"actEtherCATSlaveDiag"</v>
+                      <o n="Instance" t="Operand">
+                        <n n="Operand" />
+                        <v n="Type">""</v>
+                        <v n="Comment">""</v>
+                        <v n="SymbolComment">""</v>
+                        <v n="Address">""</v>
+                        <o n="Flags" t="Flags">
+                          <v n="Flags">0</v>
+                          <v n="Fixed">false</v>
+                          <v n="Extensible">false</v>
+                        </o>
+                        <v n="LValue">false</v>
+                        <v n="Boolean">false</v>
+                        <v n="IsInstance">true</v>
+                        <v n="Id">409L</v>
+                      </o>
+                      <o n="OutputItems" t="OutputItemList">
+                        <l2 n="OutputItems">
+                          <n />
+                        </l2>
+                      </o>
+                      <o n="Flags" t="Flags">
+                        <v n="Flags">0</v>
+                        <v n="Fixed">true</v>
+                        <v n="Extensible">false</v>
+                      </o>
+                      <n n="InputFlags" />
+                      <l2 n="InputItems" cet="BoxTreeTerminator">
+                        <o>
+                          <n n="Input" />
+                          <o n="Flags" t="Flags">
+                            <v n="Flags">0</v>
+                            <v n="Fixed">false</v>
+                            <v n="Extensible">false</v>
+                          </o>
+                          <v n="Id">425L</v>
+                        </o>
+                      </l2>
+                      <o n="InputParam" t="ParamList">
+                        <l2 n="Names" cet="String">
+                          <v>EN</v>
+                        </l2>
+                        <l2 n="Types" cet="String">
+                          <v>BOOL</v>
+                        </l2>
+                      </o>
+                      <o n="OutputParam" t="ParamList">
+                        <l2 n="Names" cet="String">
+                          <v>ENO</v>
+                        </l2>
+                        <l2 n="Types" cet="String">
+                          <v>BOOL</v>
+                        </l2>
+                      </o>
+                      <v n="CallType" t="Operator">Action</v>
+                      <v n="EN">true</v>
+                      <v n="ENO">true</v>
+                      <n n="STSnippet" />
+                      <v n="ContainsExtensibleInputs">false</v>
+                      <v n="ProvidesSTSnippet">false</v>
+                      <v n="Id">410L</v>
+                    </o>
+                  </l2>
+                  <l2 n="Connectors" />
+                  <v n="Id">408L</v>
                 </o>
                 <o>
                   <v n="ILActive">false</v>
@@ -415,84 +508,6 @@ END_VAR
                   <v n="FBDValid">false</v>
                   <v n="ILValid">false</v>
                   <l2 n="ILLines" />
-                  <v n="Comment">"move data into local array for later use"</v>
-                  <v n="Title">""</v>
-                  <v n="Label">""</v>
-                  <v n="OutCommented">false</v>
-                  <l2 n="NetworkItems" cet="BoxTreeBox">
-                    <o>
-                      <v n="BoxType">"actMoveLocalData"</v>
-                      <o n="Instance" t="Operand">
-                        <n n="Operand" />
-                        <v n="Type">""</v>
-                        <v n="Comment">""</v>
-                        <v n="SymbolComment">""</v>
-                        <v n="Address">""</v>
-                        <o n="Flags" t="Flags">
-                          <v n="Flags">0</v>
-                          <v n="Fixed">false</v>
-                          <v n="Extensible">false</v>
-                        </o>
-                        <v n="LValue">false</v>
-                        <v n="Boolean">false</v>
-                        <v n="IsInstance">true</v>
-                        <v n="Id">125L</v>
-                      </o>
-                      <o n="OutputItems" t="OutputItemList">
-                        <l2 n="OutputItems">
-                          <n />
-                        </l2>
-                      </o>
-                      <o n="Flags" t="Flags">
-                        <v n="Flags">0</v>
-                        <v n="Fixed">true</v>
-                        <v n="Extensible">false</v>
-                      </o>
-                      <n n="InputFlags" />
-                      <l2 n="InputItems" cet="BoxTreeTerminator">
-                        <o>
-                          <n n="Input" />
-                          <o n="Flags" t="Flags">
-                            <v n="Flags">0</v>
-                            <v n="Fixed">false</v>
-                            <v n="Extensible">false</v>
-                          </o>
-                          <v n="Id">270L</v>
-                        </o>
-                      </l2>
-                      <o n="InputParam" t="ParamList">
-                        <l2 n="Names" cet="String">
-                          <v>EN</v>
-                        </l2>
-                        <l2 n="Types" cet="String">
-                          <v>BOOL</v>
-                        </l2>
-                      </o>
-                      <o n="OutputParam" t="ParamList">
-                        <l2 n="Names" cet="String">
-                          <v>ENO</v>
-                        </l2>
-                        <l2 n="Types" cet="String">
-                          <v>BOOL</v>
-                        </l2>
-                      </o>
-                      <v n="CallType" t="Operator">Action</v>
-                      <v n="EN">true</v>
-                      <v n="ENO">true</v>
-                      <n n="STSnippet" />
-                      <v n="ContainsExtensibleInputs">false</v>
-                      <v n="ProvidesSTSnippet">false</v>
-                      <v n="Id">126L</v>
-                    </o>
-                  </l2>
-                  <l2 n="Connectors" />
-                  <v n="Id">102L</v>
-                </o>
-                <o>
-                  <v n="ILActive">false</v>
-                  <v n="FBDValid">false</v>
-                  <v n="ILValid">false</v>
-                  <l2 n="ILLines" />
                   <v n="Comment">""</v>
                   <v n="Title">""</v>
                   <v n="Label">""</v>
@@ -535,7 +550,7 @@ END_VAR
                             <v n="Fixed">false</v>
                             <v n="Extensible">false</v>
                           </o>
-                          <v n="Id">186L</v>
+                          <v n="Id">364L</v>
                         </o>
                       </l2>
                       <o n="InputParam" t="ParamList">
@@ -566,6 +581,161 @@ END_VAR
                   <l2 n="Connectors" />
                   <v n="Id">166L</v>
                 </o>
+                <o>
+                  <v n="ILActive">false</v>
+                  <v n="FBDValid">false</v>
+                  <v n="ILValid">false</v>
+                  <l2 n="ILLines" />
+                  <v n="Comment">""</v>
+                  <v n="Title">""</v>
+                  <v n="Label">""</v>
+                  <v n="OutCommented">false</v>
+                  <l2 n="NetworkItems" cet="BoxTreeAssign">
+                    <o>
+                      <o n="OutputItems" t="OutputItemList">
+                        <l2 n="OutputItems" cet="Operand">
+                          <o>
+                            <v n="Operand">"etherCATdiag.btnUpdate"</v>
+                            <v n="Type">"BOOL"</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">""</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">3</v>
+                              <v n="Fixed">true</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">true</v>
+                            <v n="Boolean">true</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">353L</v>
+                          </o>
+                        </l2>
+                      </o>
+                      <o n="Flags" t="Flags">
+                        <v n="Flags">0</v>
+                        <v n="Fixed">false</v>
+                        <v n="Extensible">false</v>
+                      </o>
+                      <o n="RValue" t="BoxTreeBox">
+                        <v n="BoxType">"TON"</v>
+                        <o n="Instance" t="Operand">
+                          <v n="Operand">"timbtnoff"</v>
+                          <v n="Type">"TON"</v>
+                          <v n="Comment">""</v>
+                          <v n="SymbolComment">""</v>
+                          <v n="Address">""</v>
+                          <o n="Flags" t="Flags">
+                            <v n="Flags">0</v>
+                            <v n="Fixed">false</v>
+                            <v n="Extensible">false</v>
+                          </o>
+                          <v n="LValue">false</v>
+                          <v n="Boolean">false</v>
+                          <v n="IsInstance">true</v>
+                          <v n="Id">355L</v>
+                        </o>
+                        <o n="OutputItems" t="OutputItemList">
+                          <l2 n="OutputItems" cet="Operand">
+                            <n />
+                            <o>
+                              <v n="Operand">""</v>
+                              <v n="Type">"TIME"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">""</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">0</v>
+                                <v n="Fixed">false</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">true</v>
+                              <v n="Boolean">false</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">357L</v>
+                            </o>
+                          </l2>
+                        </o>
+                        <o n="Flags" t="Flags">
+                          <v n="Flags">0</v>
+                          <v n="Fixed">false</v>
+                          <v n="Extensible">false</v>
+                        </o>
+                        <n n="InputFlags" />
+                        <l2 n="InputItems" cet="BoxTreeOperand">
+                          <o>
+                            <o n="Operand" t="Operand">
+                              <v n="Operand">"etherCATdiag.btnUpdate"</v>
+                              <v n="Type">"BOOL"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">""</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">0</v>
+                                <v n="Fixed">false</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">false</v>
+                              <v n="Boolean">true</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">352L</v>
+                            </o>
+                            <v n="Id">351L</v>
+                          </o>
+                          <o>
+                            <o n="Operand" t="Operand">
+                              <v n="Operand">"t#1s"</v>
+                              <v n="Type">"TIME"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">""</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">0</v>
+                                <v n="Fixed">false</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">false</v>
+                              <v n="Boolean">false</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">359L</v>
+                            </o>
+                            <v n="Id">358L</v>
+                          </o>
+                        </l2>
+                        <o n="InputParam" t="ParamList">
+                          <l2 n="Names" cet="String">
+                            <v>IN</v>
+                            <v>PT</v>
+                          </l2>
+                          <l2 n="Types" cet="String">
+                            <v>BOOL</v>
+                            <v>TIME</v>
+                          </l2>
+                        </o>
+                        <o n="OutputParam" t="ParamList">
+                          <l2 n="Names" cet="String">
+                            <v>Q</v>
+                            <v>ET</v>
+                          </l2>
+                          <l2 n="Types" cet="String">
+                            <v>BOOL</v>
+                            <v>TIME</v>
+                          </l2>
+                        </o>
+                        <v n="CallType" t="Operator">FunctionBlock</v>
+                        <v n="EN">false</v>
+                        <v n="ENO">false</v>
+                        <n n="STSnippet" />
+                        <v n="ContainsExtensibleInputs">false</v>
+                        <v n="ProvidesSTSnippet">false</v>
+                        <v n="Id">356L</v>
+                      </o>
+                      <v n="Id">354L</v>
+                    </o>
+                  </l2>
+                  <l2 n="Connectors" />
+                  <v n="Id">350L</v>
+                </o>
               </l2>
               <v n="BranchCounter">0</v>
               <v n="ValidIds">true</v>
@@ -593,21 +763,21 @@ END_VAR
     </Implementation>
     <Action Name="actEtherCATSlaveDiag" Id="{ad26e273-933b-4a92-8e3a-4cf2719bddff}">
       <Implementation>
-        <ST><![CDATA[IF System.PulseOneSecond THEN
-	FOR i := 1 TO  etherCATdiag.maxNumEtherCATSlaves DO //
+        <ST><![CDATA[localreset := gHMIButtons.btnReset;
+
+
+
+IF System.PulseOneSecond OR localreset THEN
+	FOR i := 0 TO  etherCATdiag.maxNumEtherCATSlaves DO //
 	
-	////////////////////////////////////////////////////////////////
-	//test write value
-	//TODO: REMOVE
-	//etherCATdiag.RawEtherCATStateDiag[i] := 16#8008; 
-	//etherCATdiag.EtherCATslaveDiag[i].SlaveNumber := i;
-	//etherCATdiag.EtherCATslaveDiag[i].crcCount.portA := i;
-	/////////////////////////////////////////////////////////////////
-	
+	//from FB_EcGetAllSlaveStates	
 	//move temp data from scan to temp declarations
-	decode(iVal:=etherCATdiag.RawEtherCATStateDiag[i]);
+	decode(iVal:=etherCATdiag.slavestates[i].deviceState);
 	etherCATdiag.EtherCATslaveDiag[i].currentState.state := decode.state;
 	etherCATdiag.EtherCATslaveDiag[i].currentState.suffix := decode.suffix;
+	
+	
+	//TODO: LINK STATES
 	
 		//check values for fault
 		//current state
@@ -620,17 +790,21 @@ END_VAR
 		
 		//record outer box
 		//record previous state, latching 
-		IF etherCATdiag.EtherCATslaveDiag[i].currentState.isFault = FALSE AND 
+		IF etherCATdiag.EtherCATslaveDiag[i].currentState.isFault = TRUE AND 
 		   etherCATdiag.EtherCATslaveDiag[i].historicalState.isFault = FALSE THEN
 			//at this time, record the current state in the historical state
+			etherCATdiag.EtherCATslaveDiag[i].historicalState.isFault := TRUE;
 			etherCATdiag.EtherCATslaveDiag[i].historicalState.state := etherCATdiag.EtherCATslaveDiag[i].currentState.state;
 			etherCATdiag.EtherCATslaveDiag[i].historicalState.suffix := etherCATdiag.EtherCATslaveDiag[i].currentState.suffix;
+			etherCATdiag.EtherCATslaveDiag[i].historicalState.colour := HMIColour.colourRed;
 		END_IF
 		
 		//clear inner box when fault is resolved
-		IF 	etherCATdiag.EtherCATslaveDiag[i].currentState.isFault = FALSE AND
-		   gHMIButtons.btnReset THEN
-		   etherCATdiag.EtherCATslaveDiag[i].historicalState.isFault := FALSE;
+	IF 	etherCATdiag.EtherCATslaveDiag[i].currentState.isFault = FALSE AND localreset THEN
+	   		etherCATdiag.EtherCATslaveDiag[i].historicalState.isFault := FALSE;
+	   		etherCATdiag.EtherCATslaveDiag[i].historicalState.state := etherCATdiag.EtherCATslaveDiag[i].currentState.state;
+			etherCATdiag.EtherCATslaveDiag[i].historicalState.suffix := etherCATdiag.EtherCATslaveDiag[i].currentState.suffix;
+			etherCATdiag.EtherCATslaveDiag[i].historicalState.colour := HMIColour.colourGreen;
 		END_IF
 				//check if any suffix fault exits
 				IF etherCATdiag.EtherCATslaveDiag[i].currentState.suffix > 1 THEN
@@ -731,15 +905,40 @@ isCoecbRead := readcoe.cbRead;
         <ST><![CDATA[//convert AMSNETID type to string
 idbGetConfSlaves.sNetId := F_CreateAmsNetId(nIds:=system.ecMasterData[1].ecAMSmaster);
 
+
+
+etherCATmasters.t_amsnetIDSelectedMaster := F_CreateAmsNetId(nIds:=system.ecMasterData[1].ecAMSmaster);
+
+readDataFromSlaves := System.PulseTenSecond;
+
+
 //get slave info
-idbGetConfSlaves(	sNetId 					:=,
+idbGetConfSlaves(	sNetId 					:=etherCATmasters.t_amsnetIDSelectedMaster,
 					pArrEcConfSlaveInfo		:=ADR(etherCATdiag.arryEcConfSlaveInfo),
 					cbBufLen				:=SIZEOF(etherCATdiag.arryEcConfSlaveInfo),
-					bExecute				:=test,
+					bExecute				:=readDataFromSlaves AND NOT getallSlaveState.bBusy,
 					tTimeout				:=DEFAULT_ADS_TIMEOUT
 				);
-				
 
+//on fallind edge on busy, read next data				
+
+readnextdata(CLK := idbGetConfSlaves.bBusy);
+getmoreSlaveData := readnextdata.Q;
+
+IF readnextdata.Q THEN
+	testercord := TRUE;
+END_IF
+
+//ST_EcSlaveState
+//getallSlaveState.sNetId := F_CreateAmsNetId(nIds:=system.ecMasterData[1].ecAMSmaster);
+
+getallSlaveState(	sNetId					:=etherCATmasters.t_amsnetIDSelectedMaster,
+					pStateBuf				:=ADR(etherCATdiag.slavestates),
+					cbBufLen				:=SIZEOF(etherCATdiag.slavestates),
+					bExecute				:=getmoreSlaveData,
+					tTimeout				:=DEFAULT_ADS_TIMEOUT
+					);
+	
 ]]></ST>
       </Implementation>
     </Action>
@@ -754,15 +953,22 @@ IF System.PulseOneSecond THEN
 						srcAddr 		:=	ADR(etherCATdiag.diagScreen[etherCATdiag.detailDiagNum]),
 						n 				:=	SIZEOF(etherCATdiag.detailDiag)
 						);	
-END_IF]]></ST>
+END_IF
+
+sizeofdetaildiag := SIZEOF(etherCATdiag.detailDiag);
+sizeofdiagscreen := SIZEOF(etherCATdiag.diagScreen);
+]]></ST>
       </Implementation>
     </Action>
     <Action Name="actMoveLocalData" Id="{07442dd0-a551-4aff-8d35-4ea4b270238f}">
       <Implementation>
-        <ST><![CDATA[IF System.PulseOneSecond THEN
+        <ST><![CDATA[IF  System.PulseOneSecond THEN //System.PulseOneSecond
 	//move data from FB_EcGetConfSlaves (etherCATdiag.arryEcConfSlaveInfo) to data for HMI
-	FOR a := 1 TO etherCATdiag.maxNumEtherCATSlaves DO
+	FOR a := 0 TO etherCATdiag.maxNumEtherCATSlaves DO
 		etherCATdiag.EtherCATslaveDiag[a].ConfigData := etherCATdiag.arryEcConfSlaveInfo[a];
+		
+		//create order for use in PLC logic ordering			
+		etherCATdiag.EtherCATslaveDiag[a].hmiNum := a;
 	END_FOR
 END_IF]]></ST>
       </Implementation>
@@ -2048,7 +2254,7 @@ END_IF]]></ST>
                           <o>
                             <o n="Operand" t="Operand">
                               <v n="Operand">"adr(etherCATdiag.EtherCATslaveDiag) + tDiagScreenPointer"</v>
-                              <v n="Type">"POINTER TO ARRAY [1..maxNumEtherCATSlaves] OF typeEtherCATIndicator"</v>
+                              <v n="Type">"POINTER TO ARRAY [0..maxNumEtherCATSlaves] OF typeEtherCATIndicator"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
                               <v n="Address">""</v>
@@ -2149,7 +2355,7 @@ END_IF]]></ST>
       <Implementation>
         <ST><![CDATA[//update array memory
 
-IF System.PulseOneSecond THEN
+IF System.PulseTenSecond THEN
 	FOR f := 1 TO etherCATdiag.maxNumEtherCATmasters DO
 		 IF system.ecMasterData[f].ecAMSmaster[0] > 1 THEN
 			 //convert from byte to string for viewing
@@ -2159,34 +2365,40 @@ IF System.PulseOneSecond THEN
 			 etherCATmasters.strActiveMastersList[f] := system.ecMasterData[f].ecAMSmasterstr;
 		 END_IF
 	END_FOR
-END_IF]]></ST>
+END_IF
+
+]]></ST>
       </Implementation>
     </Action>
     <LineIds Name="pouEtherCATdiag.actEtherCATSlaveDiag">
+      <LineId Id="190" Count="0" />
+      <LineId Id="193" Count="0" />
+      <LineId Id="191" Count="1" />
       <LineId Id="179" Count="0" />
       <LineId Id="182" Count="0" />
       <LineId Id="174" Count="0" />
-      <LineId Id="168" Count="0" />
-      <LineId Id="3" Count="0" />
-      <LineId Id="170" Count="0" />
-      <LineId Id="169" Count="0" />
-      <LineId Id="176" Count="0" />
-      <LineId Id="178" Count="0" />
-      <LineId Id="177" Count="0" />
-      <LineId Id="167" Count="0" />
+      <LineId Id="185" Count="0" />
       <LineId Id="158" Count="0" />
       <LineId Id="162" Count="0" />
       <LineId Id="164" Count="1" />
       <LineId Id="161" Count="0" />
+      <LineId Id="195" Count="2" />
       <LineId Id="93" Count="0" />
       <LineId Id="102" Count="0" />
       <LineId Id="95" Count="1" />
       <LineId Id="98" Count="3" />
       <LineId Id="97" Count="0" />
       <LineId Id="4" Count="3" />
-      <LineId Id="9" Count="1" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="188" Count="0" />
+      <LineId Id="10" Count="0" />
       <LineId Id="103" Count="0" />
-      <LineId Id="11" Count="6" />
+      <LineId Id="189" Count="0" />
+      <LineId Id="11" Count="3" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="186" Count="1" />
+      <LineId Id="194" Count="0" />
+      <LineId Id="17" Count="0" />
       <LineId Id="156" Count="0" />
       <LineId Id="123" Count="0" />
       <LineId Id="127" Count="14" />
@@ -2244,11 +2456,30 @@ END_IF]]></ST>
     </LineIds>
     <LineIds Name="pouEtherCATdiag.actGetConfSlaves">
       <LineId Id="1" Count="1" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="27" Count="1" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="39" Count="0" />
       <LineId Id="6" Count="0" />
       <LineId Id="5" Count="0" />
-      <LineId Id="7" Count="6" />
+      <LineId Id="7" Count="5" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="43" Count="0" />
       <LineId Id="4" Count="0" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="47" Count="1" />
+      <LineId Id="14" Count="0" />
       <LineId Id="3" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="18" Count="5" />
+      <LineId Id="34" Count="0" />
     </LineIds>
     <LineIds Name="pouEtherCATdiag.actManageDetailedScreen">
       <LineId Id="1" Count="1" />
@@ -2257,12 +2488,16 @@ END_IF]]></ST>
       <LineId Id="6" Count="1" />
       <LineId Id="12" Count="2" />
       <LineId Id="9" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="17" Count="1" />
     </LineIds>
     <LineIds Name="pouEtherCATdiag.actMoveLocalData">
       <LineId Id="18" Count="0" />
       <LineId Id="12" Count="0" />
       <LineId Id="14" Count="0" />
       <LineId Id="16" Count="0" />
+      <LineId Id="23" Count="2" />
       <LineId Id="9" Count="0" />
       <LineId Id="22" Count="0" />
     </LineIds>
@@ -2277,6 +2512,8 @@ END_IF]]></ST>
       <LineId Id="13" Count="0" />
       <LineId Id="11" Count="0" />
       <LineId Id="3" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="25" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

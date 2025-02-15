@@ -1,17 +1,69 @@
 <?xml version="1.0"?>
-<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.55" ClassName="CDevEtherCATDef" SubType="111" TcProjectVariant="NoPLC">
-	<Device Id="6" DevType="111" DevFlags="#x0001" AmsPort="28678" AmsNetId="192.168.56.1.7.1">
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.29" ClassName="CDevEtherCATDef" SubType="111" TcProjectVariant="NoPLC">
+	<Device Id="6" DevType="111" DevFlags="#x0003" AmsPort="28678" AmsNetId="5.132.114.61.7.1" RemoteName="Device 6 (EtherCAT)" InfoImageId="9">
 		<Name>__FILENAME__</Name>
 		<AddressInfo>
-			<Pnp>
-				<DeviceDesc></DeviceDesc>
-				<DeviceName></DeviceName>
-				<DeviceData>000000000000</DeviceData>
-			</Pnp>
+			<Ccat>
+				<Address>-264241152</Address>
+				<Offset>131072</Offset>
+				<Size>8192</Size>
+				<BaseAddr>0</BaseAddr>
+				<BusNo>3</BusNo>
+				<SlotNo>0</SlotNo>
+				<VendorId>5612</VendorId>
+				<DeviceId>20480</DeviceId>
+				<Dma>
+					<Address>0</Address>
+					<Offset>4096</Offset>
+					<Size>12288</Size>
+					<BaseAddr>2</BaseAddr>
+					<RxChn>0</RxChn>
+					<TxChn>1</TxChn>
+				</Dma>
+				<TimeSize>128</TimeSize>
+				<TimeOffs>1024</TimeOffs>
+				<GpioSize>32</GpioSize>
+				<GpioOffs>768</GpioOffs>
+				<EepromSize>64</EepromSize>
+				<EepromOffs>512</EepromOffs>
+				<IntCtrlSize>16</IntCtrlSize>
+				<IntCtrlOffs>640</IntCtrlOffs>
+				<Identification>
+					<Value>177163754</Value>
+					<Version>1</Version>
+					<Size>256</Size>
+				</Identification>
+			</Ccat>
 		</AddressInfo>
-		<Image Id="8" AddrType="1" ImageType="3">
+		<Image Id="8" AddrType="9" ImageType="3">
 			<Name>Image</Name>
 		</Image>
+		<Image Id="11" AddrType="10" ImageType="3">
+			<Name>Image-2</Name>
+		</Image>
+		<Box File="Term 1 (EK1200).xti" Id="13">
+			<EtherCAT PortABoxInfo="#x00ffffff"/>
+		</Box>
 		<EtherCAT/>
 	</Device>
+	<Mappings>
+		<OwnerA>
+			<OwnerB Name="TIID^EtherCAT Device 1^Term 5 (EK1101)^Safety Input Module 1 (EL1904)">
+				<Link VarA="Term 1 (EK1200)^Term 14 (EL6900)^ConnectionInputs^Message_22 TxPDO" VarB="Module 1 (FSOES)^RxPDO^FSOE"/>
+				<Link VarA="Term 1 (EK1200)^Term 14 (EL6900)^ConnectionOutputs^Message_22 RxPDO" VarB="Module 1 (FSOES)^TxPDO^FSOE"/>
+			</OwnerB>
+			<OwnerB Name="TIID^EtherCAT Device 1^Term 5 (EK1101)^Safety Input Module 2 (EL1904)">
+				<Link VarA="Term 1 (EK1200)^Term 14 (EL6900)^ConnectionInputs^Message_23 TxPDO" VarB="Module 1 (FSOES)^RxPDO^FSOE"/>
+				<Link VarA="Term 1 (EK1200)^Term 14 (EL6900)^ConnectionOutputs^Message_23 RxPDO" VarB="Module 1 (FSOES)^TxPDO^FSOE"/>
+			</OwnerB>
+			<OwnerB Name="TIID^EtherCAT Device 1^Term 5 (EK1101)^Safety Input Module 3 (EL1904)">
+				<Link VarA="Term 1 (EK1200)^Term 14 (EL6900)^ConnectionInputs^Message_24 TxPDO" VarB="Module 1 (FSOES)^RxPDO^FSOE"/>
+				<Link VarA="Term 1 (EK1200)^Term 14 (EL6900)^ConnectionOutputs^Message_24 RxPDO" VarB="Module 1 (FSOES)^TxPDO^FSOE"/>
+			</OwnerB>
+			<OwnerB Name="TIID^EtherCAT Device 1^Term 5 (EK1101)^Safety Output Module 1 (EL2904)">
+				<Link VarA="Term 1 (EK1200)^Term 14 (EL6900)^ConnectionInputs^Message_25 TxPDO" VarB="Module 1 (FSOES)^RxPDO^FSOE"/>
+				<Link VarA="Term 1 (EK1200)^Term 14 (EL6900)^ConnectionOutputs^Message_25 RxPDO" VarB="Module 1 (FSOES)^TxPDO^FSOE"/>
+			</OwnerB>
+		</OwnerA>
+	</Mappings>
 </TcSmItem>

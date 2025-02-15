@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.29" ClassName="CFlbTermDef" SubType="9099" TcProjectVariant="NoPLC">
+	<DataTypes>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-002000000008}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BYTE</Name>
+			<BitSize>8</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>1</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-002000000004}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..3] OF BIT</Name>
+			<BitSize>4</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>4</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-00200000000C}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..11] OF BIT</Name>
+			<BitSize>12</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>12</Elements>
+			</ArrayInfo>
+		</DataType>
+	</DataTypes>
+	<Box Id="16" BoxType="9099" BoxFlags="#x00000020">
+		<Name>__FILENAME__</Name>
+		<ImageId>118</ImageId>
+		<EtherCAT SlaveType="2" PdiType="#x0005" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="3" FoeType="1" VendorId="#x00000002" ProductCode="#x0b583052" RevisionNo="#x00120000" InfoDataAddr="true" TimeoutMailbox2="2000" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="2" Type="EL2904, 4 Ch. Safety Output 24V, 0.5A, TwinSAFE" Desc="EL2904">
+			<SyncMan>001000012600010001000000400000010001001026010000</SyncMan>
+			<SyncMan>001100012200010002000000400000010001001122010000</SyncMan>
+			<SyncMan>001208002400010003000000000000000800001224010000</SyncMan>
+			<SyncMan>001906002000010004000000000000000600001920010000</SyncMan>
+			<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
+			<Fmmu>0000000000000000001900010100000002000000000000000000000000000000</Fmmu>
+			<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
+			<BootStrapData>0018f400f418f400</BootStrapData>
+			<Pdo Name="TxPDO" Index="#x1a00" Flags="#x0090" SyncMan="3">
+				<Entry Name="FSOE__FSoE Slave CMD" Index="#x6000" Sub="#x01">
+					<Type>USINT</Type>
+				</Entry>
+				<Entry Name="FSOE__">
+					<Type GUID="{18071995-0000-0000-0000-002000000008}">ARRAY [0..0] OF BYTE</Type>
+				</Entry>
+				<Entry Name="FSOE__FSoE Slave CRC_0" Index="#x6000" Sub="#x03">
+					<Type>UINT</Type>
+				</Entry>
+				<Entry Name="FSOE__FSoE Slave ConnID" Index="#x6000" Sub="#x02">
+					<Type>UINT</Type>
+				</Entry>
+			</Pdo>
+			<Pdo Name="RxPDO" Index="#x1600" InOut="1" Flags="#x0090" SyncMan="2">
+				<Entry Name="FSOE__FSoE Master CMD" Index="#x7000" Sub="#x01">
+					<Type>USINT</Type>
+				</Entry>
+				<Entry Name="FSOE__OutputChannel1" Index="#x7001" Sub="#x01">
+					<Type>BIT</Type>
+				</Entry>
+				<Entry Name="FSOE__OutputChannel2" Index="#x7001" Sub="#x02">
+					<Type>BIT</Type>
+				</Entry>
+				<Entry Name="FSOE__OutputChannel3" Index="#x7001" Sub="#x03">
+					<Type>BIT</Type>
+				</Entry>
+				<Entry Name="FSOE__OutputChannel4" Index="#x7001" Sub="#x04">
+					<Type>BIT</Type>
+				</Entry>
+				<Entry Name="FSOE__">
+					<Type GUID="{18071995-0000-0000-0000-002000000004}">ARRAY [0..3] OF BIT</Type>
+				</Entry>
+				<Entry Name="FSOE__FSoE Master CRC_0" Index="#x7000" Sub="#x03">
+					<Type>UINT</Type>
+				</Entry>
+				<Entry Name="FSOE__FSoE Master ConnID" Index="#x7000" Sub="#x02">
+					<Type>UINT</Type>
+				</Entry>
+			</Pdo>
+			<Pdo Name="RxPDO" Index="#x1601" InOut="1" Flags="#x0090" SyncMan="2">
+				<Entry Name="Output Channel 1" Index="#x7010" Sub="#x01">
+					<Type>BIT</Type>
+				</Entry>
+				<Entry Name="Output Channel 2" Index="#x7010" Sub="#x02">
+					<Type>BIT</Type>
+				</Entry>
+				<Entry Name="Output Channel 3" Index="#x7010" Sub="#x03">
+					<Type>BIT</Type>
+				</Entry>
+				<Entry Name="Output Channel 4" Index="#x7010" Sub="#x04">
+					<Type>BIT</Type>
+				</Entry>
+				<Entry>
+					<Type GUID="{18071995-0000-0000-0000-00200000000C}">ARRAY [0..11] OF BIT</Type>
+				</Entry>
+			</Pdo>
+			<CoeProfile ProfileNo="5001"/>
+			<CoeProfile ProfileNo="13112201"/>
+			<Slot Name="">
+				<SlotData>0000010001000400000000000000000000000000000000000000000000000000</SlotData>
+				<ModuleIdent>290</ModuleIdent>
+				<Module Id="#x03090007" Type="FSOES" Class="290">
+					<Name>Module 1 (FSOES)</Name>
+					<ImageId>118</ImageId>
+					<ModuleData>020000002201000000000c000000000000000000000000000000000000000000</ModuleData>
+					<PdoIndex>6656</PdoIndex>
+					<PdoIndex>5632</PdoIndex>
+					<CoeProfile ProfileNo="#x00001389"/>
+				</Module>
+			</Slot>
+			<Slot Name="">
+				<SlotData>0000010001000400000000000000000000000000000000000000000000000000</SlotData>
+				<ModuleIdent>200</ModuleIdent>
+				<Module Id="#x03090008" Type="DO" Class="200">
+					<Name>Module 2 (DO)</Name>
+					<ImageId>118</ImageId>
+					<ModuleData>02000000c8000000000004000000000000000000000000000000000000000000</ModuleData>
+					<PdoIndex>5633</PdoIndex>
+				</Module>
+			</Slot>
+		</EtherCAT>
+	</Box>
+</TcSmItem>

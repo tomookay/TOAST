@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <GVL Name="etherCATdiag" Id="{3f381e22-eb2f-465b-8c21-a28935184f16}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
 	
 	//all slaves
-	EtherCATslaveDiag: ARRAY[1..maxNumEtherCATSlaves] OF typeEtherCATIndicator;
+	EtherCATslaveDiag: ARRAY[0..maxNumEtherCATSlaves] OF typeEtherCATIndicator;
 
 	//assign to mapped IO for DPstate
-	RawEtherCATStateDiag: ARRAY[1..maxNumEtherCATSlaves] OF WORD;
+	RawEtherCATStateDiag: ARRAY[0..maxNumEtherCATSlaves] OF WORD;
 	
 	//viewable on the screen
 	diagScreen: ARRAY[1..128] OF typeEtherCATIndicator;
@@ -17,11 +17,18 @@ VAR_GLOBAL
 	detailDiag:typeEtherCATIndicator;
 	detailDiagNum: UINT;
 	
-	arryEcConfSlaveInfo:ARRAY[1..maxNumEtherCATSlaves] OF ST_EcSlaveConfigData;
+	arryEcConfSlaveInfo:ARRAY[0..maxNumEtherCATSlaves] OF ST_EcSlaveConfigData;
 	
 	btnPrevious: BOOL; //previous screen
 	btnNext: BOOL; //next screen
 	gScreenIndex: UINT;
+	
+	//slave sub-states
+	slavestates:ARRAY[0..maxNumEtherCATSlaves] OF ST_EcSlaveState;
+	//slavestates:ARRAY[1..500] OF ST_EcSlaveState;
+	
+	btnUpdate:BOOL; //updates values
+	
 	
 
 END_VAR
@@ -30,8 +37,8 @@ END_VAR
 
 VAR_GLOBAL CONSTANT
 	numEtherCATViewableSlavesScreen:UINT := 128; //max slaves viewable on screen
-//	maxNumEtherCATSlaves: UINT := 500;// EC_MAX_SLAVES; //redim? on scan of programmed ethercat slaves (FB) 65535
-	maxNumEtherCATSlaves: UINT := EC_MAX_SLAVES - 1;
+	maxNumEtherCATSlaves: UINT := 500;// EC_MAX_SLAVES; //redim? on scan of programmed ethercat slaves (FB) 65535
+//	maxNumEtherCATSlaves: UINT := EC_MAX_SLAVES - 1;
 	
 	maxNumEtherCATmasters:UINT:= 3;
 END_VAR

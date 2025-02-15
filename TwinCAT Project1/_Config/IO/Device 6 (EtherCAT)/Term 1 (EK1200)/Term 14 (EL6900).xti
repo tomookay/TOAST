@@ -1,0 +1,351 @@
+<?xml version="1.0"?>
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.29" ClassName="CFlbTermDef" SubType="9099" TcProjectVariant="NoPLC">
+	<DataTypes>
+		<DataType>
+			<Name GUID="{2438F91B-E188-4ED7-8594-54354F9ED6A4}" Namespace="Safety" TcBaseType="true">FSOE_6</Name>
+			<BitSize>48</BitSize>
+			<SubItem>
+				<Name>FSoE CMD</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000002}">USINT</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>FSoE Data</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000032}">BITARR8</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>8</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>FSoE CRC_0</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>16</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>FSoE ConnID</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>32</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-002000000001}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..0] OF BIT</Name>
+			<BitSize>1</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>1</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-002000000005}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..4] OF BIT</Name>
+			<BitSize>5</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>5</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{2B008623-51EE-EF6A-ACDE-0017707F5BB8}" AutoDeleteType="true">INFODATA_FB_3</Name>
+			<BitSize>24</BitSize>
+			<SubItem>
+				<Name>State</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000002}">USINT</Type>
+				<BitSize>8</BitSize>
+				<BitOffs>0</BitOffs>
+			</SubItem>
+			<SubItem>
+				<Name>Diag</Name>
+				<Type GUID="{18071995-0000-0000-0000-000000000005}">UINT</Type>
+				<BitSize>16</BitSize>
+				<BitOffs>8</BitOffs>
+			</SubItem>
+		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-002000000004}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..3] OF BIT</Name>
+			<BitSize>4</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>4</Elements>
+			</ArrayInfo>
+		</DataType>
+	</DataTypes>
+	<Box Id="14" BoxType="9099" BoxFlags="#x00000020">
+		<Name>__FILENAME__</Name>
+		<ImageId>118</ImageId>
+		<EtherCAT SlaveType="2" PdiType="#x0005" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="3" FoeType="1" VendorId="#x00000002" ProductCode="#x1af43052" RevisionNo="#x00100000" InfoDataAddr="true" TimeoutMailbox2="2000" TComSupport="true" PortPhys="51" SafetyLogicSupported="true" MaxSlotCount="3" Type="EL6900, TwinSAFE PLC" Desc="EL6900">
+			<SyncMan>001000012600010001000000000100010001001026010000</SyncMan>
+			<SyncMan>001100012200010002000000000100010001001122010000</SyncMan>
+			<SyncMan>00121f002400010003000000000000000200001224010000</SyncMan>
+			<SyncMan>001d33002000010004000000000000000200001d20010000</SyncMan>
+			<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
+			<Fmmu>0000000000000000001d00010100000002000000000000000000000000000000</Fmmu>
+			<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
+			<BootStrapData>0010f400f410f400</BootStrapData>
+			<Pdo Name="ConnectionInputs" Index="#x1a00" Flags="#x2011" SyncMan="3">
+				<Entry Name="Message_22 TxPDO" Index="#x7000" Sub="#x01">
+					<Type GUID="{2438F91B-E188-4ED7-8594-54354F9ED6A4}" Namespace="Safety">FSOE_6</Type>
+				</Entry>
+				<Entry Name="Message_23 TxPDO" Index="#x7000" Sub="#x02">
+					<Type GUID="{2438F91B-E188-4ED7-8594-54354F9ED6A4}" Namespace="Safety">FSOE_6</Type>
+				</Entry>
+				<Entry Name="Message_24 TxPDO" Index="#x7000" Sub="#x03">
+					<Type GUID="{2438F91B-E188-4ED7-8594-54354F9ED6A4}" Namespace="Safety">FSOE_6</Type>
+				</Entry>
+				<Entry Name="Message_25 TxPDO" Index="#x7000" Sub="#x04">
+					<Type GUID="{2438F91B-E188-4ED7-8594-54354F9ED6A4}" Namespace="Safety">FSOE_6</Type>
+				</Entry>
+			</Pdo>
+			<Pdo Name="ConnectionOutputs" Index="#x1600" InOut="1" Flags="#x2011" SyncMan="2">
+				<Entry Name="Message_22 RxPDO" Index="#x6000" Sub="#x01">
+					<Type GUID="{2438F91B-E188-4ED7-8594-54354F9ED6A4}" Namespace="Safety">FSOE_6</Type>
+				</Entry>
+				<Entry Name="Message_23 RxPDO" Index="#x6000" Sub="#x02">
+					<Type GUID="{2438F91B-E188-4ED7-8594-54354F9ED6A4}" Namespace="Safety">FSOE_6</Type>
+				</Entry>
+				<Entry Name="Message_24 RxPDO" Index="#x6000" Sub="#x03">
+					<Type GUID="{2438F91B-E188-4ED7-8594-54354F9ED6A4}" Namespace="Safety">FSOE_6</Type>
+				</Entry>
+				<Entry Name="Message_25 RxPDO" Index="#x6000" Sub="#x04">
+					<Type GUID="{2438F91B-E188-4ED7-8594-54354F9ED6A4}" Namespace="Safety">FSOE_6</Type>
+				</Entry>
+			</Pdo>
+			<Pdo Name="StandardInputs" Index="#x1bf0" Flags="#x2011" SyncMan="3">
+				<Entry Name="Standard Out Var 3" Index="#x7000" Sub="#x01">
+					<Type>BIT</Type>
+				</Entry>
+				<Entry Name="Standard Out Var 4" Index="#x7000" Sub="#x02">
+					<Type>BIT</Type>
+				</Entry>
+				<Entry Name="Standard Out Var 6" Index="#x7000" Sub="#x03">
+					<Type>BIT</Type>
+				</Entry>
+				<Entry Name="Standard Out Var 7" Index="#x7000" Sub="#x04">
+					<Type>BIT</Type>
+				</Entry>
+				<Entry Name="Standard Out Var 8" Index="#x7000" Sub="#x05">
+					<Type>BIT</Type>
+				</Entry>
+				<Entry Name="Standard Out Var 9" Index="#x7000" Sub="#x06">
+					<Type>BIT</Type>
+				</Entry>
+				<Entry Name="Standard Out Var 10" Index="#x7000" Sub="#x07">
+					<Type>BIT</Type>
+				</Entry>
+				<Entry>
+					<Type GUID="{18071995-0000-0000-0000-002000000001}">ARRAY [0..0] OF BIT</Type>
+				</Entry>
+			</Pdo>
+			<Pdo Name="StandardOutputs" Index="#x17f0" InOut="1" Flags="#x2011" SyncMan="2">
+				<Entry Name="Standard In Var 14" Index="#x6000" Sub="#x01">
+					<Type>BIT</Type>
+				</Entry>
+				<Entry Name="Standard In Var 15" Index="#x6000" Sub="#x02">
+					<Type>BIT</Type>
+				</Entry>
+				<Entry Name="Standard In Var 16" Index="#x6000" Sub="#x03">
+					<Type>BIT</Type>
+				</Entry>
+				<Entry>
+					<Type GUID="{18071995-0000-0000-0000-002000000005}">ARRAY [0..4] OF BIT</Type>
+				</Entry>
+				<Entry Name="Standard In Var 26" Index="#x6000" Sub="#x04">
+					<Type>UINT</Type>
+				</Entry>
+				<Entry Name="Standard In Var 28" Index="#x6000" Sub="#x05">
+					<Type>UINT</Type>
+				</Entry>
+			</Pdo>
+			<Pdo Name="Function Block Info Data" Index="#x1bf8" Flags="#x2011" SyncMan="3">
+				<Entry Name="TwinSafeGroup1.EmergencyStop_1.FBEstop1 Info Data" Index="#x7000" Sub="#x01">
+					<Type GUID="{2B008623-51EE-EF6A-ACDE-0017707F5BB8}">INFODATA_FB_3</Type>
+				</Entry>
+				<Entry Name="TwinSafeGroup1.EmergencyStop_2.FBEstop2 Info Data" Index="#x7000" Sub="#x02">
+					<Type GUID="{2B008623-51EE-EF6A-ACDE-0017707F5BB8}">INFODATA_FB_3</Type>
+				</Entry>
+				<Entry Name="TwinSafeGroup1.EmergencyStop_3.FBEstop3 Info Data" Index="#x7000" Sub="#x03">
+					<Type GUID="{2B008623-51EE-EF6A-ACDE-0017707F5BB8}">INFODATA_FB_3</Type>
+				</Entry>
+				<Entry Name="TwinSafeGroup1.AccessGate_1.FBAccessGate1 Info Data" Index="#x7000" Sub="#x04">
+					<Type GUID="{2B008623-51EE-EF6A-ACDE-0017707F5BB8}">INFODATA_FB_3</Type>
+				</Entry>
+				<Entry Name="TwinSafeGroup1.AccessGate_2.FBAccessGate2 Info Data" Index="#x7000" Sub="#x05">
+					<Type GUID="{2B008623-51EE-EF6A-ACDE-0017707F5BB8}">INFODATA_FB_3</Type>
+				</Entry>
+				<Entry Name="TwinSafeGroup1.PendantEvalulation.FBEnablePendent Info Data" Index="#x7000" Sub="#x06">
+					<Type GUID="{2B008623-51EE-EF6A-ACDE-0017707F5BB8}">INFODATA_FB_3</Type>
+				</Entry>
+			</Pdo>
+			<Pdo Name="Device Info Data" Index="#x1bfe" Flags="#x2011" SyncMan="3">
+				<Entry Name="Project CRC" Index="#x7000" Sub="#x01">
+					<Type>WORD</Type>
+				</Entry>
+				<Entry Name="Serial Number" Index="#x7000" Sub="#x02">
+					<Type>UDINT</Type>
+				</Entry>
+			</Pdo>
+			<Pdo Name="DEVICE Inputs" Index="#x1bff" Flags="#x0011" SyncMan="3">
+				<Entry Name="Safety Project State" Index="#xf100" Sub="#x01">
+					<Type>BIT3</Type>
+				</Entry>
+				<Entry>
+					<Type GUID="{18071995-0000-0000-0000-002000000004}">ARRAY [0..3] OF BIT</Type>
+				</Entry>
+				<Entry Name="Login Active" Index="#xf100" Sub="#x08">
+					<Type>BIT</Type>
+				</Entry>
+				<Entry Name="Input Size Mismatch" Index="#xf100" Sub="#x09">
+					<Type>BIT</Type>
+				</Entry>
+				<Entry Name="Output Size Mismatch" Index="#xf100" Sub="#x0a">
+					<Type>BIT</Type>
+				</Entry>
+				<Entry>
+					<Type GUID="{18071995-0000-0000-0000-002000000004}">ARRAY [0..3] OF BIT</Type>
+				</Entry>
+				<Entry Name="TxPDO State" Index="#xf100" Sub="#x0f">
+					<Type>BIT</Type>
+				</Entry>
+				<Entry Name="TxPDO Toggle" Index="#xf100" Sub="#x10">
+					<Type>BIT</Type>
+				</Entry>
+			</Pdo>
+			<Pdo Name="DEVICE Outputs" Index="#x17ff" InOut="1" Flags="#x0011" SyncMan="2">
+				<Entry Name="Control" Index="#xf200" Sub="#x01">
+					<Type>UINT</Type>
+				</Entry>
+			</Pdo>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+			<CoeProfile ProfileNo="452203401"/>
+		</EtherCAT>
+	</Box>
+</TcSmItem>

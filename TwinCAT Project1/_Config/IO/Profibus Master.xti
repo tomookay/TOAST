@@ -1,18 +1,15 @@
 <?xml version="1.0"?>
-<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.55" ClassName="CDevFC3100Def" SubType="127" TcProjectVariant="NoPLC">
-	<Device Id="2" Disabled="true" DevType="127" AmsPort="28674" AmsNetId="192.168.56.1.3.1" RemoteName="PROFIBUS Master">
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.29" ClassName="CDevFC3100Def" SubType="127" TcProjectVariant="NoPLC">
+	<Device Id="2" Disabled="true" DevType="127" AmsPort="28674" AmsNetId="5.132.114.61.3.1" RemoteName="PROFIBUS Master">
 		<Name>__FILENAME__</Name>
 		<ProjectVariant PvUseDisable="true">
 			<Variant>
 				<Name>NoPLC</Name>
+				<Name>PLCTest</Name>
 				<Name>Variant1</Name>
 				<Name>Variant2</Name>
 				<Name>Variant3</Name>
 				<Disable>1</Disable>
-			</Variant>
-			<Variant>
-				<Name>PLCTest</Name>
-				<Disable>0</Disable>
 			</Variant>
 		</ProjectVariant>
 		<AddressInfo>
@@ -31,9 +28,11 @@
 		<Box File="Box 4 (IP10xx-B3xx).xti" Id="4"/>
 		<Profibus>
 			<Fcxxxx>
-				<DevSettings NetId="c0a838010301"/>
+				<DevSettings NetId="0584723d0301" EquiCycleTime="100000" NcAccessTime="25000"/>
+				<DevParameter CycleTime="100000"/>
 				<EquiParameter RelationShiftCycle="25"/>
 			</Fcxxxx>
+			<BusParameter MinSlaveInterval="100"/>
 		</Profibus>
 	</Device>
 </TcSmItem>
