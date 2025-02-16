@@ -1258,14 +1258,14 @@ External Setpoint Generation:
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>Safety.gSafetySerialNumber</Name>
-					<Comment><![CDATA[serial number of safety CPU]]></Comment>
-					<Type>UDINT</Type>
-				</Var>
-				<Var>
 					<Name>Safety.gSafetyCPUState</Name>
 					<Comment><![CDATA[CPU state as ethercat slave]]></Comment>
 					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Safety.gSafetySerialNumber</Name>
+					<Comment><![CDATA[serial number of safety CPU]]></Comment>
+					<Type>UDINT</Type>
 				</Var>
 				<Var>
 					<Name>Safety.gSafetyCPUADSadr</Name>
@@ -9615,6 +9615,9 @@ iEnableSafetyDevices	AT %Q*	:BOOL;]]></Comment>
 				<Link VarA="PlcTask Inputs^S1_IO.Row05.iAdvanceDepth" VarB="Term 1^Channel 1^S1_IO.Row05.iAdvanceDepth" Size="1"/>
 				<Link VarA="PlcTask Inputs^S1_IO.Row05.iReturnedDepth" VarB="Term 1^Channel 2^S1_IO.Row05.iReturnedDepth" Size="1"/>
 				<Link VarA="PlcTask Inputs^profibusDiag.RawDPStateDiag[2]" VarB="Inputs^DpState"/>
+			</OwnerB>
+			<OwnerB Name="TIID^PROFIBUS Master^Box 4 (IP10xx-B3xx)_1">
+				<Link VarA="PlcTask Inputs^profibusDiag.RawDPStateDiag[1]" VarB="Inputs^DpState"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis 1">
 				<Link VarA="PlcTask Inputs^driveGlobals.ncAxis1.NcToPlc" VarB="Outputs^ToPlc"/>

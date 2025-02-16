@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.29" ClassName="CDevFC3100Def" SubType="127" TcProjectVariant="NoPLC">
-	<Device Id="2" Disabled="true" DevType="127" AmsPort="28674" AmsNetId="5.132.114.61.3.1" RemoteName="PROFIBUS Master">
+	<Device Id="2" Disabled="true" DevType="127" DevFlags="#x0002" AmsPort="28674" AmsNetId="5.132.114.61.3.1" RemoteName="PROFIBUS Master" InfoImageId="12">
 		<Name>__FILENAME__</Name>
 		<ProjectVariant PvUseDisable="true">
 			<Variant>
@@ -14,25 +14,34 @@
 		</ProjectVariant>
 		<AddressInfo>
 			<Ccat>
-				<Address>0</Address>
-				<Offset>0</Offset>
-				<Size>0</Size>
+				<Address>-264241152</Address>
+				<Offset>65536</Offset>
+				<Size>65536</Size>
 				<BaseAddr>0</BaseAddr>
-				<BusNo>0</BusNo>
+				<BusNo>3</BusNo>
 				<SlotNo>0</SlotNo>
+				<VendorId>5612</VendorId>
+				<DeviceId>20480</DeviceId>
+				<Identification>
+					<Value>177163754</Value>
+					<Version>1</Version>
+					<Size>256</Size>
+				</Identification>
 			</Ccat>
 		</AddressInfo>
 		<Image Id="3" AddrType="1" ImageType="3">
 			<Name>Image</Name>
 		</Image>
+		<Box File="Box 4 (IP10xx-B3xx)_1.xti" Id="24"/>
+		<Box File="Box 4 (IP10xx-B3xx)_2.xti" Id="25"/>
 		<Box File="Box 4 (IP10xx-B3xx).xti" Id="4"/>
-		<Profibus>
+		<Profibus InfoDataSupport="true" InfoDataId="true" InfoDataNetId="true">
 			<Fcxxxx>
-				<DevSettings NetId="0584723d0301" EquiCycleTime="100000" NcAccessTime="25000"/>
+				<DevSettings NetId="0584723d0301" EquiCycleTime="100000" NcAccessTime="25000" CcatParam="4099" CcatPort="1" PciBase2Offs="1024" PciBase2Size="128" PciBase3Offs="768" PciBase3Size="32" ProductCode="133914677" Revision="1301086383"/>
 				<DevParameter CycleTime="100000"/>
 				<EquiParameter RelationShiftCycle="25"/>
 			</Fcxxxx>
-			<BusParameter MinSlaveInterval="100"/>
+			<BusParameter Ttr="34521" MinSlaveInterval="100"/>
 		</Profibus>
 	</Device>
 </TcSmItem>
