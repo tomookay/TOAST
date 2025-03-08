@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <POU Name="prgSafetyMain" Id="{6204201b-5c16-4e3a-b4be-2a680072513b}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM prgSafetyMain
 VAR
@@ -40,7 +40,7 @@ END_IF
 //to prevent a reset button enabling power devices, have seperate enable fed from HMI
 //scan in 0 value
 Safety.iEnableSafetyDevicesuint := 0;
-IF S1_Global.station.Data.MotionPowerOn := TRUE AND NOT allowpendantUsage THEN
+IF S1_Global.station.Data.MotionPowerOn AND NOT allowpendantUsage THEN
 	//if the station power (or machine power to edit) is on, send value of 1 to enable logic in safety program
 	Safety.iEnableSafetyDevicesuint := 1;
 END_IF
