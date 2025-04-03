@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <GVL Name="gHMIButtons" Id="{7eef2951-d3fc-4c65-869e-d331015ae160}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
@@ -30,6 +30,9 @@ VAR_GLOBAL
 	
 	//hmi buttons feedback
 	btnFdbk: typeBtnFdbk;
+	
+	btnPlus1Row:BOOL; //scroll 1 row up
+	btnNeg1Row:BOOL; //scroll 1 row down
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>
