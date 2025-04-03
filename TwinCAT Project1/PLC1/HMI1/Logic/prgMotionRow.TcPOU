@@ -17,6 +17,7 @@ VAR
 		btnPrevRow:R_TRIG;
 		tSingleRowOffset: UINT;
 		
+	tSingleRowOffsettest: UINT;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -43,6 +44,9 @@ actCalcPageTitle();
       <Implementation>
         <ST><![CDATA[//calaculate station index for pages
 tTrueStationIndex := tStationNumberIndex + ((tScreenElementsPerPage * gHMIData.gActivePageNumber) -  tScreenElementsPerPage);
+
+//test for singular row change
+tTrueStationIndex := tTrueStationIndex + tSingleRowOffset;
 
 //calculate offset for row x
 gHMIData.gRowElementOffset[1]:= tTrueStationIndex + ((gHMIDataConst.gNumberElementsPerRow * 1) - gHMIDataConst.gNumberElementsPerRow);
@@ -102,9 +106,17 @@ tScreenElementsPerPage := tNumElementsPerScreen  * 1;]]></ST>
 tSizeOfMotionRow		:= gHMIData.gActivePageNumber * SIZEOF(gHMIMotionRows.gMotionRows);
 tSizeOfMotionRow 		:= tSizeOfMotionRow - SIZEOF(gHMIMotionRows.gMotionRows);
 
+//test for singular row changes
+tSizeOfMotionRow := tSizeOfMotionRow + tSingleRowOffsettest;
+
 //calculate byte offset - buttons
 tSizeOfMotionRowButtons := gHMIData.gActivePageNumber * SIZEOF(gHMIMotionRows.gMotionRowButtons);
 tSizeOfMotionRowButtons := tSizeOfMotionRowButtons - SIZEOF(gHMIMotionRows.gMotionRowButtons);
+
+//test for singular row changes
+tSizeOfMotionRowButtons := tSizeOfMotionRowButtons + tSingleRowOffsettest;
+
+//152 byres?! 304 bytes?
 
 //move data based on station and page number
 //Move feedback indicator data
@@ -245,11 +257,14 @@ END_IF
 //calc single row offset
 //tSingleRowOffset
 IF btnNextRow.Q THEN
-	tSingleRowOffset := tSingleRowOffset + gHMIDataConst.gNumberElementsPerRow;
+//	tSingleRowOffset := tSingleRowOffset + SIZEOF(gHMIMotionRows.gMotionRows.gMotionRow1);
+
+tSingleRowOffsettest := tSingleRowOffsettest +1;
 END_IF
 
 IF btnPrevRow.Q THEN
-	tSingleRowOffset := tSingleRowOffset - gHMIDataConst.gNumberElementsPerRow;
+//	tSingleRowOffset := tSingleRowOffset - SIZEOF(gHMIMotionRows.gMotionRows.gMotionRow1);
+tSingleRowOffsettest := tSingleRowOffsettest - 1;
 END_IF]]></ST>
       </Implementation>
     </Action>
@@ -274,6 +289,9 @@ END_IF]]></ST>
     </LineIds>
     <LineIds Name="prgMotionRow.actCalcMotionRowPosn">
       <LineId Id="1" Count="1" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="31" Count="0" />
       <LineId Id="13" Count="0" />
       <LineId Id="4" Count="0" />
       <LineId Id="3" Count="0" />
@@ -311,10 +329,17 @@ END_IF]]></ST>
     </LineIds>
     <LineIds Name="prgMotionRow.actCallMotionScreen">
       <LineId Id="1" Count="1" />
-      <LineId Id="84" Count="1" />
+      <LineId Id="84" Count="0" />
+      <LineId Id="90" Count="0" />
+      <LineId Id="89" Count="0" />
+      <LineId Id="88" Count="0" />
+      <LineId Id="85" Count="0" />
       <LineId Id="4" Count="0" />
       <LineId Id="6" Count="0" />
       <LineId Id="87" Count="0" />
+      <LineId Id="92" Count="0" />
+      <LineId Id="91" Count="0" />
+      <LineId Id="93" Count="2" />
       <LineId Id="8" Count="2" />
       <LineId Id="7" Count="0" />
       <LineId Id="11" Count="1" />
@@ -375,8 +400,12 @@ END_IF]]></ST>
       <LineId Id="50" Count="0" />
       <LineId Id="64" Count="0" />
       <LineId Id="58" Count="0" />
-      <LineId Id="72" Count="3" />
+      <LineId Id="72" Count="2" />
+      <LineId Id="81" Count="0" />
+      <LineId Id="80" Count="0" />
+      <LineId Id="75" Count="0" />
       <LineId Id="77" Count="2" />
+      <LineId Id="82" Count="0" />
       <LineId Id="76" Count="0" />
     </LineIds>
   </POU>
