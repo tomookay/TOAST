@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <POU Name="prgMotionRow" Id="{4ecda869-418e-4b2d-994d-c4c6ccf53283}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM prgMotionRow
 VAR
@@ -12,6 +12,11 @@ VAR
 		retval: UDINT;
 		btnNext:R_TRIG;
 		btnPrev:R_TRIG;
+		
+		btnNextRow:R_TRIG;
+		btnPrevRow:R_TRIG;
+		tSingleRowOffset: UINT;
+		
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -183,6 +188,9 @@ END_IF]]></ST>
 btnNext(clk:=gHMIButtons.btnNextPage);
 btnPrev(clk:=gHMIButtons.btnPrevPage);
 
+//imply TRIG call
+btnNextRow(clk:=gHMIButtons.btnPlus1Row); 
+btnPrevRow(clk:=gHMIButtons.btnNeg1Row);
 
 //next page
 IF btnNext.Q THEN
@@ -234,7 +242,15 @@ IF gHMIData.gStationSelected[6] THEN
 	gHMIData.gMaxPageNumber := S6_Global.station.Data.NumberOfPages;
 END_IF
 
-]]></ST>
+//calc single row offset
+//tSingleRowOffset
+IF btnNextRow.Q THEN
+	tSingleRowOffset := tSingleRowOffset + gHMIDataConst.gNumberElementsPerRow;
+END_IF
+
+IF btnPrevRow.Q THEN
+	tSingleRowOffset := tSingleRowOffset - gHMIDataConst.gNumberElementsPerRow;
+END_IF]]></ST>
       </Implementation>
     </Action>
     <LineIds Name="prgMotionRow">
@@ -320,7 +336,10 @@ END_IF
     <LineIds Name="prgMotionRow.actPageControl">
       <LineId Id="5" Count="0" />
       <LineId Id="1" Count="1" />
-      <LineId Id="6" Count="1" />
+      <LineId Id="66" Count="1" />
+      <LineId Id="65" Count="0" />
+      <LineId Id="70" Count="0" />
+      <LineId Id="7" Count="0" />
       <LineId Id="4" Count="0" />
       <LineId Id="9" Count="0" />
       <LineId Id="13" Count="1" />
@@ -356,6 +375,9 @@ END_IF
       <LineId Id="50" Count="0" />
       <LineId Id="64" Count="0" />
       <LineId Id="58" Count="0" />
+      <LineId Id="72" Count="3" />
+      <LineId Id="77" Count="2" />
+      <LineId Id="76" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
