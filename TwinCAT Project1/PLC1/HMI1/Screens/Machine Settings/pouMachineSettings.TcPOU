@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="pouMachineSettings" Id="{2c1d7b51-dab5-0b83-12e9-3cad039059fd}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM pouMachineSettings
+VAR
+	btnOSRRead:R_TRIG;
+	btnOSRWrite:R_TRIG;
+	
+	
+    fbFileOpen           : FB_FileOpen;
+    fbFileClose          : FB_FileClose;
+    fbFileRead           : FB_FileRead;
+    fbFileWrite          : FB_FileWrite;
+    hFile             : UINT := 0;(* File handle of the source file *)
+ 	strFilePath:STRING := 'C:\PLC\testfile.txt';
+	
+	strSampleString:STRING :='This is my sample string, and this is some more text';
+	
+	
+	
+
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+//capture OSR for buttons
+btnOSRRead	(	CLK := MachineSettings.btnRead);
+btnOSRWrite	(	CLK := MachineSettings.btnWrite);
+
+
+actWriteFile();
+
+]]></ST>
+    </Implementation>
+    <Action Name="actWriteFile" Id="{599b32ba-5778-0bec-3bb7-ae7367022332}">
+      <Implementation>
+        <ST><![CDATA[
+//create handle
+fbFileOpen(sNetId :=,
+			sPathName :=strFilePath,
+			nMode :=FOPEN_MODEWRITE,
+			ePath	:=PATH_GENERIC,
+			bExecute :=btnOSRWrite.Q,
+			tTimeout :=,
+			);
+	
+			hFile := fbFileOpen.hFile;
+		
+
+//close handle			
+IF hFile > 1 THEN
+		
+	//do somthing
+	fbFileWrite(	sNetId:=,
+					hFile := hFile,
+					pWriteBuff:=ADR(strSampleString),
+					cbWriteLen:=SIZEOF(strSampleString),
+					bExecute:=TRUE,
+					tTimeout:=,
+					);
+					
+END_IF
+				
+	fbFileWrite( bExecute := FALSE);
+			
+
+
+
+
+//close handle			
+IF hFile > 1 THEN
+	
+fbFileClose(sNetId:=,
+			hFile:=hFile,
+			bExecute:=TRUE,
+			tTimeout:=,
+			);
+			
+
+
+END_IF
+
+
+//reset handle
+hFile := 0;
+
+
+//close request to close handle
+fbFileClose(bExecute:=FALSE);
+			]]></ST>
+      </Implementation>
+    </Action>
+    <LineIds Name="pouMachineSettings">
+      <LineId Id="8" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="9" Count="1" />
+      <LineId Id="12" Count="1" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="14" Count="0" />
+    </LineIds>
+    <LineIds Name="pouMachineSettings.actWriteFile">
+      <LineId Id="231" Count="1" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="207" Count="7" />
+      <LineId Id="216" Count="0" />
+      <LineId Id="255" Count="0" />
+      <LineId Id="257" Count="0" />
+      <LineId Id="256" Count="0" />
+      <LineId Id="233" Count="1" />
+      <LineId Id="246" Count="5" />
+      <LineId Id="259" Count="1" />
+      <LineId Id="252" Count="0" />
+      <LineId Id="258" Count="0" />
+      <LineId Id="253" Count="0" />
+      <LineId Id="261" Count="0" />
+      <LineId Id="236" Count="3" />
+      <LineId Id="235" Count="0" />
+      <LineId Id="218" Count="1" />
+      <LineId Id="222" Count="0" />
+      <LineId Id="224" Count="4" />
+      <LineId Id="223" Count="0" />
+      <LineId Id="221" Count="0" />
+      <LineId Id="220" Count="0" />
+      <LineId Id="240" Count="0" />
+      <LineId Id="242" Count="3" />
+      <LineId Id="241" Count="0" />
+      <LineId Id="230" Count="0" />
+      <LineId Id="229" Count="0" />
+      <LineId Id="215" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

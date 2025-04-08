@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="MachineSettings" Id="{e5f65bc7-f264-06b6-333b-91c362883b10}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	
+
+	Setting: ARRAY[1..100] OF typeSettings;
+	
+	varSelectedColumn:INT;
+	varSelectedRow:INT;
+	
+	varSelectedColumnValid:BOOL;
+	varSelectedRowValid:BOOL;
+	
+	btnRead:BOOL;
+	btnWrite:BOOL;
+	
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>
