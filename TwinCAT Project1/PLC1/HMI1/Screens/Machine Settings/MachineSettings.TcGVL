@@ -5,7 +5,7 @@
 VAR_GLOBAL
 	
 
-	Setting: ARRAY[1..100] OF typeSettings;
+	Setting: ARRAY[0..constcsv.MAX_SETTING_LENGTH] OF typeSettings;
 	
 	varSelectedColumn:INT;
 	varSelectedRow:INT;
@@ -15,6 +15,14 @@ VAR_GLOBAL
 	
 	btnRead:BOOL;
 	btnWrite:BOOL;
+	
+	numElementsOfSettings:INT;
+	
+	numSelectedSetting:INT;
+	numSelectedSettingNew:INT;
+	btnMoveValue:BOOL;
+	
+	
 	
 END_VAR]]></Declaration>
   </GVL>

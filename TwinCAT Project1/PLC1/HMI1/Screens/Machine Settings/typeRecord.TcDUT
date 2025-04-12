@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="typeRecord" Id="{4e5e5253-5d7a-010e-2209-68d93c3c301c}">
+    <Declaration><![CDATA[TYPE typeRecord :
+STRUCT
+	sName 	: T_MaxString 	:= '';
+	nNumber	: UDINT 		:= 0;
+	fPos	: LREAL 		:= 0.0;
+	bOP		: BOOL 			:= FALSE;
+	sDesc	: STRING(40)	:= '';
+	data	: ARRAY[0..7] OF BYTE;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
