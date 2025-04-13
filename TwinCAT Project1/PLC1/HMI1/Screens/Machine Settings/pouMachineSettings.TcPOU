@@ -9,6 +9,7 @@ VAR
 	OSRReadLogicDone:R_TRIG;
 	
 	csvRead:FB_ReadParams;
+	csvWrite:FB_WriteParams;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[//capture OSR for buttons
@@ -25,23 +26,50 @@ END_IF
 
 IF MachineSettings.btnMoveValue THEN
 	  IF 	MachineSettings.Setting[MachineSettings.varSelectedRow].Value <> MachineSettings.numSelectedSettingNew THEN
+			
+			//update view
 			MachineSettings.Setting[MachineSettings.varSelectedRow].hasChanged := TRUE;
 			MachineSettings.Setting[MachineSettings.varSelectedRow].Value := 	MachineSettings.numSelectedSettingNew;
+			
+			//update data area to write to
+			MachineSettings.csvData[MachineSettings.varSelectedRow,1] := INT_TO_STRING (MachineSettings.Setting[MachineSettings.varSelectedRow].Value);
 	  END_IF
+END_IF
+
+
+//feedback status
+IF csvRead.qStep > 1 THEN
+	MachineSettings.strStatusFeeback := 'Reading...';
+END_IF
+IF csvWrite.qStep > 1 THEN
+	MachineSettings.strStatusFeeback := 'Writing...';
+END_IF
+IF csvRead.qStep = 0 AND csvWrite.qStep = 0 THEN
+	MachineSettings.strStatusFeeback := '';
+END_IF
+
+IF csvRead.qErrId > 0 THEN
+	MachineSettings.strStatusFeeback := CONCAT(STR1:='Read Error ',STR2:=UDINT_TO_STRING(csvRead.qErrId));
+END_IF
+IF csvWrite.qErrId > 0 THEN
+	MachineSettings.strStatusFeeback := CONCAT(STR1:='Write Error ',STR2:=UDINT_TO_STRING(csvWrite.qErrId));
 END_IF
 ]]></ST>
     </Implementation>
     <Action Name="actReadFile" Id="{3d74b5ee-7fe5-035f-0977-ce9c3c5465b0}">
       <Implementation>
-        <ST><![CDATA[csvRead (iRead :=btnOSRRead.Q,
+        <ST><![CDATA[//read data
+csvRead (iRead :=btnOSRRead.Q,
 		iNetId :=,
-		iFileName:=,
+		iFileName:=constCSV.str_mc_filelocation,
 		iqdatabase := MachineSettings.csvData
 		);
 
-		//check state as output
+	//check state as output
 	OSRReadLogicDone(clk := csvRead.qStep = 0);
-
+	
+	
+//tidy up HMI screen data
 IF OSRReadLogicDone.Q THEN
 	MachineSettings.numElementsOfSettings := 0;
 	FOR ii:=0 TO 100 DO
@@ -62,12 +90,19 @@ END_IF
     </Action>
     <Action Name="actWriteFile" Id="{599b32ba-5778-0bec-3bb7-ae7367022332}">
       <Implementation>
-        <ST><![CDATA[IF btnOSRWrite.Q THEN
-//
-END_IF
-
-
-]]></ST>
+        <ST><![CDATA[//write data
+csvWrite (iWrite :=btnOSRWrite.Q,
+		iNetId :=,
+		iFileName:=constCSV.str_mc_filelocation,
+		iqdatabase := MachineSettings.csvData
+		);
+		
+//tidy up HMI screen data		
+IF btnOSRWrite.Q THEN
+	FOR ii:=0 TO 100 DO
+		MachineSettings.Setting[ii].hasChanged := FALSE;
+	END_FOR;
+END_IF]]></ST>
       </Implementation>
     </Action>
     <LineIds Name="pouMachineSettings">
@@ -82,15 +117,33 @@ END_IF
       <LineId Id="24" Count="0" />
       <LineId Id="15" Count="0" />
       <LineId Id="46" Count="1" />
+      <LineId Id="66" Count="1" />
       <LineId Id="36" Count="0" />
+      <LineId Id="64" Count="0" />
+      <LineId Id="68" Count="0" />
+      <LineId Id="65" Count="0" />
       <LineId Id="45" Count="0" />
       <LineId Id="37" Count="0" />
+      <LineId Id="69" Count="1" />
       <LineId Id="14" Count="0" />
+      <LineId Id="71" Count="1" />
+      <LineId Id="74" Count="0" />
+      <LineId Id="76" Count="1" />
+      <LineId Id="75" Count="0" />
+      <LineId Id="78" Count="2" />
+      <LineId Id="83" Count="0" />
+      <LineId Id="82" Count="0" />
+      <LineId Id="84" Count="1" />
+      <LineId Id="87" Count="1" />
+      <LineId Id="86" Count="0" />
+      <LineId Id="81" Count="0" />
     </LineIds>
     <LineIds Name="pouMachineSettings.actReadFile">
+      <LineId Id="53" Count="0" />
       <LineId Id="42" Count="4" />
       <LineId Id="52" Count="0" />
       <LineId Id="17" Count="1" />
+      <LineId Id="54" Count="1" />
       <LineId Id="31" Count="0" />
       <LineId Id="19" Count="0" />
       <LineId Id="33" Count="0" />
@@ -105,11 +158,15 @@ END_IF
       <LineId Id="1" Count="0" />
     </LineIds>
     <LineIds Name="pouMachineSettings.actWriteFile">
-      <LineId Id="458" Count="0" />
-      <LineId Id="466" Count="0" />
-      <LineId Id="464" Count="0" />
-      <LineId Id="468" Count="1" />
+      <LineId Id="474" Count="0" />
+      <LineId Id="470" Count="3" />
       <LineId Id="467" Count="0" />
+      <LineId Id="475" Count="1" />
+      <LineId Id="478" Count="0" />
+      <LineId Id="480" Count="0" />
+      <LineId Id="484" Count="0" />
+      <LineId Id="479" Count="0" />
+      <LineId Id="477" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
