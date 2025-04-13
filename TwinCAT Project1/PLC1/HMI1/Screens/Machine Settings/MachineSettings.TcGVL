@@ -4,7 +4,7 @@
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
 	
-
+	csvData	: ARRAY[0..constCSV.MAX_CSV_ROWS, 0..constCSV.MAX_CSV_COLUMNS ] OF STRING(constCSV.MAX_CSV_FIELD_LENGTH);
 	Setting: ARRAY[0..constcsv.MAX_SETTING_LENGTH] OF typeSettings;
 	
 	varSelectedColumn:INT;
@@ -21,6 +21,7 @@ VAR_GLOBAL
 	numSelectedSetting:INT;
 	numSelectedSettingNew:INT;
 	btnMoveValue:BOOL;
+	
 	
 	
 	

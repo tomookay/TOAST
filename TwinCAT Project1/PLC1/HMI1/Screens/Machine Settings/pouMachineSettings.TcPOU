@@ -7,58 +7,52 @@ VAR
 	btnOSRWrite:R_TRIG;
 	ii: INT;
 	OSRReadLogicDone:R_TRIG;
+	
+	csvRead:FB_ReadParams;
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[
-//capture OSR for buttons
+      <ST><![CDATA[//capture OSR for buttons
 btnOSRRead	(	CLK := MachineSettings.btnRead);
 btnOSRWrite	(	CLK := MachineSettings.btnWrite);
 
-
-actWriteFile();
 actReadFile();
+actWriteFile();
+
 
 IF MachineSettings.varSelectedRowValid THEN
-	
-
-	MachineSettings.numSelectedSetting := MachineSettings.Setting[MachineSettings.varSelectedRow].Value;
+		MachineSettings.numSelectedSetting := MachineSettings.Setting[MachineSettings.varSelectedRow].Value;
 END_IF
 
 IF MachineSettings.btnMoveValue THEN
-	MachineSettings.Setting[MachineSettings.varSelectedRow].Value := 	MachineSettings.numSelectedSettingNew;
-	
+	  IF 	MachineSettings.Setting[MachineSettings.varSelectedRow].Value <> MachineSettings.numSelectedSettingNew THEN
+			MachineSettings.Setting[MachineSettings.varSelectedRow].hasChanged := TRUE;
+			MachineSettings.Setting[MachineSettings.varSelectedRow].Value := 	MachineSettings.numSelectedSettingNew;
+	  END_IF
 END_IF
 ]]></ST>
     </Implementation>
     <Action Name="actReadFile" Id="{3d74b5ee-7fe5-035f-0977-ce9c3c5465b0}">
       <Implementation>
-        <ST><![CDATA[readtext();
+        <ST><![CDATA[csvRead (iRead :=btnOSRRead.Q,
+		iNetId :=,
+		iFileName:=,
+		iqdatabase := MachineSettings.csvData
+		);
 
-
-
-
-IF btnOSRRead.Q THEN
-MachineSettings.btnRead := TRUE;
-
-END_IF
-
-OSRReadLogicDone(clk := readtext.step = 0);
+		//check state as output
+	OSRReadLogicDone(clk := csvRead.qStep = 0);
 
 IF OSRReadLogicDone.Q THEN
-
-MachineSettings.numElementsOfSettings := 0;
-
-FOR ii:=0 TO 100 DO
-
-	MachineSettings.numElementsOfSettings := ii;
-    MachineSettings.Setting[ii].Value := STRING_TO_INT(readtext.database[ii,1]);
-	MachineSettings.Setting[ii].TextName := readtext.database[ii,0];
-	
-	IF readtext.database[ii,0] = '' THEN
-		return;
-	END_IF
-END_FOR;
-
+	MachineSettings.numElementsOfSettings := 0;
+	FOR ii:=0 TO 100 DO
+		MachineSettings.numElementsOfSettings := ii;
+		MachineSettings.Setting[ii].Value := STRING_TO_INT(MachineSettings.csvData[ii,1]);
+		MachineSettings.Setting[ii].TextName := MachineSettings.csvData[ii,0];
+		MachineSettings.Setting[ii].hasChanged := FALSE;
+		IF MachineSettings.csvData[ii,0] = '' THEN
+			RETURN;
+		END_IF
+	END_FOR;
 END_IF
 
 
@@ -77,41 +71,34 @@ END_IF
       </Implementation>
     </Action>
     <LineIds Name="pouMachineSettings">
-      <LineId Id="8" Count="0" />
       <LineId Id="5" Count="0" />
       <LineId Id="9" Count="1" />
-      <LineId Id="12" Count="1" />
+      <LineId Id="53" Count="1" />
       <LineId Id="11" Count="0" />
       <LineId Id="23" Count="0" />
       <LineId Id="28" Count="1" />
-      <LineId Id="34" Count="1" />
-      <LineId Id="30" Count="1" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="31" Count="0" />
       <LineId Id="24" Count="0" />
       <LineId Id="15" Count="0" />
+      <LineId Id="46" Count="1" />
       <LineId Id="36" Count="0" />
-      <LineId Id="38" Count="0" />
+      <LineId Id="45" Count="0" />
       <LineId Id="37" Count="0" />
       <LineId Id="14" Count="0" />
     </LineIds>
     <LineIds Name="pouMachineSettings.actReadFile">
-      <LineId Id="8" Count="0" />
-      <LineId Id="13" Count="2" />
-      <LineId Id="9" Count="0" />
-      <LineId Id="2" Count="1" />
-      <LineId Id="16" Count="0" />
-      <LineId Id="4" Count="0" />
+      <LineId Id="42" Count="4" />
+      <LineId Id="52" Count="0" />
       <LineId Id="17" Count="1" />
       <LineId Id="31" Count="0" />
       <LineId Id="19" Count="0" />
-      <LineId Id="32" Count="1" />
-      <LineId Id="22" Count="0" />
-      <LineId Id="24" Count="0" />
-      <LineId Id="34" Count="0" />
-      <LineId Id="25" Count="1" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="24" Count="2" />
       <LineId Id="30" Count="0" />
-      <LineId Id="35" Count="3" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="36" Count="2" />
       <LineId Id="28" Count="0" />
-      <LineId Id="21" Count="0" />
       <LineId Id="12" Count="0" />
       <LineId Id="10" Count="0" />
       <LineId Id="5" Count="1" />

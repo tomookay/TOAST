@@ -1,17 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
-  <POU Name="readtext" Id="{940c60d2-303a-0ecc-12b6-272b25a1c7e6}" SpecialFunc="None">
-    <Declaration><![CDATA[PROGRAM readtext
+  <POU Name="FB_ReadParams" Id="{7c1ef037-fcf9-07ca-054e-5ead071fbc08}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_ReadParams
+VAR_INPUT
+	iRead			: BOOL := FALSE;(* Rising edge starts program execution *)
+	iNetId			: T_AmsNetId := '';	(* TwinCAT system network address *)
+	iFileName		: T_MaxString := 'C:\PLC\machinesettings.csv';(* CSV source file path and name *)
+
+END_VAR
+VAR_OUTPUT
+	qBusy			: BOOL;
+	qError			: BOOL;
+	qErrId			: UDINT;
+	qStep			:DWORD;
+END_VAR
 VAR
-	
-	bRead			: BOOL := FALSE;(* Rising edge starts program execution *)
-	sNetId			: T_AmsNetId := '';	(* TwinCAT system network address *)
-	sFileName		: T_MaxString := 'C:\PLC\machinesettings.csv';(* CSV source file path and name *)
-	sCSVLine		: T_MaxString := '';(* Single CSV text line (row, record), we are using string as record buffer (your are able to see read fields)  *)
-	sCSVField		: T_MaxString := '';(* Single CSV field value (column, record field) *)
-	bBusy			: BOOL;
-	bError			: BOOL;
-	nErrId			: UDINT;
 	nRow	 		: UDINT 	:= 0;(* Row number (record) *)
 	nColumn			: UDINT 	:= 0;(* Column number (record field) *)
 	hFile			: UINT		:= 0;(* File handle of the source file *)
@@ -20,38 +23,42 @@ VAR
 	fbFileClose		: FB_FileClose;(* Closes file *)
 	fbFileGets		: FB_FileGets;(* Reads one record (line) *)
 	fbReader		: FB_CSVMemBufferReader;(* Helper function block used to parse CSV data bytes (single record line) *)
-	
-	database		: ARRAY[0..constCSV.MAX_CSV_ROWS, 0..constCSV.MAX_CSV_COLUMNS ] OF STRING(constCSV.MAX_CSV_FIELD_LENGTH);(* Target PLC database *)
+	sCSVLine		: T_MaxString := '';(* Single CSV text line (row, record), we are using string as record buffer (your are able to see read fields)  *)
+	sCSVField		: T_MaxString := '';(* Single CSV field value (column, record field) *)
+
 
 END_VAR
+
+VAR_IN_OUT
+		iqdatabase		: ARRAY[0..constCSV.MAX_CSV_ROWS, 0..constCSV.MAX_CSV_COLUMNS ] OF STRING(constCSV.MAX_CSV_FIELD_LENGTH);(* Target PLC database *)
+END_VAR
+
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[//based on sample code from Beckhoff 35419787.html
 
-bRead := MachineSettings.btnRead;
-
 CASE step OF
 	0:	(* Wait for rising edge at bRead variable *)
-		IF bRead THEN
-			bRead 	:= FALSE;
-			bBusy 	:= TRUE;
-			bError	:= FALSE;
-			nErrId	:= 0;
+		IF iRead THEN
+		//	bRead 	:= FALSE;
+			qBusy 	:= TRUE;
+			qError	:= FALSE;
+			qErrId	:= 0;
 			hFile	:= 0;
 			nRow	:= 0;
 			nColumn	:= 0;
-			MEMSET( ADR( database ), 0, SIZEOF( database ) );
+			MEMSET( ADR( iqdatabase ), 0, SIZEOF( iqdatabase ) );
 			step 		:= 1;
 		END_IF
 
 	1:	(* Open source file *)
 		fbFileOpen(  bExecute := FALSE  );
-		fbFileOpen( sNetId := sNetId, sPathName := sFileName, nMode := FOPEN_MODEREAD OR FOPEN_MODETEXT,(* Open file in TEXT mode! *)
+		fbFileOpen( sNetId := iNetId, sPathName := iFileName, nMode := FOPEN_MODEREAD OR FOPEN_MODETEXT,(* Open file in TEXT mode! *)
 					ePath := PATH_GENERIC, bExecute := TRUE );
 		step := 2;
 
 	2:(* Wait until open not busy *)
-		fbFileOpen( bExecute := FALSE, bError => bError, nErrID => nErrID, hFile => hFile );
+		fbFileOpen( bExecute := FALSE, bError => qError, nErrID => qErrID, hFile => hFile );
 		IF NOT fbFileOpen.bBusy THEN
 			IF NOT fbFileOpen.bError THEN
 				step := 3;
@@ -62,11 +69,11 @@ CASE step OF
 
 	3:	(* Read single line (record) *)
 		fbFileGets( bExecute := FALSE );
-		fbFileGets( sNetId := sNetId, hFile := hFile, bExecute := TRUE );
+		fbFileGets( sNetId := iNetId, hFile := hFile, bExecute := TRUE );
 		step := 4;
 
 	4:(* Wait until read not busy *)
-		fbFileGets( bExecute := FALSE, bError => bError, nErrID => nErrID, sLine => sCSVLine );
+		fbFileGets( bExecute := FALSE, bError => qError, nErrID => qErrID, sLine => sCSVLine );
 		IF NOT fbFileGets.bBusy THEN
 			IF NOT fbFileGets.bError THEN
 				IF fbFileGets.bEOF THEN
@@ -95,7 +102,7 @@ CASE step OF
 
 				IF ( nRow <= constCSV.MAX_CSV_ROWS ) THEN
 					IF ( nColumn <= constCSV.MAX_CSV_COLUMNS ) THEN
-						database[nRow, nColumn] := CSVFIELD_TO_STRING( sCSVField, FALSE );(* TODO: Save or use the field value in your application *)
+						iqdatabase[nRow, nColumn] := CSVFIELD_TO_STRING( sCSVField, FALSE );(* TODO: Save or use the field value in your application *)
 					END_IF
 				END_IF
 
@@ -113,11 +120,11 @@ CASE step OF
 
 	10:	(* Close source file *)
 		fbFileClose( bExecute := FALSE );
-		fbFileClose( sNetId := sNetId, hFile := hFile, bExecute := TRUE );
+		fbFileClose( sNetId := iNetId, hFile := hFile, bExecute := TRUE );
 		step := 11;
 
 	11:(* Wait until close not busy *)
-		fbFileClose( bExecute := FALSE, bError => bError, nErrID => nErrID );
+		fbFileClose( bExecute := FALSE, bError => qError, nErrID => qErrID );
 		IF ( NOT fbFileClose.bBusy ) THEN
 			hFile := 0;
 			step := 100;
@@ -127,23 +134,22 @@ CASE step OF
 		IF ( hFile <> 0 ) THEN
 			step := 10; (* Close the source file *)
 		ELSE
-			bBusy := FALSE;
+			qBusy := FALSE;
 			step := 0;	(* Ready *)
 		END_IF
 
 END_CASE
 
 
-]]></ST>
+//move to outside world
+qStep := step;]]></ST>
     </Implementation>
-    <LineIds Name="readtext">
-      <LineId Id="178" Count="1" />
-      <LineId Id="149" Count="0" />
-      <LineId Id="147" Count="0" />
-      <LineId Id="6" Count="100" />
-      <LineId Id="5" Count="0" />
-      <LineId Id="153" Count="1" />
-      <LineId Id="152" Count="0" />
+    <LineIds Name="FB_ReadParams">
+      <LineId Id="10" Count="1" />
+      <LineId Id="14" Count="102" />
+      <LineId Id="151" Count="0" />
+      <LineId Id="117" Count="0" />
+      <LineId Id="9" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
