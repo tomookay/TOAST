@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="VisuInit" Id="{33320dae-9040-0cbf-1fe5-5e8fdd99e2f4}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM VisuInit
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[gHMIData.gVisuHasInited := TRUE;
+]]></ST>
+    </Implementation>
+    <LineIds Name="VisuInit">
+      <LineId Id="5" Count="1" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

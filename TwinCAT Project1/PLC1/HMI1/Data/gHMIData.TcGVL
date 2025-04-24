@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <GVL Name="gHMIData" Id="{ff709847-a0f4-40ed-b932-b67e11c424ed}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
@@ -55,6 +55,9 @@ VAR_GLOBAL
 	
 	//title of manual motion screen
 	gManualScreenTitle:UINT;
+	
+	gVisuHasInited:BOOL;
+	
 END_VAR
 
 
