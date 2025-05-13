@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <POU Name="prgHMIcontrol" Id="{f2bb902c-68c6-495b-ba1a-10a09cc0583e}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM prgHMIcontrol
 VAR
@@ -1200,7 +1200,6 @@ END_IF
         <ST><![CDATA[//gHMIData.gHMIScreenString
 gHMIData.gHMIScreenString := VisuElems.CURRENTVISU;
 
-
 //get string Leng
 strLen:= LEN(STR:=gHMIData.gHMIScreenString);
 
@@ -1394,7 +1393,7 @@ END_IF
     </LineIds>
     <LineIds Name="prgHMIcontrol.actVisuNumber">
       <LineId Id="1" Count="1" />
-      <LineId Id="17" Count="1" />
+      <LineId Id="37" Count="0" />
       <LineId Id="9" Count="0" />
       <LineId Id="19" Count="0" />
       <LineId Id="10" Count="0" />
