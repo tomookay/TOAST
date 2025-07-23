@@ -258,12 +258,12 @@
                               <d n="TypeNodeAttributesData" t="CaseInsensitiveHashtable" ckt="String" cvt="String">
                                 <v>Visible</v>
                                 <v>False</v>
-                                <v>ieccodeconversion_array</v>
-                                <v></v>
-                                <v>VisibleChildren</v>
-                                <v>True</v>
                                 <v>DefaultArraySize</v>
                                 <v>5</v>
+                                <v>VisibleChildren</v>
+                                <v>True</v>
+                                <v>ieccodeconversion_array</v>
+                                <v></v>
                                 <v>''NORMAL__COMMENT</v>
                                 <v> We hide this node to prevent having two References nodes
  Nevertheless we want to make sure that the children are displayed</v>
@@ -319,8 +319,8 @@
                         <o n="TypeNodeAttributes" t="TypeNodeAttributes2">
                           <v n="AttrFlags">81920UL</v>
                           <d n="TypeNodeAttributesData" t="CaseInsensitiveHashtable" ckt="String" cvt="String">
-                            <v>conditionalshow</v>
-                            <v>visu_elemdev</v>
+                            <v>DisplayFrameReferencesConfiguration</v>
+                            <v></v>
                             <v>DescriptionTextId</v>
                             <v>TL_ElementProperties.Desc_ReferencedVisus</v>
                             <v>SortFlag</v>
@@ -331,14 +331,14 @@
                             <v>Simple|Standard</v>
                             <v>DynamicArray</v>
                             <v></v>
-                            <v>DisplayFrameReferencesConfiguration</v>
-                            <v></v>
+                            <v>conditionalshow</v>
+                            <v>visu_elemdev</v>
                             <v>FrameReferences</v>
                             <v></v>
-                            <v>Storable</v>
-                            <v>True</v>
                             <v>DisplayTextId</v>
                             <v>TL_ElementProperties.References</v>
+                            <v>Storable</v>
+                            <v>True</v>
                           </d>
                           <v n="ConvDone">true</v>
                         </o>
@@ -648,7 +648,14 @@
                 <v n="VisualElementIdentifier">"btnSelectMenu1"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" />
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                  <v>OnMouseDown</v>
+                  <a cet="STSnippetInputAction">
+                    <o>
+                      <v n="STSnippet">"gHMIButtons.gAnyButtonPressed := TRUE;"</v>
+                    </o>
+                  </a>
+                </d>
                 <v n="VisualElementIdentification">{56b11356-fe43-4a76-8052-6eb31d25331a}</v>
                 <v n="VisualElementOwningObjectGuid">{a1acf86b-2a14-0277-0583-07670bd3e08e}</v>
                 <a n="LMGuids" et="Guid" />
@@ -827,7 +834,7 @@ View"</v>
                 <v n="VisualElementIdentifier">"GenElemInst_78"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="ChangeVisuInputAction[]">
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String">
                   <v>OnMouseClick</v>
                   <a cet="ChangeVisuInputAction">
                     <o>
@@ -835,6 +842,12 @@ View"</v>
                       <n n="Assign" />
                       <v n="Assign33">"Dia_800_DataDisplay"</v>
                       <v n="Type" t="ChangeVisuType">Assignment</v>
+                    </o>
+                  </a>
+                  <v>OnMouseDown</v>
+                  <a cet="STSnippetInputAction">
+                    <o>
+                      <v n="STSnippet">"gHMIButtons.gAnyButtonPressed := TRUE;"</v>
                     </o>
                   </a>
                 </d>
@@ -1011,7 +1024,14 @@ View"</v>
                 <v n="VisualElementIdentifier">"GenElemInst_80"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" />
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                  <v>OnMouseDown</v>
+                  <a cet="STSnippetInputAction">
+                    <o>
+                      <v n="STSnippet">"gHMIButtons.gAnyButtonPressed := TRUE;"</v>
+                    </o>
+                  </a>
+                </d>
                 <v n="VisualElementIdentification">{523e81a1-4fff-4b01-a258-04a97637d0d5}</v>
                 <v n="VisualElementOwningObjectGuid">{a1acf86b-2a14-0277-0583-07670bd3e08e}</v>
                 <a n="LMGuids" et="Guid" />
@@ -1185,7 +1205,14 @@ View"</v>
                 <v n="VisualElementIdentifier">"GenElemInst_82"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" />
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                  <v>OnMouseDown</v>
+                  <a cet="STSnippetInputAction">
+                    <o>
+                      <v n="STSnippet">"gHMIButtons.gAnyButtonPressed := TRUE;"</v>
+                    </o>
+                  </a>
+                </d>
                 <v n="VisualElementIdentification">{d5b42116-34ce-4401-9eae-c635131c3a47}</v>
                 <v n="VisualElementOwningObjectGuid">{a1acf86b-2a14-0277-0583-07670bd3e08e}</v>
                 <a n="LMGuids" et="Guid" />
@@ -1359,7 +1386,14 @@ View"</v>
                 <v n="VisualElementIdentifier">"GenElemInst_84"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" />
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                  <v>OnMouseDown</v>
+                  <a cet="STSnippetInputAction">
+                    <o>
+                      <v n="STSnippet">"gHMIButtons.gAnyButtonPressed := TRUE;"</v>
+                    </o>
+                  </a>
+                </d>
                 <v n="VisualElementIdentification">{3e771b2d-0e79-4b6a-adf7-8dcd7a1e890a}</v>
                 <v n="VisualElementOwningObjectGuid">{a1acf86b-2a14-0277-0583-07670bd3e08e}</v>
                 <a n="LMGuids" et="Guid" />
@@ -1533,7 +1567,14 @@ View"</v>
                 <v n="VisualElementIdentifier">"GenElemInst_86"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" />
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                  <v>OnMouseDown</v>
+                  <a cet="STSnippetInputAction">
+                    <o>
+                      <v n="STSnippet">"gHMIButtons.gAnyButtonPressed := TRUE;"</v>
+                    </o>
+                  </a>
+                </d>
                 <v n="VisualElementIdentification">{b760f1e4-5d9e-49bc-9d40-73ddda6a9873}</v>
                 <v n="VisualElementOwningObjectGuid">{a1acf86b-2a14-0277-0583-07670bd3e08e}</v>
                 <a n="LMGuids" et="Guid" />
@@ -1711,7 +1752,14 @@ View"</v>
                 <v n="VisualElementIdentifier">"GenElemInst_149"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" />
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                  <v>OnMouseDown</v>
+                  <a cet="STSnippetInputAction">
+                    <o>
+                      <v n="STSnippet">"gHMIButtons.gAnyButtonPressed := TRUE;"</v>
+                    </o>
+                  </a>
+                </d>
                 <v n="VisualElementIdentification">{362a1989-37ae-4da9-a58c-bbb094bb72fd}</v>
                 <v n="VisualElementOwningObjectGuid">{a1acf86b-2a14-0277-0583-07670bd3e08e}</v>
                 <a n="LMGuids" et="Guid" />
@@ -1885,7 +1933,14 @@ View"</v>
                 <v n="VisualElementIdentifier">"GenElemInst_151"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" />
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                  <v>OnMouseDown</v>
+                  <a cet="STSnippetInputAction">
+                    <o>
+                      <v n="STSnippet">"gHMIButtons.gAnyButtonPressed := TRUE;"</v>
+                    </o>
+                  </a>
+                </d>
                 <v n="VisualElementIdentification">{103f723f-ae0f-49d7-bfa0-298440b59448}</v>
                 <v n="VisualElementOwningObjectGuid">{a1acf86b-2a14-0277-0583-07670bd3e08e}</v>
                 <a n="LMGuids" et="Guid" />
@@ -2059,7 +2114,14 @@ View"</v>
                 <v n="VisualElementIdentifier">"GenElemInst_153"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" />
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                  <v>OnMouseDown</v>
+                  <a cet="STSnippetInputAction">
+                    <o>
+                      <v n="STSnippet">"gHMIButtons.gAnyButtonPressed := TRUE;"</v>
+                    </o>
+                  </a>
+                </d>
                 <v n="VisualElementIdentification">{7f2b9eeb-1b7d-4e59-a0bc-c7433dc09a8a}</v>
                 <v n="VisualElementOwningObjectGuid">{a1acf86b-2a14-0277-0583-07670bd3e08e}</v>
                 <a n="LMGuids" et="Guid" />
@@ -2233,7 +2295,14 @@ View"</v>
                 <v n="VisualElementIdentifier">"GenElemInst_155"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" />
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                  <v>OnMouseDown</v>
+                  <a cet="STSnippetInputAction">
+                    <o>
+                      <v n="STSnippet">"gHMIButtons.gAnyButtonPressed := TRUE;"</v>
+                    </o>
+                  </a>
+                </d>
                 <v n="VisualElementIdentification">{53119fe9-aa64-47e6-ab1f-e894fcf9bb0a}</v>
                 <v n="VisualElementOwningObjectGuid">{a1acf86b-2a14-0277-0583-07670bd3e08e}</v>
                 <a n="LMGuids" et="Guid" />
@@ -2407,7 +2476,14 @@ View"</v>
                 <v n="VisualElementIdentifier">"GenElemInst_157"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" />
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                  <v>OnMouseDown</v>
+                  <a cet="STSnippetInputAction">
+                    <o>
+                      <v n="STSnippet">"gHMIButtons.gAnyButtonPressed := TRUE;"</v>
+                    </o>
+                  </a>
+                </d>
                 <v n="VisualElementIdentification">{97143a2e-d6cd-4e7a-956b-ada0bcdd0031}</v>
                 <v n="VisualElementOwningObjectGuid">{a1acf86b-2a14-0277-0583-07670bd3e08e}</v>
                 <a n="LMGuids" et="Guid" />
@@ -2581,7 +2657,14 @@ View"</v>
                 <v n="VisualElementIdentifier">"GenElemInst_159"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" />
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                  <v>OnMouseDown</v>
+                  <a cet="STSnippetInputAction">
+                    <o>
+                      <v n="STSnippet">"gHMIButtons.gAnyButtonPressed := TRUE;"</v>
+                    </o>
+                  </a>
+                </d>
                 <v n="VisualElementIdentification">{bc446d17-9500-4237-b470-fa5e009296c2}</v>
                 <v n="VisualElementOwningObjectGuid">{a1acf86b-2a14-0277-0583-07670bd3e08e}</v>
                 <a n="LMGuids" et="Guid" />
@@ -2755,7 +2838,14 @@ View"</v>
                 <v n="VisualElementIdentifier">"GenElemInst_161"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" />
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                  <v>OnMouseDown</v>
+                  <a cet="STSnippetInputAction">
+                    <o>
+                      <v n="STSnippet">"gHMIButtons.gAnyButtonPressed := TRUE;"</v>
+                    </o>
+                  </a>
+                </d>
                 <v n="VisualElementIdentification">{9c740350-33c0-4a8d-a4d0-f47f7187e1be}</v>
                 <v n="VisualElementOwningObjectGuid">{a1acf86b-2a14-0277-0583-07670bd3e08e}</v>
                 <a n="LMGuids" et="Guid" />
@@ -2934,7 +3024,7 @@ Status"</v>
                 <v n="VisualElementIdentifier">"GenElemInst_163"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="ChangeVisuInputAction[]">
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String">
                   <v>OnMouseClick</v>
                   <a cet="ChangeVisuInputAction">
                     <o>
@@ -2942,6 +3032,12 @@ Status"</v>
                       <n n="Assign" />
                       <v n="Assign33">"Saf_700_SafetyStatus"</v>
                       <v n="Type" t="ChangeVisuType">Assignment</v>
+                    </o>
+                  </a>
+                  <v>OnMouseDown</v>
+                  <a cet="STSnippetInputAction">
+                    <o>
+                      <v n="STSnippet">"gHMIButtons.gAnyButtonPressed := TRUE;"</v>
                     </o>
                   </a>
                 </d>
@@ -3118,7 +3214,14 @@ Status"</v>
                 <v n="VisualElementIdentifier">"GenElemInst_165"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" />
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                  <v>OnMouseDown</v>
+                  <a cet="STSnippetInputAction">
+                    <o>
+                      <v n="STSnippet">"gHMIButtons.gAnyButtonPressed := TRUE;"</v>
+                    </o>
+                  </a>
+                </d>
                 <v n="VisualElementIdentification">{32bd5338-f09d-4193-809a-9c3941333151}</v>
                 <v n="VisualElementOwningObjectGuid">{a1acf86b-2a14-0277-0583-07670bd3e08e}</v>
                 <a n="LMGuids" et="Guid" />
@@ -3292,7 +3395,14 @@ Status"</v>
                 <v n="VisualElementIdentifier">"GenElemInst_167"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" />
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                  <v>OnMouseDown</v>
+                  <a cet="STSnippetInputAction">
+                    <o>
+                      <v n="STSnippet">"gHMIButtons.gAnyButtonPressed := TRUE;"</v>
+                    </o>
+                  </a>
+                </d>
                 <v n="VisualElementIdentification">{59e6f617-157f-4a0f-947f-a4565e93268b}</v>
                 <v n="VisualElementOwningObjectGuid">{a1acf86b-2a14-0277-0583-07670bd3e08e}</v>
                 <a n="LMGuids" et="Guid" />
@@ -3470,7 +3580,7 @@ Status"</v>
                 <v n="VisualElementIdentifier">"GenElemInst_169"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="ChangeVisuInputAction[]">
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String">
                   <v>OnMouseClick</v>
                   <a cet="ChangeVisuInputAction">
                     <o>
@@ -3478,6 +3588,12 @@ Status"</v>
                       <n n="Assign" />
                       <v n="Assign33">"Dia_801_EtherCAT"</v>
                       <v n="Type" t="ChangeVisuType">Assignment</v>
+                    </o>
+                  </a>
+                  <v>OnMouseDown</v>
+                  <a cet="STSnippetInputAction">
+                    <o>
+                      <v n="STSnippet">"gHMIButtons.gAnyButtonPressed := TRUE;"</v>
                     </o>
                   </a>
                 </d>
@@ -3658,7 +3774,7 @@ Status"</v>
                 <v n="VisualElementIdentifier">"GenElemInst_171"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="ChangeVisuInputAction[]">
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String">
                   <v>OnMouseClick</v>
                   <a cet="ChangeVisuInputAction">
                     <o>
@@ -3666,6 +3782,12 @@ Status"</v>
                       <n n="Assign" />
                       <v n="Assign33">"Dia_802_Profibus"</v>
                       <v n="Type" t="ChangeVisuType">Assignment</v>
+                    </o>
+                  </a>
+                  <v>OnMouseDown</v>
+                  <a cet="STSnippetInputAction">
+                    <o>
+                      <v n="STSnippet">"gHMIButtons.gAnyButtonPressed := TRUE;"</v>
                     </o>
                   </a>
                 </d>
@@ -3842,7 +3964,14 @@ Status"</v>
                 <v n="VisualElementIdentifier">"GenElemInst_173"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" />
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                  <v>OnMouseDown</v>
+                  <a cet="STSnippetInputAction">
+                    <o>
+                      <v n="STSnippet">"gHMIButtons.gAnyButtonPressed := TRUE;"</v>
+                    </o>
+                  </a>
+                </d>
                 <v n="VisualElementIdentification">{9a33e04b-bdb9-4e8b-974d-10ac4db127bf}</v>
                 <v n="VisualElementOwningObjectGuid">{a1acf86b-2a14-0277-0583-07670bd3e08e}</v>
                 <a n="LMGuids" et="Guid" />
@@ -4016,7 +4145,14 @@ Status"</v>
                 <v n="VisualElementIdentifier">"GenElemInst_175"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" />
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                  <v>OnMouseDown</v>
+                  <a cet="STSnippetInputAction">
+                    <o>
+                      <v n="STSnippet">"gHMIButtons.gAnyButtonPressed := TRUE;"</v>
+                    </o>
+                  </a>
+                </d>
                 <v n="VisualElementIdentification">{000745d4-fd01-4026-82da-40f48fef1417}</v>
                 <v n="VisualElementOwningObjectGuid">{a1acf86b-2a14-0277-0583-07670bd3e08e}</v>
                 <a n="LMGuids" et="Guid" />
@@ -4190,7 +4326,14 @@ Status"</v>
                 <v n="VisualElementIdentifier">"GenElemInst_177"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" />
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                  <v>OnMouseDown</v>
+                  <a cet="STSnippetInputAction">
+                    <o>
+                      <v n="STSnippet">"gHMIButtons.gAnyButtonPressed := TRUE;"</v>
+                    </o>
+                  </a>
+                </d>
                 <v n="VisualElementIdentification">{2f8b99cd-0e15-4e19-af31-a5c2f9be26e0}</v>
                 <v n="VisualElementOwningObjectGuid">{a1acf86b-2a14-0277-0583-07670bd3e08e}</v>
                 <a n="LMGuids" et="Guid" />
@@ -4364,7 +4507,14 @@ Status"</v>
                 <v n="VisualElementIdentifier">"GenElemInst_179"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" />
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                  <v>OnMouseDown</v>
+                  <a cet="STSnippetInputAction">
+                    <o>
+                      <v n="STSnippet">"gHMIButtons.gAnyButtonPressed := TRUE;"</v>
+                    </o>
+                  </a>
+                </d>
                 <v n="VisualElementIdentification">{b21e4a44-0b54-4007-b0c6-3c6c4d24a1ba}</v>
                 <v n="VisualElementOwningObjectGuid">{a1acf86b-2a14-0277-0583-07670bd3e08e}</v>
                 <a n="LMGuids" et="Guid" />
@@ -4542,7 +4692,14 @@ Status"</v>
                 <v n="VisualElementIdentifier">"GenElemInst_181"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" />
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                  <v>OnMouseDown</v>
+                  <a cet="STSnippetInputAction">
+                    <o>
+                      <v n="STSnippet">"gHMIButtons.gAnyButtonPressed := TRUE;"</v>
+                    </o>
+                  </a>
+                </d>
                 <v n="VisualElementIdentification">{97087742-a407-4dbe-9637-34068fd580fb}</v>
                 <v n="VisualElementOwningObjectGuid">{a1acf86b-2a14-0277-0583-07670bd3e08e}</v>
                 <a n="LMGuids" et="Guid" />
@@ -4720,7 +4877,7 @@ Status"</v>
                 <v n="VisualElementIdentifier">"GenElemInst_183"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="ChangeVisuInputAction[]">
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String">
                   <v>OnMouseClick</v>
                   <a cet="ChangeVisuInputAction">
                     <o>
@@ -4728,6 +4885,12 @@ Status"</v>
                       <n n="Assign" />
                       <v n="Assign33">"Dia_803_ProfiNet"</v>
                       <v n="Type" t="ChangeVisuType">Assignment</v>
+                    </o>
+                  </a>
+                  <v>OnMouseDown</v>
+                  <a cet="STSnippetInputAction">
+                    <o>
+                      <v n="STSnippet">"gHMIButtons.gAnyButtonPressed := TRUE;"</v>
                     </o>
                   </a>
                 </d>
@@ -4904,7 +5067,14 @@ Status"</v>
                 <v n="VisualElementIdentifier">"GenElemInst_185"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" />
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                  <v>OnMouseDown</v>
+                  <a cet="STSnippetInputAction">
+                    <o>
+                      <v n="STSnippet">"gHMIButtons.gAnyButtonPressed := TRUE;"</v>
+                    </o>
+                  </a>
+                </d>
                 <v n="VisualElementIdentification">{e3da9067-450e-48c9-921d-738b93010341}</v>
                 <v n="VisualElementOwningObjectGuid">{a1acf86b-2a14-0277-0583-07670bd3e08e}</v>
                 <a n="LMGuids" et="Guid" />
@@ -5078,7 +5248,14 @@ Status"</v>
                 <v n="VisualElementIdentifier">"GenElemInst_187"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" />
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                  <v>OnMouseDown</v>
+                  <a cet="STSnippetInputAction">
+                    <o>
+                      <v n="STSnippet">"gHMIButtons.gAnyButtonPressed := TRUE;"</v>
+                    </o>
+                  </a>
+                </d>
                 <v n="VisualElementIdentification">{57195753-1463-4d54-af3a-1325808f210d}</v>
                 <v n="VisualElementOwningObjectGuid">{a1acf86b-2a14-0277-0583-07670bd3e08e}</v>
                 <a n="LMGuids" et="Guid" />
@@ -5252,7 +5429,14 @@ Status"</v>
                 <v n="VisualElementIdentifier">"GenElemInst_189"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" />
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                  <v>OnMouseDown</v>
+                  <a cet="STSnippetInputAction">
+                    <o>
+                      <v n="STSnippet">"gHMIButtons.gAnyButtonPressed := TRUE;"</v>
+                    </o>
+                  </a>
+                </d>
                 <v n="VisualElementIdentification">{6f9f4b7c-4f87-4f9c-a282-ee3358c741ff}</v>
                 <v n="VisualElementOwningObjectGuid">{a1acf86b-2a14-0277-0583-07670bd3e08e}</v>
                 <a n="LMGuids" et="Guid" />
@@ -5426,7 +5610,14 @@ Status"</v>
                 <v n="VisualElementIdentifier">"GenElemInst_191"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" />
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                  <v>OnMouseDown</v>
+                  <a cet="STSnippetInputAction">
+                    <o>
+                      <v n="STSnippet">"gHMIButtons.gAnyButtonPressed := TRUE;"</v>
+                    </o>
+                  </a>
+                </d>
                 <v n="VisualElementIdentification">{decfe168-c9d1-43b8-a082-03a4612f0947}</v>
                 <v n="VisualElementOwningObjectGuid">{a1acf86b-2a14-0277-0583-07670bd3e08e}</v>
                 <a n="LMGuids" et="Guid" />
@@ -5600,7 +5791,14 @@ Status"</v>
                 <v n="VisualElementIdentifier">"GenElemInst_193"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" />
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                  <v>OnMouseDown</v>
+                  <a cet="STSnippetInputAction">
+                    <o>
+                      <v n="STSnippet">"gHMIButtons.gAnyButtonPressed := TRUE;"</v>
+                    </o>
+                  </a>
+                </d>
                 <v n="VisualElementIdentification">{31906d41-4c78-4e4e-a689-55fc128e2c9c}</v>
                 <v n="VisualElementOwningObjectGuid">{a1acf86b-2a14-0277-0583-07670bd3e08e}</v>
                 <a n="LMGuids" et="Guid" />
@@ -5774,7 +5972,14 @@ Status"</v>
                 <v n="VisualElementIdentifier">"GenElemInst_195"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" />
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                  <v>OnMouseDown</v>
+                  <a cet="STSnippetInputAction">
+                    <o>
+                      <v n="STSnippet">"gHMIButtons.gAnyButtonPressed := TRUE;"</v>
+                    </o>
+                  </a>
+                </d>
                 <v n="VisualElementIdentification">{0d0c9f07-06c6-46fb-8aa8-a4d73bc695b4}</v>
                 <v n="VisualElementOwningObjectGuid">{a1acf86b-2a14-0277-0583-07670bd3e08e}</v>
                 <a n="LMGuids" et="Guid" />
@@ -5983,7 +6188,7 @@ Status"</v>
                     <v n="VisualElementIdentifier">"GenElemInst_197"</v>
                     <n n="VisualElementOfflinePaintCommands" />
                     <n n="VisualElementFrameInformation" />
-                    <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="ChangeVisuInputAction[]">
+                    <d n="VisualElementInputActions" t="Hashtable" ckt="String">
                       <v>OnMouseClick</v>
                       <a cet="ChangeVisuInputAction">
                         <o>
@@ -5991,6 +6196,12 @@ Status"</v>
                           <n n="Assign" />
                           <v n="Assign33">"Men_030_MenuScreen"</v>
                           <v n="Type" t="ChangeVisuType">Assignment</v>
+                        </o>
+                      </a>
+                      <v>OnMouseDown</v>
+                      <a cet="STSnippetInputAction">
+                        <o>
+                          <v n="STSnippet">"gHMIButtons.gAnyButtonPressed := TRUE;"</v>
                         </o>
                       </a>
                     </d>
@@ -6199,7 +6410,7 @@ Status"</v>
                     <v n="VisualElementIdentifier">"GenElemInst_198"</v>
                     <n n="VisualElementOfflinePaintCommands" />
                     <n n="VisualElementFrameInformation" />
-                    <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="ChangeVisuInputAction[]">
+                    <d n="VisualElementInputActions" t="Hashtable" ckt="String">
                       <v>OnMouseClick</v>
                       <a cet="ChangeVisuInputAction">
                         <o>
@@ -6207,6 +6418,12 @@ Status"</v>
                           <n n="Assign" />
                           <v n="Assign33">"Men_032_MenuScreen_3"</v>
                           <v n="Type" t="ChangeVisuType">Assignment</v>
+                        </o>
+                      </a>
+                      <v>OnMouseDown</v>
+                      <a cet="STSnippetInputAction">
+                        <o>
+                          <v n="STSnippet">"gHMIButtons.gAnyButtonPressed := TRUE;"</v>
                         </o>
                       </a>
                     </d>
@@ -6468,10 +6685,10 @@ Status"</v>
               <d n="FbMethods" t="CaseInsensitiveHashtable_1" ckt="String" cvt="Guid">
                 <v>FB_Init</v>
                 <v>cbbc8bd3-514d-4f5f-964c-6ada5071d65a</v>
-                <v>FB_Reinit</v>
-                <v>01022e6e-83a5-4f5d-9bc2-03235a7e0506</v>
                 <v>FB_Exit</v>
                 <v>e42cf018-d9d7-4726-813f-9a8ebbf4b7ef</v>
+                <v>FB_Reinit</v>
+                <v>01022e6e-83a5-4f5d-9bc2-03235a7e0506</v>
               </d>
               <v n="FbName">"NotImportant"</v>
               <v n="FbGuid">{a3efac9f-45cb-4948-b713-96cbdb3f45a9}</v>
@@ -6586,6 +6803,7 @@ Status"</v>
         <Type n="Guid">System.Guid</Type>
         <Type n="Hashtable">System.Collections.Hashtable</Type>
         <Type n="HotkeyConfiguration">{6b108d46-58af-4e41-a3f4-174d8f160cc4}</Type>
+        <Type n="IInputAction[]">_3S.CoDeSys.VisualElem.IInputAction[], VisualElem, Version=3.5.13.0, Culture=neutral, PublicKeyToken=null</Type>
         <Type n="Int16">System.Int16</Type>
         <Type n="Int32">System.Int32</Type>
         <Type n="Int64">System.Int64</Type>
@@ -6593,6 +6811,7 @@ Status"</v>
         <Type n="NamedStyleFont">{9e842eb2-1463-4af2-b605-4fbb17044f94}</Type>
         <Type n="String">System.String</Type>
         <Type n="StructuredTypeNode">{503c5b2e-e80e-4ee7-ae00-c5b93a62b1aa}</Type>
+        <Type n="STSnippetInputAction">{6302d3fe-6ea5-4c42-819a-a9734a133b3d}</Type>
         <Type n="TextDocument">{f3878285-8e4f-490b-bb1b-9acbb7eb04db}</Type>
         <Type n="TextLine">{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}</Type>
         <Type n="TypeClass">{16f7aa24-038f-444e-9d81-b001bc091d35}</Type>

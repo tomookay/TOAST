@@ -371,7 +371,14 @@
                 <v n="VisualElementIdentifier">"btnReturn"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" />
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                  <v>OnMouseDown</v>
+                  <a cet="STSnippetInputAction">
+                    <o>
+                      <v n="STSnippet">"gHMIButtons.gAnyButtonPressed := TRUE;"</v>
+                    </o>
+                  </a>
+                </d>
                 <v n="VisualElementIdentification">{a2d06054-f849-47cd-bbfa-bb4d1111ba7e}</v>
                 <v n="VisualElementOwningObjectGuid">{1bb6dd0d-5ff3-4b1e-ba60-c2ded717e836}</v>
                 <a n="LMGuids" et="Guid" />
@@ -573,7 +580,14 @@
                 <v n="VisualElementIdentifier">"btnAdvance"</v>
                 <n n="VisualElementOfflinePaintCommands" />
                 <n n="VisualElementFrameInformation" />
-                <d n="VisualElementInputActions" t="Hashtable" />
+                <d n="VisualElementInputActions" t="Hashtable" ckt="String" cvt="IInputAction[]">
+                  <v>OnMouseDown</v>
+                  <a cet="STSnippetInputAction">
+                    <o>
+                      <v n="STSnippet">"gHMIButtons.gAnyButtonPressed := TRUE;"</v>
+                    </o>
+                  </a>
+                </d>
                 <v n="VisualElementIdentification">{590cd639-02eb-46fa-8681-5f7dd6694d03}</v>
                 <v n="VisualElementOwningObjectGuid">{1bb6dd0d-5ff3-4b1e-ba60-c2ded717e836}</v>
                 <a n="LMGuids" et="Guid" />
@@ -4767,10 +4781,10 @@
               <d n="FbMethods" t="CaseInsensitiveHashtable" ckt="String" cvt="Guid">
                 <v>FB_Init</v>
                 <v>dbd4a588-9ab7-4169-86a4-8b196d790835</v>
-                <v>FB_Reinit</v>
-                <v>c23730a6-751c-473c-b4ec-afb0a8e27b9e</v>
                 <v>FB_Exit</v>
                 <v>8b26345d-1828-47c4-a02c-558a243f6e1f</v>
+                <v>FB_Reinit</v>
+                <v>c23730a6-751c-473c-b4ec-afb0a8e27b9e</v>
               </d>
               <v n="FbName">"NotImportant"</v>
               <v n="FbGuid">{fc9f73b9-1a4a-4dc6-a82d-6caa4f260c88}</v>
@@ -4884,12 +4898,14 @@
         <Type n="Guid">System.Guid</Type>
         <Type n="Hashtable">System.Collections.Hashtable</Type>
         <Type n="HotkeyConfiguration">{6b108d46-58af-4e41-a3f4-174d8f160cc4}</Type>
+        <Type n="IInputAction[]">_3S.CoDeSys.VisualElem.IInputAction[], VisualElem, Version=3.5.13.0, Culture=neutral, PublicKeyToken=null</Type>
         <Type n="Int16">System.Int16</Type>
         <Type n="Int32">System.Int32</Type>
         <Type n="Int64">System.Int64</Type>
         <Type n="NamedStyleColor">{fa491db2-51ff-4bc1-9cd0-ce8c94ff6216}</Type>
         <Type n="NamedStyleFont">{9e842eb2-1463-4af2-b605-4fbb17044f94}</Type>
         <Type n="String">System.String</Type>
+        <Type n="STSnippetInputAction">{6302d3fe-6ea5-4c42-819a-a9734a133b3d}</Type>
         <Type n="TextDocument">{f3878285-8e4f-490b-bb1b-9acbb7eb04db}</Type>
         <Type n="TextLine">{a5de0b0b-1cb5-4913-ac21-9d70293ec00d}</Type>
         <Type n="UInt16">System.UInt16</Type>
