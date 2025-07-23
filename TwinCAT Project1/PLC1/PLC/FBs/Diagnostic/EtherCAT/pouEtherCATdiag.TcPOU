@@ -3,7 +3,7 @@
   <POU Name="pouEtherCATDiag" Id="{13ee5f78-37d5-0387-384a-e366a5792b08}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM pouEtherCATDiag
 VAR
-		iVal: WORD;
+	iVal: WORD;
 	tVal: WORD;
 	tmask: WORD;
 	state: UINT;
@@ -42,6 +42,8 @@ VAR
 	
 	getmoreSlaveData: BOOL;
 	testercord: BOOL;
+	
+	crccheck:FB_CheckEC_CRC_errors;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -74,6 +76,19 @@ END_IF
 			
 ]]></ST>
     </Implementation>
+    <Action Name="actCRC" Id="{3fec306f-79cc-0a18-38a4-cb1aad2c71a6}">
+      <Implementation>
+        <ST><![CDATA[crccheck(isNetID := System.ecMasterData[1].ecAMSmasterstr);
+
+//call message
+IF crccheck.qCRCError THEN
+	GlobalMessages.gMsgMc.Warning.message[10] := TRUE;
+	ELSE
+	GlobalMessages.gMsgMc.Warning.message[10] := FALSE;
+END_IF
+	]]></ST>
+      </Implementation>
+    </Action>
     <Action Name="actEtherCATSlaveDiag" Id="{ad26e273-933b-4a92-8e3a-4cf2719bddff}">
       <Implementation>
         <ST><![CDATA[localreset := gHMIButtons.btnReset;
@@ -1709,6 +1724,16 @@ END_IF
       <LineId Id="68" Count="0" />
       <LineId Id="65" Count="0" />
       <LineId Id="58" Count="0" />
+    </LineIds>
+    <LineIds Name="pouEtherCATDiag.actCRC">
+      <LineId Id="1" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="4" Count="0" />
+      <LineId Id="3" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="7" Count="1" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="pouEtherCATDiag.actEtherCATSlaveDiag">
       <LineId Id="190" Count="0" />

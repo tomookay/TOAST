@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="FB_CheckEC_CRC_errors" Id="{0992bb5b-05db-06c5-271f-dc04983563ca}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_CheckEC_CRC_errors
+VAR_INPUT
+	isNetID:T_AmsNetID;
+END_VAR
+VAR_OUTPUT
+	qCRCError:BOOL;
+END_VAR
+VAR	
+	//fb
+	checkCRC:FB_EcGetAllSlaveCrcErrors;
+	
+	//checkarray
+	arrayStates: ARRAY[0..200] OF DWORD; 		//data from beckhoff EC FB
+	NullarrayStates: ARRAY[0..200] OF DWORD;	//array containing 'good' blank data
+	CompareResult:DINT;
+	
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[checkCRC(	sNetId			:=	isNetID,
+			pCrcErrorBuf	:=	ADR(arrayStates),
+			cbBufLen		:=	SIZEOF(arrayStates),
+			bExecute		:=	System.PulseTenSecond,
+			tTimeout		:=	T#5S
+			);
+			
+			
+//clear down array
+IF System.PulseTenSecond THEN
+	MEMSET(		destAddr		:=	ADR(NullarrayStates),
+				fillByte		:=	16#0,
+				n				:=	SIZEOF(NullarrayStates)
+				);
+END_IF
+			
+//compare array
+CompareResult := MEMCMP(	pBuf1			:=	SIZEOF(arrayStates),
+							pBuf2			:=	ADR(NullarrayStates),
+							n				:=	SIZEOF(NullarrayStates),
+							);
+
+//if the result is two arrays are the same, then there is no fault
+IF CompareResult <> 1 THEN
+	qCRCError := TRUE;
+	ELSE
+	qCRCError := FALSE;
+END_IF
+			]]></ST>
+    </Implementation>
+    <LineIds Name="FB_CheckEC_CRC_errors">
+      <LineId Id="9" Count="0" />
+      <LineId Id="11" Count="4" />
+      <LineId Id="27" Count="1" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="29" Count="2" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="33" Count="4" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="58" Count="0" />
+      <LineId Id="56" Count="0" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="42" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
