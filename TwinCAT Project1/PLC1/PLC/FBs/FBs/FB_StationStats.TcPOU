@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="FB_StationStats" Id="{a386013d-f36c-0689-0762-bfe760851d2d}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_StationStats
+VAR_INPUT
+	iLoading:BOOL;
+	iUnloading:BOOL;
+	iBlocked:BOOL;
+	iStarved:BOOL;
+	iWaitAux:BOOL;
+	
+END_VAR
+VAR_OUTPUT
+	qStationState:enumStationState;
+END_VAR
+VAR
+	tLoadingTime:UINT;
+	tCyclingTime:UINT;
+	tUnloadingTime:UINT;
+	tBlockedTime:UINT;
+	tStarvedTime:UINT;
+	tWaitAuxTime:UINT;
+	tFaultTime:UINT;
+	tRepairTime:UINT;
+	
+	tTotalCycleTime:UINT;
+	
+	tNotCycle: BOOL;
+	tAnyButtonPressed: BOOL;
+	
+	osrResetTime:F_TRIG;
+	tFaultLockout: BOOL;
+	
+	osrClearRepair:R_TRIG;
+	timedelayCycleCheck:TOF;
+END_VAR
+VAR_IN_OUT
+		stndata:typeStation;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//timer block for recording machine states
+
+IF gHMIButtons.gAnyButtonPressed AND stndata.Data.Fault THEN
+	tAnyButtonPressed := TRUE;
+END_IF
+
+//work out if is cycle time
+IF iLoading OR iUnloading OR iBlocked OR iStarved OR iWaitAux  THEN
+	tNotCycle := TRUE;
+	ELSE
+	tNotCycle := FALSE;
+END_IF
+
+//auto cycle timer
+IF stndata.Data.AutoCycling AND NOT tNotCycle AND NOT tFaultLockout  THEN
+	IF System.PulseHundredMilliSecond THEN
+		tCyclingTime := tCyclingTime + 1;
+	END_IF
+	qStationState := enumStationState.Cycling;
+END_IF
+
+//Loading cycle timer
+IF iLoading AND NOT tFaultLockout THEN
+	IF System.PulseHundredMilliSecond THEN
+		tLoadingTime := tLoadingTime + 1;
+	END_IF
+	qStationState := enumStationState.Loading;
+END_IF
+
+//Unloading cycle timer
+IF iUnloading AND NOT tFaultLockout THEN
+	IF System.PulseHundredMilliSecond THEN
+		tUnloadingTime := tUnloadingTime + 1;
+	END_IF
+	qStationState := enumStationState.Unloading;
+END_IF
+
+//blocked cycle timer
+IF iBlocked AND NOT tFaultLockout  THEN
+	IF System.PulseHundredMilliSecond THEN
+		tBlockedTime := tBlockedTime + 1;
+	END_IF
+	qStationState := enumStationState.Blocked;
+END_IF
+
+//starved cycle timer
+IF iStarved AND NOT tFaultLockout THEN
+	IF System.PulseHundredMilliSecond THEN
+		tStarvedTime := tStarvedTime + 1;
+	END_IF
+	qStationState := enumStationState.Starved;
+END_IF
+
+//debounce by a time to capture state change
+timedelayCycleCheck(IN:=stndata.Data.AutoCycling,PT:=T#100MS);
+
+//fault cycle timer
+//capture time when autocycle ceases and stop counting when a button is pressed, indicating someone is aware of it
+IF stndata.Data.Fault AND (timedelayCycleCheck.Q OR tFaultLockout) AND NOT tAnyButtonPressed THEN
+	IF System.PulseHundredMilliSecond THEN
+		tFaultTime := tFaultTime + 1;
+	END_IF
+	tFaultLockout := TRUE;
+	qStationState := enumStationState.Faulted;
+END_IF
+
+//repair time cycle timer
+//if anyone has pressed any button during the fault state, then someone is aware it need to be repaired
+IF tFaultLockout AND tAnyButtonPressed THEN
+	IF System.PulseHundredMilliSecond THEN
+		tRepairTime := tRepairTime + 1;
+	END_IF
+	qStationState := enumStationState.Repair;
+END_IF
+
+osrClearRepair(CLK:=stndata.Data.AutoCycling);
+IF osrClearRepair.Q THEN
+	tFaultLockout := FALSE;
+	tAnyButtonPressed := FALSE;
+END_IF
+
+//add up to get cycle time
+tTotalCycleTime := 		tLoadingTime +	
+						tCyclingTime + 
+						tUnloadingTime +
+						tBlockedTime +
+						tStarvedTime + 
+						tWaitAuxTime +
+						tFaultTime
+						;
+
+//reset timer on edge of unloading
+osrResetTime(CLK := iUnloading);
+
+IF osrResetTime.Q THEN
+	actClearCounters();
+END_IF
+
+
+]]></ST>
+    </Implementation>
+    <Action Name="actClearCounters" Id="{15a985f2-2111-0b31-39fc-1dfb144a9c12}">
+      <Implementation>
+        <ST><![CDATA[tLoadingTime		:= 0;
+tCyclingTime		:= 0;
+tUnloadingTime		:= 0;
+tBlockedTime		:= 0;
+tStarvedTime		:= 0;
+tWaitAuxTime		:= 0;
+tFaultTime			:= 0;]]></ST>
+      </Implementation>
+    </Action>
+    <LineIds Name="FB_StationStats">
+      <LineId Id="156" Count="1" />
+      <LineId Id="82" Count="0" />
+      <LineId Id="86" Count="0" />
+      <LineId Id="84" Count="0" />
+      <LineId Id="83" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="28" Count="1" />
+      <LineId Id="158" Count="1" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="16" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="19" Count="1" />
+      <LineId Id="112" Count="0" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="45" Count="4" />
+      <LineId Id="113" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="52" Count="5" />
+      <LineId Id="114" Count="0" />
+      <LineId Id="58" Count="6" />
+      <LineId Id="115" Count="0" />
+      <LineId Id="65" Count="6" />
+      <LineId Id="116" Count="0" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="152" Count="0" />
+      <LineId Id="150" Count="0" />
+      <LineId Id="149" Count="0" />
+      <LineId Id="74" Count="0" />
+      <LineId Id="76" Count="0" />
+      <LineId Id="154" Count="0" />
+      <LineId Id="77" Count="3" />
+      <LineId Id="128" Count="1" />
+      <LineId Id="81" Count="0" />
+      <LineId Id="132" Count="0" />
+      <LineId Id="135" Count="0" />
+      <LineId Id="155" Count="0" />
+      <LineId Id="136" Count="4" />
+      <LineId Id="133" Count="0" />
+      <LineId Id="142" Count="0" />
+      <LineId Id="141" Count="0" />
+      <LineId Id="145" Count="1" />
+      <LineId Id="153" Count="0" />
+      <LineId Id="147" Count="0" />
+      <LineId Id="118" Count="1" />
+      <LineId Id="121" Count="6" />
+      <LineId Id="120" Count="0" />
+      <LineId Id="102" Count="0" />
+      <LineId Id="91" Count="0" />
+      <LineId Id="103" Count="0" />
+      <LineId Id="106" Count="0" />
+      <LineId Id="105" Count="0" />
+      <LineId Id="109" Count="1" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="37" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_StationStats.actClearCounters">
+      <LineId Id="2" Count="5" />
+      <LineId Id="1" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

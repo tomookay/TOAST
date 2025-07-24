@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <POU Name="pouHMI" Id="{54e7270f-e089-40a6-a429-6d01839a041f}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM pouHMI
 VAR
@@ -26,6 +26,14 @@ prgHMIaxis();
 
 ]]></ST>
     </Implementation>
+    <Action Name="actResetButtonPress" Id="{e16beb8b-09dd-0fd9-2961-1cc1cb91a6de}">
+      <Implementation>
+        <ST><![CDATA[//if its on, then turn it off, it will be taken in other places
+IF gHMIButtons.gAnyButtonPressed AND System.PulseTenSecond THEN
+	gHMIButtons.gAnyButtonPressed := FALSE;
+END_IF]]></ST>
+      </Implementation>
+    </Action>
     <LineIds Name="pouHMI">
       <LineId Id="5" Count="1" />
       <LineId Id="12" Count="0" />
@@ -45,6 +53,10 @@ prgHMIaxis();
       <LineId Id="46" Count="0" />
       <LineId Id="53" Count="0" />
       <LineId Id="52" Count="0" />
+    </LineIds>
+    <LineIds Name="pouHMI.actResetButtonPress">
+      <LineId Id="5" Count="0" />
+      <LineId Id="1" Count="2" />
     </LineIds>
   </POU>
 </TcPlcObject>

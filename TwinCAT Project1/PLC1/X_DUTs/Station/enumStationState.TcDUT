@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="enumStationState" Id="{c6679ed2-c69c-0c03-3957-f498bb76f3e6}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE enumStationState :
+(
+	noState			:=	0,
+	Loading			:=	1,
+	Cycling			:=	2,
+	Unloading		:=	3,
+	Spare			:=	4,
+	Blocked			:=	5,
+	Starved			:=	6,
+	WaitAux			:=	7,
+	Faulted			:=	8,
+	Repair			:=	9,
+	EStop			:=	10,
+	Manstop			:=	11,
+	Other			:=	12
+	
+	
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
