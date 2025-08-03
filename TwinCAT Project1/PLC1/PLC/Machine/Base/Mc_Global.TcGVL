@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <GVL Name="Mc_Global" Id="{5642ad69-83f7-4656-9927-4be704aafe8e}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
@@ -26,6 +26,8 @@ VAR_GLOBAL
 	
 	gReadTextList: BOOL; //TRUE to start to read the text lists
 	qResetReadTextList: BOOL; //TRUE to reset the reading of the text lists
+	
+	gAnyGateAccessReq:BOOL; //TRUE if there is any gate access request
 END_VAR
 
 

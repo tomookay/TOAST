@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <DUT Name="typeBtnPress" Id="{0ced6de4-4e1f-4045-820f-12b0a0a6343b}">
     <Declaration><![CDATA[TYPE typeBtnPress :
 STRUCT
@@ -40,9 +40,9 @@ STRUCT
 	btn18Pressed: BOOL;
 	btn19Pressed: BOOL;
 	
-	btn20Pressed: BOOL;
-	btn21Pressed: BOOL;
-	btn22Pressed: BOOL;
+	btn20Pressed: BOOL; //gate 1 access request
+	btn21Pressed: BOOL; //gate 2 access request
+	btn22Pressed: BOOL; //gate request cancel
 	btn23Pressed: BOOL;
 	btn24Pressed: BOOL;
 	btn25Pressed: BOOL;
