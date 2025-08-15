@@ -64,22 +64,22 @@ pouMachine();
 
 //call station 1
 //calls motions only associated with station 1
-pouStation1();
+IF System.gSetup.stationEnable[1] THEN pouStation1(); END_IF;
 
 //call station 2
-pouStation2();
+IF System.gSetup.stationEnable[2] THEN pouStation2(); END_IF;
 
 //call station 3
-pouStation3();
+IF System.gSetup.stationEnable[3] THEN pouStation3(); END_IF;
 
 //call station 4
-pouStation4();
+IF System.gSetup.stationEnable[4] THEN pouStation4(); END_IF;
 
 //call station 5
-pouStation5();
+IF System.gSetup.stationEnable[5] THEN pouStation5(); END_IF;
 
 //call station 6
-pouStation6();
+IF System.gSetup.stationEnable[6] THEN pouStation6(); END_IF;
 
 //there are only ever 6 maximum stations
 

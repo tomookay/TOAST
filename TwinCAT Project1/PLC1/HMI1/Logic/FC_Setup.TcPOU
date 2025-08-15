@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <POU Name="FC_Setup" Id="{054a5b72-0712-4674-ad7e-bb0ca048a77e}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION FC_Setup : bool
 VAR_INPUT
@@ -30,10 +30,18 @@ General Setup Instructions
 //setup machine
 System.gSetup.stationEnable[1] := TRUE; //TRUE if station is present
 System.gSetup.stationEnable[2] := TRUE; //FALSE if the station does not exist on this machine
-System.gSetup.stationEnable[3] := TRUE;
-System.gSetup.stationEnable[4] := TRUE;
-System.gSetup.stationEnable[5] := TRUE;
-System.gSetup.stationEnable[6] := TRUE;
+System.gSetup.stationEnable[3] := FALSE;
+System.gSetup.stationEnable[4] := FALSE;
+System.gSetup.stationEnable[5] := FALSE;
+System.gSetup.stationEnable[6] := FALSE;
+
+//number of rows in each station
+System.gSetup.stationFunctions[1].numRowsConfig := 18;
+System.gSetup.stationFunctions[2].numRowsConfig := 9;
+System.gSetup.stationFunctions[3].numRowsConfig := 0;
+System.gSetup.stationFunctions[4].numRowsConfig := 0;
+System.gSetup.stationFunctions[5].numRowsConfig := 0;
+System.gSetup.stationFunctions[6].numRowsConfig := 0;
 
 //set up cycle time setpoints
 S1_Global.station.part.CycleTimeTarget := 60;
@@ -53,9 +61,6 @@ S5_Global.station.part.CycleTimeGrossOver := S5_Global.station.part.CycleTimeTar
 
 S6_Global.station.part.CycleTimeTarget := 60;
 S6_Global.station.part.CycleTimeGrossOver := S6_Global.station.part.CycleTimeTarget  * 2;
-
-
-
 
 //station features
 System.gSetup.stationFunctions[1].allowAutoCycle := TRUE;	//TRUE to allow auto cycle
@@ -193,23 +198,11 @@ System.gSetup.stationFunctions[6].allowEnablePendent := TRUE;
     </ObjectProperties>
     <LineIds Name="FC_Setup">
       <LineId Id="3" Count="25" />
-      <LineId Id="151" Count="1" />
-      <LineId Id="155" Count="0" />
-      <LineId Id="157" Count="0" />
-      <LineId Id="159" Count="1" />
-      <LineId Id="158" Count="0" />
-      <LineId Id="162" Count="1" />
-      <LineId Id="161" Count="0" />
-      <LineId Id="165" Count="1" />
-      <LineId Id="164" Count="0" />
-      <LineId Id="168" Count="1" />
-      <LineId Id="167" Count="0" />
-      <LineId Id="171" Count="1" />
-      <LineId Id="170" Count="0" />
-      <LineId Id="156" Count="0" />
-      <LineId Id="153" Count="0" />
-      <LineId Id="150" Count="0" />
-      <LineId Id="29" Count="115" />
+      <LineId Id="173" Count="0" />
+      <LineId Id="172" Count="0" />
+      <LineId Id="174" Count="5" />
+      <LineId Id="29" Count="19" />
+      <LineId Id="52" Count="114" />
       <LineId Id="2" Count="0" />
     </LineIds>
   </POU>
