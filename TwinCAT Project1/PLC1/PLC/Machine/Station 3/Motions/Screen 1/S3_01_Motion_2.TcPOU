@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
-  <POU Name="S2_01_Motion_3" Id="{4cf06baa-928c-093e-03a6-40a1e9d06470}" SpecialFunc="None">
-    <Declaration><![CDATA[PROGRAM S2_01_Motion_3
+  <POU Name="S3_01_Motion_2" Id="{593529f4-7264-054e-12f5-af644d8b02c6}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM S3_01_Motion_2
 VAR
 	HMI_Motion: FB_HMI_Control;
 	Motion: FB_Motion2way;
@@ -40,25 +40,25 @@ END_VAR
                   <v n="ILValid">false</v>
                   <l2 n="ILLines" />
                   <v n="Comment">"&lt;MotionRow&gt;
-&lt;StationNumber&gt;2&lt;/StationNumber&gt;
-&lt;RowNumber&gt;3&lt;/RowNumber&gt;
+&lt;StationNumber&gt;3&lt;/StationNumber&gt;
+&lt;RowNumber&gt;2&lt;/RowNumber&gt;
   &lt;Advance&gt;
-    &lt;AdvanceCoilTextSym&gt;Urge&lt;/AdvanceCoilTextSym&gt;
-    &lt;AdvanceDepthTextSym&gt;Urged&lt;/AdvanceDepthTextSym&gt;
-    &lt;AdvanceCoilTextAbs&gt;Q1.4&lt;/AdvanceCoilTextAbs&gt;
-    &lt;AdvanceDepthTextAbs&gt;I1.4&lt;/AdvanceDepthTextAbs&gt;
-    &lt;ManSeq&gt;5&lt;/ManSeq&gt;
+    &lt;AdvanceCoilTextSym&gt;Lock&lt;/AdvanceCoilTextSym&gt;
+    &lt;AdvanceDepthTextSym&gt;Locked&lt;/AdvanceDepthTextSym&gt;
+    &lt;AdvanceCoilTextAbs&gt;Q1.2&lt;/AdvanceCoilTextAbs&gt;
+    &lt;AdvanceDepthTextAbs&gt;I1.2&lt;/AdvanceDepthTextAbs&gt;
+    &lt;ManSeq&gt;3&lt;/ManSeq&gt;
   &lt;/Advance&gt;
   &lt;Return&gt;
-    &lt;ReturnCoilTextSym&gt;Return&lt;/ReturnCoilTextSym&gt;
-    &lt;ReturnDepthTextSym&gt;Returned&lt;/ReturnDepthTextSym&gt;
-    &lt;ReturnCoilTextAbs&gt;Q1.5&lt;/ReturnCoilTextAbs&gt;
-    &lt;ReturnDepthTextAbs&gt;I1.5&lt;/ReturnDepthTextAbs&gt;
-   &lt;ManSeq&gt;6&lt;/ManSeq&gt;
+    &lt;ReturnCoilTextSym&gt;Unlock&lt;/ReturnCoilTextSym&gt;
+    &lt;ReturnDepthTextSym&gt;Unlocked&lt;/ReturnDepthTextSym&gt;
+    &lt;ReturnCoilTextAbs&gt;Q1.3&lt;/ReturnCoilTextAbs&gt;
+    &lt;ReturnDepthTextAbs&gt;I1.3&lt;/ReturnDepthTextAbs&gt;
+   &lt;ManSeq&gt;4&lt;/ManSeq&gt;
   &lt;/Return&gt;
   &lt;Motion&gt;
-    &lt;NameSym&gt;Urger Cylinder&lt;/NameSym&gt;
-    &lt;NameAbs&gt;A3&lt;/NameAbs&gt;
+    &lt;NameSym&gt;Lock Cylinder&lt;/NameSym&gt;
+    &lt;NameAbs&gt;A2&lt;/NameAbs&gt;
   &lt;/Motion&gt;
 &lt;/MotionRow&gt;"</v>
                   <v n="Title">""</v>
@@ -100,7 +100,7 @@ END_VAR
                         <l2 n="OutputItems" cet="Operand">
                           <n />
                           <o>
-                            <v n="Operand">"S2_Global.station.dynRowNumber"</v>
+                            <v n="Operand">"S3_Global.station.dynRowNumber"</v>
                             <v n="Type">"UINT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -135,7 +135,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"S2_Global.station.dynRowNumber"</v>
+                            <v n="Operand">"S3_Global.station.dynRowNumber"</v>
                             <v n="Type">"UINT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -317,7 +317,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"S2_Global.Station.dynRowNumber"</v>
+                            <v n="Operand">"S3_Global.Station.dynRowNumber"</v>
                             <v n="Type">"UINT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -526,7 +526,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"RowConfig.FullRow"</v>
+                            <v n="Operand">"RowConfig.OnlyLeft"</v>
                             <v n="Type">"ROWCONFIG"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -545,7 +545,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"3"</v>
+                            <v n="Operand">"2"</v>
                             <v n="Type">"INT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -564,7 +564,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"14"</v>
+                            <v n="Operand">"2"</v>
                             <v n="Type">"INT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -621,7 +621,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"S2_Global.station"</v>
+                            <v n="Operand">"S3_Global.station"</v>
                             <v n="Type">"typeStation"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -1305,7 +1305,7 @@ Is the motion the next in the process?"</v>
                             <v n="Id">67L</v>
                           </o>
                           <o>
-                            <v n="Operand">"GlobalMessages.gMsgS2.Prompts.message[tMessageOffset + 0]"</v>
+                            <v n="Operand">"GlobalMessages.gMsgS3.Prompts.message[tMessageOffset + 0]"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -1385,7 +1385,7 @@ Is the motion the next in the process?"</v>
                             <v n="Id">70L</v>
                           </o>
                           <o>
-                            <v n="Operand">"GlobalMessages.gMsgS2.Prompts.message[tMessageOffset + 1]"</v>
+                            <v n="Operand">"GlobalMessages.gMsgS3.Prompts.message[tMessageOffset + 1]"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -1417,7 +1417,7 @@ Is the motion the next in the process?"</v>
                             <v n="Id">284L</v>
                           </o>
                           <o>
-                            <v n="Operand">"GlobalMessages.gMsgS2.Alarm.message[tMessageOffset + 0]"</v>
+                            <v n="Operand">"GlobalMessages.gMsgS3.Alarm.message[tMessageOffset + 0]"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -1433,7 +1433,7 @@ Is the motion the next in the process?"</v>
                             <v n="Id">71L</v>
                           </o>
                           <o>
-                            <v n="Operand">"GlobalMessages.gMsgS2.Alarm.message[tMessageOffset + 1]"</v>
+                            <v n="Operand">"GlobalMessages.gMsgS3.Alarm.message[tMessageOffset + 1]"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -1449,7 +1449,7 @@ Is the motion the next in the process?"</v>
                             <v n="Id">72L</v>
                           </o>
                           <o>
-                            <v n="Operand">"GlobalMessages.gMsgS2.Alarm.message[tMessageOffset + 2]"</v>
+                            <v n="Operand">"GlobalMessages.gMsgS3.Alarm.message[tMessageOffset + 2]"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -1465,7 +1465,7 @@ Is the motion the next in the process?"</v>
                             <v n="Id">73L</v>
                           </o>
                           <o>
-                            <v n="Operand">"GlobalMessages.gMsgS2.Alarm.message[tMessageOffset + 3]"</v>
+                            <v n="Operand">"GlobalMessages.gMsgS3.Alarm.message[tMessageOffset + 3]"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -1481,7 +1481,7 @@ Is the motion the next in the process?"</v>
                             <v n="Id">74L</v>
                           </o>
                           <o>
-                            <v n="Operand">"GlobalMessages.gMsgS2.Alarm.message[tMessageOffset + 4]"</v>
+                            <v n="Operand">"GlobalMessages.gMsgS3.Alarm.message[tMessageOffset + 4]"</v>
                             <v n="Type">"BOOL"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -1763,7 +1763,7 @@ Is the motion the next in the process?"</v>
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"S2_Global.station.Data"</v>
+                            <v n="Operand">"S3_Global.station.Data"</v>
                             <v n="Type">"typeStationMode"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -2015,7 +2015,7 @@ Is the motion the next in the process?"</v>
                         <v n="LValue">false</v>
                         <v n="Boolean">false</v>
                         <v n="IsInstance">true</v>
-                        <v n="Id">593L</v>
+                        <v n="Id">597L</v>
                       </o>
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems">
@@ -2036,7 +2036,7 @@ Is the motion the next in the process?"</v>
                             <v n="Fixed">false</v>
                             <v n="Extensible">false</v>
                           </o>
-                          <v n="Id">595L</v>
+                          <v n="Id">599L</v>
                         </o>
                       </l2>
                       <o n="InputParam" t="ParamList">
@@ -2061,11 +2061,11 @@ Is the motion the next in the process?"</v>
                       <n n="STSnippet" />
                       <v n="ContainsExtensibleInputs">false</v>
                       <v n="ProvidesSTSnippet">false</v>
-                      <v n="Id">594L</v>
+                      <v n="Id">598L</v>
                     </o>
                   </l2>
                   <l2 n="Connectors" />
-                  <v n="Id">592L</v>
+                  <v n="Id">596L</v>
                 </o>
               </l2>
               <v n="BranchCounter">0</v>
@@ -2092,7 +2092,7 @@ Is the motion the next in the process?"</v>
         </XmlArchive>
       </NWL>
     </Implementation>
-    <Action Name="actXIC" Id="{dc004106-9827-0c58-2b4a-7316bae1d1a9}">
+    <Action Name="actXIC" Id="{d97381cd-0bf8-05a5-397b-1abaa59a781c}">
       <Implementation>
         <NWL>
           <XmlArchive>
@@ -2281,7 +2281,7 @@ Latch logic, option to latch on in manual mode"</v>
                                           <l2 n="InputItems" cet="BoxTreeOperand">
                                             <o>
                                               <o n="Operand" t="Operand">
-                                                <v n="Operand">"S2_01_Motion_2.HMI_Motion.qAdvanceReq"</v>
+                                                <v n="Operand">"S3_01_Motion_2.HMI_Motion.qAdvanceReq"</v>
                                                 <v n="Type">"BOOL"</v>
                                                 <v n="Comment">""</v>
                                                 <v n="SymbolComment">""</v>
@@ -2300,7 +2300,7 @@ Latch logic, option to latch on in manual mode"</v>
                                             </o>
                                             <o>
                                               <o n="Operand" t="Operand">
-                                                <v n="Operand">"S2_01_Motion_3.HMI_Motion.qAdvanceReq"</v>
+                                                <v n="Operand">"S3_01_Motion_3.HMI_Motion.qAdvanceReq"</v>
                                                 <v n="Type">"BOOL"</v>
                                                 <v n="Comment">""</v>
                                                 <v n="SymbolComment">""</v>
@@ -2336,7 +2336,7 @@ Latch logic, option to latch on in manual mode"</v>
                                         </o>
                                         <o t="BoxTreeOperand">
                                           <o n="Operand" t="Operand">
-                                            <v n="Operand">"S2_Global.station.Data.Manual"</v>
+                                            <v n="Operand">"S3_Global.station.Data.Manual"</v>
                                             <v n="Type">"BOOL"</v>
                                             <v n="Comment">""</v>
                                             <v n="SymbolComment">""</v>
@@ -2428,7 +2428,7 @@ Latch logic, option to latch on in manual mode"</v>
                                           <l2 n="InputItems" cet="BoxTreeOperand">
                                             <o>
                                               <o n="Operand" t="Operand">
-                                                <v n="Operand">"S2_01_Motion_2.Motion.qAdvanceCoil"</v>
+                                                <v n="Operand">"S3_01_Motion_2.Motion.qAdvanceCoil"</v>
                                                 <v n="Type">"BOOL"</v>
                                                 <v n="Comment">""</v>
                                                 <v n="SymbolComment">""</v>
@@ -2447,7 +2447,7 @@ Latch logic, option to latch on in manual mode"</v>
                                             </o>
                                             <o>
                                               <o n="Operand" t="Operand">
-                                                <v n="Operand">"S2_01_Motion_3.Motion.qAdvanceCoil"</v>
+                                                <v n="Operand">"S3_01_Motion_3.Motion.qAdvanceCoil"</v>
                                                 <v n="Type">"BOOL"</v>
                                                 <v n="Comment">""</v>
                                                 <v n="SymbolComment">""</v>
@@ -2483,7 +2483,7 @@ Latch logic, option to latch on in manual mode"</v>
                                         </o>
                                         <o t="BoxTreeOperand">
                                           <o n="Operand" t="Operand">
-                                            <v n="Operand">"S2_Global.station.Data.AutoCycling"</v>
+                                            <v n="Operand">"S3_Global.station.Data.AutoCycling"</v>
                                             <v n="Type">"BOOL"</v>
                                             <v n="Comment">""</v>
                                             <v n="SymbolComment">""</v>
@@ -2600,7 +2600,7 @@ Latch logic, option to latch on in manual mode"</v>
                               <l2 n="InputItems">
                                 <o t="BoxTreeOperand">
                                   <o n="Operand" t="Operand">
-                                    <v n="Operand">"S2_Global.station.Data.btnReset"</v>
+                                    <v n="Operand">"S3_Global.station.Data.btnReset"</v>
                                     <v n="Type">"BOOL"</v>
                                     <v n="Comment">""</v>
                                     <v n="SymbolComment">""</v>
@@ -2647,7 +2647,7 @@ Latch logic, option to latch on in manual mode"</v>
                                   <l2 n="InputItems" cet="BoxTreeOperand">
                                     <o>
                                       <o n="Operand" t="Operand">
-                                        <v n="Operand">"S2_Global.station.Data.latchXICmsg"</v>
+                                        <v n="Operand">"S3_Global.station.Data.latchXICmsg"</v>
                                         <v n="Type">"BOOL"</v>
                                         <v n="Comment">""</v>
                                         <v n="SymbolComment">""</v>
@@ -2666,7 +2666,7 @@ Latch logic, option to latch on in manual mode"</v>
                                     </o>
                                     <o>
                                       <o n="Operand" t="Operand">
-                                        <v n="Operand">"S2_Global.station.Data.Manual"</v>
+                                        <v n="Operand">"S3_Global.station.Data.Manual"</v>
                                         <v n="Type">"BOOL"</v>
                                         <v n="Comment">""</v>
                                         <v n="SymbolComment">""</v>
@@ -2773,7 +2773,7 @@ Latch logic, option to latch on in manual mode"</v>
                         <o n="OutputItems" t="OutputItemList">
                           <l2 n="OutputItems" cet="Operand">
                             <o>
-                              <v n="Operand">"GlobalMessages.gMsgS2.Alarm.message[tMessageOffset + 5]"</v>
+                              <v n="Operand">"GlobalMessages.gMsgS3.Alarm.message[tMessageOffset + 5]"</v>
                               <v n="Type">"BOOL"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
@@ -3061,7 +3061,7 @@ Latch logic, option to latch on in manual mode"</v>
                                           <l2 n="InputItems" cet="BoxTreeOperand">
                                             <o>
                                               <o n="Operand" t="Operand">
-                                                <v n="Operand">"S2_01_Motion_2.HMI_Motion.qReturnReq"</v>
+                                                <v n="Operand">"S3_01_Motion_2.HMI_Motion.qReturnReq"</v>
                                                 <v n="Type">"BOOL"</v>
                                                 <v n="Comment">""</v>
                                                 <v n="SymbolComment">""</v>
@@ -3080,7 +3080,7 @@ Latch logic, option to latch on in manual mode"</v>
                                             </o>
                                             <o>
                                               <o n="Operand" t="Operand">
-                                                <v n="Operand">"S2_01_Motion_3.HMI_Motion.qReturnReq"</v>
+                                                <v n="Operand">"S3_01_Motion_3.HMI_Motion.qReturnReq"</v>
                                                 <v n="Type">"BOOL"</v>
                                                 <v n="Comment">""</v>
                                                 <v n="SymbolComment">""</v>
@@ -3099,7 +3099,7 @@ Latch logic, option to latch on in manual mode"</v>
                                             </o>
                                             <o>
                                               <o n="Operand" t="Operand">
-                                                <v n="Operand">"S2_01_Motion_7.HMI_Motion.qReturnReq"</v>
+                                                <v n="Operand">"S3_01_Motion_7.HMI_Motion.qReturnReq"</v>
                                                 <v n="Type">"BOOL"</v>
                                                 <v n="Comment">""</v>
                                                 <v n="SymbolComment">""</v>
@@ -3135,7 +3135,7 @@ Latch logic, option to latch on in manual mode"</v>
                                         </o>
                                         <o t="BoxTreeOperand">
                                           <o n="Operand" t="Operand">
-                                            <v n="Operand">"S2_Global.station.Data.Manual"</v>
+                                            <v n="Operand">"S3_Global.station.Data.Manual"</v>
                                             <v n="Type">"BOOL"</v>
                                             <v n="Comment">""</v>
                                             <v n="SymbolComment">""</v>
@@ -3227,7 +3227,7 @@ Latch logic, option to latch on in manual mode"</v>
                                           <l2 n="InputItems" cet="BoxTreeOperand">
                                             <o>
                                               <o n="Operand" t="Operand">
-                                                <v n="Operand">"S2_01_Motion_2.Motion.qAdvanceCoil"</v>
+                                                <v n="Operand">"S3_01_Motion_2.Motion.qAdvanceCoil"</v>
                                                 <v n="Type">"BOOL"</v>
                                                 <v n="Comment">""</v>
                                                 <v n="SymbolComment">""</v>
@@ -3246,7 +3246,7 @@ Latch logic, option to latch on in manual mode"</v>
                                             </o>
                                             <o>
                                               <o n="Operand" t="Operand">
-                                                <v n="Operand">"S2_01_Motion_3.Motion.qAdvanceCoil"</v>
+                                                <v n="Operand">"S3_01_Motion_3.Motion.qAdvanceCoil"</v>
                                                 <v n="Type">"BOOL"</v>
                                                 <v n="Comment">""</v>
                                                 <v n="SymbolComment">""</v>
@@ -3265,7 +3265,7 @@ Latch logic, option to latch on in manual mode"</v>
                                             </o>
                                             <o>
                                               <o n="Operand" t="Operand">
-                                                <v n="Operand">"S2_01_Motion_7.Motion.qAdvanceCoil"</v>
+                                                <v n="Operand">"S3_01_Motion_7.Motion.qAdvanceCoil"</v>
                                                 <v n="Type">"BOOL"</v>
                                                 <v n="Comment">""</v>
                                                 <v n="SymbolComment">""</v>
@@ -3301,7 +3301,7 @@ Latch logic, option to latch on in manual mode"</v>
                                         </o>
                                         <o t="BoxTreeOperand">
                                           <o n="Operand" t="Operand">
-                                            <v n="Operand">"S2_Global.station.Data.AutoCycling"</v>
+                                            <v n="Operand">"S3_Global.station.Data.AutoCycling"</v>
                                             <v n="Type">"BOOL"</v>
                                             <v n="Comment">""</v>
                                             <v n="SymbolComment">""</v>
@@ -3418,7 +3418,7 @@ Latch logic, option to latch on in manual mode"</v>
                               <l2 n="InputItems">
                                 <o t="BoxTreeOperand">
                                   <o n="Operand" t="Operand">
-                                    <v n="Operand">"S2_Global.station.Data.btnReset"</v>
+                                    <v n="Operand">"S3_Global.station.Data.btnReset"</v>
                                     <v n="Type">"BOOL"</v>
                                     <v n="Comment">""</v>
                                     <v n="SymbolComment">""</v>
@@ -3465,7 +3465,7 @@ Latch logic, option to latch on in manual mode"</v>
                                   <l2 n="InputItems" cet="BoxTreeOperand">
                                     <o>
                                       <o n="Operand" t="Operand">
-                                        <v n="Operand">"S2_Global.station.Data.latchXICmsg"</v>
+                                        <v n="Operand">"S3_Global.station.Data.latchXICmsg"</v>
                                         <v n="Type">"BOOL"</v>
                                         <v n="Comment">""</v>
                                         <v n="SymbolComment">""</v>
@@ -3484,7 +3484,7 @@ Latch logic, option to latch on in manual mode"</v>
                                     </o>
                                     <o>
                                       <o n="Operand" t="Operand">
-                                        <v n="Operand">"S2_Global.station.Data.Manual"</v>
+                                        <v n="Operand">"S3_Global.station.Data.Manual"</v>
                                         <v n="Type">"BOOL"</v>
                                         <v n="Comment">""</v>
                                         <v n="SymbolComment">""</v>
@@ -3591,7 +3591,7 @@ Latch logic, option to latch on in manual mode"</v>
                         <o n="OutputItems" t="OutputItemList">
                           <l2 n="OutputItems" cet="Operand">
                             <o>
-                              <v n="Operand">"GlobalMessages.gMsgS2.Alarm.message[tMessageOffset + 6]"</v>
+                              <v n="Operand">"GlobalMessages.gMsgS3.Alarm.message[tMessageOffset + 6]"</v>
                               <v n="Type">"BOOL"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
