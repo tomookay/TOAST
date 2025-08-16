@@ -4390,12 +4390,12 @@ S2_Global.station.hmiHeader.flasher := System.OneSecond;
 
 IF 
 //are all motions returned
-S2_01_Motion_01_01.Motion.qReturnDepth AND
-S2_01_Motion_01_02.Motion.qReturnDepth AND
-S2_01_Motion_01_03.Motion.qReturnDepth AND
-S2_01_Motion_01_04.Motion.qReturnDepth AND
-S2_01_Motion_01_05.Motion.qReturnDepth AND
-S2_01_Motion_01_06.Motion.qReturnDepth
+S2_01_Motion_1.Motion.qReturnDepth AND
+S2_01_Motion_2.Motion.qReturnDepth AND
+S2_01_Motion_3.Motion.qReturnDepth AND
+S2_01_Motion_4.Motion.qReturnDepth AND
+S2_01_Motion_5.Motion.qReturnDepth AND
+S2_01_Motion_6.Motion.qReturnDepth
 
 	THEN
 		//set IsHome value for station
@@ -6104,50 +6104,53 @@ UINT_TO_REAL(S2_Global.S2_NumOfRows)"</v>
 //init number of rows
 S2_Global.station.Data.NumOfRows := 0;
 
+//set to 0
+S2_global.station.dynRowNumber := 0;
+
 //page 1
-IF System.gSetup.stationFunctions[2].numRowsConfig >= 1 THEN S2_01_Motion_01_01(); END_IF
-IF System.gSetup.stationFunctions[2].numRowsConfig >= 2 THEN S2_01_Motion_01_02(); END_IF
-IF System.gSetup.stationFunctions[2].numRowsConfig >= 3 THEN S2_01_Motion_01_03(); END_IF
-IF System.gSetup.stationFunctions[2].numRowsConfig >= 4 THEN S2_01_Motion_01_04(); END_IF
-IF System.gSetup.stationFunctions[2].numRowsConfig >= 5 THEN S2_01_Motion_01_05(); END_IF
-IF System.gSetup.stationFunctions[2].numRowsConfig >= 6 THEN S2_01_Motion_01_06(); END_IF
-IF System.gSetup.stationFunctions[2].numRowsConfig >= 7 THEN S2_01_Motion_02_07(); END_IF
-IF System.gSetup.stationFunctions[2].numRowsConfig >= 8 THEN S2_01_Motion_02_08(); END_IF
-IF System.gSetup.stationFunctions[2].numRowsConfig >= 9 THEN S2_01_Motion_02_09(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 1 THEN S2_01_Motion_1(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 2 THEN S2_01_Motion_2(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 3 THEN S2_01_Motion_3(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 4 THEN S2_01_Motion_4(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 5 THEN S2_01_Motion_5(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 6 THEN S2_01_Motion_6(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 7 THEN S2_01_Motion_7(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 8 THEN S2_01_Motion_8(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 9 THEN S2_01_Motion_9(); END_IF
 
 //page 2
-IF System.gSetup.stationFunctions[2].numRowsConfig >= 10 THEN S2_01_Motion_02_10(); END_IF
-IF System.gSetup.stationFunctions[2].numRowsConfig >= 11 THEN S2_01_Motion_02_11(); END_IF
-IF System.gSetup.stationFunctions[2].numRowsConfig >= 12 THEN S2_01_Motion_02_12(); END_IF
-IF System.gSetup.stationFunctions[2].numRowsConfig >= 13 THEN S2_01_Motion_03_13(); END_IF
-IF System.gSetup.stationFunctions[2].numRowsConfig >= 14 THEN S2_01_Motion_03_14(); END_IF
-IF System.gSetup.stationFunctions[2].numRowsConfig >= 15 THEN S2_01_Motion_03_15(); END_IF
-IF System.gSetup.stationFunctions[2].numRowsConfig >= 16 THEN S2_01_Motion_03_16(); END_IF
-IF System.gSetup.stationFunctions[2].numRowsConfig >= 17 THEN S2_01_Motion_03_17(); END_IF
-IF System.gSetup.stationFunctions[2].numRowsConfig >= 18 THEN S2_01_Motion_03_18(); END_IF
-IF System.gSetup.stationFunctions[2].numRowsConfig >= 19 THEN S2_01_Motion_04_19(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 10 THEN S2_01_Motion_10(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 11 THEN S2_01_Motion_11(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 12 THEN S2_01_Motion_12(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 13 THEN S2_01_Motion_13(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 14 THEN S2_01_Motion_14(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 15 THEN S2_01_Motion_15(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 16 THEN S2_01_Motion_16(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 17 THEN S2_01_Motion_17(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 18 THEN S2_01_Motion_18(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 19 THEN S2_01_Motion_19(); END_IF
 
 //page 3
-IF System.gSetup.stationFunctions[2].numRowsConfig >= 20 THEN S2_01_Motion_04_20(); END_IF
-IF System.gSetup.stationFunctions[2].numRowsConfig >= 21 THEN S2_01_Motion_04_21(); END_IF
-IF System.gSetup.stationFunctions[2].numRowsConfig >= 22 THEN S2_01_Motion_04_22(); END_IF
-IF System.gSetup.stationFunctions[2].numRowsConfig >= 23 THEN S2_01_Motion_04_23(); END_IF
-IF System.gSetup.stationFunctions[2].numRowsConfig >= 24 THEN S2_01_Motion_04_24(); END_IF
-IF System.gSetup.stationFunctions[2].numRowsConfig >= 25 THEN S2_01_Motion_05_25(); END_IF
-IF System.gSetup.stationFunctions[2].numRowsConfig >= 26 THEN S2_01_Motion_05_26(); END_IF
-IF System.gSetup.stationFunctions[2].numRowsConfig >= 27 THEN S2_01_Motion_05_27(); END_IF
-IF System.gSetup.stationFunctions[2].numRowsConfig >= 28 THEN S2_01_Motion_05_28(); END_IF
-IF System.gSetup.stationFunctions[2].numRowsConfig >= 29 THEN S2_01_Motion_05_29(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 20 THEN S2_01_Motion_20(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 21 THEN S2_01_Motion_21(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 22 THEN S2_01_Motion_22(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 23 THEN S2_01_Motion_23(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 24 THEN S2_01_Motion_24(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 25 THEN S2_01_Motion_25(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 26 THEN S2_01_Motion_26(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 27 THEN S2_01_Motion_27(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 28 THEN S2_01_Motion_28(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 29 THEN S2_01_Motion_29(); END_IF
 
 //page 4
-IF System.gSetup.stationFunctions[2].numRowsConfig >= 30 THEN S2_01_Motion_05_30(); END_IF
-IF System.gSetup.stationFunctions[2].numRowsConfig >= 31 THEN S2_01_Motion_06_31(); END_IF
-IF System.gSetup.stationFunctions[2].numRowsConfig >= 32 THEN S2_01_Motion_06_32(); END_IF
-IF System.gSetup.stationFunctions[2].numRowsConfig >= 33 THEN S2_01_Motion_06_33(); END_IF
-IF System.gSetup.stationFunctions[2].numRowsConfig >= 34 THEN S2_01_Motion_06_34(); END_IF
-IF System.gSetup.stationFunctions[2].numRowsConfig >= 35 THEN S2_01_Motion_06_35(); END_IF
-IF System.gSetup.stationFunctions[2].numRowsConfig >= 36 THEN S2_01_Motion_06_36(); END_IF
-(*IF System.gSetup.stationFunctions[2].numRowsConfig >= 37 THEN S2_01_Motion_07_37(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 30 THEN S2_01_Motion_30(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 31 THEN S2_01_Motion_31(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 32 THEN S2_01_Motion_32(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 33 THEN S2_01_Motion_33(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 34 THEN S2_01_Motion_34(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 35 THEN S2_01_Motion_35(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 36 THEN S2_01_Motion_36(); END_IF
+IF System.gSetup.stationFunctions[2].numRowsConfig >= 37 THEN S2_01_Motion_37(); END_IF
 IF System.gSetup.stationFunctions[2].numRowsConfig >= 38 THEN S2_01_Motion_38(); END_IF
 IF System.gSetup.stationFunctions[2].numRowsConfig >= 39 THEN S2_01_Motion_39(); END_IF
 
@@ -6222,7 +6225,6 @@ IF System.gSetup.stationFunctions[2].numRowsConfig >= 96 THEN S2_01_Motion_96();
 IF System.gSetup.stationFunctions[2].numRowsConfig >= 97 THEN S2_01_Motion_97(); END_IF
 IF System.gSetup.stationFunctions[2].numRowsConfig >= 98 THEN S2_01_Motion_98(); END_IF
 IF System.gSetup.stationFunctions[2].numRowsConfig >= 99 THEN S2_01_Motion_99(); END_IF
-*)
 
 //must be called after motionRow calls
 actMaxNumStationPages();]]></ST>
@@ -12080,16 +12082,7 @@ if they are all at depth then set global station .complete"</v>
       <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="pouStation2.actMotions">
-      <LineId Id="1" Count="0" />
-      <LineId Id="7" Count="0" />
-      <LineId Id="6" Count="0" />
-      <LineId Id="5" Count="0" />
-      <LineId Id="180" Count="0" />
-      <LineId Id="63" Count="116" />
-      <LineId Id="51" Count="0" />
-      <LineId Id="181" Count="0" />
-      <LineId Id="11" Count="0" />
-      <LineId Id="3" Count="0" />
+      <LineId Id="310" Count="127" />
       <LineId Id="2" Count="0" />
     </LineIds>
   </POU>

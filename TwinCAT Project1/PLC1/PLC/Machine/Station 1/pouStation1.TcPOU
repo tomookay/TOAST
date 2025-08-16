@@ -6547,12 +6547,11 @@ UINT_TO_REAL(S1_Global.S1_NumOfRows)"</v>
       <Implementation>
         <ST><![CDATA[//station 1 = 10000 index
 
-
 //init number of rows
 S1_Global.station.Data.NumOfRows := 0;
 
 //set to 0
-s1_global.station.dynRowNumber := 0;
+S1_global.station.dynRowNumber := 0;
 
 //page 1
 IF System.gSetup.stationFunctions[1].numRowsConfig >= 1 THEN S1_01_Motion_1(); END_IF
@@ -12910,7 +12909,8 @@ if they are all at depth then set global station .complete"</v>
       <LineId Id="5" Count="0" />
     </LineIds>
     <LineIds Name="pouStation1.actMotions">
-      <LineId Id="63" Count="4" />
+      <LineId Id="63" Count="0" />
+      <LineId Id="65" Count="2" />
       <LineId Id="121" Count="0" />
       <LineId Id="119" Count="0" />
       <LineId Id="118" Count="0" />
