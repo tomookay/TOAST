@@ -27,18 +27,21 @@ General Setup Instructions
 10. Auto Cycle --> Start
 *)
 
+//station names
+//open the text list "StationNames" and edit
+
 //setup machine
 System.gSetup.stationEnable[1] := TRUE; //TRUE if station is present
 System.gSetup.stationEnable[2] := TRUE; //FALSE if the station does not exist on this machine
-System.gSetup.stationEnable[3] := TRUE;
-System.gSetup.stationEnable[4] := TRUE;
-System.gSetup.stationEnable[5] := TRUE;
-System.gSetup.stationEnable[6] := TRUE;
+System.gSetup.stationEnable[3] := FALSE;
+System.gSetup.stationEnable[4] := FALSE;
+System.gSetup.stationEnable[5] := FALSE;
+System.gSetup.stationEnable[6] := FALSE;
 
 //number of rows in each station
-System.gSetup.stationFunctions[1].numRowsConfig := 99;
-System.gSetup.stationFunctions[2].numRowsConfig := 99;
-System.gSetup.stationFunctions[3].numRowsConfig := 99;
+System.gSetup.stationFunctions[1].numRowsConfig := 18;		//18 is two pages
+System.gSetup.stationFunctions[2].numRowsConfig := 9;		//9 is one page
+System.gSetup.stationFunctions[3].numRowsConfig := 99;		//up to 99 rows
 System.gSetup.stationFunctions[4].numRowsConfig := 99;
 System.gSetup.stationFunctions[5].numRowsConfig := 99;
 System.gSetup.stationFunctions[6].numRowsConfig := 99;
@@ -197,7 +200,11 @@ System.gSetup.stationFunctions[6].allowEnablePendent := TRUE;
       </XmlArchive>
     </ObjectProperties>
     <LineIds Name="FC_Setup">
-      <LineId Id="3" Count="168" />
+      <LineId Id="3" Count="17" />
+      <LineId Id="178" Count="0" />
+      <LineId Id="177" Count="0" />
+      <LineId Id="179" Count="0" />
+      <LineId Id="21" Count="150" />
       <LineId Id="2" Count="0" />
     </LineIds>
   </POU>
