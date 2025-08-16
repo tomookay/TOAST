@@ -30,18 +30,18 @@ General Setup Instructions
 //setup machine
 System.gSetup.stationEnable[1] := TRUE; //TRUE if station is present
 System.gSetup.stationEnable[2] := TRUE; //FALSE if the station does not exist on this machine
-System.gSetup.stationEnable[3] := FALSE;
-System.gSetup.stationEnable[4] := FALSE;
-System.gSetup.stationEnable[5] := FALSE;
-System.gSetup.stationEnable[6] := FALSE;
+System.gSetup.stationEnable[3] := TRUE;
+System.gSetup.stationEnable[4] := TRUE;
+System.gSetup.stationEnable[5] := TRUE;
+System.gSetup.stationEnable[6] := TRUE;
 
 //number of rows in each station
-System.gSetup.stationFunctions[1].numRowsConfig := 18;
-System.gSetup.stationFunctions[2].numRowsConfig := 9;
-System.gSetup.stationFunctions[3].numRowsConfig := 0;
-System.gSetup.stationFunctions[4].numRowsConfig := 0;
-System.gSetup.stationFunctions[5].numRowsConfig := 0;
-System.gSetup.stationFunctions[6].numRowsConfig := 0;
+System.gSetup.stationFunctions[1].numRowsConfig := 99;
+System.gSetup.stationFunctions[2].numRowsConfig := 99;
+System.gSetup.stationFunctions[3].numRowsConfig := 99;
+System.gSetup.stationFunctions[4].numRowsConfig := 99;
+System.gSetup.stationFunctions[5].numRowsConfig := 99;
+System.gSetup.stationFunctions[6].numRowsConfig := 99;
 
 //set up cycle time setpoints
 S1_Global.station.part.CycleTimeTarget := 60;
@@ -197,12 +197,7 @@ System.gSetup.stationFunctions[6].allowEnablePendent := TRUE;
       </XmlArchive>
     </ObjectProperties>
     <LineIds Name="FC_Setup">
-      <LineId Id="3" Count="25" />
-      <LineId Id="173" Count="0" />
-      <LineId Id="172" Count="0" />
-      <LineId Id="174" Count="5" />
-      <LineId Id="29" Count="19" />
-      <LineId Id="52" Count="114" />
+      <LineId Id="3" Count="168" />
       <LineId Id="2" Count="0" />
     </LineIds>
   </POU>
