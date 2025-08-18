@@ -171,6 +171,9 @@
     <Compile Include="HMI1\Data\ScreenNames.TcTLO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="HMI1\Data\stationLinked.TcTLO">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="HMI1\Data\TaskText.TcTLO">
       <SubType>Code</SubType>
     </Compile>
@@ -490,6 +493,9 @@
     <Compile Include="PLC\FBs\Diagnostic\ProfiNet\ProfiNETImages.TcIPO">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="PLC\FBs\FBs\FB_CheckAnyMode.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="PLC\FBs\FBs\FB_Flasher.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -503,6 +509,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PLC\FBs\FBs\FB_Step.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PLC\FBs\FCs\FC_NOT.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PLC\FBs\IO View\FB_DataCombine.TcPOU">
@@ -2520,6 +2529,12 @@
     <Compile Include="X_DUTs\Station\typeStationComplexityBuffer.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="X_DUTs\Station\typeStationLockModes.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="X_DUTs\Station\typeStationLocks.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="X_DUTs\Station\typeStationMode.TcDUT">
       <SubType>Code</SubType>
     </Compile>
@@ -3026,6 +3041,7 @@
     <Folder Include="PLC\FBs\Diagnostic\Profibus" />
     <Folder Include="PLC\FBs\Diagnostic\ProfiNet" />
     <Folder Include="PLC\FBs\IO View" />
+    <Folder Include="PLC\FBs\FCs" />
     <Folder Include="PLC\FBs\Robot" />
     <Folder Include="PLC\FBs\Tasks" />
     <Folder Include="PLC\Machine\Station 1\Motions\Screen 10" />

@@ -24,8 +24,27 @@ prgHMILanguage();
 //axis telegram diag screen
 prgHMIaxis();
 
+//lock station logic
+actLockStation();
+
+
 ]]></ST>
     </Implementation>
+    <Action Name="actLockStation" Id="{c61404f0-1138-0bfa-3f97-ad7ee6ec469e}">
+      <Implementation>
+        <ST><![CDATA[//lock stations together feedback
+
+IF gHMIButtons.btnLockStation1 THEN gHMIData.gStateLockStation1 := 1; ELSE gHMIData.gStateLockStation1 := 0 ; END_IF
+IF gHMIButtons.btnLockStation2 THEN gHMIData.gStateLockStation2 := 1; ELSE gHMIData.gStateLockStation2 := 0 ; END_IF
+IF gHMIButtons.btnLockStation3 THEN gHMIData.gStateLockStation3 := 1; ELSE gHMIData.gStateLockStation3 := 0 ; END_IF	
+IF gHMIButtons.btnLockStation4 THEN gHMIData.gStateLockStation4 := 1; ELSE gHMIData.gStateLockStation4 := 0 ; END_IF
+IF gHMIButtons.btnLockStation5 THEN gHMIData.gStateLockStation5 := 1; ELSE gHMIData.gStateLockStation5 := 0 ; END_IF
+IF gHMIButtons.btnLockStation6 THEN gHMIData.gStateLockStation6 := 1; ELSE gHMIData.gStateLockStation6 := 0 ; END_IF
+	
+
+]]></ST>
+      </Implementation>
+    </Action>
     <Action Name="actResetButtonPress" Id="{e16beb8b-09dd-0fd9-2961-1cc1cb91a6de}">
       <Implementation>
         <ST><![CDATA[//if its on, then turn it off, it will be taken in other places
@@ -51,8 +70,22 @@ END_IF]]></ST>
       <LineId Id="45" Count="0" />
       <LineId Id="44" Count="0" />
       <LineId Id="46" Count="0" />
+      <LineId Id="58" Count="0" />
+      <LineId Id="57" Count="0" />
+      <LineId Id="59" Count="1" />
       <LineId Id="53" Count="0" />
       <LineId Id="52" Count="0" />
+    </LineIds>
+    <LineIds Name="pouHMI.actLockStation">
+      <LineId Id="1" Count="0" />
+      <LineId Id="3" Count="0" />
+      <LineId Id="2" Count="0" />
+      <LineId Id="16" Count="1" />
+      <LineId Id="20" Count="1" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="29" Count="0" />
     </LineIds>
     <LineIds Name="pouHMI.actResetButtonPress">
       <LineId Id="5" Count="0" />

@@ -4928,7 +4928,7 @@ UINT_TO_REAL(S4_Global.S4_NumOfRows)"</v>
                           <v n="LValue">false</v>
                           <v n="Boolean">false</v>
                           <v n="IsInstance">true</v>
-                          <v n="Id">258L</v>
+                          <v n="Id">320L</v>
                         </o>
                         <o n="OutputItems" t="OutputItemList">
                           <l2 n="OutputItems">
@@ -5928,6 +5928,25 @@ UINT_TO_REAL(S4_Global.S4_NumOfRows)"</v>
                           </o>
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
+                              <v n="Operand">"gHMIData.gStateLockStation4 &gt; 0"</v>
+                              <v n="Type">"USINT"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">""</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">0</v>
+                                <v n="Fixed">false</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">false</v>
+                              <v n="Boolean">true</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">323L</v>
+                            </o>
+                            <v n="Id">322L</v>
+                          </o>
+                          <o t="BoxTreeOperand">
+                            <o n="Operand" t="Operand">
                               <v n="Operand">"S4_Global.station.Data"</v>
                               <v n="Type">"typeStationMode"</v>
                               <v n="Comment">""</v>
@@ -5944,6 +5963,25 @@ UINT_TO_REAL(S4_Global.S4_NumOfRows)"</v>
                               <v n="Id">127L</v>
                             </o>
                             <v n="Id">126L</v>
+                          </o>
+                          <o t="BoxTreeOperand">
+                            <o n="Operand" t="Operand">
+                              <v n="Operand">"gHMIButtons.gLockButtons"</v>
+                              <v n="Type">"typeStationLockModes"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">""</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">0</v>
+                                <v n="Fixed">false</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">false</v>
+                              <v n="Boolean">false</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">319L</v>
+                            </o>
+                            <v n="Id">318L</v>
                           </o>
                         </l2>
                         <o n="InputParam" t="ParamList">
@@ -5966,7 +6004,9 @@ UINT_TO_REAL(S4_Global.S4_NumOfRows)"</v>
                             <v>iStartAutoCycleDelay</v>
                             <v>iFirstScan</v>
                             <v>iStopCycleTimeout</v>
+                            <v>isStationLocked</v>
                             <v>stationState</v>
+                            <v>lockedModes</v>
                           </l2>
                           <l2 n="Types" cet="String">
                             <v>BOOL</v>
@@ -5987,7 +6027,9 @@ UINT_TO_REAL(S4_Global.S4_NumOfRows)"</v>
                             <v>TIME</v>
                             <v>BOOL</v>
                             <v>TIME</v>
+                            <v>BOOL</v>
                             <v>typeStationMode[REF]</v>
+                            <v>typeStationLockModes[REF]</v>
                           </l2>
                         </o>
                         <o n="OutputParam" t="ParamList">
@@ -6004,7 +6046,7 @@ UINT_TO_REAL(S4_Global.S4_NumOfRows)"</v>
                         <n n="STSnippet" />
                         <v n="ContainsExtensibleInputs">false</v>
                         <v n="ProvidesSTSnippet">false</v>
-                        <v n="Id">259L</v>
+                        <v n="Id">321L</v>
                       </o>
                     </l2>
                     <l2 n="Connectors" />
