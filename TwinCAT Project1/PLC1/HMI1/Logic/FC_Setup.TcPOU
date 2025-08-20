@@ -180,6 +180,15 @@ System.gSetup.stationFunctions[6].allowGate1Req := TRUE;
 System.gSetup.stationFunctions[6].allowGate2Req := TRUE;
 System.gSetup.stationFunctions[6].allowLockAccessGates := TRUE;
 System.gSetup.stationFunctions[6].allowEnablePendent := TRUE;
+
+//latch XIC messages?
+S1_Global.station.Data.latchXICmsg := FALSE;
+S2_Global.station.Data.latchXICmsg := FALSE;
+S3_Global.station.Data.latchXICmsg := FALSE;
+S4_Global.station.Data.latchXICmsg := FALSE;
+S5_Global.station.Data.latchXICmsg := FALSE;
+S6_Global.station.Data.latchXICmsg := FALSE;
+
 ]]></ST>
     </Implementation>
     <ObjectProperties>
@@ -200,11 +209,11 @@ System.gSetup.stationFunctions[6].allowEnablePendent := TRUE;
       </XmlArchive>
     </ObjectProperties>
     <LineIds Name="FC_Setup">
-      <LineId Id="3" Count="17" />
-      <LineId Id="178" Count="0" />
-      <LineId Id="177" Count="0" />
-      <LineId Id="179" Count="0" />
-      <LineId Id="21" Count="150" />
+      <LineId Id="3" Count="171" />
+      <LineId Id="183" Count="0" />
+      <LineId Id="181" Count="0" />
+      <LineId Id="180" Count="0" />
+      <LineId Id="184" Count="5" />
       <LineId Id="2" Count="0" />
     </LineIds>
   </POU>

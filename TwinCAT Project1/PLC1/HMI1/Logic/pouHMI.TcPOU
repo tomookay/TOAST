@@ -42,6 +42,14 @@ IF gHMIButtons.btnLockStation5 THEN gHMIData.gStateLockStation5 := 1; ELSE gHMID
 IF gHMIButtons.btnLockStation6 THEN gHMIData.gStateLockStation6 := 1; ELSE gHMIData.gStateLockStation6 := 0 ; END_IF
 	
 
+//apply locks to stations
+S1_Global.station.Data.IsStationLocked	:=	gHMIButtons.btnLockStation1;
+S2_Global.station.Data.IsStationLocked	:=	gHMIButtons.btnLockStation2;
+S3_Global.station.Data.IsStationLocked	:=	gHMIButtons.btnLockStation3;
+S4_Global.station.Data.IsStationLocked	:=	gHMIButtons.btnLockStation4;
+S5_Global.station.Data.IsStationLocked	:=	gHMIButtons.btnLockStation5;
+S6_Global.station.Data.IsStationLocked	:=	gHMIButtons.btnLockStation6;
+
 ]]></ST>
       </Implementation>
     </Action>
@@ -83,7 +91,11 @@ END_IF]]></ST>
       <LineId Id="16" Count="1" />
       <LineId Id="20" Count="1" />
       <LineId Id="19" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="35" Count="1" />
       <LineId Id="28" Count="0" />
+      <LineId Id="37" Count="2" />
+      <LineId Id="41" Count="1" />
       <LineId Id="31" Count="0" />
       <LineId Id="29" Count="0" />
     </LineIds>

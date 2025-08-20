@@ -24,7 +24,7 @@ VAR_INPUT
 	iStartAutoCycleDelay:TIME:=T#2S; //delay time to start auto cycle
 	iFirstScan:BOOL:=TRUE; //first scan logic for seting inital mode
 	iStopCycleTimeout:TIME:=T#120S; //time to stop auto cycle if home not reached in (t). Set to 110% of expected station cycle time
-	isStationLocked:				BOOL;
+	//isStationLocked:				BOOL;
 END_VAR
 	
 	
@@ -138,7 +138,7 @@ END_VAR
                           </o>
                           <o>
                             <o n="Operand" t="Operand">
-                              <v n="Operand">"isStationLocked"</v>
+                              <v n="Operand">"stationState.IsStationLocked"</v>
                               <v n="Type">"BOOL"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
