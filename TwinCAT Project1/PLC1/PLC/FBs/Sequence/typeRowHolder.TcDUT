@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="typeRowHolder" Id="{8f09439e-1d36-0d16-3909-807550591e58}">
+    <Declaration><![CDATA[TYPE typeRowHolder :
+STRUCT
+	StationSequence: ARRAY[1..AutoRows.numMotionRows, 1..AutoRows.numSeqSteps] OF typeSeqRow;
+	ActiveStep:UINT; //the count
+	LastStep:UINT; //the last step
+	FirstStep:UINT:=1; //the first step 
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

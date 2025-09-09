@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="AutoRows" Id="{6b3a4153-311e-05cb-237f-d272bb8fa322}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL CONSTANT
+	numMotionRows: UINT := 99; //99 max rows, should derive from elsewhere
+	numSeqSteps: UINT := 14; //14 steps, since that all I could type for the columns
+END_VAR
+VAR_GLOBAL
+	
+	//import me from excel!
+	S1Seq:typeRowHolder; //encapsulate for later use as an in_out
+	S2Seq:typeRowHolder; //encapsulate for later use as an in_out
+	S3Seq:typeRowHolder; //encapsulate for later use as an in_out
+	S4Seq:typeRowHolder; //encapsulate for later use as an in_out
+	S5Seq:typeRowHolder; //encapsulate for later use as an in_out
+	S6Seq:typeRowHolder; //encapsulate for later use as an in_out
+END_VAR
+
+//Explanation
+(*
+1 
+A Matrix is created with rows against steps to perform
+
+		| S1 | S2 | S3 | S4 | S5 | S6 | S7 | S8 | S9 | S10 | S11 | S12 | S13 | S14 | 
+---------------------------------------------------------------------------------------
+Row 1	|    |    |    |    |    |    |    |    |    |     |     |     |     |     |     
+Row 2	|    |    |    |    |    |    |    |    |    |     |     |     |     |     |  
+Row 3	|    |    |    |    |    |    |    |    |    |     |     |     |     |     |  
+Row 4	|    |    |    |    |    |    |    |    |    |     |     |     |     |     |  
+Row 5	|    |    |    |    |    |    |    |    |    |     |     |     |     |     |  
+Row 6	|    |    |    |    |    |    |    |    |    |     |     |     |     |     |  
+Row 7	|    |    |    |    |    |    |    |    |    |     |     |     |     |     |  
+*)
+
+(*
+2
+The Matrix follows the station rows (up to 99) and each step is actioned by the presense
+of a value in each cell,
+In this case, the first action is to Advance Row 1, which is typical
+
+		| S1 | S2 | S3 | S4 | S5 | S6 | S7 | S8 | S9 | S10 | S11 | S12 | S13 | S14 | 
+---------------------------------------------------------------------------------------
+Row 1	| A  |    |    |    |    |    |    |    |    |     |     |     |     |     |     
+*)
+
+(*
+3
+The next step is added, and the sequence is generated from the excel matrix
+
+		| S1 | S2 | S3 | S4 | S5 | S6 | S7 | S8 | S9 | S10 | S11 | S12 | S13 | S14 | 
+---------------------------------------------------------------------------------------
+Row 1	| A  |    |    |    |    |    |    |    |    |     |     | R   |     |     |     
+Row 2	|    | A  |    |    |    |    |    |    |    |     | R   |     |     |     |  
+Row 3	|    |    | A  |    |    |    |    |    |    | R   |     |     |     |     |  
+Row 4	|    |    |    | A  |    |    |    |    | R  |     |     |     |     |     |  
+Row 5	|    |    |    |    | A  |    |    | R  |    |     |     |     |     |     |  
+Row 6	|    |    |    |    |    | A  | R  |    |    |     |     |     |     |     |  
+Row 7	|    |    |    |    |    |    |    |    |    |     |     |     |     |     |  
+
+This is why it is called Pirate code.... AAAARRRRRR
+*)
+]]></Declaration>
+  </GVL>
+</TcPlcObject>
