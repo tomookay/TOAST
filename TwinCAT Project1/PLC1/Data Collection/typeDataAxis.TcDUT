@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="typeDataAxis" Id="{a5f0e6ca-58f8-0739-2fd1-554532ca8cc4}">
+    <Declaration><![CDATA[TYPE typeDataAxis :
+STRUCT
+	grabTime: ARRAY[1..20000] OF ULINT;
+	grabData: ARRAY[1..20000] OF REAL;
+	
+END_STRUCT
+END_TYPE
+
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

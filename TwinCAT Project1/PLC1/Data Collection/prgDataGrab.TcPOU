@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="prgDataGrab" Id="{2109d875-92f9-03a8-2fd3-97b38c500296}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM prgDataGrab
+VAR
+	tGrabData: BOOL;
+	
+	DataIndex: ULINT;
+	MaxAxisGrab: ULINT;
+	tAxisFull: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Action Name="actPopulateAxis" Id="{17e9635a-4bdc-076c-0e86-b67297dd33f3}">
+      <Implementation>
+        <ST><![CDATA[//populate axis
+IF tGrabData THEN
+
+	//lets grab data
+	IF DataIndex < MaxAxisGrab THEN
+		dataGrab.axis1.grabTime[dataIndex] := DataIndex;
+		dataGrab.axis1.grabData[dataIndex] := 123.456;
+		
+		DataIndex := DataIndex + 1;
+	END_IF
+	
+	IF DataIndex >= MaxAxisGrab THEN
+		tAxisFull := TRUE;
+	END_IF
+
+END_IF
+
+
+]]></ST>
+      </Implementation>
+    </Action>
+    <LineIds Name="prgDataGrab">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="prgDataGrab.actPopulateAxis">
+      <LineId Id="1" Count="1" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="3" Count="0" />
+      <LineId Id="7" Count="2" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="10" Count="1" />
+      <LineId Id="18" Count="2" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="15" Count="1" />
+      <LineId Id="14" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
