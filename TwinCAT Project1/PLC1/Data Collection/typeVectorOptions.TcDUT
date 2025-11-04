@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="typeVectorOptions" Id="{9cda1921-34f1-0ae8-2b2f-09977bcd3851}">
+    <Declaration><![CDATA[TYPE typeVectorOptions :
+STRUCT
+	penetrateInTo:BOOL; //the line passes into the vector, into the cube
+	EscapesFrom:BOOL; //the line escapes from the vector, from the cube
+	DoesNotTouch:BOOL; //the line does not touch the vector
+	
+	point1:typePoints; //100, 60 
+	point2:typePoints; //100, 40
+	
+	
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

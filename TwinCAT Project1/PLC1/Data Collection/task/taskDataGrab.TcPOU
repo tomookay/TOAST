@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="taskDataGrab" Id="{7a4f74d7-5fdf-0170-3ab7-66ec9ac5539a}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM taskDataGrab
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//call the data grab
+prgDataGrab();
+]]></ST>
+    </Implementation>
+    <LineIds Name="taskDataGrab">
+      <LineId Id="5" Count="2" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

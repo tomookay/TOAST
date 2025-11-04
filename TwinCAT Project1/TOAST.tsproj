@@ -5,17 +5,21 @@
 			<Settings MaxCpus="12" MaxStackSize="32">
 				<Cpu CpuId="2" LatencyWarning="5000"/>
 				<Cpu CpuId="3" LatencyWarning="5000"/>
-				<IoIdleTask Priority="10" CycleTime="200000"/>
+				<IoIdleTask Priority="12" CycleTime="200000"/>
 			</Settings>
 			<Tasks>
-				<Task Id="3" Priority="6" CycleTime="100000" AmsPort="350" TickModulo="1" DisableFpExceptions="true" AdtTasks="true">
+				<Task Id="3" Priority="8" CycleTime="100000" AmsPort="350" TickModulo="1" DisableFpExceptions="true" AdtTasks="true">
 					<Name>PlcTask</Name>
 				</Task>
-				<Task Id="4" Priority="12" CycleTime="2000000" AmsPort="351" Affinity="#x00000008" DisableFpExceptions="true" AdtTasks="true">
+				<Task Id="4" Priority="14" CycleTime="2000000" AmsPort="351" Affinity="#x00000008" DisableFpExceptions="true" AdtTasks="true">
 					<Name>VISU_TASK</Name>
 				</Task>
-				<Task Id="7" Priority="14" CycleTime="2000000" AmsPort="352" AdtTasks="true">
+				<Task Id="7" Priority="16" CycleTime="2000000" AmsPort="352" AdtTasks="true">
 					<Name>VISU_TASK1</Name>
+				</Task>
+				<Task Id="8" Priority="4" CycleTime="10000" AmsPort="353" DisableFpExceptions="true" AdtTasks="true">
+					<Name>DataGrab</Name>
+					<Comment><![CDATA[for data grabbing only]]></Comment>
 				</Task>
 			</Tasks>
 		</System>
