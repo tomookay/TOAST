@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="FB_Window" Id="{4cf7a1dd-4be4-0676-17d1-6d8992ea43f1}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Window
+VAR
+	i:DINT;
+END_VAR
+VAR_INPUT
+	dataAxis: typeDataAxis;
+	optionA:typeVectorOptions;
+	optionB:typeVectorOptions;
+//	optionC:typeVectorOptions;
+	optionD:typeVectorOptions;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*
+	
+	^
+	value
+	|
+	|							C
+	|			1_______________________________4
+	|			|								|
+	|			|								|
+	|			|								|
+	|			|				/				|
+	|			|			 /					|  
+	|		A	|			/					|  B
+	|			|		  /						|
+	|			|		/						|
+	|			|	  /							|
+	|-----------|----------------line-----------|-------
+	|			|___/___________________________|
+	|			2  /							3
+	|			  /				D
+	|		 	 /				
+	|			/				
+	----------------------------------------------------------------(grab)time->
+	1	2	3	4	5	6	7	8	9 	10 	11	12	13	14	15	16	17 etc
+	
+	Each side of a box has a entry point, check which vector the data
+	passes into
+
+
+*)
+
+//loop around entire array bounds looking for data cross over
+//FOR i := LOWER_BOUND(dataAxis.grabTime,1) TO UPPER_BOUND(dataAxis.grabTime,1) DO
+
+FOR i := 1 TO 20000 DO
+	//check for entry into box from A1, A2
+	IF dataAxis.grabTime[i] = optionA.point2.PointXTime THEN //A2 //add in tolerance?
+			IF dataAxis.grabData[i+1] > optionA.point2.PointYValue AND dataAxis.grabData[i+1] < optionA.point1.PointYValue  THEN
+				//line has penetrated into box
+				ELSE
+				//line has not penetrated into box
+			END_IF
+	END_IF
+
+	//check for entry into box from D2, D3
+	IF dataAxis.grabTime[i] > optionD.point1.PointXTime THEN
+			IF dataaxis.grabData[i] > optionD.point1.PointYValue AND dataaxis.grabData[i] < optionD.point2.PointYValue THEN
+				//line has penetrated under the box
+				ELSE
+					//line has not penetrated under the box
+			END_IF
+	END_IF
+	
+	//check for line exit from box from B3, B4
+		IF dataAxis.grabTime[i] = optionB.point2.PointXTime THEN //A2 //add in tolerance?
+			IF dataAxis.grabData[i+1] > optionB.point2.PointYValue AND dataAxis.grabData[i+1] < optionB.point1.PointYValue  THEN
+				//line has exited the box
+				ELSE
+				//line has not exited the box
+			END_IF
+	END_IF
+
+
+
+///////////////////////////////////////////////////////////////////////////////////
+
+
+END_FOR
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_Window">
+      <LineId Id="6" Count="29" />
+      <LineId Id="53" Count="1" />
+      <LineId Id="104" Count="1" />
+      <LineId Id="89" Count="0" />
+      <LineId Id="87" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="74" Count="0" />
+      <LineId Id="108" Count="0" />
+      <LineId Id="111" Count="2" />
+      <LineId Id="57" Count="1" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="123" Count="1" />
+      <LineId Id="127" Count="0" />
+      <LineId Id="129" Count="1" />
+      <LineId Id="132" Count="0" />
+      <LineId Id="125" Count="0" />
+      <LineId Id="133" Count="1" />
+      <LineId Id="136" Count="5" />
+      <LineId Id="135" Count="0" />
+      <LineId Id="126" Count="0" />
+      <LineId Id="122" Count="0" />
+      <LineId Id="114" Count="0" />
+      <LineId Id="52" Count="0" />
+      <LineId Id="90" Count="1" />
+      <LineId Id="63" Count="0" />
+      <LineId Id="62" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

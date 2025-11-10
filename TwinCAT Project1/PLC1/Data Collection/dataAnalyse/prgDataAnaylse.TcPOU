@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="prgDataAnaylse" Id="{5b64e1c3-e236-0a4e-1cd2-9817ef2395fb}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM prgDataAnaylse
+VAR
+	windowCheck:FB_Window;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[windowCheck	(dataAxis := dataGrab.axis1	,
+			optionA :=		,
+			optionB :=
+			);
+			]]></ST>
+    </Implementation>
+    <LineIds Name="prgDataAnaylse">
+      <LineId Id="5" Count="0" />
+      <LineId Id="8" Count="3" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

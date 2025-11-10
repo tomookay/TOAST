@@ -154,23 +154,20 @@
     <Title>Project Title</Title>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Data Collection\dataAnalyse\FB_Window.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data Collection\dataAnalyse\prgDataAnaylse.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Data Collection\dataGrab.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
-    </Compile>
-    <Compile Include="Data Collection\DataGrab_1.TcTTO">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Data Collection\prgDataAnalyse.TcPOU">
-      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Data Collection\prgDataGrab.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Data Collection\task\DataGrab_1.TcTTO">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Data Collection\task\FB_Window.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Data Collection\task\taskDataGrab.TcPOU">
@@ -3077,6 +3074,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Data Collection\dataAnalyse" />
     <Folder Include="Data Collection\task" />
     <Folder Include="HMI1\Screens\Sequences" />
     <Folder Include="HMI1\Screens\Popup" />

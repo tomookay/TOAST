@@ -9546,7 +9546,7 @@ iEnableSafetyDevices	AT %Q*	:BOOL;]]></Comment>
 					<Id NeedCalleeCall="true">0</Id>
 					<Name>DataGrab_1</Name>
 					<ManualConfig>
-						<OTCID>#x02010080</OTCID>
+						<OTCID>#x020100a0</OTCID>
 					</ManualConfig>
 					<Priority>4</Priority>
 					<CycleTime>1000000</CycleTime>
@@ -9557,82 +9557,14 @@ iEnableSafetyDevices	AT %Q*	:BOOL;]]></Comment>
 					<ManualConfig>
 						<OTCID>#x02010030</OTCID>
 					</ManualConfig>
-					<Priority>8</Priority>
+					<Priority>14</Priority>
 					<CycleTime>10000000</CycleTime>
 				</Context>
 			</Contexts>
 			<TaskPouOids>
 				<TaskPouOid Prio="4" OTCID="#x08502003"/>
-				<TaskPouOid Prio="8" OTCID="#x08502001"/>
+				<TaskPouOid Prio="14" OTCID="#x08502004"/>
 			</TaskPouOids>
 		</Instance>
 	</Project>
-	<Mappings>
-		<OwnerA Name="PLC1 Instance">
-			<OwnerB Name="TIID^Device 6 (EtherCAT)">
-				<Link VarA="PlcTask Inputs^System.ecMasterData[1].ecAMSmaster" VarB="InfoData^AmsNetId"/>
-				<Link VarA="PlcTask Inputs^System.ecMasterData[1].ecMasterActSlaveCount" VarB="Inputs^SlaveCount"/>
-				<Link VarA="PlcTask Inputs^System.ecMasterData[1].ecMasterCfgSlaveCount" VarB="InfoData^CfgSlaveCount"/>
-				<Link VarA="PlcTask Inputs^System.ecMasterData[1].ecMasterChangeCount" VarB="InfoData^ChangeCount"/>
-				<Link VarA="PlcTask Inputs^System.ecMasterData[1].ecMasterDevId" VarB="InfoData^DevId"/>
-			</OwnerB>
-			<OwnerB Name="TIID^Device 6 (EtherCAT)^Term 1 (EK1200)^Term 14 (EL6900)">
-				<Link VarA="PlcTask Inputs^Safety.gSafetyProgramChecksum" VarB="Device Info Data^Project CRC"/>
-				<Link VarA="PlcTask Inputs^Safety.gSafetySerialNumber" VarB="Device Info Data^Serial Number"/>
-			</OwnerB>
-			<OwnerB Name="TIID^EtherCAT Device 1">
-				<Link VarA="PlcTask Inputs^System.ecMasterData[1].ecMasterActSlaveCount" VarB="Inputs^SlaveCount"/>
-				<Link VarA="PlcTask Inputs^System.ecMasterData[1].ecMasterDevState" VarB="Inputs^DevState"/>
-			</OwnerB>
-			<OwnerB Name="TIID^EtherCAT Device 1^Term 5 (EK1101)">
-				<Link VarA="PlcTask Inputs^System.ecMasterData[1].ecEKInfostateDataState" VarB="InfoData^State"/>
-			</OwnerB>
-			<OwnerB Name="TIID^EtherCAT Device 1^Term 5 (EK1101)^Safety PLC and Input Module (EL6910)">
-				<Link VarA="PlcTask Inputs^Safety.gSafetyCPUADSadr" VarB="InfoData^AdsAddr"/>
-				<Link VarA="PlcTask Inputs^Safety.gSafetyCPUState" VarB="InfoData^State"/>
-			</OwnerB>
-			<OwnerB Name="TIID^EtherCAT Device 1^Term 5 (EK1101)^Term 6 (EL1008)">
-				<Link VarA="PlcTask Inputs^S1_IO.Row01.iAdvanceDepth" VarB="Channel 1^S1_IO.Row01.iAdvanceDepth" Size="1"/>
-				<Link VarA="PlcTask Inputs^S1_IO.Row01.iReturnedDepth" VarB="Channel 2^S1_IO.Row01.iReturnedDepth" Size="1"/>
-				<Link VarA="PlcTask Inputs^S1_IO.Row02.iAdvanceDepth" VarB="Channel 3^S1_IO.Row02.iAdvanceDepth" Size="1"/>
-				<Link VarA="PlcTask Inputs^S1_IO.Row02.iReturnedDepth" VarB="Channel 4^S1_IO.Row02.iReturnedDepth" Size="1"/>
-				<Link VarA="PlcTask Inputs^S1_IO.Row03.iAdvanceDepth" VarB="Channel 5^S1_IO.Row03.iAdvanceDepth" Size="1"/>
-				<Link VarA="PlcTask Inputs^S1_IO.Row03.iReturnedDepth" VarB="Channel 6^S1_IO.Row03.iReturnedDepth" Size="1"/>
-				<Link VarA="PlcTask Inputs^S1_IO.Row04.iAdvanceDepth" VarB="Channel 7^S1_IO.Row04.iAdvanceDepth" Size="1"/>
-				<Link VarA="PlcTask Inputs^S1_IO.Row04.iReturnedDepth" VarB="Channel 8^S1_IO.Row04.iReturnedDepth" Size="1"/>
-			</OwnerB>
-			<OwnerB Name="TIID^EtherCAT Device 1^Term 5 (EK1101)^Term 7 (EL2008)">
-				<Link VarA="PlcTask Outputs^S1_IO.Row01.qAdvanceCoil" VarB="Channel 1^S1_IO.Row01.qAdvanceCoil" Size="1"/>
-				<Link VarA="PlcTask Outputs^S1_IO.Row01.qReturnedCoil" VarB="Channel 2^S1_IO.Row01.qReturnedCoil" Size="1"/>
-				<Link VarA="PlcTask Outputs^S1_IO.Row02.qAdvanceCoil" VarB="Channel 3^S1_IO.Row02.qAdvanceCoil" Size="1"/>
-				<Link VarA="PlcTask Outputs^S1_IO.Row02.qReturnedCoil" VarB="Channel 4^S1_IO.Row02.qReturnedCoil" Size="1"/>
-				<Link VarA="PlcTask Outputs^S1_IO.Row03.qAdvanceCoil" VarB="Channel 5^S1_IO.Row03.qAdvanceCoil" Size="1"/>
-				<Link VarA="PlcTask Outputs^S1_IO.Row03.qReturnedCoil" VarB="Channel 6^S1_IO.Row03.qReturnedCoil" Size="1"/>
-				<Link VarA="PlcTask Outputs^S1_IO.Row04.qAdvanceCoil" VarB="Channel 7^S1_IO.Row04.qAdvanceCoil" Size="1"/>
-				<Link VarA="PlcTask Outputs^S1_IO.Row04.qReturnedCoil" VarB="Channel 8^S1_IO.Row04.qReturnedCoil" Size="1"/>
-			</OwnerB>
-			<OwnerB Name="TIID^EtherCAT Device 2^Box 1 (EP1008-0002)">
-				<Link VarA="PlcTask Inputs^S2_IO.Row01.iAdvanceDepth" VarB="Channel 1^S2_IO.Row01.iAdvanceDepth" Size="1"/>
-				<Link VarA="PlcTask Inputs^S2_IO.Row01.iReturnedDepth" VarB="Channel 2^S2_IO.Row01.iReturnedDepth" Size="1"/>
-				<Link VarA="PlcTask Inputs^S2_IO.Row02.iAdvanceDepth" VarB="Channel 3^S2_IO.Row02.iAdvanceDepth" Size="1"/>
-				<Link VarA="PlcTask Inputs^S2_IO.Row02.iReturnedDepth" VarB="Channel 4^S2_IO.Row02.iReturnedDepth" Size="1"/>
-			</OwnerB>
-			<OwnerB Name="TIID^EtherCAT Device 2^Box 2 (EP1008-0002)">
-				<Link VarA="PlcTask Inputs^S2_IO.Row03.iAdvanceDepth" VarB="Channel 1^S2_IO.Row03.iAdvanceDepth" Size="1"/>
-				<Link VarA="PlcTask Inputs^S2_IO.Row03.iReturnedDepth" VarB="Channel 2^S2_IO.Row03.iReturnedDepth" Size="1"/>
-			</OwnerB>
-			<OwnerB Name="TIID^PROFIBUS Master^Box 4 (IP10xx-B3xx)">
-				<Link VarA="PlcTask Inputs^S1_IO.Row05.iAdvanceDepth" VarB="Term 1^Channel 1^S1_IO.Row05.iAdvanceDepth" Size="1"/>
-				<Link VarA="PlcTask Inputs^S1_IO.Row05.iReturnedDepth" VarB="Term 1^Channel 2^S1_IO.Row05.iReturnedDepth" Size="1"/>
-				<Link VarA="PlcTask Inputs^profibusDiag.RawDPStateDiag[2]" VarB="Inputs^DpState"/>
-			</OwnerB>
-			<OwnerB Name="TIID^PROFIBUS Master^Box 4 (IP10xx-B3xx)_1">
-				<Link VarA="PlcTask Inputs^profibusDiag.RawDPStateDiag[1]" VarB="Inputs^DpState"/>
-			</OwnerB>
-			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis 1">
-				<Link VarA="PlcTask Inputs^driveGlobals.ncAxis1.NcToPlc" VarB="Outputs^ToPlc"/>
-				<Link VarA="PlcTask Outputs^driveGlobals.ncAxis1.PlcToNc" VarB="Inputs^FromPlc"/>
-			</OwnerB>
-		</OwnerA>
-	</Mappings>
 </TcSmItem>
