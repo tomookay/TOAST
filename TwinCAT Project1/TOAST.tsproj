@@ -8,7 +8,7 @@
 				<IoIdleTask Priority="16" CycleTime="200000"/>
 			</Settings>
 			<Tasks>
-				<Task Id="3" Priority="12" CycleTime="100000" AmsPort="350" TickModulo="1" DisableFpExceptions="true" AdtTasks="true">
+				<Task Id="3" Priority="14" CycleTime="100000" AmsPort="350" TickModulo="1" DisableFpExceptions="true" AdtTasks="true">
 					<Name>PlcTask</Name>
 				</Task>
 				<Task Id="4" Priority="18" CycleTime="2000000" AmsPort="351" Affinity="#x00000008" DisableFpExceptions="true" AdtTasks="true">
@@ -21,7 +21,7 @@
 					<Name>DataGrab</Name>
 					<Comment><![CDATA[for data grabbing only]]></Comment>
 				</Task>
-				<Task Id="9" Priority="10" CycleTime="100000" AmsPort="354" AdtTasks="true">
+				<Task Id="9" Priority="12" CycleTime="100000" AmsPort="354" AdtTasks="true">
 					<Name>DataAnalyse</Name>
 				</Task>
 				<Task Id="10" Priority="4" CycleTime="10000" AmsPort="355" AdtTasks="true">
@@ -69,7 +69,4 @@
 			</Variant>
 		</Variants>
 	</Project>
-	<Mappings>
-		<MappingInfo Identifier="{05000010-2002-0850-A000-040301205008}" Id="#x02030010" Watchdog="14000000040000000400000004000000"/>
-	</Mappings>
 </TcSmProject>
