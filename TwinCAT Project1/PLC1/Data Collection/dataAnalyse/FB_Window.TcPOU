@@ -14,9 +14,7 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[(*
-	
-	^
+      <ST><![CDATA[(*	^
 	value
 	|
 	|							C
@@ -24,11 +22,11 @@ END_VAR
 	|			|								|
 	|			|								|
 	|			|								|
-	|			|				/				|
+	|			|			  /					|
 	|			|			 /					|  
 	|		A	|			/					|  B
 	|			|		  /						|
-	|			|		/						|
+	|			|	    /						|
 	|			|	  /							|
 	|-----------|----------------line-----------|-------
 	|			|___/___________________________|
@@ -41,14 +39,9 @@ END_VAR
 	
 	Each side of a box has a entry point, check which vector the data
 	passes into
-
-
 *)
 
-//loop around entire array bounds looking for data cross over
-//FOR i := LOWER_BOUND(dataAxis.grabTime,1) TO UPPER_BOUND(dataAxis.grabTime,1) DO
-
-FOR i := 1 TO 20000 DO
+FOR i := 1 TO 20000 - 1 DO
 	//check for entry into box from A1, A2
 	IF dataAxis.grabTime[i] = optionA.point2.PointXTime THEN //A2 //add in tolerance?
 			IF dataAxis.grabData[i+1] > optionA.point2.PointYValue AND dataAxis.grabData[i+1] < optionA.point1.PointYValue  THEN
@@ -85,9 +78,10 @@ END_FOR
 ]]></ST>
     </Implementation>
     <LineIds Name="FB_Window">
-      <LineId Id="6" Count="29" />
-      <LineId Id="53" Count="1" />
-      <LineId Id="104" Count="1" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="9" Count="23" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="153" Count="0" />
       <LineId Id="89" Count="0" />
       <LineId Id="87" Count="0" />
       <LineId Id="55" Count="0" />

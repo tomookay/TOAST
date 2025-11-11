@@ -96,6 +96,7 @@ IF memchanged OR iqMsgChangeUpdateList THEN //if the memory array have changed, 
 
 	//have to start at -1 because... Beckhoff... seems to add + 1 before every loop, wanting to start AT 0, not 1
 	FOR i := -1 TO GlobalMessages.gNumMessagesPerType DO
+	//FOR i := 0 TO GlobalMessages.gNumMessagesPerType DO
 		
 		//loop entire array
 		IF iqArrayToCheck.message[i] = TRUE THEN
@@ -1652,7 +1653,9 @@ END_FOR
       </XmlArchive>
     </ObjectProperties>
     <LineIds Name="FB_CheckMessageBounds">
-      <LineId Id="3" Count="231" />
+      <LineId Id="3" Count="20" />
+      <LineId Id="307" Count="0" />
+      <LineId Id="24" Count="210" />
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="FB_CheckMessageBounds.actClearDownExcessWarn">

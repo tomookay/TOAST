@@ -16,24 +16,26 @@ END_VAR
     </Implementation>
     <Action Name="actPopulateAxis" Id="{17e9635a-4bdc-076c-0e86-b67297dd33f3}">
       <Implementation>
-        <ST><![CDATA[//populate axis
+        <ST><![CDATA[MaxAxisGrab := 100;
+
+//populate axis
 IF tGrabData THEN
+
+DataIndex := DataIndex + 1;
 
 	//lets grab data
 	IF DataIndex < MaxAxisGrab THEN
 		dataGrab.axis1.grabTime[dataIndex] := DataIndex;
 		dataGrab.axis1.grabData[dataIndex] := 123.456;
 		
-		DataIndex := DataIndex + 1;
+		
 	END_IF
 	
 	IF DataIndex >= MaxAxisGrab THEN
 		tAxisFull := TRUE;
+		tGrabData := FALSE;
 	END_IF
 	
-	ELSE
-		//clear down register
-		DataIndex := 0;
 
 END_IF
 
@@ -46,16 +48,19 @@ END_IF
       <LineId Id="14" Count="0" />
     </LineIds>
     <LineIds Name="prgDataGrab.actPopulateAxis">
-      <LineId Id="1" Count="1" />
+      <LineId Id="34" Count="1" />
+      <LineId Id="1" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="31" Count="0" />
       <LineId Id="17" Count="0" />
+      <LineId Id="32" Count="0" />
       <LineId Id="3" Count="0" />
       <LineId Id="7" Count="2" />
       <LineId Id="6" Count="0" />
       <LineId Id="10" Count="1" />
       <LineId Id="18" Count="2" />
-      <LineId Id="22" Count="2" />
-      <LineId Id="27" Count="0" />
-      <LineId Id="25" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="22" Count="1" />
       <LineId Id="13" Count="0" />
       <LineId Id="12" Count="0" />
       <LineId Id="15" Count="1" />
