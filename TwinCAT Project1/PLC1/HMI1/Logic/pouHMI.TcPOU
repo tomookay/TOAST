@@ -27,6 +27,9 @@ prgHMIaxis();
 //lock station logic
 actLockStation();
 
+//for Toast-hmi only
+actMoveToastHMIData();
+
 
 ]]></ST>
     </Implementation>
@@ -51,6 +54,121 @@ S5_Global.station.Data.IsStationLocked	:=	gHMIButtons.btnLockStation5;
 S6_Global.station.Data.IsStationLocked	:=	gHMIButtons.btnLockStation6;
 
 ]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="actMoveToastHMIData" Id="{2a1f19ff-c24a-0b04-14cb-5c80dc805065}">
+      <Implementation>
+        <ST><![CDATA[//move data to new gMHIData to read, not the root for ADS reads
+
+//station selected as BOOL
+	gTOASTHMI.gData.hmi.gStationSelected := gHMIData.gStationSelected;
+	
+	//hide display elements
+		gTOASTHMI.gData.hmi.gHideDisplayElements := gHMIData.gHideDisplayElements;
+	
+	//stations enabled
+		gTOASTHMI.gData.hmi.gStationEnabled := gHMIData.gStationEnabled;
+	
+		gTOASTHMI.gData.hmi.gRowElementOffset := gHMIData.gRowElementOffset;
+	
+	//number of the active station for message display
+		gTOASTHMI.gData.hmi.gNumActivePromptTextList := gHMIData.gNumActivePromptTextList;
+		gTOASTHMI.gData.hmi.gNumActiveWarningTextList := gHMIData.gNumActiveWarningTextList;
+		gTOASTHMI.gData.hmi.gNumActiveAlarmTextList := gHMIData.gNumActiveAlarmTextList;
+	
+	//station selected as integer
+		gTOASTHMI.gData.hmi.gActiveStationNumber := gHMIData.gActiveStationNumber;
+	
+		gTOASTHMI.gData.hmi.gActivePageNumber := gHMIData.gActivePageNumber;
+		gTOASTHMI.gData.hmi.gMaxPageNumber := gHMIData.gMaxPageNumber;
+	
+		gTOASTHMI.gData.hmi.gActiveScreen := gHMIData.gActiveScreen;
+	
+	//machine prompt number to display (summation)
+		gTOASTHMI.gData.hmi.gMachinePromptNumber := gHMIData.gMachinePromptNumber;
+
+	//current number of screen on HMI
+		gTOASTHMI.gData.hmi.gScreenNumber := gHMIData.gScreenNumber;
+
+	//hide display elements based on what station is selected
+		gTOASTHMI.gData.hmi.gHideDisplayElementAlarmView := gHMIData.gHideDisplayElementAlarmView;
+		gTOASTHMI.gData.hmi.gHideDisplayElementWarningView := gHMIData.gHideDisplayElementWarningView;
+		gTOASTHMI.gData.hmi.gHideDisplayElementPromptView := gHMIData.gHideDisplayElementPromptView;
+	
+	
+		gTOASTHMI.gData.hmi.gAlarmViewMsg := gHMIData.gAlarmViewMsg;
+	
+	//header data
+		gTOASTHMI.gData.hmi.hmiHeader := gHMIData.hmiHeader;
+	
+	//language screen
+		gTOASTHMI.gData.hmi.gLangRowElementOffset := gHMIData.gLangRowElementOffset;
+		gTOASTHMI.gData.hmi.gLangRows := gHMIData.gLangRows;
+		gTOASTHMI.gData.hmi.gLangButtons := gHMIData.gLangButtons;
+		gTOASTHMI.gData.hmi.gActiveLangPageNumber := gHMIData.gActiveLangPageNumber;
+		gTOASTHMI.gData.hmi.gMaxPageNumberLang := gHMIData.gMaxPageNumberLang;
+	
+		gTOASTHMI.gData.hmi.gHMIScreenString := gHMIData.gHMIScreenString;
+	
+	//title of manual motion screen
+		gTOASTHMI.gData.hmi.gManualScreenTitle := gHMIData.gManualScreenTitle;
+	
+		gTOASTHMI.gData.hmi.gVisuHasInited := gHMIData.gVisuHasInited;
+	
+	//buttons to lock a station
+		gTOASTHMI.gData.hmi.gStateLockStation1 := gHMIData.gStateLockStation1;
+		gTOASTHMI.gData.hmi.gStateLockStation2 := gHMIData.gStateLockStation2;
+		gTOASTHMI.gData.hmi.gStateLockStation3 := gHMIData.gStateLockStation3;
+		gTOASTHMI.gData.hmi.gStateLockStation4 := gHMIData.gStateLockStation4;
+		gTOASTHMI.gData.hmi.gStateLockStation5 := gHMIData.gStateLockStation5;
+		gTOASTHMI.gData.hmi.gStateLockStation6 := gHMIData.gStateLockStation6;
+		
+		//////////////////////////
+		
+		
+			//buttons to select a station
+	gTOASTHMI.gData.btns.btnSelectStation1 := gHMIButtons.btnSelectStation1;
+		gTOASTHMI.gData.btns.btnSelectStation2 := gHMIButtons.btnSelectStation2;
+		gTOASTHMI.gData.btns.btnSelectStation3 := gHMIButtons.btnSelectStation3;
+		gTOASTHMI.gData.btns.btnSelectStation4 := gHMIButtons.btnSelectStation4;
+		gTOASTHMI.gData.btns.btnSelectStation5 := gHMIButtons.btnSelectStation5;
+		gTOASTHMI.gData.btns.btnSelectStation6 := gHMIButtons.btnSelectStation6;
+
+		gTOASTHMI.gData.btns.btnSelectAll := gHMIButtons.btnSelectAll;	//button to select all stations
+		gTOASTHMI.gData.btns.btnAllStationsSelected := gHMIButtons.btnAllStationsSelected;
+
+	//reset button for global use
+		gTOASTHMI.gData.btns.btnReset := gHMIButtons.btnReset;
+
+	//manual screen
+		gTOASTHMI.gData.btns.btnAbsMode := gHMIButtons.btnAbsMode; //TRUE if abs mode, False if sys mode
+		gTOASTHMI.gData.btns.btnNextPage := gHMIButtons.btnNextPage;
+		gTOASTHMI.gData.btns.btnPrevPage := gHMIButtons.btnPrevPage;
+	
+	//hide button data for main screen
+		gTOASTHMI.gData.btns.btnHides := gHMIButtons.btnHides;
+	
+	//hmi buttons
+		gTOASTHMI.gData.btns.btnMode := gHMIButtons.btnMode;
+	
+	//hmi buttons feedback
+		gTOASTHMI.gData.btns.btnFdbk := gHMIButtons.btnFdbk;
+	
+		gTOASTHMI.gData.btns.btnPlus1Row := gHMIButtons.btnPlus1Row; //scroll 1 row up
+		gTOASTHMI.gData.btns.btnNeg1Row := gHMIButtons.btnNeg1Row; //scroll 1 row down
+		gTOASTHMI.gData.btns.clk := gHMIButtons.clk;
+	
+		gTOASTHMI.gData.btns.gAnyButtonPressed := 	gHMIButtons.gAnyButtonPressed; //TRUE if any button was pressed
+	
+		//buttons to lock a station
+		gTOASTHMI.gData.btns.btnLockStation1 := gHMIButtons.btnLockStation1;
+		gTOASTHMI.gData.btns.btnLockStation2 := gHMIButtons.btnLockStation2;
+		gTOASTHMI.gData.btns.btnLockStation3 := gHMIButtons.btnLockStation3;
+		gTOASTHMI.gData.btns.btnLockStation4 := gHMIButtons.btnLockStation4;
+		gTOASTHMI.gData.btns.btnLockStation5 := gHMIButtons.btnLockStation5;
+		gTOASTHMI.gData.btns.btnLockStation6 := gHMIButtons.btnLockStation6;
+	
+		gTOASTHMI.gData.btns.gLockButtons := gHMIButtons.gLockButtons;]]></ST>
       </Implementation>
     </Action>
     <Action Name="actResetButtonPress" Id="{e16beb8b-09dd-0fd9-2961-1cc1cb91a6de}">
@@ -80,7 +198,10 @@ END_IF]]></ST>
       <LineId Id="46" Count="0" />
       <LineId Id="58" Count="0" />
       <LineId Id="57" Count="0" />
-      <LineId Id="59" Count="1" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="64" Count="0" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="66" Count="1" />
       <LineId Id="53" Count="0" />
       <LineId Id="52" Count="0" />
     </LineIds>
@@ -98,6 +219,18 @@ END_IF]]></ST>
       <LineId Id="41" Count="1" />
       <LineId Id="31" Count="0" />
       <LineId Id="29" Count="0" />
+    </LineIds>
+    <LineIds Name="pouHMI.actMoveToastHMIData">
+      <LineId Id="13" Count="1" />
+      <LineId Id="16" Count="9" />
+      <LineId Id="77" Count="0" />
+      <LineId Id="27" Count="34" />
+      <LineId Id="78" Count="1" />
+      <LineId Id="64" Count="12" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="80" Count="3" />
+      <LineId Id="85" Count="41" />
+      <LineId Id="84" Count="0" />
     </LineIds>
     <LineIds Name="pouHMI.actResetButtonPress">
       <LineId Id="5" Count="0" />
