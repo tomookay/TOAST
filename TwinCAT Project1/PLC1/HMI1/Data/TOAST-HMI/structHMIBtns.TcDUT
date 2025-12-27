@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="structHMIBtns" Id="{ba25e5b1-a008-048b-0f95-a277986e6c13}">
+    <Declaration><![CDATA[TYPE structHMIBtns :
+STRUCT
+	//buttons to select a station
+	btnSelectStation1: BOOL;
+	btnSelectStation2: BOOL;
+	btnSelectStation3: BOOL;
+	btnSelectStation4: BOOL;
+	btnSelectStation5: BOOL;
+	btnSelectStation6: BOOL;
+
+	btnSelectAll: BOOL;	//button to select all stations
+	btnAllStationsSelected: BOOL;
+
+	//reset button for global use
+	btnReset: BOOL;
+
+	//manual screen
+	btnAbsMode:BOOL; //TRUE if abs mode, False if sys mode
+	btnNextPage: BOOL;
+	btnPrevPage: BOOL;
+	
+	//hide button data for main screen
+	btnHides:typeBtnHides;
+	
+	//hmi buttons
+	btnMode:typeBtnPress;
+	
+	//hmi buttons feedback
+	btnFdbk: typeBtnFdbk;
+	
+	btnPlus1Row:BOOL; //scroll 1 row up
+	btnNeg1Row:BOOL; //scroll 1 row down
+	clk: INT;
+	
+	gAnyButtonPressed:BOOL; //TRUE if any button was pressed
+	
+		//buttons to lock a station
+	btnLockStation1: BOOL;
+	btnLockStation2: BOOL;
+	btnLockStation3: BOOL;
+	btnLockStation4: BOOL;
+	btnLockStation5: BOOL;
+	btnLockStation6: BOOL;
+	
+	gLockButtons:typeStationLockModes;
+	
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

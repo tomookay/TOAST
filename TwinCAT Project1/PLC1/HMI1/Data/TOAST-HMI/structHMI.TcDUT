@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="structHMI" Id="{c152b203-0ccf-0fbf-3887-7ece10a47131}">
+    <Declaration><![CDATA[TYPE structHMI :
+STRUCT
+//station selected as BOOL
+	gStationSelected: ARRAY[1..gHMIDataConst.gNumberOfStations] OF BOOL;
+	
+	//hide display elements
+	gHideDisplayElements:ARRAY[0..gHMIDataConst.gNumberOfStations] OF BOOL;
+	
+	//stations enabled
+	gStationEnabled: ARRAY[1..gHMIDataConst.gNumberOfStations] OF BOOL;
+	
+	gRowElementOffset: ARRAY[1..gHMIDataConst.gNumberRowsPerPage] OF UINT;
+	
+	//number of the active station for message display
+	gNumActivePromptTextList:ARRAY[0..gHMIDataConst.gNumberOfStations] OF UINT;
+	gNumActiveWarningTextList:ARRAY[0..gHMIDataConst.gNumberOfStations] OF UINT;
+	gNumActiveAlarmTextList:ARRAY[0..gHMIDataConst.gNumberOfStations] OF UINT;
+	
+	//station selected as integer
+	gActiveStationNumber:UINT; 
+	
+	gActivePageNumber:UINT; //current page number
+	gMaxPageNumber:UINT;  //max pages exist for station, e.g. 5
+	
+	gActiveScreen:UINT; //combo of station + page, expressed as integer 0-999999+, reference to the text list
+	
+	//machine prompt number to display (summation)
+	gMachinePromptNumber: UINT;
+
+	//current number of screen on HMI
+	gScreenNumber: UINT;
+
+	//hide display elements based on what station is selected
+	gHideDisplayElementAlarmView: typeStationEnables;
+	gHideDisplayElementWarningView: typeStationEnables;
+	gHideDisplayElementPromptView: typeStationEnables;
+	
+	
+	gAlarmViewMsg: typeMessageRowsArry; //connect data to the HMI
+	
+	//header data
+	hmiHeader:typeHMIheader;
+	
+	//language screen
+	gLangRowElementOffset: ARRAY[1..gHMIDataConst.gNumberRowsPerPage] OF UINT; //seperate calculation for languages
+	gLangRows: typeMotionScreen;
+	gLangButtons: typeMotionScreenBtn;
+	gActiveLangPageNumber:UINT; //current page number for units
+	gMaxPageNumberLang:UINT;  //max pages exist for station, e.g. 5
+	
+	gHMIScreenString:STRING;
+	
+	//title of manual motion screen
+	gManualScreenTitle:UINT;
+	
+	gVisuHasInited:BOOL;
+	
+	//buttons to lock a station
+	gStateLockStation1: USINT;
+	gStateLockStation2: USINT;
+	gStateLockStation3: USINT;
+	gStateLockStation4: USINT;
+	gStateLockStation5: USINT;
+	gStateLockStation6: USINT;
+	
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
