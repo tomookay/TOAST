@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="structHMIMessages" Id="{a02462f2-26a1-0bb5-1a77-6016fa87d294}">
+    <Declaration><![CDATA[TYPE structHMIMessages :
+STRUCT
+		//define messages for machine base
+	gMsgMc	:typeStationMessage;
+	
+	//define message for each station
+	gMsgS1	:typeStationMessage;
+	gMsgS2	:typeStationMessage;
+	gMsgS3	:typeStationMessage;
+	gMsgS4	:typeStationMessage;
+	gMsgS5	:typeStationMessage;
+	gMsgS6	:typeStationMessage;
+	
+	//global memory for retaining status of station
+	gMsgMcStat	:typeStationStatus;
+	gMsgS1Stat	:typeStationStatus;
+	gMsgS2Stat	:typeStationStatus;
+	gMsgS3Stat	:typeStationStatus;
+	gMsgS4Stat	:typeStationStatus;
+	gMsgS5Stat	:typeStationStatus;
+	gMsgS6Stat	:typeStationStatus;
+	
+	//list view of messages in array form
+	gListMsgMc	:typeMessageRowsArry;
+	gListMsgS1	:typeMessageRowsArry;
+	gListMsgS2	:typeMessageRowsArry;
+	gListMsgS3	:typeMessageRowsArry;
+	gListMsgS4	:typeMessageRowsArry;
+	gListMsgS5	:typeMessageRowsArry;
+	gListMsgS6	:typeMessageRowsArry;
+
+	gAnyFaultMessage: BOOL; //TRUE if there are any fault messages (any)
+	gAnyWarnings: BOOL; //TRUE if there are any warnings (the yellow ones)
+
+	//alarm view of messages in alarmview form
+	gMcAlarmView: typeAlarmViewStation;
+	gS1AlarmView: typeAlarmViewStation;
+	gS2AlarmView: typeAlarmViewStation;
+	gS3AlarmView: typeAlarmViewStation;
+	gS4AlarmView: typeAlarmViewStation;
+	gS5AlarmView: typeAlarmViewStation;
+	gS6AlarmView: typeAlarmViewStation;
+	
+	gHMIAlarmView: typeAlarmViewStation;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

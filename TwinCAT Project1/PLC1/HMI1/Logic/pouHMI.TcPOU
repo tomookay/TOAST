@@ -168,7 +168,52 @@ S6_Global.station.Data.IsStationLocked	:=	gHMIButtons.btnLockStation6;
 		gTOASTHMI.gData.btns.btnLockStation5 := gHMIButtons.btnLockStation5;
 		gTOASTHMI.gData.btns.btnLockStation6 := gHMIButtons.btnLockStation6;
 	
-		gTOASTHMI.gData.btns.gLockButtons := gHMIButtons.gLockButtons;]]></ST>
+		gTOASTHMI.gData.btns.gLockButtons := gHMIButtons.gLockButtons;
+		
+		
+		//move messages
+		
+		gTOASTHMI.gData.GlobalMessages.gMsgMc	:= GlobalMessages.gMsgMc;
+	
+	//define message for each station
+	gTOASTHMI.gData.GlobalMessages.gMsgS1		:= GlobalMessages.gMsgS1;
+	gTOASTHMI.gData.GlobalMessages.gMsgS2		:= GlobalMessages.gMsgS2;
+	gTOASTHMI.gData.GlobalMessages.gMsgS3		:= GlobalMessages.gMsgS3;
+	gTOASTHMI.gData.GlobalMessages.gMsgS4		:= GlobalMessages.gMsgS4;
+	gTOASTHMI.gData.GlobalMessages.gMsgS5		:= GlobalMessages.gMsgS5;
+	gTOASTHMI.gData.GlobalMessages.gMsgS6		:= GlobalMessages.gMsgS6;
+	
+	//global memory for retaining status of station
+	gTOASTHMI.gData.GlobalMessages.gMsgMcStat		:= GlobalMessages.gMsgMcStat;
+	gTOASTHMI.gData.GlobalMessages.gMsgS1Stat		:= GlobalMessages.gMsgS1Stat;
+	gTOASTHMI.gData.GlobalMessages.gMsgS2Stat		:= GlobalMessages.gMsgS2Stat;
+	gTOASTHMI.gData.GlobalMessages.gMsgS3Stat		:= GlobalMessages.gMsgS3Stat;
+	gTOASTHMI.gData.GlobalMessages.gMsgS4Stat		:= GlobalMessages.gMsgS4Stat;
+	gTOASTHMI.gData.GlobalMessages.gMsgS5Stat		:= GlobalMessages.gMsgS5Stat;
+	gTOASTHMI.gData.GlobalMessages.gMsgS6Stat		:= GlobalMessages.gMsgS6Stat;
+	
+	//list view of messages in array form
+	gTOASTHMI.gData.GlobalMessages.gListMsgMc		:= GlobalMessages.gListMsgMc;
+	gTOASTHMI.gData.GlobalMessages.gListMsgS1		:= GlobalMessages.gListMsgS1;
+	gTOASTHMI.gData.GlobalMessages.gListMsgS2		:= GlobalMessages.gListMsgS2;
+	gTOASTHMI.gData.GlobalMessages.gListMsgS3		:= GlobalMessages.gListMsgS3;
+	gTOASTHMI.gData.GlobalMessages.gListMsgS4		:= GlobalMessages.gListMsgS4;
+	gTOASTHMI.gData.GlobalMessages.gListMsgS5		:= GlobalMessages.gListMsgS5;
+	gTOASTHMI.gData.GlobalMessages.gListMsgS6		:= GlobalMessages.gListMsgS6;
+
+	gTOASTHMI.gData.GlobalMessages.gAnyFaultMessage	:= GlobalMessages.gAnyFaultMessage; //TRUE if there are any fault messages (any)
+	gTOASTHMI.gData.GlobalMessages.gAnyWarnings	:= GlobalMessages.gAnyWarnings; //TRUE if there are any warnings (the yellow ones)
+
+	//alarm view of messages in alarmview form
+	gTOASTHMI.gData.GlobalMessages.gMcAlarmView	:= GlobalMessages.gMcAlarmView;
+	gTOASTHMI.gData.GlobalMessages.gS1AlarmView	:= GlobalMessages.gS1AlarmView;
+	gTOASTHMI.gData.GlobalMessages.gS2AlarmView	:= GlobalMessages.gS2AlarmView;
+	gTOASTHMI.gData.GlobalMessages.gS3AlarmView	:= GlobalMessages.gS3AlarmView;
+	gTOASTHMI.gData.GlobalMessages.gS4AlarmView	:= GlobalMessages.gS4AlarmView;
+	gTOASTHMI.gData.GlobalMessages.gS5AlarmView	:= GlobalMessages.gS5AlarmView;
+	gTOASTHMI.gData.GlobalMessages.gS6AlarmView	:= GlobalMessages.gS6AlarmView;
+	
+	gTOASTHMI.gData.GlobalMessages.gHMIAlarmView	:= GlobalMessages.gHMIAlarmView;]]></ST>
       </Implementation>
     </Action>
     <Action Name="actResetButtonPress" Id="{e16beb8b-09dd-0fd9-2961-1cc1cb91a6de}">
@@ -231,6 +276,9 @@ END_IF]]></ST>
       <LineId Id="80" Count="3" />
       <LineId Id="85" Count="41" />
       <LineId Id="84" Count="0" />
+      <LineId Id="127" Count="3" />
+      <LineId Id="132" Count="39" />
+      <LineId Id="131" Count="0" />
     </LineIds>
     <LineIds Name="pouHMI.actResetButtonPress">
       <LineId Id="5" Count="0" />
