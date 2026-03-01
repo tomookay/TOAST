@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <POU Name="pouS2Prompts" Id="{27e7d3ad-8739-4cbe-a913-ad9edc9d3370}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM pouS2Prompts
 VAR
@@ -187,8 +187,8 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"gMsgView.msgArrynull"</v>
-                            <v n="Type">"ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeNewMsg[REF]"</v>
+                            <v n="Operand">"GlobalMessages.gS2PromptView.msgArry"</v>
+                            <v n="Type">"ARRAY [1..gHMIDataConst.gNumberOfMessagesScreen] OF typeNewMsg"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
                             <v n="Address">""</v>
@@ -206,8 +206,8 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"gMsgView.msgArryStylenull"</v>
-                            <v n="Type">"ARRAY [1..HMIData.gNumberOfMessagesScreen] OF typeNewMsgStyle[REF]"</v>
+                            <v n="Operand">"GlobalMessages.gS2PromptView.msgArryStyle"</v>
+                            <v n="Type">"ARRAY [1..gHMIDataConst.gNumberOfMessagesScreen] OF typeNewMsgStyle"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
                             <v n="Address">""</v>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <POU Name="pouS4Prompts" Id="{da1db99f-f4b4-4307-97f8-6ec0cc41de57}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM pouS4Prompts
 VAR
@@ -187,7 +187,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"gMsgView.msgArrynull"</v>
+                            <v n="Operand">"GlobalMessages.gS4PromptView.msgArry"</v>
                             <v n="Type">"ARRAY [1..gHMIDataConst.gNumberOfMessagesScreen] OF typeNewMsg"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -206,7 +206,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"gMsgView.msgArryStylenull"</v>
+                            <v n="Operand">"GlobalMessages.gS4PromptView.msgArryStyle"</v>
                             <v n="Type">"ARRAY [1..gHMIDataConst.gNumberOfMessagesScreen] OF typeNewMsgStyle"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>

@@ -1153,10 +1153,10 @@ External Setpoint Generation:
 		<ProjectVariant PvUseDefine="true">
 			<Variant>
 				<Name>NoPLC</Name>
-				<Name>PLCTest</Name>
 				<Defines></Defines>
 			</Variant>
 			<Variant>
+				<Name>PLCTest</Name>
 				<Name>Variant1</Name>
 				<Name>Variant2</Name>
 				<Name>Variant3</Name>
@@ -9562,9 +9562,25 @@ iEnableSafetyDevices	AT %Q*	:BOOL;]]></Comment>
 				</Context>
 			</Contexts>
 			<TaskPouOids>
-				<TaskPouOid Prio="4" OTCID="#x08502001"/>
+				<TaskPouOid Prio="4" OTCID="#x08502002"/>
 				<TaskPouOid Prio="14" OTCID="#x08502003"/>
 			</TaskPouOids>
 		</Instance>
 	</Project>
+	<Mappings>
+		<OwnerA Name="PLC1 Instance">
+			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^X Axis">
+				<Link VarA="PlcTask Inputs^driveGlobals.ncAxis1.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^driveGlobals.ncAxis1.PlcToNc" VarB="Inputs^FromPlc"/>
+			</OwnerB>
+			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Y Axis">
+				<Link VarA="PlcTask Inputs^driveGlobals.ncAxis2.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^driveGlobals.ncAxis2.PlcToNc" VarB="Inputs^FromPlc"/>
+			</OwnerB>
+			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Z Axis">
+				<Link VarA="PlcTask Inputs^driveGlobals.ncAxis3.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^driveGlobals.ncAxis3.PlcToNc" VarB="Inputs^FromPlc"/>
+			</OwnerB>
+		</OwnerA>
+	</Mappings>
 </TcSmItem>

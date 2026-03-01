@@ -9,6 +9,7 @@ VAR
 idbMsgPrompt: FB_CheckMessageBounds;
 	sdfsdf: BOOL;
 	msgPowerON: BOOL;
+	test: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -179,7 +180,7 @@ END_VAR
                                   </o>
                                   <o>
                                     <o n="Operand" t="Operand">
-                                      <v n="Operand">"S1_Global.station.Data.MotionPowerOn"</v>
+                                      <v n="Operand">"S1_Global.station.Data.PowerOn"</v>
                                       <v n="Type">"BOOL"</v>
                                       <v n="Comment">""</v>
                                       <v n="SymbolComment">""</v>
@@ -262,7 +263,7 @@ END_VAR
                                   </o>
                                   <o>
                                     <o n="Operand" t="Operand">
-                                      <v n="Operand">"S2_Global.station.Data.MotionPowerOn"</v>
+                                      <v n="Operand">"S2_Global.station.Data.PowerOn"</v>
                                       <v n="Type">"BOOL"</v>
                                       <v n="Comment">""</v>
                                       <v n="SymbolComment">""</v>
@@ -345,7 +346,7 @@ END_VAR
                                   </o>
                                   <o>
                                     <o n="Operand" t="Operand">
-                                      <v n="Operand">"S3_Global.station.Data.MotionPowerOn"</v>
+                                      <v n="Operand">"S3_Global.station.Data.PowerOn"</v>
                                       <v n="Type">"BOOL"</v>
                                       <v n="Comment">""</v>
                                       <v n="SymbolComment">""</v>
@@ -428,7 +429,7 @@ END_VAR
                                   </o>
                                   <o>
                                     <o n="Operand" t="Operand">
-                                      <v n="Operand">"S4_Global.station.Data.MotionPowerOn"</v>
+                                      <v n="Operand">"S4_Global.station.Data.PowerOn"</v>
                                       <v n="Type">"BOOL"</v>
                                       <v n="Comment">""</v>
                                       <v n="SymbolComment">""</v>
@@ -511,7 +512,7 @@ END_VAR
                                   </o>
                                   <o>
                                     <o n="Operand" t="Operand">
-                                      <v n="Operand">"S5_Global.station.Data.MotionPowerOn"</v>
+                                      <v n="Operand">"S5_Global.station.Data.PowerOn"</v>
                                       <v n="Type">"BOOL"</v>
                                       <v n="Comment">""</v>
                                       <v n="SymbolComment">""</v>
@@ -594,7 +595,7 @@ END_VAR
                                   </o>
                                   <o>
                                     <o n="Operand" t="Operand">
-                                      <v n="Operand">"S6_Global.station.Data.MotionPowerOn"</v>
+                                      <v n="Operand">"S6_Global.station.Data.PowerOn"</v>
                                       <v n="Type">"BOOL"</v>
                                       <v n="Comment">""</v>
                                       <v n="SymbolComment">""</v>
@@ -723,10 +724,11 @@ END_VAR
                         <v n="Fixed">false</v>
                         <v n="Extensible">false</v>
                       </o>
-                      <o n="RValue" t="BoxTreeOperand">
-                        <o n="Operand" t="Operand">
-                          <v n="Operand">"msgPowerON"</v>
-                          <v n="Type">"BOOL"</v>
+                      <o n="RValue" t="BoxTreeBox">
+                        <v n="BoxType">"AND"</v>
+                        <o n="Instance" t="Operand">
+                          <n n="Operand" />
+                          <v n="Type">""</v>
                           <v n="Comment">""</v>
                           <v n="SymbolComment">""</v>
                           <v n="Address">""</v>
@@ -736,11 +738,74 @@ END_VAR
                             <v n="Extensible">false</v>
                           </o>
                           <v n="LValue">false</v>
-                          <v n="Boolean">true</v>
-                          <v n="IsInstance">false</v>
-                          <v n="Id">252L</v>
+                          <v n="Boolean">false</v>
+                          <v n="IsInstance">true</v>
+                          <v n="Id">273L</v>
                         </o>
-                        <v n="Id">251L</v>
+                        <o n="OutputItems" t="OutputItemList">
+                          <l2 n="OutputItems" />
+                        </o>
+                        <o n="Flags" t="Flags">
+                          <v n="Flags">0</v>
+                          <v n="Fixed">false</v>
+                          <v n="Extensible">false</v>
+                        </o>
+                        <n n="InputFlags" />
+                        <l2 n="InputItems" cet="BoxTreeOperand">
+                          <o>
+                            <o n="Operand" t="Operand">
+                              <v n="Operand">"msgPowerON"</v>
+                              <v n="Type">"BOOL"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">""</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">0</v>
+                                <v n="Fixed">false</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">false</v>
+                              <v n="Boolean">true</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">252L</v>
+                            </o>
+                            <v n="Id">251L</v>
+                          </o>
+                          <o>
+                            <o n="Operand" t="Operand">
+                              <v n="Operand">"test"</v>
+                              <v n="Type">"BOOL"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">""</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">0</v>
+                                <v n="Fixed">true</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">false</v>
+                              <v n="Boolean">true</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">276L</v>
+                            </o>
+                            <v n="Id">275L</v>
+                          </o>
+                        </l2>
+                        <o n="InputParam" t="ParamList">
+                          <l2 n="Names" />
+                          <l2 n="Types" />
+                        </o>
+                        <o n="OutputParam" t="ParamList">
+                          <l2 n="Names" />
+                          <l2 n="Types" />
+                        </o>
+                        <v n="CallType" t="Operator">And</v>
+                        <n n="EN" />
+                        <n n="ENO" />
+                        <n n="STSnippet" />
+                        <v n="ContainsExtensibleInputs">false</v>
+                        <v n="ProvidesSTSnippet">false</v>
+                        <v n="Id">274L</v>
                       </o>
                       <v n="Id">254L</v>
                     </o>
@@ -1689,7 +1754,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"gMsgView.msgArrynull"</v>
+                            <v n="Operand">"GlobalMessages.gMcPromptView.msgArry"</v>
                             <v n="Type">"ARRAY [1..gHMIDataConst.gNumberOfMessagesScreen] OF typeNewMsg"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -1708,7 +1773,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"gMsgView.msgArryStylenull"</v>
+                            <v n="Operand">"GlobalMessages.gMcPromptView.msgArryStyle"</v>
                             <v n="Type">"ARRAY [1..gHMIDataConst.gNumberOfMessagesScreen] OF typeNewMsgStyle"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -1746,7 +1811,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"1000"</v>
+                            <v n="Operand">"5000"</v>
                             <v n="Type">"INT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
