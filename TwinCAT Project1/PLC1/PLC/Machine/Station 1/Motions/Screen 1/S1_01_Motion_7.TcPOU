@@ -41,11 +41,11 @@ END_VAR
 &lt;StationNumber&gt;1&lt;/StationNumber&gt;
 &lt;RowNumber&gt;7&lt;/RowNumber&gt;
   &lt;Advance&gt;
-    &lt;AdvanceCoilTextSym&gt;Advance&lt;/AdvanceCoilTextSym&gt;
-    &lt;AdvanceDepthTextSym&gt;Advanced&lt;/AdvanceDepthTextSym&gt;
-    &lt;AdvanceCoilTextAbs&gt;Q1.0&lt;/AdvanceCoilTextAbs&gt;
-    &lt;AdvanceDepthTextAbs&gt;I1.0&lt;/AdvanceDepthTextAbs&gt;
-    &lt;ManSeq&gt;1&lt;/ManSeq&gt;
+    &lt;AdvanceCoilTextSym&gt;Mark Part&lt;/AdvanceCoilTextSym&gt;
+    &lt;AdvanceDepthTextSym&gt;Mark OK&lt;/AdvanceDepthTextSym&gt;
+    &lt;AdvanceCoilTextAbs&gt;-1TM-X100:6,7&lt;/AdvanceCoilTextAbs&gt;
+    &lt;AdvanceDepthTextAbs&gt;-1TM-X100:7,8&lt;/AdvanceDepthTextAbs&gt;
+    &lt;ManSeq&gt;8&lt;/ManSeq&gt;
   &lt;/Advance&gt;
   &lt;Return&gt;
     &lt;ReturnCoilTextSym&gt;Return&lt;/ReturnCoilTextSym&gt;
@@ -55,8 +55,8 @@ END_VAR
    &lt;ManSeq&gt;2&lt;/ManSeq&gt;
   &lt;/Return&gt;
   &lt;Motion&gt;
-    &lt;NameSym&gt;Clamp Cylinder&lt;/NameSym&gt;
-    &lt;NameAbs&gt;A1&lt;/NameAbs&gt;
+    &lt;NameSym&gt;Marker&lt;/NameSym&gt;
+    &lt;NameAbs&gt;-1TM&lt;/NameAbs&gt;
   &lt;/Motion&gt;
 &lt;/MotionRow&gt;"</v>
                   <v n="Title">""</v>
@@ -524,7 +524,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"RowConfig.FullRow"</v>
+                            <v n="Operand">"RowConfig.OnlyLeftNoVal"</v>
                             <v n="Type">"ROWCONFIG"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -543,7 +543,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"7"</v>
+                            <v n="Operand">"8"</v>
                             <v n="Type">"INT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <POU Name="S1_01_Motion_4" Id="{92ad08ea-bfb6-4dff-80fa-1c572f2dea60}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM S1_01_Motion_4
 VAR
@@ -41,22 +41,22 @@ END_VAR
 &lt;StationNumber&gt;1&lt;/StationNumber&gt;
 &lt;RowNumber&gt;4&lt;/RowNumber&gt;
   &lt;Advance&gt;
-    &lt;AdvanceCoilTextSym&gt;Advance&lt;/AdvanceCoilTextSym&gt;
-    &lt;AdvanceDepthTextSym&gt;Advanced&lt;/AdvanceDepthTextSym&gt;
-    &lt;AdvanceCoilTextAbs&gt;Q1.0&lt;/AdvanceCoilTextAbs&gt;
-    &lt;AdvanceDepthTextAbs&gt;I1.0&lt;/AdvanceDepthTextAbs&gt;
-    &lt;ManSeq&gt;1&lt;/ManSeq&gt;
+    &lt;AdvanceCoilTextSym&gt;To Wash&lt;/AdvanceCoilTextSym&gt;
+    &lt;AdvanceDepthTextSym&gt;At Wash&lt;/AdvanceDepthTextSym&gt;
+    &lt;AdvanceCoilTextAbs&gt;-1HL&lt;/AdvanceCoilTextAbs&gt;
+    &lt;AdvanceDepthTextAbs&gt;-1HL&lt;/AdvanceDepthTextAbs&gt;
+    &lt;ManSeq&gt;4&lt;/ManSeq&gt;
   &lt;/Advance&gt;
   &lt;Return&gt;
-    &lt;ReturnCoilTextSym&gt;Return&lt;/ReturnCoilTextSym&gt;
-    &lt;ReturnDepthTextSym&gt;Returned&lt;/ReturnDepthTextSym&gt;
-    &lt;ReturnCoilTextAbs&gt;Q1.1&lt;/ReturnCoilTextAbs&gt;
-    &lt;ReturnDepthTextAbs&gt;I1.1&lt;/ReturnDepthTextAbs&gt;
-   &lt;ManSeq&gt;2&lt;/ManSeq&gt;
+    &lt;ReturnCoilTextSym&gt;To Place Part&lt;/ReturnCoilTextSym&gt;
+    &lt;ReturnDepthTextSym&gt;At Place Part&lt;/ReturnDepthTextSym&gt;
+    &lt;ReturnCoilTextAbs&gt;-1HL&lt;/ReturnCoilTextAbs&gt;
+    &lt;ReturnDepthTextAbs&gt;-1HL&lt;/ReturnDepthTextAbs&gt;
+   &lt;ManSeq&gt;9&lt;/ManSeq&gt;
   &lt;/Return&gt;
   &lt;Motion&gt;
-    &lt;NameSym&gt;Clamp Cylinder&lt;/NameSym&gt;
-    &lt;NameAbs&gt;A1&lt;/NameAbs&gt;
+    &lt;NameSym&gt;Robot&lt;/NameSym&gt;
+    &lt;NameAbs&gt;-1HL&lt;/NameAbs&gt;
   &lt;/Motion&gt;
 &lt;/MotionRow&gt;"</v>
                   <v n="Title">""</v>
@@ -562,7 +562,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"13"</v>
+                            <v n="Operand">"9"</v>
                             <v n="Type">"INT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>

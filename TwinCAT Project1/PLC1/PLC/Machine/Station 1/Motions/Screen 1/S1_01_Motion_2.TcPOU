@@ -43,22 +43,22 @@ END_VAR
 &lt;StationNumber&gt;1&lt;/StationNumber&gt;
 &lt;RowNumber&gt;2&lt;/RowNumber&gt;
   &lt;Advance&gt;
-    &lt;AdvanceCoilTextSym&gt;Lock&lt;/AdvanceCoilTextSym&gt;
-    &lt;AdvanceDepthTextSym&gt;Locked&lt;/AdvanceDepthTextSym&gt;
-    &lt;AdvanceCoilTextAbs&gt;Q1.2&lt;/AdvanceCoilTextAbs&gt;
-    &lt;AdvanceDepthTextAbs&gt;I1.2&lt;/AdvanceDepthTextAbs&gt;
-    &lt;ManSeq&gt;3&lt;/ManSeq&gt;
+    &lt;AdvanceCoilTextSym&gt;Clamp&lt;/AdvanceCoilTextSym&gt;
+    &lt;AdvanceDepthTextSym&gt;Clamped&lt;/AdvanceDepthTextSym&gt;
+    &lt;AdvanceCoilTextAbs&gt;-1HL-1KH:2&lt;/AdvanceCoilTextAbs&gt;
+    &lt;AdvanceDepthTextAbs&gt;-1HL-1GB:4&lt;/AdvanceDepthTextAbs&gt;
+    &lt;ManSeq&gt;2&lt;/ManSeq&gt;
   &lt;/Advance&gt;
   &lt;Return&gt;
-    &lt;ReturnCoilTextSym&gt;Unlock&lt;/ReturnCoilTextSym&gt;
-    &lt;ReturnDepthTextSym&gt;Unlocked&lt;/ReturnDepthTextSym&gt;
-    &lt;ReturnCoilTextAbs&gt;Q1.3&lt;/ReturnCoilTextAbs&gt;
-    &lt;ReturnDepthTextAbs&gt;I1.3&lt;/ReturnDepthTextAbs&gt;
-   &lt;ManSeq&gt;4&lt;/ManSeq&gt;
+    &lt;ReturnCoilTextSym&gt;Unclamp&lt;/ReturnCoilTextSym&gt;
+    &lt;ReturnDepthTextSym&gt;Unclamped&lt;/ReturnDepthTextSym&gt;
+    &lt;ReturnCoilTextAbs&gt;-1HL-1KH:4&lt;/ReturnCoilTextAbs&gt;
+    &lt;ReturnDepthTextAbs&gt;-1HL-2BG:4&lt;/ReturnDepthTextAbs&gt;
+   &lt;ManSeq&gt;11&lt;/ManSeq&gt;
   &lt;/Return&gt;
   &lt;Motion&gt;
-    &lt;NameSym&gt;Lock Cylinder&lt;/NameSym&gt;
-    &lt;NameAbs&gt;A2&lt;/NameAbs&gt;
+    &lt;NameSym&gt;Part Clamp 1&lt;/NameSym&gt;
+    &lt;NameAbs&gt;-1HL-1UQ&lt;/NameAbs&gt;
   &lt;/Motion&gt;
 &lt;/MotionRow&gt;"</v>
                   <v n="Title">""</v>
@@ -526,7 +526,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"RowConfig.OnlyLeft"</v>
+                            <v n="Operand">"RowConfig.FullRowNoVal"</v>
                             <v n="Type">"ROWCONFIG"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
@@ -564,7 +564,7 @@ END_VAR
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
-                            <v n="Operand">"2"</v>
+                            <v n="Operand">"11"</v>
                             <v n="Type">"INT"</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
