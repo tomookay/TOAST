@@ -820,7 +820,7 @@ ELSE
 END_IF
 
 //1
-IF gHMIData.gStationSelected[1] AND GlobalMessages.gMsgS1Stat.IsAlarm THEN
+IF gHMIData.gStationSelected[1] AND GlobalMessages.gMsgS1Stat.IsAlarm AND NOT GlobalMessages.gMsgMcStat.IsAlarm THEN
 	gHMIData.gHideDisplayElementAlarmView.S1Enabled := FALSE;
 END_IF
 
@@ -829,7 +829,7 @@ IF NOT GlobalMessages.gMsgS1Stat.IsAlarm THEN
 END_IF
 
 //2
-IF gHMIData.gStationSelected[2] AND GlobalMessages.gMsgS2Stat.IsAlarm THEN
+IF gHMIData.gStationSelected[2] AND GlobalMessages.gMsgS2Stat.IsAlarm AND NOT GlobalMessages.gMsgMcStat.IsAlarm THEN
 	gHMIData.gHideDisplayElementAlarmView.S2Enabled := FALSE;
 END_IF
 
@@ -838,7 +838,7 @@ IF NOT GlobalMessages.gMsgS2Stat.IsAlarm THEN
 END_IF
 
 //3
-IF gHMIData.gStationSelected[3] AND GlobalMessages.gMsgS3Stat.IsAlarm THEN
+IF gHMIData.gStationSelected[3] AND GlobalMessages.gMsgS3Stat.IsAlarm AND NOT GlobalMessages.gMsgMcStat.IsAlarm THEN
 	gHMIData.gHideDisplayElementAlarmView.S3Enabled := FALSE;
 END_IF
 
@@ -847,7 +847,7 @@ IF NOT GlobalMessages.gMsgS3Stat.IsAlarm THEN
 END_IF
 
 //4
-IF gHMIData.gStationSelected[4] AND GlobalMessages.gMsgS4Stat.IsAlarm THEN
+IF gHMIData.gStationSelected[4] AND GlobalMessages.gMsgS4Stat.IsAlarm AND NOT GlobalMessages.gMsgMcStat.IsAlarm THEN
 	gHMIData.gHideDisplayElementAlarmView.S4Enabled := FALSE;
 END_IF
 
@@ -856,7 +856,7 @@ IF NOT GlobalMessages.gMsgS4Stat.IsAlarm THEN
 END_IF
 
 //5
-IF gHMIData.gStationSelected[5] AND GlobalMessages.gMsgS5Stat.IsAlarm THEN
+IF gHMIData.gStationSelected[5] AND GlobalMessages.gMsgS5Stat.IsAlarm AND NOT GlobalMessages.gMsgMcStat.IsAlarm THEN
 	gHMIData.gHideDisplayElementAlarmView.S5Enabled := FALSE;
 END_IF
 
@@ -865,7 +865,7 @@ IF NOT GlobalMessages.gMsgS5Stat.IsAlarm THEN
 END_IF
 
 //6
-IF gHMIData.gStationSelected[6] AND GlobalMessages.gMsgS6Stat.IsAlarm THEN
+IF gHMIData.gStationSelected[6] AND GlobalMessages.gMsgS6Stat.IsAlarm AND NOT GlobalMessages.gMsgMcStat.IsAlarm THEN
 	gHMIData.gHideDisplayElementAlarmView.S6Enabled := FALSE;
 END_IF
 

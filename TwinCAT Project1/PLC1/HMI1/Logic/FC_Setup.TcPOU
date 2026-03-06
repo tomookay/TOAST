@@ -32,14 +32,14 @@ General Setup Instructions
 
 //setup machine
 System.gSetup.stationEnable[1] := TRUE; //TRUE if station is present
-System.gSetup.stationEnable[2] := TRUE; //FALSE if the station does not exist on this machine
+System.gSetup.stationEnable[2] := FALSE; //FALSE if the station does not exist on this machine
 System.gSetup.stationEnable[3] := FALSE;
 System.gSetup.stationEnable[4] := FALSE;
 System.gSetup.stationEnable[5] := FALSE;
 System.gSetup.stationEnable[6] := FALSE;
 
 //number of rows in each station
-System.gSetup.stationFunctions[1].numRowsConfig := 18;		//18 is two pages
+System.gSetup.stationFunctions[1].numRowsConfig := 7;		//18 is two pages
 System.gSetup.stationFunctions[2].numRowsConfig := 9;		//9 is one page
 System.gSetup.stationFunctions[3].numRowsConfig := 99;		//up to 99 rows
 System.gSetup.stationFunctions[4].numRowsConfig := 99;
@@ -209,11 +209,7 @@ S6_Global.station.Data.latchXICmsg := FALSE;
       </XmlArchive>
     </ObjectProperties>
     <LineIds Name="FC_Setup">
-      <LineId Id="3" Count="171" />
-      <LineId Id="183" Count="0" />
-      <LineId Id="181" Count="0" />
-      <LineId Id="180" Count="0" />
-      <LineId Id="184" Count="5" />
+      <LineId Id="3" Count="180" />
       <LineId Id="2" Count="0" />
     </LineIds>
   </POU>
