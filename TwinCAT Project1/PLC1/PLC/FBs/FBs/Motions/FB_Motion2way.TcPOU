@@ -37,7 +37,7 @@ VAR_INPUT
 	iCheckSwitchFaultsOff:BOOL :=FALSE; //TRUE to check if switch faults for double off conditions
 	iLatchOnLimitSwitch:BOOL:=TRUE; //TRUE to latch the output on the limit switch (normal cylinder)
 	iEnergiseOnPowerOn:BOOL:=TRUE; //TRUE to apply coil when powered on if limit switch is TRUE
-	
+	iIgnoreLostSwitchFault:BOOL:=FALSE; //TRUE to ignore lost switch fault states (some use cases)
 
 
 
@@ -3489,7 +3489,7 @@ The rail lock / rod lock must be enabled just before the coil is switched on to 
                           <v n="BoxType">"AND"</v>
                           <o n="Instance" t="Operand">
                             <n n="Operand" />
-                            <v n="Type">"AND"</v>
+                            <v n="Type">""</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
                             <v n="Address">""</v>
@@ -3501,7 +3501,7 @@ The rail lock / rod lock must be enabled just before the coil is switched on to 
                             <v n="LValue">false</v>
                             <v n="Boolean">false</v>
                             <v n="IsInstance">true</v>
-                            <v n="Id">192L</v>
+                            <v n="Id">278L</v>
                           </o>
                           <o n="OutputItems" t="OutputItemList">
                             <l2 n="OutputItems" />
@@ -3589,6 +3589,25 @@ The rail lock / rod lock must be enabled just before the coil is switched on to 
                               </o>
                               <v n="Id">276L</v>
                             </o>
+                            <o>
+                              <o n="Operand" t="Operand">
+                                <v n="Operand">"iIgnoreLostSwitchFault"</v>
+                                <v n="Type">"BOOL"</v>
+                                <v n="Comment">""</v>
+                                <v n="SymbolComment">""</v>
+                                <v n="Address">""</v>
+                                <o n="Flags" t="Flags">
+                                  <v n="Flags">1</v>
+                                  <v n="Fixed">true</v>
+                                  <v n="Extensible">false</v>
+                                </o>
+                                <v n="LValue">false</v>
+                                <v n="Boolean">true</v>
+                                <v n="IsInstance">false</v>
+                                <v n="Id">281L</v>
+                              </o>
+                              <v n="Id">280L</v>
+                            </o>
                           </l2>
                           <o n="InputParam" t="ParamList">
                             <l2 n="Names" />
@@ -3604,7 +3623,7 @@ The rail lock / rod lock must be enabled just before the coil is switched on to 
                           <n n="STSnippet" />
                           <v n="ContainsExtensibleInputs">false</v>
                           <v n="ProvidesSTSnippet">false</v>
-                          <v n="Id">193L</v>
+                          <v n="Id">279L</v>
                         </o>
                         <v n="Id">199L</v>
                       </o>
@@ -5924,7 +5943,7 @@ The rail lock / rod lock must be enabled just before the coil is switched on to 
                           <v n="BoxType">"AND"</v>
                           <o n="Instance" t="Operand">
                             <n n="Operand" />
-                            <v n="Type">"AND"</v>
+                            <v n="Type">""</v>
                             <v n="Comment">""</v>
                             <v n="SymbolComment">""</v>
                             <v n="Address">""</v>
@@ -5936,7 +5955,7 @@ The rail lock / rod lock must be enabled just before the coil is switched on to 
                             <v n="LValue">false</v>
                             <v n="Boolean">false</v>
                             <v n="IsInstance">true</v>
-                            <v n="Id">163L</v>
+                            <v n="Id">296L</v>
                           </o>
                           <o n="OutputItems" t="OutputItemList">
                             <l2 n="OutputItems" />
@@ -6024,6 +6043,25 @@ The rail lock / rod lock must be enabled just before the coil is switched on to 
                               </o>
                               <v n="Id">185L</v>
                             </o>
+                            <o>
+                              <o n="Operand" t="Operand">
+                                <v n="Operand">"iIgnoreLostSwitchFault"</v>
+                                <v n="Type">"BOOL"</v>
+                                <v n="Comment">""</v>
+                                <v n="SymbolComment">""</v>
+                                <v n="Address">""</v>
+                                <o n="Flags" t="Flags">
+                                  <v n="Flags">1</v>
+                                  <v n="Fixed">true</v>
+                                  <v n="Extensible">false</v>
+                                </o>
+                                <v n="LValue">false</v>
+                                <v n="Boolean">true</v>
+                                <v n="IsInstance">false</v>
+                                <v n="Id">299L</v>
+                              </o>
+                              <v n="Id">298L</v>
+                            </o>
                           </l2>
                           <o n="InputParam" t="ParamList">
                             <l2 n="Names" />
@@ -6039,7 +6077,7 @@ The rail lock / rod lock must be enabled just before the coil is switched on to 
                           <n n="STSnippet" />
                           <v n="ContainsExtensibleInputs">false</v>
                           <v n="ProvidesSTSnippet">false</v>
-                          <v n="Id">164L</v>
+                          <v n="Id">297L</v>
                         </o>
                         <v n="Id">170L</v>
                       </o>
