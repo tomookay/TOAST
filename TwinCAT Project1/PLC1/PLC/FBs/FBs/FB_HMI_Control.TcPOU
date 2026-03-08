@@ -189,8 +189,8 @@ stndata.MotionRow[iRowNumber].Advance.FdbkColour	:= HMIColour.colourGreyBackgrou
 stndata.MotionRow[iRowNumber].Returned.FdbkColour	:= HMIColour.colourGreyBackground;
 	
 //colour setup for row
-IF	qAdvanceReq		THEN stndata.MotionRow[iRowNumber].Advance.CoilColour	:= HMIColour.colourGreen;	END_IF
-IF	qReturnReq		THEN stndata.MotionRow[iRowNumber].Returned.CoilColour	:= HMIColour.colourYellow;	END_IF
+IF	iAdvanceCoil		THEN stndata.MotionRow[iRowNumber].Advance.CoilColour	:= HMIColour.colourGreen;	END_IF
+IF	iReturnCoil		THEN stndata.MotionRow[iRowNumber].Returned.CoilColour	:= HMIColour.colourYellow;	END_IF
 IF	iAdvanceLimit	THEN stndata.MotionRow[iRowNumber].Advance.FdbkColour	:= HMIColour.colourGreen;	END_IF
 IF	iReturnLimit	THEN stndata.MotionRow[iRowNumber].Returned.FdbkColour	:= HMIColour.colourYellow;	END_IF
 
