@@ -96,12 +96,12 @@ IF iAdvanceCoil						THEN  	stndata.MotionRow[iRowNumber].Advance.RequestCoil :=
 IF iReturnCoil						THEN	stndata.MotionRow[iRowNumber].Returned.RequestCoil := TRUE; END_IF
 
 //interlocks
-IF iAdvanceInterlock				THEN	stndata.MotionRow[iRowNumber].Advance.InterlockOK := TRUE;	END_IF
-IF iReturnInterlock					THEN	stndata.MotionRow[iRowNumber].Returned.InterlockOK := TRUE; END_IF
+IF iAdvanceInterlock AND (stndata.Data.Manual OR stndata.Data.SemiAuto)				THEN	stndata.MotionRow[iRowNumber].Advance.InterlockOK := TRUE;	END_IF
+IF iReturnInterlock	 AND (stndata.Data.Manual OR stndata.Data.SemiAuto)				THEN	stndata.MotionRow[iRowNumber].Returned.InterlockOK := TRUE; END_IF
 
 //prompts
-IF iAdvancePrompt					THEN	stndata.MotionRow[iRowNumber].Advance.Prompt := TRUE;		END_IF
-IF iReturnPrompt					THEN 	stndata.MotionRow[iRowNumber].Returned.Prompt := TRUE;		END_IF
+IF iAdvancePrompt	AND (stndata.Data.Manual OR stndata.Data.SemiAuto)				THEN	stndata.MotionRow[iRowNumber].Advance.Prompt := TRUE;		END_IF
+IF iReturnPrompt	AND (stndata.Data.Manual OR stndata.Data.SemiAuto)				THEN 	stndata.MotionRow[iRowNumber].Returned.Prompt := TRUE;		END_IF
 
 //times
 stndata.MotionRow[iRowNumber].Advance.TimeTaken		:= iAdvanceTime;
