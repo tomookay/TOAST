@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <DUT Name="typeBtnFdbk" Id="{dd42db32-ad12-4f37-834e-022b21c209cb}">
     <Declaration><![CDATA[TYPE typeBtnFdbk :
 STRUCT
@@ -66,6 +66,9 @@ STRUCT
 
 	btnAutoCyclingFdbk: BOOL; //auto cycling for station
 	btnIsHomeFdbk: BOOL;	//TRUE if station is at home
+	btnIsSEOCFdbk:BOOL;		//TRUE if the station is SEOC'in
+	btnControlFdbk:BOOL;	//TRUE if the station is under control, for use cases of multiple Visu's
+	btnModeFdbk:BOOL;
 
 
 END_STRUCT
