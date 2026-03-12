@@ -21,11 +21,13 @@ VAR
 	
 
 	oneSec: fb_flasher;
+	twoSec: fb_flasher;
 	tenSec: fb_flasher;
 	oneMSec: fb_flasher;
 	hundredMSec: fb_flasher;
 	
 	pulseoneSec: R_TRIG;
+	pulsetwoSec: R_TRIG;
 	pulsetenSec: R_TRIG;
 	pulseoneMSec: R_TRIG;
 	pulsehundredMSec: R_TRIG;
@@ -114,6 +116,11 @@ oneSec(timeVal:=T#1S);
 System.OneSecond:=oneSec.q;
 pulseoneSec(CLK:= System.OneSecond);
 System.PulseOneSecond  := pulseoneSec.Q;
+
+twoSec(timeVal:=T#1S);
+System.TwoSecond:=twoSec.q;
+pulseTwoSec(CLK:= System.TwoSecond);
+System.PulseTwosecond  := pulsetwoSec.Q;
 
 tenSec(timeVal:=T#10S);
 System.TenSecond:=tenSec.q;
@@ -506,6 +513,8 @@ END_IF
       <LineId Id="6" Count="0" />
       <LineId Id="4" Count="0" />
       <LineId Id="42" Count="1" />
+      <LineId Id="54" Count="3" />
+      <LineId Id="53" Count="0" />
       <LineId Id="10" Count="0" />
       <LineId Id="9" Count="0" />
       <LineId Id="7" Count="0" />

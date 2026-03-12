@@ -4243,7 +4243,7 @@ enable station calls, if this pou is copied and called"</v>
                             <v n="LValue">false</v>
                             <v n="Boolean">false</v>
                             <v n="IsInstance">true</v>
-                            <v n="Id">576L</v>
+                            <v n="Id">584L</v>
                           </o>
                           <o n="OutputItems" t="OutputItemList">
                             <l2 n="OutputItems" />
@@ -4293,6 +4293,25 @@ enable station calls, if this pou is copied and called"</v>
                               </o>
                               <v n="Id">580L</v>
                             </o>
+                            <o>
+                              <o n="Operand" t="Operand">
+                                <v n="Operand">"System.OneSecond"</v>
+                                <v n="Type">"BOOL"</v>
+                                <v n="Comment">""</v>
+                                <v n="SymbolComment">""</v>
+                                <v n="Address">""</v>
+                                <o n="Flags" t="Flags">
+                                  <v n="Flags">0</v>
+                                  <v n="Fixed">true</v>
+                                  <v n="Extensible">false</v>
+                                </o>
+                                <v n="LValue">false</v>
+                                <v n="Boolean">true</v>
+                                <v n="IsInstance">false</v>
+                                <v n="Id">587L</v>
+                              </o>
+                              <v n="Id">586L</v>
+                            </o>
                           </l2>
                           <o n="InputParam" t="ParamList">
                             <l2 n="Names" />
@@ -4308,7 +4327,7 @@ enable station calls, if this pou is copied and called"</v>
                           <n n="STSnippet" />
                           <v n="ContainsExtensibleInputs">false</v>
                           <v n="ProvidesSTSnippet">false</v>
-                          <v n="Id">577L</v>
+                          <v n="Id">585L</v>
                         </o>
                         <v n="Id">583L</v>
                       </o>
@@ -4499,6 +4518,12 @@ IF S5_Global.station.Data.Fault THEN
 	S5_Global.station.hmiHeader.isFaultState := TRUE;
 	ELSE
 	S5_Global.station.hmiHeader.isFaultState := FALSE;
+END_IF
+
+IF	S5_Global.station.Data.CycleStopping AND System.OneSecond THEN
+	S5_Global.station.hmiHeader.stationstateColour := TRUE;
+	ELSE
+	S5_Global.station.hmiHeader.stationstateColour := FALSE;	
 END_IF
 
 S5_Global.station.hmiHeader.stationNameSelect := S5_Global.station.Data.StationNumber;
@@ -12203,6 +12228,8 @@ if they are all at depth then set global station .complete"</v>
       <LineId Id="31" Count="2" />
       <LineId Id="35" Count="1" />
       <LineId Id="34" Count="0" />
+      <LineId Id="44" Count="4" />
+      <LineId Id="43" Count="0" />
       <LineId Id="38" Count="0" />
       <LineId Id="30" Count="0" />
       <LineId Id="40" Count="0" />
