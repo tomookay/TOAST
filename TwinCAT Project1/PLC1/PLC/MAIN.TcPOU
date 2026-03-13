@@ -33,6 +33,9 @@ VAR
 	pulsehundredMSec: R_TRIG;
 	i: INT;
 	nLicPres: UDINT;
+	
+	oneSecStart:TON;
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -131,6 +134,12 @@ hundredMSec(timeVal:=T#100MS);
 System.hundredMilliSecond:=hundredMSec.q;
 pulsehundredMSec(CLK:= System.hundredMilliSecond);
 System.PulseHundredMilliSecond := pulsehundredMSec.Q;
+
+oneSecStart(IN:=TRUE);
+System.StartPulse:=(oneSecStart.Q);
+
+
+
 
 IF system.thetime.wDay = 28 AND System.thetime.wMonth = 11 THEN
 	System.gHappyBirthday := TRUE;
@@ -449,6 +458,10 @@ END_IF
 					
 	System.sysDeviceInfo := getDeviceInfoEx.stDevIdent;
 	
+	IF gHMIButtons.gAnyMotionButtonPresed THEN gHMIButtons.gAnyMotionButtonPresed := FALSE; END_IF//first scan
+
+
+	
 
 	
 	]]></ST>
@@ -524,6 +537,11 @@ END_IF
       <LineId Id="11" Count="0" />
       <LineId Id="13" Count="0" />
       <LineId Id="29" Count="1" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="62" Count="1" />
+      <LineId Id="59" Count="0" />
+      <LineId Id="58" Count="0" />
       <LineId Id="47" Count="0" />
       <LineId Id="46" Count="0" />
       <LineId Id="48" Count="0" />
@@ -645,7 +663,11 @@ END_IF
       <LineId Id="128" Count="2" />
       <LineId Id="132" Count="0" />
       <LineId Id="134" Count="6" />
-      <LineId Id="143" Count="5" />
+      <LineId Id="143" Count="4" />
+      <LineId Id="149" Count="0" />
+      <LineId Id="151" Count="1" />
+      <LineId Id="150" Count="0" />
+      <LineId Id="148" Count="0" />
       <LineId Id="115" Count="0" />
       <LineId Id="86" Count="1" />
     </LineIds>

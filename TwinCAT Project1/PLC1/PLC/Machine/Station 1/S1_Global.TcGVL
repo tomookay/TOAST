@@ -1,9 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <GVL Name="S1_Global" Id="{2f8fb5eb-60df-4273-ba83-7b839788619f}">
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
 	station:typeStation; //data relating to the entire station
+	
+	//free logic
+	gInvalidClamping:BOOL; //TRUE if the clamping state is invalid
 END_VAR
 
 ]]></Declaration>
