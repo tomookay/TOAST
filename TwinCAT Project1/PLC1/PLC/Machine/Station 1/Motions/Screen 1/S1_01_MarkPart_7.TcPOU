@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
-  <POU Name="S1_01_Motion_7" Id="{3fb8eeb0-f560-4b3f-a64d-217de728f2b9}" SpecialFunc="None">
-    <Declaration><![CDATA[PROGRAM S1_01_Motion_7
+  <POU Name="S1_01_MarkPart_7" Id="{3fb8eeb0-f560-4b3f-a64d-217de728f2b9}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM S1_01_MarkPart_7
 VAR
 	HMI_Motion: FB_HMI_Control;
 	Motion: FB_Motion2way;
@@ -1243,7 +1243,7 @@ END_VAR
                             <l2 n="InputItems" cet="BoxTreeOperand">
                               <o>
                                 <o n="Operand" t="Operand">
-                                  <v n="Operand">"S1_01_Motion_6.Motion.qAdvancedDepth"</v>
+                                  <v n="Operand">"S1_01_RobMarker_6.Motion.qAdvancedDepth"</v>
                                   <v n="Type">"BOOL"</v>
                                   <v n="Comment">""</v>
                                   <v n="SymbolComment">""</v>
@@ -1262,7 +1262,7 @@ END_VAR
                               </o>
                               <o>
                                 <o n="Operand" t="Operand">
-                                  <v n="Operand">"S1_01_Motion_7.Motion.qAdvancedDepth"</v>
+                                  <v n="Operand">"S1_01_MarkPart_7.Motion.qAdvancedDepth"</v>
                                   <v n="Type">"BOOL"</v>
                                   <v n="Comment">""</v>
                                   <v n="SymbolComment">""</v>
@@ -1493,7 +1493,7 @@ END_VAR
                             <l2 n="InputItems" cet="BoxTreeOperand">
                               <o>
                                 <o n="Operand" t="Operand">
-                                  <v n="Operand">"S1_01_Motion_4.Motion.qAdvancedDepth"</v>
+                                  <v n="Operand">"S1_01_RobWash_4.Motion.qAdvancedDepth"</v>
                                   <v n="Type">"BOOL"</v>
                                   <v n="Comment">""</v>
                                   <v n="SymbolComment">""</v>
@@ -1512,7 +1512,7 @@ END_VAR
                               </o>
                               <o>
                                 <o n="Operand" t="Operand">
-                                  <v n="Operand">"S1_01_Motion_6.Motion.qAdvancedDepth"</v>
+                                  <v n="Operand">"S1_01_RobMarker_6.Motion.qAdvancedDepth"</v>
                                   <v n="Type">"BOOL"</v>
                                   <v n="Comment">""</v>
                                   <v n="SymbolComment">""</v>
@@ -1531,7 +1531,7 @@ END_VAR
                               </o>
                               <o>
                                 <o n="Operand" t="Operand">
-                                  <v n="Operand">"S1_01_Motion_7.Motion.qAdvancedDepth"</v>
+                                  <v n="Operand">"S1_01_MarkPart_7.Motion.qAdvancedDepth"</v>
                                   <v n="Type">"BOOL"</v>
                                   <v n="Comment">""</v>
                                   <v n="SymbolComment">""</v>
@@ -2986,7 +2986,7 @@ Is the motion the next in the process?"</v>
                         <l2 n="InputItems" cet="BoxTreeOperand">
                           <o>
                             <o n="Operand" t="Operand">
-                              <v n="Operand">"S1_01_Motion_2.Motion.iReturnDepth"</v>
+                              <v n="Operand">"S1_01_RobClamp1_2.Motion.iReturnDepth"</v>
                               <v n="Type">"BOOL"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
@@ -3005,7 +3005,7 @@ Is the motion the next in the process?"</v>
                           </o>
                           <o>
                             <o n="Operand" t="Operand">
-                              <v n="Operand">"S1_01_Motion_3.Motion.iReturnDepth"</v>
+                              <v n="Operand">"S1_01_RobClamp2_3.Motion.iReturnDepth"</v>
                               <v n="Type">"BOOL"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
@@ -4026,7 +4026,7 @@ Latch logic, option to latch on in manual mode"</v>
                                           <l2 n="InputItems" cet="BoxTreeOperand">
                                             <o>
                                               <o n="Operand" t="Operand">
-                                                <v n="Operand">"S1_01_Motion_2.HMI_Motion.qReturnReq"</v>
+                                                <v n="Operand">"S1_01_RobClamp1_2.HMI_Motion.qReturnReq"</v>
                                                 <v n="Type">"BOOL"</v>
                                                 <v n="Comment">""</v>
                                                 <v n="SymbolComment">""</v>
@@ -4045,7 +4045,7 @@ Latch logic, option to latch on in manual mode"</v>
                                             </o>
                                             <o>
                                               <o n="Operand" t="Operand">
-                                                <v n="Operand">"S1_01_Motion_3.HMI_Motion.qReturnReq"</v>
+                                                <v n="Operand">"S1_01_RobClamp2_3.HMI_Motion.qReturnReq"</v>
                                                 <v n="Type">"BOOL"</v>
                                                 <v n="Comment">""</v>
                                                 <v n="SymbolComment">""</v>
@@ -4064,7 +4064,7 @@ Latch logic, option to latch on in manual mode"</v>
                                             </o>
                                             <o>
                                               <o n="Operand" t="Operand">
-                                                <v n="Operand">"S1_01_Motion_7.HMI_Motion.qReturnReq"</v>
+                                                <v n="Operand">"S1_01_MarkPart_7.HMI_Motion.qReturnReq"</v>
                                                 <v n="Type">"BOOL"</v>
                                                 <v n="Comment">""</v>
                                                 <v n="SymbolComment">""</v>
@@ -4192,7 +4192,7 @@ Latch logic, option to latch on in manual mode"</v>
                                           <l2 n="InputItems" cet="BoxTreeOperand">
                                             <o>
                                               <o n="Operand" t="Operand">
-                                                <v n="Operand">"S1_01_Motion_2.Motion.qAdvanceCoil"</v>
+                                                <v n="Operand">"S1_01_RobClamp1_2.Motion.qAdvanceCoil"</v>
                                                 <v n="Type">"BOOL"</v>
                                                 <v n="Comment">""</v>
                                                 <v n="SymbolComment">""</v>
@@ -4211,7 +4211,7 @@ Latch logic, option to latch on in manual mode"</v>
                                             </o>
                                             <o>
                                               <o n="Operand" t="Operand">
-                                                <v n="Operand">"S1_01_Motion_3.Motion.qAdvanceCoil"</v>
+                                                <v n="Operand">"S1_01_RobClamp2_3.Motion.qAdvanceCoil"</v>
                                                 <v n="Type">"BOOL"</v>
                                                 <v n="Comment">""</v>
                                                 <v n="SymbolComment">""</v>
@@ -4230,7 +4230,7 @@ Latch logic, option to latch on in manual mode"</v>
                                             </o>
                                             <o>
                                               <o n="Operand" t="Operand">
-                                                <v n="Operand">"S1_01_Motion_7.Motion.qAdvanceCoil"</v>
+                                                <v n="Operand">"S1_01_MarkPart_7.Motion.qAdvanceCoil"</v>
                                                 <v n="Type">"BOOL"</v>
                                                 <v n="Comment">""</v>
                                                 <v n="SymbolComment">""</v>

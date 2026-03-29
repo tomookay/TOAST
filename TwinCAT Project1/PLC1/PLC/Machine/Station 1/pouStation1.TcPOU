@@ -5065,11 +5065,11 @@ S1_Global.station.hmiHeader.flasher := System.OneSecond;
 
 IF 
 //are all motions returned
-S1_01_Motion_1.Motion.qReturnDepth AND
-S1_01_Motion_2.Motion.qReturnDepth AND
-S1_01_Motion_3.Motion.qReturnDepth AND
+S1_01_RobPickPart_1.Motion.qReturnDepth AND
+S1_01_RobClamp1_2.Motion.qReturnDepth AND
+S1_01_RobClamp2_3.Motion.qReturnDepth AND
 //S1_01_Motion_4.Motion.qReturnDepth AND
-S1_01_Motion_5.Motion.qReturnDepth
+S1_01_WasherJets_5.Motion.qReturnDepth
 //S1_01_Motion_6.Motion.qReturnDepth
 
 	THEN
@@ -6804,13 +6804,13 @@ S1_Global.station.Data.NumOfRows := 0;
 S1_global.station.dynRowNumber := 0;
 
 //page 1
-IF System.gSetup.stationFunctions[1].numRowsConfig >= 1 THEN S1_01_Motion_1(); END_IF
-IF System.gSetup.stationFunctions[1].numRowsConfig >= 2 THEN S1_01_Motion_2(); END_IF
-IF System.gSetup.stationFunctions[1].numRowsConfig >= 3 THEN S1_01_Motion_3(); END_IF
-IF System.gSetup.stationFunctions[1].numRowsConfig >= 4 THEN S1_01_Motion_4(); END_IF
-IF System.gSetup.stationFunctions[1].numRowsConfig >= 5 THEN S1_01_Motion_5(); END_IF
-IF System.gSetup.stationFunctions[1].numRowsConfig >= 6 THEN S1_01_Motion_6(); END_IF
-IF System.gSetup.stationFunctions[1].numRowsConfig >= 7 THEN S1_01_Motion_7(); END_IF
+IF System.gSetup.stationFunctions[1].numRowsConfig >= 1 THEN S1_01_RobPickPart_1(); END_IF
+IF System.gSetup.stationFunctions[1].numRowsConfig >= 2 THEN S1_01_RobClamp1_2(); END_IF
+IF System.gSetup.stationFunctions[1].numRowsConfig >= 3 THEN S1_01_RobClamp2_3(); END_IF
+IF System.gSetup.stationFunctions[1].numRowsConfig >= 4 THEN S1_01_RobWash_4(); END_IF
+IF System.gSetup.stationFunctions[1].numRowsConfig >= 5 THEN S1_01_WasherJets_5(); END_IF
+IF System.gSetup.stationFunctions[1].numRowsConfig >= 6 THEN S1_01_RobMarker_6(); END_IF
+IF System.gSetup.stationFunctions[1].numRowsConfig >= 7 THEN S1_01_MarkPart_7(); END_IF
 IF System.gSetup.stationFunctions[1].numRowsConfig >= 8 THEN S1_01_Motion_8(); END_IF
 IF System.gSetup.stationFunctions[1].numRowsConfig >= 9 THEN S1_01_Motion_9(); END_IF
 
@@ -8262,7 +8262,7 @@ stationsfc.sfcinit := runSFC;
                           </o>
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
-                              <v n="Operand">"S1_01_Motion_1.Motion.qAdvanceCoil"</v>
+                              <v n="Operand">"S1_01_RobPickPart_1.Motion.qAdvanceCoil"</v>
                               <v n="Type">"BOOL"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
@@ -8281,7 +8281,7 @@ stationsfc.sfcinit := runSFC;
                           </o>
                           <o t="BoxTreeOperand">
                             <o n="Operand" t="Operand">
-                              <v n="Operand">"S1_01_Motion_1.Motion.iAdvanceDepth"</v>
+                              <v n="Operand">"S1_01_RobPickPart_1.Motion.iAdvanceDepth"</v>
                               <v n="Type">"BOOL"</v>
                               <v n="Comment">""</v>
                               <v n="SymbolComment">""</v>
