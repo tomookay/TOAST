@@ -75,240 +75,143 @@ END_VAR
 
 ]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//mark active message as inactive
-	//reset before scan
-	actArraysMatch();
-	actPassMessageChange();
+      <ST><![CDATA[// Reset before scan
+actArraysMatch();
+actPassMessageChange();
 
-IF memchanged OR iqMsgChangeUpdateList THEN //if the memory array have changed, then process the message
-	
-			//reset assumption that message is active
-			qAnyMsgActive		:= FALSE;
-			//qMsgNumberActive 	:= -1;
-			qMsgNumberActive 	:= 0;	
-			
-			//clear down output alarm listing
-			actCleanDownMsg();
-			
-			//clear down single message
-			//qSingleMessage := '';
-			
+IF memchanged OR iqMsgChangeUpdateList THEN 
+    // Reset status variables
+    qAnyMsgActive := FALSE;
+    qMsgNumberActive := 0;  
+    actCleanDownMsg();
+    
+    lowestValue := 4294967295;
+    lowestMessage := 0;
+    rollinglowestValue := 0;
+    allstrings := '';
 
-	//have to start at -1 because... Beckhoff... seems to add + 1 before every loop, wanting to start AT 0, not 1
-//	FOR i := -1 TO GlobalMessages.gNumMessagesPerType - 1 DO
-	FOR i := 0 TO GlobalMessages.gNumMessagesPerType - 1 DO
-		
-		//loop entire array
-		IF iqArrayToCheck.message[i] = TRUE THEN
-			//mark active message as active
-			qAnyMsgActive		:= TRUE;
-			qMsgNumberActive 	:= INT_TO_UINT(i);
-		END_IF
-			
-		//move time of message into message type
-		IF 			iqArrayToCheck.message[i] = TRUE 
-			AND 	iqArrayToCheck.messageActive[i] = FALSE
-			AND  iqArrayToCheck.messageTimeActive[i] = 0   
-			THEN
-				iqArrayToCheck.messageTimeActive[i] := System.myPlcInfoTask1.CycleCount;
-			//write message text to array
-		END_IF
-		
-		//find lowest message number, the lowest number is the first message that has appeared and thus, the only one worthwhile
-		IF qAnyMsgActive THEN //if there is any message active in the array, then find the lowest number
-			IF iqArrayToCheck.messageTimeActive[i] > 1 THEN 			//consider the message
-				IF  iqArrayToCheck.messageTimeActive[i] < lowestValue   THEN
-					//record the index of the lowest message to write later
-					lowestValue := 	iqArrayToCheck.messageTimeActive[i];//lowest TIME value
-					lowestMessage := i;									//lowest value message		
-					qSingleMessage := iqArrayToCheck.text[i];			//return the message text of the single lowest alarm
-					
-					IF rollinglowestValue = 0 THEN //starting point
-						rollinglowestValue := lowestValue;				//assign lowest message for multi line use
-					END_IF
-				
-				END_IF	
-			END_IF
-		ELSE
-			//no message active at all, so return zeros
-			qSingleMessage := 'no message';								//no message text
-			lowestMessage := 0;											//return zero for no message
-			lowestValue := 4294967295;									//return highest possible number for next time
-			
-			//clear down single data
-			qAnyMsgActive		:= FALSE;								//clear down with implicit
-			//qMsgNumberActive 	:= -1;									//clear down with implicit
-			qMsgNumberActive 	:= 0;									//clear down with implicit
-			rollinglowestValue 	:= 0;
-		END_IF
-		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		//loop around the array and find the lowest number >1 and write that message first, then all other messages in incrementing order
-		//once the message is written to the list, set the .MessageActive bit to TRUE
-		IF rollinglowestValue >= 0 THEN //rolling value is valid
-			
-			//the current message is active, but not yet written
-			IF iqArrayToCheck.message[i] = TRUE  THEN
-				
-				//combine message texts into long string with CR LFs
-				newlineInsert := concat(iqArrayToCheck.text[i], '$0D'); //make new line
-								
-				//calc message number
-				messagenum := iMessageGroup + INT_TO_UINT(i); //creates 10000 + 1, 10001 mesage number
-								
-				//string header
-				strheader := concat(DINT_TO_STRING(messagenum), ' '); //'10001 ' with space
-								
-				//add message number
-				newlineInsert := concat(strheader,newlineInsert);
-									 
-				allstrings := concat(newlineInsert,allstrings); //and put it at the top of the pack
-								
-				//message was written, so turn on message active bit iqArrayToCheck.messageActive[i]
-				iqArrayToCheck.messageActive[i] := TRUE;
-			
-			END_IF	
-			
-		END_IF
-		
-		//reset message usage on dual arrays
-		IF iqArrayToCheck.message[i] = FALSE AND  iqArrayToCheck.messageActive[i] = TRUE THEN
-		iqArrayToCheck.messageActive[i] := FALSE;
-		iqArrayToCheck.messageTimeActive[i] := 0;
-		END_IF
-		
-		//message exists, so write strings to output
-		IF rollinglowestValue > 1 THEN 
-					qAllMessages := allstrings;
-				ELSE
-					newlineInsert := '';
-					allstrings := '';
-					qAllMessages:= '';
-		END_IF
-		
-	
-	END_FOR;
+    // FIRST PASS: Determine active status and find the oldest (lowest timestamp) message
+    FOR i := 0 TO GlobalMessages.gNumMessagesPerType - 1 DO
+        IF iqArrayToCheck.message[i] THEN
+            qAnyMsgActive := TRUE;
+            qMsgNumberActive := INT_TO_UINT(i);
+            
+            // Assign CycleCount timestamp if it's a brand new activation
+            IF NOT iqArrayToCheck.messageActive[i] AND iqArrayToCheck.messageTimeActive[i] = 0 THEN
+                iqArrayToCheck.messageTimeActive[i] := System.myPlcInfoTask1.CycleCount;
+            END_IF
+            
+            // Check chronological order (looking for oldest timestamp > 1)
+            IF iqArrayToCheck.messageTimeActive[i] > 1 AND iqArrayToCheck.messageTimeActive[i] < lowestValue THEN
+                lowestValue := iqArrayToCheck.messageTimeActive[i];
+                lowestMessage := i;                                 
+                qSingleMessage := iqArrayToCheck.text[i];           
+            END_IF
+        ELSE
+            // Reset message tracking states cleanly if cleared
+            IF iqArrayToCheck.messageActive[i] THEN
+                iqArrayToCheck.messageActive[i] := FALSE;
+                iqArrayToCheck.messageTimeActive[i] := 0;
+            END_IF
+        END_IF
+    END_FOR;
 
-END_IF
+    // Handle global state if no messages are found
+    IF NOT qAnyMsgActive THEN
+        qSingleMessage := 'no message';
+        lowestMessage := 0;
+        lowestValue := 4294967295;
+        rollinglowestValue := 0;
+        qAllMessages := '';
+    ELSE
+        rollinglowestValue := lowestValue;
+    END_IF
 
+    // SECOND PASS: Only construct strings and handle active logic shifts if warnings/alarms exist
+    IF qAnyMsgActive AND rollinglowestValue >= 0 THEN
+        FOR i := 0 TO GlobalMessages.gNumMessagesPerType - 1 DO
+            IF iqArrayToCheck.message[i] THEN
+                // Combine strings efficiently inside the conditional change event
+                newlineInsert := concat(iqArrayToCheck.text[i], '$0D'); 
+                messagenum := iMessageGroup + INT_TO_UINT(i); 
+                strheader := concat(DINT_TO_STRING(messagenum), ' '); 
+                newlineInsert := concat(strheader, newlineInsert);
+                allstrings := concat(newlineInsert, allstrings); 
+                
+                iqArrayToCheck.messageActive[i] := TRUE;
+            END_IF
+        END_FOR;
+        qAllMessages := allstrings;
+    END_IF
 
-msgindex := 1;
-IF memchanged OR iqMsgChangeUpdateList THEN
-	
-	//check if isWarning, then apply messages to bottom of list
-	IF isWarning THEN
-		tWarnOffset := iqPassThruMessageStart;
-		actClearDownExcessWarn(); //clear down messages below the last alarm, i.e. all the warnings so they can be written again below
-		ELSE
-		tWarnOffset := 0;
-	END_IF
+    // THIRD PASS: Populate HMI Row Data arrays safely (Fixing out-of-bounds boundary)
+    msgindex := 1;
+    IF isWarning THEN
+        tWarnOffset := iqPassThruMessageStart;
+        actClearDownExcessWarn(); 
+    ELSE
+        tWarnOffset := 0;
+    END_IF
 
-	//check if is alarm an no alarms to clear down warnoffset
-	IF isAlarm AND NOT qAnyMsgActive THEN
-		iqPassThruMessageStart := 0;
-	END_IF
+    IF isAlarm AND NOT qAnyMsgActive THEN
+        iqPassThruMessageStart := 0;
+    END_IF
 
-	FOR i := 0 TO GlobalMessages.gNumMessagesPerType DO
-		//find next TRUE alarm
-			IF iqArrayToCheck.messageActive[i] = TRUE THEN
-							
-				//assign text to other alarm view 	
-				qMsgRows[msgindex].msgText := iqArrayToCheck.text[i];
-				qSpecialMsgRows[msgIndex + tWarnOffset].text := iqArrayToCheck.text[i];
-				qSpecialMsgRows[msgIndex + tWarnOffset].timeRaised := UDINT_TO_STRING(iqArrayToCheck.messageTimeActive[i]);
-								
-				//assign special colour
-				qSpecialMsgRowsStyle[msgIndex + tWarnOffset].colourToApply := HMIColour.colourGreyBackground;
-				qSpecialMsgRowsStyle[msgIndex + tWarnOffset].isColoured := FALSE;
-				
-				//assign colour
-				IF isAlarm THEN
-					qMsgRows[msgIndex].isAlarm := TRUE;
-					
-					//assign special colour
-					qSpecialMsgRowsStyle[msgIndex + tWarnOffset].colourToApply := HMIColour.colourRed;
-					qSpecialMsgRowsStyle[msgIndex + tWarnOffset].isColoured := TRUE;
-					
-					ELSE
-					qMsgRows[msgIndex].isAlarm := FALSE;	
-				
-				END_IF
-				
-				//assign colour
-				IF isWarning THEN
-					qMsgRows[msgIndex].isWarning := TRUE;
-					
-					//assign special colour
-					qSpecialMsgRowsStyle[msgIndex + tWarnOffset].colourToApply := HMIColour.colourYellow;
-					qSpecialMsgRowsStyle[msgIndex + tWarnOffset].isColoured := TRUE;
-					
-					
-					ELSE
-					qMsgRows[msgIndex].isWarning := FALSE;
-				
-				END_IF
-				
-				//clear down phantom text
-				IF qSpecialMsgRows[msgIndex].text = '' THEN
-					qSpecialMsgRows[msgIndex].timeRaised := '';
-					
-				END_IF
-				
-				//increment message index and try again
-				msgindex := msgIndex + 1;
-			
-				//exit loop 
-				IF msgIndex > GlobalMessages.gNumMessagesPerType - 1 THEN
-					EXIT;
-				END_IF
-		END_IF
-		rollingOffset:= 0;
-	END_FOR
-	
-END_IF
+    FOR i := 0 TO GlobalMessages.gNumMessagesPerType - 1 DO // FIXED: Added "- 1" to prevent CPU crash
+        IF iqArrayToCheck.messageActive[i] THEN
+            qMsgRows[msgindex].msgText := iqArrayToCheck.text[i];
+            qSpecialMsgRows[msgindex + tWarnOffset].text := iqArrayToCheck.text[i];
+            qSpecialMsgRows[msgindex + tWarnOffset].timeRaised := UDINT_TO_STRING(iqArrayToCheck.messageTimeActive[i]);
+            
+            // Styling logic definitions
+            IF isAlarm THEN
+                qMsgRows[msgindex].isAlarm := TRUE;
+                qMsgRows[msgindex].isWarning := FALSE;
+                qSpecialMsgRowsStyle[msgindex + tWarnOffset].colourToApply := HMIColour.colourRed;
+                qSpecialMsgRowsStyle[msgindex + tWarnOffset].isColoured := TRUE;
+            ELSIF isWarning THEN
+                qMsgRows[msgindex].isAlarm := FALSE;
+                qMsgRows[msgindex].isWarning := TRUE;
+                qSpecialMsgRowsStyle[msgindex + tWarnOffset].colourToApply := HMIColour.colourYellow;
+                qSpecialMsgRowsStyle[msgindex + tWarnOffset].isColoured := TRUE;
+            ELSE
+                qMsgRows[msgindex].isAlarm := FALSE;
+                qMsgRows[msgindex].isWarning := FALSE;
+                qSpecialMsgRowsStyle[msgindex + tWarnOffset].colourToApply := HMIColour.colourGreyBackground;
+                qSpecialMsgRowsStyle[msgindex + tWarnOffset].isColoured := FALSE;
+            END_IF
+            
+            IF qSpecialMsgRows[msgindex].text = '' THEN
+                qSpecialMsgRows[msgindex].timeRaised := '';
+            END_IF
+            
+            msgindex := msgindex + 1;
+            IF msgindex > GlobalMessages.gNumMessagesPerType - 1 THEN
+                EXIT;
+            END_IF
+        END_IF
+    END_FOR;
+    
+    // Calculate display offsets only on mutation, removing the continuous "OR TRUE" scan loop
+    rollingOffset := 0;
+    IF isAlarm THEN
+        FOR k := 1 TO gHMIDataConst.gNumberOfMessagesScreen DO
+            // Efficient replacement for expensive LEN() functions
+            IF qSpecialMsgRows[k].text <> '' AND qSpecialMsgRowsStyle[k].colourToApply = HMIColour.colourRed THEN
+                rollingOffset := UINT_TO_INT(k);
+                iqPassThruMessageStart := rollingOffset;        
+            END_IF
+        END_FOR;
+    END_IF
 
+END_IF; // End of Event Execution Block
 
-IF (memchanged OR TRUE) AND isAlarm THEN //need to loop constantly if message is active to work out offset for other blocks
-		//find the number OF used message
-				
-				
-			//find the next free entry (blank text) '' 
-				FOR k := 1 TO gHMIDataConst.gNumberOfMessagesScreen DO
-					
-					//check string length
-					strlengtest := len(qSpecialMsgRows[k].text);
-											
-				
-					IF strlengtest > 0 AND qSpecialMsgRowsStyle[k].colourToApply = HMIColour.colourRed THEN
-						rollingOffset := UINT_TO_INT(k);
-							//alarms pass to warnings to start
-						iqPassThruMessageStart := rollingOffset;		
-					ELSE
-							//iqPassThruMessageStart := 0;
-					END_IF
-					
-					//try to exit from this loop if no work to do
-					IF strlengtest = 0 THEN
-						//do something to make a brakepoint
-					//	a:=k+0;
-						
-					//	EXIT;
-					END_IF
-					
-				END_FOR
-
-END_IF
-
-
-	//warning only
-	//check if any warning is active and if the entry in the display + 1 is yellow, and if not, restart listing
+// Warning tracking state check remains live to handle background UI logic triggers
 IF qAnyMsgActive AND isWarning AND qSpecialMsgRowsStyle[tWarnOffset + 1].colourToApply <> HMIColour.colourYellow THEN
-	iqMsgChangeUpdateList := TRUE;
-	ELSE
-		
-	IF isWarning THEN iqMsgChangeUpdateList := FALSE; END_IF
-
-END_IF
-]]></ST>
+    iqMsgChangeUpdateList := TRUE;
+ELSE
+    IF isWarning THEN iqMsgChangeUpdateList := FALSE; END_IF
+END_IF;]]></ST>
     </Implementation>
     <Action Name="actArraysMatch" Id="{deaf4cea-369a-4b23-adf0-691b3612839c}">
       <Implementation>
@@ -1653,7 +1556,7 @@ END_FOR
       </XmlArchive>
     </ObjectProperties>
     <LineIds Name="FB_CheckMessageBounds">
-      <LineId Id="3" Count="232" />
+      <LineId Id="444" Count="135" />
       <LineId Id="2" Count="0" />
     </LineIds>
     <LineIds Name="FB_CheckMessageBounds.actClearDownExcessWarn">
