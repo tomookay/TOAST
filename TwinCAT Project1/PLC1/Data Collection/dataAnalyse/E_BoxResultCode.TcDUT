@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="E_BoxResultCode" Id="{d15ed41f-f411-03b2-0162-0041b6a2d8cf}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE E_BoxResultCode :
+(
+    Success                     := 0,  // Signal perfectly trapped inside the box
+    Err_NeverEnteredBox         := 10, // Dataset finished, signal never entered the box boundaries
+    Err_IllegalEntry_SideA      := 11, // Crossed Side A (Left) but it was configured as illegal
+    Err_IllegalEntry_SideC      := 13, // Crossed Side C (Top) but it was configured as illegal
+    Err_IllegalEntry_SideD      := 14, // Crossed Side D (Bottom) but it was configured as illegal
+    
+    Leak_Exited_SideA           := 21, // Signal backed out of Side A (Left Wall)
+    Leak_Exited_SideB           := 22, // Signal broke out of Side B (Right Wall)
+    Leak_Exited_SideC           := 23, // Signal spiked over the roof out of Side C (Top Wall)
+    Leak_Exited_SideD           := 24, // Signal dropped out of the floor through Side D (Bottom Wall)
+    
+    Violation_Exited_SideA     := 31, // Signal left Side A which was explicitly locked via IsNotPermittedToExit
+    Violation_Exited_SideB     := 32, // Signal left Side B which was explicitly locked via IsNotPermittedToExit
+    Violation_Exited_SideC     := 33, // Signal left Side C which was explicitly locked via IsNotPermittedToExit
+    Violation_Exited_SideD     := 34  // Signal left Side D which was explicitly locked via IsNotPermittedToExit
+) INT;
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

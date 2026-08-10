@@ -154,15 +154,32 @@
     <Title>Project Title</Title>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Data Collection\dataAnalyse\E_BoxResultCode.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Data Collection\dataAnalyse\FB_Window.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Data Collection\dataAnalyse\prgDataAnaylse.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Data Collection\dataAnalyse\ST_BoxCorner.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Data Collection\dataAnalyse\ST_WallPermission.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Data Collection\dataGrab.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="Data Collection\Dat_550_DataAxis.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
+    </Compile>
+    <Compile Include="Data Collection\diaDataBox.TcVIS">
+      <SubType>Code</SubType>
+      <DependentUpon>Visualization Manager.TcVMO</DependentUpon>
     </Compile>
     <Compile Include="Data Collection\prgDataGrab.TcPOU">
       <SubType>Code</SubType>
