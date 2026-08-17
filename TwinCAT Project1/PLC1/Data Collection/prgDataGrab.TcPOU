@@ -8,10 +8,18 @@ VAR
 	DataIndex: ULINT;
 	MaxAxisGrab: ULINT;
 	tAxisFull: BOOL;
+	
+	visuBoxControl1:FB_BoxControl;
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[actPopulateAxis();
+
+
+//temp control boxes
+visuBoxControl1(iqBoxdata := dataGrab.dataCurrentVisu.box1);
+
 ]]></ST>
     </Implementation>
     <Action Name="actPopulateAxis" Id="{17e9635a-4bdc-076c-0e86-b67297dd33f3}">
@@ -19,6 +27,8 @@ END_VAR
         <ST><![CDATA[MaxAxisGrab := 100;
 
 //populate axis
+
+(*
 IF tGrabData THEN
 
 DataIndex := DataIndex + 1;
@@ -40,16 +50,22 @@ DataIndex := DataIndex + 1;
 END_IF
 
 
-]]></ST>
+*)]]></ST>
       </Implementation>
     </Action>
     <LineIds Name="prgDataGrab">
       <LineId Id="5" Count="0" />
+      <LineId Id="24" Count="1" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="30" Count="0" />
       <LineId Id="14" Count="0" />
     </LineIds>
     <LineIds Name="prgDataGrab.actPopulateAxis">
       <LineId Id="34" Count="1" />
       <LineId Id="1" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="36" Count="0" />
       <LineId Id="29" Count="0" />
       <LineId Id="31" Count="0" />
       <LineId Id="17" Count="0" />
