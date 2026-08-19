@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="E_WallEntryRule" Id="{011ea0df-ea6a-02b7-2b42-b2cd0d30eaa3}">
+    <Declaration><![CDATA[// ENUM to define entry wall strictness
+TYPE E_WallEntryRule :
+(
+    NoCheck      := 0, // Anyone can enter here. Doesn't force or block data.
+    MustEnter    := 1, // Trajectory MUST enter here. If it enters somewhere else first, it fails.
+    MustNotEnter := 2  // Strict wall blocker. If trajectory touches this wall, it fails immediately.
+) BYTE;
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -11,6 +11,8 @@ VAR
     ValidEntrySide      : INT;  // 1 = Side A, 3 = Side C, 4 = Side D
     TrappedSuccessfully : BOOL; 
 	
+	osrStartAnalysis:R_TRIG;
+	
 END_VAR
 VAR_INPUT
 	//data to check
@@ -23,10 +25,12 @@ VAR_INPUT
     i4 : ST_BoxCorner; // Top-Right
 
     // Wall Permissions 
-    PermSideA : ST_WallPermission; // Left Wall Permissions
-    PermSideB : ST_WallPermission; // Right Wall Permissions
-    PermSideC : ST_WallPermission; // Top Wall Permissions
-    PermSideD : ST_WallPermission; // Bottom Wall Permissions
+    LeftPermSide : ST_WallPermission; // Left Wall Permissions
+    RightPermSide : ST_WallPermission; // Right Wall Permissions
+    TopPermSide : ST_WallPermission; // Top Wall Permissions
+    BottomPermSide : ST_WallPermission; // Bottom Wall Permissions
+	
+	iPerformAnalysis:BOOL;
 		
 END_VAR
 
@@ -36,34 +40,7 @@ VAR_OUTPUT
 	qErrorCode : E_BoxResultCode; //diag codes
 END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[(*	^
-	value (kN, etc)
-	|
-	|							C
-	|			1_______________________________4
-	|			|								|
-	|			|								|
-	|			|								|
-	|			|			  /					|
-	|			|			 /					|  
-	|		A	|			/					|  B
-	|			|		  /						|
-	|			|	    /						|
-	|			|	  /							|
-	|-----------|----------------line-----------|-------
-	|			|___/___________________________|
-	|			2  /							3
-	|			  /				D
-	|		 	 /				
-	|			/				
-	----------------------------------------------------------------(grab)time->
-	1	2	3	4	5	6	7	8	9 	10 	11	12	13	14	15	16	17 etc
-	
-	Each side of a box has a entry point, check which vector the data
-	passes into
-*)
-
-// Reset tracking variables before running the historical loop
+      <ST><![CDATA[// Reset tracking variables before running the historical loop
 EnteredViaValidSide := FALSE;
 HasExitedBox        := FALSE;
 PermissionViolation := FALSE;
@@ -72,12 +49,18 @@ qPass               := FALSE;
 qFail               := FALSE;
 qErrorCode          := E_BoxResultCode.Success; // Default to Success state
 
+osrStartAnalysis(clk := iPerformAnalysis);
+
+IF osrStartAnalysis.Q THEN
+
+
+// CRITICAL FIX: Cap dynamic loops safely to actual array limit 
 FOR i := 2 TO 20000 DO
     
     SampleSpansBoxTime := (dataAxis.grabTime[i] >= i2.PointXTime) AND (dataAxis.grabTime[i-1] <= i3.PointXTime);
 
     // =========================================================================
-    // PART 1: ENTRY DETECTION & ENTRY PERMISSION CHECKS
+    // PART 1: ENTRY DETECTION & ENUM ENTRY CONFIG CHECKS
     // =========================================================================
     IF NOT EnteredViaValidSide AND NOT PermissionViolation THEN
         
@@ -85,12 +68,12 @@ FOR i := 2 TO 20000 DO
         IF (dataAxis.grabTime[i-1] < i2.PointXTime) AND (dataAxis.grabTime[i] >= i2.PointXTime) THEN
             IF (dataAxis.grabData[i] > i2.PointYValue) AND (dataAxis.grabData[i] < i1.PointYValue) THEN
                 
-                IF PermSideA.IsNotPermittedToEnter OR NOT PermSideA.IsPermittedToEnter THEN
+                IF LeftPermSide.EntryRule = E_WallEntryRule.MustNotEnter THEN
                     PermissionViolation := TRUE;
                     qErrorCode          := E_BoxResultCode.Err_IllegalEntry_SideA;
                 ELSE
                     EnteredViaValidSide := TRUE;
-                    ValidEntrySide      := 1; 
+                    ValidEntrySide      := 1; // Mapped to Side A
                 END_IF
             END_IF
         END_IF
@@ -99,12 +82,12 @@ FOR i := 2 TO 20000 DO
         IF (dataAxis.grabTime[i] >= i2.PointXTime) AND (dataAxis.grabTime[i] <= i3.PointXTime) THEN
             IF (dataAxis.grabData[i-1] < i2.PointYValue) AND (dataAxis.grabData[i] >= i2.PointYValue) THEN
                 
-                IF PermSideD.IsNotPermittedToEnter OR NOT PermSideD.IsPermittedToEnter THEN
+                IF BottomPermSide.EntryRule = E_WallEntryRule.MustNotEnter THEN
                     PermissionViolation := TRUE;
                     qErrorCode          := E_BoxResultCode.Err_IllegalEntry_SideD;
                 ELSE
                     EnteredViaValidSide := TRUE;
-                    ValidEntrySide      := 4; 
+                    ValidEntrySide      := 4; // Mapped to Side D
                 END_IF
             END_IF
         END_IF
@@ -113,12 +96,12 @@ FOR i := 2 TO 20000 DO
         IF (dataAxis.grabTime[i] >= i2.PointXTime) AND (dataAxis.grabTime[i] <= i3.PointXTime) THEN
             IF (dataAxis.grabData[i-1] > i1.PointYValue) AND (dataAxis.grabData[i] <= i1.PointYValue) THEN
                 
-                IF PermSideC.IsNotPermittedToEnter OR NOT PermSideC.IsPermittedToEnter THEN
+                IF TopPermSide.EntryRule = E_WallEntryRule.MustNotEnter THEN
                     PermissionViolation := TRUE;
                     qErrorCode          := E_BoxResultCode.Err_IllegalEntry_SideC;
                 ELSE
                     EnteredViaValidSide := TRUE;
-                    ValidEntrySide      := 3; 
+                    ValidEntrySide      := 3; // Mapped to Side C
                 END_IF
             END_IF
         END_IF
@@ -138,11 +121,11 @@ FOR i := 2 TO 20000 DO
         IF (dataAxis.grabTime[i-1] <= i3.PointXTime) AND (dataAxis.grabTime[i] > i3.PointXTime) THEN
             IF (dataAxis.grabData[i] > i3.PointYValue) AND (dataAxis.grabData[i] < i4.PointYValue) THEN
                 HasExitedBox := TRUE;
-                IF PermSideB.IsNotPermittedToExit THEN
+                IF RightPermSide.IsNotPermittedToExit THEN
                     PermissionViolation := TRUE;
                     qErrorCode          := E_BoxResultCode.Violation_Exited_SideB;
                 ELSE
-                    qErrorCode          := E_BoxResultCode.Leak_Exited_SideB;
+                    qErrorCode          := E_BoxResultCode.Success; // Valid completion code
                 END_IF
             END_IF
         END_IF
@@ -151,7 +134,7 @@ FOR i := 2 TO 20000 DO
         IF (dataAxis.grabTime[i-1] >= i2.PointXTime) AND (dataAxis.grabTime[i] < i2.PointXTime) THEN
             IF (dataAxis.grabData[i] > i2.PointYValue) AND (dataAxis.grabData[i] < i1.PointYValue) THEN
                 HasExitedBox := TRUE;
-                IF PermSideA.IsNotPermittedToExit THEN
+                IF LeftPermSide.IsNotPermittedToExit THEN
                     PermissionViolation := TRUE;
                     qErrorCode          := E_BoxResultCode.Violation_Exited_SideA;
                 ELSE
@@ -164,7 +147,7 @@ FOR i := 2 TO 20000 DO
         IF SampleSpansBoxTime THEN
             IF (dataAxis.grabData[i-1] <= i1.PointYValue) AND (dataAxis.grabData[i] > i1.PointYValue) THEN
                 HasExitedBox := TRUE;
-                IF PermSideC.IsNotPermittedToExit THEN
+                IF TopPermSide.IsNotPermittedToExit THEN
                     PermissionViolation := TRUE;
                     qErrorCode          := E_BoxResultCode.Violation_Exited_SideC;
                 ELSE
@@ -177,7 +160,7 @@ FOR i := 2 TO 20000 DO
         IF SampleSpansBoxTime THEN
             IF (dataAxis.grabData[i-1] >= i2.PointYValue) AND (dataAxis.grabData[i] < i2.PointYValue) THEN
                 HasExitedBox := TRUE;
-                IF PermSideD.IsNotPermittedToExit THEN
+                IF BottomPermSide.IsNotPermittedToExit THEN
                     PermissionViolation := TRUE;
                     qErrorCode          := E_BoxResultCode.Violation_Exited_SideD;
                 ELSE
@@ -198,28 +181,46 @@ END_FOR
 // =========================================================================
 // PART 3: FINAL EVALUATION & MUTUALLY EXCLUSIVE OUTPUTS
 // =========================================================================
+
 // Catch the edge case where the loop finished but the signal never even hit a box boundary
-IF NOT EnteredViaValidSide AND NOT PermissionViolation THEN
-    qErrorCode := E_BoxResultCode.Err_NeverEnteredBox;
-END_IF
+	IF NOT EnteredViaValidSide AND NOT PermissionViolation THEN
+		qErrorCode := E_BoxResultCode.Err_NeverEnteredBox;
+	END_IF
+	
+	// CRITICAL FIX: Crosscheck "Must Enter" rules across all sides.
+	// If any side was marked "Must Enter", but our actual entry side doesn't match it, fail the test.
+	IF EnteredViaValidSide AND NOT PermissionViolation THEN
+		IF (LeftPermSide.EntryRule = E_WallEntryRule.MustEnter AND ValidEntrySide <> 1) OR
+		   (TopPermSide.EntryRule = E_WallEntryRule.MustEnter AND ValidEntrySide <> 3) OR
+		   (BottomPermSide.EntryRule = E_WallEntryRule.MustEnter AND ValidEntrySide <> 4) THEN
+			
+			PermissionViolation := TRUE;
+			qErrorCode          := E_BoxResultCode.Err_WrongEntryWall; 
+		END_IF
+	END_IF
 
 // Evaluate final pass/fail flags
-IF EnteredViaValidSide AND NOT HasExitedBox AND NOT PermissionViolation THEN
-    qPass      := TRUE;
-    qFail      := FALSE;
-    qErrorCode := E_BoxResultCode.Success;
-ELSE
-    qPass      := FALSE;
-    qFail      := TRUE;
+	IF EnteredViaValidSide AND NOT PermissionViolation AND (qErrorCode = E_BoxResultCode.Success) THEN
+		qPass      := TRUE;
+		qFail      := FALSE;
+	ELSE
+		qPass      := FALSE;
+		qFail      := TRUE;
+	END_IF
+
 END_IF]]></ST>
     </Implementation>
     <LineIds Name="FB_Window">
-      <LineId Id="6" Count="0" />
-      <LineId Id="9" Count="23" />
-      <LineId Id="35" Count="0" />
-      <LineId Id="1031" Count="0" />
-      <LineId Id="882" Count="147" />
+      <LineId Id="2003" Count="7" />
+      <LineId Id="2173" Count="0" />
+      <LineId Id="2166" Count="0" />
+      <LineId Id="2174" Count="0" />
+      <LineId Id="2167" Count="0" />
+      <LineId Id="2172" Count="0" />
+      <LineId Id="2011" Count="152" />
       <LineId Id="62" Count="0" />
+      <LineId Id="2176" Count="0" />
+      <LineId Id="2175" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

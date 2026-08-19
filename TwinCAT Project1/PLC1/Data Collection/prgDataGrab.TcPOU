@@ -10,6 +10,10 @@ VAR
 	tAxisFull: BOOL;
 	
 	visuBoxControl1:FB_BoxControl;
+	visuBoxControl2:FB_BoxControl;
+	visuBoxControl3:FB_BoxControl;
+	
+	CheckWindow1:FB_Window;
 	
 END_VAR
 ]]></Declaration>
@@ -18,7 +22,24 @@ END_VAR
 
 
 //temp control boxes
+//change the button control function on the boxes
 visuBoxControl1(iqBoxdata := dataGrab.dataCurrentVisu.box1);
+visuBoxControl2(iqBoxdata := dataGrab.dataCurrentVisu.box2);
+visuBoxControl3(iqBoxdata := dataGrab.dataCurrentVisu.box3);
+
+
+CheckWindow1(	dataAxis		:=	dataGrab.dataCurrentVisu.axis,
+				i1				:=	datagrab.dataCurrentVisu.box1.i1, //co-ords
+				i2				:=	datagrab.dataCurrentVisu.box1.i2, //co-ords
+				i3				:=	datagrab.dataCurrentVisu.box1.i3, //co-ords
+				i4				:=	datagrab.dataCurrentVisu.box1.i4, //co-ords
+				LeftPermSide	:=	datagrab.dataCurrentVisu.box1.leftStatus,
+				RightPermSide	:=	datagrab.dataCurrentVisu.box1.rightStatus,
+				TopPermSide		:=	datagrab.dataCurrentVisu.box1.topStatus,
+				BottomPermSide	:=	datagrab.dataCurrentVisu.box1.bottomStatus
+				);
+				
+
 
 ]]></ST>
     </Implementation>
@@ -57,7 +78,14 @@ END_IF
       <LineId Id="5" Count="0" />
       <LineId Id="24" Count="1" />
       <LineId Id="23" Count="0" />
+      <LineId Id="50" Count="0" />
       <LineId Id="26" Count="0" />
+      <LineId Id="42" Count="1" />
+      <LineId Id="51" Count="1" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="53" Count="4" />
+      <LineId Id="59" Count="4" />
+      <LineId Id="49" Count="0" />
       <LineId Id="30" Count="0" />
       <LineId Id="14" Count="0" />
     </LineIds>

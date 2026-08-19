@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <DUT Name="ST_WallPermission" Id="{84903c25-5a8c-0968-2ec8-c223c497da2f}">
-    <Declaration><![CDATA[TYPE ST_WallPermission :
+    <Declaration><![CDATA[// The updated wall permission structure
+TYPE ST_WallPermission :
 STRUCT
-    IsPermittedToEnter    : BOOL; //TRUE if permitted to enter the wall
-    IsNotPermittedToEnter : BOOL; //TRUE if not permitted to enter
-    IsNotPermittedToExit  : BOOL; //TRUE if not permitted to exit
+    EntryRule            : E_WallEntryRule; // Rule type: NoCheck, MustEnter, or MustNotEnter
+    IsNotPermittedToExit  : BOOL;           // TRUE if not permitted to exit
 END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>

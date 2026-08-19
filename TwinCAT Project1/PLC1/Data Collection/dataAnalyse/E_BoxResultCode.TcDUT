@@ -10,6 +10,7 @@ TYPE E_BoxResultCode :
     Err_IllegalEntry_SideA      := 11, // Crossed Side A (Left) but it was configured as illegal
     Err_IllegalEntry_SideC      := 13, // Crossed Side C (Top) but it was configured as illegal
     Err_IllegalEntry_SideD      := 14, // Crossed Side D (Bottom) but it was configured as illegal
+	Err_WrongEntryWall			:= 15, // Entered the wrong wall!
     
     Leak_Exited_SideA           := 21, // Signal backed out of Side A (Left Wall)
     Leak_Exited_SideB           := 22, // Signal broke out of Side B (Right Wall)
@@ -20,6 +21,7 @@ TYPE E_BoxResultCode :
     Violation_Exited_SideB     := 32, // Signal left Side B which was explicitly locked via IsNotPermittedToExit
     Violation_Exited_SideC     := 33, // Signal left Side C which was explicitly locked via IsNotPermittedToExit
     Violation_Exited_SideD     := 34  // Signal left Side D which was explicitly locked via IsNotPermittedToExit
+
 ) INT;
 END_TYPE]]></Declaration>
   </DUT>

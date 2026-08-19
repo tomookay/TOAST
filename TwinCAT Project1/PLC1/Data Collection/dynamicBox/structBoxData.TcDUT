@@ -3,15 +3,22 @@
   <DUT Name="structBoxData" Id="{8f29752d-ee44-0e34-267b-d8597d670936}">
     <Declaration><![CDATA[TYPE structBoxData :
 STRUCT
-	topStatus:USINT;
-	bottomStatus:USINT;
-	leftStatus:USINT;
-	rightStatus:USINT;
+	topStatus:ST_WallPermission;
+	bottomStatus:ST_WallPermission;
+	leftStatus:ST_WallPermission;
+	rightStatus:ST_WallPermission;
 	
 	topStatusChange:BOOL;
 	bottomStatusChange:BOOL;
 	leftStatusChange:BOOL;
 	rightStatusChange:BOOL;
+	
+	
+	    // Corner Points
+    i1 : ST_BoxCorner; // Top-Left
+    i2 : ST_BoxCorner; // Bottom-Left
+    i3 : ST_BoxCorner; // Bottom-Right
+    i4 : ST_BoxCorner; // Top-Right
 	
 END_STRUCT
 END_TYPE
