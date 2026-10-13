@@ -36,9 +36,13 @@ VAR
 	timSEOCtimeout: TON;
 	tUseOtherStation: BOOL;
 	tResetSEOC: BOOL;
+	tWasTriggered: BOOL;
+	tWascalled: BOOL;
+	tAnyWasPressed: BOOL;
 END_VAR
 
 VAR_OUTPUT
+	qIncorrectManButton:BOOL; //message for incorrect mode selected for manual mode (select manual mode!)
 END_VAR
 
 VAR_IN_OUT
@@ -81,7 +85,7 @@ END_VAR
                             <v n="LValue">true</v>
                             <v n="Boolean">true</v>
                             <v n="IsInstance">false</v>
-                            <v n="Id">1843L</v>
+                            <v n="Id">2349L</v>
                           </o>
                         </l2>
                       </o>
@@ -106,7 +110,7 @@ END_VAR
                           <v n="LValue">false</v>
                           <v n="Boolean">false</v>
                           <v n="IsInstance">true</v>
-                          <v n="Id">1855L</v>
+                          <v n="Id">2343L</v>
                         </o>
                         <o n="OutputItems" t="OutputItemList">
                           <l2 n="OutputItems" />
@@ -133,9 +137,9 @@ END_VAR
                               <v n="LValue">false</v>
                               <v n="Boolean">true</v>
                               <v n="IsInstance">false</v>
-                              <v n="Id">1842L</v>
+                              <v n="Id">2346L</v>
                             </o>
-                            <v n="Id">1841L</v>
+                            <v n="Id">2345L</v>
                           </o>
                           <o>
                             <o n="Operand" t="Operand">
@@ -152,9 +156,9 @@ END_VAR
                               <v n="LValue">false</v>
                               <v n="Boolean">true</v>
                               <v n="IsInstance">false</v>
-                              <v n="Id">1860L</v>
+                              <v n="Id">2348L</v>
                             </o>
-                            <v n="Id">1859L</v>
+                            <v n="Id">2347L</v>
                           </o>
                         </l2>
                         <o n="InputParam" t="ParamList">
@@ -171,13 +175,13 @@ END_VAR
                         <n n="STSnippet" />
                         <v n="ContainsExtensibleInputs">false</v>
                         <v n="ProvidesSTSnippet">false</v>
-                        <v n="Id">1856L</v>
+                        <v n="Id">2344L</v>
                       </o>
-                      <v n="Id">1844L</v>
+                      <v n="Id">2350L</v>
                     </o>
                   </l2>
                   <l2 n="Connectors" />
-                  <v n="Id">1840L</v>
+                  <v n="Id">2342L</v>
                 </o>
                 <o>
                   <v n="ILActive">false</v>
@@ -10679,7 +10683,7 @@ or timeout"</v>
                         <v n="LValue">false</v>
                         <v n="Boolean">false</v>
                         <v n="IsInstance">true</v>
-                        <v n="Id">1430L</v>
+                        <v n="Id">2380L</v>
                       </o>
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems" cet="Operand">
@@ -10698,7 +10702,7 @@ or timeout"</v>
                             <v n="LValue">true</v>
                             <v n="Boolean">false</v>
                             <v n="IsInstance">false</v>
-                            <v n="Id">1432L</v>
+                            <v n="Id">2382L</v>
                           </o>
                           <o>
                             <v n="Operand">"stationstate.StationStateTextColour"</v>
@@ -10714,7 +10718,7 @@ or timeout"</v>
                             <v n="LValue">true</v>
                             <v n="Boolean">false</v>
                             <v n="IsInstance">false</v>
-                            <v n="Id">1433L</v>
+                            <v n="Id">2383L</v>
                           </o>
                         </l2>
                       </o>
@@ -10732,7 +10736,7 @@ or timeout"</v>
                             <v n="Fixed">false</v>
                             <v n="Extensible">false</v>
                           </o>
-                          <v n="Id">1357L</v>
+                          <v n="Id">2384L</v>
                         </o>
                         <o t="BoxTreeOperand">
                           <o n="Operand" t="Operand">
@@ -10749,9 +10753,9 @@ or timeout"</v>
                             <v n="LValue">false</v>
                             <v n="Boolean">false</v>
                             <v n="IsInstance">false</v>
-                            <v n="Id">1352L</v>
+                            <v n="Id">2386L</v>
                           </o>
-                          <v n="Id">1351L</v>
+                          <v n="Id">2385L</v>
                         </o>
                       </l2>
                       <o n="InputParam" t="ParamList">
@@ -10782,11 +10786,89 @@ or timeout"</v>
                       <n n="STSnippet" />
                       <v n="ContainsExtensibleInputs">false</v>
                       <v n="ProvidesSTSnippet">false</v>
-                      <v n="Id">1431L</v>
+                      <v n="Id">2381L</v>
                     </o>
                   </l2>
                   <l2 n="Connectors" />
-                  <v n="Id">1339L</v>
+                  <v n="Id">2379L</v>
+                </o>
+                <o>
+                  <v n="ILActive">false</v>
+                  <v n="FBDValid">false</v>
+                  <v n="ILValid">false</v>
+                  <l2 n="ILLines" />
+                  <v n="Comment">"enumerate colour number"</v>
+                  <v n="Title">""</v>
+                  <v n="Label">""</v>
+                  <v n="OutCommented">false</v>
+                  <l2 n="NetworkItems" cet="BoxTreeBox">
+                    <o>
+                      <v n="BoxType">"actIncorrectManButton"</v>
+                      <o n="Instance" t="Operand">
+                        <n n="Operand" />
+                        <v n="Type">""</v>
+                        <v n="Comment">""</v>
+                        <v n="SymbolComment">""</v>
+                        <v n="Address">""</v>
+                        <o n="Flags" t="Flags">
+                          <v n="Flags">0</v>
+                          <v n="Fixed">false</v>
+                          <v n="Extensible">false</v>
+                        </o>
+                        <v n="LValue">false</v>
+                        <v n="Boolean">false</v>
+                        <v n="IsInstance">true</v>
+                        <v n="Id">2387L</v>
+                      </o>
+                      <o n="OutputItems" t="OutputItemList">
+                        <l2 n="OutputItems">
+                          <n />
+                        </l2>
+                      </o>
+                      <o n="Flags" t="Flags">
+                        <v n="Flags">0</v>
+                        <v n="Fixed">true</v>
+                        <v n="Extensible">false</v>
+                      </o>
+                      <n n="InputFlags" />
+                      <l2 n="InputItems" cet="BoxTreeTerminator">
+                        <o>
+                          <n n="Input" />
+                          <o n="Flags" t="Flags">
+                            <v n="Flags">0</v>
+                            <v n="Fixed">false</v>
+                            <v n="Extensible">false</v>
+                          </o>
+                          <v n="Id">2331L</v>
+                        </o>
+                      </l2>
+                      <o n="InputParam" t="ParamList">
+                        <l2 n="Names" cet="String">
+                          <v>EN</v>
+                        </l2>
+                        <l2 n="Types" cet="String">
+                          <v>BOOL</v>
+                        </l2>
+                      </o>
+                      <o n="OutputParam" t="ParamList">
+                        <l2 n="Names" cet="String">
+                          <v>ENO</v>
+                        </l2>
+                        <l2 n="Types" cet="String">
+                          <v>BOOL</v>
+                        </l2>
+                      </o>
+                      <v n="CallType" t="Operator">Action</v>
+                      <v n="EN">true</v>
+                      <v n="ENO">true</v>
+                      <n n="STSnippet" />
+                      <v n="ContainsExtensibleInputs">false</v>
+                      <v n="ProvidesSTSnippet">false</v>
+                      <v n="Id">2388L</v>
+                    </o>
+                  </l2>
+                  <l2 n="Connectors" />
+                  <v n="Id">2326L</v>
                 </o>
               </l2>
               <v n="BranchCounter">11</v>
@@ -10814,6 +10896,29 @@ or timeout"</v>
         </XmlArchive>
       </NWL>
     </Implementation>
+    <Action Name="actIncorrectManButton" Id="{f5a44d7c-9d38-07e2-36cc-f3827f5e5cd5}">
+      <Implementation>
+        <ST><![CDATA[//interlock message for manual button pressed at wrong time (auto mode, but not auto cycling?)
+
+///gHMIButtons.gAnyMotionButtonPresed
+
+IF	(gHMIButtons.gAnyMotionButtonPresed AND	iIsStationSelected)	AND
+	((NOT stationState.Manual) AND (NOT stationState.AutoCycling))
+	
+	THEN
+	qIncorrectManButton S= TRUE;
+	
+	ELSE
+	//qIncorrectManButton := FALSE;
+END_IF
+
+
+IF qIncorrectManButton AND stationState.btnReset THEN
+	qIncorrectManButton := FALSE;
+END_IF
+ ]]></ST>
+      </Implementation>
+    </Action>
     <ObjectProperties>
       <XmlArchive>
         <Data>
@@ -10831,5 +10936,21 @@ or timeout"</v>
         </TypeList>
       </XmlArchive>
     </ObjectProperties>
+    <LineIds Name="FB_Mode.actIncorrectManButton">
+      <LineId Id="1" Count="0" />
+      <LineId Id="3" Count="0" />
+      <LineId Id="2" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="4" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="9" Count="2" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="12" Count="1" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="28" Count="1" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="30" Count="1" />
+      <LineId Id="33" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

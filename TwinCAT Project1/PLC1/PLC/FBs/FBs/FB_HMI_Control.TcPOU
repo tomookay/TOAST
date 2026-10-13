@@ -84,8 +84,8 @@ stndata.MotionRow[iRowNumber].Returned.Prompt := FALSE;
 		
 
 //advance feedback for HMI
-IF stndata.MotionRowBtn[iRowNumber].btnAdvance	THEN	qAdvanceReq	:= TRUE;	gHMIButtons.gAnyMotionButtonPresed := TRUE;	END_IF
-IF stndata.MotionRowBtn[iRowNumber].btnReturn	THEN	qReturnReq	:= TRUE;	gHMIButtons.gAnyMotionButtonPresed := TRUE;	END_IF
+IF stndata.MotionRowBtn[iRowNumber].btnAdvance	THEN	qAdvanceReq	:= TRUE;	gHMIButtons.gAnyMotionButtonPresed S= TRUE;	END_IF
+IF stndata.MotionRowBtn[iRowNumber].btnReturn	THEN	qReturnReq	:= TRUE;	gHMIButtons.gAnyMotionButtonPresed S= TRUE;	END_IF
 
 //limit switches
 IF iAdvanceLimit					THEN	stndata.MotionRow[iRowNumber].Advance.Depth := TRUE;	END_IF

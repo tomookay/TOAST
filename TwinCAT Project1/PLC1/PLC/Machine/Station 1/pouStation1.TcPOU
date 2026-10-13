@@ -40,6 +40,7 @@ VAR
 	runSFC: BOOL;
 	FB_StationStats_Station1: FB_StationStats;
 	FB_ApplyLocks_0: FB_ApplyLocks;
+	ttestststs: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -5582,7 +5583,7 @@ UINT_TO_REAL(S1_Global.S1_NumOfRows)"</v>
                     <v n="FBDValid">false</v>
                     <v n="ILValid">false</v>
                     <l2 n="ILLines" />
-                    <v n="Comment">""</v>
+                    <v n="Comment">"GlobalMessages.gMsgS1.Alarm.message[999]"</v>
                     <v n="Title">""</v>
                     <v n="Label">""</v>
                     <v n="OutCommented">false</v>
@@ -5603,11 +5604,27 @@ UINT_TO_REAL(S1_Global.S1_NumOfRows)"</v>
                           <v n="LValue">false</v>
                           <v n="Boolean">false</v>
                           <v n="IsInstance">true</v>
-                          <v n="Id">341L</v>
+                          <v n="Id">343L</v>
                         </o>
                         <o n="OutputItems" t="OutputItemList">
-                          <l2 n="OutputItems">
+                          <l2 n="OutputItems" cet="Operand">
                             <n />
+                            <o>
+                              <v n="Operand">"GlobalMessages.gMsgS1.Alarm.message[999]"</v>
+                              <v n="Type">"BOOL"</v>
+                              <v n="Comment">""</v>
+                              <v n="SymbolComment">""</v>
+                              <v n="Address">""</v>
+                              <o n="Flags" t="Flags">
+                                <v n="Flags">0</v>
+                                <v n="Fixed">false</v>
+                                <v n="Extensible">false</v>
+                              </o>
+                              <v n="LValue">true</v>
+                              <v n="Boolean">false</v>
+                              <v n="IsInstance">false</v>
+                              <v n="Id">345L</v>
+                            </o>
                           </l2>
                         </o>
                         <o n="Flags" t="Flags">
@@ -6689,8 +6706,10 @@ UINT_TO_REAL(S1_Global.S1_NumOfRows)"</v>
                         <o n="OutputParam" t="ParamList">
                           <l2 n="Names" cet="String">
                             <v>ENO</v>
+                            <v>qIncorrectManButton</v>
                           </l2>
                           <l2 n="Types" cet="String">
+                            <v>BOOL</v>
                             <v>BOOL</v>
                           </l2>
                         </o>
@@ -6700,7 +6719,7 @@ UINT_TO_REAL(S1_Global.S1_NumOfRows)"</v>
                         <n n="STSnippet" />
                         <v n="ContainsExtensibleInputs">false</v>
                         <v n="ProvidesSTSnippet">false</v>
-                        <v n="Id">342L</v>
+                        <v n="Id">344L</v>
                       </o>
                     </l2>
                     <l2 n="Connectors" />

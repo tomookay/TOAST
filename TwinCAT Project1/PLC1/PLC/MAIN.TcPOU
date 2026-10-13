@@ -102,8 +102,7 @@ prgModeRows();
 pouMachineSettings();
 
 //test call for data analyse
-prgDataAnaylse();
-]]></ST>
+prgDataAnaylse();]]></ST>
     </Implementation>
     <Action Name="actClockMemory" Id="{70b275c8-6e52-422a-a97c-c2dc26306982}">
       <Implementation>
@@ -457,8 +456,9 @@ END_IF
 					);
 					
 	System.sysDeviceInfo := getDeviceInfoEx.stDevIdent;
-	
-	IF gHMIButtons.gAnyMotionButtonPresed THEN gHMIButtons.gAnyMotionButtonPresed := FALSE; END_IF//first scan
+
+//need to improve this at some point	
+IF system.OneSecond AND gHMIButtons.gAnyMotionButtonPresed THEN gHMIButtons.gAnyMotionButtonPresed := FALSE; END_IF//first scan
 
 
 	
@@ -515,7 +515,7 @@ END_IF
       <LineId Id="235" Count="0" />
       <LineId Id="304" Count="0" />
       <LineId Id="303" Count="0" />
-      <LineId Id="305" Count="1" />
+      <LineId Id="305" Count="0" />
     </LineIds>
     <LineIds Name="MAIN.actClockMemory">
       <LineId Id="1" Count="0" />
@@ -664,8 +664,9 @@ END_IF
       <LineId Id="132" Count="0" />
       <LineId Id="134" Count="6" />
       <LineId Id="143" Count="4" />
+      <LineId Id="155" Count="0" />
       <LineId Id="149" Count="0" />
-      <LineId Id="151" Count="1" />
+      <LineId Id="153" Count="1" />
       <LineId Id="150" Count="0" />
       <LineId Id="148" Count="0" />
       <LineId Id="115" Count="0" />
