@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.29" ClassName="CNcSafTaskDef" SubType="0" TcProjectVariant="NoPLC">
 	<NC>
-		<SafTask Priority="8" CycleTime="20000" AmsPort="501" Affinity="#x00000008" IoAtBegin="true" SafTaskInfo="256">
+		<SafTask Priority="8" CycleTime="20000" AmsPort="501" IoAtBegin="true" SafTaskInfo="256">
 			<Name>NC-Task 1 SAF</Name>
 			<Vars VarGrpType="1" InsertType="1">
 				<Name>Inputs</Name>
@@ -13,7 +13,7 @@
 				<Name>Image</Name>
 			</Image>
 		</SafTask>
-		<SvbTask Priority="10" CycleTime="100000" AmsPort="511" Affinity="#x00000008">
+		<SvbTask Priority="10" CycleTime="100000" AmsPort="511">
 			<Name>NC-Task 1 SVB</Name>
 		</SvbTask>
 		<Axis File="X Axis.xti" Id="1"/>

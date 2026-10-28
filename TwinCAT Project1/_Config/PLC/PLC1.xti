@@ -1153,10 +1153,10 @@ External Setpoint Generation:
 		<ProjectVariant PvUseDefine="true">
 			<Variant>
 				<Name>NoPLC</Name>
+				<Name>PLCTest</Name>
 				<Defines></Defines>
 			</Variant>
 			<Variant>
-				<Name>PLCTest</Name>
 				<Name>Variant1</Name>
 				<Name>Variant2</Name>
 				<Name>Variant3</Name>
@@ -1258,14 +1258,14 @@ External Setpoint Generation:
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>Safety.gSafetyCPUState</Name>
-					<Comment><![CDATA[CPU state as ethercat slave]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
 					<Name>Safety.gSafetySerialNumber</Name>
 					<Comment><![CDATA[serial number of safety CPU]]></Comment>
 					<Type>UDINT</Type>
+				</Var>
+				<Var>
+					<Name>Safety.gSafetyCPUState</Name>
+					<Comment><![CDATA[CPU state as ethercat slave]]></Comment>
+					<Type>UINT</Type>
 				</Var>
 				<Var>
 					<Name>Safety.gSafetyCPUADSadr</Name>

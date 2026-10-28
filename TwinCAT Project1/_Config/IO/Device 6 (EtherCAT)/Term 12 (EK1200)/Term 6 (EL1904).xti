@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.55" ClassName="CFlbTermDef" SubType="9099" TcProjectVariant="NoPLC">
+<TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.29" ClassName="CFlbTermDef" SubType="9099" TcProjectVariant="NoPLC">
 	<DataTypes>
 		<DataType>
 			<Name GUID="{18071995-0000-0000-0000-002000000004}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..3] OF BIT</Name>
@@ -20,7 +20,7 @@
 			</ArrayInfo>
 		</DataType>
 	</DataTypes>
-	<Box Id="12" BoxType="9099" BoxFlags="#x00000020">
+	<Box Id="6" BoxType="9099" BoxFlags="#x00000020">
 		<Name>__FILENAME__</Name>
 		<ImageId>118</ImageId>
 		<EtherCAT SlaveType="2" PdiType="#x0005" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="7" FoeType="1" VendorId="#x00000002" ProductCode="#x07703052" RevisionNo="#x00130000" InfoDataAddr="true" TimeoutMailbox2="2000" CheckRevisionNoType="3" PortPhys="51" MaxSlotCount="1" Type="EL1904, 4 Ch. Safety Input 24V, TwinSAFE" Desc="EL1904">
@@ -28,8 +28,8 @@
 			<SyncMan>001100012200010002000000400000010001001122010000</SyncMan>
 			<SyncMan>001206002400010003000000000000000600001224010000</SyncMan>
 			<SyncMan>001906002000010004000000000000000600001920010000</SyncMan>
-			<Fmmu>0000000000000000000000020000000001000000000000000000000000000000</Fmmu>
-			<Fmmu>0000000000000000000000010000000002000000000000000000000000000000</Fmmu>
+			<Fmmu>0000000000000000001200020100000001000000000000000000000000000000</Fmmu>
+			<Fmmu>0000000000000000001900010100000002000000000000000000000000000000</Fmmu>
 			<Fmmu>00000000000000000d0800010100000003000000000000000000000000000000</Fmmu>
 			<BootStrapData>0010f400f410f400</BootStrapData>
 			<Pdo Name="TxPDO" Index="#x1a00" Flags="#x0090" SyncMan="3">
@@ -76,7 +76,7 @@
 			<Slot Name="">
 				<SlotData>0000010001000400000000000000000000000000000000000000000000000000</SlotData>
 				<ModuleIdent>190</ModuleIdent>
-				<Module Id="#x03090005" Type="FSOES" Class="190">
+				<Module Id="#x03090001" Type="FSOES" Class="190">
 					<Name>Module 1 (FSOES)</Name>
 					<ImageId>118</ImageId>
 					<ModuleData>02000000be00000000000c000000000000000000000000000000000000000000</ModuleData>
