@@ -38,9 +38,12 @@
 		<Image Id="8" AddrType="9" ImageType="3">
 			<Name>Image</Name>
 		</Image>
-		<Box File="Term 12 (EK1200).xti" Id="5">
+		<Box File="Term 8 (EK1200).xti" Id="12">
 			<EtherCAT PortABoxInfo="#x00ffffff"/>
 		</Box>
-		<EtherCAT/>
+		<EtherCAT>
+			<SyncUnit Name="io" NoDeleteIfUnused="true"/>
+			<SyncUnit Name="other" NoDeleteIfUnused="true"/>
+		</EtherCAT>
 	</Device>
 </TcSmItem>

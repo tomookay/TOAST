@@ -61,48 +61,48 @@ prgSafetyMain();
 //call base machine
 
 //call HMI
-//calls logic to drive the HMI
+//calls logic to drive the HMI //50%?!
 pouHMI();
 
 //call machine base
-pouMachine();
+//pouMachine();
 
 //call station 1
 //calls motions only associated with station 1
-IF System.gSetup.stationEnable[1] THEN pouStation1(); END_IF;
+//IF System.gSetup.stationEnable[1] THEN pouStation1(); END_IF;
 
 //call station 2
-IF System.gSetup.stationEnable[2] THEN pouStation2(); END_IF;
+//IF System.gSetup.stationEnable[2] THEN pouStation2(); END_IF;
 
 //call station 3
-IF System.gSetup.stationEnable[3] THEN pouStation3(); END_IF;
+//IF System.gSetup.stationEnable[3] THEN pouStation3(); END_IF;
 
 //call station 4
-IF System.gSetup.stationEnable[4] THEN pouStation4(); END_IF;
+//IF System.gSetup.stationEnable[4] THEN pouStation4(); END_IF;
 
 //call station 5
-IF System.gSetup.stationEnable[5] THEN pouStation5(); END_IF;
+//IF System.gSetup.stationEnable[5] THEN pouStation5(); END_IF;
 
 //call station 6
-IF System.gSetup.stationEnable[6] THEN pouStation6(); END_IF;
+//IF System.gSetup.stationEnable[6] THEN pouStation6(); END_IF;
 
 //there are only ever 6 maximum stations
 
 //call logic after station calls for scan after the call of stations
-prgAfterStationScan();
+//prgAfterStationScan();
 
 
 //test call for data view
-pouDataDisplay();
+//pouDataDisplay();
 
 //call mode rows - call after to use scan logic
-prgModeRows();
+//prgModeRows();
 
 //call program for machine settings
-pouMachineSettings();
+//pouMachineSettings();
 
 //test call for data analyse
-prgDataAnaylse();]]></ST>
+//prgDataAnaylse();]]></ST>
     </Implementation>
     <Action Name="actClockMemory" Id="{70b275c8-6e52-422a-a97c-c2dc26306982}">
       <Implementation>
