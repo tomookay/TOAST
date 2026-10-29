@@ -36,6 +36,10 @@ VAR
 	
 	oneSecStart:TON;
 	
+	fbSUps             : FB_S_UPS;
+    tPowerFailDetected : BOOL;
+    eUpsState          : E_S_UPS_State;
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -65,44 +69,44 @@ prgSafetyMain();
 pouHMI();
 
 //call machine base
-//pouMachine();
+pouMachine();
 
 //call station 1
 //calls motions only associated with station 1
-//IF System.gSetup.stationEnable[1] THEN pouStation1(); END_IF;
+IF System.gSetup.stationEnable[1] THEN pouStation1(); END_IF;
 
 //call station 2
-//IF System.gSetup.stationEnable[2] THEN pouStation2(); END_IF;
+IF System.gSetup.stationEnable[2] THEN pouStation2(); END_IF;
 
 //call station 3
-//IF System.gSetup.stationEnable[3] THEN pouStation3(); END_IF;
+IF System.gSetup.stationEnable[3] THEN pouStation3(); END_IF;
 
 //call station 4
-//IF System.gSetup.stationEnable[4] THEN pouStation4(); END_IF;
+IF System.gSetup.stationEnable[4] THEN pouStation4(); END_IF;
 
 //call station 5
-//IF System.gSetup.stationEnable[5] THEN pouStation5(); END_IF;
+IF System.gSetup.stationEnable[5] THEN pouStation5(); END_IF;
 
 //call station 6
-//IF System.gSetup.stationEnable[6] THEN pouStation6(); END_IF;
+IF System.gSetup.stationEnable[6] THEN pouStation6(); END_IF;
 
 //there are only ever 6 maximum stations
 
 //call logic after station calls for scan after the call of stations
-//prgAfterStationScan();
+prgAfterStationScan();
 
 
 //test call for data view
-//pouDataDisplay();
+pouDataDisplay();
 
 //call mode rows - call after to use scan logic
-//prgModeRows();
+prgModeRows();
 
 //call program for machine settings
-//pouMachineSettings();
+pouMachineSettings();
 
 //test call for data analyse
-//prgDataAnaylse();]]></ST>
+prgDataAnaylse();]]></ST>
     </Implementation>
     <Action Name="actClockMemory" Id="{70b275c8-6e52-422a-a97c-c2dc26306982}">
       <Implementation>
@@ -356,7 +360,8 @@ END_IF
 	System.myPlcAppSystemInfo:=TwinCAT_SystemInfoVarList._AppInfo;
 	
 	//get task info
-	System.myPlcInfoTask1 := TwinCAT_SystemInfoVarList._TaskInfo[1];
+	//change to the called task to get the correct time base for messages
+	System.myPlcInfoTask1 := TwinCAT_SystemInfoVarList._TaskInfo[2];
 	
 	//move task scan time to memory
 	System.ScanTimeReq := UDINT_TO_REAL(System.myPlcInfoTask1.CycleTime);
@@ -456,6 +461,9 @@ END_IF
 					);
 					
 	System.sysDeviceInfo := getDeviceInfoEx.stDevIdent;
+	
+	actUPS();
+	
 
 //need to improve this at some point	
 IF system.OneSecond AND gHMIButtons.gAnyMotionButtonPresed THEN gHMIButtons.gAnyMotionButtonPresed := FALSE; END_IF//first scan
@@ -465,6 +473,21 @@ IF system.OneSecond AND gHMIButtons.gAnyMotionButtonPresed THEN gHMIButtons.gAny
 
 	
 	]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="actUPS" Id="{59ffa67d-4b5b-09f7-272c-9841e5c2fcd4}">
+      <Implementation>
+        <ST><![CDATA[fbSUps(
+    sNetID          := '',                       // '' signifies the local controller
+    iPLCPort        := 851,                      // TwinCAT 3 default PLC runtime port
+    iUPSPort        := 16#4A8,                   // Default hardware port for CX50x0
+    tTimeout        := T#5S,                     // Timeout duration for the process
+    eUpsMode        := eSUPS_WrPersistData_Shutdown, // Writes persistent data then shuts down PC
+    ePersistentMode := SPDM_2PASS,               // Recommended 2-pass mode for stability
+    tRecoverTime    := T#1S,                    // Recovery grace time
+    bPowerFailDetect=> tPowerFailDetected,
+    eState          => eUpsState
+);]]></ST>
       </Implementation>
     </Action>
     <LineIds Name="MAIN">
@@ -609,6 +632,7 @@ IF system.OneSecond AND gHMIButtons.gAnyMotionButtonPresed THEN gHMIButtons.gAny
       <LineId Id="2" Count="0" />
       <LineId Id="9" Count="0" />
       <LineId Id="8" Count="0" />
+      <LineId Id="156" Count="0" />
       <LineId Id="3" Count="0" />
       <LineId Id="11" Count="0" />
       <LineId Id="10" Count="0" />
@@ -664,6 +688,7 @@ IF system.OneSecond AND gHMIButtons.gAnyMotionButtonPresed THEN gHMIButtons.gAny
       <LineId Id="132" Count="0" />
       <LineId Id="134" Count="6" />
       <LineId Id="143" Count="4" />
+      <LineId Id="157" Count="2" />
       <LineId Id="155" Count="0" />
       <LineId Id="149" Count="0" />
       <LineId Id="153" Count="1" />
@@ -671,6 +696,10 @@ IF system.OneSecond AND gHMIButtons.gAnyMotionButtonPresed THEN gHMIButtons.gAny
       <LineId Id="148" Count="0" />
       <LineId Id="115" Count="0" />
       <LineId Id="86" Count="1" />
+    </LineIds>
+    <LineIds Name="MAIN.actUPS">
+      <LineId Id="2" Count="9" />
+      <LineId Id="1" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
