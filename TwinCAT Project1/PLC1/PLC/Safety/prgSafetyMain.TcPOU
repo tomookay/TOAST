@@ -23,6 +23,8 @@ END_IF
 //this send the enable to run the program, should be running all the time in most cases
 IF runSafeProgram THEN
 	Safety.qInRun := TRUE;
+	Safety.qRunStop := TRUE;
+	
 END_IF
 
 
@@ -64,7 +66,9 @@ END_IF
       <LineId Id="56" Count="0" />
       <LineId Id="52" Count="1" />
       <LineId Id="51" Count="0" />
-      <LineId Id="54" Count="1" />
+      <LineId Id="54" Count="0" />
+      <LineId Id="66" Count="1" />
+      <LineId Id="55" Count="0" />
       <LineId Id="42" Count="0" />
       <LineId Id="35" Count="0" />
       <LineId Id="34" Count="0" />

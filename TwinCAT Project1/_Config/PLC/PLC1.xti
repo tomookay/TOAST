@@ -1258,19 +1258,24 @@ External Setpoint Generation:
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>Safety.gSafetyCPUState</Name>
-					<Comment><![CDATA[CPU state as ethercat slave]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
 					<Name>Safety.gSafetySerialNumber</Name>
 					<Comment><![CDATA[serial number of safety CPU]]></Comment>
 					<Type>UDINT</Type>
 				</Var>
 				<Var>
+					<Name>Safety.gSafetyCPUState</Name>
+					<Comment><![CDATA[CPU state as ethercat slave]]></Comment>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
 					<Name>Safety.gSafetyCPUADSadr</Name>
 					<Comment><![CDATA[CPU AMSADR]]></Comment>
 					<Type GUID="{18071995-0000-0000-0000-000000000042}">AMSADDR</Type>
+				</Var>
+				<Var>
+					<Name>ModuleStates.iModuleState1</Name>
+					<Comment><![CDATA[104 = ok]]></Comment>
+					<Type>USINT</Type>
 				</Var>
 				<Var>
 					<Name>Safety.qComError</Name>
@@ -1311,44 +1316,44 @@ External Setpoint Generation:
 					<Type>USINT</Type>
 				</Var>
 				<Var>
-					<Name>Safety.iEstop2State</Name>
-					<Type>USINT</Type>
-				</Var>
-				<Var>
 					<Name>Safety.iEstop1Diag</Name>
 					<Type GUID="{2A4AAA35-0BF8-03D0-72B3-558192052311}">structEstopDiag</Type>
 				</Var>
 				<Var>
-					<Name>Safety.iEstop2Diag</Name>
-					<Type GUID="{2A4AAA35-0BF8-03D0-72B3-558192052311}">structEstopDiag</Type>
+					<Name>Safety.iEstop2State</Name>
+					<Type>USINT</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iEstop3State</Name>
 					<Type>USINT</Type>
 				</Var>
 				<Var>
-					<Name>Safety.iAccessGate1State</Name>
-					<Type>USINT</Type>
+					<Name>Safety.iEstop2Diag</Name>
+					<Type GUID="{2A4AAA35-0BF8-03D0-72B3-558192052311}">structEstopDiag</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iEstop3Diag</Name>
 					<Type GUID="{2A4AAA35-0BF8-03D0-72B3-558192052311}">structEstopDiag</Type>
 				</Var>
 				<Var>
-					<Name>Safety.iAccessGate1Diag</Name>
-					<Type GUID="{2A4AAA35-0BF8-03D0-72B3-558192052311}">structEstopDiag</Type>
+					<Name>Safety.iAccessGate1State</Name>
+					<Type>USINT</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iAccessGate2State</Name>
 					<Type>USINT</Type>
 				</Var>
 				<Var>
-					<Name>Safety.iEnablingPendantState</Name>
-					<Type>USINT</Type>
+					<Name>Safety.iAccessGate1Diag</Name>
+					<Type GUID="{2A4AAA35-0BF8-03D0-72B3-558192052311}">structEstopDiag</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iAccessGate2Diag</Name>
 					<Type GUID="{2A4AAA35-0BF8-03D0-72B3-558192052311}">structEstopDiag</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iEnablingPendantState</Name>
+					<Type>USINT</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iEnablingPendantDiag</Name>
@@ -5669,6 +5674,19 @@ External Setpoint Generation:
 					<Comment><![CDATA[assign to mapped IO for DPstate]]></Comment>
 					<Type GUID="{0B5BBC5D-75B7-11B9-17A3-3E8876EE3859}">ARRAY [1..127] OF USINT</Type>
 				</Var>
+				<Var>
+					<Name>ModuleStates.iModuleDiag1</Name>
+					<Comment><![CDATA[0 = ok]]></Comment>
+					<Type>USINT</Type>
+				</Var>
+				<Var>
+					<Name>ModuleStates.iModuleState2</Name>
+					<Type>USINT</Type>
+				</Var>
+				<Var>
+					<Name>ModuleStates.iModuleDiag2</Name>
+					<Type>USINT</Type>
+				</Var>
 			</Vars>
 			<Vars VarGrpType="2" ContextId="1" AreaNo="17">
 				<Name>PlcTask Outputs</Name>
@@ -5676,10 +5694,6 @@ External Setpoint Generation:
 					<Name>Safety.iGroupPort_ErrAck</Name>
 					<Comment><![CDATA[mapped from safety program
 outputs from PLC (i) program become inputs to safety program (q)]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Safety.iModuleFault</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
@@ -5696,7 +5710,7 @@ iEnableSafetyDevices	AT %Q*	:BOOL;]]></Comment>
 					<Type>UINT</Type>
 				</Var>
 				<Var>
-					<Name>Safety.iRunStop</Name>
+					<Name>Safety.iModuleFault</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
@@ -9540,6 +9554,27 @@ iEnableSafetyDevices	AT %Q*	:BOOL;]]></Comment>
 					<Name>S6_IO.Row99.qReturnedCoil</Name>
 					<Type>BOOL</Type>
 				</Var>
+				<Var>
+					<Name>stdOutputs.iOutput1</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>stdOutputs.iOutput2</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>stdOutputs.iOutput3</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>stdOutputs.iOutput4</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Safety.qRunStop</Name>
+					<Comment><![CDATA[run the safety program]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
 			</Vars>
 			<Contexts>
 				<Context>
@@ -9574,6 +9609,24 @@ iEnableSafetyDevices	AT %Q*	:BOOL;]]></Comment>
 				<Link VarA="PlcTask Inputs^System.ecMasterData[1].ecMasterCfgSlaveCount" VarB="InfoData^CfgSlaveCount"/>
 				<Link VarA="PlcTask Inputs^System.ecMasterData[1].ecMasterChangeCount" VarB="InfoData^ChangeCount"/>
 				<Link VarA="PlcTask Inputs^System.ecMasterData[1].ecMasterDevId" VarB="InfoData^DevId"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 6 (EtherCAT)^Term 8 (EK1200)^Term 15 (EL6900)">
+				<Link VarA="PlcTask Inputs^ModuleStates.iModuleDiag1" VarB="Connection Info Data^Message_3 Info Data^Diag"/>
+				<Link VarA="PlcTask Inputs^ModuleStates.iModuleDiag2" VarB="Connection Info Data^Message_4 Info Data^Diag"/>
+				<Link VarA="PlcTask Inputs^ModuleStates.iModuleState1" VarB="Connection Info Data^Message_3 Info Data^State"/>
+				<Link VarA="PlcTask Inputs^ModuleStates.iModuleState2" VarB="Connection Info Data^Message_4 Info Data^State"/>
+				<Link VarA="PlcTask Inputs^Safety.gSafetyProgramChecksum" VarB="Device Info Data^Project CRC"/>
+				<Link VarA="PlcTask Inputs^Safety.gSafetySerialNumber" VarB="Device Info Data^Serial Number"/>
+				<Link VarA="PlcTask Inputs^Safety.iEstop1Diag^iwordvalue" VarB="Function Block Info Data^EL6900.Network1.FBEstop1 Info Data^Diag"/>
+				<Link VarA="PlcTask Inputs^Safety.iEstop1State" VarB="Function Block Info Data^EL6900.Network1.FBEstop1 Info Data^State"/>
+				<Link VarA="PlcTask Outputs^Safety.iResetFBs" VarB="StandardOutputs^Standard In Var 1" Size="1"/>
+				<Link VarA="PlcTask Outputs^Safety.qRunStop" VarB="StandardOutputs^Standard In Var 2" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 6 (EtherCAT)^Term 8 (EK1200)^Term 16 (EL2904)">
+				<Link VarA="PlcTask Outputs^stdOutputs.iOutput1" VarB="Module 2 (DO)^RxPDO^Output Channel 1" Size="1"/>
+				<Link VarA="PlcTask Outputs^stdOutputs.iOutput2" VarB="Module 2 (DO)^RxPDO^Output Channel 2" Size="1"/>
+				<Link VarA="PlcTask Outputs^stdOutputs.iOutput3" VarB="Module 2 (DO)^RxPDO^Output Channel 3" Size="1"/>
+				<Link VarA="PlcTask Outputs^stdOutputs.iOutput4" VarB="Module 2 (DO)^RxPDO^Output Channel 4" Size="1"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 6 (EtherCAT)^Term 8 (EK1200)^Term 17 (EL1018)">
 				<Link VarA="PlcTask Inputs^S1_IO.Row01.iAdvanceDepth" VarB="Channel 1^Input" Size="1"/>

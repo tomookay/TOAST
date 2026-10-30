@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <GVL Name="ModuleStates" Id="{ab3b07d5-9ebf-0f4a-1e8d-84a72bcdb735}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	
+//hardware modules state linking 
+//Connection-->Info Data
+//[X] Map State
+//[X] Map Diag
+
+iModuleState1		AT %I*	:USINT; //104 = ok
+iModuleDiag1		AT %I*	:USINT; //0 = ok
+
+
+iModuleState2		AT %I*	:USINT;
+iModuleDiag2		AT %I*	:USINT;
+
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

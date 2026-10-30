@@ -37,16 +37,16 @@
 				<Entry Name="FSOE__FSoE Slave CMD" Index="#x6000" Sub="#x01">
 					<Type>USINT</Type>
 				</Entry>
-				<Entry Name="FSOE__InputChannel1" Index="#x6001" Sub="#x01">
+				<Entry Name="FSOE__InputChannel1" Index="#x6001" Sub="#x01" Flags="#x00008020">
 					<Type>BIT</Type>
 				</Entry>
-				<Entry Name="FSOE__InputChannel2" Index="#x6001" Sub="#x02">
+				<Entry Name="FSOE__InputChannel2" Index="#x6001" Sub="#x02" Flags="#x00008020">
 					<Type>BIT</Type>
 				</Entry>
-				<Entry Name="FSOE__InputChannel3" Index="#x6001" Sub="#x03">
+				<Entry Name="FSOE__InputChannel3" Index="#x6001" Sub="#x03" Flags="#x00008020">
 					<Type>BIT</Type>
 				</Entry>
-				<Entry Name="FSOE__InputChannel4" Index="#x6001" Sub="#x04">
+				<Entry Name="FSOE__InputChannel4" Index="#x6001" Sub="#x04" Flags="#x00008020">
 					<Type>BIT</Type>
 				</Entry>
 				<Entry Name="FSOE__">
@@ -55,12 +55,12 @@
 				<Entry Name="FSOE__FSoE Slave CRC_0" Index="#x6000" Sub="#x03">
 					<Type>UINT</Type>
 				</Entry>
-				<Entry Name="FSOE__FSoE Slave ConnID" Index="#x6000" Sub="#x02">
+				<Entry Name="FSOE__FSoE Slave ConnID" Index="#x6000" Sub="#x02" Flags="#x00008020">
 					<Type>UINT</Type>
 				</Entry>
 			</Pdo>
 			<Pdo Name="RxPDO" Index="#x1600" InOut="1" Flags="#x0090" SyncMan="2">
-				<Entry Name="FSOE__FSoE Master CMD" Index="#x7000" Sub="#x01">
+				<Entry Name="FSOE__FSoE Master CMD" Index="#x7000" Sub="#x01" Flags="#x00008020">
 					<Type>USINT</Type>
 				</Entry>
 				<Entry Name="FSOE__">

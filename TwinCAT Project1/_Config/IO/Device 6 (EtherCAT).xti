@@ -46,4 +46,22 @@
 			<SyncUnit Name="other" NoDeleteIfUnused="true"/>
 		</EtherCAT>
 	</Device>
+	<Mappings>
+		<OwnerA>
+			<OwnerB Name="TIID^Device 6 (EtherCAT)^Term 8 (EK1200)^Term 14 (EL1904)">
+				<Link VarA="Term 8 (EK1200)^Term 15 (EL6900)^ConnectionInputs^Message_3 TxPDO" VarB="Module 1 (FSOES)^RxPDO^FSOE"/>
+				<Link VarA="Term 8 (EK1200)^Term 15 (EL6900)^ConnectionOutputs^Message_3 RxPDO" VarB="Module 1 (FSOES)^TxPDO^FSOE"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 6 (EtherCAT)^Term 8 (EK1200)^Term 15 (EL6900)">
+				<Link VarA="Term 8 (EK1200)^Term 14 (EL1904)^Module 1 (FSOES)^RxPDO^FSOE" VarB="ConnectionInputs^Message_3 TxPDO"/>
+				<Link VarA="Term 8 (EK1200)^Term 14 (EL1904)^Module 1 (FSOES)^TxPDO^FSOE" VarB="ConnectionOutputs^Message_3 RxPDO"/>
+				<Link VarA="Term 8 (EK1200)^Term 16 (EL2904)^Module 1 (FSOES)^RxPDO^FSOE" VarB="ConnectionInputs^Message_4 TxPDO"/>
+				<Link VarA="Term 8 (EK1200)^Term 16 (EL2904)^Module 1 (FSOES)^TxPDO^FSOE" VarB="ConnectionOutputs^Message_4 RxPDO"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 6 (EtherCAT)^Term 8 (EK1200)^Term 16 (EL2904)">
+				<Link VarA="Term 8 (EK1200)^Term 15 (EL6900)^ConnectionInputs^Message_4 TxPDO" VarB="Module 1 (FSOES)^RxPDO^FSOE"/>
+				<Link VarA="Term 8 (EK1200)^Term 15 (EL6900)^ConnectionOutputs^Message_4 RxPDO" VarB="Module 1 (FSOES)^TxPDO^FSOE"/>
+			</OwnerB>
+		</OwnerA>
+	</Mappings>
 </TcSmItem>
