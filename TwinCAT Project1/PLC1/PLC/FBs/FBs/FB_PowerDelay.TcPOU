@@ -9,6 +9,8 @@ VAR_INPUT
 	iIsStationSelected: BOOL;
 	iPowerOnDelay: TIME:=T#3S; //option
 	iMotionPowerOn:BOOL;
+	iSafetyState:BOOL; //loop feedback from safety program
+	iPowerOnReqInterlock:BOOL; //system state to allow power on Req 
 END_VAR
 VAR_OUTPUT
 	qPowerState: BOOL;
@@ -17,6 +19,8 @@ END_VAR
 VAR
 	timPowerOnDelay: TON;
 	poweronTrig:R_TRIG;
+	poweroffSafetyTrig:F_TRIG;
+	
 END_VAR
 
 
@@ -29,7 +33,7 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[//time delay for switching power on
-timPowerOnDelay(	IN:= iPowerOnButton AND iIsStationSelected,
+timPowerOnDelay(	IN:= iPowerOnButton AND iIsStationSelected AND iPowerOnReqInterlock,
 					PT:= iPowerOnDelay
 				);
 
@@ -48,9 +52,16 @@ IF iPowerOffButton AND iIsStationSelected THEN
 END_IF
 
 //motion power on feedback logic
-IF qPowerState AND iMotionPowerOn THEN
+IF qPowerState AND iMotionPowerOn AND (NOT iPowerOnReqInterlock) THEN
 	qMotionPowerState := TRUE;
 	ELSE
+	qMotionPowerState := FALSE;
+END_IF
+
+poweroffSafetyTrig(CLK:=iSafetyState);
+//double off function
+IF poweroffSafetyTrig.Q OR NOT iPowerOnReqInterlock THEN
+	qPowerState := FALSE;
 	qMotionPowerState := FALSE;
 END_IF
 
@@ -74,6 +85,12 @@ END_IF
       <LineId Id="107" Count="1" />
       <LineId Id="110" Count="1" />
       <LineId Id="109" Count="0" />
+      <LineId Id="146" Count="0" />
+      <LineId Id="139" Count="0" />
+      <LineId Id="138" Count="0" />
+      <LineId Id="140" Count="0" />
+      <LineId Id="143" Count="0" />
+      <LineId Id="141" Count="1" />
       <LineId Id="104" Count="0" />
       <LineId Id="102" Count="0" />
       <LineId Id="43" Count="0" />
