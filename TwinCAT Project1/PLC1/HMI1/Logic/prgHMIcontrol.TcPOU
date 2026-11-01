@@ -807,6 +807,16 @@ IF gHMIData.gStationSelected[6] THEN
 						n:=			SIZEOF(	GlobalMessages.gS6AlarmView));
 END_IF
 
+(*
+IF gHMIData.gStationSelected[1] THEN
+	retvalll := MEMCPY(	destAddr:=	ADR(	gHMIData.gAlarmViewMsg), 
+						srcAddr:=	ADR(	GlobalMessages.gListMsgMc), 
+						n:=			SIZEOF(	GlobalMessages.gListMsgMc));
+						
+	retvalll := MEMCPY(	destAddr:=	ADR(	GlobalMessages.gHMIAlarmView), 
+						srcAddr:=	ADR(	GlobalMessages.gMcAlarmView), 
+						n:=			SIZEOF(	GlobalMessages.gMcAlarmView));
+END_IF*)
 ]]></ST>
       </Implementation>
     </Action>
@@ -1270,6 +1280,7 @@ END_IF
       <LineId Id="79" Count="1" />
       <LineId Id="78" Count="0" />
       <LineId Id="40" Count="0" />
+      <LineId Id="81" Count="9" />
       <LineId Id="47" Count="0" />
       <LineId Id="46" Count="0" />
     </LineIds>
