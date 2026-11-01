@@ -1253,14 +1253,27 @@ External Setpoint Generation:
 					<Type>UINT</Type>
 				</Var>
 				<Var>
+					<Name>ModuleStates.iModuleState1</Name>
+					<Comment><![CDATA[104 = ok]]></Comment>
+					<Type>USINT</Type>
+				</Var>
+				<Var>
+					<Name>ModuleStates.iModuleDiag1</Name>
+					<Comment><![CDATA[0 = ok]]></Comment>
+					<Type>USINT</Type>
+				</Var>
+				<Var>
+					<Name>ModuleStates.iModuleState2</Name>
+					<Type>USINT</Type>
+				</Var>
+				<Var>
+					<Name>ModuleStates.iModuleDiag2</Name>
+					<Type>USINT</Type>
+				</Var>
+				<Var>
 					<Name>Safety.gSafetyProgramChecksum</Name>
 					<Comment><![CDATA[checksum of user program	]]></Comment>
 					<Type>WORD</Type>
-				</Var>
-				<Var>
-					<Name>Safety.gSafetySerialNumber</Name>
-					<Comment><![CDATA[serial number of safety CPU]]></Comment>
-					<Type>UDINT</Type>
 				</Var>
 				<Var>
 					<Name>Safety.gSafetyCPUState</Name>
@@ -1268,14 +1281,14 @@ External Setpoint Generation:
 					<Type>UINT</Type>
 				</Var>
 				<Var>
+					<Name>Safety.gSafetySerialNumber</Name>
+					<Comment><![CDATA[serial number of safety CPU]]></Comment>
+					<Type>UDINT</Type>
+				</Var>
+				<Var>
 					<Name>Safety.gSafetyCPUADSadr</Name>
 					<Comment><![CDATA[CPU AMSADR]]></Comment>
 					<Type GUID="{18071995-0000-0000-0000-000000000042}">AMSADDR</Type>
-				</Var>
-				<Var>
-					<Name>ModuleStates.iModuleState1</Name>
-					<Comment><![CDATA[104 = ok]]></Comment>
-					<Type>USINT</Type>
 				</Var>
 				<Var>
 					<Name>Safety.qComError</Name>
@@ -5674,19 +5687,6 @@ External Setpoint Generation:
 					<Comment><![CDATA[assign to mapped IO for DPstate]]></Comment>
 					<Type GUID="{0B5BBC5D-75B7-11B9-17A3-3E8876EE3859}">ARRAY [1..127] OF USINT</Type>
 				</Var>
-				<Var>
-					<Name>ModuleStates.iModuleDiag1</Name>
-					<Comment><![CDATA[0 = ok]]></Comment>
-					<Type>USINT</Type>
-				</Var>
-				<Var>
-					<Name>ModuleStates.iModuleState2</Name>
-					<Type>USINT</Type>
-				</Var>
-				<Var>
-					<Name>ModuleStates.iModuleDiag2</Name>
-					<Type>USINT</Type>
-				</Var>
 			</Vars>
 			<Vars VarGrpType="2" ContextId="1" AreaNo="17">
 				<Name>PlcTask Outputs</Name>
@@ -5714,8 +5714,29 @@ iEnableSafetyDevices	AT %Q*	:BOOL;]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
+					<Name>Safety.qRunStop</Name>
+					<Comment><![CDATA[run the safety program]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
 					<Name>Safety.iResetFBs</Name>
 					<Comment><![CDATA[seperate reset logic]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>stdOutputs.iOutput1</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>stdOutputs.iOutput2</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>stdOutputs.iOutput3</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>stdOutputs.iOutput4</Name>
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
@@ -9552,27 +9573,6 @@ iEnableSafetyDevices	AT %Q*	:BOOL;]]></Comment>
 				</Var>
 				<Var>
 					<Name>S6_IO.Row99.qReturnedCoil</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>stdOutputs.iOutput1</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>stdOutputs.iOutput2</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>stdOutputs.iOutput3</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>stdOutputs.iOutput4</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Safety.qRunStop</Name>
-					<Comment><![CDATA[run the safety program]]></Comment>
 					<Type>BOOL</Type>
 				</Var>
 			</Vars>
