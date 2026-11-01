@@ -44,6 +44,13 @@ VAR
 	testercord: BOOL;
 	
 	crccheck:FB_CheckEC_CRC_errors;
+	
+	nFaultySlaveIndex   : INT := -1;
+    nNumSlaves          : UINT;
+	ii                   : INT;
+	 bAnySlaveFault      : BOOL;
+	
+	osrFtrigEthercatFault: F_TRIg;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -72,6 +79,9 @@ timbtnoff(	IN:= etherCATdiag.btnUpdate,
 IF timbtnoff.Q THEN
 	etherCATdiag.btnUpdate := FALSE;
 END_IF
+
+actEvalAnyFault();
+
 			
 			
 ]]></ST>
@@ -165,6 +175,45 @@ IF System.PulseOneSecond OR localreset THEN
 					
 				END_IF
 	END_FOR
+END_IF]]></ST>
+      </Implementation>
+    </Action>
+    <Action Name="actEvalAnyFault" Id="{2b595678-0b49-0fab-33be-762337095e74}">
+      <Implementation>
+        <ST><![CDATA[// Check read array when FB is not reading or in error
+IF NOT getallSlaveState.bBusy AND NOT getallSlaveState.bError THEN
+    nNumSlaves := getallSlaveState.nSlaves;
+    bAnySlaveFault := FALSE;
+    nFaultySlaveIndex := -1;
+
+   //for each of all the slaves present in the length of the array check each state
+    FOR ii := 0 TO TO_INT(nNumSlaves) - 1 DO
+        //check for if the state is not #8 (OP)
+		IF (etherCATdiag.slavestates[ii].deviceState <> 16#08) THEN // 16#08 = OP state
+            bAnySlaveFault := TRUE;
+            nFaultySlaveIndex := ii;
+           EXIT; //do not waste CPU scans for slaves that do not exist
+        END_IF
+    END_FOR
+END_IF
+
+//setup fault message
+IF bAnySlaveFault THEN
+	GlobalMessages.gMsgMc.Alarm.message[14] := TRUE;
+END_IF
+
+IF NOT bAnySlaveFault THEN
+	GlobalMessages.gMsgMc.Alarm.message[14] := FALSE;
+END_IF
+
+//restored message
+osrFtrigEthercatFault(CLK	:= bAnySlaveFault);
+IF osrFtrigEthercatFault.q THEN
+	GlobalMessages.gMsgMc.Alarm.message[15] := TRUE;
+END_IF
+
+IF NOT bAnySlaveFault AND gHMIButtons.btnReset THEN
+	GlobalMessages.gMsgMc.Alarm.message[15] := FALSE;
 END_IF]]></ST>
       </Implementation>
     </Action>
@@ -1721,6 +1770,9 @@ END_IF
       <LineId Id="63" Count="1" />
       <LineId Id="67" Count="0" />
       <LineId Id="69" Count="2" />
+      <LineId Id="124" Count="0" />
+      <LineId Id="123" Count="0" />
+      <LineId Id="125" Count="0" />
       <LineId Id="68" Count="0" />
       <LineId Id="65" Count="0" />
       <LineId Id="58" Count="0" />
@@ -1774,6 +1826,25 @@ END_IF
       <LineId Id="126" Count="0" />
       <LineId Id="58" Count="0" />
       <LineId Id="1" Count="0" />
+    </LineIds>
+    <LineIds Name="pouEtherCATDiag.actEvalAnyFault">
+      <LineId Id="2" Count="7" />
+      <LineId Id="15" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="16" Count="4" />
+      <LineId Id="1" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="30" Count="2" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="45" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="39" Count="5" />
+      <LineId Id="36" Count="0" />
     </LineIds>
     <LineIds Name="pouEtherCATDiag.actGetCoEData">
       <LineId Id="14" Count="1" />
