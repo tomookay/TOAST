@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="struct_TS_FB_Diag" Id="{7e99b786-38db-0c53-151f-0c6e202e7b02}">
+    <Declaration><![CDATA[TYPE struct_TS_FB_Diag :
+STRUCT
+    ErrorAck_EdgeExpected : BOOL; // Bit 0: Awaiting positive/negative edge transition on GroupPort_ErrAck
+    ActivationError       : BOOL; // Bit 1: Error related to activation signals or conditions
+    FbError               : BOOL; // Bit 2: Standard internal block error (generic error condition)
+    DiscrepancyError      : BOOL; // Bit 3: Discrepancy timer expired (e.g., E-Stop channel 1 and 2 did not match within 100ms)
+    EdmError              : BOOL; // Bit 4: External Device Monitoring error (contactors failed to mirror safety state)
+	spare:BOOL;
+	spare1:BOOL;
+	spare2:BOOL;
+	spare3:BOOL;
+	spare4:BOOL;
+				
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

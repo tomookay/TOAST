@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="enum_TS_FB_State" Id="{08a8afb4-bc6e-00ae-3779-fd1af8e1fad6}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE enum_TS_FB_State :
+(
+    UNDEFINED := 16#00, // Block uninitialized
+    RUN       := 16#01, // Block is executing normally (healthy operational state)
+    STOP      := 16#02, // Block is explicitly stopped
+    SAFE      := 16#03, // Block has safely tripped (e.g., E-Stop is pressed, outputs are 0)
+    ERROR     := 16#04, // Block is in a fault condition (e.g., Discrepancy Error)
+    RESET     := 16#05, // Block is currently processing a manual error acknowledgment
+    START     := 16#06  // Block is starting up / waiting for conditions
+) BYTE;
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

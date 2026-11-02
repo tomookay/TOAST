@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="enum_FSoE_State" Id="{a7a93be8-6433-0aa1-1e71-4a8a0aa3c53a}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE enum_FSoE_State :
+(
+    RESET := 16#00, // Connection is resetting / uninitialized
+    START := 16#01, // Connection is starting up
+    RUN   := 16#02, // Connection is fully functional and running safely
+    STOP  := 16#03, // Connection is stopped
+    ERROR := 16#04  // FSoE communication error or watchdog timeout occurred
+) BYTE;
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="struct_FSoE_Diag" Id="{a852fbe6-032d-0968-1bab-e58342b89f5e}">
+    <Declaration><![CDATA[TYPE struct_FSoE_Diag :
+STRUCT
+    WatchdogError      : BOOL; // Bit 0: FSoE watchdog timer expired
+    CrcError           : BOOL; // Bit 1: Invalid CRC checksum detected
+    SequenceNumberError: BOOL; // Bit 2: Telegrams arrived out of order / packet loss
+    CommunicationError : BOOL; // Bit 3: General FSoE frame/communication loss
+    AddressError       : BOOL; // Bit 4: Wrong FSoE address detected
+    DataError          : BOOL; // Bit 5: Invalid safe data payload
+END_STRUCT
+END_TYPE]]></Declaration>
+  </DUT>
+</TcPlcObject>

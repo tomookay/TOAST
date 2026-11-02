@@ -2622,6 +2622,18 @@
     <Compile Include="PLC\Safety\enumEstopState.TcDUT">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="PLC\Safety\enumHardware\enum_FSoE_State.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PLC\Safety\enumHardware\struct_FSoE_Diag.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PLC\Safety\enumProgram\enum_TS_FB_State.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PLC\Safety\enumProgram\struct_TS_FB_Diag.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="PLC\Safety\ModuleStates.TcGVL">
       <SubType>Code</SubType>
       <LinkAlways>true</LinkAlways>
@@ -2696,9 +2708,6 @@
       <SystemCall>true</SystemCall>
     </Compile>
     <Compile Include="Version\Global_Version.TcGVL">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="VISU_TASK.TcTTO">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="X_DUTs\Diagnostic\typeDPSlaveIndicator.TcDUT">
@@ -3346,6 +3355,8 @@
     <Folder Include="HMI1\Screens\System" />
     <Folder Include="HMI1\Screens\Units" />
     <Folder Include="Data Collection" />
+    <Folder Include="PLC\Safety\enumHardware" />
+    <Folder Include="PLC\Safety\enumProgram" />
     <Folder Include="X_Sim" />
     <Folder Include="PLC\FBs\Diagnostic" />
     <Folder Include="PLC\FBs\Diagnostic\EtherCAT" />
