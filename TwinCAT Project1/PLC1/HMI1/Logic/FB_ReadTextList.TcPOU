@@ -1,313 +1,188 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <POU Name="FB_ReadTextList" Id="{753ba71e-9963-4f30-a92a-880b0f36d270}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_ReadTextList
 VAR_INPUT
-	iTargetfilestring:STRING(255):= 'C:\PLC\Messages\FileName.XML'; // 'C:\PLC\Messages\Mc_Alarms.XML'
-	iStart: BOOL;
-	iReset: BOOL;
-
-
+    iTargetfilestring : STRING(255) := 'C:\PLC\Messages\FileName.XML';
+    iStart            : BOOL;
+    iReset            : BOOL;
 END_VAR
 VAR_OUTPUT
-	theemessage:string(255);
-	outindex:INT;
-	
+   // theemessage       : STRING(255);
+    qOutIndex          : INT;
+
 
 END_VAR
-
-VAR_OUTPUT
-fHandle:UINT;
-END_VAR
-
-
 VAR
+	fHandle           : UINT;
+	bBusy             : BOOL;
+    bError            : BOOL;
+    nErrId            : UDINT;
 	
-	openfileee: FB_FileOpen;
-	openfileee2: FB_FileOpen; //used for nulling
-	openTheFile: BOOL;
-	gettaTheFile: FB_FileGets;
-	gettaTheFile2: FB_FileGets; //used for nulling
-	readatheFile: BOOL;
-	textListNameLocation: INT;
-	findText: FB_FindTextIndexNum;
-	findLangText: FB_FindTextLangText;
-	examplestring: STRING(255);
-	tResetFunc: BOOL;
-	fileNumber: UINT;
-	fileisEOF: BOOL;
-	closeatheFile: FB_FileClose;
-	IsCorrectLineForText: INT;
-	isCorrectLine: BOOL;
-	
-	startProc:R_Trig; //start reading from file
-	closefiletrig:R_TRIG;
-	inputreset:R_TRIG;
-	readathefileOSR:R_TRIG;
-	
-	lineIsValidOSR:R_TRIG;
-	tResetFunOSR:R_TRIG;
-	
-	
+    // State Machine
+    nState            : INT := 0; 
+    
+    // TwinCAT File FBs
+    fbFileOpen        : FB_FileOpen;
+    fbFileGets        : FB_FileGets;
+    fbFileClose       : FB_FileClose;
+    
+    // Triggers
+    rtStart           : R_TRIG;
+    rtReset           : R_TRIG;
+    
+    // Internal Variables
+    hFile             : UINT := 0;
+    sLineData         : STRING(255);
+    
+    // Logic Parsers
+    findText          : FB_FindTextIndexNum;
+    findLangText      : FB_FindTextLangText;
+    
+    // Counters & Statuses
+    nLineCounter      : INT := 0;
+    bIsCorrectLine    : BOOL;
 END_VAR
-]]></Declaration>
+
+ VAR_IN_OUT
+      iqTextList : ARRAY[0..GlobalMessages.gNumMessagesPerType] OF STRING(255); 
+END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//start OSR
-startProc(CLK := iStart);
-openTheFile := startProc.Q;
+      <ST><![CDATA[// 1. Edge Detection & Global Reset Control
+rtStart(CLK := iStart);
+rtReset(CLK := iReset);
 
-//open file to get the hfile handle
-openfileee(	sNetId		:=,
-			sPathName	:=iTargetfilestring,
-			nMode		:=FOPEN_MODEREAD,
-			ePath		:=PATH_GENERIC,
-			bExecute	:=openTheFile,
-			tTimeout	:=T#1S
-			);
-//:= openfileee.bBusy
-//:= openfileee.bError
-//:= openfileee.nErrId
-fileNumber := openfileee.hFile; 
-
-//put handle outside for diagnostics
-fHandle := fileNumber;
-
-//close file on complete of the above scan
-IF (findText.qIndexNum > GlobalMessages.gNumMessagesPerType) OR tResetFunc THEN
-	closeatheFile.bExecute := TRUE;
-	ELSE
-	closeatheFile.bExecute := FALSE;
+IF rtReset.Q AND (nState <> 0) THEN
+    nState := 90; // Jump immediately to the safe cleanup/close sequence
 END_IF
 
-closeatheFile	(	sNetId		:=,
-					hFile		:=fileNumber,
-					bExecute	:=,
-					tTimeout	:=T#1S
-					);
-					
-//:=	closeatheFile.bBusy
-//:=	closeatheFile.bError
-//:=	closeatheFile.nErrId 
+// 2. The Asynchronous Control State Machine
+CASE nState OF
+    0: (* IDLE STATE *)
+        bBusy := FALSE;
+        IF rtStart.Q THEN
+            bBusy          := TRUE;
+            bError         := FALSE;
+            nErrId         := 0;
+            nLineCounter   := 0;
+         //   theemessage    := '';
+            qOutIndex       := 0;
+            nState         := 10;
+        END_IF
 
+    10: (* OPEN THE FILE *)
+        fbFileOpen(
+            sNetId   := '',
+            sPathName:= iTargetfilestring,
+            nMode    := FOPEN_MODEREAD,
+            ePath    := PATH_GENERIC,
+            bExecute := TRUE,
+            tTimeout := T#1S
+        );
 
-//OSRs for resetting function
-closefiletrig(		CLK :=	closeatheFile.bBusy);
-inputreset(			CLK	:=	iReset);
+        IF NOT fbFileOpen.bBusy THEN
+            IF fbFileOpen.bError THEN
+                bError := TRUE;
+                nErrId := fbFileOpen.nErrId;
+                nState := 99; // Jump to error state
+            ELSE
+                hFile  := fbFileOpen.hFile;
+                fHandle:= hFile; // Diagnostic output
+                nState := 20;
+            END_IF
+            fbFileOpen(bExecute := FALSE); // Reset FB execution toggle
+        END_IF
 
-IF closefiletrig.Q OR inputreset.Q THEN
-	fileNumber 	:= 0;
-	tResetFunc	:= TRUE;
-	ELSE
-	tResetFunc	:= FALSE;	
-END_IF
+    20: (* INITIATE LINE READ *)
+        fbFileGets(
+            sNetId   := '',
+            hFile    := hFile,
+            bExecute := TRUE,
+            tTimeout := T#1S
+        );
+        nState := 30;
 
-//read each line of file
-IF NOT tResetFunc THEN
-	gettaTheFile(	sNetId	:=,
-					hFile	:=	fileNumber,
-					bExecute:= readatheFile OR tResetFunc,
-					tTimeout:= T#1S
-					);
-	
-	fileisEOF := gettaTheFile.bEOF;
-END_IF
+  30: (* WAIT FOR LINE READ COMPLETED *)
+    fbFileGets(); // Call the block to let it update
+    
+    IF NOT fbFileGets.bBusy THEN
+        IF fbFileGets.bError THEN
+            bError := TRUE;
+            nErrId := fbFileGets.nErrId;
+            nState := 90; 
+        ELSIF fbFileGets.bEOF THEN
+            nState := 90; 
+        ELSE
+            sLineData := fbFileGets.sLine; // Correctly extract the string data here
+            nState    := 40; 
+        END_IF
+        fbFileGets(bExecute := FALSE); 
+    END_IF
 
-//on reset, clear file number, can't remove the bEOF since beckhoff can't write to an output
-IF tResetFunc THEN
-	fileNumber 	:= 0;
-	openTheFile	:= FALSE;
-	fileisEOF	:= FALSE;
-END_IF
+   40: (* PROCESS AND PARSE XML DATA *)
+        // Check for textlist index number
+        findText(iText := sLineData);
+        
+        IF findText.qLineIsValid THEN
+            nLineCounter := 0; // Reset language distance counter
+        ELSE
+            nLineCounter := nLineCounter + 1; 
+        END_IF
 
-//clear instance memory
-//not sure if it works, but I would like to think that clearing out the data is the right thing to reset the STAT and output bits
-IF tResetFunc THEN
-	openfileee := openfileee2;
-	gettaTheFile := gettaTheFile2;
-END_IF
+        // Determine if this line matches the language location offset
+        bIsCorrectLine := (nLineCounter = LanguageLocation.DefaultLanguage);
 
-//check if file opened
-IF 	fileNumber > 1 AND 
-	NOT tResetFunc AND 
-	NOT fileisEOF 
-	AND System.oneMilliSecond
-	THEN
-		readatheFile := TRUE;
-	ELSE
-		readatheFile := FALSE;
-END_IF
-//find the integer of the textlist from the XML
-findText(iText	:= gettaTheFile.sLine);
+        IF bIsCorrectLine THEN
+            findLangText(iText := sLineData);
+            
+            // Ensure the extracted index is within your array bounds to prevent PLC crash
+            IF findText.qIndexNum >= 0 AND findText.qIndexNum <= GlobalMessages.gNumMessagesPerType THEN
+                
+                // Capture standard language text
+                IF findLangText.qIsValidString THEN
+                    iqTextList[findText.qIndexNum] := findLangText.qTextidline3;
+                    
+                // Capture extended language translation text
+                ELSIF findLangText.qIsValidExtendedString THEN
+                    iqTextList[findText.qIndexNum] := findLangText.qExtendedTextline;
+                END_IF
+                
+            END_IF
+        END_IF
 
-//:=	findtext.qIndexNum
-//:=	findtext.qLineIsValid
-	
-//increment XML counter for next usage of text, default text or translated text that apears below
-readathefileOSR(CLK:=readatheFile);
-IF readathefileOSR.Q THEN
-	IsCorrectLineForText := IsCorrectLineForText + 1;
-END_IF
+        // CRITICAL CHANGE: Instead of going to 90, always loop back to read the next line
+        // The file will now only close when State 30 detects 'fbFileGets.bEOF'
+        nState := 20; 
 
+    90: (* SAFE FILE CLOSE INITIATION *)
+        fbFileClose(
+            sNetId   := '',
+            hFile    := hFile,
+            bExecute := TRUE,
+            tTimeout := T#1S
+        );
+        nState := 95;
 
-//reset XML counter
-lineIsValidOSR	(CLK	:= findText.qLineIsValid);
-tResetFunOSR	(CLK	:= tResetFunc);
+    95: (* WAIT FOR FILE TO CLOSE *)
+        fbFileClose();
+        IF NOT fbFileClose.bBusy THEN
+            hFile        := 0;
+            fHandle      := 0;
+            fbFileClose(bExecute := FALSE);
+            nState       := 0; // Return to idle ready for next run
+        END_IF
 
-IF lineIsValidOSR.Q OR tResetFunOSR.Q THEN
-	IsCorrectLineForText := 0;
-END_IF
-
-//check line diffrence between number line and text line
-//SET LANGUAGE FOR READING FROM TEXT LISTS HERE ¬
-IF IsCorrectLineForText = LanguageLocation.DefaultLanguage THEN
-	isCorrectLine := TRUE;
-	ELSE
-	isCorrectLine := FALSE;
-END_IF
-
-//-find language text in default language
-//-find in each call each further translated text in <v>German</v> strings in the XML
-findLangText(iText:=gettaTheFile.sLine);
-
-
-//default text entry
-IF isCorrectLine AND findLangText.qIsValidString THEN
-	examplestring := findLangText.qTextidline3;
-END_IF
-
-
-//extended text for other languages, other than the default one (first entry in beckhoff)
-IF isCorrectLine AND findLangText.qIsValidExtendedString THEN
-	examplestring := findLangText.qExtendedTextline;
-END_IF
-
-//write data into index
-IF isCorrectLine AND
-	findLangText.qIsValidExtendedString OR findLangText.qIsValidString THEN
-	theemessage := examplestring;
-	outindex := findText.qIndexNum;
-END_IF
-
-
-
-
-
-
-
-
-					
-
-
-
-
-			
-			
-
-
-]]></ST>
+    99: (* FAULT HANDLING STATE *)
+        bBusy   := FALSE;
+        fHandle := 0;
+        hFile   := 0;
+        IF rtStart.Q OR rtReset.Q THEN
+            nState := 0; // Clear error on new try or reset command
+        END_IF
+END_CASE]]></ST>
     </Implementation>
     <LineIds Name="FB_ReadTextList">
-      <LineId Id="5" Count="0" />
-      <LineId Id="84" Count="1" />
-      <LineId Id="87" Count="0" />
-      <LineId Id="86" Count="0" />
-      <LineId Id="89" Count="1" />
-      <LineId Id="92" Count="2" />
-      <LineId Id="97" Count="0" />
-      <LineId Id="95" Count="0" />
-      <LineId Id="98" Count="3" />
-      <LineId Id="105" Count="0" />
-      <LineId Id="104" Count="0" />
-      <LineId Id="106" Count="0" />
-      <LineId Id="110" Count="0" />
-      <LineId Id="108" Count="0" />
-      <LineId Id="111" Count="1" />
-      <LineId Id="114" Count="2" />
-      <LineId Id="118" Count="0" />
-      <LineId Id="117" Count="0" />
-      <LineId Id="120" Count="7" />
-      <LineId Id="138" Count="1" />
-      <LineId Id="134" Count="0" />
-      <LineId Id="133" Count="0" />
-      <LineId Id="135" Count="0" />
-      <LineId Id="141" Count="0" />
-      <LineId Id="140" Count="0" />
-      <LineId Id="142" Count="0" />
-      <LineId Id="144" Count="2" />
-      <LineId Id="143" Count="0" />
-      <LineId Id="161" Count="0" />
-      <LineId Id="159" Count="0" />
-      <LineId Id="150" Count="0" />
-      <LineId Id="149" Count="0" />
-      <LineId Id="151" Count="1" />
-      <LineId Id="154" Count="1" />
-      <LineId Id="158" Count="0" />
-      <LineId Id="156" Count="1" />
-      <LineId Id="163" Count="0" />
-      <LineId Id="162" Count="0" />
-      <LineId Id="164" Count="1" />
-      <LineId Id="167" Count="1" />
-      <LineId Id="166" Count="0" />
-      <LineId Id="169" Count="0" />
-      <LineId Id="160" Count="0" />
-      <LineId Id="170" Count="2" />
-      <LineId Id="175" Count="0" />
-      <LineId Id="173" Count="0" />
-      <LineId Id="179" Count="0" />
-      <LineId Id="178" Count="0" />
-      <LineId Id="180" Count="8" />
-      <LineId Id="190" Count="0" />
-      <LineId Id="189" Count="0" />
-      <LineId Id="192" Count="0" />
-      <LineId Id="191" Count="0" />
-      <LineId Id="177" Count="0" />
-      <LineId Id="153" Count="0" />
-      <LineId Id="193" Count="0" />
-      <LineId Id="197" Count="3" />
-      <LineId Id="212" Count="1" />
-      <LineId Id="203" Count="0" />
-      <LineId Id="202" Count="0" />
-      <LineId Id="207" Count="0" />
-      <LineId Id="209" Count="0" />
-      <LineId Id="208" Count="0" />
-      <LineId Id="210" Count="1" />
-      <LineId Id="215" Count="0" />
-      <LineId Id="214" Count="0" />
-      <LineId Id="222" Count="0" />
-      <LineId Id="216" Count="1" />
-      <LineId Id="219" Count="1" />
-      <LineId Id="218" Count="0" />
-      <LineId Id="225" Count="0" />
-      <LineId Id="224" Count="0" />
-      <LineId Id="226" Count="0" />
-      <LineId Id="228" Count="0" />
-      <LineId Id="231" Count="1" />
-      <LineId Id="230" Count="0" />
-      <LineId Id="233" Count="4" />
-      <LineId Id="229" Count="0" />
-      <LineId Id="238" Count="2" />
-      <LineId Id="243" Count="0" />
-      <LineId Id="242" Count="0" />
-      <LineId Id="244" Count="1" />
-      <LineId Id="248" Count="1" />
-      <LineId Id="246" Count="0" />
-      <LineId Id="241" Count="0" />
-      <LineId Id="227" Count="0" />
-      <LineId Id="201" Count="0" />
-      <LineId Id="148" Count="0" />
-      <LineId Id="137" Count="0" />
-      <LineId Id="136" Count="0" />
-      <LineId Id="129" Count="0" />
-      <LineId Id="128" Count="0" />
-      <LineId Id="119" Count="0" />
-      <LineId Id="113" Count="0" />
-      <LineId Id="107" Count="0" />
-      <LineId Id="103" Count="0" />
-      <LineId Id="102" Count="0" />
-      <LineId Id="96" Count="0" />
-      <LineId Id="91" Count="0" />
-      <LineId Id="88" Count="0" />
-      <LineId Id="81" Count="0" />
+      <LineId Id="564" Count="130" />
       <LineId Id="80" Count="0" />
     </LineIds>
   </POU>
