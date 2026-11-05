@@ -1,99 +1,53 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <POU Name="FB_FindTextIndexNum" Id="{ef499ef2-7994-44de-86ff-07d709cf8dbb}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_FindTextIndexNum
 VAR_INPUT
-	iText:T_MaxString; //input text string to find text in
+    iText : T_MaxString; // Input text string to parse
 END_VAR
 VAR_OUTPUT
-	qIndexNum: INT; //index number of string
-	qLineIsValid: BOOL; //TRUE if the line valid to be processed?
+    qIndexNum    : INT;  // Retains the last successfully extracted index number
+    qLineIsValid : BOOL; // Retains TRUE for exactly one cycle when a line is found
 END_VAR
 VAR
-	textidNameLocation: INT;
-	textIDlocname: STRING(255);
-	isTextIDLinee: BOOL;
-	textidline: INT;
-	textIDnameLefted: STRING(255);
-	textidline2: INT;
-	textlen: INT;
-	textidline3: STRING(255);
-	indexIsInt: BOOL;
-END_VAR
-//theme:ZmgvZTlLAsU
-]]></Declaration>
+    posTextID : INT; // Position of "TextID"
+    posStart  : INT; // Position of '">"'
+    posEnd    : INT; // Position of '"</v>'
+    strIndex  : STRING(255);
+END_VAR]]></Declaration>
     <Implementation>
-      <ST><![CDATA[//find text entry name
-//'              <v n="TextID">"0"</v>$N' '              <v n="TextDefault">"Example alarm for Mc_Alarms"</v>$N'
-textidNameLocation	:=		FIND	(STR1:=iText, 			STR2:= 'TextID');
+      <ST><![CDATA[// 1. ALWAYS reset the valid strobe at the start of the cycle.
+// This prevents a single valid line from indicating "TRUE" forever.
+qLineIsValid := FALSE; 
 
-//finds,
-//'Mc_Alarms" Id="{4f6'
-IF textidNameLocation >= 1 THEN
-	textIDlocname	:=	iText;
-	isTextIDLinee	:=	TRUE;
-	ELSE
-	isTextIDLinee	:=	FALSE;
+// 2. Only run parsing if the input string actually contains "TextID"
+posTextID := FIND(iText, 'TextID');
+
+IF posTextID > 0 THEN
+    posStart := FIND(iText, '">"');
+    posEnd   := FIND(iText, '"</v>');
+    
+    // 3. Robust tag boundaries validation
+    IF (posStart > 0) AND (posEnd > posStart) THEN
+        
+        // Safe middle-string extraction
+        strIndex := MID(STR  := iText, 
+                        LEN  := posEnd - (posStart + 3), 
+                        POS  := posStart + 3);
+        
+        // 4. Convert string to numerical integer
+        // NOTE: qIndexNum is ONLY overwritten right here if the line is valid.
+        qIndexNum    := STRING_TO_INT(strIndex); 
+        qLineIsValid := TRUE; // Signal to your main program that a new value arrived
+        
+    END_IF
 END_IF
 
-//find end OF line, converts,
-//'TextID">"0"</v>$N'
-//-3
-//to
-//'TextID">"0"'
-textidline	:= 				FIND	(STR1:=textIDlocname,	STR2:='"</v>');
-textIDnameLefted :=			LEFT	(STR:=textIDlocname, 	SIZE:=textidline -1);
-
-IF isTextIDLinee THEN
-	textidline2	:=			FIND	(STR1:=textIDnameLefted,STR2:='">"');
-	textlen		:=			LEN		(STR:=textIDnameLefted);
-	textidline3 :=			RIGHT	(STR:=textIDnameLefted, SIZE:= textlen - textidline2 - 2);
-END_IF
-
-qIndexNum := STRING_TO_INT(textidline3);
-
-IF qIndexNum >= -1 THEN 
-	indexIsInt := TRUE;
-ELSE
-	indexIsInt := FALSE;
-END_IF
-
-//output if line is valid
-IF isTextIDLinee AND  indexIsInt THEN
-	qLineIsValid := TRUE;
-	ELSE
-	qLineIsValid := FALSE;
-END_IF]]></ST>
+// If posTextID is 0 (empty line or different XML tag), 
+// qIndexNum skips the logic entirely and holds its previous value in PLC memory.]]></ST>
     </Implementation>
     <LineIds Name="FB_FindTextIndexNum">
-      <LineId Id="9" Count="0" />
-      <LineId Id="38" Count="0" />
-      <LineId Id="40" Count="0" />
-      <LineId Id="42" Count="1" />
-      <LineId Id="41" Count="0" />
-      <LineId Id="39" Count="0" />
-      <LineId Id="44" Count="0" />
-      <LineId Id="46" Count="3" />
-      <LineId Id="51" Count="0" />
-      <LineId Id="53" Count="3" />
-      <LineId Id="52" Count="0" />
-      <LineId Id="57" Count="1" />
-      <LineId Id="60" Count="0" />
-      <LineId Id="59" Count="0" />
-      <LineId Id="61" Count="0" />
-      <LineId Id="63" Count="1" />
-      <LineId Id="62" Count="0" />
-      <LineId Id="66" Count="0" />
-      <LineId Id="50" Count="0" />
-      <LineId Id="68" Count="0" />
-      <LineId Id="67" Count="0" />
-      <LineId Id="45" Count="0" />
-      <LineId Id="69" Count="2" />
-      <LineId Id="79" Count="0" />
-      <LineId Id="73" Count="0" />
-      <LineId Id="72" Count="0" />
-      <LineId Id="74" Count="0" />
-      <LineId Id="76" Count="1" />
+      <LineId Id="178" Count="27" />
       <LineId Id="75" Count="0" />
     </LineIds>
   </POU>
