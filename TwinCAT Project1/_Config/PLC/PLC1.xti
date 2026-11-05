@@ -2,6 +2,57 @@
 <TcSmItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.29" ClassName="CNestedPlcProjDef" TcProjectVariant="NoPLC">
 	<DataTypes>
 		<DataType>
+			<Name GUID="{F3A8171E-1648-1049-2847-6F106C20A963}" AutoDeleteType="true">enum_TS_FB_State</Name>
+			<BitSize>8</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
+			<EnumInfo>
+				<Text><![CDATA[UNDEFINED]]></Text>
+				<Enum>0</Enum>
+				<Comment><![CDATA[ Block uninitialized]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[RUN]]></Text>
+				<Enum>1</Enum>
+				<Comment><![CDATA[ Block is executing normally (healthy operational state)]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[STOP]]></Text>
+				<Enum>2</Enum>
+				<Comment><![CDATA[ Block is explicitly stopped]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[SAFE]]></Text>
+				<Enum>3</Enum>
+				<Comment><![CDATA[ Block has safely tripped (e.g., E-Stop is pressed, outputs are 0)]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[ERROR]]></Text>
+				<Enum>4</Enum>
+				<Comment><![CDATA[ Block is in a fault condition (e.g., Discrepancy Error)]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[RESET]]></Text>
+				<Enum>5</Enum>
+				<Comment><![CDATA[ Block is currently processing a manual error acknowledgment]]></Comment>
+			</EnumInfo>
+			<EnumInfo>
+				<Text><![CDATA[START]]></Text>
+				<Enum>6</Enum>
+				<Comment><![CDATA[ Block is starting up / waiting for conditions]]></Comment>
+			</EnumInfo>
+			<Properties>
+				<Property>
+					<Name>qualified_only</Name>
+				</Property>
+				<Property>
+					<Name>strict</Name>
+				</Property>
+				<Property>
+					<Name>generate_implicit_init_function</Name>
+				</Property>
+			</Properties>
+		</DataType>
+		<DataType>
 			<Name GUID="{18071995-0000-0000-0000-000000000041}" TcBaseType="true" HideSubItems="true" CName="AmsNetId">AMSNETID</Name>
 			<BitSize>48</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
@@ -141,57 +192,6 @@
 				<Parameter>.netId[5]</Parameter>
 				<Parameter>.port</Parameter>
 			</Format>
-		</DataType>
-		<DataType>
-			<Name GUID="{F3A8171E-1648-1049-2847-6F106C20A963}" AutoDeleteType="true">enum_TS_FB_State</Name>
-			<BitSize>8</BitSize>
-			<BaseType GUID="{18071995-0000-0000-0000-000000000001}">BYTE</BaseType>
-			<EnumInfo>
-				<Text><![CDATA[UNDEFINED]]></Text>
-				<Enum>0</Enum>
-				<Comment><![CDATA[ Block uninitialized]]></Comment>
-			</EnumInfo>
-			<EnumInfo>
-				<Text><![CDATA[RUN]]></Text>
-				<Enum>1</Enum>
-				<Comment><![CDATA[ Block is executing normally (healthy operational state)]]></Comment>
-			</EnumInfo>
-			<EnumInfo>
-				<Text><![CDATA[STOP]]></Text>
-				<Enum>2</Enum>
-				<Comment><![CDATA[ Block is explicitly stopped]]></Comment>
-			</EnumInfo>
-			<EnumInfo>
-				<Text><![CDATA[SAFE]]></Text>
-				<Enum>3</Enum>
-				<Comment><![CDATA[ Block has safely tripped (e.g., E-Stop is pressed, outputs are 0)]]></Comment>
-			</EnumInfo>
-			<EnumInfo>
-				<Text><![CDATA[ERROR]]></Text>
-				<Enum>4</Enum>
-				<Comment><![CDATA[ Block is in a fault condition (e.g., Discrepancy Error)]]></Comment>
-			</EnumInfo>
-			<EnumInfo>
-				<Text><![CDATA[RESET]]></Text>
-				<Enum>5</Enum>
-				<Comment><![CDATA[ Block is currently processing a manual error acknowledgment]]></Comment>
-			</EnumInfo>
-			<EnumInfo>
-				<Text><![CDATA[START]]></Text>
-				<Enum>6</Enum>
-				<Comment><![CDATA[ Block is starting up / waiting for conditions]]></Comment>
-			</EnumInfo>
-			<Properties>
-				<Property>
-					<Name>qualified_only</Name>
-				</Property>
-				<Property>
-					<Name>strict</Name>
-				</Property>
-				<Property>
-					<Name>generate_implicit_init_function</Name>
-				</Property>
-			</Properties>
 		</DataType>
 		<DataType>
 			<Name GUID="{DBB29239-45C9-7823-4599-D207DB31C0FE}" AutoDeleteType="true">structSafetyEstopDiagBOOList</Name>
@@ -1307,6 +1307,102 @@ External Setpoint Generation:
 			<Vars VarGrpType="1" ContextId="1" AreaNo="16">
 				<Name>PlcTask Inputs</Name>
 				<Var>
+					<Name>prgSafetyMain.FB_EvalSafeDevice_0.iDevice.iDeviceState</Name>
+					<Type GUID="{F3A8171E-1648-1049-2847-6F106C20A963}">enum_TS_FB_State</Type>
+				</Var>
+				<Var>
+					<Name>prgSafetyMain.FB_EvalSafeDevice_0.iDevice.iDeviceDiag</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>prgSafetyMain.FB_EvalSafeDevice_0.iDevice.iDeviceCh1</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>prgSafetyMain.FB_EvalSafeDevice_0.iDevice.iDeviceCh2</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iEstop1.iDeviceState</Name>
+					<Type GUID="{F3A8171E-1648-1049-2847-6F106C20A963}">enum_TS_FB_State</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iEstop1.iDeviceDiag</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iEstop1.iDeviceCh1</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iEstop1.iDeviceCh2</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iEstop2.iDeviceState</Name>
+					<Type GUID="{F3A8171E-1648-1049-2847-6F106C20A963}">enum_TS_FB_State</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iEstop2.iDeviceDiag</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iEstop2.iDeviceCh1</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iEstop2.iDeviceCh2</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iEstop3.iDeviceState</Name>
+					<Type GUID="{F3A8171E-1648-1049-2847-6F106C20A963}">enum_TS_FB_State</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iEstop3.iDeviceDiag</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iEstop3.iDeviceCh1</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iEstop3.iDeviceCh2</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iAccessGate1.iDeviceState</Name>
+					<Type GUID="{F3A8171E-1648-1049-2847-6F106C20A963}">enum_TS_FB_State</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iAccessGate1.iDeviceDiag</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iAccessGate1.iDeviceCh1</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iAccessGate1.iDeviceCh2</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iAccessGate2.iDeviceState</Name>
+					<Type GUID="{F3A8171E-1648-1049-2847-6F106C20A963}">enum_TS_FB_State</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iAccessGate2.iDeviceDiag</Name>
+					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iAccessGate2.iDeviceCh1</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iAccessGate2.iDeviceCh2</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
 					<Name>System.ecMasterData[1].ecAMSmaster</Name>
 					<Type GUID="{18071995-0000-0000-0000-000000000041}">AMSNETID</Type>
 				</Var>
@@ -1462,49 +1558,8 @@ External Setpoint Generation:
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
-					<Name>Safety.iEstop1State</Name>
-					<Comment><![CDATA[feedback from program for device evaluation]]></Comment>
-					<Type GUID="{F3A8171E-1648-1049-2847-6F106C20A963}">enum_TS_FB_State</Type>
-				</Var>
-				<Var>
-					<Name>Safety.iEstop2State</Name>
-					<Type GUID="{F3A8171E-1648-1049-2847-6F106C20A963}">enum_TS_FB_State</Type>
-				</Var>
-				<Var>
-					<Name>Safety.iEstop1Diag</Name>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Safety.iEstop2Diag</Name>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Safety.iEstop3State</Name>
-					<Type GUID="{F3A8171E-1648-1049-2847-6F106C20A963}">enum_TS_FB_State</Type>
-				</Var>
-				<Var>
-					<Name>Safety.iAccessGate1State</Name>
-					<Type GUID="{F3A8171E-1648-1049-2847-6F106C20A963}">enum_TS_FB_State</Type>
-				</Var>
-				<Var>
-					<Name>Safety.iEstop3Diag</Name>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Safety.iAccessGate1Diag</Name>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Safety.iAccessGate2State</Name>
-					<Type GUID="{F3A8171E-1648-1049-2847-6F106C20A963}">enum_TS_FB_State</Type>
-				</Var>
-				<Var>
 					<Name>Safety.iEnablingPendantState</Name>
 					<Type>USINT</Type>
-				</Var>
-				<Var>
-					<Name>Safety.iAccessGate2Diag</Name>
-					<Type>UINT</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iEnablingPendantDiag</Name>
@@ -9738,6 +9793,18 @@ outputs from PLC (i) program become inputs to safety program (q)]]></Comment>
 					</OwnerB>
 				</OwnerA>
 			</UnrestoredVarLinks>
+			<UnrestoredVarLinks ImportTime="2026-11-05T18:29:20">
+				<OwnerA Name="InputDst" Prefix="TIPC^PLC1^PLC1 Instance" Type="1">
+					<OwnerB Name="TIID^Device 6 (EtherCAT)^Term 8 (EK1200)^Term 14 (EL1904)">
+						<Link VarA="Safety.iEstop1Ch1" TypeA="BOOL" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000030}" VarB="Module 1 (FSOES)^TxPDO^FSOE^InputChannel1" Size="1" RestoreInfo="ANotFound"/>
+						<Link VarA="Safety.iEstop1Ch2" TypeA="BOOL" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000030}" VarB="Module 1 (FSOES)^TxPDO^FSOE^InputChannel2" Size="1" RestoreInfo="ANotFound"/>
+					</OwnerB>
+					<OwnerB Name="TIID^Device 6 (EtherCAT)^Term 8 (EK1200)^Term 15 (EL6900)">
+						<Link VarA="Safety.iEstop1Diag" TypeA="UINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000005}" VarB="Function Block Info Data^EL6900.Network1.FBEstop1 Info Data^Diag" RestoreInfo="ANotFound"/>
+						<Link VarA="Safety.iEstop1State" TypeA="enum_TS_FB_State" InOutA="0" GuidA="{F3A8171E-1648-1049-2847-6F106C20A963}" VarB="Function Block Info Data^EL6900.Network1.FBEstop1 Info Data^State" RestoreInfo="ANotFound"/>
+					</OwnerB>
+				</OwnerA>
+			</UnrestoredVarLinks>
 			<Contexts>
 				<Context>
 					<Id NeedCalleeCall="true">0</Id>
@@ -9772,6 +9839,10 @@ outputs from PLC (i) program become inputs to safety program (q)]]></Comment>
 				<Link VarA="PlcTask Inputs^System.ecMasterData[1].ecMasterChangeCount" VarB="InfoData^ChangeCount"/>
 				<Link VarA="PlcTask Inputs^System.ecMasterData[1].ecMasterDevId" VarB="InfoData^DevId"/>
 			</OwnerB>
+			<OwnerB Name="TIID^Device 6 (EtherCAT)^Term 8 (EK1200)^Term 14 (EL1904)">
+				<Link VarA="PlcTask Inputs^Safety.iEstop1.iDeviceCh1" VarB="Module 1 (FSOES)^TxPDO^FSOE^InputChannel1" Size="1"/>
+				<Link VarA="PlcTask Inputs^Safety.iEstop1.iDeviceCh2" VarB="Module 1 (FSOES)^TxPDO^FSOE^InputChannel2" Size="1"/>
+			</OwnerB>
 			<OwnerB Name="TIID^Device 6 (EtherCAT)^Term 8 (EK1200)^Term 15 (EL6900)">
 				<Link VarA="PlcTask Inputs^ModuleStates.iModuleDiag1^AddressError" VarB="Connection Info Data^Message_3 Info Data^Diag" Size="1"/>
 				<Link VarA="PlcTask Inputs^ModuleStates.iModuleDiag1^CommunicationError" VarB="Connection Info Data^Message_3 Info Data^Diag" Size="1"/>
@@ -9789,8 +9860,8 @@ outputs from PLC (i) program become inputs to safety program (q)]]></Comment>
 				<Link VarA="PlcTask Inputs^ModuleStates.iModuleState2" VarB="Connection Info Data^Message_4 Info Data^State"/>
 				<Link VarA="PlcTask Inputs^Safety.gSafetyProgramChecksum" VarB="Device Info Data^Project CRC"/>
 				<Link VarA="PlcTask Inputs^Safety.gSafetySerialNumber" VarB="Device Info Data^Serial Number"/>
-				<Link VarA="PlcTask Inputs^Safety.iEstop1Diag" VarB="Function Block Info Data^EL6900.Network1.FBEstop1 Info Data^Diag"/>
-				<Link VarA="PlcTask Inputs^Safety.iEstop1State" VarB="Function Block Info Data^EL6900.Network1.FBEstop1 Info Data^State"/>
+				<Link VarA="PlcTask Inputs^Safety.iEstop1.iDeviceDiag" VarB="Function Block Info Data^EL6900.Network1.FBEstop1 Info Data^Diag"/>
+				<Link VarA="PlcTask Inputs^Safety.iEstop1.iDeviceState" VarB="Function Block Info Data^EL6900.Network1.FBEstop1 Info Data^State"/>
 				<Link VarA="PlcTask Outputs^Safety.iResetFBs" VarB="StandardOutputs^Standard In Var 1" Size="1"/>
 				<Link VarA="PlcTask Outputs^Safety.qRunStop" VarB="StandardOutputs^Standard In Var 2" Size="1"/>
 			</OwnerB>

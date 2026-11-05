@@ -36,22 +36,11 @@ qOutError			AT %I*	:BOOL;
 qRun				AT %I*	:BOOL;
 
 //feedback from program for device evaluation
-iEstop1State		AT %I*	:enum_TS_FB_State;
-iEstop1Diag			AT %I*	:UINT;
-Estop1Diag:struct_TS_FB_Diag;
-
-
-iEstop2State		AT %I*	:enum_TS_FB_State;
-iEstop2Diag			AT %I*	:UINT;
-
-iEstop3State		AT %I*	:enum_TS_FB_State;
-iEstop3Diag			AT %I*	:UINT;
-
-iAccessGate1State	AT %I*	:enum_TS_FB_State;
-iAccessGate1Diag	AT %I*	:UINT;
-
-iAccessGate2State	AT %I*	:enum_TS_FB_State;
-iAccessGate2Diag	AT %I*	:UINT;
+iEstop1:structSafeInputDevice;
+iEstop2:structSafeInputDevice;
+iEstop3:structSafeInputDevice;
+iAccessGate1:structSafeInputDevice;
+iAccessGate2:structSafeInputDevice;
 
 iEnablingPendantState	AT %I*	:USINT;
 iEnablingPendantDiag	AT %I*	:structEstopDiag;

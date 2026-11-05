@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="structSafeInputDevice" Id="{e218838b-dd0e-09e4-2da8-352094785175}">
+    <Declaration><![CDATA[TYPE structSafeInputDevice :
+STRUCT
+iDeviceState		AT %I*	:enum_TS_FB_State;
+iDeviceDiag			AT %I*	:UINT;
+DeviceDiag					:struct_TS_FB_Diag;
+iDeviceCh1			AT %I*	:BOOL;
+iDeviceCh2			AT %I*	:BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
