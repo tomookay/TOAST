@@ -11,9 +11,12 @@ VAR_GLOBAL
 
 iModuleState1		AT %I*	:enum_FSoE_State; //104 = ok
 iModuleDiag1		AT %I*	:USINT; //0 = ok
+iModuleDiag1union:union_FSoE_hwDiag;
+
 
 iModuleState2		AT %I*	:enum_FSoE_State;
 iModuleDiag2		AT %I*	:USINT;
+iModuleDiag2union:union_FSoE_hwDiag;
 
 END_VAR]]></Declaration>
   </GVL>

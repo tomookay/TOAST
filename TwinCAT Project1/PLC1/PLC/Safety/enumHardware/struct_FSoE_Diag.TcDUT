@@ -3,12 +3,14 @@
   <DUT Name="struct_FSoE_Diag" Id="{a852fbe6-032d-0968-1bab-e58342b89f5e}">
     <Declaration><![CDATA[TYPE struct_FSoE_Diag :
 STRUCT
-    WatchdogError      : BOOL; // Bit 0: FSoE watchdog timer expired
-    CrcError           : BOOL; // Bit 1: Invalid CRC checksum detected
-    SequenceNumberError: BOOL; // Bit 2: Telegrams arrived out of order / packet loss
-    CommunicationError : BOOL; // Bit 3: General FSoE frame/communication loss
-    AddressError       : BOOL; // Bit 4: Wrong FSoE address detected
-    DataError          : BOOL; // Bit 5: Invalid safe data payload
+    WatchdogError      : BIT; // Bit 0: FSoE watchdog timer expired
+    CrcError           : BIT; // Bit 1: Invalid CRC checksum detected
+    SequenceNumberError: BIT; // Bit 2: Telegrams arrived out of order / packet loss
+    CommunicationError : BIT; // Bit 3: General FSoE frame/communication loss
+    AddressError       : BIT; // Bit 4: Wrong FSoE address detected
+    DataError          : BIT; // Bit 5: Invalid safe data payload
+	spare6				: BIT; // Bit 6: spare
+	spare7				: BIT; // Bit 7: spare
 END_STRUCT
 END_TYPE]]></Declaration>
   </DUT>

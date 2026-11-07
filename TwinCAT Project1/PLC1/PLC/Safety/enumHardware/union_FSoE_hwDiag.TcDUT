@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <DUT Name="union_FSoE_hwDiag" Id="{7b10e4fa-be08-0b01-0339-998735f7cf1d}">
+    <Declaration><![CDATA[TYPE union_FSoE_hwDiag :
+UNION
+	rawUsint : USINT;
+    stDiag   : struct_FSoE_Diag; // Your 8-bit FSoE structure
+END_UNION
+END_TYPE
+
+
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
