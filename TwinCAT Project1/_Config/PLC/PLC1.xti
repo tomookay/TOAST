@@ -112,52 +112,6 @@
 			</Properties>
 		</DataType>
 		<DataType>
-			<Name GUID="{08768F23-E25F-0424-3C9D-DF1D411EC917}" AutoDeleteType="true">struct_FSoE_Diag</Name>
-			<BitSize>48</BitSize>
-			<SubItem>
-				<Name>WatchdogError</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
-				<Comment><![CDATA[ Bit 0: FSoE watchdog timer expired]]></Comment>
-				<BitSize>8</BitSize>
-				<BitOffs>0</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>CrcError</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
-				<Comment><![CDATA[ Bit 1: Invalid CRC checksum detected]]></Comment>
-				<BitSize>8</BitSize>
-				<BitOffs>8</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>SequenceNumberError</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
-				<Comment><![CDATA[ Bit 2: Telegrams arrived out of order / packet loss]]></Comment>
-				<BitSize>8</BitSize>
-				<BitOffs>16</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>CommunicationError</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
-				<Comment><![CDATA[ Bit 3: General FSoE frame/communication loss]]></Comment>
-				<BitSize>8</BitSize>
-				<BitOffs>24</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>AddressError</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
-				<Comment><![CDATA[ Bit 4: Wrong FSoE address detected]]></Comment>
-				<BitSize>8</BitSize>
-				<BitOffs>32</BitOffs>
-			</SubItem>
-			<SubItem>
-				<Name>DataError</Name>
-				<Type GUID="{18071995-0000-0000-0000-000000000030}">BOOL</Type>
-				<Comment><![CDATA[ Bit 5: Invalid safe data payload]]></Comment>
-				<BitSize>8</BitSize>
-				<BitOffs>40</BitOffs>
-			</SubItem>
-		</DataType>
-		<DataType>
 			<Name GUID="{18071995-0000-0000-0000-000000000042}" TcBaseType="true" CName="AmsAddr">AMSADDR</Name>
 			<BitSize>64</BitSize>
 			<SubItem>
@@ -1462,7 +1416,7 @@ External Setpoint Generation:
 				<Var>
 					<Name>ModuleStates.iModuleDiag1</Name>
 					<Comment><![CDATA[0 = ok]]></Comment>
-					<Type GUID="{08768F23-E25F-0424-3C9D-DF1D411EC917}">struct_FSoE_Diag</Type>
+					<Type>USINT</Type>
 				</Var>
 				<Var>
 					<Name>ModuleStates.iModuleState2</Name>
@@ -1470,7 +1424,7 @@ External Setpoint Generation:
 				</Var>
 				<Var>
 					<Name>ModuleStates.iModuleDiag2</Name>
-					<Type GUID="{08768F23-E25F-0424-3C9D-DF1D411EC917}">struct_FSoE_Diag</Type>
+					<Type>USINT</Type>
 				</Var>
 				<Var>
 					<Name>Safety.gSafetyProgramChecksum</Name>
@@ -1478,14 +1432,14 @@ External Setpoint Generation:
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>Safety.gSafetyCPUState</Name>
-					<Comment><![CDATA[CPU state as ethercat slave]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
 					<Name>Safety.gSafetySerialNumber</Name>
 					<Comment><![CDATA[serial number of safety CPU]]></Comment>
 					<Type>UDINT</Type>
+				</Var>
+				<Var>
+					<Name>Safety.gSafetyCPUState</Name>
+					<Comment><![CDATA[CPU state as ethercat slave]]></Comment>
+					<Type>UINT</Type>
 				</Var>
 				<Var>
 					<Name>Safety.gSafetyCPUADSadr</Name>
@@ -1524,10 +1478,6 @@ External Setpoint Generation:
 				<Var>
 					<Name>Safety.qRun</Name>
 					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Safety.iEnablingPendantState</Name>
-					<Type>USINT</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iEstop1.iDeviceState</Name>
@@ -1608,6 +1558,10 @@ External Setpoint Generation:
 				<Var>
 					<Name>Safety.iAccessGate2.iDeviceCh2</Name>
 					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iEnablingPendantState</Name>
+					<Type>USINT</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iEnablingPendantDiag</Name>
@@ -5932,12 +5886,6 @@ External Setpoint Generation:
 			<Vars VarGrpType="2" ContextId="1" AreaNo="17">
 				<Name>PlcTask Outputs</Name>
 				<Var>
-					<Name>Safety.iGroupPort_ErrAck</Name>
-					<Comment><![CDATA[mapped from safety program
-outputs from PLC (i) program become inputs to safety program (q)]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
 					<Name>Safety.iEnableSafetyDevicesuint</Name>
 					<Comment><![CDATA[on request (latch-use) from PLC program to safety program
 this comes from the "Motive Power ON" from the PLC
@@ -5949,6 +5897,12 @@ iEnableSafetyDevices	AT %Q*	:BOOL;]]></Comment>
 				<Var>
 					<Name>Safety.iEnablePendantSafetyDevicesuint</Name>
 					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iGroupPort_ErrAck</Name>
+					<Comment><![CDATA[mapped from safety program
+outputs from PLC (i) program become inputs to safety program (q)]]></Comment>
+					<Type>BOOL</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iModuleFault</Name>
@@ -9820,8 +9774,6 @@ iEnableSafetyDevices	AT %Q*	:BOOL;]]></Comment>
 			<UnrestoredVarLinks ImportTime="2026-11-02T19:11:15">
 				<OwnerA Name="InputDst" Prefix="TIPC^PLC1^PLC1 Instance" Type="1">
 					<OwnerB Name="TIID^Device 6 (EtherCAT)^Term 8 (EK1200)^Term 15 (EL6900)">
-						<Link VarA="ModuleStates.iModuleDiag1" TypeA="USINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000002}" VarB="Connection Info Data^Message_3 Info Data^Diag" RestoreInfo="TypeMismatch" OldTypeA="USINT" OldGuidA="{18071995-0000-0000-0000-000000000002}" NewTypeA="struct_FSoE_Diag" NewGuidA="{08768F23-E25F-0424-3C9D-DF1D411EC917}"/>
-						<Link VarA="ModuleStates.iModuleDiag2" TypeA="USINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000002}" VarB="Connection Info Data^Message_4 Info Data^Diag" RestoreInfo="TypeMismatch" OldTypeA="USINT" OldGuidA="{18071995-0000-0000-0000-000000000002}" NewTypeA="struct_FSoE_Diag" NewGuidA="{08768F23-E25F-0424-3C9D-DF1D411EC917}"/>
 						<Link VarA="ModuleStates.iModuleState1" TypeA="USINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000002}" VarB="Connection Info Data^Message_3 Info Data^State" RestoreInfo="TypeMismatch" OldTypeA="USINT" OldGuidA="{18071995-0000-0000-0000-000000000002}" NewTypeA="enum_FSoE_State" NewGuidA="{9E28D5B8-9E40-CEF7-4479-55D74FA63668}"/>
 						<Link VarA="ModuleStates.iModuleState2" TypeA="USINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000002}" VarB="Connection Info Data^Message_4 Info Data^State" RestoreInfo="TypeMismatch" OldTypeA="USINT" OldGuidA="{18071995-0000-0000-0000-000000000002}" NewTypeA="enum_FSoE_State" NewGuidA="{9E28D5B8-9E40-CEF7-4479-55D74FA63668}"/>
 					</OwnerB>
@@ -9850,6 +9802,18 @@ iEnableSafetyDevices	AT %Q*	:BOOL;]]></Comment>
 					<OwnerB Name="TIID^Device 6 (EtherCAT)^Term 8 (EK1200)^Term 15 (EL6900)">
 						<Link VarA="Safety.iEstop1Diag" TypeA="UINT" InOutA="0" GuidA="{18071995-0000-0000-0000-000000000005}" VarB="Function Block Info Data^EL6900.Network1.FBEstop1 Info Data^Diag" RestoreInfo="ANotFound"/>
 						<Link VarA="Safety.iEstop1State" TypeA="enum_TS_FB_State" InOutA="0" GuidA="{F3A8171E-1648-1049-2847-6F106C20A963}" VarB="Function Block Info Data^EL6900.Network1.FBEstop1 Info Data^State" RestoreInfo="ANotFound"/>
+					</OwnerB>
+				</OwnerA>
+			</UnrestoredVarLinks>
+			<UnrestoredVarLinks ImportTime="2026-11-07T18:11:46">
+				<OwnerA Name="InputDst" Prefix="TIPC^PLC1^PLC1 Instance" Type="1">
+					<OwnerB Name="TIID^Device 6 (EtherCAT)^Term 8 (EK1200)^Term 15 (EL6900)">
+						<Link VarA="ModuleStates.iModuleDiag2^AddressError" TypeA="BOOL" InOutA="0" ParentTypeA="struct_FSoE_Diag" GuidA="{18071995-0000-0000-0000-000000000030}" VarB="Connection Info Data^Message_4 Info Data^Diag" Size="1" RestoreInfo="ANotFound"/>
+						<Link VarA="ModuleStates.iModuleDiag2^CommunicationError" TypeA="BOOL" InOutA="0" ParentTypeA="struct_FSoE_Diag" GuidA="{18071995-0000-0000-0000-000000000030}" VarB="Connection Info Data^Message_4 Info Data^Diag" Size="1" RestoreInfo="ANotFound"/>
+						<Link VarA="ModuleStates.iModuleDiag2^CrcError" TypeA="BOOL" InOutA="0" ParentTypeA="struct_FSoE_Diag" GuidA="{18071995-0000-0000-0000-000000000030}" VarB="Connection Info Data^Message_4 Info Data^Diag" Size="1" RestoreInfo="ANotFound"/>
+						<Link VarA="ModuleStates.iModuleDiag2^DataError" TypeA="BOOL" InOutA="0" ParentTypeA="struct_FSoE_Diag" GuidA="{18071995-0000-0000-0000-000000000030}" VarB="Connection Info Data^Message_4 Info Data^Diag" Size="1" RestoreInfo="ANotFound"/>
+						<Link VarA="ModuleStates.iModuleDiag2^SequenceNumberError" TypeA="BOOL" InOutA="0" ParentTypeA="struct_FSoE_Diag" GuidA="{18071995-0000-0000-0000-000000000030}" VarB="Connection Info Data^Message_4 Info Data^Diag" Size="1" RestoreInfo="ANotFound"/>
+						<Link VarA="ModuleStates.iModuleDiag2^WatchdogError" TypeA="BOOL" InOutA="0" ParentTypeA="struct_FSoE_Diag" GuidA="{18071995-0000-0000-0000-000000000030}" VarB="Connection Info Data^Message_4 Info Data^Diag" Size="1" RestoreInfo="ANotFound"/>
 					</OwnerB>
 				</OwnerA>
 			</UnrestoredVarLinks>
@@ -9892,18 +9856,8 @@ iEnableSafetyDevices	AT %Q*	:BOOL;]]></Comment>
 				<Link VarA="PlcTask Inputs^Safety.iEstop1.iDeviceCh2" VarB="Module 1 (FSOES)^TxPDO^FSOE^InputChannel2" Size="1"/>
 			</OwnerB>
 			<OwnerB Name="TIID^Device 6 (EtherCAT)^Term 8 (EK1200)^Term 15 (EL6900)">
-				<Link VarA="PlcTask Inputs^ModuleStates.iModuleDiag1^AddressError" VarB="Connection Info Data^Message_3 Info Data^Diag" Size="1"/>
-				<Link VarA="PlcTask Inputs^ModuleStates.iModuleDiag1^CommunicationError" VarB="Connection Info Data^Message_3 Info Data^Diag" Size="1"/>
-				<Link VarA="PlcTask Inputs^ModuleStates.iModuleDiag1^CrcError" VarB="Connection Info Data^Message_3 Info Data^Diag" Size="1"/>
-				<Link VarA="PlcTask Inputs^ModuleStates.iModuleDiag1^DataError" VarB="Connection Info Data^Message_3 Info Data^Diag" Size="1"/>
-				<Link VarA="PlcTask Inputs^ModuleStates.iModuleDiag1^SequenceNumberError" VarB="Connection Info Data^Message_3 Info Data^Diag" Size="1"/>
-				<Link VarA="PlcTask Inputs^ModuleStates.iModuleDiag1^WatchdogError" VarB="Connection Info Data^Message_3 Info Data^Diag" Size="1"/>
-				<Link VarA="PlcTask Inputs^ModuleStates.iModuleDiag2^AddressError" VarB="Connection Info Data^Message_4 Info Data^Diag" Size="1"/>
-				<Link VarA="PlcTask Inputs^ModuleStates.iModuleDiag2^CommunicationError" VarB="Connection Info Data^Message_4 Info Data^Diag" Size="1"/>
-				<Link VarA="PlcTask Inputs^ModuleStates.iModuleDiag2^CrcError" VarB="Connection Info Data^Message_4 Info Data^Diag" Size="1"/>
-				<Link VarA="PlcTask Inputs^ModuleStates.iModuleDiag2^DataError" VarB="Connection Info Data^Message_4 Info Data^Diag" Size="1"/>
-				<Link VarA="PlcTask Inputs^ModuleStates.iModuleDiag2^SequenceNumberError" VarB="Connection Info Data^Message_4 Info Data^Diag" Size="1"/>
-				<Link VarA="PlcTask Inputs^ModuleStates.iModuleDiag2^WatchdogError" VarB="Connection Info Data^Message_4 Info Data^Diag" Size="1"/>
+				<Link VarA="PlcTask Inputs^ModuleStates.iModuleDiag1" VarB="Connection Info Data^Message_3 Info Data^Diag"/>
+				<Link VarA="PlcTask Inputs^ModuleStates.iModuleDiag2" VarB="Connection Info Data^Message_4 Info Data^Diag"/>
 				<Link VarA="PlcTask Inputs^ModuleStates.iModuleState1" VarB="Connection Info Data^Message_3 Info Data^State"/>
 				<Link VarA="PlcTask Inputs^ModuleStates.iModuleState2" VarB="Connection Info Data^Message_4 Info Data^State"/>
 				<Link VarA="PlcTask Inputs^Safety.gSafetyProgramChecksum" VarB="Device Info Data^Project CRC"/>

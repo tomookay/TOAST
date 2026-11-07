@@ -200,6 +200,7 @@ END_IF
 //setup fault message
 IF bAnySlaveFault THEN
 	GlobalMessages.gMsgMc.Alarm.message[14] := TRUE;
+	GlobalMessages.gMsgMc.Alarm.message[15] := FALSE;
 END_IF
 
 IF NOT bAnySlaveFault THEN
@@ -214,7 +215,12 @@ END_IF
 
 IF NOT bAnySlaveFault AND gHMIButtons.btnReset THEN
 	GlobalMessages.gMsgMc.Alarm.message[15] := FALSE;
-END_IF]]></ST>
+END_IF
+
+
+
+//move to rest of program
+etherCATdiag.gAnyEtherCATFault := bAnySlaveFault;]]></ST>
       </Implementation>
     </Action>
     <Action Name="actGetCoEData" Id="{7fab3804-7adb-4c5b-bb8f-fc49082e9037}">
@@ -286,7 +292,7 @@ idbGetConfSlaves.sNetId := F_CreateAmsNetId(nIds:=system.ecMasterData[1].ecAMSma
 
 etherCATmasters.t_amsnetIDSelectedMaster := F_CreateAmsNetId(nIds:=system.ecMasterData[1].ecAMSmaster);
 
-readDataFromSlaves := System.PulseTenSecond;
+readDataFromSlaves := System.PulseOneSecond;
 
 
 //get slave info
@@ -1837,6 +1843,7 @@ END_IF
       <LineId Id="23" Count="0" />
       <LineId Id="22" Count="0" />
       <LineId Id="27" Count="0" />
+      <LineId Id="51" Count="0" />
       <LineId Id="26" Count="0" />
       <LineId Id="30" Count="2" />
       <LineId Id="29" Count="0" />
@@ -1845,6 +1852,11 @@ END_IF
       <LineId Id="34" Count="0" />
       <LineId Id="39" Count="5" />
       <LineId Id="36" Count="0" />
+      <LineId Id="50" Count="0" />
+      <LineId Id="49" Count="0" />
+      <LineId Id="47" Count="0" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="48" Count="0" />
     </LineIds>
     <LineIds Name="pouEtherCATDiag.actGetCoEData">
       <LineId Id="14" Count="1" />
