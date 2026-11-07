@@ -22,3 +22,7 @@ improved EtherCAT diagnostics screens
 <img width="617" height="466" alt="image" src="https://github.com/user-attachments/assets/3e21baea-100a-47fd-8323-e24bf05acef5" />
 <img width="617" height="463" alt="image" src="https://github.com/user-attachments/assets/4b9f593f-0ed4-4f9f-8176-06c80d4dc796" />
 
+improved dual channel estop / guard switch state diagnostics
+
+https://github.com/user-attachments/assets/0f546a4d-bf80-412a-9d04-370bc3512e49
+
