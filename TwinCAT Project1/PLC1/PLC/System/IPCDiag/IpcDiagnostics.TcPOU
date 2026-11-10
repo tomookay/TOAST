@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="IpcDiagnostics" Id="{d4b9ca14-f27d-4d64-abbf-78404738a3dc}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM IpcDiagnostics
+VAR CONSTANT
+	cNetId			: T_AmsNetID := '';				// local
+	cNbrParameters	: UDINT := 8;					// number of parameters to read 
+END_VAR
+VAR
+	bStart			: BOOL := TRUE;       			// flag to trigger (re)start of statemachine
+	eState			: E_State := E_State.Init;
+	hrGetValue		: HRESULT;	
+
+	sDeviceName		: STRING(39);
+	nCpuFreq		: UDINT;
+	nTcBuild		: UINT;
+	aNetworkNames	: ARRAY[1..3] OF STRING(79);	// array in order to receive info of up to three network ports (NICs)
+	aIpAddr			: ARRAY[1..3] OF STRING(39);	// array in order to receive info of up to three network ports (NICs)
+	aDHCP			: ARRAY[1..3] OF BOOL;			// array in order to receive info of up to three network ports (NICs)
+	sMdpVersion		: STRING;
+	nBootCnt		: UDINT;
+	
+	nCpuTemperature	: INT;							// [°C]; should be read periodically
+	
+
+	fbDiagRegister	: FB_IPCDiag_Register := (sNetId:=cNetId);
+	fbDiagRead		: FB_IPCDiag_ReadParameter := (sNetId:=cNetId);
+	nKeyIdx			: USINT := 1;
+	aParameterKeys	: ARRAY[1..cNbrParameters] OF E_IPCDiag_ParameterKey := [	E_IPCDiag_ParameterKey.IPCDeviceName,
+																				E_IPCDiag_ParameterKey.CPU_Frequency,
+																				E_IPCDiag_ParameterKey.TC_VersionBuild,
+																				E_IPCDiag_ParameterKey.NIC_Name,
+																				E_IPCDiag_ParameterKey.NIC_IPv4Address,
+																				E_IPCDiag_ParameterKey.NIC_DHCP,
+																				E_IPCDiag_ParameterKey.Software_MDPVersion,
+																				E_IPCDiag_ParameterKey.MB_BootCnt ];
+	fbDiagReadPeriodic : FB_IPCDiag_ReadParameterPeriodic := (eParameterKey:=E_IPCDiag_ParameterKey.CPU_Temp, tPeriod:= T#10S, sNetId:=cNetId);
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//sample direct from the beckhoff.com website -
+//https://infosys.beckhoff.com/english.php?content=../content/1033/tcplclib_tc3_ipcdiag/1475055627.html&id=
+CASE eState OF
+E_State.Init:
+	IF NOT fbDiagRegister.bBusy THEN
+		fbDiagRegister(bExecute:=TRUE); // need to be executed once
+	ELSE
+		fbDiagRegister(bExecute:=FALSE);
+	END_IF
+	IF NOT fbDiagRegister.bBusy THEN
+		IF fbDiagRegister.bError THEN
+			eState := E_State.Error;
+		ELSE
+			eState := E_State.Idle;
+		END_IF
+	END_IF
+
+E_State.Idle:	
+    IF bStart THEN
+        bStart := FALSE;
+        eState := E_State.ReadOnce;
+    END_IF
+	
+E_State.ReadOnce: // reads every parameter once
+	IF NOT fbDiagRead.bBusy THEN
+		fbDiagRead(bExecute:= TRUE, eParameterKey:=aParameterKeys[nKeyIdx], fbRegister:=fbDiagRegister);	
+	ELSE
+		fbDiagRead(bExecute:= FALSE, fbRegister:=fbDiagRegister);
+	END_IF
+	IF NOT fbDiagRead.bBusy THEN
+		IF fbDiagRead.bError THEN
+			eState := E_State.Error;
+		ELSE // get value
+			IF aParameterKeys[nKeyIdx] = E_IPCDiag_ParameterKey.IPCDeviceName THEN
+				hrGetValue := fbDiagRead.GetParameter(pBuffer:=ADR(sDeviceName), nBufferSize:=SIZEOF(sDeviceName));
+				
+			ELSIF aParameterKeys[nKeyIdx] = E_IPCDiag_ParameterKey.CPU_Frequency THEN
+				hrGetValue := fbDiagRead.GetParameter(pBuffer:=ADR(nCpuFreq), nBufferSize:=SIZEOF(nCpuFreq));
+				
+			ELSIF aParameterKeys[nKeyIdx] = E_IPCDiag_ParameterKey.TC_VersionBuild THEN
+				hrGetValue := fbDiagRead.GetParameter(pBuffer:=ADR(nTcBuild), nBufferSize:=SIZEOF(nTcBuild));
+				
+			ELSIF aParameterKeys[nKeyIdx] = E_IPCDiag_ParameterKey.NIC_Name THEN
+				// get values (one by one)
+				hrGetValue := fbDiagRead.GetParameterByIdx(pBuffer:=ADR(aNetworkNames[1]), nBufferSize:=SIZEOF(aNetworkNames[1]), 1);
+				IF SUCCEEDED(hrGetValue) THEN
+					hrGetValue := fbDiagRead.GetParameterByIdx(pBuffer:=ADR(aNetworkNames[2]), nBufferSize:=SIZEOF(aNetworkNames[2]), 2);
+				END_IF
+				IF SUCCEEDED(hrGetValue) THEN
+					hrGetValue := fbDiagRead.GetParameterByIdx(pBuffer:=ADR(aNetworkNames[3]), nBufferSize:=SIZEOF(aNetworkNames[3]), 3);
+				END_IF
+				
+			ELSIF aParameterKeys[nKeyIdx] = E_IPCDiag_ParameterKey.NIC_IPv4Address THEN
+				// get values (all together)
+				hrGetValue := fbDiagRead.GetParameterStrings(pBuffer:=ADR(aIpAddr), nBufferSize:=SIZEOF(aIpAddr), nStrings:=3);
+				
+			ELSIF aParameterKeys[nKeyIdx] = E_IPCDiag_ParameterKey.NIC_DHCP THEN
+				// get values (all together)
+				hrGetValue := fbDiagRead.GetParameter(pBuffer:=ADR(aDHCP), nBufferSize:=SIZEOF(aDHCP));
+				
+			ELSIF aParameterKeys[nKeyIdx] = E_IPCDiag_ParameterKey.Software_MDPVersion THEN
+				hrGetValue := fbDiagRead.GetParameter(pBuffer:=ADR(sMdpVersion), nBufferSize:=SIZEOF(sMdpVersion));
+			
+			ELSIF aParameterKeys[nKeyIdx] = E_IPCDiag_ParameterKey.MB_BootCnt THEN
+				hrGetValue := fbDiagRead.GetParameter(pBuffer:=ADR(nBootCnt), nBufferSize:=SIZEOF(nBootCnt));
+			
+			END_IF
+				
+			IF SUCCEEDED(hrGetValue) THEN
+				IF nKeyIdx = cNbrParameters THEN // all keys successfully read
+					nKeyIdx := 1;
+					eState := E_State.ReadPeriodically;
+				ELSE
+					nKeyIdx := nKeyIdx + 1;
+				END_IF
+			ELSE
+				eState := E_State.Error;
+			END_IF
+		END_IF
+	END_IF	
+
+E_State.ReadPeriodically:
+	fbDiagReadPeriodic(bEnable:=TRUE, fbRegister:=fbDiagRegister);
+	IF fbDiagReadPeriodic.bValid THEN
+		fbDiagReadPeriodic.GetParameter(pBuffer:=ADR(nCpuTemperature), nBufferSize:=SIZEOF(nCpuTemperature) );	
+	END_IF
+	IF fbDiagReadPeriodic.bError THEN
+		eState := E_State.Error;
+	END_IF	
+	
+E_State.Error:
+	(* implementation of error logging and error handling *)
+	(* hint: An error could also occur if a parameter is not supported by chosen hardware or image. 
+	E.g. not all IPCs offer a CPU temperature measurement. *)
+
+END_CASE
+]]></ST>
+    </Implementation>
+    <LineIds Name="IpcDiagnostics">
+      <LineId Id="1069" Count="1" />
+      <LineId Id="3" Count="0" />
+      <LineId Id="334" Count="6" />
+      <LineId Id="1030" Count="3" />
+      <LineId Id="341" Count="0" />
+      <LineId Id="252" Count="0" />
+      <LineId Id="1024" Count="0" />
+      <LineId Id="1026" Count="3" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="1025" Count="0" />
+      <LineId Id="354" Count="0" />
+      <LineId Id="851" Count="1" />
+      <LineId Id="855" Count="6" />
+      <LineId Id="991" Count="0" />
+      <LineId Id="883" Count="0" />
+      <LineId Id="938" Count="0" />
+      <LineId Id="885" Count="0" />
+      <LineId Id="887" Count="0" />
+      <LineId Id="939" Count="0" />
+      <LineId Id="928" Count="1" />
+      <LineId Id="940" Count="0" />
+      <LineId Id="930" Count="0" />
+      <LineId Id="946" Count="0" />
+      <LineId Id="932" Count="5" />
+      <LineId Id="931" Count="0" />
+      <LineId Id="945" Count="0" />
+      <LineId Id="941" Count="0" />
+      <LineId Id="947" Count="0" />
+      <LineId Id="944" Count="0" />
+      <LineId Id="942" Count="0" />
+      <LineId Id="948" Count="0" />
+      <LineId Id="951" Count="0" />
+      <LineId Id="949" Count="0" />
+      <LineId Id="953" Count="0" />
+      <LineId Id="952" Count="0" />
+      <LineId Id="954" Count="0" />
+      <LineId Id="950" Count="0" />
+      <LineId Id="955" Count="2" />
+      <LineId Id="884" Count="0" />
+      <LineId Id="862" Count="1" />
+      <LineId Id="878" Count="0" />
+      <LineId Id="958" Count="0" />
+      <LineId Id="879" Count="1" />
+      <LineId Id="864" Count="0" />
+      <LineId Id="881" Count="0" />
+      <LineId Id="865" Count="3" />
+      <LineId Id="849" Count="0" />
+      <LineId Id="342" Count="0" />
+      <LineId Id="344" Count="0" />
+      <LineId Id="346" Count="0" />
+      <LineId Id="349" Count="4" />
+      <LineId Id="343" Count="0" />
+      <LineId Id="204" Count="0" />
+      <LineId Id="91" Count="0" />
+      <LineId Id="302" Count="1" />
+      <LineId Id="301" Count="0" />
+      <LineId Id="92" Count="0" />
+      <LineId Id="205" Count="0" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

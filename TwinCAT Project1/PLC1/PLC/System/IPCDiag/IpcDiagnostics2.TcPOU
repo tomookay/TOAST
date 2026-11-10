@@ -1,0 +1,198 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="IpcDiagnostics2" Id="{ee9bc051-2dcd-4f79-8d6d-2cbc95e44ae4}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM IpcDiagnostics2
+VAR CONSTANT
+	cNetId					: T_AmsNetID := '';		// local
+END_VAR
+VAR
+    bStart              	: BOOL := TRUE;       	// flag to trigger (re)start of statemachine
+	bSkipSettingIPAddr		: BOOL := TRUE;			// for safety reasons - set FALSE if you want to set the IP address
+	eState					: E_State := E_State.Init;
+	
+    bError              	: BOOL;               	// error flag (indicator: error occured)
+    hrErrorCode             : HRESULT;             	// last error code
+	hrGetValue				: HRESULT;
+	
+    nCpuUsage           	: UINT;               	// CPU usage [%]
+	nCpuTemperature			: INT;					// CPU temperature [°C]
+    sSerialNumberMainboard	: STRING;       		// serial number of mainboard
+    sSerialNumberIPC        : STRING;          		// serial number of IPC
+	nNicModuleIdx			: USINT := 1;			// select which NIC adapter should be adapted with a new IP address
+    bDHCP					: BOOL := FALSE;
+	sIPAddr			        : T_IPv4Addr := '174.18.3.154'; // the new ip address 
+    aFanSpeed           	: ARRAY[1..2] OF UINT;	// speed of fans - should be read periodically
+	
+	fbDiagRegister			: FB_IPCDiag_Register := (sNetId:=cNetId);
+	fbDiagRead				: FB_IPCDiag_ReadParameter := (sNetId:=cNetId);
+	fbDiagReadPeriodic		: FB_IPCDiag_ReadParameterPeriodic := (tPeriod:= T#10S, sNetId:=cNetId);
+	fbDiagWrite				: FB_IPCDiag_WriteParameter := (sNetId:=cNetId);
+END_VAR
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//sample direct from the beckhoff.com website -
+//https://infosys.beckhoff.com/english.php?content=../content/1033/tcplclib_tc3_ipcdiag/1475055627.html&id=
+CASE eState OF
+E_State.Init:
+	IF NOT fbDiagRegister.bBusy THEN
+		fbDiagRegister(bExecute:=TRUE);
+	ELSE
+		fbDiagRegister(bExecute:=FALSE, bError=>bError, hrErrorCode=>hrErrorCode);
+	END_IF
+	IF NOT fbDiagRegister.bBusy THEN
+		IF fbDiagRegister.bError THEN
+			eState := E_State.Error;
+		ELSE
+			eState := E_State.Idle;
+		END_IF
+	END_IF
+
+E_State.Idle:	
+    IF bStart THEN
+        bStart := FALSE;
+        eState := E_State.ReadOnce_CpuUsage;
+    END_IF
+	
+E_State.ReadOnce_CpuUsage:
+	IF NOT fbDiagRead.bBusy THEN
+		fbDiagRead(bExecute:= TRUE, eParameterKey:=E_IPCDiag_ParameterKey.CPU_Usage, fbRegister:=fbDiagRegister);	
+	ELSE
+		fbDiagRead(bExecute:= FALSE, fbRegister:=fbDiagRegister, bError=>bError, hrErrorCode=>hrErrorCode);
+	END_IF
+	IF NOT fbDiagRead.bBusy THEN
+		IF fbDiagRead.bError THEN
+			eState := E_State.Error;
+		ELSE // get value
+			hrGetValue := fbDiagRead.GetParameter(pBuffer:=ADR(nCpuUsage), nBufferSize:=SIZEOF(nCpuUsage));	
+			IF FAILED(hrGetValue) THEN
+				eState := E_State.Error;
+			ELSE
+				eState := E_State.ReadOnce_CpuTemperature;
+			END_IF
+		END_IF
+	END_IF	
+
+E_State.ReadOnce_CpuTemperature:
+	IF NOT fbDiagRead.bBusy THEN
+		fbDiagRead(bExecute:= TRUE, eParameterKey:=E_IPCDiag_ParameterKey.CPU_Temp, fbRegister:=fbDiagRegister);	
+	ELSE
+		fbDiagRead(bExecute:= FALSE, fbRegister:=fbDiagRegister, bError=>bError, hrErrorCode=>hrErrorCode);
+	END_IF
+	IF NOT fbDiagRead.bBusy THEN
+		IF fbDiagRead.bError THEN
+			eState := E_State.Error;
+		ELSE // get value
+			hrGetValue := fbDiagRead.GetParameter(pBuffer:=ADR(nCpuTemperature), nBufferSize:=SIZEOF(nCpuTemperature));	
+			IF FAILED(hrGetValue) THEN
+				eState := E_State.Error;
+			ELSE
+				eState := E_State.ReadOnce_SrnMainboard;
+			END_IF
+		END_IF
+	END_IF		
+
+E_State.ReadOnce_SrnMainboard:
+	IF NOT fbDiagRead.bBusy THEN
+		fbDiagRead(bExecute:= TRUE, eParameterKey:=E_IPCDiag_ParameterKey.MB_SerialNumber, fbRegister:=fbDiagRegister);	
+	ELSE
+		fbDiagRead(bExecute:= FALSE, fbRegister:=fbDiagRegister, bError=>bError, hrErrorCode=>hrErrorCode);
+	END_IF
+	IF NOT fbDiagRead.bBusy THEN
+		IF fbDiagRead.bError THEN
+			eState := E_State.Error;
+		ELSE // get value
+			hrGetValue := fbDiagRead.GetParameter(pBuffer:=ADR(sSerialNumberMainboard), nBufferSize:=SIZEOF(sSerialNumberMainboard));	
+			IF FAILED(hrGetValue) THEN
+				eState := E_State.Error;
+			ELSE
+				eState := E_State.ReadOnce_SrnIPC;
+			END_IF
+		END_IF
+	END_IF
+
+E_State.ReadOnce_SrnIPC:
+	IF NOT fbDiagRead.bBusy THEN
+		fbDiagRead(bExecute:= TRUE, eParameterKey:=E_IPCDiag_ParameterKey.IPCSerialNumber, fbRegister:=fbDiagRegister);	
+	ELSE
+		fbDiagRead(bExecute:= FALSE, fbRegister:=fbDiagRegister, bError=>bError, hrErrorCode=>hrErrorCode);
+	END_IF
+	IF NOT fbDiagRead.bBusy THEN
+		IF fbDiagRead.bError THEN
+			eState := E_State.Error;
+		ELSE // get value
+			hrGetValue := fbDiagRead.GetParameter(pBuffer:=ADR(sSerialNumberIPC), nBufferSize:=SIZEOF(sSerialNumberIPC));	
+			IF FAILED(hrGetValue) THEN
+				eState := E_State.Error;
+			ELSE
+				IF bSkipSettingIPAddr THEN
+					eState := E_State.ReadPeriodically;
+				ELSE
+					eState := E_State.Write_DHCP;
+				END_IF
+			END_IF
+		END_IF
+	END_IF
+
+E_State.Write_DHCP:
+	IF NOT fbDiagWrite.bBusy THEN
+		fbDiagWrite(bExecute:= TRUE, 
+					eParameterKey:=E_IPCDiag_ParameterKey.NIC_DHCP,
+					pBuffer:=ADR(bDHCP),
+					nBufferSize:=SIZEOF(bDHCP),
+					nModuleIdx:=nNicModuleIdx,
+					fbRegister:=fbDiagRegister );	
+	ELSE
+		fbDiagWrite(bExecute:= FALSE, fbRegister:=fbDiagRegister, bError=>bError, hrErrorCode=>hrErrorCode);
+	END_IF
+	IF NOT fbDiagWrite.bBusy THEN
+		IF fbDiagWrite.bError THEN
+			eState := E_State.Error;
+		ELSE
+			eState := E_State.Write_IPAddr;
+		END_IF
+	END_IF
+
+E_State.Write_IPAddr:
+	IF NOT fbDiagWrite.bBusy THEN
+		fbDiagWrite(bExecute:= TRUE, 
+					eParameterKey:=E_IPCDiag_ParameterKey.NIC_IPv4Address,
+					pBuffer:=ADR(sIPAddr),
+					nBufferSize:=INT_TO_UDINT(LEN(sIPAddr)+1),
+					nModuleIdx:=nNicModuleIdx,
+					fbRegister:=fbDiagRegister );	
+	ELSE
+		fbDiagWrite(bExecute:= FALSE, fbRegister:=fbDiagRegister, bError=>bError, hrErrorCode=>hrErrorCode);
+	END_IF
+	IF NOT fbDiagWrite.bBusy THEN
+		IF fbDiagWrite.bError THEN
+			eState := E_State.Error;
+		ELSE
+			eState := E_State.ReadPeriodically;
+		END_IF
+	END_IF
+
+E_State.ReadPeriodically:
+	fbDiagReadPeriodic(bEnable:=TRUE, eParameterKey:=E_IPCDiag_ParameterKey.Fan_Speed, fbRegister:=fbDiagRegister, bError=>bError, hrErrorCode=>hrErrorCode);
+	IF fbDiagReadPeriodic.bValid THEN
+		fbDiagReadPeriodic.GetParameter(pBuffer:=ADR(aFanSpeed), nBufferSize:=SIZEOF(aFanSpeed) );	
+	END_IF
+	IF fbDiagReadPeriodic.bError THEN
+		eState := E_State.Error;
+	END_IF	
+	
+E_State.Error:
+	(* implementation of error logging and error handling *)
+	(* hint: An error could also occur if a parameter is not supported by chosen hardware or image. 
+	E.g. not all IPCs offer a CPU temperature measurement. *)
+
+END_CASE
+]]></ST>
+    </Implementation>
+    <LineIds Name="IpcDiagnostics2">
+      <LineId Id="185" Count="1" />
+      <LineId Id="3" Count="153" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

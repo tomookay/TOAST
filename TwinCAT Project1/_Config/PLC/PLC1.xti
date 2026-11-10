@@ -1480,6 +1480,10 @@ External Setpoint Generation:
 					<Type>BOOL</Type>
 				</Var>
 				<Var>
+					<Name>Safety.iEnablingPendantState</Name>
+					<Type>USINT</Type>
+				</Var>
+				<Var>
 					<Name>Safety.iEstop1.iDeviceState</Name>
 					<Type GUID="{F3A8171E-1648-1049-2847-6F106C20A963}">enum_TS_FB_State</Type>
 				</Var>
@@ -1558,10 +1562,6 @@ External Setpoint Generation:
 				<Var>
 					<Name>Safety.iAccessGate2.iDeviceCh2</Name>
 					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Safety.iEnablingPendantState</Name>
-					<Type>USINT</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iEnablingPendantDiag</Name>
@@ -5886,6 +5886,12 @@ External Setpoint Generation:
 			<Vars VarGrpType="2" ContextId="1" AreaNo="17">
 				<Name>PlcTask Outputs</Name>
 				<Var>
+					<Name>Safety.iGroupPort_ErrAck</Name>
+					<Comment><![CDATA[mapped from safety program
+outputs from PLC (i) program become inputs to safety program (q)]]></Comment>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
 					<Name>Safety.iEnableSafetyDevicesuint</Name>
 					<Comment><![CDATA[on request (latch-use) from PLC program to safety program
 this comes from the "Motive Power ON" from the PLC
@@ -5897,12 +5903,6 @@ iEnableSafetyDevices	AT %Q*	:BOOL;]]></Comment>
 				<Var>
 					<Name>Safety.iEnablePendantSafetyDevicesuint</Name>
 					<Type>UINT</Type>
-				</Var>
-				<Var>
-					<Name>Safety.iGroupPort_ErrAck</Name>
-					<Comment><![CDATA[mapped from safety program
-outputs from PLC (i) program become inputs to safety program (q)]]></Comment>
-					<Type>BOOL</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iModuleFault</Name>

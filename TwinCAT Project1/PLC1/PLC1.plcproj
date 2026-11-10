@@ -2704,6 +2704,15 @@
       <SubType>Code</SubType>
       <ExcludeFromBuild>false</ExcludeFromBuild>
     </Compile>
+    <Compile Include="PLC\System\IPCDiag\E_State.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PLC\System\IPCDiag\IpcDiagnostics.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PLC\System\IPCDiag\IpcDiagnostics2.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Project Information\F_GetCompany.TcPOU">
       <SubType>Code</SubType>
       <SystemCall>true</SystemCall>
@@ -3366,6 +3375,7 @@
     <Folder Include="Data Collection" />
     <Folder Include="PLC\Safety\enumHardware" />
     <Folder Include="PLC\Safety\enumProgram" />
+    <Folder Include="PLC\System\IPCDiag" />
     <Folder Include="X_Sim" />
     <Folder Include="PLC\FBs\Diagnostic" />
     <Folder Include="PLC\FBs\Diagnostic\EtherCAT" />
@@ -3586,6 +3596,10 @@
       <DefaultResolution>Tc2_MC2, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc2_MC2</Namespace>
     </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_MDP">
+      <DefaultResolution>Tc2_MDP, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_MDP</Namespace>
+    </PlaceholderReference>
     <PlaceholderReference Include="Tc2_Standard">
       <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc2_Standard</Namespace>
@@ -3601,6 +3615,10 @@
     <PlaceholderReference Include="Tc2_Utilities">
       <DefaultResolution>Tc2_Utilities, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc2_Utilities</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc3_IPCDiag">
+      <DefaultResolution>Tc3_IPCDiag, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc3_IPCDiag</Namespace>
     </PlaceholderReference>
     <PlaceholderReference Include="Tc3_Module">
       <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>

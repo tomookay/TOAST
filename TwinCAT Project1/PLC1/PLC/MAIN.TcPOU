@@ -40,11 +40,30 @@ VAR
     tPowerFailDetected : BOOL;
     eUpsState          : E_S_UPS_State;
 	
+	fbMdpRead: ADSREAD;
+	fbReadSilliconDrive:FB_MDP_SiliconDrive_Read;
+	silliconDrive:ST_MDP_SiliconDrive;
+	silliconDriveHeader:ST_MDP_ModuleHeader;
+	nFreeDiskBytes: ULINT;
+	
+	fbTwinCatRead:FB_MDP_TwinCAT_Read;
+	twinCatReadHeader:ST_MDP_ModuleHeader;
+	twinCatReadContent:ST_MDP_TwinCAT;
+	
+	fbIdentityObjectRead:FB_MDP_IdentityObj_Read;
+	IdentityReadContent:ST_MDP_IdentityObject;
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[//call PLC data
 actPLC();
+//stats
+actMDP();
+//from beckhoff sample
+IpcDiagnostics();
+IpcDiagnostics2();
+
 
 //call init data for machine
 actInit();
@@ -353,6 +372,42 @@ END_IF
 	]]></ST>
       </Implementation>
     </Action>
+    <Action Name="actMDP" Id="{252fc24a-6e44-05fb-2680-2444fdec916a}">
+      <Implementation>
+        <ST><![CDATA[fbReadSilliconDrive(
+	bExecute		:=,
+	tTimeout		:=,
+	iModIdx			:=,
+	sAmsNetId		:=
+	);
+		
+silliconDrive := fbReadSilliconDrive.stMDP_ModuleContent;
+silliconDriveHeader := fbReadSilliconDrive.stMDP_ModuleHeader;
+
+	
+fbTwinCatRead(
+	bExecute		:=,
+	tTimeout		:=,
+	iModIdx			:=,
+	sAmsNetId		:=
+	);
+		
+twinCatReadHeader := fbTwinCatRead.stMDP_ModuleHeader;
+twinCatReadContent := fbTwinCatRead.stMDP_ModuleContent;
+
+		
+fbIdentityObjectRead(
+	bExecute		:=,
+	tTimeout		:=,
+	sAmsNetId		:=
+	);
+
+
+IdentityReadContent := fbIdentityObjectRead.stMDP_Content;
+		
+]]></ST>
+      </Implementation>
+    </Action>
     <Action Name="actPLC" Id="{28d0350d-3a28-47f0-90b1-3e048fd4248d}">
       <Implementation>
         <ST><![CDATA[//act call PLC
@@ -464,6 +519,21 @@ END_IF
 	
 	actUPS();
 	
+	//get hard disk space
+	fbMdpRead(
+    NETID   := '',       (* Local AmsNetId; adjust for remote IPC *)
+    PORT    := 55931,                 (* Beckhoff Device Manager ADS Port *)
+    IDXGRP  := 16#0806,               (* Drive Index 00, Group 0x806 *)
+    IDXOFFS := 0,
+    LEN     := SIZEOF(nFreeDiskBytes),    (* nFreeBytes is a ULINT *)
+    DESTADDR:= ADR(nFreeDiskBytes),
+    READ    := System.PulseTenSecond,
+    TMOUT   := T#1s
+);
+	
+
+
+	
 
 //need to improve this at some point	
 IF system.OneSecond AND gHMIButtons.gAnyMotionButtonPresed THEN gHMIButtons.gAnyMotionButtonPresed := FALSE; END_IF//first scan
@@ -493,6 +563,11 @@ IF system.OneSecond AND gHMIButtons.gAnyMotionButtonPresed THEN gHMIButtons.gAny
     <LineIds Name="MAIN">
       <LineId Id="56" Count="0" />
       <LineId Id="58" Count="0" />
+      <LineId Id="394" Count="0" />
+      <LineId Id="392" Count="0" />
+      <LineId Id="400" Count="0" />
+      <LineId Id="399" Count="0" />
+      <LineId Id="401" Count="1" />
       <LineId Id="61" Count="0" />
       <LineId Id="60" Count="0" />
       <LineId Id="62" Count="0" />
@@ -626,6 +701,18 @@ IF system.OneSecond AND gHMIButtons.gAnyMotionButtonPresed THEN gHMIButtons.gAny
       <LineId Id="140" Count="0" />
       <LineId Id="1" Count="0" />
     </LineIds>
+    <LineIds Name="MAIN.actMDP">
+      <LineId Id="2" Count="8" />
+      <LineId Id="1" Count="0" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="15" Count="8" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="26" Count="2" />
+      <LineId Id="30" Count="4" />
+      <LineId Id="25" Count="0" />
+      <LineId Id="24" Count="0" />
+    </LineIds>
     <LineIds Name="MAIN.actPLC">
       <LineId Id="1" Count="0" />
       <LineId Id="6" Count="0" />
@@ -688,7 +775,14 @@ IF system.OneSecond AND gHMIButtons.gAnyMotionButtonPresed THEN gHMIButtons.gAny
       <LineId Id="132" Count="0" />
       <LineId Id="134" Count="6" />
       <LineId Id="143" Count="4" />
-      <LineId Id="157" Count="2" />
+      <LineId Id="157" Count="1" />
+      <LineId Id="160" Count="1" />
+      <LineId Id="165" Count="8" />
+      <LineId Id="164" Count="0" />
+      <LineId Id="162" Count="0" />
+      <LineId Id="176" Count="0" />
+      <LineId Id="163" Count="0" />
+      <LineId Id="159" Count="0" />
       <LineId Id="155" Count="0" />
       <LineId Id="149" Count="0" />
       <LineId Id="153" Count="1" />
