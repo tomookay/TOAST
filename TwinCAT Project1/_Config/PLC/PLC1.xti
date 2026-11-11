@@ -1246,13 +1246,10 @@ External Setpoint Generation:
 			<Variant>
 				<Name>NoPLC</Name>
 				<Name>PLCTest</Name>
-				<Defines></Defines>
-			</Variant>
-			<Variant>
 				<Name>Variant1</Name>
 				<Name>Variant2</Name>
 				<Name>Variant3</Name>
-				<Defines/>
+				<Defines></Defines>
 			</Variant>
 		</ProjectVariant>
 		<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC1\PLC1.tmc">
@@ -1432,14 +1429,14 @@ External Setpoint Generation:
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>Safety.gSafetySerialNumber</Name>
-					<Comment><![CDATA[serial number of safety CPU]]></Comment>
-					<Type>UDINT</Type>
-				</Var>
-				<Var>
 					<Name>Safety.gSafetyCPUState</Name>
 					<Comment><![CDATA[CPU state as ethercat slave]]></Comment>
 					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Safety.gSafetySerialNumber</Name>
+					<Comment><![CDATA[serial number of safety CPU]]></Comment>
+					<Type>UDINT</Type>
 				</Var>
 				<Var>
 					<Name>Safety.gSafetyCPUADSadr</Name>
@@ -1478,10 +1475,6 @@ External Setpoint Generation:
 				<Var>
 					<Name>Safety.qRun</Name>
 					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>Safety.iEnablingPendantState</Name>
-					<Type>USINT</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iEstop1.iDeviceState</Name>
@@ -1562,6 +1555,10 @@ External Setpoint Generation:
 				<Var>
 					<Name>Safety.iAccessGate2.iDeviceCh2</Name>
 					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iEnablingPendantState</Name>
+					<Type>USINT</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iEnablingPendantDiag</Name>
@@ -5886,12 +5883,6 @@ External Setpoint Generation:
 			<Vars VarGrpType="2" ContextId="1" AreaNo="17">
 				<Name>PlcTask Outputs</Name>
 				<Var>
-					<Name>Safety.iGroupPort_ErrAck</Name>
-					<Comment><![CDATA[mapped from safety program
-outputs from PLC (i) program become inputs to safety program (q)]]></Comment>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
 					<Name>Safety.iEnableSafetyDevicesuint</Name>
 					<Comment><![CDATA[on request (latch-use) from PLC program to safety program
 this comes from the "Motive Power ON" from the PLC
@@ -5903,6 +5894,12 @@ iEnableSafetyDevices	AT %Q*	:BOOL;]]></Comment>
 				<Var>
 					<Name>Safety.iEnablePendantSafetyDevicesuint</Name>
 					<Type>UINT</Type>
+				</Var>
+				<Var>
+					<Name>Safety.iGroupPort_ErrAck</Name>
+					<Comment><![CDATA[mapped from safety program
+outputs from PLC (i) program become inputs to safety program (q)]]></Comment>
+					<Type>BOOL</Type>
 				</Var>
 				<Var>
 					<Name>Safety.iModuleFault</Name>
@@ -9770,6 +9767,38 @@ iEnableSafetyDevices	AT %Q*	:BOOL;]]></Comment>
 					<Name>S6_IO.Row99.qReturnedCoil</Name>
 					<Type>BOOL</Type>
 				</Var>
+				<Var>
+					<Name>prgReadTextList.qLed1</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>prgReadTextList.qLed2</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>prgReadTextList.qLed3</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>prgReadTextList.qLed4</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>prgReadTextList.qLed5</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>prgReadTextList.qLed6</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>prgReadTextList.qLed7</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>prgReadTextList.qLed8</Name>
+					<Type>BOOL</Type>
+				</Var>
 			</Vars>
 			<UnrestoredVarLinks ImportTime="2026-11-02T19:11:15">
 				<OwnerA Name="InputDst" Prefix="TIPC^PLC1^PLC1 Instance" Type="1">
@@ -9834,7 +9863,7 @@ iEnableSafetyDevices	AT %Q*	:BOOL;]]></Comment>
 						<OTCID>#x02010030</OTCID>
 					</ManualConfig>
 					<Priority>14</Priority>
-					<CycleTime>10000000</CycleTime>
+					<CycleTime>20000000</CycleTime>
 				</Context>
 			</Contexts>
 			<TaskPouOids>
@@ -9882,6 +9911,16 @@ iEnableSafetyDevices	AT %Q*	:BOOL;]]></Comment>
 			<OwnerB Name="TIID^Device 6 (EtherCAT)^Term 8 (EK1200)^Term 20 (EL2809)">
 				<Link VarA="PlcTask Outputs^S1_IO.Row01.qAdvanceCoil" VarB="Channel 1^Output" Size="1"/>
 				<Link VarA="PlcTask Outputs^S1_IO.Row01.qReturnedCoil" VarB="Channel 2^Output" Size="1"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 6 (EtherCAT)^Term 8 (EK1200)^Term 21 (EL2798)">
+				<Link VarA="PlcTask Outputs^prgReadTextList.qLed1" VarB="Channel 1^Output" Size="1"/>
+				<Link VarA="PlcTask Outputs^prgReadTextList.qLed2" VarB="Channel 2^Output" Size="1"/>
+				<Link VarA="PlcTask Outputs^prgReadTextList.qLed3" VarB="Channel 3^Output" Size="1"/>
+				<Link VarA="PlcTask Outputs^prgReadTextList.qLed4" VarB="Channel 4^Output" Size="1"/>
+				<Link VarA="PlcTask Outputs^prgReadTextList.qLed5" VarB="Channel 5^Output" Size="1"/>
+				<Link VarA="PlcTask Outputs^prgReadTextList.qLed6" VarB="Channel 6^Output" Size="1"/>
+				<Link VarA="PlcTask Outputs^prgReadTextList.qLed7" VarB="Channel 7^Output" Size="1"/>
+				<Link VarA="PlcTask Outputs^prgReadTextList.qLed8" VarB="Channel 8^Output" Size="1"/>
 			</OwnerB>
 			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^X Axis">
 				<Link VarA="PlcTask Inputs^driveGlobals.ncAxis1.NcToPlc" VarB="Outputs^ToPlc"/>

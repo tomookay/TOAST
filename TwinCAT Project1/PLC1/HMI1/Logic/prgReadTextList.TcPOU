@@ -40,6 +40,15 @@ VAR
 
 	
 	tRootString: STRING(INT#11);
+	
+	qLed1 AT %Q* : BOOL;
+  	qLed2 AT %Q* : BOOL;
+    qLed3 AT %Q* : BOOL;
+    qLed4 AT %Q* : BOOL;
+    qLed5 AT %Q* : BOOL;
+    qLed6 AT %Q* : BOOL;
+    qLed7 AT %Q* : BOOL;
+    qLed8 AT %Q* : BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -853,7 +862,85 @@ END_VAR
                         <v n="LValue">false</v>
                         <v n="Boolean">false</v>
                         <v n="IsInstance">true</v>
-                        <v n="Id">225L</v>
+                        <v n="Id">491L</v>
+                      </o>
+                      <o n="OutputItems" t="OutputItemList">
+                        <l2 n="OutputItems">
+                          <n />
+                        </l2>
+                      </o>
+                      <o n="Flags" t="Flags">
+                        <v n="Flags">0</v>
+                        <v n="Fixed">true</v>
+                        <v n="Extensible">false</v>
+                      </o>
+                      <n n="InputFlags" />
+                      <l2 n="InputItems" cet="BoxTreeTerminator">
+                        <o>
+                          <n n="Input" />
+                          <o n="Flags" t="Flags">
+                            <v n="Flags">0</v>
+                            <v n="Fixed">false</v>
+                            <v n="Extensible">false</v>
+                          </o>
+                          <v n="Id">493L</v>
+                        </o>
+                      </l2>
+                      <o n="InputParam" t="ParamList">
+                        <l2 n="Names" cet="String">
+                          <v>EN</v>
+                        </l2>
+                        <l2 n="Types" cet="String">
+                          <v>BOOL</v>
+                        </l2>
+                      </o>
+                      <o n="OutputParam" t="ParamList">
+                        <l2 n="Names" cet="String">
+                          <v>ENO</v>
+                        </l2>
+                        <l2 n="Types" cet="String">
+                          <v>BOOL</v>
+                        </l2>
+                      </o>
+                      <v n="CallType" t="Operator">Action</v>
+                      <v n="EN">true</v>
+                      <v n="ENO">true</v>
+                      <n n="STSnippet" />
+                      <v n="ContainsExtensibleInputs">false</v>
+                      <v n="ProvidesSTSnippet">false</v>
+                      <v n="Id">492L</v>
+                    </o>
+                  </l2>
+                  <l2 n="Connectors" />
+                  <v n="Id">490L</v>
+                </o>
+                <o>
+                  <v n="ILActive">false</v>
+                  <v n="FBDValid">false</v>
+                  <v n="ILValid">false</v>
+                  <l2 n="ILLines" />
+                  <v n="Comment">"turn on outputs to watch numbers increment"</v>
+                  <v n="Title">""</v>
+                  <v n="Label">""</v>
+                  <v n="OutCommented">false</v>
+                  <l2 n="NetworkItems" cet="BoxTreeBox">
+                    <o>
+                      <v n="BoxType">"actLEDs"</v>
+                      <o n="Instance" t="Operand">
+                        <n n="Operand" />
+                        <v n="Type">""</v>
+                        <v n="Comment">""</v>
+                        <v n="SymbolComment">""</v>
+                        <v n="Address">""</v>
+                        <o n="Flags" t="Flags">
+                          <v n="Flags">0</v>
+                          <v n="Fixed">false</v>
+                          <v n="Extensible">false</v>
+                        </o>
+                        <v n="LValue">false</v>
+                        <v n="Boolean">false</v>
+                        <v n="IsInstance">true</v>
+                        <v n="Id">494L</v>
                       </o>
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems">
@@ -899,11 +986,72 @@ END_VAR
                       <n n="STSnippet" />
                       <v n="ContainsExtensibleInputs">false</v>
                       <v n="ProvidesSTSnippet">false</v>
-                      <v n="Id">226L</v>
+                      <v n="Id">495L</v>
                     </o>
                   </l2>
                   <l2 n="Connectors" />
                   <v n="Id">145L</v>
+                </o>
+                <o>
+                  <v n="ILActive">false</v>
+                  <v n="FBDValid">false</v>
+                  <v n="ILValid">false</v>
+                  <l2 n="ILLines" />
+                  <v n="Comment">""</v>
+                  <v n="Title">""</v>
+                  <v n="Label">""</v>
+                  <v n="OutCommented">true</v>
+                  <l2 n="NetworkItems" cet="BoxTreeAssign">
+                    <o>
+                      <o n="OutputItems" t="OutputItemList">
+                        <l2 n="OutputItems" cet="Operand">
+                          <o>
+                            <v n="Operand">"???"</v>
+                            <v n="Type">"BOOL"</v>
+                            <v n="Comment">""</v>
+                            <v n="SymbolComment">""</v>
+                            <v n="Address">""</v>
+                            <o n="Flags" t="Flags">
+                              <v n="Flags">0</v>
+                              <v n="Fixed">false</v>
+                              <v n="Extensible">false</v>
+                            </o>
+                            <v n="LValue">true</v>
+                            <v n="Boolean">true</v>
+                            <v n="IsInstance">false</v>
+                            <v n="Id">488L</v>
+                          </o>
+                        </l2>
+                      </o>
+                      <o n="Flags" t="Flags">
+                        <v n="Flags">0</v>
+                        <v n="Fixed">false</v>
+                        <v n="Extensible">false</v>
+                      </o>
+                      <o n="RValue" t="BoxTreeOperand">
+                        <o n="Operand" t="Operand">
+                          <v n="Operand">"???"</v>
+                          <v n="Type">"BOOL"</v>
+                          <v n="Comment">""</v>
+                          <v n="SymbolComment">""</v>
+                          <v n="Address">""</v>
+                          <o n="Flags" t="Flags">
+                            <v n="Flags">0</v>
+                            <v n="Fixed">false</v>
+                            <v n="Extensible">false</v>
+                          </o>
+                          <v n="LValue">false</v>
+                          <v n="Boolean">true</v>
+                          <v n="IsInstance">false</v>
+                          <v n="Id">487L</v>
+                        </o>
+                        <v n="Id">486L</v>
+                      </o>
+                      <v n="Id">489L</v>
+                    </o>
+                  </l2>
+                  <l2 n="Connectors" />
+                  <v n="Id">485L</v>
                 </o>
               </l2>
               <v n="BranchCounter">0</v>
@@ -930,6 +1078,34 @@ END_VAR
         </XmlArchive>
       </NWL>
     </Implementation>
+    <Action Name="actLEDs" Id="{2d7b8061-d2c9-0011-3ee9-4e074fbd8dcb}">
+      <Implementation>
+        <ST><![CDATA[// Bit 0 (LED 1): Flashes from 1 to 124, solid at >= 125
+qLed1 := (readS1_Alarms.qOutIndex >= 125) OR ((readS1_Alarms.qOutIndex >= 1) AND System.PulseHundredMilliSecond);
+
+// Bit 1 (LED 2): Flashes from 125 to 249, solid at >= 250
+qLed2 := (readS1_Alarms.qOutIndex >= 250) OR ((readS1_Alarms.qOutIndex >= 125) AND System.PulseHundredMilliSecond);
+
+// Bit 2 (LED 3): Flashes from 250 to 374, solid at >= 375
+qLed3 := (readS1_Alarms.qOutIndex >= 375) OR ((readS1_Alarms.qOutIndex >= 250) AND System.PulseHundredMilliSecond);
+
+// Bit 3 (LED 4): Flashes from 375 to 499, solid at >= 500
+qLed4 := (readS1_Alarms.qOutIndex >= 500) OR ((readS1_Alarms.qOutIndex >= 375) AND System.PulseHundredMilliSecond);
+
+// Bit 4 (LED 5): Flashes from 500 to 624, solid at >= 625
+qLed5 := (readS1_Alarms.qOutIndex >= 625) OR ((readS1_Alarms.qOutIndex >= 500) AND System.PulseHundredMilliSecond);
+
+// Bit 5 (LED 6): Flashes from 625 to 749, solid at >= 750
+qLed6 := (readS1_Alarms.qOutIndex >= 750) OR ((readS1_Alarms.qOutIndex >= 625) AND System.PulseHundredMilliSecond);
+
+// Bit 6 (LED 7): Flashes from 750 to 874, solid at >= 875
+qLed7 := (readS1_Alarms.qOutIndex >= 875) OR ((readS1_Alarms.qOutIndex >= 750) AND System.PulseHundredMilliSecond);
+
+// Bit 7 (LED 8): Flashes from 875 to 999, solid at >= 1000
+qLed8 := (readS1_Alarms.qOutIndex >= 1000) OR ((readS1_Alarms.qOutIndex >= 875) AND System.PulseHundredMilliSecond);
+]]></ST>
+      </Implementation>
+    </Action>
     <Action Name="actMc" Id="{157a6c63-6d4c-45c6-8dc8-3c144652a0e7}">
       <Implementation>
         <NWL>
@@ -4985,6 +5161,10 @@ readS6_Warnings.iTargetfilestring	:=	CONCAT(STR1:=tRootString, STR2:='PLC\Messag
         </NWL>
       </Implementation>
     </Action>
+    <LineIds Name="prgReadTextList.actLEDs">
+      <LineId Id="10" Count="22" />
+      <LineId Id="1" Count="0" />
+    </LineIds>
     <LineIds Name="prgReadTextList.actParsePath">
       <LineId Id="1" Count="0" />
       <LineId Id="4" Count="2" />

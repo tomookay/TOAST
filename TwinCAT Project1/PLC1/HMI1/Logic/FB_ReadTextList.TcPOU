@@ -179,11 +179,17 @@ CASE nState OF
         IF rtStart.Q OR rtReset.Q THEN
             nState := 0; // Clear error on new try or reset command
         END_IF
-END_CASE]]></ST>
+END_CASE
+
+qOutIndex := findtext.qIndexNum;
+]]></ST>
     </Implementation>
     <LineIds Name="FB_ReadTextList">
       <LineId Id="564" Count="130" />
       <LineId Id="80" Count="0" />
+      <LineId Id="741" Count="0" />
+      <LineId Id="740" Count="0" />
+      <LineId Id="742" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>
