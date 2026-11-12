@@ -161,7 +161,6 @@ System.StartPulse:=(oneSecStart.Q);
 
 
 
-
 IF system.thetime.wDay = 28 AND System.thetime.wMonth = 11 THEN
 	System.gHappyBirthday := TRUE;
 	ELSE
@@ -182,9 +181,9 @@ END_IF
     <Action Name="actDiag" Id="{64b32e1c-14ce-4e5e-ba1b-93c63e0d0e72}">
       <Implementation>
         <ST><![CDATA[//call diag blocks
-pouDPDiag();
+//pouDPDiag();
 pouEtherCATdiag();
-pouPROFINETdiag();
+//pouPROFINETdiag();
 
 
 ]]></ST>
@@ -453,7 +452,7 @@ IdentityReadContent := fbIdentityObjectRead.stMDP_Content;
 	
 	//get CPU usage
 	cpuusage(	netID:=,
-				Start:=System.PulseHundredMilliSecond,
+				Start:=System.TenSecond,
 				TMOUT:=T#10S
 				);
 	System.cpuusageval  := cpuusage.USAGE;
@@ -461,7 +460,7 @@ IdentityReadContent := fbIdentityObjectRead.stMDP_Content;
 	//get symbol count, usage
 	ReadSystemInfo( NETID:=,
 					Port:=System.myPlcAppSystemInfo.AdsPort,
-					Start:=system.OneSecond,
+					Start:=system.TenSecond,
 					TMOUT:=T#10S,
 					);
 	system.symCount:=ReadSystemInfo.SYMCOUNT;
@@ -469,7 +468,7 @@ IdentityReadContent := fbIdentityObjectRead.stMDP_Content;
 	
 	//get latency
 	getLatency(		NETID:=,
-					Start:=system.OneSecond,
+					Start:=system.TenSecond,
 					TMOUT:=T#10S,
 					);
 	System.LatencyMicroSec := getLatency.ACTUAL;
@@ -636,7 +635,7 @@ IF system.OneSecond AND gHMIButtons.gAnyMotionButtonPresed THEN gHMIButtons.gAny
       <LineId Id="29" Count="1" />
       <LineId Id="61" Count="0" />
       <LineId Id="60" Count="0" />
-      <LineId Id="62" Count="1" />
+      <LineId Id="62" Count="0" />
       <LineId Id="59" Count="0" />
       <LineId Id="58" Count="0" />
       <LineId Id="47" Count="0" />

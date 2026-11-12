@@ -1429,14 +1429,14 @@ External Setpoint Generation:
 					<Type>WORD</Type>
 				</Var>
 				<Var>
-					<Name>Safety.gSafetyCPUState</Name>
-					<Comment><![CDATA[CPU state as ethercat slave]]></Comment>
-					<Type>UINT</Type>
-				</Var>
-				<Var>
 					<Name>Safety.gSafetySerialNumber</Name>
 					<Comment><![CDATA[serial number of safety CPU]]></Comment>
 					<Type>UDINT</Type>
+				</Var>
+				<Var>
+					<Name>Safety.gSafetyCPUState</Name>
+					<Comment><![CDATA[CPU state as ethercat slave]]></Comment>
+					<Type>UINT</Type>
 				</Var>
 				<Var>
 					<Name>Safety.gSafetyCPUADSadr</Name>
@@ -5883,6 +5883,38 @@ External Setpoint Generation:
 			<Vars VarGrpType="2" ContextId="1" AreaNo="17">
 				<Name>PlcTask Outputs</Name>
 				<Var>
+					<Name>prgReadTextList.qLed1</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>prgReadTextList.qLed2</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>prgReadTextList.qLed3</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>prgReadTextList.qLed4</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>prgReadTextList.qLed5</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>prgReadTextList.qLed6</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>prgReadTextList.qLed7</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
+					<Name>prgReadTextList.qLed8</Name>
+					<Type>BOOL</Type>
+				</Var>
+				<Var>
 					<Name>Safety.iEnableSafetyDevicesuint</Name>
 					<Comment><![CDATA[on request (latch-use) from PLC program to safety program
 this comes from the "Motive Power ON" from the PLC
@@ -9765,38 +9797,6 @@ outputs from PLC (i) program become inputs to safety program (q)]]></Comment>
 				</Var>
 				<Var>
 					<Name>S6_IO.Row99.qReturnedCoil</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>prgReadTextList.qLed1</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>prgReadTextList.qLed2</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>prgReadTextList.qLed3</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>prgReadTextList.qLed4</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>prgReadTextList.qLed5</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>prgReadTextList.qLed6</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>prgReadTextList.qLed7</Name>
-					<Type>BOOL</Type>
-				</Var>
-				<Var>
-					<Name>prgReadTextList.qLed8</Name>
 					<Type>BOOL</Type>
 				</Var>
 			</Vars>

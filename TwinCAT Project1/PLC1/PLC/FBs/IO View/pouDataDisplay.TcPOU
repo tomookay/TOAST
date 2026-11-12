@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <POU Name="pouDataDisplay" Id="{9d244046-dbb0-4950-8033-df6cea4a2323}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM pouDataDisplay
 VAR
@@ -7,6 +7,7 @@ VAR
 	dataCombi: ARRAY[0..15] OF FB_DataCombine;
 	i: INT;
 	
+	test1: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -64,7 +65,7 @@ END_VAR
                             <v n="Fixed">false</v>
                             <v n="Extensible">false</v>
                           </o>
-                          <v n="Id">536L</v>
+                          <v n="Id">575L</v>
                         </o>
                       </l2>
                       <o n="InputParam" t="ParamList">
