@@ -4,17 +4,17 @@
 		<System>
 			<Settings MaxStackSize="32">
 				<Cpu LatencyWarning="5000"/>
-				<IoIdleTask Priority="16" CycleTime="200000"/>
+				<IoIdleTask Priority="16" CycleTime="1000000"/>
 			</Settings>
 			<Tasks>
-				<Task Id="3" Priority="14" CycleTime="200000" AmsPort="350" TickModulo="1" ExceedWarning="2" DisableFpExceptions="true" AdtTasks="true">
+				<Task Id="3" Priority="10" CycleTime="100000" AmsPort="350" TickModulo="1" ExceedWarning="2" DisableFpExceptions="true" AdtTasks="true">
 					<Name>PlcTask</Name>
 				</Task>
 				<Task Id="8" Disabled="true" Priority="6" CycleTime="10000" AmsPort="353" DisableFpExceptions="true" AdtTasks="true">
 					<Name>DataGrab</Name>
 					<Comment><![CDATA[for data grabbing only]]></Comment>
 				</Task>
-				<Task Id="9" Disabled="true" Priority="12" CycleTime="100000" AmsPort="354" AdtTasks="true">
+				<Task Id="9" Disabled="true" Priority="14" CycleTime="100000" AmsPort="354" AdtTasks="true">
 					<Name>DataAnalyse</Name>
 				</Task>
 				<Task Id="10" Disabled="true" Priority="4" CycleTime="10000" AmsPort="355" AdtTasks="true">
@@ -62,9 +62,9 @@
 		</Variants>
 	</Project>
 	<Mappings>
-		<MappingInfo Identifier="{00000000-2001-0850-0120-500880000403}" Id="#x02030020"/>
-		<MappingInfo Identifier="{00000000-2001-0850-0120-500891000403}" Id="#x02030030"/>
-		<MappingInfo Identifier="{05000010-2001-0850-A000-040301205008}" Id="#x02030040" Watchdog="28000000040000000400000004000000"/>
+		<MappingInfo Identifier="{00000000-2004-0850-0120-500880000403}" Id="#x02030020"/>
+		<MappingInfo Identifier="{00000000-2004-0850-0120-500891000403}" Id="#x02030030"/>
+		<MappingInfo Identifier="{05000010-2004-0850-A000-040301205008}" Id="#x02030040" Watchdog="14000000040000000400000004000000"/>
 		<MappingInfo Identifier="{03040080-0080-0304-8000-040380000403}" Id="#x02030010" Watchdog="04000000040000000400000004000000"/>
 	</Mappings>
 </TcSmProject>

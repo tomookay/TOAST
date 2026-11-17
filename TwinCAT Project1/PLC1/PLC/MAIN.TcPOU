@@ -141,6 +141,7 @@ System.OneSecond:=oneSec.q;
 pulseoneSec(CLK:= System.OneSecond);
 System.PulseOneSecond  := pulseoneSec.Q;
 
+
 twoSec(timeVal:=T#1S);
 System.TwoSecond:=twoSec.q;
 pulseTwoSec(CLK:= System.TwoSecond);
@@ -622,6 +623,7 @@ IF system.OneSecond AND gHMIButtons.gAnyMotionButtonPresed THEN gHMIButtons.gAny
       <LineId Id="6" Count="0" />
       <LineId Id="4" Count="0" />
       <LineId Id="42" Count="1" />
+      <LineId Id="63" Count="0" />
       <LineId Id="54" Count="3" />
       <LineId Id="53" Count="0" />
       <LineId Id="10" Count="0" />

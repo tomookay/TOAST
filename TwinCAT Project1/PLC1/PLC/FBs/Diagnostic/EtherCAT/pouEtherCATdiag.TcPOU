@@ -105,7 +105,7 @@ END_IF
 
 
 
-IF System.PulseOneSecond OR localreset THEN
+IF System.PulseTenSecond OR localreset THEN
 	FOR i := 0 TO  etherCATdiag.maxNumEtherCATSlaves DO //
 	
 	//from FB_EcGetAllSlaveStates	
@@ -292,7 +292,7 @@ idbGetConfSlaves.sNetId := F_CreateAmsNetId(nIds:=system.ecMasterData[1].ecAMSma
 
 etherCATmasters.t_amsnetIDSelectedMaster := F_CreateAmsNetId(nIds:=system.ecMasterData[1].ecAMSmaster);
 
-readDataFromSlaves := System.PulseOneSecond;
+readDataFromSlaves := System.PulseTenSecond;
 
 
 //get slave info
@@ -331,7 +331,7 @@ getallSlaveState(	sNetId					:=etherCATmasters.t_amsnetIDSelectedMaster,
 etherCATdiag.detailDiagNum	:= MAX(etherCATdiag.detailDiagNum, 1);
 
 //move value from selected screen index (slave number) to the detail view
-IF System.PulseOneSecond THEN
+IF System.PulseTenSecond THEN
 	retvall :=	MEMCPY( destAddr 		:=	ADR(etherCATdiag.detailDiag),
 						srcAddr 		:=	ADR(etherCATdiag.diagScreen[etherCATdiag.detailDiagNum]),
 						n 				:=	SIZEOF(etherCATdiag.detailDiag)
@@ -345,7 +345,7 @@ sizeofdiagscreen := SIZEOF(etherCATdiag.diagScreen);
     </Action>
     <Action Name="actMoveLocalData" Id="{07442dd0-a551-4aff-8d35-4ea4b270238f}">
       <Implementation>
-        <ST><![CDATA[IF  System.PulseOneSecond THEN //System.PulseOneSecond
+        <ST><![CDATA[IF  System.PulseTenSecond THEN //System.PulseOneSecond
 	//move data from FB_EcGetConfSlaves (etherCATdiag.arryEcConfSlaveInfo) to data for HMI
 	FOR a := 0 TO etherCATdiag.maxNumEtherCATSlaves DO
 		etherCATdiag.EtherCATslaveDiag[a].ConfigData := etherCATdiag.arryEcConfSlaveInfo[a];

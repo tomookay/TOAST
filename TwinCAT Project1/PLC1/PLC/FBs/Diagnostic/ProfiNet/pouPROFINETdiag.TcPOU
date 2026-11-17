@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <POU Name="pouPROFINETdiag" Id="{6862f099-ed7c-4452-83ce-c9352fab3c19}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM pouPROFINETdiag
 VAR
@@ -584,7 +584,7 @@ END_VAR
         <ST><![CDATA[//get max value of diag number
 ProfiNetDiag.detailDiagNum := MAX(ProfiNetDiag.detailDiagNum, 1);
 
-IF System.PulseOneSecond THEN
+IF System.PulseTenSecond THEN
 	retvall := MEMCPY( destAddr	:=ADR(ProfiNetDiag.detailDiag),
 						srcAddr :=ADR(ProfiNetDiag.diagScreen[ProfiNetDiag.detailDiagNum]),
 						n		:=SIZEOF(ProfiNetDiag.detailDiag)
