@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="F_SplitStringAtSpace" Id="{443524b2-82a1-0469-2548-12a2e64f4cf3}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION F_SplitStringAtSpace  : BOOL;
+VAR_INPUT
+    sInput : STRING(31);
+END_VAR
+VAR_OUTPUT
+    str1   : STRING(31);
+    str2   : STRING(31);
+END_VAR
+VAR
+    nSpacePos : INT;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// Find the 1-based index of the first space character
+nSpacePos := FIND(sInput, ' ');
+
+IF nSpacePos > 0 THEN
+    // Extract everything before the space ('Z1')
+    str1 := LEFT(sInput, nSpacePos - 1);
+    
+    // Remove everything up to and including the space ('Axis')
+    str2 := DELETE(sInput, nSpacePos, 1);
+    
+    F_SplitStringAtSpace := TRUE;
+ELSE
+    // Fallback if no space is found in the input string
+    str1 := sInput;
+    str2 := '';
+    F_SplitStringAtSpace := FALSE;
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="F_SplitStringAtSpace">
+      <LineId Id="17" Count="15" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

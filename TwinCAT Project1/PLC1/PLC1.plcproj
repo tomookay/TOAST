@@ -748,6 +748,9 @@
     <Compile Include="PLC\FBs\FCs\FC_NOT.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="PLC\FBs\FCs\F_SplitStringAtSpace.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="PLC\FBs\IO View\FB_DataCombine.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -2713,6 +2716,12 @@
     <Compile Include="PLC\System\IPCDiag\IpcDiagnostics2.TcPOU">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="PLC\System\userProgCRC\prgCheckPlcCrc.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PLC\System\userProgCRC\ST_PlcCrcFile.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Project Information\F_GetCompany.TcPOU">
       <SubType>Code</SubType>
       <SystemCall>true</SystemCall>
@@ -3376,6 +3385,7 @@
     <Folder Include="PLC\Safety\enumHardware" />
     <Folder Include="PLC\Safety\enumProgram" />
     <Folder Include="PLC\System\IPCDiag" />
+    <Folder Include="PLC\System\userProgCRC" />
     <Folder Include="X_Sim" />
     <Folder Include="PLC\FBs\Diagnostic" />
     <Folder Include="PLC\FBs\Diagnostic\EtherCAT" />

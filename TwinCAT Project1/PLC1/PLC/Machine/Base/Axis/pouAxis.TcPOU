@@ -1,9 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
   <POU Name="pouAxis" Id="{0a1eb7e7-2ca7-4349-8d96-78253461d98b}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM pouAxis
 VAR
 	retvall: UDINT;
+	nAxisId   : UDINT;
+ 
+	bStartScan   : BOOL;            // Set TRUE to begin reading all 16 axes
+    bDone        : BOOL;            // TRUE when all 16 axes are read
+    bError       : BOOL;            // TRUE if an ADS read fails
+    nErrId       : UDINT;           // ADS error code if bError is TRUE
+    
+    nState       : INT := 0;        // State machine step
+    nIndex       : INT := 1;        // Current axis index (1..16)
+    fbReadAds    : ADSREAD;         // ADS Read function block
+    
+    // Read buffers
+    sAxisName    : STRING(30);      // Offset 16#00000002 (Grp 16#4000)
+    nAxisType    : UDINT;           // Offset 16#00000003 (Grp 16#4000)
+    sDriveName   : STRING(30);      // Offset 16#00000002 (Grp 16#7000)
+	
+	osrRead:R_TRIG;
+	
+	fbReadAxisCount : ADSREAD;
+    nAxisCount      : UDINT;      // Receives total number of NC axes (0..255)
+    bGetAxisCount   : BOOL;       // Trigger to read count
+	
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -91,84 +113,6 @@ END_VAR
                   </l2>
                   <l2 n="Connectors" />
                   <v n="Id">109L</v>
-                </o>
-                <o>
-                  <v n="ILActive">false</v>
-                  <v n="FBDValid">false</v>
-                  <v n="ILValid">false</v>
-                  <l2 n="ILLines" />
-                  <v n="Comment">"initalise axis data"</v>
-                  <v n="Title">""</v>
-                  <v n="Label">""</v>
-                  <v n="OutCommented">false</v>
-                  <l2 n="NetworkItems" cet="BoxTreeBox">
-                    <o>
-                      <v n="BoxType">"actDefineAxis"</v>
-                      <o n="Instance" t="Operand">
-                        <n n="Operand" />
-                        <v n="Type">""</v>
-                        <v n="Comment">""</v>
-                        <v n="SymbolComment">""</v>
-                        <v n="Address">""</v>
-                        <o n="Flags" t="Flags">
-                          <v n="Flags">0</v>
-                          <v n="Fixed">false</v>
-                          <v n="Extensible">false</v>
-                        </o>
-                        <v n="LValue">false</v>
-                        <v n="Boolean">false</v>
-                        <v n="IsInstance">true</v>
-                        <v n="Id">113L</v>
-                      </o>
-                      <o n="OutputItems" t="OutputItemList">
-                        <l2 n="OutputItems">
-                          <n />
-                        </l2>
-                      </o>
-                      <o n="Flags" t="Flags">
-                        <v n="Flags">0</v>
-                        <v n="Fixed">true</v>
-                        <v n="Extensible">false</v>
-                      </o>
-                      <n n="InputFlags" />
-                      <l2 n="InputItems" cet="BoxTreeTerminator">
-                        <o>
-                          <n n="Input" />
-                          <o n="Flags" t="Flags">
-                            <v n="Flags">0</v>
-                            <v n="Fixed">false</v>
-                            <v n="Extensible">false</v>
-                          </o>
-                          <v n="Id">105L</v>
-                        </o>
-                      </l2>
-                      <o n="InputParam" t="ParamList">
-                        <l2 n="Names" cet="String">
-                          <v>EN</v>
-                        </l2>
-                        <l2 n="Types" cet="String">
-                          <v>BOOL</v>
-                        </l2>
-                      </o>
-                      <o n="OutputParam" t="ParamList">
-                        <l2 n="Names" cet="String">
-                          <v>ENO</v>
-                        </l2>
-                        <l2 n="Types" cet="String">
-                          <v>BOOL</v>
-                        </l2>
-                      </o>
-                      <v n="CallType" t="Operator">Action</v>
-                      <v n="EN">true</v>
-                      <v n="ENO">true</v>
-                      <n n="STSnippet" />
-                      <v n="ContainsExtensibleInputs">false</v>
-                      <v n="ProvidesSTSnippet">false</v>
-                      <v n="Id">114L</v>
-                    </o>
-                  </l2>
-                  <l2 n="Connectors" />
-                  <v n="Id">102L</v>
                 </o>
                 <o>
                   <v n="ILActive">false</v>
@@ -664,7 +608,85 @@ END_VAR
                         <v n="LValue">false</v>
                         <v n="Boolean">false</v>
                         <v n="IsInstance">true</v>
-                        <v n="Id">52L</v>
+                        <v n="Id">126L</v>
+                      </o>
+                      <o n="OutputItems" t="OutputItemList">
+                        <l2 n="OutputItems">
+                          <n />
+                        </l2>
+                      </o>
+                      <o n="Flags" t="Flags">
+                        <v n="Flags">0</v>
+                        <v n="Fixed">true</v>
+                        <v n="Extensible">false</v>
+                      </o>
+                      <n n="InputFlags" />
+                      <l2 n="InputItems" cet="BoxTreeTerminator">
+                        <o>
+                          <n n="Input" />
+                          <o n="Flags" t="Flags">
+                            <v n="Flags">0</v>
+                            <v n="Fixed">false</v>
+                            <v n="Extensible">false</v>
+                          </o>
+                          <v n="Id">128L</v>
+                        </o>
+                      </l2>
+                      <o n="InputParam" t="ParamList">
+                        <l2 n="Names" cet="String">
+                          <v>EN</v>
+                        </l2>
+                        <l2 n="Types" cet="String">
+                          <v>BOOL</v>
+                        </l2>
+                      </o>
+                      <o n="OutputParam" t="ParamList">
+                        <l2 n="Names" cet="String">
+                          <v>ENO</v>
+                        </l2>
+                        <l2 n="Types" cet="String">
+                          <v>BOOL</v>
+                        </l2>
+                      </o>
+                      <v n="CallType" t="Operator">Program</v>
+                      <v n="EN">true</v>
+                      <v n="ENO">true</v>
+                      <n n="STSnippet" />
+                      <v n="ContainsExtensibleInputs">false</v>
+                      <v n="ProvidesSTSnippet">false</v>
+                      <v n="Id">127L</v>
+                    </o>
+                  </l2>
+                  <l2 n="Connectors" />
+                  <v n="Id">125L</v>
+                </o>
+                <o>
+                  <v n="ILActive">false</v>
+                  <v n="FBDValid">false</v>
+                  <v n="ILValid">false</v>
+                  <l2 n="ILLines" />
+                  <v n="Comment">""</v>
+                  <v n="Title">""</v>
+                  <v n="Label">""</v>
+                  <v n="OutCommented">false</v>
+                  <l2 n="NetworkItems" cet="BoxTreeBox">
+                    <o>
+                      <v n="BoxType">"actReadNCData"</v>
+                      <o n="Instance" t="Operand">
+                        <n n="Operand" />
+                        <v n="Type">""</v>
+                        <v n="Comment">""</v>
+                        <v n="SymbolComment">""</v>
+                        <v n="Address">""</v>
+                        <o n="Flags" t="Flags">
+                          <v n="Flags">0</v>
+                          <v n="Fixed">false</v>
+                          <v n="Extensible">false</v>
+                        </o>
+                        <v n="LValue">false</v>
+                        <v n="Boolean">false</v>
+                        <v n="IsInstance">true</v>
+                        <v n="Id">153L</v>
                       </o>
                       <o n="OutputItems" t="OutputItemList">
                         <l2 n="OutputItems">
@@ -704,13 +726,13 @@ END_VAR
                           <v>BOOL</v>
                         </l2>
                       </o>
-                      <v n="CallType" t="Operator">Program</v>
+                      <v n="CallType" t="Operator">Action</v>
                       <v n="EN">true</v>
                       <v n="ENO">true</v>
                       <n n="STSnippet" />
                       <v n="ContainsExtensibleInputs">false</v>
                       <v n="ProvidesSTSnippet">false</v>
-                      <v n="Id">53L</v>
+                      <v n="Id">154L</v>
                     </o>
                   </l2>
                   <l2 n="Connectors" />
@@ -756,56 +778,177 @@ axis.gAxisNumRows := 0;
 axis.isAxisStandStill := TRUE;]]></ST>
       </Implementation>
     </Action>
-    <Action Name="actDefineAxis" Id="{9af7c28b-6d61-4a84-85ca-c2c5ea7f91d2}">
+    <Action Name="actReadNCData" Id="{4a2db1ec-cf80-0edb-2e21-5bdd11b7a724}">
       <Implementation>
-        <ST><![CDATA[
-//axis define for HMI screen feedback
-Axis.axisPresent[1].AxisName := 'Gantry Traverse'; //name of axis
-Axis.axisPresent[1].AxisDef := 'X'; //X,Y,Z, A,B,C, etc
-Axis.axisPresent[1].AxisNumber := 1;
-Axis.axisPresent[1].isLinearDrive := TRUE;
-Axis.axisPresent[1].isSpindleDrive := FALSE;
+        <ST><![CDATA[osrRead	(	CLK	:= System.StartPulse	);
 
-//axis define for HMI screen feedback
-Axis.axisPresent[2].AxisName := 'Gantry Raise/Lower'; //name of axis
-Axis.axisPresent[2].AxisDef := 'Y'; //X,Y,Z, A,B,C, etc
-Axis.axisPresent[2].AxisNumber := 2;
-Axis.axisPresent[2].isLinearDrive := TRUE;
-Axis.axisPresent[2].isSpindleDrive := FALSE;
+IF osrRead.Q AND NOT bDone THEN
+	//need to check all ethercat slaves present ok, really, before doing a load of ADS read commands
+	bStartScan := TRUE;
+END_IF
 
-//axis define for HMI screen feedback
-Axis.axisPresent[3].AxisName := 'Gantry Clamp'; //name of axis
-Axis.axisPresent[3].AxisDef := 'Z'; //X,Y,Z, A,B,C, etc
-Axis.axisPresent[3].AxisNumber := 3;
-Axis.axisPresent[3].isLinearDrive := TRUE;
-Axis.axisPresent[3].isSpindleDrive := FALSE;
 
-//axis define for HMI screen feedback
-Axis.axisPresent[4].AxisName := 'Spindle 1'; //name of axis
-Axis.axisPresent[4].AxisDef := 'S1'; //X,Y,Z, A,B,C, etc
-Axis.axisPresent[4].AxisNumber := 4;
-Axis.axisPresent[4].isLinearDrive := FALSE;
-Axis.axisPresent[4].isSpindleDrive := TRUE;
+CASE nState OF
+    0: // Idle - wait for start trigger
+        IF bStartScan THEN
+            bStartScan := FALSE;
+            bDone      := FALSE;
+            bError     := FALSE;
+            nErrId     := 0;
+            nIndex     := 1;
+            nState     := 10;
+        END_IF
 
-//axis define for HMI screen feedback
-Axis.axisPresent[5].AxisName := 'Spindle 2'; //name of axis
-Axis.axisPresent[5].AxisDef := 'S2'; //X,Y,Z, A,B,C, etc
-Axis.axisPresent[5].AxisNumber := 5;
-Axis.axisPresent[5].isLinearDrive := FALSE;
-Axis.axisPresent[5].isSpindleDrive := TRUE;
+    10: // STEP 1: Trigger read for Axis Name (Group 16#4000, Offset 16#02)
+        IF driveGlobals.ncAxis[nIndex].NcToPlc.AxisId = 0 THEN
+            Axis.axisPresent[nIndex].AxisName   := '';
+            Axis.axisPresent[nIndex].AxisNumber := 0;
+            Axis.axisPresent[nIndex].AxisType   := 0;
+            Axis.axisPresent[nIndex].DriveName  := '';
+            nState := 70; // Skip to next axis
+        ELSE
+            sAxisName := '';
+            fbReadAds(
+                NETID    := '',
+                PORT     := 500,
+                IDXGRP   := 16#4000 + driveGlobals.ncAxis[nIndex].NcToPlc.AxisId,
+                IDXOFFS  := 16#00000002,
+                LEN      := SIZEOF(sAxisName),
+                DESTADDR := ADR(sAxisName),
+                READ     := TRUE
+            );
+            nState := 20;
+        END_IF
 
-//axis define for HMI screen feedback
-Axis.axisPresent[6].AxisName := 'Cleaning Brush'; //name of axis
-Axis.axisPresent[6].AxisDef := 'A'; //X,Y,Z, A,B,C, etc
-Axis.axisPresent[6].AxisNumber := 6;
-Axis.axisPresent[6].isLinearDrive := TRUE;
-Axis.axisPresent[6].isSpindleDrive := FALSE;
+    20: // Wait for Axis Name read to finish
+        fbReadAds(READ := FALSE);
+        IF NOT fbReadAds.BUSY THEN
+            IF fbReadAds.ERR THEN
+                bError := TRUE;
+                nErrId := fbReadAds.ERRID;
+                nState := 0;
+            ELSE
+                Axis.axisPresent[nIndex].AxisName   := sAxisName;
+                Axis.axisPresent[nIndex].AxisNumber := driveGlobals.ncAxis[nIndex].NcToPlc.AxisId;
+                nState := 30; // Proceed to Axis Type
+            END_IF
+        END_IF
 
-//define max axis useage
-//could write a loop to work that out
-Axis.gNumAxisInSystem := 6;
+    30: // STEP 2: Trigger read for Axis Type (Group 16#4000, Offset 16#03)
+        nAxisType := 0;
+        fbReadAds(
+            NETID    := '',
+            PORT     := 500,
+            IDXGRP   := 16#4000 + driveGlobals.ncAxis[nIndex].NcToPlc.AxisId,
+            IDXOFFS  := 16#00000003,
+            LEN      := SIZEOF(nAxisType),
+            DESTADDR := ADR(nAxisType),
+            READ     := TRUE
+        );
+        nState := 40;
 
-]]></ST>
+    40: // Wait for Axis Type read to finish
+        fbReadAds(READ := FALSE);
+        IF NOT fbReadAds.BUSY THEN
+            IF fbReadAds.ERR THEN
+                bError := TRUE;
+                nErrId := fbReadAds.ERRID;
+                nState := 0;
+            ELSE
+                Axis.axisPresent[nIndex].AxisType := nAxisType;
+                nState := 50; // Proceed to NC Drive Name
+            END_IF
+        END_IF
+
+    50: // STEP 3: Trigger read for NC Drive Name (Group 16#7000, Offset 16#02)
+        sDriveName := '';
+        fbReadAds(
+            NETID    := '',
+            PORT     := 500,
+            IDXGRP   := 16#7000 + driveGlobals.ncAxis[nIndex].NcToPlc.AxisId,
+            IDXOFFS  := 16#00000002,
+            LEN      := SIZEOF(sDriveName),
+            DESTADDR := ADR(sDriveName),
+            READ     := TRUE
+        );
+        nState := 60;
+
+    60: // Wait for NC Drive Name read to finish
+        fbReadAds(READ := FALSE);
+        IF NOT fbReadAds.BUSY THEN
+            IF fbReadAds.ERR THEN
+                // Note: Virtual/Encoder-only axes might not have a Drive object (Error 1804/0x70C).
+                // Clear name and continue instead of aborting if that happens:
+                IF fbReadAds.ERRID = 16#70C THEN
+                    Axis.axisPresent[nIndex].DriveName := '';
+                    nState := 70;
+                ELSE
+                    bError := TRUE;
+                    nErrId := fbReadAds.ERRID;
+                    nState := 0;
+                END_IF
+            ELSE
+                Axis.axisPresent[nIndex].DriveName := sDriveName;
+                nState := 70;
+            END_IF
+        END_IF
+		
+	70:
+		F_SplitStringAtSpace(	sInput :=  Axis.axisPresent[nIndex].AxisName,
+			str1   => Axis.axisPresent[nIndex].AxisDef,    // Output: 'Z1'
+   			str2   => Axis.axisPresent[nIndex].AxisName     // Output: 'Axis'
+			);
+		nState := 80;		 
+		
+
+    80: // Increment index or finish
+        IF nIndex < 16 THEN
+            nIndex := nIndex + 1;
+            nState := 10;
+        ELSE
+            bDone  := TRUE;
+            nState := 100;
+        END_IF
+		
+		
+	100:
+	fbReadAxisCount(
+    READ     := FALSE
+	);
+	nState := 110;
+	
+	110:
+	fbReadAxisCount(
+    NETID    := '',               // Local target
+    PORT     := 500,              // NC-Task 1 SAF default ADS port
+    IDXGRP   := 16#00001100,      // Ring-0-Manager State group
+    IDXOFFS  := 16#00000003,      // Offset 0x03 = Number of axes
+    LEN      := SIZEOF(nAxisCount),
+    DESTADDR := ADR(nAxisCount),
+    READ     := TRUE
+	);
+	
+	nState := 120;
+	
+	120:
+	fbReadAxisCount(READ     := FALSE	);
+	
+	IF NOT fbReadAxisCount.BUSY THEN
+		 IF fbReadAxisCount.ERR THEN
+                bError := TRUE;
+                nErrId := fbReadAxisCount.ERRID;
+                nState := 0;
+            ELSE
+               nState := 130; // next
+			   Axis.gNumAxisInSystem := nAxisCount;
+            END_IF
+	END_IF
+	
+	130:
+	nState := 0;
+	
+		
+END_CASE]]></ST>
       </Implementation>
     </Action>
     <Action Name="actSelectAxis" Id="{4ed42672-50b6-4ef5-b39f-b5e233271a55}">
@@ -849,20 +992,46 @@ retvall := memcpy( destAddr := ADR(Axis.axisSelected),
       <LineId Id="2" Count="11" />
       <LineId Id="1" Count="0" />
     </LineIds>
-    <LineIds Name="pouAxis.actDefineAxis">
-      <LineId Id="2" Count="46" />
-      <LineId Id="1" Count="0" />
+    <LineIds Name="pouAxis.actReadNCData">
+      <LineId Id="221" Count="1" />
+      <LineId Id="216" Count="0" />
+      <LineId Id="218" Count="0" />
+      <LineId Id="220" Count="0" />
+      <LineId Id="219" Count="0" />
+      <LineId Id="217" Count="0" />
+      <LineId Id="215" Count="0" />
+      <LineId Id="92" Count="103" />
+      <LineId Id="205" Count="1" />
+      <LineId Id="209" Count="3" />
+      <LineId Id="214" Count="0" />
+      <LineId Id="208" Count="0" />
+      <LineId Id="196" Count="8" />
+      <LineId Id="224" Count="0" />
+      <LineId Id="229" Count="1" />
+      <LineId Id="232" Count="0" />
+      <LineId Id="238" Count="0" />
+      <LineId Id="231" Count="0" />
+      <LineId Id="225" Count="0" />
+      <LineId Id="251" Count="0" />
+      <LineId Id="241" Count="9" />
+      <LineId Id="240" Count="0" />
+      <LineId Id="255" Count="0" />
+      <LineId Id="271" Count="1" />
+      <LineId Id="269" Count="0" />
+      <LineId Id="273" Count="0" />
+      <LineId Id="252" Count="0" />
+      <LineId Id="258" Count="5" />
+      <LineId Id="267" Count="0" />
+      <LineId Id="256" Count="1" />
+      <LineId Id="253" Count="1" />
+      <LineId Id="266" Count="0" />
+      <LineId Id="265" Count="0" />
+      <LineId Id="228" Count="0" />
+      <LineId Id="34" Count="0" />
     </LineIds>
     <LineIds Name="pouAxis.actSelectAxis">
-      <LineId Id="1" Count="3" />
-      <LineId Id="9" Count="0" />
-      <LineId Id="6" Count="0" />
-      <LineId Id="5" Count="0" />
-      <LineId Id="7" Count="1" />
-      <LineId Id="16" Count="0" />
-      <LineId Id="11" Count="0" />
-      <LineId Id="10" Count="0" />
-      <LineId Id="12" Count="3" />
+      <LineId Id="2" Count="14" />
+      <LineId Id="1" Count="0" />
     </LineIds>
   </POU>
 </TcPlcObject>

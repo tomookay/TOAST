@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.11">
+  <POU Name="prgCheckPlcCrc" Id="{7adc3e68-631e-02d7-21da-4f3e34908783}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM prgCheckPlcCrc
+VAR
+    // Trigger & Status
+    bReadCrc            : BOOL := TRUE; // Triggers automatically on first scan
+    bCaptureBaseline    : BOOL;         // Pulse TRUE once on a known-good build to record values
+    bBusy               : BOOL;
+    bError              : BOOL;
+    nErrorId            : UDINT;
+    bCodeMatchesGood    : BOOL;         // TRUE when current code/data matches known-good baseline
+
+    // File Path (Adjust for TC3 >= 4026: 'C:\ProgramData\Beckhoff\TwinCAT\3.1\Boot\Plc\Port_851.crc')
+    sFilePath           : T_MaxString := 'C:\TwinCAT\3.1\Boot\Plc\Port_851.crc';
+
+    // Read & Reference Structures
+    stCurrentCrc        : ST_PlcCrcFile;
+    stKnownGoodCrc      : ST_PlcCrcFile := (
+        dwCodeCrc := 16#00000000, // Replace with your captured known-good Code CRC
+        dwDataCrc := 16#00000000  // Replace with your captured known-good Data CRC
+    );
+
+    // File Function Blocks (from Tc2_System)
+    fbFileOpen          : FB_FileOpen;
+    fbFileRead          : FB_FileRead;
+    fbFileClose         : FB_FileClose;
+    
+    nState              : INT := 0;
+    hFile               : UINT := 0;
+
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// Helper: Capture current values into baseline for testing
+IF bCaptureBaseline THEN
+    stKnownGoodCrc := stCurrentCrc;
+    bCaptureBaseline := FALSE;
+END_IF
+
+CASE nState OF
+    0: // Idle - Wait for trigger
+        IF bReadCrc THEN
+            bReadCrc := FALSE;
+            bBusy    := TRUE;
+            bError   := FALSE;
+            nErrorId := 0;
+            nState   := 5;
+        END_IF
+		
+	5: //path name creation
+		IF System.gUseCEPath THEN
+				sFilePath := '\Hard Disk\TwinCAT\3.1\Boot\Plc\Port_851.crc';
+			ELSE
+				sFilePath := 'C:\TwinCAT\3.1\Boot\Plc\Port_851.crc';
+		END_IF
+		nState := 10;
+		
+
+    10: // Open the .crc file in binary read mode
+        fbFileOpen(
+            sNetId    := '', // Local target
+            sPathName := sFilePath,
+            nMode     := FOPEN_MODEREAD OR FOPEN_MODEBINARY,
+            ePath     := PATH_GENERIC,
+            bExecute  := TRUE
+        );
+        IF NOT fbFileOpen.bBusy THEN
+            fbFileOpen(bExecute := FALSE);
+            IF fbFileOpen.bError THEN
+                bError   := TRUE;
+                nErrorId := fbFileOpen.nErrId;
+                bBusy    := FALSE;
+                nState   := 0;
+            ELSE
+                hFile  := fbFileOpen.hFile;
+                nState := 20;
+            END_IF
+        END_IF
+
+    20: // Read 20 bytes directly into stCurrentCrc
+        fbFileRead(
+            sNetId     := '',
+            hFile      := hFile,
+            pReadBuff  := ADR(stCurrentCrc),
+            cbReadLen  := SIZEOF(stCurrentCrc),
+            bExecute   := TRUE
+        );
+        IF NOT fbFileRead.bBusy THEN
+            fbFileRead(bExecute := FALSE);
+            IF fbFileRead.bError THEN
+                bError   := TRUE;
+                nErrorId := fbFileRead.nErrId;
+            END_IF
+            nState := 30; // Always close file even if read failed
+        END_IF
+
+    30: // Close the file handle
+        fbFileClose(
+            sNetId   := '',
+            hFile    := hFile,
+            bExecute := TRUE
+        );
+        IF NOT fbFileClose.bBusy THEN
+            fbFileClose(bExecute := FALSE);
+            bBusy  := FALSE;
+            nState := 40;
+        END_IF
+
+    40: // Evaluate repeatable CRC fields against known-good reference
+        bCodeMatchesGood := (stCurrentCrc.dwCodeCrc = stKnownGoodCrc.dwCodeCrc) AND
+                            (stCurrentCrc.dwDataCrc = stKnownGoodCrc.dwDataCrc) AND
+                            (stCurrentCrc.dwCodeCrc <> 0);
+		nState := 0;
+END_CASE
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="prgCheckPlcCrc">
+      <LineId Id="32" Count="14" />
+      <LineId Id="130" Count="1" />
+      <LineId Id="134" Count="1" />
+      <LineId Id="137" Count="1" />
+      <LineId Id="136" Count="0" />
+      <LineId Id="132" Count="1" />
+      <LineId Id="47" Count="54" />
+      <LineId Id="142" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="141" Count="0" />
+      <LineId Id="149" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
